@@ -1,0 +1,310 @@
+
+
+.app ul {
+    padding-left: 4px;
+}
+
+
+#debug-status {
+    max-height: 8em;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+.inj, #root-panel {
+    font-family: arial,sans-serif;
+    font-size: 12px;
+}
+
+#root-panel {
+    width: 100%;
+    padding-left: 4px;
+}
+
+.sidebar {
+    font-size: 13px;
+    font-family: arial,sans-serif;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.root-panel-failback {
+    z-index: 10; /* overlay */
+    position: fixed;
+    bottom: 30px;
+    left: 4px;
+    height: 160px;
+}
+
+
+#ydn-tabbar {
+}
+
+#ydn-tabbar .home {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/home.svg') center center no-repeat;
+}
+
+#ydn-tabbar .feed {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
+}
+
+#ydn-tabbar .setting {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') center center no-repeat;
+}
+
+#ydn-tabbar .tools {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/tools.svg') center center no-repeat;
+}
+
+#ydn-tabbar .search {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/search.svg') center center no-repeat;
+}
+
+#ydn-tabbar .debug {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/debug.svg') center center no-repeat;
+}
+
+.tabbar-failback {
+    width: 156px;
+    padding: 4px;
+    z-index: 10; /* overlay */
+    position: fixed;
+    bottom: 0;
+    left: 4px;
+    height: 28px;
+}
+
+#ydn-tabbar > div:first-child {
+    /* this align UI, 16 px when debug button is not present. */
+    margin-left: 12px;
+}
+
+
+#btn-show-panel {
+    border: none;
+    cursor: pointer;
+    height: 17px;
+    float: none;
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#btn-show-panel div {
+    padding-top: 7px;
+    width: 16px;
+    height: 18px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/logo.png') no-repeat center center;
+}
+
+
+/*
+ * Prevent Superscripts and Subscripts from Affecting Line-Height
+ * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+ */
+sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+sub { top: 0.4em; }
+
+a.null {
+    text-decoration: none !important;
+}
+
+.sugarcrm-link-panel {
+
+}
+
+a.sugarcrm-setup-link {
+    padding-left: 20px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/logo-16.svg') left center no-repeat;
+}
+
+
+
+
+
+.widget {
+    font-size: 13px;
+    font-family: arial, sans-serif;
+}
+
+.widget a {
+    padding: 0 4px;
+}
+
+a.widget-task {
+    text-decoration: none;
+    color: rgb(17, 85, 204);
+}
+
+.widget-label {
+    cursor: pointer;
+}
+
+.widget .error {
+    color: red;
+}
+
+.widget-topraw {
+    border-top: thin solid red;
+}
+
+.sugar-panel {
+    padding: 8px;
+    border-bottom: thin solid lightgrey;
+}
+
+.sugar-panel .main-title {
+    padding-left: 20px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
+}
+
+.sugar-panel summary::-webkit-details-marker {
+    display: none
+}
+
+.sugar-panel summary:after {
+    border: thin solid lightgrey;
+    border-radius: 3px;
+    content: "+";
+
+    float: right;
+    font-weight: bold;
+    margin: 0 0 0 0;
+    padding: 0;
+    text-align: center;
+    width: 14px;
+    line-height: 1em;
+}
+
+.sugar-panel summary:hover:after {
+    color: white;
+    background-color: black;
+}
+
+.sugar-panel details[open] summary:after {
+    content: "-";
+}
+
+
+.record-header .title {
+    vertical-align: middle;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+
+.record-header .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 10px;
+    padding: 0 0 0 2px;
+    margin: 0 4px 0 0;
+    border: none;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.record-header .synced {
+    vertical-align: middle;
+}
+
+.Accounts .icon {
+    background-color: #37880e;
+
+}
+
+.Contacts .icon {
+    background-color: #245a09;
+
+}
+
+.Opportunities .icon {
+    background-color: #7115ce;
+
+}
+
+.Leads .icon {
+    background-color: #448fec;
+
+}
+
+.Cases .icon {
+    background-color: #b81213;
+}
+
+.sugar-panel .link {
+    float: right;
+    display: none;
+}
+
+.sugar-panel .record-header:hover .link {
+    display: inline !important;
+}
+
+.sugar-panel .synced {
+    float: right;
+    width: 20px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/sync.svg') left center no-repeat;
+}
+
+.sugar-panel .fields {
+    padding-left: 20px;
+}
+
+.sugar-panel .field.empty {
+    display: none;
+}
+
+.sugar-panel .field .name {
+    padding-left: 4px;
+}
+
+.sugar-panel .field sup.name {
+    font-size: 80%;
+    display: none;
+}
+
+.field:hover > sup.name {
+    display: inline !important;
+}
+
+.field.normally-hide {
+    display: none;
+}
+
+
+
+
+
+

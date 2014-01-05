@@ -1,0 +1,57 @@
+{
+  "name": "Yathit CRM Bridge (Beta)",
+  "description": "Yathit CRM Bridge is a time-saving tool for SugarCRM users in Gmail",
+  "version": "0.4.2",
+  "manifest_version": 2,
+
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "css": ["css/inj.css"],
+      "js": ["jsc/inj.js"],
+      "run_at": "document_end"
+    }
+  ],
+
+  "background": {
+    "page": "event-page.html",
+    "persistent": false
+  },
+
+  "web_accessible_resources": ["option-page.html",
+    "js/crm/option/option-page.js",
+    "option/panel/credentials.js", "option/panel/home.js", "option/panel/search.js",
+    "crm-ex/jsc/inj.js.map",
+    "image/logo.png",
+    "image/logo-16.svg",
+    "image/sugarcrm-logo-16.png",
+    "image/sync.svg",
+    "image/sugarcrm.svg",
+    "image/tools.svg", "image/home.svg", "image/search.svg", "image/debug.svg", "image/setting.svg", "image/feed.svg" ],
+
+  "content_security_policy": "script-src 'self'; object-src 'self'",
+
+  "permissions":  ["storage", "https://mail.google.com/*", "https://yathit-app.appspot.com/*", "https://api.yathit.com/*"],
+
+  "externally_connectable": {
+    "matches": ["https://yathit-app.appspot.com/*"]
+  },
+
+  "optional_permissions": ["*://*/*" ],
+
+  "options_page": "option-page.html",
+
+  "icons": {
+    "16": "crm-ex/image/logo.png",
+    "128": "crm-ex/image/logo-128.png"
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "crm-ex/image/logo-19.png",
+      "38": "crm-ex/image/logo-38.png"
+    },
+    "default_title": "Yathit CRM Bridge",
+    "default_popup": "popup.html"
+  }
+}
