@@ -1,0 +1,13 @@
+ <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+      <desc>Created with Raphaël 2.1.2</desc>
+      <defs>
+       <linearGradient id="23290-_0050af-_002c62" x1="0" y1="1" x2="0" y2="0" gradientTransform="matrix(1,0,0,1,-4,-4)">
+        <stop offset="0%" stop-color="#0050af"/>
+        <stop offset="100%" stop-color="#002c62"/>
+       </linearGradient>
+      </defs>
+      <g>
+       <title>Home</title>
+       <path fill="#333333" d="m15.47159,8.07448l-1.9048,-1.89599l0,-4.5282l-1.63296,0l0,2.9028l-3.81023,-3.79259l-7.34799,7.31397l1.74928,-0.04148l0,7.39446l11.11964,0l0,-7.35297l1.82705,0zm-7.34799,6.29539l-3.62858,0l0,-4.33439l3.62858,0l0,4.33439zm3.52532,-1.8576l-2.38443,0l0,-2.5028l2.38443,0l0,2.5028z" id="svg_2"/>
+      </g>
+     </svg>

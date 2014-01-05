@@ -1,0 +1,300 @@
+ <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg">
+        <desc>Created with Raphaël 2.1.2</desc>
+        <g>
+         <title>Debug</title>
+         <path stroke="#333333" fill="#333333" d="m14.67153,5.93296c0,0 -3.00631,0.83153 -3.00631,0.83153c-0.27546,-0.73197 -0.69019,-1.36646 -1.1921,-1.87147c0,0 1.58981,-2.80616 1.58981,-2.80616c0.13979,-0.24761 0.05365,-0.56329 -0.19602,-0.70412c-0.24709,-0.13979 -0.56226,-0.05262 -0.70154,0.19447c0,0 -1.50831,2.66276 -1.50831,2.66276c-0.31157,-0.19757 -0.63964,-0.35541 -0.98009,-0.46219c-0.21459,-0.74126 -0.85216,-1.24369 -1.57744,-1.32158c-0.00052,-0.00206 -0.00103,-0.00413 -0.00155,-0.00619c-0.03147,-0.12483 -0.04797,-0.23729 -0.05055,-0.3353c-0.00258,-0.09749 0.00619,-0.18106 0.02373,-0.24709c0.01909,-0.06706 0.04076,-0.12122 0.06448,-0.16352c0.07531,-0.13412 0.17539,-0.22181 0.29764,-0.26256c0.01186,0.14495 0.07325,0.24864 0.18157,0.31002c0.07996,0.04539 0.17332,0.05932 0.28165,0.04436c0.10884,-0.01599 0.19396,-0.07841 0.25585,-0.18725c0.05416,-0.09595 0.06551,-0.20066 0.03301,-0.31312c-0.03301,-0.11297 -0.10471,-0.20015 -0.21356,-0.26153c-0.07944,-0.04488 -0.16197,-0.06757 -0.24864,-0.06654c-0.08615,0.00052 -0.16868,0.01754 -0.24812,0.05004c-0.07893,0.0325 -0.15269,0.08254 -0.2213,0.14908c-0.06809,0.06654 -0.12432,0.13979 -0.17023,0.21975c-0.06809,0.12071 -0.11142,0.25585 -0.12896,0.4039c-0.01702,0.14753 -0.01908,0.29145 -0.00464,0.43331c0.00877,0.08254 0.03147,0.15527 0.04849,0.23161c-0.19344,-0.01084 -0.39101,0.00103 -0.58805,0.05571c-0.24864,0.06861 -0.47096,0.1857 -0.66027,0.33684c-0.02682,-0.08872 -0.05055,-0.17745 -0.09285,-0.26721c-0.05984,-0.12845 -0.13566,-0.2507 -0.22594,-0.36934c-0.09182,-0.11813 -0.19808,-0.21149 -0.31879,-0.2801c-0.07944,-0.04436 -0.16558,-0.07789 -0.25843,-0.10007c-0.09285,-0.02218 -0.18157,-0.02682 -0.26617,-0.01392c0,0 -0.16404,0.04127 -0.23883,0.0846c-0.07531,0.04333 -0.13412,0.10575 -0.17951,0.18415c-0.06138,0.10884 -0.07738,0.22078 -0.04849,0.33375c0.02992,0.114 0.09337,0.19808 0.18931,0.25276c0.10833,0.06138 0.21407,0.07119 0.31518,0.02889c0.10111,-0.0423 0.17384,-0.10265 0.21923,-0.18312c0.06138,-0.10832 0.06087,-0.22851 -0.00361,-0.35851c0.12587,-0.02837 0.25637,-0.00413 0.39049,0.07273c0.04178,0.02321 0.08821,0.05932 0.13928,0.1073c0.05004,0.04746 0.09956,0.11451 0.14753,0.20015c0.04849,0.08563 0.09234,0.18983 0.12948,0.31363c0.00671,0.0227 0.01186,0.05055 0.01805,0.07531c-0.46993,0.42711 -0.7,1.07707 -0.56639,1.73168c-0.30022,0.30125 -0.55298,0.65511 -0.75158,1.04973c0,0 -2.66173,-1.50935 -2.66173,-1.50935c-0.24761,-0.13979 -0.56329,-0.05262 -0.70361,0.19447c-0.13979,0.24864 -0.05262,0.56433 0.19499,0.70516c0,0 2.80668,1.58981 2.80668,1.58981c-0.17074,0.69122 -0.19963,1.44796 -0.06035,2.21656c0,0 -3.00631,0.83205 -3.00631,0.83205c-0.27546,0.07583 -0.4364,0.36057 -0.36006,0.635c0.07583,0.2734 0.35954,0.43485 0.635,0.35799c0,0 3.03262,-0.83927 3.03262,-0.83927c0.25947,0.54524 0.70309,1.17611 1.22306,1.77604c0,0 -1.64759,2.90882 -1.64759,2.90882c-0.14031,0.24812 -0.05365,0.5633 0.19499,0.70309c0.12329,0.07067 0.26411,0.08357 0.39101,0.04849c0.12793,-0.03508 0.24193,-0.11813 0.31157,-0.24296c0,0 1.49335,-2.63542 1.49335,-2.63542c1.39277,1.33809 2.93203,2.12681 2.98052,0.54318c0.82431,1.32055 1.78016,-0.17435 2.32231,-2.05098c0,0 2.68391,1.52018 2.68391,1.52018c0.1238,0.07119 0.26514,0.08356 0.39307,0.04849c0.12689,-0.03456 0.2409,-0.11813 0.31105,-0.24296c0.14031,-0.24709 0.05365,-0.56278 -0.19447,-0.70258c0,0 -2.9408,-1.66564 -2.9408,-1.66564c0.15011,-0.77633 0.21768,-1.53875 0.16455,-2.13454c0,0 3.03623,-0.83927 3.03623,-0.83927c0.2734,-0.07583 0.43692,-0.35954 0.35902,-0.63396c-0.07634,-0.27443 -0.36109,-0.43537 -0.63551,-0.35954c0,0 0,0 0,0" stroke-width="0" id="svg_1"/>
+         <circle cx="28.589" cy="10.903" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_2"/>
+         <circle cx="22.761" cy="12.515" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_3"/>
+         <path fill="#333333" stroke="#333333" d="m295.89001,119.03l0,0m-58.28001,16.12001l0,0" stroke-width="0.1" opacity="0" id="svg_4"/>
+         <circle cx="22.227" cy="11.096" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_5"/>
+         <circle cx="21.423" cy="9.866" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_6"/>
+         <path fill="#333333" stroke="#333333" d="m237.61,135.15001l-5.34001,-14.19001m-8.03999,-12.3l-9.73,-9.79" stroke-width="0.1" opacity="0" id="svg_7"/>
+         <circle cx="20.45" cy="8.887" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_8"/>
+         <circle cx="23.532" cy="3.447" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_9"/>
+         <path fill="#333333" stroke="#333333" d="m214.5,98.87l0,0m30.81999,-54.4l0,0" stroke-width="0.1" opacity="0" id="svg_10"/>
+         <circle cx="23.803" cy="2.967" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_11"/>
+         <circle cx="23.636" cy="2.355" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_12"/>
+         <path fill="#333333" stroke="#333333" d="m245.31999,44.47l2.71001,-4.8m-1.67,-6.12l-4.84,-2.73" stroke-width="0.1" opacity="0" id="svg_13"/>
+         <circle cx="22.673" cy="1.811" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_14"/>
+         <circle cx="22.062" cy="1.98" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_15"/>
+         <path fill="#333333" stroke="#333333" d="m241.52,30.82l-4.78999,-2.71m-6.11,1.69l-2.70001,4.79" stroke-width="0.1" opacity="0" id="svg_16"/>
+         <circle cx="21.792" cy="2.459" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_17"/>
+         <circle cx="18.868" cy="7.621" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_18"/>
+         <path fill="#333333" stroke="#333333" d="m227.92,34.59l0,0m-29.24001,51.62l0,0" stroke-width="0.1" opacity="0" id="svg_19"/>
+         <circle cx="18.264" cy="7.238" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_20"/>
+         <circle cx="17.628" cy="6.932" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_21"/>
+         <path fill="#333333" stroke="#333333" d="m198.67999,86.21l-6.03999,-3.83m-6.36,-3.06l-6.59999,-2.07" stroke-width="0.1" opacity="0" id="svg_22"/>
+         <circle cx="16.552" cy="5.288" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_23"/>
+         <circle cx="15.316" cy="4.314" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_24"/>
+         <path fill="#333333" stroke="#333333" d="m179.68001,77.25l-4.16,-14.37m-12.36,-9.74l-14.06,-1.51" stroke-width="0.1" opacity="0" id="svg_25"/>
+         <circle cx="13.909" cy="4.159" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_26"/>
+         <circle cx="13.908" cy="4.155" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_27"/>
+         <path fill="#333333" stroke="#333333" d="m149.10001,51.63l-0.00998,-0.04m-0.01001,-0.04l-0.01001,-0.04" stroke-width="0.1" opacity="0" id="svg_28"/>
+         <circle cx="13.846" cy="3.909" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_29"/>
+         <circle cx="13.814" cy="3.691" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_30"/>
+         <path fill="#333333" stroke="#333333" d="m149.06999,51.51l-0.61,-2.42m-0.31999,-2.18l-0.05,-1.9" stroke-width="0.1" opacity="0" id="svg_31"/>
+         <circle cx="13.804" cy="3.312" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_32"/>
+         <circle cx="13.821" cy="3.15" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_33"/>
+         <path fill="#333333" stroke="#333333" d="m148.09,45.01l-0.05,-1.89m0.17001,-1.62l0.33998,-1.28" stroke-width="0.1" opacity="0" id="svg_34"/>
+         <circle cx="13.892" cy="2.892" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_35"/>
+         <circle cx="13.934" cy="2.787" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_36"/>
+         <path fill="#333333" stroke="#333333" d="m148.54999,40.22l0.37001,-1.3m0.42,-1.05l0.45999,-0.82" stroke-width="0.1" opacity="0" id="svg_37"/>
+         <circle cx="14.126" cy="2.445" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_38"/>
+         <circle cx="14.32" cy="2.275" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_39"/>
+         <path fill="#333333" stroke="#333333" d="m149.79999,37.05l1.46002,-2.6m1.93999,-1.7l2.37001,-0.79" stroke-width="0.1" opacity="0" id="svg_40"/>
+         <circle cx="14.58" cy="2.477" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_41"/>
+         <circle cx="14.699" cy="2.678" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_42"/>
+         <path fill="#333333" stroke="#333333" d="m155.57001,31.96l0.23,2.81m1.19,2.01l2.10002,1.19" stroke-width="0.1" opacity="0" id="svg_43"/>
+         <circle cx="15.064" cy="2.885" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_44"/>
+         <circle cx="15.245" cy="2.912" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_45"/>
+         <path fill="#333333" stroke="#333333" d="m159.09001,37.97l1.54999,0.88m1.81,0.27l2.10001,-0.29" stroke-width="0.1" opacity="0" id="svg_46"/>
+         <circle cx="15.666" cy="2.852" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_47"/>
+         <circle cx="15.831" cy="2.731" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_48"/>
+         <path fill="#333333" stroke="#333333" d="m164.55,38.83l2.11,-0.31m1.64999,-1.21l1.2,-2.11" stroke-width="0.1" opacity="0" id="svg_49"/>
+         <circle cx="16.056" cy="2.334" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_50"/>
+         <circle cx="16.078" cy="2.131" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_51"/>
+         <path fill="#333333" stroke="#333333" d="m169.51001,35.2l1.04999,-1.86m0.22,-2.03l-0.63,-2.18" stroke-width="0.1" opacity="0" id="svg_52"/>
+         <circle cx="15.951" cy="1.694" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_53"/>
+         <circle cx="15.812" cy="1.525" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_54"/>
+         <path fill="#333333" stroke="#333333" d="m170.14999,29.13l-0.63998,-2.19m-1.39001,-1.69l-2.11,-1.19" stroke-width="0.1" opacity="0" id="svg_55"/>
+         <circle cx="15.447" cy="1.319" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_56"/>
+         <circle cx="15.287" cy="1.275" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_57"/>
+         <path fill="#333333" stroke="#333333" d="m166.00999,24.06l-1.53999,-0.87m-1.60001,-0.44l-1.67999,0.02" stroke-width="0.1" opacity="0" id="svg_58"/>
+         <circle cx="14.952" cy="1.278" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_59"/>
+         <circle cx="14.792" cy="1.311" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_60"/>
+         <path fill="#333333" stroke="#333333" d="m161.19,22.77l-1.67001,0.01m-1.59999,0.33l-1.53999,0.63" stroke-width="0.1" opacity="0" id="svg_61"/>
+         <circle cx="14.485" cy="1.437" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_62"/>
+         <circle cx="14.342" cy="1.534" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_63"/>
+         <path fill="#333333" stroke="#333333" d="m156.38,23.74l-1.53001,0.63m-1.42999,0.97l-1.33,1.29" stroke-width="0.1" opacity="0" id="svg_64"/>
+         <circle cx="14.077" cy="1.792" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_65"/>
+         <circle cx="13.968" cy="1.934" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_66"/>
+         <path fill="#333333" stroke="#333333" d="m152.09,26.63l-1.32001,1.29m-1.08998,1.42l-0.89001,1.55" stroke-width="0.1" opacity="0" id="svg_67"/>
+         <circle cx="13.747" cy="2.323" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_68"/>
+         <circle cx="13.663" cy="2.585" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_69"/>
+         <path fill="#333333" stroke="#333333" d="m148.78999,30.89l-1.31999,2.34m-0.84,2.62l-0.34001,2.87" stroke-width="0.1" opacity="0" id="svg_70"/>
+         <circle cx="13.596" cy="3.158" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_71"/>
+         <circle cx="13.592" cy="3.437" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_72"/>
+         <path fill="#333333" stroke="#333333" d="m146.28999,38.72l-0.33,2.86m-0.03999,2.79l0.28,2.75" stroke-width="0.1" opacity="0" id="svg_73"/>
+         <circle cx="13.637" cy="3.872" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_74"/>
+         <circle cx="13.681" cy="4.013" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_75"/>
+         <path fill="#333333" stroke="#333333" d="m146.2,47.12l0.17,1.6m0.44,1.41l0.33,1.48" stroke-width="0.1" opacity="0" id="svg_76"/>
+         <circle cx="13.339" cy="4.14" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_77"/>
+         <circle cx="12.956" cy="4.163" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_78"/>
+         <path fill="#333333" stroke="#333333" d="m147.14,51.61l-3.75,-0.21m-3.83,0.23l-3.81999,1.06" stroke-width="0.1" opacity="0" id="svg_79"/>
+         <circle cx="12.092" cy="4.402" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_80"/>
+         <circle cx="11.661" cy="4.629" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_81"/>
+         <path fill="#333333" stroke="#333333" d="m135.74001,52.69l-4.82001,1.33m-4.31,2.27l-3.67001,2.93" stroke-width="0.1" opacity="0" id="svg_82"/>
+         <circle cx="11.242" cy="4.75" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_83"/>
+         <circle cx="11.196" cy="4.578" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_84"/>
+         <path fill="#333333" stroke="#333333" d="m122.93999,59.22l-0.52,-1.72m-0.46,-1.72l-0.82,-1.74" stroke-width="0.1" opacity="0" id="svg_85"/>
+         <circle cx="10.998" cy="4.155" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_86"/>
+         <circle cx="10.851" cy="3.918" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_87"/>
+         <path fill="#333333" stroke="#333333" d="m121.14,54.04l-1.16,-2.48999m-1.47002,-2.37l-1.75,-2.3" stroke-width="0.1" opacity="0" id="svg_88"/>
+         <circle cx="10.498" cy="3.459" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_89"/>
+         <circle cx="10.292" cy="3.278" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_90"/>
+         <path fill="#333333" stroke="#333333" d="m116.75999,46.88l-1.77998,-2.29m-2.06001,-1.81l-2.34,-1.33" stroke-width="0.1" opacity="0" id="svg_91"/>
+         <circle cx="9.904" cy="3.059" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_92"/>
+         <circle cx="9.737" cy="2.994" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_93"/>
+         <path fill="#333333" stroke="#333333" d="m110.57999,41.45l-1.53999,-0.86m-1.67,-0.65l-1.8,-0.43" stroke-width="0.1" opacity="0" id="svg_94"/>
+         <circle cx="9.377" cy="2.908" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_95"/>
+         <circle cx="9.205" cy="2.899" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_96"/>
+         <path fill="#333333" stroke="#333333" d="m105.57,39.51l-1.8,-0.43m-1.71999,-0.09l-1.64,0.25" stroke-width="0.1" opacity="0" id="svg_97"/>
+         <circle cx="9.041" cy="2.924" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_98"/>
+         <circle cx="8.723" cy="3.004" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_99"/>
+         <path fill="#333333" stroke="#333333" d="m100.41,39.24l0,0m-3.18002,0.8l-1.45,0.84" stroke-width="0.1" opacity="0" id="svg_100"/>
+         <circle cx="8.432" cy="3.172" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_101"/>
+         <circle cx="8.318" cy="3.293" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_102"/>
+         <path fill="#333333" stroke="#333333" d="m95.78,40.88l-1.46,0.84m-1.14,1.21l-0.88,1.52" stroke-width="0.1" opacity="0" id="svg_103"/>
+         <circle cx="8.111" cy="3.656" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_104"/>
+         <circle cx="8.08" cy="3.873" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_105"/>
+         <path fill="#333333" stroke="#333333" d="m92.3,44.45l-1.18999,2.11m-0.31001,2.17l0.56001,2.18999" stroke-width="0.1" opacity="0" id="svg_106"/>
+         <circle cx="8.194" cy="4.313" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_107"/>
+         <circle cx="8.317" cy="4.476" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_108"/>
+         <path fill="#333333" stroke="#333333" d="m91.36,50.92l0.58,2.21m1.23,1.63l1.85999,1.06" stroke-width="0.1" opacity="0" id="svg_109"/>
+         <circle cx="8.713" cy="4.701" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_110"/>
+         <circle cx="8.918" cy="4.72" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_111"/>
+         <path fill="#333333" stroke="#333333" d="m95.03,55.82l2.10001,1.19001m2.05,0.18999l1.96,-0.82" stroke-width="0.1" opacity="0" id="svg_112"/>
+         <circle cx="9.31" cy="4.556" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_113"/>
+         <circle cx="9.451" cy="4.439" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_114"/>
+         <path fill="#333333" stroke="#333333" d="m101.14,56.38l1.96001,-0.82m1.41,-1.16999l0.88,-1.56001" stroke-width="0.1" opacity="0" id="svg_115"/>
+         <circle cx="9.658" cy="4.073" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_116"/>
+         <circle cx="9.657" cy="3.84" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_117"/>
+         <path fill="#333333" stroke="#333333" d="m105.39,52.83l1.19,-2.1m-0.01001,-2.33l-1.24999,-2.52" stroke-width="0.1" opacity="0" id="svg_118"/>
+         <circle cx="9.776" cy="3.533" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_119"/>
+         <circle cx="10.029" cy="3.58" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_120"/>
+         <path fill="#333333" stroke="#333333" d="m105.32,45.88l2.44,-0.55m2.53,0.47l2.59999,1.49" stroke-width="0.1" opacity="0" id="svg_121"/>
+         <circle cx="10.37" cy="3.774" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_122"/>
+         <circle cx="10.46" cy="3.844" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_123"/>
+         <path fill="#333333" stroke="#333333" d="m112.88999,47.29l0.81001,0.45m0.9,0.7l0.99001,0.93" stroke-width="0.1" opacity="0" id="svg_124"/>
+         <circle cx="10.656" cy="4.029" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_125"/>
+         <circle cx="10.752" cy="4.159" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_126"/>
+         <path fill="#333333" stroke="#333333" d="m115.59,49.37l0.96999,0.92m0.96,1.3l0.93001,1.66" stroke-width="0.1" opacity="0" id="svg_127"/>
+         <circle cx="10.939" cy="4.491" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_128"/>
+         <circle cx="11.024" cy="4.693" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_129"/>
+         <path fill="#333333" stroke="#333333" d="m118.45,53.25l0.93999,1.66m0.85001,2.02l0.71999,2.4" stroke-width="0.1" opacity="0" id="svg_130"/>
+         <circle cx="11.109" cy="4.977" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_131"/>
+         <circle cx="11.119" cy="5.031" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_132"/>
+         <path fill="#333333" stroke="#333333" d="m120.96,59.33l0.13,0.44m0.10001,0.54l0.12,0.48" stroke-width="0.1" opacity="0" id="svg_133"/>
+         <circle cx="10.22" cy="5.907" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_134"/>
+         <circle cx="9.774" cy="7.167" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_135"/>
+         <path fill="#333333" stroke="#333333" d="m121.31,60.79l-9.10999,8.28m-4.46,12.6l2.59,12.69" stroke-width="0.1" opacity="0" id="svg_136"/>
+         <circle cx="9.451" cy="9.02" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_137"/>
+         <circle cx="8.961" cy="9.706" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_138"/>
+         <path fill="#333333" stroke="#333333" d="m110.33,94.36l-5.82,5.84m-4.9,6.86l-3.85,7.64999" stroke-width="0.1" opacity="0" id="svg_139"/>
+         <circle cx="8.576" cy="10.471" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_140"/>
+         <circle cx="3.416" cy="7.545" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_141"/>
+         <path fill="#333333" stroke="#333333" d="m95.76,114.71l0,0m-51.6,-29.26l0,0" stroke-width="0.1" opacity="0" id="svg_142"/>
+         <circle cx="2.936" cy="7.274" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_143"/>
+         <circle cx="2.324" cy="7.443" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_144"/>
+         <path fill="#333333" stroke="#333333" d="m44.16,85.45l-4.8,-2.70998m-6.12,1.68999l-2.72,4.79" stroke-width="0.1" opacity="0" id="svg_145"/>
+         <circle cx="1.781" cy="8.404" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_146"/>
+         <circle cx="1.95" cy="9.016" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_147"/>
+         <path fill="#333333" stroke="#333333" d="m30.52,89.22l-2.71,4.82m1.69,6.12l4.8,2.73" stroke-width="0.1" opacity="0" id="svg_148"/>
+         <circle cx="2.43" cy="9.289" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_149"/>
+         <circle cx="7.871" cy="12.371" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_150"/>
+         <path fill="#333333" stroke="#333333" d="m34.3,102.88999l0,0m54.41,30.82001l0,0" stroke-width="0.1" opacity="0" id="svg_151"/>
+         <circle cx="7.54" cy="13.711" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_152"/>
+         <circle cx="7.484" cy="15.178" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_153"/>
+         <path fill="#333333" stroke="#333333" d="m88.71,133.71001l-3.31,13.39999m-0.56001,14.67l2.7,14.89999" stroke-width="0.1" opacity="0" id="svg_154"/>
+         <circle cx="7.754" cy="16.668" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_155"/>
+         <circle cx="1.926" cy="18.281" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_156"/>
+         <path fill="#333333" stroke="#333333" d="m87.54,176.67999l0,0m-58.28,16.13l0,0" stroke-width="0.1" opacity="0" id="svg_157"/>
+         <circle cx="1.392" cy="18.428" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_158"/>
+         <circle cx="1.08" cy="18.98" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_159"/>
+         <path fill="#333333" stroke="#333333" d="m29.26,192.81l-5.34,1.47m-3.12,5.51999l1.48,5.32001" stroke-width="0.1" opacity="0" id="svg_160"/>
+         <circle cx="1.375" cy="20.042" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_161"/>
+         <circle cx="1.925" cy="20.355" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_162"/>
+         <path fill="#333333" stroke="#333333" d="m22.28,205.12l1.47,5.3m5.5,3.12999l5.34,-1.48999" stroke-width="0.1" opacity="0" id="svg_163"/>
+         <circle cx="2.459" cy="20.206" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_164"/>
+         <circle cx="8.338" cy="18.579" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_165"/>
+         <path fill="#333333" stroke="#333333" d="m34.59,212.06l0,0m58.79,-16.26999l0,0" stroke-width="0.1" opacity="0" id="svg_166"/>
+         <circle cx="8.841" cy="19.636" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_167"/>
+         <circle cx="9.701" cy="20.859" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_168"/>
+         <path fill="#333333" stroke="#333333" d="m93.38,195.79001l5.02999,10.56999m8.60001,12.23l10.07999,11.63" stroke-width="0.1" opacity="0" id="svg_169"/>
+         <circle cx="10.709" cy="22.022" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_170"/>
+         <circle cx="7.515" cy="27.661" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_171"/>
+         <path fill="#333333" stroke="#333333" d="m117.09,230.22l0,0m-31.93999,56.38998l0,0" stroke-width="0.1" opacity="0" id="svg_172"/>
+         <circle cx="7.243" cy="28.142" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_173"/>
+         <circle cx="7.411" cy="28.753" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_174"/>
+         <path fill="#333333" stroke="#333333" d="m85.15,286.60999l-2.72,4.81003m1.68,6.10999l4.82,2.70999" stroke-width="0.1" opacity="0" id="svg_175"/>
+         <circle cx="8.132" cy="29.161" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_176"/>
+         <circle cx="8.405" cy="29.186" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_177"/>
+         <path fill="#333333" stroke="#333333" d="m88.93,300.23999l2.39,1.37m2.73,0.25003l2.46001,-0.68002" stroke-width="0.1" opacity="0" id="svg_178"/>
+         <circle cx="8.899" cy="29.05" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_179"/>
+         <circle cx="9.12" cy="28.889" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_180"/>
+         <path fill="#333333" stroke="#333333" d="m96.51,301.17999l2.48,-0.67999m2.20999,-1.61002l1.35001,-2.41998" stroke-width="0.1" opacity="0" id="svg_181"/>
+         <circle cx="9.255" cy="28.647" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_182"/>
+         <circle cx="12.15" cy="23.538" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_183"/>
+         <path fill="#333333" stroke="#333333" d="m102.55,296.47l0,0m28.95,-51.09l0,0" stroke-width="0.1" opacity="0" id="svg_184"/>
+         <circle cx="14.85" cy="26.132" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_185"/>
+         <circle cx="17.834" cy="27.661" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_186"/>
+         <path fill="#333333" stroke="#333333" d="m131.5,245.38l27,25.94m29.84,15.28998l0.94,-30.69998" stroke-width="0.1" opacity="0" id="svg_187"/>
+         <circle cx="19.526" cy="27.151" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_188"/>
+         <circle cx="21.379" cy="24.253" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_189"/>
+         <path fill="#333333" stroke="#333333" d="m189.28,255.91l15.98,25.59998m18.53,-28.97998l10.51001,-36.38" stroke-width="0.1" opacity="0" id="svg_190"/>
+         <circle cx="22.43" cy="20.615" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_191"/>
+         <circle cx="27.633" cy="23.562" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_192"/>
+         <path fill="#333333" stroke="#333333" d="m234.3,216.14999l0,0m52.02998,29.47002l0,0" stroke-width="0.1" opacity="0" id="svg_193"/>
+         <circle cx="27.873" cy="23.7" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_194"/>
+         <circle cx="28.147" cy="23.724" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_195"/>
+         <path fill="#333333" stroke="#333333" d="m286.32999,245.62001l2.39999,1.38m2.74002,0.23996l2.48001,-0.67998" stroke-width="0.1" opacity="0" id="svg_196"/>
+         <circle cx="28.641" cy="23.589" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_197"/>
+         <circle cx="28.862" cy="23.427" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_198"/>
+         <path fill="#333333" stroke="#333333" d="m293.95001,246.56l2.45999,-0.67m2.20999,-1.62l1.35999,-2.42001" stroke-width="0.1" opacity="0" id="svg_199"/>
+         <circle cx="29.27" cy="22.706" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_200"/>
+         <circle cx="29.102" cy="22.094" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_201"/>
+         <path fill="#333333" stroke="#333333" d="m299.97998,241.84999l2.72003,-4.78999m-1.68002,-6.12l-4.81,-2.71001" stroke-width="0.1" opacity="0" id="svg_202"/>
+         <circle cx="28.621" cy="21.823" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_203"/>
+         <circle cx="22.92" cy="18.594" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_204"/>
+         <path fill="#333333" stroke="#333333" d="m296.20999,228.23l0,0m-57.00999,-32.28999l0,0" stroke-width="0.1" opacity="0" id="svg_205"/>
+         <circle cx="23.211" cy="17.089" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_206"/>
+         <circle cx="23.342" cy="15.611" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_207"/>
+         <path fill="#333333" stroke="#333333" d="m239.2,195.94l2.91,-15.05m1.30998,-14.78l-1.02998,-11.55" stroke-width="0.1" opacity="0" id="svg_208"/>
+         <circle cx="23.239" cy="14.456" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_209"/>
+         <circle cx="29.125" cy="12.829" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_210"/>
+         <path fill="#333333" stroke="#333333" d="m242.39,154.56l0,0m58.86,-16.26999l0,0" stroke-width="0.1" opacity="0" id="svg_211"/>
+         <circle cx="29.655" cy="12.682" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_212"/>
+         <circle cx="29.972" cy="12.132" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_213"/>
+         <path fill="#333333" stroke="#333333" d="m301.25,138.29001l5.30002,-1.47m3.16998,-5.5l-1.51001,-5.32001" stroke-width="0.1" opacity="0" id="svg_214"/>
+         <circle cx="29.673" cy="11.068" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_215"/>
+         <circle cx="29.121" cy="10.756" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_216"/>
+         <path fill="#333333" stroke="#333333" d="m308.20999,126l-1.47998,-5.32m-5.52002,-3.12l-5.31998,1.47" stroke-width="0.1" opacity="0" id="svg_217"/>
+         <circle cx="28.589" cy="10.903" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_218"/>
+         <circle cx="28.589" cy="10.903" r="0.1" fill="#333333" stroke="#333333" stroke-width="0.1" opacity="0" transform="matrix(10,0,0,10,10,10)" id="svg_219"/>
+         <path fill="#333333" stroke="#333333" d="m295.89001,119.03l0,0m0,0l0,0" stroke-width="0.1" opacity="0" id="svg_220"/>
+         <circle cx="28.589" cy="10.903" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_221"/>
+         <circle cx="22.761" cy="12.515" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_222"/>
+         <circle cx="20.45" cy="8.887" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_223"/>
+         <circle cx="23.532" cy="3.447" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_224"/>
+         <circle cx="23.152" cy="2.082" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_225"/>
+         <circle cx="21.792" cy="2.459" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_226"/>
+         <circle cx="18.868" cy="7.621" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_227"/>
+         <circle cx="16.968" cy="6.725" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_228"/>
+         <circle cx="13.91" cy="4.163" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_229"/>
+         <circle cx="13.907" cy="4.151" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_230"/>
+         <circle cx="13.809" cy="3.501" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_231"/>
+         <circle cx="13.855" cy="3.022" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_232"/>
+         <circle cx="13.98" cy="2.705" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_233"/>
+         <circle cx="14.557" cy="2.196" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_234"/>
+         <circle cx="14.909" cy="2.797" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_235"/>
+         <circle cx="15.455" cy="2.883" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_236"/>
+         <circle cx="15.951" cy="2.52" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_237"/>
+         <circle cx="16.015" cy="1.913" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_238"/>
+         <circle cx="15.601" cy="1.406" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_239"/>
+         <circle cx="15.119" cy="1.277" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_240"/>
+         <circle cx="14.638" cy="1.374" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_241"/>
+         <circle cx="14.209" cy="1.663" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_242"/>
+         <circle cx="13.879" cy="2.089" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_243"/>
+         <circle cx="13.629" cy="2.872" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_244"/>
+         <circle cx="13.62" cy="3.712" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_245"/>
+         <circle cx="13.714" cy="4.161" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_246"/>
+         <circle cx="12.574" cy="4.269" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_247"/>
+         <circle cx="11.294" cy="4.922" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_248"/>
+         <circle cx="11.114" cy="4.404" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_249"/>
+         <circle cx="10.676" cy="3.688" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_250"/>
+         <circle cx="10.058" cy="3.145" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_251"/>
+         <circle cx="9.557" cy="2.951" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_252"/>
+         <circle cx="9.041" cy="2.924" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_253"/>
+         <circle cx="8.578" cy="3.088" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_254"/>
+         <circle cx="8.23" cy="3.445" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_255"/>
+         <circle cx="8.136" cy="4.092" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_256"/>
+         <circle cx="8.503" cy="4.582" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_257"/>
+         <circle cx="9.114" cy="4.638" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_258"/>
+         <circle cx="9.539" cy="4.283" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_259"/>
+         <circle cx="9.532" cy="3.588" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_260"/>
+         <circle cx="10.289" cy="3.729" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_261"/>
+         <circle cx="10.559" cy="3.937" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_262"/>
+         <circle cx="10.845" cy="4.325" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_263"/>
+         <circle cx="11.096" cy="4.933" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_264"/>
+         <circle cx="11.131" cy="5.079" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_265"/>
+         <circle cx="10.033" cy="8.436" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_266"/>
+         <circle cx="8.576" cy="10.471" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_267"/>
+         <circle cx="3.416" cy="7.545" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_268"/>
+         <circle cx="2.052" cy="7.922" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_269"/>
+         <circle cx="2.43" cy="9.289" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_270"/>
+         <circle cx="7.871" cy="12.371" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_271"/>
+         <circle cx="7.754" cy="16.668" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_272"/>
+         <circle cx="1.926" cy="18.281" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_273"/>
+         <circle cx="1.228" cy="19.512" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_274"/>
+         <circle cx="2.459" cy="20.206" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_275"/>
+         <circle cx="8.338" cy="18.579" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_276"/>
+         <circle cx="10.709" cy="22.022" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_277"/>
+         <circle cx="7.515" cy="27.661" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_278"/>
+         <circle cx="7.893" cy="29.024" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_279"/>
+         <circle cx="8.651" cy="29.118" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_280"/>
+         <circle cx="9.255" cy="28.647" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_281"/>
+         <circle cx="12.15" cy="23.538" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_282"/>
+         <circle cx="17.928" cy="24.591" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_283"/>
+         <circle cx="22.43" cy="20.615" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_284"/>
+         <circle cx="27.633" cy="23.562" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_285"/>
+         <circle cx="28.395" cy="23.656" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_286"/>
+         <circle cx="28.998" cy="23.185" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_287"/>
+         <circle cx="28.621" cy="21.823" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_288"/>
+         <circle cx="22.92" cy="18.594" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_289"/>
+         <circle cx="23.239" cy="14.456" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_290"/>
+         <circle cx="29.125" cy="12.829" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_291"/>
+         <circle cx="29.821" cy="11.6" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_292"/>
+         <circle cx="28.589" cy="10.903" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_293"/>
+         <circle cx="28.589" cy="10.903" r="0" fill="#aaaaaa" stroke="#333333" stroke-width="0.1" transform="matrix(10,0,0,10,10,10)" id="svg_294"/>
+        </g>
+       </svg>

@@ -19,8 +19,8 @@
   },
 
   "web_accessible_resources": ["option-page.html",
-    "js/crm/option/option-page.js",
-    "option/panel/credentials.js", "option/panel/home.js", "option/panel/search.js",
+    "src/option/option-page.js",
+    "src/option/panel/credentials.js", "src/option/panel/home.js", "src/option/panel/search.js",
     "crm-ex/jsc/inj.js.map",
     "image/logo.png",
     "image/logo-16.svg",

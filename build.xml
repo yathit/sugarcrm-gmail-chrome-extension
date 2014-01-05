@@ -1,0 +1,17 @@
+<project name="ydn-crm" basedir="." default="crx">
+    <dirname property="ydn-crm.dir" file="${ant.file.ydn-crm}"/>
+    <property name="home.dir" location="${user.home}"/>
+
+
+    <target name="crx" description="prepare crx folder">
+        <sequential>
+            <delete file="extension.zip"/>
+            <zip basedir="${ydn-crm.dir}" destfile="extension.zip"  includes="manifest.json,*.html,css/*,jsc/*,image/*,src/**">
+
+            </zip>
+        </sequential>
+
+    </target>
+
+
+</project>

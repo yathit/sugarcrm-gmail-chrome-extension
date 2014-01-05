@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Option page</title>
+    <link rel="stylesheet" type="text/css" href="gss/menubar.css">
+    <link rel="stylesheet" type="text/css" href="gss/option.css">
+    <script type="text/javascript" src="jsc/ydn.crm.js"></script>
+</head>
+<body>
+<div id="before-login">
+    <div>
+        <a id="before-login-link" target="yathit">Login</a>
+    </div>
+    <div id="before-login-msg"></div>
+</div>
+<div id="after-login" style="display: none">
+<header role="navigation" class="menu_bar">
+    <div class="left">
+        <ul id="main-menu">
+            <li class="selected">
+                <a href="#home">Home</a>
+            </li>
+            <li>
+                <a href="#search">Search</a>
+            </li>
+            <li>
+                <a href="#credentials">Credentials</a>
+            </li>
+        </ul>
+    </div>
+    <div class="right">
+        <ul>
+            <li>
+                <a id="user-login" target="yathit">login</a>
+            </li>
+            <li>
+                <span id="user-name"></span>
+            </li>
+        </ul>
+    </div>
+</header>
+<section id="content">
+    <article id="home">
+        <div class="sugarcrm">
+            <h3>SugarCRM</h3>
+            <div class="name">SugarCRM <span class="flavor"></span> <span class="version">
+            </span> (<span class="gmt_time"></span> GMT)</div>
+            <div>Instance domain: <span class="domain"></span></div>
+            <div>Username: <span class="username"></span></div>
+        </div>
+    </article>
+    <article id="search" style="display: none">
+       Search
+    </article>
+    <article id="credentials" style="display: none">
+        <div class="google-credentials">
+            <div class="authorize" style="display: none">
+                <a>Authorize</a>
+                <p>This extension require your authorization to read and write your data from Google services.</p>
+            </div>
+
+        </div>
+        <table class="credentials-table">
+            <thead>
+            <tr>
+                <th>Type</th>
+                <th>Provider</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody class="google-tbody">
+                <tr>
+                    <td>Offline access token</td>
+                    <td>Google</td>
+                    <td><a href="https://security.google.com/settings/security/permissions">Manage</a></td>
+                </tr>
+            </tbody>
+            <tbody class="sugarcrm-tbody">
+
+            </tbody>
+        </table>
+        <div class="grant-host-permission" style="display: none">
+            <button>Grant host permission</button> <span>Your permission is required to connect your server from this extension.</span>
+        </div>
+        <div class="new-sugar">
+           <h3>Add a new SugarCRM credentials</h3>
+            <div class="sugar-login">
+                <div>
+                    <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
+                    <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
+                    <span class="message"></span></div>
+                </div>
+                <div>
+                    <div><label for="sugarcrm-username">Username</label></div>
+                    <div><input name="username" id="sugarcrm-username" type="text"/></div>
+                </div>
+                <div>
+                    <div><label for="sugarcrm-password">Password</label></div>
+                    <div><input name="password" id="sugarcrm-password" type="password"/></div>
+                </div>
+                <div>
+                    <div class="message"></div>
+                </div>
+                <div>
+                    <button name="login">Login</button>
+                </div>
+            </div>
+
+        </div>
+    </article>
+</section>
+</div>
+<script type="text/javascript" src="js/option/panel/credentials.js"></script>
+<script type="text/javascript" src="js/option/panel/home.js"></script>
+<script type="text/javascript" src="js/option/panel/search.js"></script>
+<script type="text/javascript" src="js/option/option-page.js"></script>
+
+</body>
+</html>
