@@ -1,0 +1,15 @@
+
+
+.app ul {
+    padding-left: 4px;
+}
+
+
+#debug-status {
+    max-height: 8em;
+    overflow-y: auto;
+}
+
+
+
+

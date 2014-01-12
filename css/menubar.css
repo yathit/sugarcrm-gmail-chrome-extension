@@ -1,0 +1,69 @@
+
+.menu_bar {
+    padding: 0 4px 0 4px;
+    font-size: medium;
+    overflow: hidden;
+    border-bottom: thin solid lightgrey;
+}
+
+
+/* Old style Google menu bar */
+.menu_bar ul {
+    font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+    height: 20px;
+}
+
+
+.left {
+    position: fixed;
+    left: 0;
+    display: inline;
+    z-index: 0;
+}
+
+.right {
+    position: fixed;
+    right: 0;
+    display: inline;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.menu_bar ul li {
+    padding: 4px;
+    list-style: none;
+    display: inline;
+}
+
+.menu_bar li.selected {
+    border-top: medium solid green;
+}
+
+.menu_bar ul li a {
+    color: inherit;
+}
+
+.menu_bar .left {
+    text-transform: uppercase;
+    width: 90%; /* why? */
+}
+
+.menu_bar .right {
+    padding-top: 4px;
+}
+
+.menu_bar .right span, .menu_bar .right a {
+}
+
+.menu_bar .left a {
+    text-decoration: none;
+}
+
+.menu_bar .left ul li {
+    display: inline-block;
+    text-align: center;
+}
+

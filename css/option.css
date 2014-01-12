@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    font-size: 13px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    overflow: visible;
+    opacity: 1.0;
+    height: 26px;
+    width: 100%;
+    margin: 0;
+}
+
+input[type=input] {
+    width: 25em;
+}
+
+#content {
+    position: absolute;
+    top: 30px;
+    margin: 8px 4px;
+}
+
+table {
+    border-spacing: 8px 4px;
+    border-collapse: separate;
+}
+
+.new-sugar {
+    margin: 16px 8px 8px 8px;
+}
+
+.new-sugar h3 {
+   font-size: 14px;
+    margin-bottom: 0;
+}
+
+.sugar-login {
+    margin: 8px 0;
+}
+
+div.sugar-login > div {
+    padding: 4px 0;
+}
+
+div.sugar-login input {
+    min-width: 25em;
+}
+
+.error {
+    color: red;
+}
+
+

@@ -66,10 +66,15 @@ OptionPage.prototype.updateUserInfo_ = function(user_info) {
  * @template T
  */
 OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
-  var msg = new ydn.channel.Message('login-info', function(data) {
-    if (msg.isError()) {
-      document.getElementById('before-login-msg').textContent = 'login error';
-    } else {
+
+  var ele_msg = document.getElementById('before-login-msg');
+  ele_msg.textContent = '';
+  var login_link = document.getElementById('before-login-link');
+  login_link.removeAttribute('href');
+  login_link.textContent = 'loading...';
+  ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
+    login_link.textContent = 'logging in...';
+    ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
       this.user_info = data;
       var before_login = document.getElementById('before-login');
       var after_login = document.getElementById('after-login');
@@ -80,14 +85,22 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
           opt_cb.call(opt_scope, data);
         }
       } else {
+        login_link.textContent = 'Login';
         before_login.style.display = '';
         after_login.style.display = 'none';
       }
       this.updateUserInfo_(data);
-    }
+    }, function(e) {
+      ele_msg.textContent = e.name + ' ' + e.message;
+      login_link.href = '?' + Math.random(); // refresh the page
+      login_link.textContent = 'refresh';
+    }, this);
+  }, function(e) {
+    login_link.href = '?' + Math.random(); // refresh the page
+    login_link.textContent = 'refresh';
+    ele_msg.textContent = e;
   }, this);
-  msg.setData(context);
-  ydn.crm.Ch.getMain().send(msg);
+
 };
 
 
@@ -97,13 +110,21 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
  * @private
  */
 OptionPage.prototype.showPanel_ = function(name) {
+  name = name.trim().toLowerCase();
   var menu = document.getElementById('main-menu');
   var content = document.getElementById('content');
+  var has_selected = false;
   for (var i = content.childElementCount - 1; i >= 0; i--) {
     var selected = content.children[i].id == name;
+    has_selected |= selected;
     this.panels[i].setVisible(selected);
     menu.children[i].className = selected ? 'selected' : '';
     content.children[i].style.display = selected ? '' : 'none';
+  }
+  if (!has_selected) {
+    // show home
+    menu.children[0].className = 'selected';
+    content.children[0].style.display = '';
   }
 };
 
@@ -165,18 +186,7 @@ OptionPage.prototype.init = function() {
           location.reload();
         }
       });
-
-  this.login(null, function(info) {
-    ydn.crm.Ch.updateChannels(function() {
-      var panel = location.hash.substring(1);
-      if (['search', 'credentials'].indexOf(panel) >= 0) {
-        this.showPanel_(panel);
-      } else {
-        this.showPanel_('home');
-      }
-    }, this);
-  }, this);
-
+  this.login();
 };
 
 app = new OptionPage();

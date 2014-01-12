@@ -3,14 +3,14 @@
 <head>
     <meta charset="utf-8"/>
     <title>Option page</title>
-    <link rel="stylesheet" type="text/css" href="gss/menubar.css">
-    <link rel="stylesheet" type="text/css" href="gss/option.css">
+    <link rel="stylesheet" type="text/css" href="css/menubar.css">
+    <link rel="stylesheet" type="text/css" href="css/option.css">
     <script type="text/javascript" src="jsc/ydn.crm.js"></script>
 </head>
 <body>
 <div id="before-login">
     <div>
-        <a id="before-login-link" target="yathit">Login</a>
+        <a id="before-login-link" target="_self" href=".">Logging in...</a>
     </div>
     <div id="before-login-msg"></div>
 </div>
@@ -42,13 +42,7 @@
 </header>
 <section id="content">
     <article id="home">
-        <div class="sugarcrm">
-            <h3>SugarCRM</h3>
-            <div class="name">SugarCRM <span class="flavor"></span> <span class="version">
-            </span> (<span class="gmt_time"></span> GMT)</div>
-            <div>Instance domain: <span class="domain"></span></div>
-            <div>Username: <span class="username"></span></div>
-        </div>
+
     </article>
     <article id="search" style="display: none">
        Search
@@ -80,37 +74,55 @@
 
             </tbody>
         </table>
-        <div class="grant-host-permission" style="display: none">
+        <div id="grant-host-permission" style="display: none">
             <button>Grant host permission</button> <span>Your permission is required to connect your server from this extension.</span>
         </div>
         <div class="new-sugar">
-           <h3>Add a new SugarCRM credentials</h3>
-            <div class="sugar-login">
-                <div>
-                    <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
-                    <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
-                    <span class="message"></span></div>
-                </div>
-                <div>
-                    <div><label for="sugarcrm-username">Username</label></div>
-                    <div><input name="username" id="sugarcrm-username" type="text"/></div>
-                </div>
-                <div>
-                    <div><label for="sugarcrm-password">Password</label></div>
-                    <div><input name="password" id="sugarcrm-password" type="password"/></div>
-                </div>
-                <div>
-                    <div class="message"></div>
-                </div>
-                <div>
-                    <button name="login">Login</button>
-                </div>
-            </div>
+
 
         </div>
     </article>
 </section>
 </div>
+<template id="sugarcrm-login-form">
+    <style>
+        .domain input {
+            min-width: 30em;
+        }
+    </style>
+    <h3>Add a new SugarCRM</h3>
+    <div class="sugar-login">
+        <div class="domain">
+            <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
+            <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
+                <span class="message"></span></div>
+        </div>
+        <div>
+            <div><label for="sugarcrm-username">Username</label></div>
+            <div><input name="username" id="sugarcrm-username" type="text"/></div>
+        </div>
+        <div>
+            <div><label for="sugarcrm-password">Password</label></div>
+            <div><input name="password" id="sugarcrm-password" type="password"/></div>
+        </div>
+        <div>
+            <div class="message"></div>
+        </div>
+        <div>
+            <button name="login">Login</button>
+        </div>
+    </div>
+</template>
+<template id="sugarcrm-details">
+    <div class="sugarcrm">
+        <h3>SugarCRM</h3>
+        <div class="name">SugarCRM <span class="flavor"></span> <span class="version">
+            </span> (<span class="gmt_time"></span> GMT)</div>
+        <div>Instance domain: <span class="domain"></span></div>
+        <div>Username: <span class="username"></span></div>
+    </div>
+</template>
+<script type="text/javascript" src="js/option/panel/sugarcrm-login.js"></script>
 <script type="text/javascript" src="js/option/panel/credentials.js"></script>
 <script type="text/javascript" src="js/option/panel/home.js"></script>
 <script type="text/javascript" src="js/option/panel/search.js"></script>

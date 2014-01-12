@@ -30,12 +30,10 @@ HomePanel.prototype.setVisible = function(val) {
     return;
   }
   var root = this.root;
+  /*
   setTimeout(function() { // wait if page move quickly.
-    var msg = new ydn.channel.Message('details', function(info) {
+    ydn.crm.Ch.sugar.send('details').addCallback(function(info) {
       // window.console.log(info);
-      if (!info) {
-        return;
-      }
       var panel = root.querySelector('.sugarcrm');
       panel.querySelector('.domain').textContent = info.domain;
       panel.querySelector('.username').textContent = info.username;
@@ -44,9 +42,8 @@ HomePanel.prototype.setVisible = function(val) {
       name.querySelector('.version').textContent = info.serverInfo.version;
       name.querySelector('.gmt_time').textContent = info.serverInfo.gmt_time;
     }, this);
-    ydn.crm.Ch.sugar.send(msg);
   }, 400);
-
+  */
 };
 
 
