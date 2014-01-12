@@ -9,12 +9,18 @@ Yathit CRM API provides:
 
 1. Authentication and authorization of sugarcrm and Google services.
 2. CRUD operation of SugarCRM Module Record and GData Entry.
-3. Synchronizing SugarCRM modules from SugarCRM instance to client side database.
-4. Synchronizing GData entries (contact, task, calender, sites) from Google server to client side database.
-5. Conversion and synchronizing between GData Entry and SugarCRM module record.
-6. Promise base centralized communication between pages.
+3. Synchronizing SugarCRM modules between SugarCRM instance and client side database.
+4. Synchronizing GData entries (contact, task, calender, sites) between Google server and client side database.
+5. Caching relationship table.
+6. Conversion and synchronizing between GData Entry and SugarCRM module record.
+7. Promise base centralized communication between extension pages.
+8. Customizable full text search.
 
+Backend server:
 
+Google AppEngine (Java) backend server provides authentication and authorization. For SugarCRM, hash password is kept in the browser with encryption. Backend server also provide proxy with authorization header.
+
+Please contact to info@yathit.com for deployment of your extension to use YDN backend server.
 
 Dependency repo:
 
