@@ -8,16 +8,11 @@
     <script type="text/javascript" src="jsc/ydn.crm.js"></script>
 </head>
 <body>
-<div id="before-login">
-    <div>
-        <a id="before-login-link" target="_self" href=".">Logging in...</a>
-    </div>
-    <div id="before-login-msg"></div>
-</div>
-<div id="after-login" style="display: none">
+
+<div id="after-login" >
 <header role="navigation" class="menu_bar">
     <div class="left">
-        <ul id="main-menu">
+        <ul id="main-menu" style="display: none">
             <li class="selected">
                 <a href="#home">Home</a>
             </li>
@@ -40,7 +35,7 @@
         </ul>
     </div>
 </header>
-<section id="content">
+<section id="content"  style="display: none">
     <article id="home">
 
     </article>
@@ -83,6 +78,9 @@
         </div>
     </article>
 </section>
+<footer>
+    <div id="statusbar"></div>
+</footer>
 </div>
 <template id="sugarcrm-login-form">
     <style>

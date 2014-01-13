@@ -55,4 +55,10 @@ div.sugar-login input {
     color: red;
 }
 
+footer {
+    background-color: lightgrey;
+    position: fixed;
+    bottom: 0;
+}
+
 

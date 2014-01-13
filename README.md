@@ -3,11 +3,23 @@ sugarcrm-gmail-chrome-extension
 
 Chrome Extension for SugarCRM from Gmail inbox.
 
-Check out: [Yathit CRM Bridge (Beta)](https://chrome.google.com/webstore/detail/yathit-crm-bridge-beta/iccdnijlhdogaccaiafdpjmbakdcdakk)
+Try out: [Yathit CRM Bridge (Beta)](https://chrome.google.com/webstore/detail/yathit-crm-bridge-beta/iccdnijlhdogaccaiafdpjmbakdcdakk)
 
-Yathit CRM API provides:
+Design Goal
+-----------
 
-1. Authentication and authorization of sugarcrm and Google services.
+Extensible Client side CRM using GData, AWS S3 and AWS DynamoDB backend services.
+
+Initially this is implemented as Chrome Extension to Gmail bridging SugarCRM. The extension will allow SuagrCRM user easy to integrate Gmail, Google Contact, Task and Calendar and use SugarCRM inside Gmail. The extension UI is designed to be low profile in gmail interface.
+
+In stage 2, this will be full feature web app.
+
+In stage 3, Mobile client will be created through phonegap.
+
+Features
+--------
+
+1. Authentication and authorization of sugarcrm, AWS and Google GData services.
 2. CRUD operation of SugarCRM Module Record and GData Entry.
 3. Synchronizing SugarCRM modules between SugarCRM instance and client side database.
 4. Synchronizing GData entries (contact, task, calender, sites) between Google server and client side database.
@@ -22,7 +34,8 @@ Google AppEngine (Java) backend server provides authentication and authorization
 
 Please contact to info@yathit.com for deployment of your extension to use YDN backend server.
 
-Dependency repo:
+Dependency
+----------
 
 1. Closure library http://closure-library.googlecode.com/svn/trunk/
 2. Base utility library https://bitbucket.org/ytkyaw/ydn-base.git
