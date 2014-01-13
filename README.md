@@ -10,11 +10,13 @@ Design Goal
 
 Extensible Client side CRM using GData, AWS S3 and AWS DynamoDB backend services.
 
-Initially this is implemented as Chrome Extension to Gmail bridging SugarCRM. The extension will allow SuagrCRM user easy to integrate Gmail, Google Contact, Task and Calendar and use SugarCRM inside Gmail. The extension UI is designed to be low profile in gmail interface.
+Stage 1 is implemented as Chrome Extension to Gmail bridging SugarCRM. The extension will allow SuagrCRM user easy to integrate Gmail, Google Contact, Task and Calendar and use SugarCRM inside Gmail. The extension UI is designed to be low profile in gmail interface.
 
 In stage 2, this will be full feature web app.
 
 In stage 3, Mobile client will be created through phonegap.
+
+API will be designed so that it is easy to use, flexible and powerful enough to common use case in CRM applications.
 
 Features
 --------
@@ -45,6 +47,14 @@ Dependency
 6. Dependency for ydn-db-fulltext https://github.com/yathit/fullproof
 7. Dependency for ydn-db-fulltext https://github.com/yathit/natural
 8. Synchronization https://bitbucket.org/ytkyaw/ydn-db-sync (private)
-9. SugarCRM https://bitbucket.org/ytkyaw/crm-ex (private)
+9. Specialized utility library https://bitbucket.org/ytkyaw/ydn (private)
+9. GData library https://bitbucket.org/ytkyaw/gdata (private)
+10. SugarCRM Core https://bitbucket.org/ytkyaw/crm-ex (private)
+11. SugarCRM UI https://bitbucket.org/ytkyaw/crm-ex/ui (content script UI, to be released under Apache v2)
+
+Licensing
+---------
+
+All UI components, base utilities and database api will be released under Apache v2 license. Backend and database synchronization will not be open source, but license to partners.
 
 
