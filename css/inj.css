@@ -1,0 +1,141 @@
+
+
+
+.inj, #root-panel {
+    font-family: arial,sans-serif;
+    font-size: 12px;
+}
+
+#root-panel {
+    width: 100%;
+    padding-left: 4px;
+}
+
+.sidebar {
+    font-size: 13px;
+    font-family: arial,sans-serif;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.root-panel-failback {
+    z-index: 10; /* overlay */
+    position: fixed;
+    bottom: 30px;
+    left: 4px;
+    height: 160px;
+}
+
+
+#ydn-tabbar {
+}
+
+#ydn-tabbar .home {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/home.svg') center center no-repeat;
+}
+
+#ydn-tabbar .feed {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
+}
+
+#ydn-tabbar .setting {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') center center no-repeat;
+}
+
+#ydn-tabbar .tools {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/tools.svg') center center no-repeat;
+}
+
+#ydn-tabbar .search {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/search.svg') center center no-repeat;
+}
+
+#ydn-tabbar .debug {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/debug.svg') center center no-repeat;
+}
+
+.tabbar-failback {
+    width: 156px;
+    padding: 4px;
+    z-index: 10; /* overlay */
+    position: fixed;
+    bottom: 0;
+    left: 4px;
+    height: 28px;
+}
+
+#ydn-tabbar > div:first-child {
+    /* this align UI, 16 px when debug button is not present. */
+    margin-left: 12px;
+}
+
+
+#btn-show-panel {
+    border: none;
+    cursor: pointer;
+    height: 17px;
+    float: none;
+    display: inline-block;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#btn-show-panel div {
+    padding-top: 7px;
+    width: 16px;
+    height: 18px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/logo.png') no-repeat center center;
+}
+
+
+/*
+ * Prevent Superscripts and Subscripts from Affecting Line-Height
+ * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+ */
+.inj sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+.inj sub { top: 0.4em; }
+
+.inj a.null {
+    text-decoration: none !important;
+}
+
+.sugarcrm-link-panel {
+
+}
+
+a.sugarcrm-setup-link {
+    padding-left: 20px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/logo-16.svg') left center no-repeat;
+}
+
+.host-permission iframe {
+    height: 60px;
+    width: 100px;
+    margin: 0;
+    padding: 0;
+}
+
+
+

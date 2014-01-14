@@ -1,0 +1,82 @@
+
+body {
+    min-height: 20em;
+    min-width: 20em;
+}
+
+#outer {
+
+}
+
+
+#status-bar {
+    right: 0;
+    left: 0;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    height: 14px;
+    overflow: hidden;
+    border: solid thin #d3d3d3;
+    border-top: solid thin #ffffff;
+    background: #d3d3d3;
+    padding: 4px 2px;
+    margin: 0;
+    font-size: small;
+
+}
+
+#status-bar-content span {
+    padding: 0 2px;
+}
+
+
+#ydn-tabbar {
+}
+
+#ydn-tabbar .home {
+    width: 16px;
+    height: 16px;
+    background: url('../image/home.svg') center center no-repeat;
+}
+
+#ydn-tabbar .feed {
+    width: 16px;
+    height: 16px;
+    background: url('../image/feed.svg') center center no-repeat;
+}
+
+#ydn-tabbar .setting {
+    width: 16px;
+    height: 16px;
+    background: url('../image/setting.svg') center center no-repeat;
+}
+
+#ydn-tabbar .tools {
+    width: 16px;
+    height: 16px;
+    background: url('../image/tools.svg') center center no-repeat;
+}
+
+#ydn-tabbar .search {
+    width: 16px;
+    height: 16px;
+    background: url('../image/search.svg') center center no-repeat;
+}
+
+#ydn-tabbar .debug {
+    width: 16px;
+    height: 16px;
+    background: url('../image/debug.svg') center center no-repeat;
+}
+
+.tabbar-failback {
+    width: 156px;
+    padding: 4px;
+    z-index: 10; /* overlay */
+    position: fixed;
+    bottom: 0;
+    left: 4px;
+    height: 28px;
+}
