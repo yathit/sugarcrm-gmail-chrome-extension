@@ -65,7 +65,6 @@ Credentials.prototype.requestHostPermission = function(e) {
     if (grant) {
       var div = document.getElementById('grant-host-permission');
       div.style.display = 'none';
-      ydn.msg.getChannel().send('update-host-permission');
     }
   });
 

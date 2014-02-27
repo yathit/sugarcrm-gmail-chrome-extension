@@ -88,18 +88,19 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
     ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
       var user_info = /** @type {YdnApiUser} */ (data);
       this.user_info = user_info;
+      this.setStatus('');
       this.updateUserInfo_(user_info);
       if (opt_cb) {
         opt_cb.call(opt_scope, user_info);
       }
     }, function(e) {
       this.setStatus(e.name + ' ' + e.message);
-      btn_login.href = '?' + Math.random(); // refresh the page
-      btn_login.textContent = 'refresh';
+      // btn_login.href = '?' + Math.random(); // refresh the page
+      // btn_login.textContent = 'refresh';
     }, this);
   }, function(e) {
-    btn_login.href = '?' + Math.random(); // refresh the page
-    btn_login.textContent = 'refresh';
+    // btn_login.href = '?' + Math.random(); // refresh the page
+    // btn_login.textContent = 'refresh';
     var msg = e instanceof Error ? e.name + ' ' + e.message : e;
     this.setStatus('Failed to connect to background page: ' + e);
   }, this);
@@ -158,21 +159,7 @@ OptionPage.prototype.init = function() {
   window.addEventListener('popstate', function(e) {
     me.showPanel_(location.hash.replace('#', ''));
   }, false);
-  /*
 
-  menu.addEventListener('click', function(e) {
-
-    e.preventDefault();
-    if (e.target.tagName == 'A') {
-      for (var i = menu.childElementCount - 1; i >= 0; i--) {
-        menu.children[i].className = '';
-      }
-      e.target.parentElement.className = 'selected';
-      me.showPanel_(e.target.href.match(/#(\w+)/)[1]);
-    }
-
-  }, false);
-   */
   var link = document.getElementById('user-login');
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -189,9 +176,14 @@ OptionPage.prototype.init = function() {
           location.reload();
         }
       });
-  this.login();
+  this.login(null, function() {
+    if (location.hash) {
+      me.showPanel_(location.hash.replace('#', ''));
+    }
+  }, this);
 };
 
+ydn.msg.initPipe('options');
 app = new OptionPage();
 app.init();
 

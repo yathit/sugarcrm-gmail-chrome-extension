@@ -5,32 +5,28 @@
     <title>Test</title>
     <link rel="stylesheet" type="text/css" href="css/base.css">
     <link rel="stylesheet" type="text/css" href="css/popup.css">
-    <script type="text/javascript" src="jsc/ydn.crm.js"></script>
+    <script type="text/javascript" src="jsc/ydn.msg.js"></script>
 </head>
-<body>
-<div id="outer">
-    <div id="ydn-tabbar" class="goog-tab-bar goog-tab-bar-top">
-        <div class="goog-tab goog-tab-selected">
-            <div title="Home" class="home"></div>
-        </div>
-        <div class="goog-tab">
-            <div title="Search" class="search"></div>
-        </div>
-        <div class="goog-tab">
-            <div title="Feed" class="feed"></div>
-        </div>
-        <div class="goog-tab">
-            <div title="Setting" class="setting"></div>
-        </div>
-        <div class="goog-tab">
-            <div title="Debug" class="debug"></div>
-        </div>
-        <!-- Use goog-tab-bar-clear to separate the tabs from the content. -->
-        <div class="goog-tab-bar-clear"></div>
-        <div id="tabbar_content" class="goog-tab-content"></div>
+<body class="popup">
+    <div id="content">
+
     </div>
-    <div><a href="option-page.html" target="option-page">Options Page</a></div>
-</div>
-<script type="text/javascript" src="js/run-popup.js"></script>
+    <footer>
+        <div>
+            <span class="left">
+                <a href="option-page.html" target="option-page">Options Page</a>
+            </span>
+            <span class="right">
+                <a href="https://sites.google.com/a/yathit.com/ydn-crm-wiki/" target="help">Help</a>
+            </span>
+        </div>
+        <div id="status-bar">
+           <span id="status-bar-message">
+
+           </span>
+        </div>
+    </footer>
+
+<script type="text/javascript" src="js/popup.js"></script>
 </body>
 </html>

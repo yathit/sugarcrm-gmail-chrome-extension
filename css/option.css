@@ -5,6 +5,20 @@ body {
     font-size: 13px;
 }
 
+.left {
+    float: left;
+    display: inline-block;
+    z-index: 0;
+}
+
+.right {
+    float: right;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+    padding-right: 4px;
+}
+
 header {
     position: fixed;
     top: 0;

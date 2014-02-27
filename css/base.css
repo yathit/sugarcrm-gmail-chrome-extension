@@ -5,10 +5,19 @@
 }
 
 
-#debug-status {
-    max-height: 8em;
-    overflow-y: auto;
+.left {
+    float: left;
+    display: inline-block;
+    z-index: 0;
 }
+
+.right {
+    float: right;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+}
+
 
 
 

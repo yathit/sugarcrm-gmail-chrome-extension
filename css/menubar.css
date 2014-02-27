@@ -16,22 +16,6 @@
     height: 20px;
 }
 
-
-.left {
-    position: fixed;
-    left: 0;
-    display: inline;
-    z-index: 0;
-}
-
-.right {
-    position: fixed;
-    right: 0;
-    display: inline;
-    overflow: hidden;
-    z-index: 1;
-}
-
 .menu_bar ul li {
     padding: 4px;
     list-style: none;
@@ -48,7 +32,6 @@
 
 .menu_bar .left {
     text-transform: uppercase;
-    width: 90%; /* why? */
 }
 
 .menu_bar .right {

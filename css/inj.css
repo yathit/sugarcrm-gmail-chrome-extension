@@ -1,16 +1,4 @@
 
-
-
-.inj, #root-panel {
-    font-family: arial,sans-serif;
-    font-size: 12px;
-}
-
-#root-panel {
-    width: 100%;
-    padding-left: 4px;
-}
-
 .sidebar {
     font-size: 13px;
     font-family: arial,sans-serif;
@@ -24,53 +12,9 @@
     text-decoration: underline;
 }
 
-.root-panel-failback {
-    z-index: 10; /* overlay */
-    position: fixed;
-    bottom: 30px;
-    left: 4px;
-    height: 160px;
-}
-
-
 #ydn-tabbar {
 }
 
-#ydn-tabbar .home {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/home.svg') center center no-repeat;
-}
-
-#ydn-tabbar .feed {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
-}
-
-#ydn-tabbar .setting {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') center center no-repeat;
-}
-
-#ydn-tabbar .tools {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/tools.svg') center center no-repeat;
-}
-
-#ydn-tabbar .search {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/search.svg') center center no-repeat;
-}
-
-#ydn-tabbar .debug {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/debug.svg') center center no-repeat;
-}
 
 .tabbar-failback {
     width: 156px;
@@ -107,6 +51,198 @@
 
 
 /*
+* Closure Library CSS
+*/
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/*
+ * Cross-browser implementation of the "display: inline-block" CSS property.
+ * See http://www.w3.org/TR/CSS21/visuren.html#propdef-display for details.
+ * Tested on IE 6 & 7, FF 1.5 & 2.0, Safari 2 & 3, Webkit, and Opera 9.
+ *
+ * @author attila@google.com (Attila Bodis)
+ */
+
+/*
+ * Default rule; only Safari, Webkit, and Opera handle it without hacks.
+ */
+.goog-inline-block {
+  position: relative;
+  display: -moz-inline-box; /* Ignored by FF3 and later. */
+  display: inline-block;
+}
+
+/*
+ * Pre-IE7 IE hack.  On IE, "display: inline-block" only gives the element
+ * layout, but doesn't give it inline behavior.  Subsequently setting display
+ * to inline does the trick.
+ */
+* html .goog-inline-block {
+  display: inline;
+}
+
+/*
+ * IE7-only hack.  On IE, "display: inline-block" only gives the element
+ * layout, but doesn't give it inline behavior.  Subsequently setting display
+ * to inline does the trick.
+ */
+*:first-child+html .goog-inline-block {
+  display: inline;
+}
+/*
+ * Copyright 2007 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/* Author: pupius@google.com (Daniel Pupius) */
+/* Author: pallosp@google.com (Peter Pallos) */
+
+/* Styles for goog.ui.ComboBox and its derivatives. */
+
+
+.goog-combobox {
+  background: #ddd url(https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
+  border: 1px solid #b5b6b5;
+  font: normal small arial, sans-serif;
+}
+
+.goog-combobox input {
+  background-color: #fff;
+  border: 0;
+  border-right: 1px solid #b5b6b5;
+  color: #000;
+  font: normal small arial, sans-serif;
+  margin: 0;
+  padding: 0 0 0 2px;
+  vertical-align: bottom; /* override demo.css */
+  width: 200px;
+}
+
+.goog-combobox input.label-input-label {
+  background-color: #fff;
+  color: #aaa;
+}
+
+.goog-combobox .goog-menu {
+  margin-top: -1px;
+  width: 219px;  /* input width + button width + 3 * 1px border */
+  z-index: 1000;
+}
+
+.goog-combobox-button {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 10px;
+  text-align: center;
+  width: 16px;
+}
+
+/* IE6 only hack */
+* html .goog-combobox-button {
+  padding: 0 3px;
+}
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/*
+ * Standard styling for goog.ui.Dialog.
+ *
+ * @author ssaviano@google.com (Steven Saviano)
+ * @author attila@google.com (Attila Bodis)
+ */
+
+
+.modal-dialog {
+  background: #c1d9ff;
+  border: 1px solid #3a5774;
+  color: #000;
+  padding: 4px;
+  position: absolute;
+}
+
+.modal-dialog a,
+.modal-dialog a:link,
+.modal-dialog a:visited  {
+  color: #06c;
+  cursor: pointer;
+}
+
+.modal-dialog-bg {
+  background: #666;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.modal-dialog-title {
+  background: #e0edfe;
+  color: #000;
+  cursor: pointer;
+  font-size: 120%;
+  font-weight: bold;
+
+  /* Add padding on the right to ensure the close button has room. */
+  padding: 8px 31px 8px 8px;
+
+  position: relative;
+  _zoom: 1; /* Ensures proper width in IE6 RTL. */
+}
+
+.modal-dialog-title-close {
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: #e0edfe url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  cursor: default;
+  height: 15px;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 15px;
+  vertical-align: middle;
+}
+
+.modal-dialog-buttons,
+.modal-dialog-content {
+  background-color: #fff;
+  padding: 8px;
+}
+
+.goog-buttonset-default {
+  font-weight: bold;
+}
+
+
+
+.inj, #root-panel {
+    font-family: arial,sans-serif;
+    font-size: 12px;
+}
+
+#root-panel {
+    width: 100%;
+}
+
+
+.root-panel-failback {
+    z-index: 10; /* overlay */
+    position: fixed;
+    bottom: 30px;
+    left: 4px;
+    height: 160px;
+}
+
+
+/*
  * Prevent Superscripts and Subscripts from Affecting Line-Height
  * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
  */
@@ -137,5 +273,338 @@ a.sugarcrm-setup-link {
     padding: 0;
 }
 
+
+.inj .goog-tab .home {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/home.svg') center center no-repeat;
+}
+
+.inj .goog-tab .feed {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
+}
+
+.inj .goog-tab .setting {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') center center no-repeat;
+}
+
+.inj .goog-tab .tools {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/tools.svg') center center no-repeat;
+}
+
+.inj .goog-tab .search {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/search.svg') center center no-repeat;
+}
+
+.inj .goog-tab .debug {
+    width: 16px;
+    height: 16px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/debug.svg') center center no-repeat;
+}
+
+
+
+
+
+
+
+.widget {
+    font-size: 13px;
+    font-family: arial, sans-serif;
+}
+
+.widget a {
+    padding: 0 4px;
+}
+
+a.widget-task {
+    text-decoration: none;
+    color: rgb(17, 85, 204);
+}
+
+.widget-label {
+    cursor: pointer;
+}
+
+.widget .error {
+    color: red;
+}
+
+.widget-topraw {
+    border-top: thin solid red;
+}
+
+.sugar-panel {
+    padding: 8px;
+    border-bottom: thin solid lightgrey;
+}
+
+.sugar-panel .main-title {
+    padding-left: 20px;
+    background: url('../image/sugarcrm.svg') left center no-repeat;
+}
+
+
+.record-header .title {
+    vertical-align: middle;
+    line-height: 20px;
+}
+
+
+.record-header .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 10px;
+    padding: 0 0 0 2px;
+    margin: 0 4px 0 0;
+    border: none;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.record-header .synced {
+    vertical-align: middle;
+}
+
+.Accounts .icon {
+    background-color: #37880e;
+
+}
+
+.Contacts .icon {
+    background-color: #245a09;
+
+}
+
+.Opportunities .icon {
+    background-color: #7115ce;
+
+}
+
+.Leads .icon {
+    background-color: #448fec;
+
+}
+
+.Cases .icon {
+    background-color: #b81213;
+}
+
+.sugar-panel .link {
+    float: right;
+    display: none;
+}
+
+.sugar-panel .record-header:hover .link {
+    display: inline !important;
+}
+
+.sugar-panel .synced {
+    float: right;
+    width: 20px;
+    height: 16px;
+    background: url('../image/sync.svg') left center no-repeat;
+}
+
+.sugar-panel .fields {
+    padding-left: 20px;
+}
+
+.sugar-panel .field.empty {
+    display: none;
+}
+
+.sugar-panel .field .name {
+    padding-left: 4px;
+}
+
+.sugar-panel .field sup.name {
+    font-size: 80%;
+    display: none;
+}
+
+.field:hover > sup.name {
+    display: inline !important;
+}
+
+.field.normally-hide {
+    display: none;
+}
+
+.tools {
+    padding-left: 18px;
+}
+
+.sugar-body .goog-tab {
+    width: 16px;
+    height: 16px;
+}
+
+
+
+
+
+
+
+/*
+ * Customerization of tab.css and tabbar.css
+ * Use difference class tag, so as to decouple with gmail dom manipulation.
+ */
+
+/*
+ * Copyright 2008 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/* Author: attila@google.com (Attila Bodis) */
+/* Author: eae@google.com (Emil A. Eklund) */
+
+
+/*
+ * Styles used by goog.ui.TabRenderer.
+ */
+.goog-tab {
+  position: relative;
+  padding: 4px 4px;
+  /*color: #00c;*/
+  text-decoration: underline;
+  cursor: default;
+}
+
+.goog-tab-bar-top .goog-tab {
+  margin: 1px 4px 0 0;
+  border-bottom: 0;
+  float: left;
+}
+
+.goog-tab-bar-top:after,
+.goog-tab-bar-bottom:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.goog-tab-bar-bottom .goog-tab {
+  margin: 0 4px 1px 0;
+  border-top: 0;
+  float: left;
+}
+
+.goog-tab-bar-start .goog-tab {
+  margin: 0 0 4px 1px;
+  border-right: 0;
+}
+
+.goog-tab-bar-end .goog-tab {
+  margin: 0 1px 4px 0;
+  border-left: 0;
+}
+
+/* State: Hover */
+.goog-tab-hover {
+  background: #eee;
+}
+
+/* State: Disabled */
+.goog-tab-disabled {
+  color: #666;
+}
+
+/* State: Selected */
+.goog-tab-selected {
+  color: #000;
+  background: #fff;
+  text-decoration: none;
+  font-weight: bold;
+   border: 1px solid lightblue;
+}
+
+.goog-tab-bar-top {
+  padding-top: 5px !important;
+  padding-left: 5px !important;
+  border-bottom: 1px solid lightblue !important;
+}
+/*
+ * Shift selected tabs 1px towards the contents (and compensate via margin and
+ * padding) to visually merge the borders of the tab with the borders of the
+ * content area.
+ */
+.goog-tab-bar-top .goog-tab-selected {
+  top: 1px;
+  margin-top: 0;
+  padding-bottom: 5px;
+}
+
+.goog-tab-bar-bottom .goog-tab-selected {
+  top: -1px;
+  margin-bottom: 0;
+  padding-top: 5px;
+}
+
+.goog-tab-bar-start .goog-tab-selected {
+  left: 1px;
+  margin-left: 0;
+  padding-right: 9px;
+}
+
+.goog-tab-bar-end .goog-tab-selected {
+  left: -1px;
+  margin-right: 0;
+  padding-left: 9px;
+}
+
+
+/*
+ * Copyright 2008 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+
+/* Author: attila@google.com (Attila Bodis) */
+/* Author: eae@google.com (Emil A. Eklund) */
+
+
+/*
+ * Styles used by goog.ui.TabBarRenderer.
+ */
+.goog-tab-bar {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  list-style: none;
+  cursor: default;
+  outline: none;
+  /* background: #ebeff9; */
+}
+
+.goog-tab-bar-clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+.goog-tab-bar-start {
+  float: left;
+}
+
+.goog-tab-bar-end {
+  float: right;
+}
 
 

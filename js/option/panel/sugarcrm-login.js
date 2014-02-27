@@ -70,7 +70,10 @@ SugarCrmLogin.prototype.onDomainBlur = function(e) {
  * Reset form.
  */
 SugarCrmLogin.prototype.reset = function() {
-  this.root.querySelector('input[name="domain"]').value = null;
+  var input = this.root.querySelector('input[name="domain"]');
+  input.value = null;
+  var ele_message = input.nextElementSibling;
+  ele_message.textContent = '';
   this.root.querySelector('input[name="username"]').value = null;
   this.root.querySelector('input[name="password"]').value = null;
 };
@@ -101,20 +104,21 @@ SugarCrmLogin.prototype.handleNewSugarCrmClick = function(e) {
   btn_new_sugar.textContent = 'logging in...';
   btn_new_sugar.setAttribute('disabled', '1');
 
+  var me = this;
   chrome.permissions.request(permission, function(grant) {
     ydn.msg.getChannel().send('new-sugarcrm', data).addCallbacks(function(info) {
       btn_new_sugar.removeAttribute('disabled');
       btn_new_sugar.textContent = 'Login';
-      this.reset();
+      me.reset();
       var event = new CustomEvent('change', {
         'domain': domain
       });
-      this.root.dispatchEvent(event);
+      me.root.dispatchEvent(event);
     }, function(e) {
       btn_new_sugar.removeAttribute('disabled');
       btn_new_sugar.textContent = 'Login';
       ele_msg.textContent = 'Error: ' + e;
-    }, this);
+    });
   });
 };
 

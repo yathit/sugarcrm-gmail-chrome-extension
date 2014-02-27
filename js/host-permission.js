@@ -26,15 +26,23 @@ HostPermission.prototype.handleHostPermissionClick = function(e) {
       if (HostPermission.DEBUG) {
         console.log(permissions, grant);
       }
-      chrome.runtime.sendMessage({
+      if (grant) {
+        window.open('', '_self').close();
+      }
+      /*
+      document.querySelector('.host-permission').style.display = grant ? 'none' : '';
+      var req = ydn.msg.getChannel().send('update-host-permission', {
         permissions: permissions,
         grant: grant
-      }, function(resp) {
+      });
+      req.addCallbacks(function(resp) {
         if (resp == 'close') {
           window.open('', '_self').close();
         }
-      });
-      document.querySelector('.host-permission').style.display = grant ? 'none' : '';
+      }, function(e) {
+        throw e;
+      }, this);
+      */
     });
   } else {
     document.querySelector('.host-permission').style.display = 'none';
@@ -68,5 +76,6 @@ HostPermission.prototype.run = function() {
 };
 
 
+ydn.msg.setMainChannelName('host-permission');
 var app = new HostPermission();
 app.run();

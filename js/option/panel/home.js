@@ -26,9 +26,7 @@ HomePanel.prototype.setVisible = function(val) {
     return;
   }
   this.root.style.display = '';
-  if (!ydn.crm.Ch.sugar) {
-    return;
-  }
+
   var root = this.root;
   /*
   setTimeout(function() { // wait if page move quickly.
