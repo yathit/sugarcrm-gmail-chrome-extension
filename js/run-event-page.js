@@ -3,5 +3,5 @@
  */
 
 
-
+ydn.debug.log('ydn.crm', 'finer');
 app = runApp();

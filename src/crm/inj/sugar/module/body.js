@@ -1,7 +1,7 @@
 /**
  * @fileoverview Record module panel for Accounts, Contacts, Leads, etc.
  *
- * This module provide adding, linking and syncing.
+ * This is container for group panel and has some controls to viewing and editing.
  */
 
 
@@ -61,17 +61,42 @@ ydn.crm.inj.sugar.module.Body.prototype.getModel;
 
 
 /**
+ * @override
+ */
+ydn.crm.inj.sugar.module.Body.prototype.getContentElement = function() {
+  return goog.dom.getElementByClass(ydn.crm.inj.sugar.module.BodyRenderer.CSS_CLASS_CONTENT,
+      this.getElement());
+};
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.inj.sugar.module.Body.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
-  this.getHandler().listen(this.getModel(), [ydn.crm.sugar.model.events.Type.RECORD_CHANGE,
+  var hd = this.getHandler();
+  hd.listen(this.getModel(), [ydn.crm.sugar.model.events.Type.RECORD_CHANGE,
     ydn.crm.sugar.model.events.Type.NEW_GDATA], this.refresh);
+  var renderer = /** @type {ydn.crm.inj.sugar.module.BodyRenderer} */ (this.getRenderer());
+  hd.listen(renderer.getViewButton(this.getElement()), 'click', this.toggleView, true);
+};
+
+
+/**
+ *
+ * @param e
+ * @return {boolean}
+ */
+ydn.crm.inj.sugar.module.Body.prototype.toggleView = function(e) {
+  var renderer = /** @type {ydn.crm.inj.sugar.module.BodyRenderer} */ (this.getRenderer());
+  renderer.toggleView(this.getElement());
+  return true;
 };
 
 
 /**
  * refresh.
+ * @param {ydn.crm.sugar.model.events.Event} e
  */
 ydn.crm.inj.sugar.module.Body.prototype.refresh = function(e) {
   var model = this.getModel();
@@ -86,6 +111,10 @@ ydn.crm.inj.sugar.module.Body.prototype.refresh = function(e) {
   } else {
     goog.style.setElementShown(root, false);
     return;
+  }
+
+  if (e.type == ydn.crm.sugar.model.events.Type.RECORD_CHANGE) {
+    renderer.reset();
   }
 
   for (var i = 0; i < this.getChildCount(); i++) {
