@@ -12,150 +12,56 @@ var Credentials = function() {
 
   this.root = document.getElementById('credentials');
 
-  var new_sugar = this.root.querySelector('.new-sugar');
-  var sugar_crm_login = new SugarCrmLogin(new_sugar);
-  sugar_crm_login.getElement().addEventListener('change', this.onSugarLoginChanged.bind(this), true);
+  var list = this.root.querySelector('ul.credentials-list');
 
-  var div_p = document.getElementById('grant-host-permission');
-  var btn = div_p.querySelector('button');
-  btn.onclick = this.requestHostPermission.bind(this);
-  /**
-   * List of granted permission.
-   * @type {Array.<string>}
-   */
-  this.origins = [];
-};
+  var details_assess_log = this.root.querySelector('.audit-log a[name=detail]');
+  details_assess_log.addEventListener('click', this.displayDetailLog.bind(this));
 
+  var gdata = new GDataCredentialWidget();
+  var li = document.createElement('li');
+  list.appendChild(li);
+  gdata.render(li);
 
-/**
- * update GData credentials
- * @private
- */
-Credentials.prototype.renderGDataCredentials_ = function() {
-
-  ydn.msg.getChannel().send('gdata-token', window.location.href).addCallback(function(data) {
-    var token = /** @type {YdnApiToken} */ (data);
-    var ele_gdata = this.root.querySelector('.google-credentials');
-    var authorize = ele_gdata.querySelector('.authorize');
-    var tbody = this.root.querySelector('.google-tbody');
-
-    if (token.has_token) {
-      var scopes = tbody.firstElementChild;
-      scopes.setAttribute('title', token.Scopes.join(', '));
-      tbody.style.display = '';
-      authorize.style.display = 'none';
-    } else {
-      var btn = authorize.querySelector('a');
-      btn.href = token.authorize_url;
-      tbody.style.display = 'none';
-      authorize.style.display = '';
+  SugarCrmModel.list(function(models) {
+    for (var i = 0; i < models.length; i++) {
+      var view = new SugarCrmWidget(models[i]);
+      var li = document.createElement('li');
+      list.appendChild(li);
+      view.render(li);
     }
   }, this);
-};
 
-
-/**
- * @protected
- * @param {Event} e
- */
-Credentials.prototype.requestHostPermission = function(e) {
-  var permission = {'origins': this.origins};
-  chrome.permissions.request(permission, function(grant) {
-    console.log(permission, grant);
-    if (grant) {
-      var div = document.getElementById('grant-host-permission');
-      div.style.display = 'none';
-    }
-  });
-
+  var new_sugar = new SugarCrmWidget(new SugarCrmModel(null));
+  new_sugar.render(this.root.querySelector('.new-sugar'));
 };
 
 
 /**
  * @param {Event} e
- * @private
  */
-Credentials.prototype.revokeSugarCredential_ = function(e) {
+Credentials.prototype.displayDetailLog = function(e) {
   e.preventDefault();
-  var a = e.target;
-  var domain = a.getAttribute('data-domain');
-  ydn.msg.getChannel().send('remove-sugar', domain).addCallback(function(data) {
-    this.renderSugarCredentials_();
+  ydn.msg.getChannel().send('server-audit-log', {'access_token_records': '1'}).addCallback(function(data) {
+    console.log(data);
+    var ul = this.root.querySelector('.audit-log ul.results');
+    ul.innerHTML = '';
   }, this);
-  e.href = '';
-  e.onclick = null;
+  return true;
 };
 
 
 /**
- * @param {string} domain
- * @return {string?} return host string if required.
+ * Display Last login info.
  */
-Credentials.prototype.isHostPermissionRequired = function(domain) {
-  domain = domain.replace('http://', '').replace('https://', '');
-  domain = 'https://' + domain + '/';
-
-  var req = this.permission.origins.some(function(x) {
-    return domain == x.substr(0, domain.length);
-  });
-  return req ? domain : null;
-};
-
-
-/**
- * Handle on sugar login success.
- * @param {string} domain
- * @protected
- */
-Credentials.prototype.onSugarLoginChanged = function(domain) {
-  this.renderSugarCredentials_();
-};
-
-
-/**
- * update SugarCRM credentials
- * @private
- */
-Credentials.prototype.renderSugarCredentials_ = function() {
-  ydn.msg.getChannel().send('list-sugarcrm').addCallback(function(abouts) {
-    var ele_sugar = this.root.querySelector('.sugarcrm-tbody');
-    ele_sugar.innerHTML = '';
-    var domains = [];
-    for (var i = 0; i < abouts.length; i++) {
-      var about = /** @type {SugarCrm.About} */ (abouts[i]);
-      var domain = about.domain;
-      domains.push('http://' + domain + '/');
-      domains.push('https://' + domain + '/');
-      var tr = document.createElement('tr');
-      var td = document.createElement('td');
-      td.textContent = 'SugarCrm';
-      td.setAttribute('title', 'Locally stored Username/password-hash');
-      tr.appendChild(td);
-      var span = document.createElement('td');
-      span.textContent = domain + ' (' + about.userName + ')';
-      tr.appendChild(span);
-
-      var a = document.createElement('a');
-      a.setAttribute('data-domain', domain);
-      a.textContent = 'Remove';
-      a.href = '#';
-      a.onclick = this.revokeSugarCredential_.bind(this);
-      var td = document.createElement('td');
-      td.appendChild(a);
-      tr.appendChild(td);
-      ele_sugar.appendChild(tr);
+Credentials.prototype.displayLastLogin = function() {
+  ydn.msg.getChannel().send('server-audit-log', {'last_login': '1'}).addCallback(function(data) {
+    // console.log(data);
+    var div = this.root.querySelector('.audit-log span.last-login');
+    var record = data.LastLoginRecord;
+    if (record) {
+      var comp = data.ip == record.ip ? 'this computer' : record.ip;
+      div.textContent = 'Last login from ' + comp + ' ' + record.ago + ' ago.';
     }
-    this.origins = domains;
-
-    chrome.permissions.getAll(function(permission) {
-      var has_all_permissions = domains.every(function(domain) {
-        return permission.origins.indexOf(domain) >= 0;
-      });
-      // console.log(permission.origins, domains);
-      var div_host = document.getElementById('grant-host-permission');
-      div_host.style.display = has_all_permissions ? 'none' : '';
-    });
-
   }, this);
 };
 
@@ -171,6 +77,5 @@ Credentials.prototype.setVisible = function(val) {
   }
   this.root.style.display = '';
   // update GData credentials
-  this.renderGDataCredentials_();
-  this.renderSugarCredentials_();
+  this.displayLastLogin();
 };

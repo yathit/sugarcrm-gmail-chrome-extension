@@ -349,7 +349,7 @@ a.widget-task {
 
 .sugar-panel .main-title {
     padding-left: 20px;
-    background: url('../image/sugarcrm.svg') left center no-repeat;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
 }
 
 
@@ -414,7 +414,7 @@ a.widget-task {
     float: right;
     width: 20px;
     height: 16px;
-    background: url('../image/sync.svg') left center no-repeat;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/sync.svg') left center no-repeat;
 }
 
 .sugar-panel .fields {
@@ -451,6 +451,14 @@ a.widget-task {
     height: 16px;
 }
 
+div.record-body-content {
+    display: none;
+}
+
+
+div.record-body-content.view {
+    display: block;
+}
 
 
 

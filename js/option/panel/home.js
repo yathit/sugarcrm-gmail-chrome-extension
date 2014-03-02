@@ -13,6 +13,25 @@ var HomePanel = function() {
    * @type {HTMLElement}
    */
   this.root = document.getElementById('home');
+  this.feed = new FeedWidget();
+  this.feed.render(this.root);
+};
+
+
+/**
+ * Show SugarCRM instance info.
+ */
+HomePanel.prototype.displaySugarcrmInfo = function() {
+  ydn.msg.getChannel().send('details').addCallback(function(info) {
+    // window.console.log(info);
+    var panel = this.root.querySelector('.sugarcrm');
+    panel.querySelector('.domain').textContent = info.domain;
+    panel.querySelector('.username').textContent = info.username;
+    var name = panel.querySelector('.name');
+    name.querySelector('.flavor').textContent = info.serverInfo.flavor;
+    name.querySelector('.version').textContent = info.serverInfo.version;
+    name.querySelector('.gmt_time').textContent = info.serverInfo.gmt_time;
+  }, this);
 };
 
 
@@ -27,21 +46,7 @@ HomePanel.prototype.setVisible = function(val) {
   }
   this.root.style.display = '';
 
-  var root = this.root;
-  /*
-  setTimeout(function() { // wait if page move quickly.
-    ydn.crm.Ch.sugar.send('details').addCallback(function(info) {
-      // window.console.log(info);
-      var panel = root.querySelector('.sugarcrm');
-      panel.querySelector('.domain').textContent = info.domain;
-      panel.querySelector('.username').textContent = info.username;
-      var name = panel.querySelector('.name');
-      name.querySelector('.flavor').textContent = info.serverInfo.flavor;
-      name.querySelector('.version').textContent = info.serverInfo.version;
-      name.querySelector('.gmt_time').textContent = info.serverInfo.gmt_time;
-    }, this);
-  }, 400);
-  */
+
 };
 
 
