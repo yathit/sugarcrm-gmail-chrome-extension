@@ -24,6 +24,8 @@ header {
     top: 0;
     overflow: visible;
     opacity: 1.0;
+    background: white;
+    z-index: 10;
     height: 26px;
     width: 100%;
     margin: 0;
@@ -74,5 +76,11 @@ footer {
     position: fixed;
     bottom: 0;
 }
+
+.audit-log {
+    color: gray;
+    font-size: 90%;
+}
+
 
 

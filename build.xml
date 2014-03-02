@@ -6,7 +6,8 @@
     <target name="crx" description="prepare crx folder">
         <sequential>
             <delete file="extension.zip"/>
-            <zip basedir="${ydn-crm.dir}" destfile="extension.zip"  includes="manifest.json,*.html,css/*,lib/*.js,jsc/*.js,image/*,js/**">
+            <zip basedir="${ydn-crm.dir}" destfile="extension.zip"
+                 includes="manifest.json,*.html,css/*,lib/*.js,jsc/*,image/*,js/**">
 
             </zip>
         </sequential>

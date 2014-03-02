@@ -16,7 +16,7 @@
             <li class="selected">
                 <a href="#home">Home</a>
             </li>
-            <li>
+            <li style="display: none">
                 <a href="#search">Search</a>
             </li>
             <li>
@@ -43,38 +43,16 @@
        Search
     </article>
     <article id="credentials" style="display: none">
-        <div class="google-credentials">
-            <div class="authorize" style="display: none">
-                <a>Authorize</a>
-                <p>This extension require your authorization to read and write your data from Google services.</p>
-            </div>
+        <ul class="credentials-list"></ul>
 
-        </div>
-        <table class="credentials-table">
-            <thead>
-            <tr>
-                <th>Type</th>
-                <th>Provider</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody class="google-tbody">
-                <tr>
-                    <td>Offline access token</td>
-                    <td>Google</td>
-                    <td><a href="https://security.google.com/settings/security/permissions">Manage</a></td>
-                </tr>
-            </tbody>
-            <tbody class="sugarcrm-tbody">
 
-            </tbody>
-        </table>
-        <div id="grant-host-permission" style="display: none">
-            <button>Grant host permission</button> <span>Your permission is required to connect your server from this extension.</span>
-        </div>
+
         <div class="new-sugar">
 
-
+        </div>
+        <div class="audit-log">
+            <span class="last-login"></span> <a style="display: none" href="#" name="detail">detail</a>
+            <ul class="results"></ul>
         </div>
     </article>
 </section>
@@ -120,6 +98,81 @@
         <div>Username: <span class="username"></span></div>
     </div>
 </template>
+<template id="feed-widget-template">
+    <style>
+        ul {
+            max-height: 20em;
+            overflow-y: scroll;
+            padding-left: 4px;
+            list-style: none;
+        }
+    </style>
+    <details>
+        <summary>Feed</summary>
+        <div>
+            <input type="checkbox" name="show-log"  id="show-log"/><label for="show-log">Show log</label>
+        </div>
+        <ul></ul>
+    </details>
+</template>
+<template id="gdata-credentail-template">
+    <h3>Google GData</h3>
+    <div class="authorize" style="display: none">
+        <a>Authorize</a>
+        <p>This extension requires your authorization to read and write your data from Google services.</p>
+    </div>
+    <div class="display" style="display: none">
+        <p>You have provided <span name="email"></span> Google contacts data available offline assess.<br />
+        Scopes: <span name="scopes"></span></p>
+        <a href="#" name="gdata-token-revoke">Revoke</a>
+    </div>
+</template>
+<template id="sugarcrm-template">
+    <style>
+        #domain {
+            width: 30em;
+        }
+    </style>
+    <h3>SugarCRM</h3>
+    <div class="sugar-login" style="display: none">
+        <div class="domain">
+            <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
+            <div><input name="domain" id="domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
+                <span class="message"></span></div>
+        </div>
+        <div>
+            <div><label for="sugarcrm-username">Username</label></div>
+            <div><input name="username" id="username" type="text"/></div>
+        </div>
+        <div>
+            <div><label for="sugarcrm-password">Password</label></div>
+            <div><input name="password" id="password" type="password"/></div>
+        </div>
+        <div>
+            <div class="message"></div>
+        </div>
+        <div>
+            <button name="login">Login</button>
+        </div>
+    </div>
+    <div class="info" style="display: none">
+        <div>Instance: <a name="instance"></a> <span name="instance-info"></span></div>
+        <div>User: <span name="user"></span></div>
+        <div id="grant-host-permission" style="display: none">
+            <button>Grant host permission</button>
+            <p>Your permission is required to connect your server from this extension.</p>
+        </div>
+        <p>
+            <a href="#" name="remove">Remove</a>
+        </p>
+    </div>
+
+</template>
+
+<script type="text/javascript" src="js/option/model/sugarcrm.js"></script>
+<script type="text/javascript" src="js/option/widget/feed.js"></script>
+<script type="text/javascript" src="js/option/widget/gdata-credential.js"></script>
+<script type="text/javascript" src="js/option/widget/sugarcrm.js"></script>
 <script type="text/javascript" src="js/option/panel/sugarcrm-login.js"></script>
 <script type="text/javascript" src="js/option/panel/credentials.js"></script>
 <script type="text/javascript" src="js/option/panel/home.js"></script>
