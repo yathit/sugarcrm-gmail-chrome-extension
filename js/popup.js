@@ -116,10 +116,9 @@ PopupPage.prototype.init = function() {
             if (!grant) {
               var ul = document.querySelector('ul.host-permission');
               var li = document.createElement('li');
-              var a = document.createElement('a');
+              var a = document.createElement('button');
               a.textContent = 'Grant host permission';
               a.setAttribute('title', this.getDomain());
-              a.href = '#';
               li.appendChild(a);
               a.setAttribute('data-domain', this.getDomain());
               ul.appendChild(li);

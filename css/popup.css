@@ -1,21 +1,32 @@
 
-body {
-    min-height: 20em;
+body.popup {
+    min-height: 5em;
     min-width: 20em;
+    font-family: arial,sans-serif;
+    font-size: 12px;
 }
 
-#outer {
+body.popup #content {
 
 }
 
+body.popup #content > ul {
+    padding-left: 4px;
+    list-style: none;
+}
 
-#status-bar {
+body.popup footer {
     right: 0;
     left: 0;
     clear: both;
     position: fixed;
     bottom: 0;
     z-index: 100;
+}
+
+
+body.popup #status-bar {
+    clear: both;
     height: 14px;
     overflow: hidden;
     border: solid thin #d3d3d3;
@@ -27,56 +38,12 @@ body {
 
 }
 
+ul {
+    list-style: none;
+    padding-left: 0;
+}
+
 #status-bar-content span {
     padding: 0 2px;
 }
 
-
-#ydn-tabbar {
-}
-
-#ydn-tabbar .home {
-    width: 16px;
-    height: 16px;
-    background: url('../image/home.svg') center center no-repeat;
-}
-
-#ydn-tabbar .feed {
-    width: 16px;
-    height: 16px;
-    background: url('../image/feed.svg') center center no-repeat;
-}
-
-#ydn-tabbar .setting {
-    width: 16px;
-    height: 16px;
-    background: url('../image/setting.svg') center center no-repeat;
-}
-
-#ydn-tabbar .tools {
-    width: 16px;
-    height: 16px;
-    background: url('../image/tools.svg') center center no-repeat;
-}
-
-#ydn-tabbar .search {
-    width: 16px;
-    height: 16px;
-    background: url('../image/search.svg') center center no-repeat;
-}
-
-#ydn-tabbar .debug {
-    width: 16px;
-    height: 16px;
-    background: url('../image/debug.svg') center center no-repeat;
-}
-
-.tabbar-failback {
-    width: 156px;
-    padding: 4px;
-    z-index: 10; /* overlay */
-    position: fixed;
-    bottom: 0;
-    left: 4px;
-    height: 28px;
-}

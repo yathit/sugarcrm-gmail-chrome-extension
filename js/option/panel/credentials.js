@@ -36,15 +36,86 @@ var Credentials = function() {
 };
 
 
+Credentials.sniffUA = function(agent) {
+  var pf = '';
+  var pd = 'Unknown';
+  var ty = '';
+  if (/Chrome/.test(agent)) {
+    pd = 'Chrome';
+  } else if (/Safari/.test(agent)) {
+    pd = 'Safari';
+  } else if (/IE/.test(agent)) {
+    pd = 'IE';
+  } else if (/Firefox/i.test(agent)) {
+    pd = 'Firefox';
+  } else if (/Opera/i.test(agent)) {
+    pd = 'Firefox';
+  }
+  if (/mobile/i.test(agent)) {
+    ty = 'Mobile';
+  }
+  if (/iOS/i.test(agent)) {
+    pf = 'iOS ';
+  } else if (/android/i.test(agent)) {
+    pf = 'Android ';
+  }
+  return pf + pd + ' ' + ty;
+};
+
+
 /**
  * @param {Event} e
  */
 Credentials.prototype.displayDetailLog = function(e) {
   e.preventDefault();
-  ydn.msg.getChannel().send('server-audit-log', {'access_token_records': '1'}).addCallback(function(data) {
-    console.log(data);
-    var ul = this.root.querySelector('.audit-log ul.results');
-    ul.innerHTML = '';
+  var params = {'access_token_records': '1', 'logins': '1'};
+  ydn.msg.getChannel().send('server-audit-log', params).addCallback(function(data) {
+    // console.log(data);
+    var result_list = this.root.querySelector('.audit-log .result-list');
+    if (!result_list.style.display) {
+      result_list.style.display = 'none';
+      return; // hide
+    }
+    result_list.style.display = '';
+    var tbody = this.root.querySelector('.audit-log tbody');
+    tbody.innerHTML = '';
+    var items = [];
+    if (data.AccessTokenRecords) {
+      items = data.AccessTokenRecords;
+      items.map(function(x) {
+        x.resource = 'GData Token';
+        return x;
+      });
+    }
+    if (data.LoginRecords) {
+      items = items.concat(data.LoginRecords);
+    }
+    items.sort(function(a, b) {
+      return a.timestamp > b.timestamp ? -1 : 1;
+    });
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var tr = document.createElement('tr');
+      var td = document.createElement('td');
+      td.textContent = item.resource || 'Login';
+      tr.appendChild(td);
+      /*
+      td = document.createElement('td');
+      td.textContent = Credentials.sniffUA(item.agent);
+      td.setAttribute('title', item.agent);
+      tr.appendChild(td);
+      */
+      td = document.createElement('td');
+      var rg = item.region ? ' (' + item.region + ')' : '';
+      var star = item.ip == data.ip ? '* ' : '';
+      td.textContent = item.ip + star + rg;
+      tr.appendChild(td);
+      td = document.createElement('td');
+      td.textContent = new Date(item.timestamp).toLocaleString();
+      tr.appendChild(td);
+      tbody.appendChild(tr);
+    }
+
   }, this);
   return true;
 };
