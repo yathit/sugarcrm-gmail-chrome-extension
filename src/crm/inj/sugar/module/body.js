@@ -76,7 +76,7 @@ ydn.crm.inj.sugar.module.Body.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
   var hd = this.getHandler();
   hd.listen(this.getModel(), [ydn.crm.sugar.model.events.Type.RECORD_CHANGE,
-    ydn.crm.sugar.model.events.Type.NEW_GDATA], this.refresh);
+    ydn.crm.sugar.model.events.Type.GDATA_CHANGE], this.refresh);
   var renderer = /** @type {ydn.crm.inj.sugar.module.BodyRenderer} */ (this.getRenderer());
   hd.listen(renderer.getViewButton(this.getElement()), 'click', this.toggleView, true);
 };
@@ -114,7 +114,7 @@ ydn.crm.inj.sugar.module.Body.prototype.refresh = function(e) {
   }
 
   if (e.type == ydn.crm.sugar.model.events.Type.RECORD_CHANGE) {
-    renderer.reset();
+    renderer.reset(this.getElement());
   }
 
   for (var i = 0; i < this.getChildCount(); i++) {

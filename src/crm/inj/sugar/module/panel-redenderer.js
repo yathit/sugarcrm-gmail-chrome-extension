@@ -60,6 +60,27 @@ ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_HEAD = 'record-header';
 
 
 /**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_TITLE = 'title';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_IMPORT = 'import';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_LINK = 'link';
+
+
+/**
  * Instead of using component element as root, a child element 'root' is appended
  * so that this panel can be hide/show by using element or root. Parent container
  * use element to show/hide, this control use root to show/hide.
@@ -80,7 +101,7 @@ ydn.crm.inj.sugar.module.PanelRenderer.prototype.getCssClass = function() {
  */
 ydn.crm.inj.sugar.module.PanelRenderer.prototype.createDom = function(x) {
   var el = goog.base(this, 'createDom', x);
-  var header = /** {ydn.crm.inj.sugar.module.Header} */ (x);
+  var header = /** {ydn.crm.inj.sugar.module.Panel} */ (x);
   var model = /** @type {ydn.crm.sugar.model.Module} */ (header.getModel());
   var module = model.getModuleName();
   var dom = header.getDomHelper();
@@ -97,17 +118,20 @@ ydn.crm.inj.sugar.module.PanelRenderer.prototype.createDom = function(x) {
   }, module.substr(0, 2));
   var title = dom.createDom('a', {
     'href': '#',
-    'class': 'title'
+    'class': ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_TITLE
   });
   var sync = dom.createDom('a', {
     'href': '#link',
-    'class': 'link'
+    'class': ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_LINK
   }, 'link');
   var syncd_symbol = dom.createDom('span', 'synced');
   goog.style.setElementShown(sync, false);
   goog.style.setElementShown(syncd_symbol, false);
   var title_div = dom.createDom('div', 'header', [icon, title, sync, syncd_symbol]);
-  var imp = dom.createDom('a', {'href': '#import'}, 'Add to ' + module);
+  var imp = dom.createDom('a', {
+    'class': ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_IMPORT,
+    'href': '#import'
+  }, 'Add to ' + module);
   imp.style.zIndex = 1000;
   var imp_div = dom.createDom('div', {'class': 'import'}, imp);
 

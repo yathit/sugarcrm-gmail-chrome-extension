@@ -83,7 +83,7 @@ PopupPage.prototype.renderFeed = function(feeds, opt_append) {
  */
 PopupPage.prototype.handleHostPermissionRequest_ = function(e) {
   var a = e.target;
-  if (a.tagName == 'A') {
+  if (a.tagName == 'BUTTON') {
     e.preventDefault();
     var domain = a.getAttribute('data-domain');
     var permissions = {
@@ -106,7 +106,11 @@ PopupPage.prototype.init = function() {
   // here we can use extension.getURL, but need more robust on dev.
   var option_page = window.location.href.replace(/#.*/, '')
       .replace('popup.html', 'option-page.html');
+  var connected_background = false;
   ydn.msg.getChannel().send('login-info').addCallbacks(function(info) {
+    if (info) {
+      connected_background = true;
+    }
     if (info.is_login) {
       PopupPage.setStatus(info.email + ' logged in.');
       // check host premission requirement
@@ -165,6 +169,12 @@ PopupPage.prototype.init = function() {
   }, function(e) {
     PopupPage.setStatus(e);
   }, this);
+
+  setTimeout(function() {
+    if (!connected_background) {
+      chrome.runtime.reload();
+    }
+  }, 1000);
 };
 
 

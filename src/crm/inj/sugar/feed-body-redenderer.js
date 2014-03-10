@@ -81,7 +81,7 @@ ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
   root.appendChild(ele_content);
   header.setElementInternal(root);
 
-  var title = dom.createDom('div', 'title', 'Feed');
+  var title = dom.createDom('div', 'feed-title');
   ele_header.appendChild(title);
 
   for (var i = 0; i < ydn.crm.sugar.PRIMARY_MODULES.length; i++) {
@@ -102,12 +102,6 @@ ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
 ydn.crm.inj.sugar.FeedBodyRenderer.prototype.refresh = function(root, model) {
   var contact = model.getContactModel();
   goog.style.setElementShown(root, !!contact);
-  if (contact) {
-    var ele_header = goog.dom.getElementByClass(ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_HEADER, root);
-    var ele_body = goog.dom.getElementByClass(ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_CONTENT, root);
-    var title = ele_header.querySelector('.title');
-    title.textContent = contact.getEmail();
-  }
 
 };
 

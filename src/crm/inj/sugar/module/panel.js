@@ -9,6 +9,7 @@ goog.provide('ydn.crm.inj.sugar.module.Panel');
 goog.require('goog.ui.Control');
 goog.require('ydn.crm.inj.sugar.module.PanelRenderer');
 goog.require('ydn.crm.sugar');
+goog.require('ydn.ui.Reportable');
 
 
 
@@ -24,6 +25,18 @@ goog.require('ydn.crm.sugar');
 ydn.crm.inj.sugar.module.Panel = function(dom, model) {
   goog.base(this, null, null, dom);
   this.setModel(model);
+  /**
+   * @final
+   * @type {ydn.ui.Reportable}
+   * @protected
+   */
+  this.import_link = new ydn.ui.Reportable();
+  /**
+   * @protected
+   * @final
+   * @type {ydn.ui.Reportable}
+   */
+  this.sync_link = new ydn.ui.Reportable();
 };
 goog.inherits(ydn.crm.inj.sugar.module.Panel, goog.ui.Control);
 
@@ -31,7 +44,7 @@ goog.inherits(ydn.crm.inj.sugar.module.Panel, goog.ui.Control);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.inj.sugar.module.Panel.DEBUG = false;
+ydn.crm.inj.sugar.module.Panel.DEBUG = goog.DEBUG;
 
 
 /**
@@ -82,13 +95,16 @@ ydn.crm.inj.sugar.module.Panel.prototype.getHeadElement = function() {
 ydn.crm.inj.sugar.module.Panel.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
   var root = this.getElement();
-  var imp = root.querySelector('.import a');
-  this.getHandler().listen(imp, 'click', this.handleImportClick, false);
+  this.import_link.attachElement(goog.dom.getElementsByTagNameAndClass('A',
+      ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_IMPORT, root)[0]);
+  this.sync_link.attachElement(goog.dom.getElementsByTagNameAndClass('A',
+      ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_A_LINK, root)[0]);
+  this.getHandler().listen(this.import_link, 'click', this.handleImportClick, false);
   // imp.onclick = this.handleImportClick.bind(this);
-  var sync = root.querySelector('a.link');
-  this.getHandler().listen(sync, 'click', this.handleLinkClick, false);
-  this.getHandler().listen(this.getModel(), [ydn.crm.sugar.model.events.Type.RECORD_CHANGE,
-    ydn.crm.sugar.model.events.Type.NEW_GDATA], this.refresh);
+  this.getHandler().listen(this.sync_link, 'click', this.handleLinkClick, false);
+  var model = this.getModel();
+  this.getHandler().listen(model, [ydn.crm.sugar.model.events.Type.RECORD_CHANGE], this.refresh);
+  this.getHandler().listen(model.parent, [ydn.crm.sugar.model.events.Type.GDATA_CHANGE], this.refresh);
 };
 
 
@@ -130,9 +146,13 @@ ydn.crm.inj.sugar.module.Panel.Labels;
 ydn.crm.inj.sugar.module.Panel.prototype.getLabels = function() {
   var model = this.getModel();
   var gdata = model.getGData();
+  var any_gdata = gdata ? null : model.getUnboundGData();
   var contact = model.getContactModel();
   var record = model.getRecord();
   var module_name = model.getModuleName();
+  if (ydn.crm.inj.sugar.module.Panel.DEBUG) {
+    window.console.log([module_name, model, gdata, contact, record]);
+  }
   var title = '';
   var title_link = null;
   var is_synced = false; // gdata and record are in sync.
@@ -160,13 +180,12 @@ ydn.crm.inj.sugar.module.Panel.prototype.getLabels = function() {
         } else {
           link_label = 'link';
           link_title = 'Link Gmail contact ' + gdata.getSingleId() +
-              ' with this SugarCRM ' + module_name;
+              ' with this SugarCRM ' + module_name + ' ' + record.getId();
         }
       }
-    } else if (gdata) {
-      import_label = 'Import to ' + module_name;
-      import_title = 'Import Gmail contact ' + gdata.getSingleId() +
-          ' to SugarCRM ' + module_name;
+    } else if (any_gdata) {
+      import_label += ' and sync';
+      import_title += ' and then synchronize between the two records.';
       link_label = '';
       link_title = '';
     }
@@ -188,45 +207,24 @@ ydn.crm.inj.sugar.module.Panel.prototype.getLabels = function() {
  * @param {Event} e
  */
 ydn.crm.inj.sugar.module.Panel.prototype.handleLinkClick = function(e) {
-  e.preventDefault();
-  var root = this.getElement();
-  var a = /** @type {Element} */ (e.target);
-  var div_import = root.querySelector('.import');
-  var div_title = div_import.nextElementSibling;
-  var is_error = goog.dom.classes.has(a, 'error');
-  var is_null = goog.dom.classes.has(a, 'null');
-  if (is_null) {
-    return;
-  } else if (is_error) {
-    a.textContent = 'Error recorded. Thanks.';
-    a.removeAttribute('href');
-    return;
-  }
-  goog.dom.classes.add(a, 'null');
 
   var model = this.getModel();
-  a.textContent = 'Linking...';
+  this.sync_link.setLink('Linking...');
   model.link().addCallbacks(function(x) {
-    a.textContent = 'Done.';
-    goog.dom.classes.add(a, 'null');
-    goog.style.setElementShown(div_import, false);
-    goog.style.setElementShown(div_title, true);
-    this.dispatchEvent(new goog.events.Event(goog.ui.Component.EventType.CHANGE));
+    this.sync_link.setLink('Done.');
+    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.events.Type.RECORD_CHANGE));
   }, function(e) {
-    goog.dom.classes.remove(a, 'null');
-    goog.dom.classes.add(a, 'error');
     var msg = e instanceof Error ? e.name + ' ' + e.message :
         goog.isObject(e) ? ydn.json.toShortString(e) : e;
-    a.setAttribute('title', msg);
-    var sidebar = goog.dom.getAncestorByClass(a, 'sidebar');
-    ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOG, {
+    var sidebar = goog.dom.getAncestorByClass(this.getElement(), 'sidebar');
+    var payload = {
       'class': 'RecordHeader',
       'method': 'handleLinkClick',
-      'context': a.textContent,
+      'context': 'link',
       'html': sidebar ? sidebar.outerHTML : '',
       'error': msg
-    });
-    a.textContent = 'Error';
+    };
+    this.sync_link.setError(payload, msg);
   }, this);
 
 };
@@ -237,66 +235,40 @@ ydn.crm.inj.sugar.module.Panel.prototype.handleLinkClick = function(e) {
  * @param {Event} e
  */
 ydn.crm.inj.sugar.module.Panel.prototype.handleImportClick = function(e) {
-  e.preventDefault();
-  var a = /** @type {Element} */ (e.target);
-  var rel = a.getAttribute('rel');
-  if (rel == 'error-report') {
-    a.textContent = 'Recorded. Thanks';
-    a.setAttribute('rel', 'null');
-    a.removeAttribute('title');
-    a.removeAttribute('href');
-    goog.dom.classes.remove(a, 'error');
-    return;
-  } else if (rel == 'null') {
-    return;
-  }
   var model = this.getModel();
   var module_name = model.getModuleName();
-  a.textContent = 'adding... to ' + module_name;
-  var link_req = model.importToSugar();
-  var gdata = model.getGData();
+  this.import_link.setLink('Adding... to ' + module_name);
+
+  var gdata = model.getUnboundGData();
+  var import_req;
   if (gdata) {
-    link_req = link_req.addCallbacks(function(record) {
-      a.textContent = 'Added. Linking...';
+    import_req = model.importToSugar().addCallback(function(x) {
+      this.import_link.setLink('Linking GData and SugarCRM...');
       return model.link();
-    }, function(e) {
-      a.setAttribute('rel', 'error-report');
-      var msg = e instanceof Error ? e.name + ' ' + e.message :
-          goog.isObject(e) ? ydn.json.toShortString(e) : e;
-      a.setAttribute('title', 'Error importing: ' + msg);
-      goog.dom.classes.add(a, 'error');
-      var sidebar = goog.dom.getAncestorByClass(a, 'sidebar');
-      ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOG, {
-        'class': 'RecordHeader',
-        'method': 'handleImportClick',
-        'context': a.textContent,
-        'html': sidebar ? sidebar.outerHTML : '',
-        'error': msg
-      });
-      a.textContent = 'error';
     }, this);
   } else {
-    a.textContent = 'Importing...';
+    import_req = model.addToSugar();
+    import_req = import_req.addCallback(function(record) {
+      return model.link();
+    }, this);
   }
-  link_req.addCallbacks(function(entry) {
-    goog.style.setElementShown(a.parentElement, false);
+
+  import_req.addCallbacks(function(entry) {
+    this.import_link.setLink(null);
     var done = new goog.events.Event(goog.ui.Component.EventType.CHANGE, this);
     this.dispatchEvent(done);
   }, function(e) {
-    a.setAttribute('rel', 'error-report');
     var msg = e instanceof Error ? e.name + ' ' + e.message :
         goog.isObject(e) ? ydn.json.toShortString(e) : e;
-    a.setAttribute('title', 'Error linking: ' + msg);
-    goog.dom.classes.add(a, 'error');
-    var sidebar = goog.dom.getAncestorByClass(a, 'sidebar');
-    ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOG, {
+    var sidebar = goog.dom.getAncestorByClass(this.getElement(), 'sidebar');
+    var load = {
       'class': 'RecordHeader',
       'method': 'handleImportClick',
-      'context': a.textContent,
+      'context': 'link',
       'html': sidebar ? sidebar.outerHTML : '',
       'error': msg
-    });
-    a.textContent = 'error';
+    };
+    this.import_link.setError(load, msg);
   }, this);
 };
 

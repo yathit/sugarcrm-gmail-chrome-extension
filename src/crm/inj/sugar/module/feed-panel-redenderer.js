@@ -73,9 +73,7 @@ ydn.crm.inj.sugar.FeedPanelRenderer.prototype.createDom = function(x) {
  */
 ydn.crm.inj.sugar.FeedPanelRenderer.prototype.refresh = function(root, model) {
 
-  if (ydn.crm.inj.sugar.FeedPanelRenderer.DEBUG) {
-    window.console.log('PanelRenderer.refresh', model);
-  }
+
 
 };
 

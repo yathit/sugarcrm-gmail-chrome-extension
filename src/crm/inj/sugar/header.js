@@ -83,7 +83,7 @@ ydn.crm.inj.sugar.Header.prototype.enterDocument = function() {
     handler.listen(a_grant, 'click', ydn.crm.inj.sugar.Header.openPageAsDialog, true);
   }
 
-  this.getHandler().listen(ydn.msg.getMain(), ydn.msg.Pipe.EventType, function(e) {
+  handler.listen(ydn.msg.getMain(), ydn.msg.Pipe.EventType, function(e) {
     var ev = /** @type {ydn.msg.Event} */ (e);
     var msg = ev.getMessage();
     // window.console.log('receiving broadcast msg ' + JSON.stringify(msg));

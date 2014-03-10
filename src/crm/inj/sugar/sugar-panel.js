@@ -47,7 +47,7 @@ goog.inherits(ydn.crm.inj.SugarPanel, goog.ui.Component);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.inj.SugarPanel.DEBUG = goog.DEBUG;
+ydn.crm.inj.SugarPanel.DEBUG = false;
 
 
 /**

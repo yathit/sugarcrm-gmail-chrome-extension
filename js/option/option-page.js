@@ -81,9 +81,10 @@ OptionPage.prototype.setStatus = function(s) {
  * @template T
  */
 OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
-
+  var connected_background = false;
   var btn_login = document.getElementById('user-login');
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
+    connected_background = true;
     this.setStatus('logging in...');
     ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
       var user_info = /** @type {YdnApiUser} */ (data);
@@ -105,6 +106,11 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
     this.setStatus('Failed to connect to background page: ' + e);
   }, this);
 
+  setTimeout(function() {
+    if (!connected_background) {
+      chrome.runtime.reload();
+    }
+  }, 1000);
 };
 
 

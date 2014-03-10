@@ -36,6 +36,10 @@ var Credentials = function() {
 };
 
 
+/**
+ * @param {string} agent
+ * @return {string}
+ */
 Credentials.sniffUA = function(agent) {
   var pf = '';
   var pd = 'Unknown';
@@ -109,6 +113,7 @@ Credentials.prototype.displayDetailLog = function(e) {
       var rg = item.region ? ' (' + item.region + ')' : '';
       var star = item.ip == data.ip ? '* ' : '';
       td.textContent = item.ip + star + rg;
+      td.setAttribute('title', item.agent);
       tr.appendChild(td);
       td = document.createElement('td');
       td.textContent = new Date(item.timestamp).toLocaleString();
