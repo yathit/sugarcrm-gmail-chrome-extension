@@ -6,6 +6,7 @@
 goog.provide('ydn.crm.inj.sugar.module.Field');
 goog.require('goog.ui.Control');
 goog.require('ydn.crm.inj.sugar.module.FieldRenderer');
+goog.require('ydn.crm.ui.Refreshable');
 
 
 
@@ -20,6 +21,7 @@ goog.require('ydn.crm.inj.sugar.module.FieldRenderer');
  * @constructor
  * @struct
  * @suppress {checkStructDictInheritance} suppress closure-library code.
+ * @implements {ydn.crm.ui.Refreshable}
  */
 ydn.crm.inj.sugar.module.Field = function(info, opt_renderer, opt_domHelper) {
   goog.base(this, null, opt_renderer, opt_domHelper);

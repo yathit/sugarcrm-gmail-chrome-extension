@@ -14,7 +14,7 @@
 
 goog.provide('ydn.crm.inj.sugar.PanelsBody');
 goog.require('goog.ui.TabBar');
-goog.require('ydn.crm.inj.sugar.module.Panel');
+goog.require('ydn.crm.inj.sugar.module.GDataPanel');
 goog.require('ydn.crm.sugar');
 
 
@@ -138,7 +138,7 @@ ydn.crm.inj.sugar.PanelsBody.prototype.createDom = function() {
     contents.push(content);
 
     var module_model = model.getModuleModel(/** @type {ydn.crm.sugar.ModuleName} */ (module_info.module_name));
-    var panel = new ydn.crm.inj.sugar.module.Panel(dom, module_model);
+    var panel = new ydn.crm.inj.sugar.module.GDataPanel(dom, module_model);
     this.addChild(panel, true);
     panel.render(content);
   }

@@ -15,7 +15,7 @@
 goog.provide('ydn.crm.inj.sugar.Body');
 goog.require('goog.ui.TabBar');
 goog.require('ydn.crm.inj.sugar.FeedPanel');
-goog.require('ydn.crm.inj.sugar.module.Panel');
+goog.require('ydn.crm.inj.sugar.module.GDataPanel');
 goog.require('ydn.crm.sugar');
 
 
@@ -23,7 +23,7 @@ goog.require('ydn.crm.sugar');
 /**
  * Contact sidebar panel.
  * @param {goog.dom.DomHelper} dom
- * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {ydn.crm.sugar.model.GDataSugar} model
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
@@ -61,7 +61,7 @@ ydn.crm.inj.sugar.Body.prototype.getCssClass = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.Sugar}
+ * @return {ydn.crm.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.sugar.Body.prototype.getModel;
@@ -84,7 +84,7 @@ ydn.crm.inj.sugar.Body.prototype.getContentElement = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.Sugar}
+ * @return {ydn.crm.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.sugar.Body.prototype.getModel;
@@ -98,7 +98,7 @@ ydn.crm.inj.sugar.Body.prototype.createDom = function() {
   var dom = this.dom_;
   var root = this.getElement();
   /**
-   * @type {ydn.crm.sugar.model.Sugar}
+   * @type {ydn.crm.sugar.model.GDataSugar}
    */
   var model = this.getModel();
   goog.dom.classes.add(root, this.getCssClass());
@@ -143,8 +143,8 @@ ydn.crm.inj.sugar.Body.prototype.createDom = function() {
             code));
     tabs.push(tab);
 
-    var module_model = model.getModuleModel(/** @type {ydn.crm.sugar.ModuleName} */ (module_info.module_name));
-    var panel = new ydn.crm.inj.sugar.module.Panel(dom, module_model);
+    var module_model = model.getRecordModel(/** @type {ydn.crm.sugar.ModuleName} */ (module_info.module_name));
+    var panel = new ydn.crm.inj.sugar.module.GDataPanel(dom, module_model);
     this.addChild(panel, true);
   }
 

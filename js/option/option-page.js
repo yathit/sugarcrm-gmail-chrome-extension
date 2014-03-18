@@ -14,9 +14,10 @@ var OptionPage = function() {
    * @type {Object}
    */
   this.user_info = null;
+  this.search = new SearchPanel();
   this.panels = [
     new HomePanel(),
-    new SearchPanel(),
+    this.search,
     new Credentials()
   ];
 };
@@ -81,15 +82,25 @@ OptionPage.prototype.setStatus = function(s) {
  * @template T
  */
 OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
-
+  var connected_background = false;
   var btn_login = document.getElementById('user-login');
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
+    connected_background = true;
     this.setStatus('logging in...');
     ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
       var user_info = /** @type {YdnApiUser} */ (data);
       this.user_info = user_info;
       this.setStatus('');
       this.updateUserInfo_(user_info);
+      SugarCrmModel.list(function(models) {
+        for (var i = 0; i < models.length; i++) {
+          if (models[i].isLogin()) {
+            document.querySelector('#main-menu li[name=search-menu]').style.display = '';
+            this.search.setup(models[i]);
+            break;
+          }
+        }
+      }, this);
       if (opt_cb) {
         opt_cb.call(opt_scope, user_info);
       }
@@ -105,6 +116,11 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
     this.setStatus('Failed to connect to background page: ' + e);
   }, this);
 
+  setTimeout(function() {
+    if (!connected_background) {
+      chrome.runtime.reload();
+    }
+  }, 1000);
 };
 
 

@@ -16,7 +16,7 @@ goog.require('ydn.crm.sugar');
 /**
  * Contact sidebar panel.
  * @param {goog.dom.DomHelper} dom
- * @param {ydn.crm.sugar.model.Sugar} model model
+ * @param {ydn.crm.sugar.model.GDataSugar} model model
  * @constructor
  * @struct
  * @extends {goog.ui.Container}
@@ -29,7 +29,7 @@ ydn.crm.inj.sugar.FeedBody = function(dom, model) {
   /**
    * Object pool for module panels.
    * @final
-   * @type {Array.<!ydn.crm.inj.sugar.module.Panel>}
+   * @type {Array.<!ydn.crm.inj.sugar.module.GDataPanel>}
    */
   this.panel_pool = [];
 };
@@ -43,7 +43,7 @@ ydn.crm.inj.sugar.FeedBody.DEBUG = false;
 
 
 /**
- * @return {!ydn.crm.sugar.model.Sugar}
+ * @return {!ydn.crm.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.sugar.FeedBody.prototype.getModel;
@@ -72,7 +72,7 @@ ydn.crm.inj.sugar.FeedBody.prototype.enterDocument = function() {
 /**
  * Obtain a free module panel form object pool.
  * @param {ydn.crm.sugar.ModuleName} type panel type or module name.
- * @return {!ydn.crm.inj.sugar.module.Panel}
+ * @return {!ydn.crm.inj.sugar.module.GDataPanel}
  */
 ydn.crm.inj.sugar.FeedBody.prototype.popPanel = function(type) {
   for (var i = 0; i < this.panel_pool.length; i++) {
@@ -83,14 +83,14 @@ ydn.crm.inj.sugar.FeedBody.prototype.popPanel = function(type) {
     }
   }
   var model = this.getModel();
-  var m = model.getModuleModel(type);
-  return new ydn.crm.inj.sugar.module.Panel(this.getDomHelper(), m);
+  var m = model.getRecordModel(type);
+  return new ydn.crm.inj.sugar.module.GDataPanel(this.getDomHelper(), m);
 };
 
 
 /**
  * Free panel if no longer use.
- * @param {ydn.crm.inj.sugar.module.Panel} panel
+ * @param {ydn.crm.inj.sugar.module.GDataPanel} panel
  */
 ydn.crm.inj.sugar.FeedBody.prototype.freePanel = function(panel) {
   if (panel) {
@@ -112,7 +112,7 @@ ydn.crm.inj.sugar.FeedBody.prototype.refresh = function(e) {
   if (e.type == ydn.crm.sugar.model.events.Type.CONTEXT_DATA_CHANGE) {
     // this event is not propage to module
     for (var i = this.getChildCount() - 1; i >= 0; i--) {
-      var p_panel = /** @type {ydn.crm.inj.sugar.module.Panel} */ (this.getChildAt(i));
+      var p_panel = /** @type {ydn.crm.inj.sugar.module.GDataPanel} */ (this.getChildAt(i));
       p_panel.refresh(e);
     }
   }

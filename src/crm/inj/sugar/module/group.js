@@ -22,6 +22,7 @@ goog.require('ydn.crm.sugar.model.Group');
  * @struct
  * @extends {goog.ui.Control}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
+ * @implements {ydn.crm.ui.Refreshable}
  */
 ydn.crm.inj.sugar.module.Group = function(model, renderer, opt_dom) {
   goog.base(this, null, renderer, opt_dom);

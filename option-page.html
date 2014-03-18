@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/menubar.css">
     <link rel="stylesheet" type="text/css" href="css/option.css">
     <script type="text/javascript" src="jsc/ydn.msg.js"></script>
+    <script type="text/javascript" src="lib/md5.js"></script>
 </head>
 <body>
 
@@ -16,7 +17,7 @@
             <li class="selected">
                 <a href="#home">Home</a>
             </li>
-            <li style="display: none">
+            <li name="search-menu" style="display: none">
                 <a href="#search">Search</a>
             </li>
             <li>
@@ -123,9 +124,9 @@
         }
     </style>
     <details>
-        <summary>Feed</summary>
+        <summary>Logs</summary>
         <div>
-            <input type="checkbox" name="show-log"  id="show-log"/><label for="show-log">Show log</label>
+            <input type="checkbox" name="show-log"  id="show-log"/><label for="show-log">Show detail</label>
         </div>
         <ul></ul>
     </details>

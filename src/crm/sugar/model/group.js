@@ -1,0 +1,199 @@
+/**
+ * @fileoverview SugarCRM module group model.
+ *
+ * Encapsulate module info (or meta data) and its transient record entry data.
+ * Record entry data can change during life time of the model dispatching
+ * change (goog.events.EventType.CHANGE) event.
+ */
+
+
+goog.provide('ydn.crm.sugar.model.Group');
+goog.require('ydn.crm.sugar.gdata');
+goog.require('ydn.crm.sugar.model.Field');
+
+
+
+/**
+ * SugarCRM module model.
+ * @param {ydn.crm.sugar.model.Record} parent
+ * @param {string} group_name
+ * @constructor
+ * @struct
+ */
+ydn.crm.sugar.model.Group = function(parent, group_name) {
+  /**
+   * @final
+   * @type {ydn.crm.sugar.model.Record}
+   */
+  this.module = parent;
+  /**
+   * @final
+   * @protected
+   * @type {string}
+   */
+  this.group_name = group_name || '';
+  /**
+   * @type {Object.<!ydn.crm.sugar.model.Field>}
+   * @private
+   */
+  this.fields_ = {};
+};
+
+
+/**
+ * @define {boolean} debug flag.
+ */
+ydn.crm.sugar.model.Group.DEBUG = false;
+
+
+/**
+ * @return {string}
+ */
+ydn.crm.sugar.model.Group.prototype.getDomain = function() {
+  return this.module.getDomain();
+};
+
+
+/**
+ * @return {SugarCrm.ModuleInfo}
+ */
+ydn.crm.sugar.model.Group.prototype.getModuleInfo = function() {
+  return this.module.getModuleInfo();
+};
+
+
+/**
+ * @param {string} name field name.
+ * @return {SugarCrm.ModuleField}
+ */
+ydn.crm.sugar.model.Group.prototype.getFieldInfo = function(name) {
+  return this.module.getFieldInfo(name);
+};
+
+
+/**
+ * @return {ydn.crm.sugar.Record} return sugarcrm record entry.
+ */
+ydn.crm.sugar.model.Group.prototype.getRecord = function() {
+  return this.module.getRecord();
+};
+
+
+/**
+ * List of normally hide group names.
+ * @const
+ * @type {Array.<string>}
+ */
+ydn.crm.sugar.model.Group.NORMALLY_HIDE = ['address'];
+
+
+/**
+ * Return default setting.
+ * @param {string} name group name.
+ * @return {boolean}
+ */
+ydn.crm.sugar.model.Group.isNormallyHide = function(name) {
+  return ydn.crm.sugar.model.Group.NORMALLY_HIDE.indexOf(name) >= 0;
+};
+
+
+/**
+ * @return {boolean}
+ */
+ydn.crm.sugar.model.Group.prototype.isNormallyHide = function() {
+  var setting = this.getUserSetting();
+  return setting ? !!setting['normallyHide'] : ydn.crm.sugar.model.Group.isNormallyHide(this.group_name);
+};
+
+
+/**
+ * Get user setting.
+ * @return {*}
+ */
+ydn.crm.sugar.model.Group.prototype.getUserSetting = function() {
+  var setting = this.module.getUserSetting();
+  return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['groups', this.group_name]) : null;
+};
+
+
+/**
+ * Get list of field name in this group.
+ * @return {Array.<string>}
+ */
+ydn.crm.sugar.model.Group.prototype.listFields = function() {
+  var module_info = this.module.getModuleInfo();
+  var fields = [];
+  for (var name in module_info.module_fields) {
+    var field = module_info.module_fields[name];
+    if (this.group_name && field.group == this.group_name) {
+      fields.push(name);
+    } else if (!this.group_name && !field.group) {
+      fields.push(name);
+    }
+  }
+  return fields;
+};
+
+
+/**
+ * Check existant of a field name.
+ * @param {string} name
+ * @return {boolean}
+ */
+ydn.crm.sugar.model.Group.prototype.hasField = function(name) {
+  var module_info = this.module.getModuleInfo();
+  for (var x in module_info.module_fields) {
+    if (x == name) {
+      return true;
+    }
+  }
+  return false;
+};
+
+
+/**
+ * Create a new field model if the field present in the record.
+ * @param {string} name
+ * @return {!ydn.crm.sugar.model.Field}
+ */
+ydn.crm.sugar.model.Group.prototype.getFieldModel = function(name) {
+  if (!this.fields_[name]) {
+    var field_info = this.module.getFieldInfo(name);
+    if (this.group_name) {
+      goog.asserts.assert(this.group_name == field_info.group,
+          name + ' not in group ' + this.group_name);
+    } else {
+      goog.asserts.assert(!field_info.group,
+          name + ' not in group ' + this.group_name);
+    }
+    this.fields_[name] = new ydn.crm.sugar.model.Field(this, name);
+  }
+  return this.fields_[name];
+};
+
+
+/**
+ * @return {ydn.crm.sugar.ModuleName}
+ */
+ydn.crm.sugar.model.Group.prototype.getModuleName = function() {
+  return this.module.getModuleName();
+};
+
+
+/**
+ * @return {string}
+ */
+ydn.crm.sugar.model.Group.prototype.getGroupName = function() {
+  return this.group_name;
+};
+
+
+/**
+ * @return {string}
+ */
+ydn.crm.sugar.model.Group.prototype.getGroupLabel = function() {
+  var label = this.group_name.replace('_', ' ');
+  label = label.charAt(0).toUpperCase() + label.substr(1);
+  return label;
+};
+

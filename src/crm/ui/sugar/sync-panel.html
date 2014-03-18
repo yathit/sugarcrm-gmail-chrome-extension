@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sync panel test</title>
+    <link rel="stylesheet" type="text/css" href="../../../../gss/inj.css">
+    <link rel="stylesheet" type="text/css" href="../../../../gss/gmail-widget.css">
+    <link rel="stylesheet" type="text/css" href="../../../../gss/sugar.css">
+    <link rel="stylesheet" type="text/css" href="../../../../gss/goog.css">
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/crm/sugar/info.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/lib/md5.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/closure-library/closure/goog/base.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-base/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-base/src/ydn/mock-chrome-extension.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-api/js/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-db/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-db-sync/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/gdata/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/crm/test-include.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/crm/inj/sugar/test-data-2.js"></script>
+
+</head>
+<body>
+    <div id="sync-panel-root" ></div>
+    <script type="text/javascript">
+        ydn.msg.Pipe.DEBUG = true;
+        ydn.debug.log('ydn.crm', 'finer');
+        ydn.debug.log('ydn', 'finest');
+        var domain = 'kyawtun.insightfulcrm.com';
+        var about = {
+            'domain': domain,
+            'userName': 'kere@some.com',
+            'isLogin': true,
+            'hostPermission': true
+        };
+        var mod_infos = {};
+        for (var i = 0; i < sugarCrmModuleInfos.length; i++) {
+            mod_infos[sugarCrmModuleInfos[i].module_name] = sugarCrmModuleInfos[i];
+        }
+        var sugar = new ydn.crm.sugar.model.Sugar(about, mod_infos);
+        var mockQueryRecords = function(module, order) {
+          return goog.async.Deferred.succeed([]);
+        };
+        var rep = new goog.testing.PropertyReplacer();
+        rep.replace(sugar, 'listRecords', mockQueryRecords);
+        var panel = new ydn.crm.ui.sugar.SyncPanel(null, sugar);
+
+        ydn.msg.main_ = new ydn.msg.MockChannel('main', main_pre);
+
+        var ele_sidebar = document.getElementById('sync-panel-root');
+        panel.render(ele_sidebar);
+
+    </script>
+</body>
+</html>

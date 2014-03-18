@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Module panel test</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../gss/inj.css">
+    <link rel="stylesheet" type="text/css" href="../../../../../gss/gmail-widget.css">
+    <link rel="stylesheet" type="text/css" href="../../../../../gss/sugar.css">
+    <link rel="stylesheet" type="text/css" href="../../../../../gss/goog-tabbar.css">
+    <script type="text/javascript" src="../../../../../../ydn-base/src/ydn/mock-chrome-extension.js"></script>
+    <script type="text/javascript"
+            src="http://localhost:8085/crm-ex/src/crm/sugar/info.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/lib/md5.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/closure-library/closure/goog/base.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-base/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-api/js/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-db/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/ydn-db-sync/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/gdata/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/deps.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/crm/test-include.js"></script>
+    <script type="text/javascript" src="http://localhost:8085/crm-ex/src/crm/test-data.js"></script>
+
+</head>
+<body>
+    <div id="sidebar" class="inj sidebar" style="max-width: 20em;"></div>
+    <script type="text/javascript">
+        ydn.debug.log('ydn.crm', 'finer');
+
+        var domain = 'kyawtun.insightfulcrm.com';
+        var email = 'test@soere.com';
+        var module_info = sugarCrmModuleInfos[0];
+        var gdata = null;
+        var full_name = 'Test User';
+
+        var about = {
+            domain: domain
+        };
+        var infos = {};
+        for (var i = 0; i < sugarCrmModuleInfos.length; i++) {
+            infos[sugarCrmModuleInfos[i].module_name] = sugarCrmModuleInfos[i];
+        }
+        var sugar_model = new ydn.crm.sugar.model.Sugar(about, infos);
+        var module_model = sugar_model.getModuleModel(module_info.module_name);
+        var pm = new ydn.crm.inj.ContactModel(email, full_name);
+        var panel = new ydn.crm.inj.sugar.module.GDataPanel(null, module_model);
+        panel.render(document.getElementById('sidebar'));
+        sugar_model.setContactModel(pm);
+        var r = new ydn.crm.sugar.Record(domain, module_info.module_name, ydn.crm.sugar.utils.toRecordEntry(sugarRecords.Contacts[0]));
+        setTimeout(function() {
+
+            module_model.setRecord(r);
+        }, 1000);
+
+    </script>
+</body>
+</html>

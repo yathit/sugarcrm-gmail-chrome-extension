@@ -6,13 +6,34 @@
 
 /**
  * Credentials section.
+ * @param {ydn.crm.sugar.model.Sugar} model
  * @constructor
  */
-var SearchPanel = function(channel) {
+var SearchPanel = function(model) {
   /**
    * @type {HTMLElement}
    */
   this.root = document.getElementById('search');
+  /**
+   * @protected
+   * @type {ydn.crm.ui.sugar.SearchPanel}
+   */
+  this.search = null;
+};
+
+
+/**
+ * Setup sugar model.
+ * @param {SugarCrmModel} model
+ */
+SearchPanel.prototype.setup = function(model) {
+  ydn.crm.inj.UserSetting.getInstance().getModuleInfo(model.getDomain())
+      .addCallback(function(info) {
+        var m = new ydn.crm.sugar.model.Sugar(model.getDetails(), info);
+        this.root.innerHTML = ''; // here clean up previous panel.
+        this.search = new ydn.crm.ui.sugar.SearchPanel(null, m);
+        this.search.render(this.root);
+      }, this);
 };
 
 

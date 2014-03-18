@@ -37,7 +37,7 @@ goog.require('ydn.json');
  */
 ydn.crm.inj.SugarPanel = function(dom, about, modules_info) {
   goog.base(this, dom);
-  var model = new ydn.crm.sugar.model.Sugar(about, modules_info);
+  var model = new ydn.crm.sugar.model.GDataSugar(about, modules_info);
   this.setModel(model);
 
 };
@@ -47,7 +47,7 @@ goog.inherits(ydn.crm.inj.SugarPanel, goog.ui.Component);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.inj.SugarPanel.DEBUG = goog.DEBUG;
+ydn.crm.inj.SugarPanel.DEBUG = false;
 
 
 /**
@@ -64,7 +64,7 @@ ydn.crm.inj.SugarPanel.prototype.getCssClass = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.Sugar}
+ * @return {ydn.crm.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.SugarPanel.prototype.getModel;
@@ -127,7 +127,7 @@ ydn.crm.inj.SugarPanel.prototype.getDomainName = function() {
  */
 ydn.crm.inj.SugarPanel.prototype.updateContact = function(contact_model) {
   /**
-   * @type {ydn.crm.sugar.model.Sugar}
+   * @type {ydn.crm.sugar.model.GDataSugar}
    */
   var model = this.getModel();
   var root = this.getElement();

@@ -72,22 +72,22 @@ ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_CONTENT = 'feed-body';
  */
 ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
   var root = goog.base(this, 'createDom', x);
-  var header = /** {ydn.crm.inj.sugar.FeedPanel} */ (x);
-  var model = /** @type {ydn.crm.sugar.model.Sugar} */ (header.getModel());
-  var dom = header.getDomHelper();
+  var ctrl = /** {ydn.crm.inj.sugar.FeedPanel} */ (x);
+  var model = /** @type {ydn.crm.sugar.model.GDataSugar} */ (ctrl.getModel());
+  var dom = ctrl.getDomHelper();
   var ele_header = dom.createDom('div', ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_HEADER);
   var ele_content = dom.createDom('div', ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_CONTENT);
   root.appendChild(ele_header);
   root.appendChild(ele_content);
-  header.setElementInternal(root);
+  ctrl.setElementInternal(root);
 
-  var title = dom.createDom('div', 'title', 'Feed');
+  var title = dom.createDom('div', 'feed-title');
   ele_header.appendChild(title);
 
   for (var i = 0; i < ydn.crm.sugar.PRIMARY_MODULES.length; i++) {
     var name = ydn.crm.sugar.PRIMARY_MODULES[i];
-    var panel = header.popPanel(name);
-    header.addChild(panel, true);
+    var panel = ctrl.popPanel(name);
+    ctrl.addChild(panel, true);
   }
 
   return root;
@@ -97,17 +97,11 @@ ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
 /**
  * Refresh view due to change in model.
  * @param {Element} root
- * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {ydn.crm.sugar.model.GDataSugar} model
  */
 ydn.crm.inj.sugar.FeedBodyRenderer.prototype.refresh = function(root, model) {
   var contact = model.getContactModel();
   goog.style.setElementShown(root, !!contact);
-  if (contact) {
-    var ele_header = goog.dom.getElementByClass(ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_HEADER, root);
-    var ele_body = goog.dom.getElementByClass(ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_CONTENT, root);
-    var title = ele_header.querySelector('.title');
-    title.textContent = contact.getEmail();
-  }
 
 };
 

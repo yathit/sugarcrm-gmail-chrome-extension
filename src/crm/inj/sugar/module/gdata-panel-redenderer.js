@@ -5,9 +5,9 @@
  */
 
 
-goog.provide('ydn.crm.inj.sugar.module.PanelRenderer');
+goog.provide('ydn.crm.inj.sugar.module.GDataPanelRenderer');
 goog.require('goog.ui.ControlRenderer');
-goog.require('ydn.crm.inj.sugar.module.Body');
+goog.require('ydn.crm.inj.sugar.module.Record');
 
 
 
@@ -18,45 +18,66 @@ goog.require('ydn.crm.inj.sugar.module.Body');
  * @extends {goog.ui.ControlRenderer}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.inj.sugar.module.PanelRenderer = function() {
+ydn.crm.inj.sugar.module.GDataPanelRenderer = function() {
   goog.base(this);
 };
-goog.inherits(ydn.crm.inj.sugar.module.PanelRenderer, goog.ui.ControlRenderer);
+goog.inherits(ydn.crm.inj.sugar.module.GDataPanelRenderer, goog.ui.ControlRenderer);
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.inj.sugar.module.PanelRenderer.DEBUG = goog.DEBUG;
+ydn.crm.inj.sugar.module.GDataPanelRenderer.DEBUG = goog.DEBUG;
 
 
 /**
  * @protected
  * @type {goog.debug.Logger}
  */
-ydn.crm.inj.sugar.module.PanelRenderer.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.module.PanelRenderer');
+ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.logger =
+    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.module.GDataPanelRenderer');
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS = 'record-panel';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS = 'record-panel';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_CONTENT = 'record-content';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_CONTENT = 'record-content';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_HEAD = 'record-header';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_HEAD = 'record-header';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_TITLE = 'title';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_IMPORT = 'import';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_LINK = 'link';
 
 
 /**
@@ -66,28 +87,28 @@ ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_HEAD = 'record-header';
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_ROOT = 'record-root';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_ROOT = 'record-root';
 
 
 /** @return {string} */
-ydn.crm.inj.sugar.module.PanelRenderer.prototype.getCssClass = function() {
-  return ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS;
+ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.getCssClass = function() {
+  return ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS;
 };
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.inj.sugar.module.PanelRenderer.prototype.createDom = function(x) {
+ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.createDom = function(x) {
   var el = goog.base(this, 'createDom', x);
-  var header = /** {ydn.crm.inj.sugar.module.Header} */ (x);
-  var model = /** @type {ydn.crm.sugar.model.Module} */ (header.getModel());
+  var header = /** {ydn.crm.inj.sugar.module.GDataPanel} */ (x);
+  var model = /** @type {ydn.crm.sugar.model.GDataRecord} */ (header.getModel());
   var module = model.getModuleName();
   var dom = header.getDomHelper();
-  var root = dom.createDom('div', ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_ROOT);
+  var root = dom.createDom('div', ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_ROOT);
   el.appendChild(root);
-  var heading = dom.createDom('div', ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_HEAD);
-  var content = dom.createDom('div', ydn.crm.inj.sugar.module.PanelRenderer.CSS_CLASS_CONTENT);
+  var heading = dom.createDom('div', ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_HEAD);
+  var content = dom.createDom('div', ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_CONTENT);
   root.appendChild(heading);
   root.appendChild(content);
   header.setElementInternal(root);
@@ -97,17 +118,20 @@ ydn.crm.inj.sugar.module.PanelRenderer.prototype.createDom = function(x) {
   }, module.substr(0, 2));
   var title = dom.createDom('a', {
     'href': '#',
-    'class': 'title'
+    'class': ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_TITLE
   });
   var sync = dom.createDom('a', {
     'href': '#link',
-    'class': 'link'
+    'class': ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_LINK
   }, 'link');
   var syncd_symbol = dom.createDom('span', 'synced');
   goog.style.setElementShown(sync, false);
   goog.style.setElementShown(syncd_symbol, false);
   var title_div = dom.createDom('div', 'header', [icon, title, sync, syncd_symbol]);
-  var imp = dom.createDom('a', {'href': '#import'}, 'Add to ' + module);
+  var imp = dom.createDom('a', {
+    'class': ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_IMPORT,
+    'href': '#import'
+  }, 'Add to ' + module);
   imp.style.zIndex = 1000;
   var imp_div = dom.createDom('div', {'class': 'import'}, imp);
 
@@ -115,7 +139,7 @@ ydn.crm.inj.sugar.module.PanelRenderer.prototype.createDom = function(x) {
   heading.appendChild(imp_div);
   heading.appendChild(title_div);
 
-  var body = new ydn.crm.inj.sugar.module.Body(model,
+  var body = new ydn.crm.inj.sugar.module.Record(model,
       null, dom);
   header.addChild(body, true);
 
@@ -124,12 +148,12 @@ ydn.crm.inj.sugar.module.PanelRenderer.prototype.createDom = function(x) {
 
 
 /**
- * @param {ydn.crm.inj.sugar.module.Panel} x
+ * @param {ydn.crm.inj.sugar.module.GDataPanel} x
  */
-ydn.crm.inj.sugar.module.PanelRenderer.prototype.updateImportLink = function(x) {
+ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.updateImportLink = function(x) {
   var root = x.getHeadElement();
   /**
-   * @type {ydn.crm.sugar.model.Module}
+   * @type {ydn.crm.sugar.model.GDataRecord}
    */
   var model = x.getModel();
   var import_div = root.querySelector('.import');
@@ -153,9 +177,9 @@ ydn.crm.inj.sugar.module.PanelRenderer.prototype.updateImportLink = function(x) 
 /**
  * Refresh view due to change in model.
  * @param {Element} root
- * @param {ydn.crm.inj.sugar.module.Panel.Labels} labels
+ * @param {ydn.crm.inj.sugar.module.GDataPanel.Labels} labels
  */
-ydn.crm.inj.sugar.module.PanelRenderer.prototype.refresh = function(root, labels) {
+ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.refresh = function(root, labels) {
 
   var import_div = root.querySelector('.import');
   var header = root.querySelector('.header');
