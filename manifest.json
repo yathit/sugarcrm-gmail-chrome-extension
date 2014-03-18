@@ -9,7 +9,7 @@
     {
       "matches": ["https://mail.google.com/*"],
       "css": ["css/inj.css"],
-      "js": ["jsc/ydn.crm.inj.js"],
+      "js": ["jsc/ydn.crm.js", "js/run-content-script.js"],
       "run_at": "document_end"
     }
   ],
@@ -21,7 +21,6 @@
 
   "web_accessible_resources": ["option-page.html",
     "js/option/option-page.js",
-    "src/ydn.crm.inj.js.map",
     "src/ydn.crm.js.map",
     "crm-ex/host-permission.html",
     "image/logo.png",
@@ -50,8 +49,8 @@
 
   "browser_action": {
     "default_icon": {
-      "19": "image/logo-19.png",
-      "38": "image/logo-38.png"
+      "19": "image/logo-bw-19.png",
+      "38": "image/logo-bw-38.png"
     },
     "default_title": "Yathit CRM Bridge",
     "default_popup": "popup.html"

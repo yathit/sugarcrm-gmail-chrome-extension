@@ -2,8 +2,9 @@
  * Created by kyawtun on 15/12/13.
  */
 
+runInjApp();
 
-
+/*
 (function() {
   // Inject main javascript depending on app setting.
   var ch = ydn.msg.getChannel();
@@ -25,3 +26,4 @@
   };
   ch.send('app-setting').addBoth(load);
 })();
+    */
