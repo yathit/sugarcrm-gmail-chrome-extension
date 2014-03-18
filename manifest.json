@@ -2,7 +2,7 @@
   "name": "Yathit CRM Bridge (Beta)",
   "short_name": "Yathit CRM",
   "description": "Yathit CRM Bridge is a time-saving tool for SugarCRM users in Gmail",
-  "version": "0.7.0",
+  "version": "0.6.7",
   "manifest_version": 2,
 
   "content_scripts": [
