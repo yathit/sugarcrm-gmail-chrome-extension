@@ -75,6 +75,8 @@ ydn.crm.sugar.model.Result.prototype.getModuleName = function() {
     return this.record.getModuleName();
   } else if (this.result) {
     return /** @type {ydn.crm.sugar.ModuleName} */ (this.result.storeName);
+  } else {
+    throw new Error('No module name');
   }
 };
 
