@@ -7,6 +7,7 @@
 
 goog.provide('ydn.crm.inj.sugar.module.group.AddressRenderer');
 goog.require('goog.ui.ControlRenderer');
+goog.require('ydn.crm.inj.sugar.module.SimpleFieldRenderer');
 
 
 

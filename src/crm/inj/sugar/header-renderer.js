@@ -11,6 +11,7 @@ goog.require('goog.style');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.base');
 goog.require('ydn.crm.sugar');
+goog.require('ydn.crm.ui.sugar.SearchPanel');
 
 
 
@@ -86,9 +87,12 @@ ydn.crm.inj.sugar.HeaderRenderer.openPageAsDialog = function(e) {
  */
 ydn.crm.inj.sugar.HeaderRenderer.prototype.createDom = function(x) {
   var root = goog.base(this, 'createDom', x);
-  var header = /** ydn.crm.inj.sugar.Header */ (x);
-  var model = header.getModel();
-  var dom = header.getDomHelper();
+  var ctrl = /** @type {ydn.crm.inj.sugar.Header} */ (x);
+  /**
+   * @type {ydn.crm.sugar.model.Sugar}
+   */
+  var model = ctrl.getModel();
+  var dom = ctrl.getDomHelper();
   goog.dom.classes.add(root, this.getCssClass());
   var a = dom.createDom('a');
   a.textContent = model.getDomain();
@@ -123,6 +127,11 @@ ydn.crm.inj.sugar.HeaderRenderer.prototype.createDom = function(x) {
   goog.style.setElementShown(div_grant, false);
   goog.style.setElementShown(div_login, false);
   root.appendChild(div_login);
+  var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
+  ctrl.addChild(search);
+  var ele_search = dom.createDom('div');
+  root.appendChild(ele_search);
+  search.render(ele_search);
   return root;
 };
 

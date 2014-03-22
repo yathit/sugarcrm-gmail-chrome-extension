@@ -81,10 +81,14 @@ ydn.crm.inj.sugar.module.group.NameRenderer.prototype.createDom = function(x) {
     field = new ydn.crm.inj.sugar.module.Field(field_model, ren, dom);
     ctrl.addChild(field, true);
   }
-  ctrl.addChild(new ydn.crm.inj.sugar.module.Field(model.getFieldModel('first_name'),
-      ren, dom), true);
-  ctrl.addChild(new ydn.crm.inj.sugar.module.Field(model.getFieldModel('last_name'),
-      ren, dom), true);
+  if (model.hasField('first_name')) {
+    ctrl.addChild(new ydn.crm.inj.sugar.module.Field(model.getFieldModel('first_name'),
+        ren, dom), true);
+  }
+  if (model.hasField('last_name')) {
+    ctrl.addChild(new ydn.crm.inj.sugar.module.Field(model.getFieldModel('last_name'),
+        ren, dom), true);
+  }
 
   return root;
 };

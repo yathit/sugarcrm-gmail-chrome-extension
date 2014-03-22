@@ -84,8 +84,8 @@ ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
   var title = dom.createDom('div', 'feed-title');
   ele_header.appendChild(title);
 
-  for (var i = 0; i < ydn.crm.sugar.PRIMARY_MODULES.length; i++) {
-    var name = ydn.crm.sugar.PRIMARY_MODULES[i];
+  for (var i = 0; i < ydn.crm.sugar.PANEL_MODULES.length; i++) {
+    var name = ydn.crm.sugar.PANEL_MODULES[i];
     var panel = ctrl.popPanel(name);
     ctrl.addChild(panel, true);
   }

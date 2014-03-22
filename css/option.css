@@ -1071,8 +1071,12 @@ a.widget-task {
     display: inline !important;
 }
 
-.field.normally-hide {
+.record-group.normally-hide, .field.normally-hide {
     display: none;
+}
+
+.detail .record-group.normally-hide, .detail .field.normally-hide {
+    display: inherit;
 }
 
 .tools {
@@ -1084,6 +1088,7 @@ a.widget-task {
     height: 16px;
 }
 
+/*
 div.record-body-content {
     display: none;
 }
@@ -1092,7 +1097,15 @@ div.record-body-content {
 div.record-body-content.view {
     display: block;
 }
+*/
 
+.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
+    content: ', ';
+}
+
+.record-body-header > * {
+    padding-left: 4px;
+}
 
 
 

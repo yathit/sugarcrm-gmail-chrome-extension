@@ -7,6 +7,7 @@
 
 goog.provide('ydn.crm.inj.sugar.module.group.ListRenderer');
 goog.require('goog.ui.ControlRenderer');
+goog.require('ydn.crm.inj.sugar.module.SimpleFieldRenderer');
 
 
 
@@ -34,7 +35,7 @@ ydn.crm.inj.sugar.module.group.ListRenderer.DEBUG = goog.DEBUG;
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.group.ListRenderer.CSS_CLASS = 'name';
+ydn.crm.inj.sugar.module.group.ListRenderer.CSS_CLASS = 'list';
 
 
 /** @return {string} */
@@ -74,16 +75,12 @@ ydn.crm.inj.sugar.module.group.ListRenderer.prototype.createDom = function(x) {
 
   var fields = model.listFields();
   var ren = ydn.crm.inj.sugar.module.SimpleFieldRenderer.getInstance();
-  var field_model, field;
-  if (model.hasField('salutation')) {
-    field_model = model.getFieldModel('salutation');
-    field = new ydn.crm.inj.sugar.module.Field(field_model, ren, dom);
+  for (var i = 0; i < fields.length; i++) {
+    var name = fields[i];
+    var field_model = model.getFieldModel(name);
+    var field = new ydn.crm.inj.sugar.module.Field(field_model, ren, dom);
     ctrl.addChild(field, true);
   }
-  ctrl.addChild(new ydn.crm.inj.sugar.module.Field(model.getFieldModel('first_name'),
-      ren, dom), true);
-  ctrl.addChild(new ydn.crm.inj.sugar.module.Field(model.getFieldModel('last_name'),
-      ren, dom), true);
 
   return root;
 };

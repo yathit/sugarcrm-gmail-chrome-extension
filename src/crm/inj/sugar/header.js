@@ -8,10 +8,10 @@
 goog.provide('ydn.crm.inj.sugar.Header');
 goog.require('goog.events.KeyHandler');
 goog.require('goog.style');
-goog.require('goog.ui.Control');
+goog.require('goog.ui.Component');
 goog.require('ydn.crm.base');
-goog.require('ydn.crm.inj.sugar.HeaderRenderer');
 goog.require('ydn.crm.sugar');
+goog.require('ydn.crm.ui.sugar.SearchPanel');
 
 
 
@@ -21,20 +21,32 @@ goog.require('ydn.crm.sugar');
  * @param {ydn.crm.sugar.model.Sugar} model
  * @constructor
  * @struct
- * @extends {goog.ui.Control}
+ * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
 ydn.crm.inj.sugar.Header = function(dom, model) {
-  goog.base(this, null, null, dom);
+  goog.base(this, dom);
   this.setModel(model);
 };
-goog.inherits(ydn.crm.inj.sugar.Header, goog.ui.Control);
+goog.inherits(ydn.crm.inj.sugar.Header, goog.ui.Component);
 
 
 /**
  * @define {boolean} debug flag.
  */
 ydn.crm.inj.sugar.Header.DEBUG = goog.DEBUG;
+
+
+/**
+ * @define {boolean} whether to use iframe.
+ */
+ydn.crm.inj.sugar.Header.USE_IFRAME = false;
+
+
+/**
+ * @define {boolean} whether to use iframe.
+ */
+ydn.crm.inj.sugar.Header.USE_POPUP = false;
 
 
 /**
@@ -50,6 +62,19 @@ ydn.crm.inj.sugar.Header.prototype.logger =
  * @override
  */
 ydn.crm.inj.sugar.Header.prototype.getModel;
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.Header.CSS_CLASS = 'sugar-header';
+
+
+/** @return {string} */
+ydn.crm.inj.sugar.Header.prototype.getCssClass = function() {
+  return ydn.crm.inj.sugar.Header.CSS_CLASS;
+};
 
 
 /**
@@ -70,6 +95,60 @@ ydn.crm.inj.sugar.Header.openPageAsDialog = function(e) {
 /**
  * @inheritDoc
  */
+ydn.crm.inj.sugar.Header.prototype.createDom = function() {
+  goog.base(this, 'createDom');
+  var root = this.getElement();
+  var ctrl = this;
+  /**
+   * @type {ydn.crm.sugar.model.Sugar}
+   */
+  var model = this.getModel();
+  var dom = this.getDomHelper();
+  goog.dom.classes.add(root, this.getCssClass());
+  var a = dom.createDom('a');
+  a.textContent = model.getDomain();
+  a.href = model.getHomeUrl();
+  var ele_title = dom.createDom('div', {
+    'class': 'main-title',
+    'title': 'SugarCRM'}, [a]);
+  root.appendChild(ele_title);
+  var grants = [];
+  if (!ydn.crm.inj.sugar.Header.USE_IFRAME) {
+    var href = chrome.extension.getURL(ydn.crm.base.OPTION_PAGE) + '#credentials';
+    var target = 'option-page';
+    var msg = 'Setup host permission';
+    if (ydn.crm.inj.sugar.Header.USE_POPUP) {
+      href = chrome.extension.getURL(ydn.crm.base.HOST_PERMISSION_PAGE);
+      target = 'host-permission';
+      msg = 'Grant host permission';
+    }
+    var btn_grant = dom.createDom('a', {'href': href, 'target': target}, msg);
+    btn_grant.setAttribute('title', 'Your permission is required to connect your' +
+        ' server from this extension. Without permission request to server will be slow.');
+    grants.push(btn_grant);
+  }
+  var div_grant = dom.createDom('div', {'class': 'host-permission'}, grants);
+  root.appendChild(div_grant);
+  var un = dom.createDom('input', {'name': 'username', 'type': 'text'});
+  var div_username = dom.createDom('div', null, [un]);
+  var ps = dom.createDom('input', {'name': 'password', 'type': 'password'});
+  var div_password = dom.createDom('div', null, [ps]);
+  var div_msg = dom.createDom('div', 'message');
+  var div_login = dom.createDom('div', 'login-form', [div_username, div_password, div_msg]);
+  goog.style.setElementShown(div_grant, false);
+  goog.style.setElementShown(div_login, false);
+  root.appendChild(div_login);
+  var search = new ydn.crm.ui.sugar.SearchPanel(dom, model, true);
+  this.addChild(search);
+  var ele_search = dom.createDom('div');
+  root.appendChild(ele_search);
+  search.render(ele_search);
+};
+
+
+/**
+ * @inheritDoc
+ */
 ydn.crm.inj.sugar.Header.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
   var root = this.getElement();
@@ -78,7 +157,7 @@ ydn.crm.inj.sugar.Header.prototype.enterDocument = function() {
   var div_login = root.querySelector('.login-form');
   var kh = new goog.events.KeyHandler(div_login);
   handler.listen(kh, goog.events.KeyHandler.EventType.KEY, this.handleLogin);
-  if (ydn.crm.inj.sugar.HeaderRenderer.USE_POPUP) {
+  if (ydn.crm.inj.sugar.Header.USE_POPUP) {
     var a_grant = grant.querySelector('a');
     handler.listen(a_grant, 'click', ydn.crm.inj.sugar.Header.openPageAsDialog, true);
   }
@@ -227,7 +306,7 @@ ydn.crm.inj.sugar.Header.prototype.refresh = function() {
     });
   }
   if (model.isLogin() && !model.hasHostPermission()) {
-    if (ydn.crm.inj.sugar.HeaderRenderer.USE_IFRAME) {
+    if (ydn.crm.inj.sugar.Header.USE_IFRAME) {
       this.injectGrantIframe_(domain);
     } else {
       var hp_url = chrome.extension.getURL(ydn.crm.base.HOST_PERMISSION_PAGE);
@@ -239,8 +318,5 @@ ydn.crm.inj.sugar.Header.prototype.refresh = function() {
 };
 
 
-
-goog.ui.registry.setDefaultRenderer(ydn.crm.inj.sugar.Header,
-    ydn.crm.inj.sugar.HeaderRenderer);
 
 

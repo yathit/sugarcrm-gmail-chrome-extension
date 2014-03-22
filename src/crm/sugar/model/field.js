@@ -52,11 +52,21 @@ ydn.crm.sugar.model.Field.prototype.getFieldInfo = function() {
 
 
 /**
+ * Get field value.
  * @return {string?}
  */
 ydn.crm.sugar.model.Field.prototype.getFieldValue = function() {
   var record = this.parent.getRecord();
   return record ? record.value(this.field_name) : null;
+};
+
+
+/**
+ * Get field value without casting to string.
+ * @return {*}
+ */
+ydn.crm.sugar.model.Field.prototype.getField = function() {
+  return this.getFieldValue();
 };
 
 

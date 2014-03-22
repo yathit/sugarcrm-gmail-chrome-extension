@@ -1,7 +1,23 @@
+// Copyright 2014 YDN Authors. All Rights Reserved.
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS-IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
 /**
  * @fileoverview Record module panel for Accounts, Contacts, Leads, etc.
  *
  * This is container for group panel and has some controls to viewing and editing.
+ * @author kyawtun@yathit.com (Kyaw Tun)
  */
 
 
@@ -28,8 +44,12 @@ goog.require('ydn.crm.sugar.model.Sugar');
 ydn.crm.inj.sugar.module.Record = function(model, opt_renderer, opt_dom) {
   var renderer = opt_renderer || ydn.crm.inj.sugar.module.RecordRenderer.getInstance(); // needed?
   goog.base(this, null, renderer, opt_dom);
+  this.setHandleMouseEvents(false);
+  this.setAllowTextSelection(true);
+  this.setAutoStates(goog.ui.Component.State.ALL, false);
   goog.asserts.assert(model);
   this.setModel(model);
+  this.show_summary_ = false;
 };
 goog.inherits(ydn.crm.inj.sugar.module.Record, goog.ui.Control);
 
@@ -53,6 +73,23 @@ ydn.crm.inj.sugar.module.Record.prototype.logger =
  * @define {boolean} debug flag.
  */
 ydn.crm.inj.sugar.module.Record.DEBUG = false;
+
+
+/**
+ * Show summary of the record value.
+ * @param {boolean} val
+ */
+ydn.crm.inj.sugar.module.Record.prototype.setShowSummary = function(val) {
+  this.show_summary_ = val;
+};
+
+
+/**
+ * @return {boolean}
+ */
+ydn.crm.inj.sugar.module.Record.prototype.isShowSummary = function() {
+  return this.show_summary_;
+};
 
 
 /**
@@ -99,6 +136,7 @@ ydn.crm.inj.sugar.module.Record.prototype.enterDocument = function() {
   }
   var renderer = /** @type {ydn.crm.inj.sugar.module.RecordRenderer} */ (this.getRenderer());
   hd.listen(renderer.getViewButton(this.getElement()), 'click', this.toggleView, false);
+  hd.listen(renderer.getDetailButton(this.getElement()), 'click', this.toggleDetail, false);
 };
 
 
@@ -111,6 +149,18 @@ ydn.crm.inj.sugar.module.Record.prototype.toggleView = function(e) {
   // console.log('toggle', e.target);
   var renderer = /** @type {ydn.crm.inj.sugar.module.RecordRenderer} */ (this.getRenderer());
   renderer.toggleView(this.getElement());
+};
+
+
+/**
+ * Toggle show/hide panel.
+ * @param {Event} e
+ */
+ydn.crm.inj.sugar.module.Record.prototype.toggleDetail = function(e) {
+  e.preventDefault();
+  // console.log('toggle', e.target);
+  var renderer = /** @type {ydn.crm.inj.sugar.module.RecordRenderer} */ (this.getRenderer());
+  renderer.toggleDetail(this.getElement());
 };
 
 
@@ -133,7 +183,7 @@ ydn.crm.inj.sugar.module.Record.prototype.refresh = function(e) {
   }
 
   if (e && e.type == ydn.crm.sugar.model.events.Type.RECORD_CHANGE) {
-    renderer.reset(this.getElement());
+    renderer.reset(this);
   }
 
   for (var i = 0; i < this.getChildCount(); i++) {
@@ -141,9 +191,6 @@ ydn.crm.inj.sugar.module.Record.prototype.refresh = function(e) {
     if (child instanceof ydn.crm.inj.sugar.module.Group) {
       var g = /** @type {ydn.crm.inj.sugar.module.Group} */ (child);
       g.refresh();
-    } else if (child instanceof ydn.crm.inj.sugar.module.group.Address) {
-      var a = /** @type {ydn.crm.inj.sugar.module.group.Address} */ (child);
-      a.refresh();
     }
   }
 

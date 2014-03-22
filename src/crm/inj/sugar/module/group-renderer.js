@@ -6,7 +6,7 @@
 
 
 goog.provide('ydn.crm.inj.sugar.module.GroupRenderer');
-goog.require('goog.ui.ContainerRenderer');
+goog.require('goog.ui.ControlRenderer');
 
 
 
@@ -37,6 +37,13 @@ ydn.crm.inj.sugar.module.GroupRenderer.DEBUG = false;
 ydn.crm.inj.sugar.module.GroupRenderer.CSS_CLASS = 'record-group';
 
 
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.GroupRenderer.CSS_CONTENT_CLASS = 'content';
+
+
 /** @return {string} */
 ydn.crm.inj.sugar.module.GroupRenderer.prototype.getCssClass = function() {
   return ydn.crm.inj.sugar.module.GroupRenderer.CSS_CLASS;
@@ -49,13 +56,31 @@ ydn.crm.inj.sugar.module.GroupRenderer.prototype.getCssClass = function() {
 ydn.crm.inj.sugar.module.GroupRenderer.prototype.createDom = function(x) {
   var root = goog.base(this, 'createDom', x);
   var ctrl = /** @type {ydn.crm.inj.sugar.module.Group} */ (x);
+  var dom = ctrl.getDomHelper();
+  var head = dom.createDom('div');
+  var content = dom.createDom('div', ydn.crm.inj.sugar.module.GroupRenderer.CSS_CONTENT_CLASS);
+  root.appendChild(head);
+  root.appendChild(content);
   ctrl.setElementInternal(root);
-  var name = ctrl.getModel().getGroupName();
-  root.setAttribute('name', name);
-  var rdr = ydn.crm.inj.sugar.module.GroupBodyRenderer.getInstance();
-  var body = new ydn.crm.inj.sugar.module.GroupBody(ctrl.getModel(), rdr, ctrl.getDomHelper());
+  var group_name = ctrl.getModel().getGroupName();
+  root.setAttribute('name', group_name);
 
-  ctrl.addChild(body, true);
+  /**
+   * @type {ydn.crm.sugar.model.Group}
+   */
+  var model = ctrl.getModel();
+  var groups = model.listFields();
+  var ren = ydn.crm.inj.sugar.module.FieldRenderer.getInstance();
+  for (var i = 0; i < groups.length; i++) {
+    var name = groups[i];
+    var field_model = model.getFieldModel(name);
+    var field = new ydn.crm.inj.sugar.module.Field(field_model, ren, dom);
+    ctrl.addChild(field, true);
+  }
+
+  if (model.isNormallyHide()) {
+    root.classList.add('normally-hide');
+  }
 
   return root;
 };
