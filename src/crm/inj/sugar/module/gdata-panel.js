@@ -166,7 +166,7 @@ ydn.crm.inj.sugar.module.GDataPanel.prototype.getLabels = function() {
     import_title = 'Add current contact ' + contact.getEmail() +
         ' to SugarCRM ' + module_name;
     if (record) {
-      title = record.getFullName();
+      title = record.getTitle();
       title_link = record.getViewLink();
       import_label = '';
       import_title = '';

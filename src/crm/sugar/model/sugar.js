@@ -328,7 +328,7 @@ ydn.crm.sugar.model.Sugar.prototype.listRecords = function(module, opt_order, op
 
 
 /**
- * Full text searh query.
+ * Full text search query.
  * @param {string} module_name filter by module
  * @param {string} q query term.
  * @param {boolean=} opt_fetch_full fetch full record
@@ -341,6 +341,9 @@ ydn.crm.sugar.model.Sugar.prototype.searchRecords = function(module_name, q, opt
     'q': q,
     'fetchFull': !!opt_fetch_full
   };
+  if (module_name == ydn.crm.sugar.ModuleName.NOTES) {
+    query['index'] = 'content';
+  }
   return this.getChannel().send(ydn.crm.Ch.SReq.SEARCH, [query]);
 };
 

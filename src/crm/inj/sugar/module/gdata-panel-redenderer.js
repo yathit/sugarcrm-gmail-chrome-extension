@@ -120,6 +120,7 @@ ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.createDom = function(x) {
     'href': '#',
     'class': ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_TITLE
   });
+  title.target = model.getDomain();
   var sync = dom.createDom('a', {
     'href': '#link',
     'class': ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_LINK

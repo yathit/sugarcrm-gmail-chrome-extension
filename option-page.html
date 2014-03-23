@@ -9,70 +9,70 @@
 <body>
 
 <div id="after-login" >
-<header role="navigation" class="menu_bar">
-    <div class="left">
-        <ul id="main-menu" style="display: none">
-            <li class="selected">
-                <a href="#home">Home</a>
-            </li>
-            <li name="search-menu" style="display: none">
-                <a href="#search">Search</a>
-            </li>
-            <li>
-                <a href="#credentials">Credentials</a>
-            </li>
-        </ul>
-    </div>
-    <div class="right">
-        <ul>
-            <li>
-                <a id="user-login" target="yathit">login</a>
-            </li>
-            <li>
-                <span id="user-name"></span>
-            </li>
-        </ul>
-    </div>
-</header>
-<section id="content"  style="display: none">
-    <article id="home">
-
-    </article>
-    <article id="search" style="display: none">
-       Search
-    </article>
-    <article id="credentials" style="display: none">
-        <ul class="credentials-list"></ul>
-
-        <div class="new-sugar">
-
+    <header role="navigation" class="menu_bar">
+        <div class="left">
+            <ul id="main-menu" style="display: none">
+                <li class="selected">
+                    <a href="#home">Home</a>
+                </li>
+                <li name="search-menu" style="display: none">
+                    <a href="#search">Search</a>
+                </li>
+                <li>
+                    <a href="#credentials">Credentials</a>
+                </li>
+            </ul>
         </div>
-        <div class="audit-log">
-            <div class="message">
-            <span class="last-login"></span> <a href="#" name="detail">detail</a>
-            </div>
-            <div class="result-list" style="display: none">
-                <table>
-                    <thead>
-                      <tr>
-                          <th>Resource</th>
-                          <th>Location</th>
-                          <th>Time</th>
-                      </tr>
-                    </thead>
-                    <tbody></tbody>
+        <div class="right">
+            <ul>
+                <li>
+                    <a id="user-login" target="yathit">login</a>
+                </li>
+                <li>
+                    <span id="user-name"></span>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <section id="content"  style="display: none">
+        <article id="home">
 
-                </table>
+        </article>
+        <article id="search" class="sugar" style="display: none">
+            Search
+        </article>
+        <article id="credentials" style="display: none">
+            <ul class="credentials-list"></ul>
+
+            <div class="new-sugar">
+
+            </div>
+            <div class="audit-log">
                 <div class="message">
-                    * indicate this computer.
+                    <span class="last-login"></span> <a href="#" name="detail">detail</a>
+                </div>
+                <div class="result-list" style="display: none">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Location</th>
+                            <th>Time</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+
+                    </table>
+                    <div class="message">
+                        * indicate this computer.
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
-</section>
-<footer>
-    <div id="statusbar"></div>
-</footer>
+        </article>
+    </section>
+    <footer>
+        <div id="statusbar"></div>
+    </footer>
 </div>
 <template id="sugarcrm-login-form">
     <style>
@@ -137,7 +137,7 @@
     </div>
     <div class="display" style="display: none">
         <p>You have provided <span name="email"></span> Google contacts data available offline assess.<br />
-        Scopes: <span name="scopes"></span></p>
+            Scopes: <span name="scopes"></span></p>
         <a href="#" name="gdata-token-revoke">Revoke</a>
     </div>
 </template>
@@ -182,7 +182,7 @@
     </div>
 
 </template>
-<script type="text/javascript" src="jsc/ydn.crm.js"></script>
+
 <script type="text/javascript" src="lib/md5.js"></script>
 <script type="text/javascript" src="js/option/model/sugarcrm.js"></script>
 <script type="text/javascript" src="js/option/widget/feed.js"></script>

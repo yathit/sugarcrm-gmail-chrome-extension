@@ -199,8 +199,19 @@ OptionPage.prototype.init = function() {
   }, this);
 };
 
-ydn.msg.initPipe('options');
-app = new OptionPage();
-app.init();
-
+chrome.storage.local.get('ydn-crm-src', function(obj) {
+  console.log(obj);
+  var fn = obj['ydn-crm-src'];
+  var node = document.createElement('script');
+  node.type = 'text/javascript';
+  node.onload = function() {
+    // now run the app
+    ydn.msg.initPipe('options');
+    window.app = new OptionPage();
+    window.app.init();
+  };
+  node.src = fn;
+  var head = document.getElementsByTagName('head')[0];
+  head.appendChild(node);
+});
 

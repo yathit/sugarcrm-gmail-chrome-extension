@@ -3,5 +3,9 @@
  */
 
 
-ydn.debug.log('ydn.crm', 'finer');
-runEventApp();
+
+loadApp(function() {
+  ydn.debug.log('ydn.crm', 'finer');
+  window.app = runEventApp();
+});
+

@@ -978,7 +978,6 @@ a.widget-task {
 
 .Contacts .icon {
     background-color: #245a09;
-
 }
 
 .Opportunities .icon {
@@ -988,7 +987,10 @@ a.widget-task {
 
 .Leads .icon {
     background-color: #448fec;
+}
 
+.Notes .icon {
+    background-color: #129cb7;
 }
 
 .Cases .icon {
