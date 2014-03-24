@@ -42,7 +42,7 @@ ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS = 'search-result';
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS_HEADER = 'search-header';
+ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS_HEADER = 'record-header';
 
 
 /**

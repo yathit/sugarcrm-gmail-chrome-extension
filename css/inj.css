@@ -50,6 +50,31 @@
 }
 
 
+.widget {
+    font-size: 13px;
+    font-family: arial, sans-serif;
+}
+
+.widget a {
+    padding: 0 4px;
+}
+
+a.widget-task {
+    text-decoration: none;
+    color: rgb(17, 85, 204);
+}
+
+.widget-label {
+    cursor: pointer;
+}
+
+.widget .error {
+    color: red;
+}
+
+.widget-topraw {
+    border-top: thin solid red;
+}
 /*
 * Closure Library CSS
 */
@@ -917,43 +942,34 @@ a.sugarcrm-setup-link {
 
 
 
+/* CSS related to specific modules */
 
 
-.widget {
-    font-size: 13px;
-    font-family: arial, sans-serif;
+.Accounts .icon {
+    background-color: #37880e;
+
 }
 
-.widget a {
-    padding: 0 4px;
+.Contacts .icon {
+    background-color: #245a09;
 }
 
-a.widget-task {
-    text-decoration: none;
-    color: rgb(17, 85, 204);
+.Opportunities .icon {
+    background-color: #7115ce;
+
 }
 
-.widget-label {
-    cursor: pointer;
+.Leads .icon {
+    background-color: #448fec;
 }
 
-.widget .error {
-    color: red;
+.Notes .icon {
+    background-color: #129cb7;
 }
 
-.widget-topraw {
-    border-top: thin solid red;
-}
-
-.sugar-panel {
-    padding: 8px;
-    border-bottom: thin solid lightgrey;
-}
-
-.sugar-panel .main-title {
-    padding-left: 20px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
-}
+.Cases .icon {
+    background-color: #b81213;
+}/* Record */
 
 
 .record-header .title {
@@ -980,31 +996,58 @@ a.widget-task {
     vertical-align: middle;
 }
 
-.Accounts .icon {
-    background-color: #37880e;
 
+.field:hover > sup.name {
+    display: inline !important;
 }
 
-.Contacts .icon {
-    background-color: #245a09;
+.record-group.normally-hide, .field.normally-hide {
+    display: none;
 }
 
-.Opportunities .icon {
-    background-color: #7115ce;
-
+.detail .record-group.normally-hide, .detail .field.normally-hide {
+    display: inherit;
 }
 
-.Leads .icon {
-    background-color: #448fec;
+
+.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
+    content: ', ';
 }
 
-.Notes .icon {
-    background-color: #129cb7;
+.record-body-header > * {
+    padding-left: 4px;
 }
 
-.Cases .icon {
-    background-color: #b81213;
+input.enum {
+    width: 2em;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none !important;
+    color: #000000;
 }
+
+.search-result {
+    padding: 4px;
+}
+
+
+.browse-panel .search-result {
+    border-bottom: thin solid lightgrey;
+}
+
+
+
+.sugar-panel {
+    padding: 8px;
+    border-bottom: thin solid lightgrey;
+}
+
+.sugar-panel .main-title {
+    padding-left: 20px;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
+}
+
+
+
 
 .sugar-panel .link {
     float: right;
@@ -1043,60 +1086,13 @@ a.widget-task {
     display: none;
 }
 
-.field:hover > sup.name {
-    display: inline !important;
-}
 
-.record-group.normally-hide, .field.normally-hide {
-    display: none;
-}
-
-.detail .record-group.normally-hide, .detail .field.normally-hide {
-    display: inherit;
-}
-
-.tools {
-    padding-left: 18px;
-}
 
 .sugar-body .goog-tab {
     width: 16px;
     height: 16px;
 }
 
-/*
-div.record-body-content {
-    display: none;
-}
-
-
-div.record-body-content.view {
-    display: block;
-}
-*/
-
-.search-result {
-    padding: 4px;
-}
-
-.browse-panel .search-result {
-    border-bottom: thin solid lightgrey;
-}
-
-.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
-    content: ', ';
-}
-
-.record-body-header > * {
-    padding-left: 4px;
-}
-
-input.enum {
-    width: 2em;
-    background: none repeat scroll 0 0 transparent;
-    border: medium none !important;
-    color: #000000;
-}
 
 
 
