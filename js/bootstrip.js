@@ -31,15 +31,16 @@
    */
   me.loadApp = function(callback) {
     var key = 'ydn-crm-track';
+    var base_path = 'jsc/';
     chrome.storage.local.get(key, function(data) {
       var ver = data[key];
-      var fn = chrome.runtime.getURL('/jsc/ydn.crm-' + Version.STABLE + '.js');
+      var fn = chrome.runtime.getURL(base_path + 'ydn.crm-' + Version.STABLE + '.js');
       if (navigator.onLine && ver == Track.EDGE) {
         fn = 'https://ydn-src-1.storage.googleapis.com/jsc/ydn.crm-edge.js';
       } else if (ver == Track.BETA) {
-        fn = chrome.runtime.getURL('/jsc/ydn.crm-' + Version.BETA + '.js');
+        fn = chrome.runtime.getURL(base_path + 'ydn.crm-' + Version.BETA + '.js');
       } else if (ver == Track.RC) {
-        fn = chrome.runtime.getURL('/jsc/ydn.crm-' + Version.RC + '.js');
+        fn = chrome.runtime.getURL(base_path + 'ydn.crm-' + Version.RC + '.js');
       }
       var node = document.createElement('script');
       node.onload = callback;
