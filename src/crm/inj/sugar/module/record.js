@@ -49,7 +49,6 @@ ydn.crm.inj.sugar.module.Record = function(model, opt_renderer, opt_dom) {
   this.setAutoStates(goog.ui.Component.State.ALL, false);
   goog.asserts.assert(model);
   this.setModel(model);
-  this.show_summary_ = false;
 };
 goog.inherits(ydn.crm.inj.sugar.module.Record, goog.ui.Control);
 
@@ -73,23 +72,6 @@ ydn.crm.inj.sugar.module.Record.prototype.logger =
  * @define {boolean} debug flag.
  */
 ydn.crm.inj.sugar.module.Record.DEBUG = false;
-
-
-/**
- * Show summary of the record value.
- * @param {boolean} val
- */
-ydn.crm.inj.sugar.module.Record.prototype.setShowSummary = function(val) {
-  this.show_summary_ = val;
-};
-
-
-/**
- * @return {boolean}
- */
-ydn.crm.inj.sugar.module.Record.prototype.isShowSummary = function() {
-  return this.show_summary_;
-};
 
 
 /**
@@ -135,7 +117,6 @@ ydn.crm.inj.sugar.module.Record.prototype.enterDocument = function() {
     hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.refresh);
   }
   var renderer = /** @type {ydn.crm.inj.sugar.module.RecordRenderer} */ (this.getRenderer());
-  hd.listen(renderer.getViewButton(this.getElement()), 'click', this.toggleView, false);
   hd.listen(renderer.getDetailButton(this.getElement()), 'click', this.toggleDetail, false);
 };
 

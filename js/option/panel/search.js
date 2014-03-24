@@ -14,6 +14,7 @@ var SearchPanel = function(model) {
    * @type {HTMLElement}
    */
   this.root = document.getElementById('search');
+  this.root.classList.add('sugar-panel');
   /**
    * @protected
    * @type {ydn.crm.ui.sugar.SearchPanel}
@@ -31,7 +32,7 @@ SearchPanel.prototype.setup = function(model) {
       .addCallback(function(info) {
         var m = new ydn.crm.sugar.model.Sugar(model.getDetails(), info);
         this.root.innerHTML = ''; // here clean up previous panel.
-        this.search = new ydn.crm.ui.sugar.SearchPanel(null, m);
+        this.search = new ydn.crm.ui.sugar.BrowsePanel(null, m);
         this.search.render(this.root);
       }, this);
 };

@@ -905,6 +905,15 @@ a.sugarcrm-setup-link {
 }
 
 
+.inj .search-panel .search-result .record-panel {
+    display: none;
+}
+
+.inj .search-panel .search-result:hover .record-panel {
+    display: inherit;
+}
+
+
 
 
 
@@ -1066,12 +1075,27 @@ div.record-body-content.view {
 }
 */
 
+.search-result {
+    padding: 4px;
+}
+
+.browse-panel .search-result {
+    border-bottom: thin solid lightgrey;
+}
+
 .record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
     content: ', ';
 }
 
 .record-body-header > * {
     padding-left: 4px;
+}
+
+input.enum {
+    width: 2em;
+    background: none repeat scroll 0 0 transparent;
+    border: medium none !important;
+    color: #000000;
 }
 
 

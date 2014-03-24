@@ -53,21 +53,21 @@ ydn.crm.inj.sugar.module.RecordRenderer.DEBUG = false;
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS = 'record-body';
+ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS = 'record-panel';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER = 'record-body-header';
+ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER = 'record-header';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT = 'record-body-content';
+ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT = 'record-content';
 
 
 /**
@@ -102,33 +102,25 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.getCssClass = function() {
  */
 ydn.crm.inj.sugar.module.RecordRenderer.prototype.createDom = function(x) {
   var root = goog.base(this, 'createDom', x);
-  var body = /** @type {ydn.crm.inj.sugar.module.Record} */ (x);
-  var dom = body.getDomHelper();
+  var ctrl = /** @type {ydn.crm.inj.sugar.module.Record} */ (x);
+  var dom = ctrl.getDomHelper();
 
   var header = dom.createDom('div', ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER);
   var content = dom.createDom('div', ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT);
   root.appendChild(header);
   root.appendChild(content);
-  body.setElementInternal(root);
+  ctrl.setElementInternal(root);
 
   // create ui elements
-  var a_view = dom.createDom('a', {
-    'name': ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_VIEW
-  }, 'view');
-  a_view.href = '#';
+
   var a_detail = dom.createDom('a', {
     'name': ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_DETAIL
   }, 'detail');
   a_detail.href = '#';
-  if (body.isShowSummary()) {
-    goog.style.setElementShown(a_view, false);
-  } else {
-    goog.style.setElementShown(a_detail, false);
-  }
-  header.appendChild(a_view);
+
   header.appendChild(a_detail);
 
-  var model = body.getModel();
+  var model = ctrl.getModel();
   var groups = model.listGroups();
   var group_renderer = ydn.crm.inj.sugar.module.GroupRenderer.getInstance();
   for (var i = 0; i < groups.length; i++) {
@@ -146,21 +138,10 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.createDom = function(x) {
     } else {
       field = new ydn.crm.inj.sugar.module.Group(field_model, group_renderer, dom);
     }
-    body.addChild(field, true);
+    ctrl.addChild(field, true);
   }
 
   return root;
-};
-
-
-/**
- * Get View click control
- * @param {Element} ele ancentor
- * @return {Element}
- */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.getViewButton = function(ele) {
-  return ele.querySelector('a[name=' +
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_VIEW + ']');
 };
 
 
@@ -185,18 +166,9 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.reset = function(ctrl) {
       ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER, ele);
   var content_ele = goog.dom.getElementByClass(
       ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT, ele);
-  var a_view = this.getViewButton(header_ele);
   var a_detail = this.getDetailButton(header_ele);
-  if (!ctrl.isShowSummary()) {
-    a_view.textContent = 'view';
-    goog.style.setElementShown(content_ele, false);
-    goog.style.setElementShown(a_view, true);
-    goog.style.setElementShown(a_detail, false);
-  } else {
-    a_detail.textContent = 'detail';
-    goog.style.setElementShown(a_view, false);
-    goog.style.setElementShown(a_detail, true);
-  }
+  a_detail.textContent = 'detail';
+  goog.style.setElementShown(a_detail, true);
 };
 
 
@@ -209,17 +181,9 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.toggleView = function(ele) {
       ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER, ele);
   var content_ele = goog.dom.getElementByClass(
       ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT, ele);
-  var a_view = this.getViewButton(header_ele);
   var a_detail = this.getDetailButton(header_ele);
-  if (a_view.textContent == 'hide') {
-    a_view.textContent = 'view';
-    goog.style.setElementShown(content_ele, false);
-    goog.style.setElementShown(a_detail, false);
-  } else {
-    a_view.textContent = 'hide';
-    goog.style.setElementShown(content_ele, true);
-    goog.style.setElementShown(a_detail, true);
-  }
+  goog.style.setElementShown(content_ele, true);
+  goog.style.setElementShown(a_detail, true);
 };
 
 

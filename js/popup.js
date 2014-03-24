@@ -178,9 +178,21 @@ PopupPage.prototype.init = function() {
 };
 
 
-ydn.msg.initPipe('popup');
-var app = new PopupPage();
-app.init();
+chrome.storage.local.get('ydn-crm-src', function(obj) {
+  var fn = obj['ydn-crm-src'];
+  var node = document.createElement('script');
+  node.type = 'text/javascript';
+  node.onload = function() {
+    // now run the app
+    ydn.msg.initPipe('popup');
+    window.app = new PopupPage();
+    window.app.init();
+  };
+  node.src = fn;
+  var head = document.getElementsByTagName('head')[0];
+  head.appendChild(node);
+});
+
 
 
 

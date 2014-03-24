@@ -52,6 +52,15 @@ ydn.crm.sugar.model.Field.prototype.getFieldInfo = function() {
 
 
 /**
+ * Get unique field id within sugarcrm instance.
+ * @return {string}
+ */
+ydn.crm.sugar.model.Field.prototype.getFieldId = function() {
+  return this.parent.getModuleName() + '-' + this.field_name;
+};
+
+
+/**
  * Get field value.
  * @return {string?}
  */

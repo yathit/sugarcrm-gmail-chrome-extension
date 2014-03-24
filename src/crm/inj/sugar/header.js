@@ -138,7 +138,7 @@ ydn.crm.inj.sugar.Header.prototype.createDom = function() {
   goog.style.setElementShown(div_grant, false);
   goog.style.setElementShown(div_login, false);
   root.appendChild(div_login);
-  var search = new ydn.crm.ui.sugar.SearchPanel(dom, model, true);
+  var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
   this.addChild(search);
   var ele_search = dom.createDom('div');
   root.appendChild(ele_search);
