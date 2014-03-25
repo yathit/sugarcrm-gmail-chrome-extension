@@ -6,6 +6,8 @@
  *
  * At the same time, we cannot inject from the page, because that will not carried permission required
  * specific for extension script. So just send a message and let background page to inject correct files.
+ *
+ * We could have also use tabs event to inject, but that will require 'tabs' permission.
  */
 
 
