@@ -56,6 +56,13 @@ ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS_CONTENT = 'search-body';
  * @const
  * @type {string}
  */
+ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS_ACTIVATED = 'activated';
+
+
+/**
+ * @const
+ * @type {string}
+ */
 ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS_TITLE = 'title';
 
 
@@ -126,7 +133,7 @@ ydn.crm.ui.sugar.SearchResultRenderer.prototype.refresh = function(ctrl) {
   /**
    * @type {ydn.crm.sugar.model.Record}
    */
-  var record = model.getRecord();
+  var record = model.getResultRecord();
   if (record && record.hasRecord()) {
     var header = goog.dom.getElementByClass(ydn.crm.ui.sugar.SearchResultRenderer.CSS_CLASS_HEADER,
         ctrl.getElement());

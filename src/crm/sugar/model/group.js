@@ -19,6 +19,7 @@
  * Encapsulate module info (or meta data) and its transient record entry data.
  * Record entry data can change during life time of the model dispatching
  * change (goog.events.EventType.CHANGE) event.
+ *
  */
 
 

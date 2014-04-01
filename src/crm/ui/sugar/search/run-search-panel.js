@@ -3,6 +3,7 @@
  */
 
 // ydn.msg.Pipe.DEBUG = true;
+ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.ConsoleStatusBar();
 ydn.msg.initPipe('popup');
 ydn.debug.log('ydn.crm', 'finer');
 var panel;

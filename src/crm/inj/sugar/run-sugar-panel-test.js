@@ -24,10 +24,7 @@ var ch_name = 'sugar-' + domain;
 var ele_sidebar = document.getElementById('sidebar');
 panel.render(ele_sidebar);
 var model = new ydn.crm.inj.ContactModel(sniff_data.email);
-model.onReady().addCallback(function() {
-  console.log(model);
-  panel.setModel(model);
-});
+panel.setModel(model);
 
 
 

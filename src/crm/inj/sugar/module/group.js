@@ -1,7 +1,7 @@
 /**
  * @fileoverview Panel for group of field in a module.
  *
- * This module provide adding, linking and syncing.
+ * Parent record panel is responsible to refresh if model has changed.
  */
 
 

@@ -1,4 +1,26 @@
 
+/* toolbar items */
+.toolbar > * {
+    padding-left: 4px;
+}
+
+
+.statusbar {
+    right: 0;
+    left: 0;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    height: 14px;
+    overflow: hidden;
+    border: solid thin #d3d3d3;
+    border-top: solid thin #ffffff;
+    background: #d3d3d3;
+    padding: 4px 2px;
+    margin: 0;
+    font-size: small;
+}
 .sidebar {
     font-size: 13px;
     font-family: arial,sans-serif;
@@ -841,6 +863,23 @@ a.widget-task {
 }
 
 
+/*
+ * Prevent Superscripts and Subscripts from Affecting Line-Height
+ * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+ */
+.record-group sup, sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em;
+}
+.record-group sub { top: 0.4em; }
+
+.record-group a.null {
+    text-decoration: none !important;
+}/*
+ * Base CSS for Gmail content script UI.
+ */
+
 
 .inj, #root-panel {
     font-family: arial,sans-serif;
@@ -858,22 +897,6 @@ a.widget-task {
     bottom: 30px;
     left: 4px;
     height: 160px;
-}
-
-
-/*
- * Prevent Superscripts and Subscripts from Affecting Line-Height
- * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
- */
-.inj sup, sub {
-    vertical-align: baseline;
-    position: relative;
-    top: -0.4em;
-}
-.inj sub { top: 0.4em; }
-
-.inj a.null {
-    text-decoration: none !important;
 }
 
 .sugarcrm-link-panel {
@@ -930,17 +953,16 @@ a.sugarcrm-setup-link {
 }
 
 
-.inj .search-panel .search-result .record-panel {
-    display: none;
+.inj .sugar-panel {
+    padding: 8px;
+    border-bottom: thin solid lightgrey;
 }
 
-.inj .search-panel .search-result:hover .record-panel {
-    display: inherit;
+.inj .goog-toolbar {
+    background-image: none;
+    border-bottom: none;
+    background-color: inherit;
 }
-
-
-
-
 
 /* CSS related to specific modules */
 
@@ -1001,11 +1023,12 @@ a.sugarcrm-setup-link {
     display: inline !important;
 }
 
-.record-group.normally-hide, .field.normally-hide {
+.record-body .record-group.normally-hide, .field.normally-hide {
     display: none;
 }
 
-.detail .record-group.normally-hide, .detail .field.normally-hide {
+.record-body.detail .record-group.normally-hide,
+.record-body.detail .field.normally-hide {
     display: inherit;
 }
 
@@ -1018,36 +1041,92 @@ a.sugarcrm-setup-link {
     padding-left: 4px;
 }
 
-input.enum {
+.record-panel INPUT.enum {
     width: 2em;
     background: none repeat scroll 0 0 transparent;
-    border: medium none !important;
+    border: 0;
     color: #000000;
 }
+
+
+/*
+ * make input look like label. This setting is obtained from Gmail contact editor.
+*/
+.record-body.view INPUT {
+    margin: 2px;
+    border: 0;
+    padding: 1px 2px;
+    background-color: transparent;
+    vertical-align: text-top;
+}
+
+.record-body.view TEXTAREA {
+    margin: 2px;
+    border: 0;
+    padding: 1px 2px;
+    background-color: transparent;
+    resize: none;
+}
+
+.record-body.view .field.empty {
+    display: none;
+}
+
+.record-body .field {
+    margin-left: 4px;
+}
+
+.record-footer  {
+    display: none;
+}
+
+.record-footer.edit {
+    display: inherit;
+}
+
+.secondary {
+    margin-left: 4px;
+    padding-left: 2px;
+    border-left: thin solid lightblue;
+}
+
 
 .search-result {
     padding: 4px;
 }
 
 
-.browse-panel .search-result {
-    border-bottom: thin solid lightgrey;
+/* In search panel, record show only its header.
+ * > is require to specific immediate element */
+.search-panel .record-panel > .content,
+.search-panel .record-panel .record-header .toolbar {
+    display: none;
+}
+
+/* A search result is activated by clicking on the result panel */
+.search-panel .record-panel:hover > .content,
+.search-panel .record-panel.activated  > .content,
+.search-panel .record-panel:hover .record-header .toolbar,
+.search-panel .record-panel.activated .record-header .toolbar {
+    display: inherit;
+}
+
+.search-panel .content {
+    padding: 4px;
+}
+
+.search-panel  .record-panel.empty {
+    display: none;
 }
 
 
 
-.sugar-panel {
-    padding: 8px;
-    border-bottom: thin solid lightgrey;
-}
+
 
 .sugar-panel .main-title {
     padding-left: 20px;
     background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
 }
-
-
-
 
 .sugar-panel .link {
     float: right;
@@ -1086,13 +1165,14 @@ input.enum {
     display: none;
 }
 
-
-
 .sugar-body .goog-tab {
     width: 16px;
     height: 16px;
 }
 
+.sugar-panel .record-panel.empty {
+    display: none;
+}
 
 
 

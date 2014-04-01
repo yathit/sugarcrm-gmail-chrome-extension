@@ -7,7 +7,7 @@
 
 goog.provide('ydn.crm.inj.sugar.module.GDataPanelRenderer');
 goog.require('goog.ui.ControlRenderer');
-goog.require('ydn.crm.inj.sugar.module.Record');
+goog.require('ydn.crm.inj.sugar.module.RecordCtrl');
 
 
 
@@ -140,7 +140,7 @@ ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.createDom = function(x) {
   heading.appendChild(imp_div);
   heading.appendChild(title_div);
 
-  var body = new ydn.crm.inj.sugar.module.Record(model,
+  var body = new ydn.crm.inj.sugar.module.RecordCtrl(model,
       null, dom);
   header.addChild(body, true);
 

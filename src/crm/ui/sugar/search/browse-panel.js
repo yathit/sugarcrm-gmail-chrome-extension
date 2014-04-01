@@ -11,7 +11,7 @@ goog.require('goog.ui.Toolbar');
 goog.require('goog.ui.ToolbarSelect');
 goog.require('wgui.TextInput');
 goog.require('ydn.crm.sugar.model.Sugar');
-goog.require('ydn.crm.ui.sugar.SearchResult');
+goog.require('ydn.crm.ui.sugar.record.Record');
 goog.require('ydn.crm.ui.sugar.SearchPanel');
 
 
@@ -118,8 +118,12 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.getRecordType = function() {
  */
 ydn.crm.ui.sugar.BrowsePanel.prototype.clearResult_ = function() {
   for (var i = this.result_panel.getChildCount() - 1; i >= 0; i--) {
-    var child = /** @type {ydn.crm.ui.sugar.SearchResult} */ (this.result_panel.getChildAt(i));
-    child.getModel().clear();
+    var child = /** @type {ydn.crm.ui.sugar.record.Record} */ (this.result_panel.getChildAt(i));
+    /**
+     * @type {ydn.crm.sugar.model.ResultRecord}
+     */
+    var model = /** @type {ydn.crm.sugar.model.ResultRecord} */ (child.getModel());
+    model.clear();
   }
   this.total_tasks_ = 0;
 };
@@ -161,7 +165,7 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.getCssClass = function() {
  * @private
  */
 ydn.crm.ui.sugar.BrowsePanel.prototype.addResult_ = function(result) {
-  if (ydn.crm.ui.sugar.BrowsePanel.DEBUG) {
+  if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
     goog.global.console.log(result);
   }
   if (!result) {
@@ -169,21 +173,24 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.addResult_ = function(result) {
   }
   var n = this.result_panel.getChildCount();
   for (var i = 0; i < n; i++) {
-    var child = /** @type {ydn.crm.ui.sugar.SearchResult} */ (this.result_panel.getChildAt(i));
-    var model = child.getModel();
+    var child = /** @type {ydn.crm.ui.sugar.record.Record} */ (this.result_panel.getChildAt(i));
+    var model = /** @type {ydn.crm.sugar.model.ResultRecord} */ (child.getModel());
     if (model.isEmpty()) {
       model.setResult(result);
       return;
     }
   }
-  if (n > ydn.crm.ui.sugar.BrowsePanel.MAX_PANELS) {
-    var banney = /** @type {ydn.crm.ui.sugar.SearchResult} */ (this.result_panel.getChildAt(0));
-    banney.getModel().setResult(result);
+  if (n > ydn.crm.ui.sugar.SearchPanel.MAX_PANELS) {
+    var banney = /** @type {ydn.crm.ui.sugar.record.Record} */ (this.result_panel.getChildAt(0));
+    /**
+     * @type {ydn.crm.sugar.model.ResultRecord}
+     */
+    var model = /** @type {ydn.crm.sugar.model.ResultRecord} */ (banney.getModel());
+    model.setResult(result);
   } else {
     // create new result panel.
-    var m = new ydn.crm.sugar.model.Result(this.getModel());
-    m.setResult(result);
-    var ch = new ydn.crm.ui.sugar.SearchResult(this.dom_, m, true);
+    var m = new ydn.crm.sugar.model.ResultRecord(this.getModel(), result);
+    var ch = new ydn.crm.ui.sugar.record.Record(m, this.dom_);
     this.result_panel.addChild(ch, true);
   }
 
@@ -198,21 +205,18 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.addResult_ = function(result) {
  * @private
  */
 ydn.crm.ui.sugar.BrowsePanel.prototype.updateSearchFor_ = function(module, index, q) {
-  if (ydn.crm.ui.sugar.BrowsePanel.DEBUG) {
+  if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
     window.console.log(module, index, q);
   }
-  var model = this.getModel();
-  model.listRecords(module, index, q, true).addCallbacks(function(arr) {
-    if (ydn.crm.ui.sugar.BrowsePanel.DEBUG) {
+  this.getModel().listRecords(module, index, q, true).addCallbacks(function(arr) {
+    if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
       window.console.log(module, index, q, arr);
     }
     var result = arr[0];
     if (result['result'][0]) {
       var module_name = ydn.crm.sugar.toModuleName(result['store']);
-      var record = new ydn.crm.sugar.model.Module(this.getModel(), module_name);
-      var r = new ydn.crm.sugar.Record(this.getModel().getDomain(), module_name, result['result'][0]);
-      record.setRecord(r);
-      var key = r.getId();
+      var record = /** @type {SugarCrm.Record} */ (result['result'][0]);
+      var key = record['id'];
       goog.asserts.assertString(key, 'key not found in ' + record);
       var search_result = {
         'storeName': module_name,
@@ -227,7 +231,7 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.updateSearchFor_ = function(module, index
     }
     this.updateSearch_();
   }, function(e) {
-    if (ydn.crm.ui.sugar.BrowsePanel.DEBUG) {
+    if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
       window.console.log(module, index, q, e);
     }
     this.updateSearch_();
@@ -264,21 +268,24 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.updateSearch_ = function() {
   }
   task.taskNo++; // update task no. it always starts with -1.
   /*
-  if (ydn.crm.ui.sugar.BrowsePanel.DEBUG) {
-    window.console.log('updateSearch_ ' + JSON.stringify(task));
-  }
-  */
+   if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
+   window.console.log('updateSearch_ ' + JSON.stringify(task));
+   }
+   */
 
   // update status
-  var n_per_task = 3;
+  var n_per_task = 4;
   var total = n_per_task * (this.search_tasks_.length - 1) + (n_per_task - task.taskNo);
   this.showStartProgress_(total);
 
   var model = this.getModel();
   if (task.taskNo == 0) {
     // Task 0. query email
-    this.updateSearchFor_(task.module, 'ydn$emails', task.q);
+    this.updateSearchFor_(task.module, 'id', task.q);
   } else if (task.taskNo == 1) {
+    // Task 0. query email
+    this.updateSearchFor_(task.module, 'ydn$emails', task.q);
+  } else if (task.taskNo == 2) {
     // Task 1. query phone
     var m = task.q.match(/\d/g);
     var number_of_digits = m ? m.length : 0;
@@ -288,10 +295,11 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.updateSearch_ = function() {
       return;
     }
     this.updateSearchFor_(task.module, 'ydn$phones', task.q);
-  } else if (task.taskNo == 2) {
+  } else if (task.taskNo == 3) {
     // Task 2. full text search on name
-    model.searchRecords(task.module, task.q).addCallbacks(function(arr) {
-      var result = arr[0].result;
+    model.searchRecords(task.module, task.q).addCallbacks(function(x) {
+      var arr = /** @type {Array.<CrmReqQuery>} */ (x);
+      var result = arr[0].fullTextResult;
       var n = result.length || 0;
       for (var i = 0; i < n; i++) {
         this.addResult_(result[i]);

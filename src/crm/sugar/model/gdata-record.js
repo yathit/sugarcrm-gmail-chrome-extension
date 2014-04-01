@@ -74,7 +74,7 @@ ydn.crm.sugar.model.GDataRecord.prototype.getContactModel = function() {
  * @return {ydn.gdata.m8.ContactEntry} return sugarcrm record entry.
  */
 ydn.crm.sugar.model.GDataRecord.prototype.getGData = function() {
-  return  this.getParent().getGData(this.getModuleName()).contact;
+  return this.getParent().getGData(this.getModuleName()).contact;
 };
 
 
@@ -161,7 +161,7 @@ ydn.crm.sugar.model.GDataRecord.prototype.invalidateContactModel_ = function(con
   }
 
   this.getChannel().send(ydn.crm.Ch.SReq.LIST, query).addCallback(function(x) {
-    var results = /** @type {Array.<SugarCrm.QueryResult>} */ (x);
+    var results = /** @type {Array.<SugarCrm.Query>} */ (x);
 
     var result = results[0];
     var n = result.result ? result.result.length : 0;

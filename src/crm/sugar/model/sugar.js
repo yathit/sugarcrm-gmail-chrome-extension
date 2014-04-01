@@ -377,6 +377,42 @@ ydn.crm.sugar.model.Sugar.prototype.findRecords = function(q, module_name) {
 
 
 /**
+ * Create a new Notes record.
+ * @param {ydn.crm.sugar.Record} record
+ * @return {!ydn.async.Deferred}
+ */
+ydn.crm.sugar.model.Sugar.prototype.saveRecord = function(record) {
+  var data = {
+    'module': record.getModule(),
+    'record': record.getData()
+  };
+  return this.send(ydn.crm.Ch.SReq.PUT_RECORD, data);
+};
+
+
+/**
+ * Get list of sugarcrm instance, of which login.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.sugar.model.Sugar.list = function() {
+  var user = ydn.crm.inj.UserSetting.getInstance();
+  return ydn.msg.getChannel().send('list-sugarcrm').addCallback(function(abouts) {
+    var models = [];
+    var dfs = [];
+    for (var i = 0; i < abouts.length; i++) {
+      var about = /** @type {SugarCrm.About} */ (abouts[i]);
+      if (about.isLogin) {
+        dfs.push(user.getModuleInfo(about.domain).addCallback(function(info) {
+          return new ydn.crm.sugar.model.Sugar(this, info);
+        }, about));
+      }
+    }
+    return goog.async.DeferredList.gatherResults(dfs);
+  });
+};
+
+
+/**
  * @override
  * @protected
  */

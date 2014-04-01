@@ -13,7 +13,9 @@ goog.provide('ydn.crm.sugar.model.events');
  */
 ydn.crm.sugar.model.events.Type = {
   CONTEXT_DATA_CHANGE: 'context-data-change',
-  RECORD_CHANGE: 'record-change',
+  MODULE_CHANGE: 'record-change', // change in module name
+  RECORD_CHANGE: 'record-change', // change in record primary key
+  RECORD_UPDATE: 'record-update', // record value changes
   GDATA_CHANGE: 'gdata-change'
 };
 
@@ -36,7 +38,9 @@ ydn.crm.sugar.model.events.TYPES_SUGAR = [
  * @type {Array.<ydn.crm.sugar.model.events.Type>}
  */
 ydn.crm.sugar.model.events.TYPES_MODULE = [
-  ydn.crm.sugar.model.events.Type.RECORD_CHANGE
+  ydn.crm.sugar.model.events.Type.MODULE_CHANGE,
+  ydn.crm.sugar.model.events.Type.RECORD_CHANGE,
+  ydn.crm.sugar.model.events.Type.RECORD_UPDATE
 ];
 
 
@@ -78,28 +82,75 @@ goog.inherits(ydn.crm.sugar.model.events.ContextDataChangeEvent, ydn.crm.sugar.m
 
 
 /**
- * Event when sugarcrm record change in a module.
- * @param {ydn.crm.sugar.ModuleName?} module
- * @param {ydn.crm.sugar.Record} record
+ * Event when sugarcrm record change in a module. The update has already being
+ * applied at the time of call.
+ * @param {*} delta the new value.
  * @param {Object=} opt_event_target target.
  * @extends {ydn.crm.sugar.model.events.Event}
  * @constructor
  * @struct
  */
-ydn.crm.sugar.model.events.ModuleRecordChangeEvent = function(module, record, opt_event_target) {
+ydn.crm.sugar.model.events.ModuleRecordChangeEvent = function(delta,
+                                                              opt_event_target) {
+  goog.base(this, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, opt_event_target);
+
+  /**
+   * @final
+   * @type {*}
+   */
+  this.delta = delta;
+};
+goog.inherits(ydn.crm.sugar.model.events.ModuleRecordChangeEvent, ydn.crm.sugar.model.events.Event);
+
+
+
+/**
+ * Event when sugarcrm record change in a module. The update has already being
+ * applied at the time of call.
+ * @param {ydn.crm.sugar.ModuleName?} module
+ * @param {ydn.crm.sugar.Record} update the new value.
+ * @param {Object=} opt_event_target target.
+ * @extends {ydn.crm.sugar.model.events.Event}
+ * @constructor
+ * @struct
+ */
+ydn.crm.sugar.model.events.ModuleChangeEvent = function(module, update,
+                                                        opt_event_target) {
   goog.base(this, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, opt_event_target);
   /**
    * @final
-   * @type {ydn.crm.sugar.ModuleName?}
+   * @type {ydn.crm.sugar.ModuleName?} old module name.
    */
   this.module = module;
   /**
    * @final
    * @type {ydn.crm.sugar.Record}
    */
-  this.record = record;
+  this.update = update;
 };
-goog.inherits(ydn.crm.sugar.model.events.ModuleRecordChangeEvent, ydn.crm.sugar.model.events.Event);
+goog.inherits(ydn.crm.sugar.model.events.ModuleChangeEvent, ydn.crm.sugar.model.events.Event);
+
+
+
+/**
+ * Event when sugarcrm record change in a module. The update has already being
+ * applied.
+ * @param {*} delta
+ * @param {Object=} opt_event_target target.
+ * @extends {ydn.crm.sugar.model.events.Event}
+ * @constructor
+ * @struct
+ */
+ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent = function(delta, opt_event_target) {
+  goog.base(this, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, opt_event_target);
+
+  /**
+   * @final
+   * @type {*}
+   */
+  this.delta = delta;
+};
+goog.inherits(ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent, ydn.crm.sugar.model.events.Event);
 
 
 

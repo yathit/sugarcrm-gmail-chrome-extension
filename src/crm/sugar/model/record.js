@@ -73,7 +73,45 @@ ydn.crm.sugar.model.Record.prototype.getDomain = function() {
  */
 ydn.crm.sugar.model.Record.prototype.getUserSetting = function() {
   var setting = this.parent.getUserSetting();
-  return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['modules', this.getModuleName()]) : null;
+  return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['modules',
+    this.getModuleName()]) : null;
+};
+
+
+/**
+ * Get record id.
+ * @return {string}
+ */
+ydn.crm.sugar.model.Record.prototype.getId = function() {
+  return this.record.getId();
+};
+
+
+/**
+ * Get record field value.
+ * @param {string} name field name
+ * @return {string?}
+ */
+ydn.crm.sugar.model.Record.prototype.value = function(name) {
+  return this.record.value(name);
+};
+
+
+/**
+ * Get record title.
+ * @return {string}
+ */
+ydn.crm.sugar.model.Record.prototype.getTitle = function() {
+  return this.record.hasRecord() ? this.record.getTitle() : '';
+};
+
+
+/**
+ * SugarCRM instance.
+ * @return {ydn.crm.sugar.model.Sugar}
+ */
+ydn.crm.sugar.model.Record.prototype.getSugar = function() {
+  return this.parent;
 };
 
 
@@ -94,6 +132,38 @@ ydn.crm.sugar.model.Record.prototype.getModuleInfo = function() {
 
 
 /**
+ * @return {boolean} return true if the module is a primary module.
+ */
+ydn.crm.sugar.model.Record.prototype.isPrimary = function() {
+  return ydn.crm.sugar.PRIMARY_MODULES.indexOf(this.getModuleName()) >= 0;
+};
+
+
+/**
+ * @return {boolean} return true if the module represent a people.
+ */
+ydn.crm.sugar.model.Record.prototype.isPeople = function() {
+  return ydn.crm.sugar.PEOPLE_MODULES.indexOf(this.getModuleName()) >= 0;
+};
+
+
+/**
+ * @return {boolean} return true if the module represent a people.
+ */
+ydn.crm.sugar.model.Record.prototype.isEditable = function() {
+  return ydn.crm.sugar.EDITABLE_MODULES.indexOf(this.getModuleName()) >= 0;
+};
+
+
+/**
+ * @return {boolean} check simple module
+ */
+ydn.crm.sugar.model.Record.prototype.isSimple = function() {
+  return ydn.crm.sugar.SIMPLE_MODULES.indexOf(this.getModuleName()) >= 0;
+};
+
+
+/**
  * @param {string} name field name.
  * @return {SugarCrm.ModuleField}
  */
@@ -108,6 +178,34 @@ ydn.crm.sugar.model.Record.prototype.getFieldInfo = function(name) {
  */
 ydn.crm.sugar.model.Record.prototype.getChannel = function() {
   return this.parent.getChannel();
+};
+
+
+/**
+ * Save the record.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.sugar.model.Record.prototype.save = function() {
+  var r = this.getRecord();
+  if (!r.hasRecord()) {
+    return goog.async.Deferred.fail('empty record to save');
+  }
+  return this.parent.saveRecord(r).addCallback(function(x) {
+    var me = this;
+    var is_new = !this.hasRecord();
+    var v = /** @type {SugarCrm.Record} */ (x);
+    r.updateData(v);
+    var name = this.getModuleName();
+    setTimeout(function() {
+      if (is_new) {
+        me.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordChangeEvent(
+            v, me));
+      } else {
+        me.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent(
+            v, me));
+      }
+    }, 10);
+  }, this);
 };
 
 
@@ -138,16 +236,47 @@ ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
 
 
 /**
- * Set sugarcrm record. This will dispatch ModuleRecordChangeEvent.
+ * Set sugarcrm record. This will dispatch ModuleRecordChangeEvent or
+ * ModuleRecordUpdatedEvent.
  * @param {ydn.crm.sugar.Record} record sugarcrm record entry.
  */
 ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
-  var r = record ? record.hasRecord() ? record : null : null;
-  if ((r || this.record) && r !== this.record) {
-    this.record = r;
-    var name = this.record ? this.record.getModule() : null;
-    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordChangeEvent(
-        name, this.record, this));
+  if (ydn.crm.sugar.model.Record.DEBUG) {
+    window.console.log('setRecord ' + this.record + ' to ' + record);
+  }
+  // validate null record
+  record = record ? record.hasRecord() ? record : null : null;
+  // we dont keed null record.
+  var has_change = false;
+  var has_module_changed = false;
+  var has_key_changed = false;
+  goog.asserts.assert(this.record, 'record cannot be null');
+  if (!!record) {
+    if (record !== this.record) {
+      has_change = true;
+      has_module_changed = this.record.getModule() != record.getModule();
+      if (!has_module_changed) {
+        if (this.hasRecord()) {
+          has_key_changed = this.record.getId() != record.getId();
+        } else {
+          has_key_changed = true;
+        }
+      }
+      this.record = record;
+    }
+  } else if (!record && this.hasRecord()) {
+    has_change = true;
+    has_key_changed = true;
+    this.record.setData(null);
+  }
+  var name = this.record.getModule();
+
+  if (has_module_changed) {
+    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(name, record, this));
+  } else if (has_key_changed) {
+    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordChangeEvent(record, this));
+  } else if (has_change) {
+    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent(record, this));
   }
 };
 
@@ -156,7 +285,7 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
  * @return {boolean}
  */
 ydn.crm.sugar.model.Record.prototype.hasRecord = function() {
-  return this.record ? this.record.hasRecord() : false;
+  return this.record.hasRecord();
 };
 
 

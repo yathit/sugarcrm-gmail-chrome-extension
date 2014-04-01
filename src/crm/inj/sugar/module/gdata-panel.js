@@ -145,10 +145,22 @@ ydn.crm.inj.sugar.module.GDataPanel.Labels;
  * @return {ydn.crm.inj.sugar.module.GDataPanel.Labels}
  */
 ydn.crm.inj.sugar.module.GDataPanel.prototype.getLabels = function() {
+  /**
+   * @type {ydn.crm.sugar.model.GDataRecord}
+   */
   var model = this.getModel();
+  /**
+   * @type {ydn.gdata.m8.ContactEntry}
+   */
   var gdata = model.getGData();
   var any_gdata = gdata ? null : model.getUnboundGData();
+  /**
+   * @type {ydn.crm.inj.ContactModel}
+   */
   var contact = model.getContactModel();
+  /**
+   * @type {ydn.crm.sugar.Record}
+   */
   var record = model.getRecord();
   var module_name = model.getModuleName();
   if (ydn.crm.inj.sugar.module.GDataPanel.DEBUG) {
@@ -165,7 +177,7 @@ ydn.crm.inj.sugar.module.GDataPanel.prototype.getLabels = function() {
     import_label = 'Add to ' + module_name;
     import_title = 'Add current contact ' + contact.getEmail() +
         ' to SugarCRM ' + module_name;
-    if (record) {
+    if (record && record.hasRecord()) {
       title = record.getTitle();
       title_link = record.getViewLink();
       import_label = '';
