@@ -247,14 +247,19 @@ ydn.crm.ui.sugar.SearchPanel.prototype.updateSearchFor_ = function(module, index
  * @return {string} css property for linear-gradient
  */
 ydn.crm.ui.sugar.SearchPanel.computeBackground = function(x) {
+
   var dx = x + 0.1;
   var s = [];
   var start_color = '255, 255, 255';
-  var end_color = '135,224,253';
+  var mid1_color = '135, 224, 253';
+  var mid2_color = '255, 255, 255';
+  var end_color = '255, 255, 255';
   s[0] = 'rgb(' + start_color + ') 0%';
-  s[1] = 'rgb(' + start_color + ') ' + x.toFixed(1) + '%';
-  s[2] = 'rgb(' + end_color + ') ' + dx.toFixed(1) + '%';
-  s[3] = 'rgb(' + end_color + ') 100%';
+  if (x < 99) {
+    s[1] = 'rgb(' + mid1_color + ') ' + x.toFixed(1) + '%';
+    s[2] = 'rgb(' + mid2_color + ') ' + dx.toFixed(1) + '%';
+  }
+  s.push('rgb(' + end_color + ') 100%');
   return 'linear-gradient(to right, ' + s.join(', ') + ')';
 };
 
@@ -352,6 +357,7 @@ ydn.crm.ui.sugar.SearchPanel.prototype.getSearchInput = function() {
 ydn.crm.ui.sugar.SearchPanel.prototype.handleAction = function(e) {
   var search_input = this.getSearchInput();
   var query = search_input.getContent();
+  this.clearResult_();
   if (query) {
     query = query.trim();
     if (query.length >= 2) {
@@ -372,7 +378,6 @@ ydn.crm.ui.sugar.SearchPanel.prototype.handleAction = function(e) {
           };
         }
       }
-      this.clearResult_();
       this.updateSearch_(); // if update search is already running this will
       // cause double run, but OK.
     }

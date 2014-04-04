@@ -134,6 +134,7 @@ SugarCrmWidget.prototype.refresh = function() {
       var a = info_panel.querySelector('a[name=instance]');
       a.textContent = about.domain;
       a.href = about.baseUrl;
+      a.target = about.domain;
       info_panel.querySelector('span[name=user]').textContent = about.userName;
       this.model.getInfo(function(info) {
         var info_div = login_panel.querySelector('span[name=instance-info]');

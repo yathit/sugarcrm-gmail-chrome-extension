@@ -90,6 +90,22 @@ ydn.crm.sugar.model.Sugar.prototype.isLogin = function() {
 
 
 /**
+ * @return {string} sugarcrm user id. This is About.userName
+ */
+ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
+  return this.about ? this.about.userName || '' : '';
+};
+
+
+/**
+ * @return {string?}
+ */
+ydn.crm.sugar.model.Sugar.prototype.getUserLabel = function() {
+  return this.about.userName || null;
+};
+
+
+/**
  * @return {ydn.msg.Channel}
  */
 ydn.crm.sugar.model.Sugar.prototype.getChannel = function() {
@@ -138,14 +154,6 @@ ydn.crm.sugar.model.Sugar.prototype.hasHostPermission = function() {
  */
 ydn.crm.sugar.model.Sugar.prototype.setHostPermission = function(grant) {
   this.about.hostPermission = grant;
-};
-
-
-/**
- * @return {string?}
- */
-ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
-  return this.about.userName || null;
 };
 
 
@@ -345,6 +353,44 @@ ydn.crm.sugar.model.Sugar.prototype.searchRecords = function(module_name, q, opt
     query['index'] = 'content';
   }
   return this.getChannel().send(ydn.crm.Ch.SReq.SEARCH, [query]);
+};
+
+
+/**
+ * Archive an email to sugarcrm.
+ * @param {ydn.crm.EmailInfo} info
+ * @param {ydn.crm.sugar.ModuleName=} opt_parent_module
+ * @param {string=} opt_parent_id
+ * @return {!ydn.async.Deferred}
+ */
+ydn.crm.sugar.model.Sugar.prototype.archiveEmail = function(info,
+    opt_parent_module, opt_parent_id) {
+  var types = ['archived', 'campaign', 'draft', 'inbound', 'out'];
+  var div = document.createElement('div');
+  div.innerHTML = info.html;
+  // ISO: "2014-04-02T03:32:20.522Z"
+  // SugarCRM: "2013-09-20 22:10:00"
+  var date_str = info.date_sent.toISOString().replace('T', ' ').replace(/\..+/, '');
+  var obj = {
+    'assigned_user_id': this.getUserName(),
+    'assigned_user_name': this.getUserLabel(),
+    'type': 'archived',
+    'date_sent': date_str,
+    'description': div.textContent,
+    'description_html': info.html,
+    'name': info.subject,
+    'from_addr': info.from_addr,
+    'to_addrs': info.to_addrs,
+    'parent_id': opt_parent_id || '',
+    'parent_type': opt_parent_module || '',
+    'mailbox_id': info.mailbox_id || '',
+    'message_id': info.message_id || '',
+    'status': 'read'
+  };
+  return this.send(ydn.crm.Ch.SReq.NEW_RECORD, {
+    'module': ydn.crm.sugar.ModuleName.EMAILS,
+    'record': obj
+  });
 };
 
 

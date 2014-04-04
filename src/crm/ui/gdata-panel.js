@@ -158,7 +158,7 @@ ydn.crm.ui.GDataPanel.prototype.handleGDataOrRecordChanged = function(e) {
   var model = this.getModel();
   if (ydn.crm.ui.GDataPanel.DEBUG) {
     window.console.log('module ' + this.getModuleName() + ' refresh for ' +
-        e.type + ' ' + model, model);
+        e.type + ' ' + model + ' ' + model.hasRecord(), model);
   }
   var head = this.getHeadElement();
   if (model.hasRecord()) {
@@ -171,13 +171,10 @@ ydn.crm.ui.GDataPanel.prototype.handleGDataOrRecordChanged = function(e) {
 
     if (!!labels.import_label) {
       goog.style.setElementShown(head, true);
+      this.import_link.setLink(labels.import_label, '#import', labels.import_title);
     } else {
       goog.style.setElementShown(head, false);
     }
-
-    import_a.textContent = labels.import_label;
-    import_a.setAttribute('title', labels.import_title);
-
   }
 
 };
@@ -213,9 +210,7 @@ ydn.crm.ui.GDataPanel.prototype.getLabels = function() {
    */
   var record = model.getRecord();
   var module_name = model.getModuleName();
-  if (ydn.crm.ui.GDataPanel.DEBUG) {
-    window.console.log([module_name, model, contact, record]);
-  }
+
   var is_synced = false; // gdata and record are in sync.
   var link_label = '';
   var link_title = '';
@@ -246,13 +241,18 @@ ydn.crm.ui.GDataPanel.prototype.getLabels = function() {
         ' to SugarCRM ' + module_name;
   }
 
-  return {
+  var labels = {
     import_label: import_label,
     import_title: import_title,
     is_synced: is_synced,
     link_label: link_label,
     link_title: link_title
   };
+  if (ydn.crm.ui.GDataPanel.DEBUG) {
+    window.console.log([module_name, model, contact, labels]);
+  }
+
+  return labels;
 };
 
 
@@ -278,7 +278,7 @@ ydn.crm.ui.GDataPanel.prototype.handleLinkClick = function(e) {
       'html': sidebar ? sidebar.outerHTML : '',
       'error': msg
     };
-    this.sync_link.setError(payload, msg);
+    this.sync_link.setError(msg, payload);
   }, this);
 
 };
@@ -299,12 +299,11 @@ ydn.crm.ui.GDataPanel.prototype.handleImportClick = function(e) {
   var gdata = model.getGData();
   var import_req;
   if (gdata instanceof ydn.gdata.m8.NewContactEntry) {
-    import_req = model.importToSugar().addCallback(function(x) {
-      this.import_link.setLink('Linking GData and SugarCRM...');
-    }, this);
-  } else {
     import_req = model.addToSugar();
+  } else {
+    import_req = model.importToSugar();
     import_req = import_req.addCallback(function(record) {
+      this.import_link.setLink('Linking GData and SugarCRM...');
       return model.link();
     }, this);
   }
@@ -324,7 +323,7 @@ ydn.crm.ui.GDataPanel.prototype.handleImportClick = function(e) {
       'html': sidebar ? sidebar.outerHTML : '',
       'error': msg
     };
-    this.import_link.setError(load, msg);
+    this.import_link.setError(msg, load);
   }, this);
 };
 

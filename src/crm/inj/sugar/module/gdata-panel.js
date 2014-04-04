@@ -237,7 +237,7 @@ ydn.crm.inj.sugar.module.GDataPanel.prototype.handleLinkClick = function(e) {
       'html': sidebar ? sidebar.outerHTML : '',
       'error': msg
     };
-    this.sync_link.setError(payload, msg);
+    this.sync_link.setError(msg, payload);
   }, this);
 
 };
@@ -281,7 +281,7 @@ ydn.crm.inj.sugar.module.GDataPanel.prototype.handleImportClick = function(e) {
       'html': sidebar ? sidebar.outerHTML : '',
       'error': msg
     };
-    this.import_link.setError(load, msg);
+    this.import_link.setError(msg, load);
   }, this);
 };
 

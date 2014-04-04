@@ -333,6 +333,7 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.getSearchInput = function() {
 ydn.crm.ui.sugar.BrowsePanel.prototype.handleAction = function(e) {
   var search_input = this.getSearchInput();
   var query = search_input.getContent();
+  this.clearResult_();
   if (query) {
     query = query.trim();
     if (query.length >= 2) {
@@ -353,7 +354,6 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.handleAction = function(e) {
           };
         }
       }
-      this.clearResult_();
       this.updateSearch_(); // if update search is already running this will
       // cause double run, but OK.
     }

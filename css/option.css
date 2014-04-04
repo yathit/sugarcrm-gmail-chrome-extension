@@ -22,6 +22,30 @@
     font-size: small;
 }
 
+.wgui-textinput-clear {
+    position: absolute;
+    right: 5px;
+    top: 4px;
+    padding-top: 1px;
+    padding-left: 5px;
+    display: none;
+    color: #808080;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+
+.wgui-textinput-clear:hover {
+    font-weight: bold;
+    color: white;
+    background-color: #808080;
+}
+
+.wgui-textinput-outer-box:hover .wgui-textinput-clear {
+    display: inherit;
+}
+
 .browse-panel .search-result {
     border-bottom: thin solid lightgrey;
 }
@@ -1206,6 +1230,11 @@ footer {
 
 .sugar-panel .record-panel.empty {
     display: none;
+}
+
+.gmail-cmd-panel {
+    display: inline-block;
+    padding: 4px;
 }
 
 

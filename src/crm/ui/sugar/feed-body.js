@@ -113,6 +113,29 @@ ydn.crm.ui.sugar.FeedBody.prototype.popPanel = function(type) {
 
 
 /**
+ * Get SugarCRM record id that is related to gmail context thread.
+ * @return {!Array.<{ydn.crm.sugar.ModuleName: string, id: string}>}
+ */
+ydn.crm.ui.sugar.FeedBody.prototype.getContexts = function() {
+  var contexts = [];
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = /** @type {ydn.crm.ui.GDataPanel} */ (this.getChildAt(i));
+    /**
+     * @type {ydn.crm.sugar.model.GData}
+     */
+    var model = child.getModel();
+    if (model.hasRecord()) {
+      contexts.push({
+        module: model.getModuleName(),
+        id: model.getId()
+      });
+    }
+  }
+  return contexts;
+};
+
+
+/**
  * Free panel if no longer use.
  * @param {ydn.crm.ui.GDataPanel} panel
  */

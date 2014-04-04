@@ -161,6 +161,9 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
  */
 SugarCrmModel.prototype.login = function(url, username, password, cb, scope) {
   this.setInstanceUrl(url);
+  if (!this.data) {
+    this.data = /** @type {SugarCrm.About} */ (/** @type {Object} */ ({}));
+  }
   if (username) {
     this.data.userName = username;
   }

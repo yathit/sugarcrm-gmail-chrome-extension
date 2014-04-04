@@ -123,7 +123,8 @@ ydn.crm.ui.sugar.record.Secondary.prototype.handleChanged = function(e) {
     var query = [{
       'store': ydn.crm.sugar.ModuleName.NOTES,
       'index': 'parent',
-      'key': [model.getModuleName(), record.getId()]
+      'reverse': true,
+      'keyRange': ydn.db.KeyRange.starts([model.getModuleName(), record.getId()])
     }];
     sugar.send(req, query).addCallbacks(function(x) {
       var arr = /** @type {Array.<CrmReqQuery>} */ (x);

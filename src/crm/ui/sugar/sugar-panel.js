@@ -34,6 +34,7 @@ goog.provide('ydn.crm.ui.sugar.SugarPanel');
 goog.require('goog.debug.Logger');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
+goog.require('ydn.crm.ui.GmailCmdInjector');
 goog.require('ydn.crm.inj.sugar.Body');
 goog.require('ydn.crm.ui.sugar.FeedBody');
 goog.require('ydn.crm.ui.sugar.Header');
@@ -61,6 +62,12 @@ ydn.crm.ui.sugar.SugarPanel = function(gdata_account, model, dom) {
    * @type {string}
    */
   this.gdata_account = gdata_account;
+
+  /**
+   * @type {ydn.crm.ui.GmailCmdInjector}
+   * @private
+   */
+  this.gmail_cmd_inj_ = new ydn.crm.ui.GmailCmdInjector(model);
 };
 goog.inherits(ydn.crm.ui.sugar.SugarPanel, goog.ui.Component);
 
@@ -106,6 +113,16 @@ ydn.crm.ui.sugar.SugarPanel.prototype.createDom = function() {
   // var body_panel = new ydn.crm.inj.sugar.Body(dom, this.getModel());
   var body_panel = new ydn.crm.ui.sugar.FeedBody(this.gdata_account, this.getModel(), dom);
   this.addChild(body_panel, true);
+};
+
+
+/**
+ * Get SugarCRM record id that is related to gmail context thread.
+ * @return {!Array.<{ydn.crm.sugar.ModuleName: string, id: string}>}
+ */
+ydn.crm.ui.sugar.SugarPanel.prototype.getContexts = function() {
+  var body_panel = /** @type {ydn.crm.ui.sugar.FeedBody} */ (this.getChildAt(1));
+  return body_panel.getContexts();
 };
 
 
