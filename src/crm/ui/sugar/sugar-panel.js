@@ -34,8 +34,9 @@ goog.provide('ydn.crm.ui.sugar.SugarPanel');
 goog.require('goog.debug.Logger');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
-goog.require('ydn.crm.ui.GmailCmdInjector');
 goog.require('ydn.crm.inj.sugar.Body');
+goog.require('ydn.crm.ui.GmailCmdInjector');
+goog.require('ydn.crm.ui.gmail.Template');
 goog.require('ydn.crm.ui.sugar.FeedBody');
 goog.require('ydn.crm.ui.sugar.Header');
 goog.require('ydn.gdata.m8.ContactEntry');
@@ -68,6 +69,8 @@ ydn.crm.ui.sugar.SugarPanel = function(gdata_account, model, dom) {
    * @private
    */
   this.gmail_cmd_inj_ = new ydn.crm.ui.GmailCmdInjector(model);
+  this.gmail_cmd_inj_.observeEmailThreadToolbar(document.body);
+
 };
 goog.inherits(ydn.crm.ui.sugar.SugarPanel, goog.ui.Component);
 

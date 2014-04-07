@@ -12,7 +12,7 @@ goog.require('ydn.crm.sugar.model.Sugar');
 /**
  * Sugar model with context to inbox.
  * @param {SugarCrm.About} about setup for particular domain.
- * @param {Object.<SugarCrm.ModuleInfo>} modules_info
+ * @param {Array.<SugarCrm.ModuleInfo>} modules_info
  * @constructor
  * @extends {ydn.crm.sugar.model.Sugar}
  * @struct

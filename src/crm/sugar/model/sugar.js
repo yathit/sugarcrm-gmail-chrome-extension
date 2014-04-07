@@ -30,19 +30,23 @@ goog.require('ydn.debug.error.ConstraintError');
 /**
  * SugarCRM server info
  * @param {SugarCrm.About} about setup for particular domain.
- * @param {Object.<SugarCrm.ModuleInfo>} modules_info
+ * @param {Array.<SugarCrm.ModuleInfo>} arr
  * @constructor
  * @extends {goog.events.EventTarget}
  * @struct
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.sugar.model.Sugar = function(about, modules_info) {
+ydn.crm.sugar.model.Sugar = function(about, arr) {
   goog.base(this);
   /**
    * @protected
    * @type {SugarCrm.About}
    */
   this.about = about;
+  var modules_info = {};
+  for (var i = 0; i < arr.length; i++) {
+    modules_info[arr[i]['module_name']] = arr[i];
+  }
   /**
    * @protected
    * @final
@@ -55,11 +59,6 @@ ydn.crm.sugar.model.Sugar = function(about, modules_info) {
    * @type {SugarCrm.ServerInfo}
    */
   this.info = /** @type {SugarCrm.ServerInfo} */ ({});
-  /**
-   * @type {goog.async.Deferred}
-   * @private
-   */
-  this.ready_df_ = null;
 
   /**
    * User setting.
@@ -71,6 +70,13 @@ ydn.crm.sugar.model.Sugar = function(about, modules_info) {
    * @type {goog.events.EventHandler}
    */
   this.handler = new goog.events.EventHandler(this);
+  /**
+   * User record.
+   * @type {!ydn.crm.sugar.Record}
+   * @private
+   */
+  this.user_ = new ydn.crm.sugar.Record(this.getDomain(), ydn.crm.sugar.ModuleName.USERS);
+  this.initUser_();
 };
 goog.inherits(ydn.crm.sugar.model.Sugar, goog.events.EventTarget);
 
@@ -90,6 +96,21 @@ ydn.crm.sugar.model.Sugar.prototype.isLogin = function() {
 
 
 /**
+ * Initialize user.
+ * @private
+ */
+ydn.crm.sugar.model.Sugar.prototype.initUser_ = function() {
+  if (this.about && this.about.userName) {
+    this.send(ydn.crm.Ch.SReq.LOGIN_USER).addCallback(function(obj) {
+      if (obj && obj['id']) {
+        this.user_.setData(/** @type {SugarCrm.Record} */ (obj));
+      }
+    }, this);
+  }
+};
+
+
+/**
  * @return {string} sugarcrm user id. This is About.userName
  */
 ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
@@ -101,7 +122,15 @@ ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
  * @return {string?}
  */
 ydn.crm.sugar.model.Sugar.prototype.getUserLabel = function() {
-  return this.about.userName || null;
+  return this.user_.value('name') || this.about.userName || null;
+};
+
+
+/**
+ * @return {!ydn.crm.sugar.Record} get user record.
+ */
+ydn.crm.sugar.model.Sugar.prototype.getUser = function() {
+  return this.user_;
 };
 
 
@@ -287,35 +316,17 @@ ydn.crm.sugar.model.Sugar.prototype.send = function(req, opt_data) {
 
 
 /**
- * Sniff server info.
- * @return {!goog.async.Deferred}
- */
-ydn.crm.sugar.model.Sugar.prototype.onReady = function() {
-  if (!this.ready_df_) {
-    this.ready_df_ = this.send('server-info');
-    this.ready_df_.addCallback(function(x) {
-      if (x) {
-        this.setInfo(x['info']);
-        this.setAbout(x['about']);
-      } else {
-        this.ready_df_ = null;
-      }
-    }, this);
-  }
-
-  return this.ready_df_;
-};
-
-
-/**
  * Query list of records.
  * @param {string} module
  * @param {string=} opt_order
  * @param {(ydn.db.KeyRange|string)=} opt_range key or key range.
  * @param {boolean=} opt_prefix prefix search.
+ * @param {number=} opt_limit limit
+ * @param {number=} opt_offset offset
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.listRecords = function(module, opt_order, opt_range, opt_prefix) {
+ydn.crm.sugar.model.Sugar.prototype.listRecords = function(module, opt_order, opt_range,
+                                                           opt_prefix, opt_limit, opt_offset) {
   goog.asserts.assert(ydn.crm.sugar.Modules.indexOf(module) >= 0, module);
   var query = {
     'store': module
@@ -331,6 +342,12 @@ ydn.crm.sugar.model.Sugar.prototype.listRecords = function(module, opt_order, op
     }
   }
   query['prefix'] = !!opt_prefix;
+  if (opt_limit) {
+    query['limit'] = opt_offset;
+  }
+  if (opt_offset) {
+    query['offset'] = opt_offset;
+  }
   return this.getChannel().send(ydn.crm.Ch.SReq.LIST, [query]);
 };
 
