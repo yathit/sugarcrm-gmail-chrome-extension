@@ -4,20 +4,20 @@
 
 
 goog.provide('ydn.crm.inj.sugar.module.SimpleFieldRenderer');
+goog.require('ydn.crm.inj.sugar.module.FieldRenderer');
 
 
 
 /**
  * Create a new module record field.
  * @constructor
- * @extends {goog.ui.ControlRenderer}
+ * @extends {ydn.crm.inj.sugar.module.FieldRenderer}
  * @struct
- * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
 ydn.crm.inj.sugar.module.SimpleFieldRenderer = function() {
   goog.base(this);
 };
-goog.inherits(ydn.crm.inj.sugar.module.SimpleFieldRenderer, goog.ui.ControlRenderer);
+goog.inherits(ydn.crm.inj.sugar.module.SimpleFieldRenderer, ydn.crm.inj.sugar.module.FieldRenderer);
 goog.addSingletonGetter(ydn.crm.inj.sugar.module.SimpleFieldRenderer);
 
 
@@ -25,19 +25,6 @@ goog.addSingletonGetter(ydn.crm.inj.sugar.module.SimpleFieldRenderer);
  * @define {boolean} debug flag.
  */
 ydn.crm.inj.sugar.module.SimpleFieldRenderer.DEBUG = false;
-
-
-/**
- * @const
- * @type {string}
- */
-ydn.crm.inj.sugar.module.SimpleFieldRenderer.CSS_CLASS = 'field';
-
-
-/** @return {string} */
-ydn.crm.inj.sugar.module.SimpleFieldRenderer.prototype.getCssClass = function() {
-  return ydn.crm.inj.sugar.module.SimpleFieldRenderer.CSS_CLASS;
-};
 
 
 /**
@@ -65,23 +52,18 @@ ydn.crm.inj.sugar.module.SimpleFieldRenderer.prototype.createDom = function(cont
       'disabled': '1'
     });
   } else if (type == 'enum') {
-    ele_value = dom.createDom('select', {
-      'class': 'value',
+    ele_value = dom.createDom('input', {
+      'class': 'value enum',
+      'type': 'text',
       'disabled': '1'
     });
-    var options = model.getOptions();
-    for (var opt in options) {
-      var item = dom.createDom('option', {
-        'name': options[opt].name
-      }, options[opt].value);
-      ele_value.appendChild(item);
-    }
+    ele_value.setAttribute('list', ydn.crm.inj.sugar.module.FieldRenderer.getDataList(model));
   } else {
     ele_value = dom.createDom('label', 'value');
   }
   ele_value.setAttribute('title', label);
 
-  el.classList.add(ydn.crm.inj.sugar.module.SimpleFieldRenderer.CSS_CLASS);
+  el.classList.add(this.getCssClass());
   el.setAttribute('name', model.getFieldName());
   el.appendChild(ele_value);
 

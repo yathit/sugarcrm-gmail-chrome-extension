@@ -4,7 +4,7 @@
 
 
 goog.provide('ydn.crm.inj.sugar.module.FieldRenderer');
-goog.require('ydn.crm.inj.sugar.module.SimpleFieldRenderer');
+goog.require('goog.dom.forms');
 
 
 
@@ -28,9 +28,47 @@ goog.addSingletonGetter(ydn.crm.inj.sugar.module.FieldRenderer);
 ydn.crm.inj.sugar.module.FieldRenderer.DEBUG = false;
 
 
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.FieldRenderer.CSS_CLASS = 'field';
+
+
 /** @return {string} */
 ydn.crm.inj.sugar.module.FieldRenderer.prototype.getCssClass = function() {
-  return ydn.crm.inj.sugar.module.SimpleFieldRenderer.CSS_CLASS;
+  return ydn.crm.inj.sugar.module.FieldRenderer.CSS_CLASS;
+};
+
+
+/**
+ * A quick UID.
+ * @type {string}
+ */
+ydn.crm.inj.sugar.module.FieldRenderer.UID = 'ydnf-';
+
+
+/**
+ * Make datalist of given enum field. If already exist, this will return it.
+ * @param {ydn.crm.sugar.model.Field} model
+ * @return {string} datalist id.
+ */
+ydn.crm.inj.sugar.module.FieldRenderer.getDataList = function(model) {
+  var mf = model.getFieldInfo();
+  var id = ydn.crm.inj.sugar.module.FieldRenderer.UID + model.getFieldId();
+  if (mf.type == 'enum' && !!mf.options && !document.getElementById(id)) {
+    var datalist = document.createElement('datalist');
+    datalist.id = id;
+    for (var name in mf.options) {
+      if (name) {
+        var option = document.createElement('option');
+        option.setAttribute('value', name);
+        datalist.appendChild(option);
+      }
+    }
+    document.body.appendChild(datalist);
+  }
+  return id;
 };
 
 
@@ -57,19 +95,30 @@ ydn.crm.inj.sugar.module.FieldRenderer.prototype.createDom = function(controller
       'disabled': '1'
     });
     ele_name = dom.createDom('span', 'name');
+  } else if (type == 'enum') {
+    ele_value = dom.createDom('input', {
+      'class': 'value enum',
+      'type': 'text',
+      'disabled': '1'
+    });
+    ele_value.setAttribute('list', ydn.crm.inj.sugar.module.FieldRenderer.getDataList(model));
   } else {
     ele_value = dom.createDom('label', 'value');
     ele_name = dom.createDom('sup', 'name');
   }
-  ele_name.textContent = label;
 
-  el.classList.add(ydn.crm.inj.sugar.module.SimpleFieldRenderer.CSS_CLASS);
+  el.classList.add(this.getCssClass());
   el.setAttribute('name', model.getFieldName());
   el.appendChild(ele_value);
-  el.appendChild(ele_name);
+  if (ele_name) {
+    ele_name.textContent = label;
+    el.appendChild(ele_name);
+  }
+  /*
   if (model.isNormallyHide()) {
     el.classList.add('normally-hide');
   }
+  */
   return el;
 };
 

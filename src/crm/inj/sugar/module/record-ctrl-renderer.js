@@ -18,7 +18,7 @@
  */
 
 
-goog.provide('ydn.crm.inj.sugar.module.RecordRenderer');
+goog.provide('ydn.crm.inj.sugar.module.RecordCtrlRenderer');
 goog.require('goog.ui.ControlRenderer');
 goog.require('ydn.crm.inj.sugar.module.Group');
 goog.require('ydn.crm.inj.sugar.module.group.Address');
@@ -36,77 +36,70 @@ goog.require('ydn.crm.sugar.model.GDataSugar');
  * @extends {goog.ui.ControlRenderer}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.inj.sugar.module.RecordRenderer = function() {
+ydn.crm.inj.sugar.module.RecordCtrlRenderer = function() {
   goog.base(this);
 };
-goog.inherits(ydn.crm.inj.sugar.module.RecordRenderer, goog.ui.ControlRenderer);
-goog.addSingletonGetter(ydn.crm.inj.sugar.module.RecordRenderer);
+goog.inherits(ydn.crm.inj.sugar.module.RecordCtrlRenderer, goog.ui.ControlRenderer);
+goog.addSingletonGetter(ydn.crm.inj.sugar.module.RecordCtrlRenderer);
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.inj.sugar.module.RecordRenderer.DEBUG = false;
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.DEBUG = false;
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS = 'record-panel';
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS = 'record-panel';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER = 'record-header';
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_HEADER = 'record-header';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT = 'record-content';
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_CONTENT = 'record-content';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_VIEW = 'view';
-
-
-/**
- * @const
- * @type {string}
- */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_DETAIL = 'detail';
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.NAME_DETAIL = 'detail';
 
 
 /**
  * @const
  * @type {string} class name for body content when viewing.
  */
-ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_DETAIL = 'detail';
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_DETAIL = 'detail';
 
 
 /** @return {string} */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.getCssClass = function() {
-  return ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS;
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.prototype.getCssClass = function() {
+  return ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS;
 };
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.createDom = function(x) {
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.prototype.createDom = function(x) {
   var root = goog.base(this, 'createDom', x);
-  var ctrl = /** @type {ydn.crm.inj.sugar.module.Record} */ (x);
+  var ctrl = /** @type {ydn.crm.inj.sugar.module.RecordCtrl} */ (x);
   var dom = ctrl.getDomHelper();
 
-  var header = dom.createDom('div', ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER);
-  var content = dom.createDom('div', ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT);
+  var header = dom.createDom('div', ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_HEADER);
+  var content = dom.createDom('div', ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_CONTENT);
   root.appendChild(header);
   root.appendChild(content);
   ctrl.setElementInternal(root);
@@ -114,7 +107,7 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.createDom = function(x) {
   // create ui elements
 
   var a_detail = dom.createDom('a', {
-    'name': ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_DETAIL
+    'name': ydn.crm.inj.sugar.module.RecordCtrlRenderer.NAME_DETAIL
   }, 'detail');
   a_detail.href = '#';
 
@@ -150,22 +143,22 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.createDom = function(x) {
  * @param {Element} ele ancentor
  * @return {Element}
  */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.getDetailButton = function(ele) {
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.prototype.getDetailButton = function(ele) {
   return ele.querySelector('a[name=' +
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_NAME_DETAIL + ']');
+      ydn.crm.inj.sugar.module.RecordCtrlRenderer.NAME_DETAIL + ']');
 };
 
 
 /**
  * Reset control UI to initial state.
- * @param {ydn.crm.inj.sugar.module.Record} ctrl
+ * @param {ydn.crm.inj.sugar.module.RecordCtrl} ctrl
  */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.reset = function(ctrl) {
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.prototype.reset = function(ctrl) {
   var ele = ctrl.getElement();
   var header_ele = goog.dom.getElementByClass(
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER, ele);
+      ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_HEADER, ele);
   var content_ele = goog.dom.getElementByClass(
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT, ele);
+      ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_CONTENT, ele);
   var a_detail = this.getDetailButton(header_ele);
   a_detail.textContent = 'detail';
   goog.style.setElementShown(a_detail, true);
@@ -176,33 +169,18 @@ ydn.crm.inj.sugar.module.RecordRenderer.prototype.reset = function(ctrl) {
  * Toggle view.
  * @param {Element} ele
  */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.toggleView = function(ele) {
+ydn.crm.inj.sugar.module.RecordCtrlRenderer.prototype.toggleDetail = function(ele) {
   var header_ele = goog.dom.getElementByClass(
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER, ele);
+      ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_HEADER, ele);
   var content_ele = goog.dom.getElementByClass(
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT, ele);
-  var a_detail = this.getDetailButton(header_ele);
-  goog.style.setElementShown(content_ele, true);
-  goog.style.setElementShown(a_detail, true);
-};
-
-
-/**
- * Toggle view.
- * @param {Element} ele
- */
-ydn.crm.inj.sugar.module.RecordRenderer.prototype.toggleDetail = function(ele) {
-  var header_ele = goog.dom.getElementByClass(
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_HEADER, ele);
-  var content_ele = goog.dom.getElementByClass(
-      ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_CONTENT, ele);
+      ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_CONTENT, ele);
   var a_view = this.getDetailButton(header_ele);
-  if (content_ele.classList.contains(ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_DETAIL)) {
+  if (content_ele.classList.contains(ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_DETAIL)) {
     a_view.textContent = 'detail';
-    content_ele.classList.remove(ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_DETAIL);
+    content_ele.classList.remove(ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_DETAIL);
   } else {
     a_view.textContent = 'less';
-    content_ele.classList.add(ydn.crm.inj.sugar.module.RecordRenderer.CSS_CLASS_DETAIL);
+    content_ele.classList.add(ydn.crm.inj.sugar.module.RecordCtrlRenderer.CSS_CLASS_DETAIL);
   }
 };
 

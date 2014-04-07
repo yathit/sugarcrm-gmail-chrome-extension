@@ -25,6 +25,11 @@ goog.require('ydn.crm.ui.Refreshable');
  */
 ydn.crm.inj.sugar.module.Field = function(info, opt_renderer, opt_domHelper) {
   goog.base(this, null, opt_renderer, opt_domHelper);
+  this.setHandleMouseEvents(false);
+  this.setAllowTextSelection(true);
+  this.setAutoStates(goog.ui.Component.State.ALL, false);
+  this.setSupportedState(goog.ui.Component.State.FOCUSED, false);
+  this.setSupportedState(goog.ui.Component.State.SELECTED, false);
   this.setModel(info);
 };
 goog.inherits(ydn.crm.inj.sugar.module.Field, goog.ui.Control);
