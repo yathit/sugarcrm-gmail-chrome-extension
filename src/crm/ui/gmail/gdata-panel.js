@@ -342,14 +342,14 @@ ydn.crm.ui.GDataPanel.prototype.handleImportClick = function(e) {
    */
   var gdata = model.getGData();
   var import_req;
-  if (gdata instanceof ydn.gdata.m8.NewContactEntry) {
-    import_req = model.addToSugar();
-  } else {
+  if (gdata) {
     import_req = model.importToSugar();
     import_req = import_req.addCallback(function(record) {
       this.import_link.setLink('Linking GData and SugarCRM...');
       return model.link();
     }, this);
+  } else {
+    import_req = model.addToSugar();
   }
 
   import_req.addCallbacks(function(entry) {

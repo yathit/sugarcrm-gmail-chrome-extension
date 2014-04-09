@@ -67,6 +67,13 @@ ydn.crm.ui.sugar.Header.prototype.getModel;
  * @const
  * @type {string}
  */
+ydn.crm.ui.sugar.Header.CSS_CLASS_CONTENT = 'sugar-header-content';
+
+
+/**
+ * @const
+ * @type {string}
+ */
 ydn.crm.ui.sugar.Header.CSS_CLASS = 'sugar-header';
 
 
@@ -88,6 +95,14 @@ ydn.crm.ui.sugar.Header.openPageAsDialog = function(e) {
   var top = (screen.height / 2) - (h / 2);
   var url = e.target.href;
   window.open(url, undefined, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+};
+
+
+/**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.Header.prototype.getContentElement = function() {
+  return this.getElement().querySelector('.' + ydn.crm.ui.sugar.Header.CSS_CLASS_CONTENT);
 };
 
 
@@ -137,6 +152,7 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
   goog.style.setElementShown(div_grant, false);
   goog.style.setElementShown(div_login, false);
   root.appendChild(div_login);
+  root.appendChild(dom.createDom('div', ydn.crm.ui.sugar.Header.CSS_CLASS_CONTENT));
 
   var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
   this.addChild(search, true);

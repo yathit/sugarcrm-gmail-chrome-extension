@@ -69,6 +69,19 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.getModel;
 
 
 /**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.BrowsePanel.CSS_CLASS = 'browse-panel';
+
+
+/** @return {string} */
+ydn.crm.ui.sugar.BrowsePanel.prototype.getCssClass = function() {
+  return ydn.crm.ui.sugar.BrowsePanel.CSS_CLASS;
+};
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.ui.sugar.BrowsePanel.prototype.createDom = function() {
@@ -77,6 +90,7 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.createDom = function() {
   var root = this.getElement();
   var header = dom.createDom('div', 'header');
   root.appendChild(header);
+  root.className = this.getCssClass();
   this.toolbar = new goog.ui.Toolbar(null, null, dom);
   var record_types = new goog.ui.Menu(dom);
   for (var i = 0; i < ydn.crm.sugar.CacheModules.length; i++) {
@@ -144,19 +158,6 @@ ydn.crm.ui.sugar.BrowsePanel.SearchTask;
  * @type {number}
  */
 ydn.crm.ui.sugar.BrowsePanel.MAX_PANELS = 30;
-
-
-/**
- * @const
- * @type {string}
- */
-ydn.crm.ui.sugar.BrowsePanel.CSS_CLASS = 'browse-panel';
-
-
-/** @return {string} */
-ydn.crm.ui.sugar.BrowsePanel.prototype.getCssClass = function() {
-  return ydn.crm.ui.sugar.BrowsePanel.CSS_CLASS;
-};
 
 
 /**

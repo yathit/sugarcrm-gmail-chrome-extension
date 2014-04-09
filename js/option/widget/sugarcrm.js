@@ -23,6 +23,17 @@ var SugarCrmWidget = function(model) {
 
 
 /**
+ * Trial credential from http://www.sugarcrm.com
+ * @type {{domain: string, user_name: string, password: string}}
+ */
+SugarCrmWidget.trialCredentials = {
+  domain: 'https://uxpiiz4068.trial.sugarcrm.com/',
+  user_name: 'jane',
+  password: '!Jane1'
+};
+
+
+/**
  * @param {Element} ele
  */
 SugarCrmWidget.prototype.render = function(ele) {
@@ -42,6 +53,7 @@ SugarCrmWidget.prototype.render = function(ele) {
 
   var input_domain = this.root.querySelector('input[name=domain]');
   input_domain.onblur = this.onDomainBlur.bind(this);
+  input_domain.setAttribute('placeholder', SugarCrmWidget.trialCredentials.domain);
 
   var btn_new_sugar = this.root.querySelector('button');
   btn_new_sugar.onclick = this.handleLogin.bind(this);
@@ -68,6 +80,10 @@ SugarCrmWidget.prototype.onDomainBlur = function(e) {
   var domain = input.value.trim();
   if (!domain) {
     return;
+  }
+  if (domain == SugarCrmWidget.trialCredentials.domain) {
+    this.root.querySelector('input[name=username]').value = SugarCrmWidget.trialCredentials.user_name;
+    this.root.querySelector('input[name=password]').value = SugarCrmWidget.trialCredentials.password;
   }
   this.model.setInstanceUrl(domain, function(info) {
     if (info instanceof Error) {

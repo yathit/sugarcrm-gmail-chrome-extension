@@ -55,6 +55,15 @@ ydn.crm.sugar.model.GDataSugar.prototype.getGData = function() {
 
 
 /**
+ * @return {ydn.gdata.m8.NewContactEntry} return context contact from gmail panel
+ * with any module.
+ */
+ydn.crm.sugar.model.GDataSugar.prototype.getContextGData = function() {
+  return this.context_;
+};
+
+
+/**
  * @return {string} return a google account id, an email address.
  */
 ydn.crm.sugar.model.GDataSugar.prototype.getGDataAccount = function() {

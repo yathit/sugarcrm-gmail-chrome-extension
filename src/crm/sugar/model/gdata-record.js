@@ -145,6 +145,14 @@ ydn.crm.sugar.model.GDataRecord.prototype.getGData = function() {
 
 
 /**
+ * @return {ydn.gdata.m8.ContactEntry} return context contact from gmail panel
+ */
+ydn.crm.sugar.model.GDataRecord.prototype.getContextGData = function() {
+  return this.getParent().getContextGData();
+};
+
+
+/**
  * @return {ydn.crm.sugar.ModuleName}
  */
 ydn.crm.sugar.model.GDataRecord.prototype.getModuleName = function() {
@@ -286,8 +294,6 @@ ydn.crm.sugar.model.GDataRecord.prototype.importToSugar = function() {
   goog.asserts.assert(!this.hasRecord(), 'already imported?');
   var contact = this.getGData();
   goog.asserts.assertObject(contact, 'no contact gdata to import?');
-  goog.asserts.assertInstanceof(contact, ydn.gdata.m8.ContactEntry,
-      'not a contact gdata?');
   var req = ydn.crm.Ch.SReq.IMPORT_GDATA;
   var data = {
     'module': this.getModuleName(),
@@ -312,7 +318,7 @@ ydn.crm.sugar.model.GDataRecord.prototype.importToSugar = function() {
  */
 ydn.crm.sugar.model.GDataRecord.prototype.addToSugar = function() {
   goog.asserts.assert(!this.hasRecord(), 'already imported?');
-  var contact = this.getGData();
+  var contact = this.getContextGData();
   goog.asserts.assertObject(contact, 'no contact gdata to import?');
   /**
    * @type {ydn.crm.sugar.Record}

@@ -45,6 +45,9 @@
 .wgui-textinput-outer-box:hover .wgui-textinput-clear {
     display: inherit;
 }
+.browse-panel > .content {
+    padding: 8px;
+}
 
 .browse-panel .search-result {
     border-bottom: thin solid lightgrey;

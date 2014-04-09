@@ -86,7 +86,7 @@ ydn.crm.ui.sugar.SugarPanel.DEBUG = false;
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.SugarPanel.CSS_CLASS_CONTENT = 'content';
+ydn.crm.ui.sugar.SugarPanel.CSS_CLASS_CONTENT = 'sugar-panel-content';
 
 
 /**

@@ -25,7 +25,7 @@ goog.require('ydn.crm.inj.sugar.module.group.Address');
 goog.require('ydn.crm.inj.sugar.module.group.Email');
 goog.require('ydn.crm.inj.sugar.module.group.List');
 goog.require('ydn.crm.inj.sugar.module.group.Name');
-goog.require('ydn.crm.sugar.model.GDataSugar');
+goog.require('ydn.crm.inj.sugar.model.GDataSugar');
 
 
 
