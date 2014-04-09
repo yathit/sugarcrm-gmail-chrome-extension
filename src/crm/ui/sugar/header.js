@@ -1,7 +1,6 @@
 /**
  * @fileoverview SugarCRM header panel for account setup and host access grant.
  *
- * This module provide adding, linking and syncing.
  */
 
 
@@ -17,14 +16,14 @@ goog.require('ydn.crm.ui.sugar.SearchPanel');
 
 /**
  * Contact sidebar panel.
- * @param {goog.dom.DomHelper} dom
  * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {goog.dom.DomHelper} dom
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.Header = function(dom, model) {
+ydn.crm.ui.sugar.Header = function(model, dom) {
   goog.base(this, dom);
   this.setModel(model);
 };
@@ -34,7 +33,7 @@ goog.inherits(ydn.crm.ui.sugar.Header, goog.ui.Component);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.Header.DEBUG = goog.DEBUG;
+ydn.crm.ui.sugar.Header.DEBUG = false;
 
 
 /**
@@ -138,11 +137,12 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
   goog.style.setElementShown(div_grant, false);
   goog.style.setElementShown(div_login, false);
   root.appendChild(div_login);
+
   var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
-  this.addChild(search);
-  var ele_search = dom.createDom('div');
-  root.appendChild(ele_search);
-  search.render(ele_search);
+  this.addChild(search, true);
+  // var ele_search = dom.createDom('div');
+  // root.appendChild(ele_search);
+  // search.render(ele_search);
 };
 
 
@@ -261,13 +261,6 @@ ydn.crm.ui.sugar.Header.prototype.handleGrantClick = function(e) {
     }
   });
 };
-
-
-/**
- * @return {ydn.crm.sugar.model.Sugar}
- * @override
- */
-ydn.crm.ui.sugar.Header.prototype.getModel;
 
 
 /**

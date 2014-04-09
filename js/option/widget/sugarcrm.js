@@ -28,7 +28,8 @@ var SugarCrmWidget = function(model) {
 SugarCrmWidget.prototype.render = function(ele) {
   var div = document.createElement('div');
   ele.appendChild(div);
-  var shadow = div.webkitCreateShadowRoot().appendChild(this.root);
+  var sr = div.webkitCreateShadowRoot ? div.webkitCreateShadowRoot() : div.createShadowRoot();
+  var shadow = sr.appendChild(this.root);
   var template = document.querySelector('#sugarcrm-template');
   this.root.appendChild(document.importNode(template.content, true));
   // this.root.appendChild(template.content);

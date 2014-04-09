@@ -54,7 +54,7 @@ goog.require('ydn.json');
  */
 ydn.crm.inj.SugarPanel = function(dom, about, modules_info) {
   goog.base(this, dom);
-  var model = new ydn.crm.sugar.model.GDataSugar(about, modules_info);
+  var model = new ydn.crm.inj.sugar.model.GDataSugar(about, modules_info);
   this.setModel(model);
 
 };
@@ -81,7 +81,7 @@ ydn.crm.inj.SugarPanel.prototype.getCssClass = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.GDataSugar}
+ * @return {ydn.crm.inj.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.SugarPanel.prototype.getModel;
@@ -144,7 +144,7 @@ ydn.crm.inj.SugarPanel.prototype.getDomainName = function() {
  */
 ydn.crm.inj.SugarPanel.prototype.updateContact = function(contact_model) {
   /**
-   * @type {ydn.crm.sugar.model.GDataSugar}
+   * @type {ydn.crm.inj.sugar.model.GDataSugar}
    */
   var model = this.getModel();
 

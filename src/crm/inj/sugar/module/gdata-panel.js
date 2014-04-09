@@ -17,7 +17,7 @@ goog.require('ydn.ui.Reportable');
 /**
  * Contact sidebar panel.
  * @param {goog.dom.DomHelper} dom
- * @param {ydn.crm.sugar.model.GDataRecord} model model
+ * @param {ydn.crm.inj.sugar.GDataModule} model model
  * @constructor
  * @struct
  * @extends {goog.ui.Control}
@@ -57,7 +57,7 @@ ydn.crm.inj.sugar.module.GDataPanel.prototype.logger =
 
 
 /**
- * @return {!ydn.crm.sugar.model.GDataRecord}
+ * @return {!ydn.crm.inj.sugar.GDataModule}
  * @override
  */
 ydn.crm.inj.sugar.module.GDataPanel.prototype.getModel;
@@ -146,7 +146,7 @@ ydn.crm.inj.sugar.module.GDataPanel.Labels;
  */
 ydn.crm.inj.sugar.module.GDataPanel.prototype.getLabels = function() {
   /**
-   * @type {ydn.crm.sugar.model.GDataRecord}
+   * @type {ydn.crm.inj.sugar.GDataModule}
    */
   var model = this.getModel();
   /**

@@ -37,7 +37,7 @@ goog.require('ydn.crm.sugar');
 /**
  * Contact sidebar panel.
  * @param {goog.dom.DomHelper} dom
- * @param {ydn.crm.sugar.model.GDataSugar} model
+ * @param {ydn.crm.inj.sugar.model.GDataSugar} model
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
@@ -75,7 +75,7 @@ ydn.crm.inj.sugar.Body.prototype.getCssClass = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.GDataSugar}
+ * @return {ydn.crm.inj.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.sugar.Body.prototype.getModel;
@@ -98,7 +98,7 @@ ydn.crm.inj.sugar.Body.prototype.getContentElement = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.GDataSugar}
+ * @return {ydn.crm.inj.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.sugar.Body.prototype.getModel;
@@ -112,7 +112,7 @@ ydn.crm.inj.sugar.Body.prototype.createDom = function() {
   var dom = this.dom_;
   var root = this.getElement();
   /**
-   * @type {ydn.crm.sugar.model.GDataSugar}
+   * @type {ydn.crm.inj.sugar.model.GDataSugar}
    */
   var model = this.getModel();
   goog.dom.classes.add(root, this.getCssClass());

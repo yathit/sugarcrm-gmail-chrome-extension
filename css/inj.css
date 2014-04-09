@@ -1207,9 +1207,24 @@ a.sugarcrm-setup-link {
     vertical-align: middle;
 }
 
-.record-header .synced {
-    vertical-align: middle;
+.record-header .link {
+    float: right;
+    display: none;
 }
+
+.record-header:hover .link {
+    display: inline !important;
+}
+
+.record-header .link.synced {
+    display: inline;
+    float: right;
+    width: 20px;
+    height: 16px;
+    vertical-align: middle;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/sync.svg') left center no-repeat;
+}
+
 
 
 .field:hover > sup.name {
@@ -1319,22 +1334,6 @@ a.sugarcrm-setup-link {
 .sugar-panel .main-title {
     padding-left: 20px;
     background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
-}
-
-.sugar-panel .link {
-    float: right;
-    display: none;
-}
-
-.sugar-panel .record-header:hover .link {
-    display: inline !important;
-}
-
-.sugar-panel .synced {
-    float: right;
-    width: 20px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/sync.svg') left center no-repeat;
 }
 
 .sugar-panel .fields {

@@ -14,23 +14,16 @@ goog.require('ydn.crm.ui.GDataPanel');
 
 /**
  * Contact sidebar panel.
- * @param {string} gdata_account Google account id, i.e., email address
- * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {ydn.crm.sugar.model.GDataSugar} model
  * @param {goog.dom.DomHelper} dom
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.FeedBody = function(gdata_account, model, dom) {
+ydn.crm.ui.sugar.FeedBody = function(model, dom) {
   goog.base(this, dom);
   this.setModel(model);
-  /**
-   * @final
-   * @protected
-   * @type {string}
-   */
-  this.gdata_account = gdata_account;
   /**
    * Object pool for module panels.
    * @final
@@ -48,7 +41,7 @@ ydn.crm.ui.sugar.FeedBody.DEBUG = false;
 
 
 /**
- * @return {!ydn.crm.sugar.model.Sugar}
+ * @return {!ydn.crm.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.ui.sugar.FeedBody.prototype.getModel;
@@ -104,10 +97,10 @@ ydn.crm.ui.sugar.FeedBody.prototype.popPanel = function(type) {
     }
   }
   /**
-   * @type {ydn.crm.sugar.model.Sugar}
+   * @type {ydn.crm.sugar.model.GDataSugar}
    */
   var sugar = this.getModel();
-  var m = new ydn.crm.sugar.model.GData(this.gdata_account, sugar, type);
+  var m = new ydn.crm.sugar.model.GDataRecord(sugar, type);
   return new ydn.crm.ui.GDataPanel(m, this.getDomHelper());
 };
 
@@ -121,7 +114,7 @@ ydn.crm.ui.sugar.FeedBody.prototype.getContexts = function() {
   for (var i = 0; i < this.getChildCount(); i++) {
     var child = /** @type {ydn.crm.ui.GDataPanel} */ (this.getChildAt(i));
     /**
-     * @type {ydn.crm.sugar.model.GData}
+     * @type {ydn.crm.sugar.model.GDataRecord}
      */
     var model = child.getModel();
     if (model.hasRecord()) {
@@ -180,12 +173,9 @@ ydn.crm.ui.sugar.FeedBody.prototype.createDom = function() {
 ydn.crm.ui.sugar.FeedBody.prototype.update = function(email, name, phone) {
 
   goog.style.setElementShown(this.getElement(), !!email);
-  for (var i = 0; i < this.getChildCount(); i++) {
-    var child = /** @type {ydn.crm.ui.GDataPanel} */ (this.getChildAt(i));
-    /**
-     * @type {ydn.crm.sugar.model.GData}
-     */
-    var model = child.getModel();
-    model.update(email, name, phone);
-  }
+  /**
+   * @type {ydn.crm.sugar.model.GDataSugar}
+   */
+  var model = this.getModel();
+  model.update(email, name, phone);
 };

@@ -22,7 +22,7 @@ var GDataCredentialWidget = function() {
 GDataCredentialWidget.prototype.render = function(ele) {
   var div = document.createElement('div');
   ele.appendChild(div);
-  this.root = div.webkitCreateShadowRoot();
+  this.root = div.webkitCreateShadowRoot ? div.webkitCreateShadowRoot() : div.createShadowRoot();
   var template = document.querySelector('#gdata-credentail-template');
   this.root.appendChild(template.content);
 

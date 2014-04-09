@@ -212,6 +212,15 @@ ydn.crm.sugar.model.Sugar.prototype.getHomeUrl = function() {
 
 
 /**
+ * Get SugarCRM create new email template url.
+ * @return {string}
+ */
+ydn.crm.sugar.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
+  return this.getHomeUrl() + '/index.php?module=EmailTemplates&action=EditView&return_module=EmailTemplates&return_action=DetailView';
+};
+
+
+/**
  * @param {SugarCrm.About} about
  */
 ydn.crm.sugar.model.Sugar.prototype.setAbout = function(about) {

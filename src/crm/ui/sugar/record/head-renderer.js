@@ -59,6 +59,20 @@ ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ICON = 'icon';
 
 /**
  * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_SYNCED = 'synced';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_LINK = 'link';
+
+
+/**
+ * @const
  * @type {string} CSS class name for viewing record.
  */
 ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_NEW_ITEM = 'new-item';
@@ -97,23 +111,20 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.createDom = function(ctrl) {
    */
   var model = ctrl.getModel();
 
-  var ele_header = dom.createDom('div', ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS);
+  var m_name = model.getModuleName();
+  var ele_header = dom.createDom('div');
   head.appendChild(ele_header);
-  var module = model.getModuleName();
   var title = dom.createDom('a', ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_TITLE);
   var icon = dom.createDom('span', ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ICON,
-      module.substr(0, 2));
-  ele_header.appendChild(icon);
-  ele_header.appendChild(title);
-  ele_header.classList.add(module);
-
+      m_name.substr(0, 2));
+  // This link is responsbile to show 'link', 'export' or 'sync'
   var sync = dom.createDom('a', {
     'href': '#link',
-    'class': ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_A_LINK
-  }, 'link');
-  var syncd_symbol = dom.createDom('span', 'synced');
-  goog.style.setElementShown(sync, false);
-  goog.style.setElementShown(syncd_symbol, false);
+    'class': ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_LINK
+  });
+  ele_header.appendChild(icon);
+  ele_header.appendChild(title);
+  ele_header.appendChild(sync);
 
   // create toolbar
   var toolbar = dom.createDom('div', ydn.crm.ui.CSS_CLASS_TOOLBAR);
@@ -152,11 +163,11 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.reset = function(ctrl) {
     goog.style.setElementShown(new_btns[i], show_annotate_ui);
   }
   var record = ctrl.getModel();
-  var module = record.getModuleName();
+  var m_name = record.getModuleName();
   var header = this.getHeadElement(ctrl.getElement());
   var icon = goog.dom.getElementByClass(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ICON,
       header);
-  icon.textContent = module.substring(0, 2);
+  icon.textContent = m_name.substring(0, 2);
   var edit = header.querySelector('a[name=' + ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT + ']');
   goog.style.setElementShown(edit, record.isEditable());
 
@@ -173,13 +184,37 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.refresh = function(ctrl) {
    * @type {ydn.crm.sugar.model.Record}
    */
   var record = ctrl.getModel();
-  var module = record.getModuleName();
+  var m_name = record.getModuleName();
   var ele_title = this.getTitleElement(ctrl.getElement());
+  var ele_link = this.getLinkElement(ctrl.getElement());
 
   if (record.hasRecord()) {
     ele_title.textContent = record.getTitle();
     ele_title.href = record.getRecord().getViewLink();
     ele_title.target = record.getDomain();
+    if (record instanceof ydn.crm.sugar.model.GDataRecord) {
+      var g_record = /** @type {ydn.crm.sugar.model.GDataRecord} */ (record);
+      ele_link.textContent = '';
+      if (g_record.isSynced()) {
+        ele_link.classList.add(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_SYNCED);
+        ele_link.setAttribute('title', 'Gmail contact ' + g_record.getGData().getSingleId() +
+            ' is synced with SugarCRM ' + m_name + ' ' + g_record.getId());
+      } else {
+        ele_link.classList.remove(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_SYNCED);
+        if (g_record.canSync()) {
+          ele_link.textContent = 'link';
+          ele_link.setAttribute('title', 'Link Gmail contact ' + g_record.getGData().getSingleId() +
+              ' with SugarCRM ' + m_name + ' ' + g_record.getId());
+        } else {
+          ele_link.textContent = 'export';
+          ele_link.setAttribute('title', 'Export SugarCRM ' + m_name + ' ' + g_record.getId() +
+              ' to Gmail My Contact');
+        }
+      }
+      goog.style.setElementShown(ele_link, true);
+    } else {
+      goog.style.setElementShown(ele_link, false);
+    }
   } else {
     ele_title.textContent = '';
     ele_title.href = '';
@@ -194,6 +229,16 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.refresh = function(ctrl) {
 ydn.crm.ui.sugar.record.HeadRenderer.prototype.getTitleElement = function(ele) {
   return ele.querySelector('.' + ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS +
       ' .' + ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_TITLE);
+};
+
+
+/**
+ * @param {Element} ele ancentor
+ * @return {Element}
+ */
+ydn.crm.ui.sugar.record.HeadRenderer.prototype.getLinkElement = function(ele) {
+  return ele.querySelector('.' + ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS +
+      ' .' + ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_LINK);
 };
 
 

@@ -16,7 +16,7 @@ goog.require('ydn.crm.sugar');
 /**
  * Contact sidebar panel.
  * @param {goog.dom.DomHelper} dom
- * @param {ydn.crm.sugar.model.GDataSugar} model model
+ * @param {ydn.crm.inj.sugar.model.GDataSugar} model model
  * @constructor
  * @struct
  * @extends {goog.ui.Container}
@@ -43,7 +43,7 @@ ydn.crm.inj.sugar.FeedBody.DEBUG = false;
 
 
 /**
- * @return {!ydn.crm.sugar.model.GDataSugar}
+ * @return {!ydn.crm.inj.sugar.model.GDataSugar}
  * @override
  */
 ydn.crm.inj.sugar.FeedBody.prototype.getModel;

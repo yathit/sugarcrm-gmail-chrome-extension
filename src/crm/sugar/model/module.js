@@ -16,9 +16,9 @@
 /**
  * @fileoverview SugarCRM module model.
  *
- * Encapsulate module info (or meta data) and its transient record entry data.
- * Record entry data can change during life time of the model dispatching
- * change (goog.events.EventType.CHANGE) event.
+ * Unlike Record module, this module name cannot be change and parent sugar
+ * module keep track of this instance. Only one type of instance can have
+ * in a parent sugar model.
  */
 
 
@@ -29,7 +29,11 @@ goog.require('ydn.crm.sugar.model.Record');
 
 
 /**
- * SugarCRM module model.
+ * SugarCRM module model. This does not instiate directly, but generate from
+ * sugar.
+ * <pre>
+ *   var module = sugar.getModuleModel();
+ * </pre>
  * @param {ydn.crm.sugar.model.Sugar} parent
  * @param {ydn.crm.sugar.ModuleName} module_name
  * @constructor

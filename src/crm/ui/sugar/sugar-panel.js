@@ -34,7 +34,7 @@ goog.provide('ydn.crm.ui.sugar.SugarPanel');
 goog.require('goog.debug.Logger');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
-goog.require('ydn.crm.inj.sugar.Body');
+goog.require('ydn.crm.sugar.model.GDataSugar');
 goog.require('ydn.crm.ui.GmailCmdInjector');
 goog.require('ydn.crm.ui.gmail.Template');
 goog.require('ydn.crm.ui.sugar.FeedBody');
@@ -46,23 +46,16 @@ goog.require('ydn.json');
 
 /**
  * Contact sidebar panel.
- * @param {string} gdata_account Google account id, i.e., email address
- * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {ydn.crm.sugar.model.GDataSugar} model
  * @param {goog.dom.DomHelper} dom
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.SugarPanel = function(gdata_account, model, dom) {
+ydn.crm.ui.sugar.SugarPanel = function(model, dom) {
   goog.base(this, dom);
   this.setModel(model);
-  /**
-   * @final
-   * @protected
-   * @type {string}
-   */
-  this.gdata_account = gdata_account;
 
   /**
    * @type {ydn.crm.ui.GmailCmdInjector}
@@ -71,6 +64,14 @@ ydn.crm.ui.sugar.SugarPanel = function(gdata_account, model, dom) {
   this.gmail_cmd_inj_ = new ydn.crm.ui.GmailCmdInjector(model);
   this.gmail_cmd_inj_.observeEmailThreadToolbar(document.body);
 
+  /**
+   * @protected
+   * @type {Array.<ydn.crm.ui.GDataPanel>}
+   */
+  this.module_panels = ydn.crm.sugar.PANEL_MODULES.map(function(x) {
+    var m = new ydn.crm.sugar.model.GDataRecord(model, x);
+    return new ydn.crm.ui.GDataPanel(m, dom);
+  });
 };
 goog.inherits(ydn.crm.ui.sugar.SugarPanel, goog.ui.Component);
 
@@ -85,12 +86,27 @@ ydn.crm.ui.sugar.SugarPanel.DEBUG = false;
  * @const
  * @type {string}
  */
+ydn.crm.ui.sugar.SugarPanel.CSS_CLASS_CONTENT = 'content';
+
+
+/**
+ * @const
+ * @type {string}
+ */
 ydn.crm.ui.sugar.SugarPanel.CSS_CLASS = 'sugar-panel';
 
 
 /** @return {string} */
 ydn.crm.ui.sugar.SugarPanel.prototype.getCssClass = function() {
   return ydn.crm.ui.sugar.SugarPanel.CSS_CLASS;
+};
+
+
+/**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.SugarPanel.prototype.getContentElement = function() {
+  return this.getElement().querySelector('.' + ydn.crm.ui.sugar.SugarPanel.CSS_CLASS_CONTENT);
 };
 
 
@@ -109,13 +125,19 @@ ydn.crm.ui.sugar.SugarPanel.prototype.createDom = function() {
   var dom = this.dom_;
   var root = this.getElement();
   goog.dom.classes.add(root, this.getCssClass());
+  var head_ele = dom.createDom('div');
+  var content_ele = dom.createDom('div', ydn.crm.ui.sugar.SugarPanel.CSS_CLASS_CONTENT);
+  root.appendChild(head_ele);
+  root.appendChild(content_ele);
+  goog.style.setElementShown(content_ele, false);
 
-  var header_panel = new ydn.crm.ui.sugar.Header(dom, this.getModel());
-  this.addChild(header_panel, true);
+  var header_panel = new ydn.crm.ui.sugar.Header(this.getModel(), dom);
+  header_panel.render(head_ele);
 
-  // var body_panel = new ydn.crm.inj.sugar.Body(dom, this.getModel());
-  var body_panel = new ydn.crm.ui.sugar.FeedBody(this.gdata_account, this.getModel(), dom);
-  this.addChild(body_panel, true);
+  for (var i = 0; i < this.module_panels.length; i++) {
+    this.addChild(this.module_panels[i], true);
+  }
+
 };
 
 
@@ -134,6 +156,22 @@ ydn.crm.ui.sugar.SugarPanel.prototype.getContexts = function() {
  */
 ydn.crm.ui.sugar.SugarPanel.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
+  this.getHandler().listen(this.getModel(), [ydn.crm.sugar.model.events.Type.GDATA_CHANGE],
+      this.handleOnGDataChanged);
+};
+
+
+/**
+ * @protected
+ * @param {ydn.crm.sugar.model.events.GDataEvent} e
+ */
+ydn.crm.ui.sugar.SugarPanel.prototype.handleOnGDataChanged = function(e) {
+  var sugar = this.getModel();
+  if (ydn.crm.ui.sugar.SugarPanel.DEBUG) {
+    window.console.log(e, sugar.getContextGmail());
+  }
+  var has_context = !!sugar.getContextGmail();
+  goog.style.setElementShown(this.getContentElement(), has_context);
 };
 
 
@@ -158,19 +196,6 @@ ydn.crm.ui.sugar.SugarPanel.prototype.getChannel = function() {
  */
 ydn.crm.ui.sugar.SugarPanel.prototype.getDomainName = function() {
   return this.getModel().getDomain();
-};
-
-
-/**
- * Change contact model when inbox changes.
- * @param {string?} email
- * @param {string?} name
- * @param {string?} phone
- */
-ydn.crm.ui.sugar.SugarPanel.prototype.update = function(email, name, phone) {
-  this.logger.finer('update for ' + email);
-  var body_panel = /** @type {ydn.crm.ui.sugar.FeedBody} */ (this.getChildAt(1));
-  body_panel.update(email, name, phone);
 };
 
 

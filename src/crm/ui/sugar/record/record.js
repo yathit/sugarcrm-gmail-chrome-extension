@@ -171,7 +171,8 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
   goog.base(this, 'createDom');
   var root = this.getElement();
   var dom = this.getDomHelper();
-  root.classList.add(this.getCssClass());
+  // root.classList.add(this.getCssClass());
+  root.className = this.getCssClass() + ' ' + this.getModel().getModuleName();
   var header = dom.createDom('div', ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS);
   var content = dom.createDom('div', ydn.crm.ui.sugar.record.Record.CSS_CLASS_CONTENT);
   root.appendChild(header);
@@ -206,7 +207,8 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
   hd.listen(model, ydn.crm.sugar.model.events.Type.GDATA_CHANGE, this.handleRecordChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.handleRecordChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, this.handleRecordUpdated);
-  hd.listen(this.getElement(), goog.events.EventType.CLICK, this.handleClick, false);
+  var header_ele = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS);
+  hd.listen(header_ele, goog.events.EventType.CLICK, this.handleClick, false);
   hd.listen(this.getElement(), goog.events.EventType.DBLCLICK, this.handleDbClick, false);
   this.reset();
 };
@@ -223,6 +225,40 @@ ydn.crm.ui.sugar.record.Record.prototype.handleClick = function(e) {
     e.preventDefault();
     var module_name = ydn.crm.sugar.toModuleName(name);
     this.addNewItem(module_name);
+  } else if (e.target.classList.contains(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_LINK)) {
+    e.preventDefault();
+    // link click, it could be one of 'link', 'export', 'synced' state.
+    var a_link = e.target;
+    if (a_link.classList.contains(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_SYNCED)) {
+      // sync
+      this.logger.finer('record in sync');
+    } else {
+      /**
+       * @type {ydn.crm.sugar.model.Record}
+       */
+      var record = this.getModel();
+      if (record instanceof ydn.crm.sugar.model.GDataRecord) {
+        // this is always true, because link element is shown only for GDataRecord
+        var g_record = /** @type {ydn.crm.sugar.model.GDataRecord} */ (record);
+        if (g_record.canSync()) {
+          a_link.textContent = '...';
+          g_record.link().addCallbacks(function(x) {
+            a_link.textContent = '';
+          }, function(e) {
+            a_link.textContent = 'error';
+            throw e;
+          }, this);
+        } else {
+          a_link.textContent = '...';
+          g_record.export2GData().addCallbacks(function(x) {
+            a_link.textContent = '';
+          }, function(e) {
+            a_link.textContent = 'error';
+            throw e;
+          }, this);
+        }
+      }
+    }
   } else if (name == ydn.crm.ui.sugar.record.HeadRenderer.NAME_DETAIL) {
     this.handleDetailClick(e);
   } else if (name == ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT) {
@@ -390,13 +426,13 @@ ydn.crm.ui.sugar.record.Record.prototype.reset = function() {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log('reset ' + model);
   }
-  this.getElement().classList.remove(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ACTIVATED);
+  var root = this.getElement();
   this.head_panel.reset(this);
   this.footer_panel.reset(this);
   if (model.hasRecord()) {
-    this.getElement().classList.remove(ydn.crm.ui.CSS_CLASS_EMPTY);
+    root.className = this.getCssClass() + ' ' + model.getModuleName();
   } else {
-    this.getElement().classList.add(ydn.crm.ui.CSS_CLASS_EMPTY);
+    root.className = this.getCssClass() + ' ' + model.getModuleName() + ' ' + ydn.crm.ui.CSS_CLASS_EMPTY;
   }
 
 };

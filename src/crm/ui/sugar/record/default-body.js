@@ -21,6 +21,11 @@
 
 
 goog.provide('ydn.crm.ui.sugar.record.Default');
+goog.require('ydn.crm.inj.sugar.module.Group');
+goog.require('ydn.crm.inj.sugar.module.group.Address');
+goog.require('ydn.crm.inj.sugar.module.group.Email');
+goog.require('ydn.crm.inj.sugar.module.group.List');
+goog.require('ydn.crm.inj.sugar.module.group.Name');
 goog.require('ydn.crm.ui.sugar.field.Input');
 goog.require('ydn.crm.ui.sugar.field.TextArea');
 goog.require('ydn.crm.ui.sugar.record.Body');

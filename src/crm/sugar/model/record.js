@@ -30,7 +30,6 @@ ydn.crm.sugar.model.Record = function(parent, r) {
    * @type {ydn.crm.sugar.model.Sugar}
    */
   this.parent = parent;
-
   /**
    * @type {ydn.crm.sugar.Record}
    * @protected

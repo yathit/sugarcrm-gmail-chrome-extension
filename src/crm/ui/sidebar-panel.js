@@ -14,7 +14,7 @@ goog.require('ydn.crm.inj.ContactModel');
 goog.require('ydn.crm.ui.sugar.SugarPanel');
 goog.require('ydn.crm.inj.Task');
 goog.require('ydn.crm.inj.UserSetting');
-goog.require('ydn.crm.sugar.model.GDataSugar');
+goog.require('ydn.crm.inj.sugar.model.GDataSugar');
 goog.require('ydn.crm.ui.SugarSetupLink');
 goog.require('ydn.gdata.m8.ContactEntry');
 goog.require('ydn.msg.Message');
@@ -37,6 +37,11 @@ ydn.crm.ui.SidebarPanel = function(opt_dom) {
    */
   this.user_setting = ydn.crm.inj.UserSetting.getInstance();
 
+  /**
+   * @type {ydn.crm.ui.gmail.Template}
+   * @private
+   */
+  this.gmail_template_ = null;
 };
 goog.inherits(ydn.crm.ui.SidebarPanel, goog.ui.Component);
 
@@ -99,8 +104,12 @@ ydn.crm.ui.SidebarPanel.prototype.initSugar_ = function(about) {
   var df = this.user_setting.getModuleInfo(name);
   return df.addCallback(function(modules_info) {
     var ac = this.user_setting.getGmail();
-    var sugar = new ydn.crm.sugar.model.Sugar(about, modules_info);
-    var panel = new ydn.crm.ui.sugar.SugarPanel(ac, sugar, this.dom_);
+    var sugar = new ydn.crm.sugar.model.GDataSugar(about, modules_info, ac);
+    if (!this.gmail_template_ && sugar.isLogin()) {
+      this.logger.finer('compose template initialized.');
+      this.gmail_template_ = new ydn.crm.ui.gmail.Template(sugar);
+    }
+    var panel = new ydn.crm.ui.sugar.SugarPanel(sugar, this.dom_);
     for (var i = 0; i < this.getChildCount(); i++) {
       var child = /** @type {ydn.crm.ui.sugar.SugarPanel} */ (this.getChildAt(i));
       if (child instanceof ydn.crm.ui.sugar.SugarPanel) {
@@ -119,21 +128,37 @@ ydn.crm.ui.SidebarPanel.prototype.initSugar_ = function(about) {
  * Update sniff contact data.
  * @param {ydn.crm.inj.ContactModel} cm
  */
-ydn.crm.ui.SidebarPanel.prototype.update = function(cm) {
+ydn.crm.ui.SidebarPanel.prototype.updateForNewContact = function(cm) {
 
-  goog.style.setElementShown(this.getElement(), true);
   for (var i = 0; i < this.getChildCount(); i++) {
     var child = /** @type {ydn.crm.ui.sugar.SugarPanel} */ (this.getChildAt(i));
     if (child instanceof ydn.crm.ui.sugar.SugarPanel) {
+      /**
+       * @type {ydn.crm.sugar.model.GDataSugar}
+       */
+      var sugar = child.getModel();
       if (cm) {
-        child.update(cm.getEmail(), cm.getFullName(), cm.getPhone());
+        sugar.update(cm.getEmail(), cm.getFullName(), cm.getPhone())
       } else {
-        child.update(null, null, null);
+        sugar.update(null, null, null);
       }
-
     }
   }
 
+};
+
+
+/**
+ * Inject template menu on Gmail compose panel.
+ * @return {boolean} true if injected.
+ */
+ydn.crm.ui.SidebarPanel.prototype.injectTemplateMenu = function() {
+  if (this.gmail_template_) {
+    return this.gmail_template_.attach();
+  } else {
+    this.logger.warning('SugarCRM instance not ready.');
+    return false;
+  }
 };
 
 

@@ -19,7 +19,7 @@ var FeedWidget = function() {
 FeedWidget.prototype.render = function(e) {
   var div = document.createElement('div');
   e.appendChild(div);
-  var shadow = div.webkitCreateShadowRoot();
+  var shadow = div.webkitCreateShadowRoot ? div.webkitCreateShadowRoot() : div.createShadowRoot();
   var template = document.querySelector('#feed-widget-template');
   shadow.appendChild(template.content);
   template.remove();

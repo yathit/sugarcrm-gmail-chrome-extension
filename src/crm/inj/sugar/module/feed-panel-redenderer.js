@@ -66,16 +66,6 @@ ydn.crm.inj.sugar.FeedPanelRenderer.prototype.createDom = function(x) {
 };
 
 
-/**
- * Refresh view due to change in model.
- * @param {Element} root
- * @param {ydn.crm.sugar.model.GDataRecord} model
- */
-ydn.crm.inj.sugar.FeedPanelRenderer.prototype.refresh = function(root, model) {
-
-
-
-};
 
 
 

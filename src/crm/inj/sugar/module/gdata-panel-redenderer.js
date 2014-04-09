@@ -42,21 +42,21 @@ ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.logger =
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS = 'record-panel';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS = 'gdata-panel';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_CONTENT = 'record-content';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_CONTENT = 'gdata-content';
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_HEAD = 'record-header';
+ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_HEAD = 'gdata-header';
 
 
 /**
@@ -102,7 +102,7 @@ ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.getCssClass = function() {
 ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.createDom = function(x) {
   var el = goog.base(this, 'createDom', x);
   var header = /** {ydn.crm.inj.sugar.module.GDataPanel} */ (x);
-  var model = /** @type {ydn.crm.sugar.model.GDataRecord} */ (header.getModel());
+  var model = /** @type {ydn.crm.inj.sugar.GDataModule} */ (header.getModel());
   var module = model.getModuleName();
   var dom = header.getDomHelper();
   var root = dom.createDom('div', ydn.crm.inj.sugar.module.GDataPanelRenderer.CSS_CLASS_ROOT);
@@ -154,7 +154,7 @@ ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.createDom = function(x) {
 ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.updateImportLink = function(x) {
   var root = x.getHeadElement();
   /**
-   * @type {ydn.crm.sugar.model.GDataRecord}
+   * @type {ydn.crm.inj.sugar.GDataModule}
    */
   var model = x.getModel();
   var import_div = root.querySelector('.import');

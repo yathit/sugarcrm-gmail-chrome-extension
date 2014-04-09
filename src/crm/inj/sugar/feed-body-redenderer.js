@@ -73,7 +73,7 @@ ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_CONTENT = 'feed-body';
 ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
   var root = goog.base(this, 'createDom', x);
   var ctrl = /** {ydn.crm.inj.sugar.FeedPanel} */ (x);
-  var model = /** @type {ydn.crm.sugar.model.GDataSugar} */ (ctrl.getModel());
+  var model = /** @type {ydn.crm.inj.sugar.model.GDataSugar} */ (ctrl.getModel());
   var dom = ctrl.getDomHelper();
   var ele_header = dom.createDom('div', ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_HEADER);
   var ele_content = dom.createDom('div', ydn.crm.inj.sugar.FeedBodyRenderer.CSS_CLASS_CONTENT);
@@ -97,7 +97,7 @@ ydn.crm.inj.sugar.FeedBodyRenderer.prototype.createDom = function(x) {
 /**
  * Refresh view due to change in model.
  * @param {Element} root
- * @param {ydn.crm.sugar.model.GDataSugar} model
+ * @param {ydn.crm.inj.sugar.model.GDataSugar} model
  */
 ydn.crm.inj.sugar.FeedBodyRenderer.prototype.refresh = function(root, model) {
   var contact = model.getContactModel();
