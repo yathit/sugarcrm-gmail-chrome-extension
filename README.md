@@ -10,7 +10,15 @@ Try out: [Yathit CRM Bridge (Beta)](https://chrome.google.com/webstore/detail/ya
 Design Goal
 -----------
 
-Extensible Client side CRM using GData, AWS S3 and AWS DynamoDB backend services.
+API will be designed so that it is secure, easy to use, flexible and powerful enough to common use case in CRM applications in Gmail.
+
+All UI code (and associate data model, configuration, build script) will be open source so that the app can be easily extensible.
+
+Multiple backend service including GData, SugarCRM, AWS S3 and AWS DynamoDB will be supported.
+
+
+Plan
+----
 
 Stage 1 is implemented as Chrome Extension to Gmail bridging SugarCRM. The extension will allow SuagrCRM user easy to integrate Gmail, Google Contact, Task and Calendar and use SugarCRM inside Gmail. The extension UI is designed to be low profile in gmail interface.
 
@@ -18,7 +26,6 @@ In stage 2, this will be full feature web app.
 
 In stage 3, Mobile client will be created through phonegap.
 
-API will be designed so that it is easy to use, flexible and powerful enough to common use case in CRM applications.
 
 Features
 --------
