@@ -1,5 +1,10 @@
 /**
- * @fileoverview Request to load require scripts.
+ * @fileoverview Request to load require content script scripts.
+ *
+ * There are several options to load content script. Since the script file depend on
+ * user setting, we cannot hard code the file name. So dynamic injection is used.
+ * It is also noted that content script itself cannot load the file having extension
+ * API. We avoid using `webNavigation` because it will trigger browsing activity warning.
  */
 
 (function () {

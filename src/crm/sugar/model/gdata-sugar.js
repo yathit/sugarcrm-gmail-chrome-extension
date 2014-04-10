@@ -199,6 +199,28 @@ ydn.crm.sugar.model.GDataSugar.prototype.export2GData = function(record) {
  * @param {string?} phone found in sniffing gmail thread.
  */
 ydn.crm.sugar.model.GDataSugar.prototype.update = function(email, full_name, phone) {
+  if (this.isLogin() && this.hasHostPermission()) {
+    this.update_(email, full_name, phone);
+  } else {
+    // these two information may change at this time.
+    // we should listen change from the background page, but currently it is not.
+    // remove this code if background page notify changes in login and host permission
+    // status.
+    this.updateStatus().addBoth(function() {
+      this.update_(email, full_name, phone);
+    }, this);
+  }
+};
+
+
+/**
+ * Update gmail context.
+ * @param {string?} email found in sniffing gmail thread.
+ * @param {string?} full_name found in sniffing gmail thread.
+ * @param {string?} phone found in sniffing gmail thread.
+ * @private
+ */
+ydn.crm.sugar.model.GDataSugar.prototype.update_ = function(email, full_name, phone) {
   if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
     window.console.log(this + ' update for ' + email);
   }

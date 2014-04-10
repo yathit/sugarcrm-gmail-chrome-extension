@@ -19,11 +19,13 @@ Multiple backend service including GData, SugarCRM, AWS S3 and AWS DynamoDB will
 Security consideration:
 
  1. No loading of insecure code (no eval, no inline script).
- 2. No third parity code (facebook jdk, twitter api, etc) in extension. All must go though sandbox iframe.
- 3. All resources (images) must be serialized, i.e., image file are loaded by XMLHttpRequest and render using canvas or datauri.
- 4. Request only absolutely necessary host permission. Avoid host access to www.google.com, since the stakes are too high. All hosts permission is definitely not acceptable.
- 5. Reduce permission request. Use optional permission. Remember we are just an app, not managing browser. Don't stalk other tabs.
- 6. Use sandbox iframe.
+ 2. No third parity code (Google analytics, facebook jdk, twitter api, etc) in extension. All must go though sandbox iframe.
+ 4. Use https for SugarCRM, even if user provide http.
+ 5. All resources (images) must be serialized, i.e., image file are loaded by XMLHttpRequest and render using canvas or datauri.
+ 6. Request only absolutely necessary host permission. Avoid host access to www.google.com, since the stakes are too high. All hosts permission is definitely not acceptable.
+ 7. Reduce permission request. Use optional permission. Remember we are just an app, not managing browser. Don't stalk other tabs.
+ 8. Use sandbox iframe. Use encryption.
+ 9. Don't delete or hide Gmail DOM element.
 
 
 Plan

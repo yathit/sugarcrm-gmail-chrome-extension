@@ -111,6 +111,17 @@ ydn.crm.sugar.model.Sugar.prototype.initUser_ = function() {
 
 
 /**
+ * Update login status, host permission, etc.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.sugar.model.Sugar.prototype.updateStatus = function() {
+  return this.send(ydn.crm.Ch.SReq.ABOUT).addCallback(function(about) {
+    this.about = about;
+  }, this);
+};
+
+
+/**
  * @return {string} sugarcrm user id. This is About.userName
  */
 ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
