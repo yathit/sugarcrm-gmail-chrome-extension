@@ -56,7 +56,7 @@ ydn.crm.ui.gmail.Template = function(sugar) {
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.gmail.Template.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.gmail.Template');
+    goog.log.getLogger('ydn.crm.ui.gmail.Template');
 
 
 /**

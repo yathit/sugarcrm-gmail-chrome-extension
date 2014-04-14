@@ -1145,28 +1145,110 @@ a.sugarcrm-setup-link {
 
 .Accounts .icon {
     background-color: #37880e;
+}
 
+.Bugs .icon {
+    background-color: #e61718;
+}
+
+.Calls .icon {
+    background-color: #0b3a72;
+}
+
+.Calendar .icon {
+    background-color: #125db8;
+}
+
+.Campaigns .icon {
+    background-color: #788d0e;
+}
+
+.CampaignLog .icon {
+    background-color: #60710b;
+}
+
+.Cases .icon {
+    background-color: #b81213;
 }
 
 .Contacts .icon {
     background-color: #245a09;
 }
 
-.Opportunities .icon {
-    background-color: #7115ce;
+.Documents .icon {
+    background-color: #81380f;
+}
 
+.Emails .icon, .EmailText .icon, .EmailTemplates .icon {
+    background-color: #aa1466;
+}
+
+.Employees .icon {
+    background-color: #313130;
+}
+
+.Files .icon {
+    background-color: #984112;
+}
+
+.Forecasts .icon {
+    background-color: #af4b14;
+}
+
+.KBDocuments .icon {
+    background-color: #6b2e0c;
 }
 
 .Leads .icon {
     background-color: #448fec;
 }
 
+.Meetings .icon {
+    background-color: #e6af17;
+}
+
 .Notes .icon {
     background-color: #129cb7;
 }
 
-.Cases .icon {
-    background-color: #b81213;
+.Opportunities .icon {
+    background-color: #7115ce;
+}
+
+.Prospects .icon {
+    background-color: #7d0e4b;
+}
+
+.ProspectLists .icon, .Prospects .icon {
+    background-color: #7d0e4b;
+}
+
+.Reports .icon {
+    background-color: #c65517;
+}
+
+.RevenueLineItems .icon {
+    background-color: #4b0e88;
+}
+
+.Quotes .icon {
+    background-color: #0e7488;
+}
+
+.Targets .icon {
+    background-color: #931159;
+}
+
+.Tasks .icon {
+    background-color: #d81982;
+}
+
+.Users .icon {
+    background-color: #313130;
+}
+
+.Workflow .icon {
+    background-color: #414c08;
 }body {
     margin: 0;
     font-family: Arial, sans-serif;

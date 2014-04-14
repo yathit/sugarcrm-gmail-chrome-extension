@@ -31,7 +31,7 @@
 
 
 goog.provide('ydn.crm.ui.sugar.SugarPanel');
-goog.require('goog.debug.Logger');
+goog.require('goog.log');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
 goog.require('ydn.crm.sugar.model.GDataSugar');
@@ -180,7 +180,7 @@ ydn.crm.ui.sugar.SugarPanel.prototype.handleOnGDataChanged = function(e) {
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.sugar.SugarPanel.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.sugar.SugarPanel');
+    goog.log.getLogger('ydn.crm.ui.sugar.SugarPanel');
 
 
 /**

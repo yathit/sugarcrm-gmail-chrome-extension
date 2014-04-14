@@ -6,7 +6,7 @@
 goog.provide('ydn.crm.ui.SidebarPanel');
 goog.require('goog.Timer');
 goog.require('goog.async.DeferredList');
-goog.require('goog.debug.Logger');
+goog.require('goog.log');
 goog.require('goog.dom.classes');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
@@ -90,7 +90,7 @@ ydn.crm.ui.SidebarPanel.prototype.enterDocument = function() {
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.SidebarPanel.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.SidebarPanel');
+    goog.log.getLogger('ydn.crm.ui.SidebarPanel');
 
 
 /**
@@ -127,10 +127,12 @@ ydn.crm.ui.SidebarPanel.prototype.initSugar_ = function(about) {
 /**
  * Update sniff contact data.
  * @param {ydn.crm.inj.ContactModel} cm
+ * @private
  */
-ydn.crm.ui.SidebarPanel.prototype.updateForNewContact = function(cm) {
+ydn.crm.ui.SidebarPanel.prototype.updateForNewContact_ = function(cm) {
 
-  for (var i = 0; i < this.getChildCount(); i++) {
+  var cn = this.getChildCount();
+  for (var i = 0; i < cn; i++) {
     var child = /** @type {ydn.crm.ui.sugar.SugarPanel} */ (this.getChildAt(i));
     if (child instanceof ydn.crm.ui.sugar.SugarPanel) {
       /**
@@ -138,11 +140,28 @@ ydn.crm.ui.SidebarPanel.prototype.updateForNewContact = function(cm) {
        */
       var sugar = child.getModel();
       if (cm) {
-        sugar.update(cm.getEmail(), cm.getFullName(), cm.getPhone())
+        sugar.update(cm.getEmail(), cm.getFullName(), cm.getPhone());
       } else {
         sugar.update(null, null, null);
       }
     }
+  }
+};
+
+
+/**
+ * Update sniff contact data.
+ * @param {ydn.crm.inj.ContactModel} cm
+ */
+ydn.crm.ui.SidebarPanel.prototype.updateForNewContact = function(cm) {
+
+  var cn = this.getChildCount();
+  if (cn == 0) { // new sugarcrm instance may have
+    this.init().addCallback(function() {
+      this.updateForNewContact_(cm);
+    }, this);
+  } else {
+    this.updateForNewContact_(cm);
   }
 
 };

@@ -54,7 +54,7 @@ ydn.crm.ui.GDataPanel.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.GDataPanel.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.GDataPanel');
+    goog.log.getLogger('ydn.crm.ui.GDataPanel');
 
 
 /**

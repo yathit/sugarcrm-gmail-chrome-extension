@@ -81,7 +81,8 @@ SugarCrmWidget.prototype.onDomainBlur = function(e) {
   if (!domain) {
     return;
   }
-  if (domain == SugarCrmWidget.trialCredentials.domain) {
+  if (/\.trial\.sugarcrm\.com/.test(domain)) {
+    // all trial password from trial.sugarcrm.com are same.
     this.root.querySelector('input[name=username]').value = SugarCrmWidget.trialCredentials.user_name;
     this.root.querySelector('input[name=password]').value = SugarCrmWidget.trialCredentials.password;
   }

@@ -35,7 +35,7 @@ ydn.crm.inj.sugar.module.GDataPanelRenderer.DEBUG = goog.DEBUG;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.module.GDataPanelRenderer.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.module.GDataPanelRenderer');
+    goog.log.getLogger('ydn.crm.inj.sugar.module.GDataPanelRenderer');
 
 
 /**

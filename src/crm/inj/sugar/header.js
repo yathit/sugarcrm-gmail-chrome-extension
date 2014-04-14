@@ -54,7 +54,7 @@ ydn.crm.inj.sugar.Header.USE_POPUP = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.Header.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.Header');
+    goog.log.getLogger('ydn.crm.inj.sugar.Header');
 
 
 /**

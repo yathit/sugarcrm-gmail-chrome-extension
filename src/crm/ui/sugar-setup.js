@@ -3,7 +3,7 @@
  */
 
 goog.provide('ydn.crm.ui.SugarSetup');
-goog.require('goog.debug.Logger');
+goog.require('goog.log');
 goog.require('goog.events.KeyHandler');
 goog.require('goog.ui.Component');
 goog.require('templ.ydn.crm.inj');
@@ -43,7 +43,7 @@ ydn.crm.ui.SugarSetup.DUMMY_PASSWORD = 'xxxxxx';
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.SugarSetup.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.SugarSetup');
+    goog.log.getLogger('ydn.crm.ui.SugarSetup');
 
 
 /**

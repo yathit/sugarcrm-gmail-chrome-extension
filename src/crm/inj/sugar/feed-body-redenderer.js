@@ -37,7 +37,7 @@ ydn.crm.inj.sugar.FeedBodyRenderer.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.FeedBodyRenderer.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.FeedBodyRenderer');
+    goog.log.getLogger('ydn.crm.inj.sugar.FeedBodyRenderer');
 
 
 /**

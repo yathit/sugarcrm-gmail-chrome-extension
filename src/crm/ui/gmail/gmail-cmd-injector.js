@@ -27,20 +27,15 @@ goog.require('ydn.crm.ui.GmailCmd');
 /**
  * Gmail command injector.
  * @param {ydn.crm.sugar.model.Sugar} sugar
- * @param {ydn.crm.ui.sugar.SugarPanel=} opt_parent
  * @constructor
  */
-ydn.crm.ui.GmailCmdInjector = function(sugar, opt_parent) {
+ydn.crm.ui.GmailCmdInjector = function(sugar) {
   /**
    * @protected
    * @type {ydn.crm.sugar.model.Sugar}
    */
   this.sugar = sugar;
-  /**
-   * @protected
-   * @type {ydn.crm.ui.sugar.SugarPanel?}
-   */
-  this.parent = opt_parent || null;
+
   /**
    * @type {Array.<!ydn.crm.ui.GmailCmd>}
    * @private
@@ -61,7 +56,7 @@ ydn.crm.ui.GmailCmdInjector.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.GmailCmdInjector.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.GmailCmdInjector');
+    goog.log.getLogger('ydn.crm.ui.GmailCmdInjector');
 
 
 /**

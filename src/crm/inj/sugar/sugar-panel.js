@@ -31,7 +31,7 @@
 
 
 goog.provide('ydn.crm.inj.SugarPanel');
-goog.require('goog.debug.Logger');
+goog.require('goog.log');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
 goog.require('ydn.crm.inj.sugar.Body');
@@ -119,7 +119,7 @@ ydn.crm.inj.SugarPanel.prototype.enterDocument = function() {
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.SugarPanel.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.SugarPanel');
+    goog.log.getLogger('ydn.crm.inj.SugarPanel');
 
 
 /**

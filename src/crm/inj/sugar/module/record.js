@@ -74,7 +74,7 @@ ydn.crm.inj.sugar.module.Record.CSS_NAME_SECONDARY = 'secondary';
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.module.Record.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.module.Record');
+    goog.log.getLogger('ydn.crm.inj.sugar.module.Record');
 
 
 /**

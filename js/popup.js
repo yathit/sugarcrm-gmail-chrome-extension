@@ -102,15 +102,26 @@ PopupPage.prototype.handleHostPermissionRequest_ = function(e) {
  * Initialize UI.
  */
 PopupPage.prototype.init = function() {
+  PopupPage.setStatus('connecting to background...');
+  ydn.msg.getChannel().send('echo').addCallbacks(function() {
+    this.init_();
+  }, function(e) {
+    PopupPage.setStatus('fail to connect background');
+  }, this);
+};
+
+
+/**
+ * Initialize UI.
+ */
+PopupPage.prototype.init_ = function() {
   PopupPage.setStatus('checking login...');
   // here we can use extension.getURL, but need more robust on dev.
   var option_page = window.location.href.replace(/#.*/, '')
       .replace('popup.html', 'option-page.html');
-  var connected_background = false;
+
   ydn.msg.getChannel().send('login-info').addCallbacks(function(info) {
-    if (info) {
-      connected_background = true;
-    }
+
     if (info.is_login) {
       PopupPage.setStatus(info.email + ' logged in.');
       // check host premission requirement
@@ -170,11 +181,6 @@ PopupPage.prototype.init = function() {
     PopupPage.setStatus(e);
   }, this);
 
-  setTimeout(function() {
-    if (!connected_background) {
-      chrome.runtime.reload();
-    }
-  }, 1000);
 };
 
 

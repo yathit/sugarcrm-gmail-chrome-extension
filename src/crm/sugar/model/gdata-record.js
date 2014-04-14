@@ -63,7 +63,7 @@ ydn.crm.sugar.model.GDataRecord.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.sugar.model.GDataRecord.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.sugar.model.GDataRecord');
+    goog.log.getLogger('ydn.crm.sugar.model.GDataRecord');
 
 
 /**

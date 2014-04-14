@@ -10,6 +10,7 @@ goog.require('goog.style');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.base');
 goog.require('ydn.crm.sugar');
+goog.require('ydn.crm.ui.sugar.activity.Panel');
 goog.require('ydn.crm.ui.sugar.SearchPanel');
 
 
@@ -26,6 +27,7 @@ goog.require('ydn.crm.ui.sugar.SearchPanel');
 ydn.crm.ui.sugar.Header = function(model, dom) {
   goog.base(this, dom);
   this.setModel(model);
+
 };
 goog.inherits(ydn.crm.ui.sugar.Header, goog.ui.Component);
 
@@ -53,7 +55,7 @@ ydn.crm.ui.sugar.Header.USE_POPUP = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.sugar.Header.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.sugar.Header');
+    goog.log.getLogger('ydn.crm.ui.sugar.Header');
 
 
 /**
@@ -156,9 +158,9 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
 
   var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
   this.addChild(search, true);
-  // var ele_search = dom.createDom('div');
-  // root.appendChild(ele_search);
-  // search.render(ele_search);
+
+  var activity_panel = new ydn.crm.ui.sugar.activity.Panel(model, dom);
+  this.addChild(activity_panel, true);
 };
 
 
@@ -187,7 +189,7 @@ ydn.crm.ui.sugar.Header.prototype.enterDocument = function() {
       // window.console.log(permissions);
       if (permissions && permissions['origins']) {
         var origins = permissions['origins'];
-        var domain = this.info.getDomain();
+        var domain = this.getModel().getDomain();
         for (var i = 0; i < origins.length; i++) {
           var uri = new goog.Uri(origins[i]);
           // window.console.log(uri.getDomain() + ' ' + domain);

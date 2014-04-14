@@ -86,7 +86,7 @@ ydn.crm.inj.sugar.Body.prototype.getModel;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.Body.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.Body');
+    goog.log.getLogger('ydn.crm.inj.sugar.Body');
 
 
 /**

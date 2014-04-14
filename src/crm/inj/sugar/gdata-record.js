@@ -50,7 +50,7 @@ ydn.crm.inj.sugar.GDataModule.DEBUG = goog.DEBUG;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.GDataModule.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.GDataModule');
+    goog.log.getLogger('ydn.crm.inj.sugar.GDataModule');
 
 
 /**

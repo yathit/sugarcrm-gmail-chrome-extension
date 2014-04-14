@@ -52,7 +52,7 @@ goog.inherits(ydn.crm.ui.GmailCmd, goog.ui.Component);
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.GmailCmd.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.GmailCmd');
+    goog.log.getLogger('ydn.crm.ui.GmailCmd');
 
 
 /**

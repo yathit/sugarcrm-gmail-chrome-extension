@@ -55,7 +55,7 @@ ydn.crm.sugar.model.Record.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.sugar.model.Record.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.sugar.model.Record');
+    goog.log.getLogger('ydn.crm.sugar.model.Record');
 
 
 /**

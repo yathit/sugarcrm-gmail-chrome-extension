@@ -53,7 +53,7 @@ ydn.crm.inj.sugar.module.GDataPanel.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.module.GDataPanel.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.module.GDataPanel');
+    goog.log.getLogger('ydn.crm.inj.sugar.module.GDataPanel');
 
 
 /**

@@ -3,7 +3,7 @@
  */
 
 goog.provide('ydn.crm.ui.SugarSetupLink');
-goog.require('goog.debug.Logger');
+goog.require('goog.log');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.base');
 

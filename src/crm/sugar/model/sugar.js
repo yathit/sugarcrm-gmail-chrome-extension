@@ -15,6 +15,8 @@
 
 /**
  * @fileoverview SugarCRM service model.
+ *
+ * Dispatch 'login' event.
  *                                                 `
  * @author kyawtun@yathit.com (Kyaw Tun)
  */
@@ -88,6 +90,37 @@ ydn.crm.sugar.model.Sugar.DEBUG = false;
 
 
 /**
+ * Events
+ * @enum {string}
+ */
+ydn.crm.sugar.model.Sugar.Event = {
+  LOGIN: 'login',
+  LOGOUT: 'logout'
+};
+
+
+/**
+ * Set about.
+ * @param {SugarCrm.About} about
+ */
+ydn.crm.sugar.model.Sugar.prototype.setAbout = function(about) {
+  if (!about) {
+    return;
+  }
+  goog.asserts.assert((about.domain == this.getDomain()),
+      'domain must not change from ' + this.getDomain() + ' to ' + about.domain);
+  var was_login = this.about.isLogin;
+  var is_login = !!about && about.isLogin;
+  this.about = about;
+  if (!was_login && is_login) {
+    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.LOGIN, this));
+  } else if (was_login && !is_login) {
+    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.LOGOUT, this));
+  }
+};
+
+
+/**
  * @return {boolean}
  */
 ydn.crm.sugar.model.Sugar.prototype.isLogin = function() {
@@ -116,7 +149,7 @@ ydn.crm.sugar.model.Sugar.prototype.initUser_ = function() {
  */
 ydn.crm.sugar.model.Sugar.prototype.updateStatus = function() {
   return this.send(ydn.crm.Ch.SReq.ABOUT).addCallback(function(about) {
-    this.about = about;
+    this.setAbout(about);
   }, this);
 };
 
@@ -231,19 +264,6 @@ ydn.crm.sugar.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
 };
 
 
-/**
- * @param {SugarCrm.About} about
- */
-ydn.crm.sugar.model.Sugar.prototype.setAbout = function(about) {
-  if (!about) {
-    return;
-  }
-  goog.asserts.assert((about.domain == this.getDomain()),
-      'domain must not change from ' + this.getDomain() + ' to ' + about.domain);
-
-  this.about = about;
-};
-
 
 /**
  * @param {SugarCrm.ServerInfo} info
@@ -292,7 +312,7 @@ ydn.crm.sugar.model.Sugar.prototype.doLogin = function(username, password) {
   info.password = password;
   return this.send(ydn.crm.Ch.SReq.LOGIN, info)
       .addCallback(function(data) {
-        this.about = data;
+        this.setAbout(data);
       }, this);
 };
 
@@ -320,7 +340,7 @@ ydn.crm.sugar.model.Sugar.prototype.createNew = function(url, username, password
   info.password = password;
   return ydn.msg.getChannel().send(ydn.crm.Ch.Req.NEW_SUGAR, info)
       .addCallback(function(data) {
-        this.about = data;
+        this.setAbout(data);
       }, this);
 };
 
@@ -407,7 +427,8 @@ ydn.crm.sugar.model.Sugar.prototype.archiveEmail = function(info,
   div.innerHTML = info.html;
   // ISO: "2014-04-02T03:32:20.522Z"
   // SugarCRM: "2013-09-20 22:10:00"
-  var date_str = info.date_sent.toISOString().replace('T', ' ').replace(/\..+/, '');
+  var date_str = ydn.crm.sugar.utils.isValidDate(info.date_sent) ?
+      ydn.crm.sugar.utils.toDateString(info.date_sent) : '';
   var obj = {
     'assigned_user_id': this.getUserName(),
     'assigned_user_name': this.getUserLabel(),

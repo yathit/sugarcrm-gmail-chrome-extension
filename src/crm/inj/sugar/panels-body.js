@@ -71,7 +71,7 @@ ydn.crm.inj.sugar.PanelsBody.prototype.getModel;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.PanelsBody.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.PanelsBody');
+    goog.log.getLogger('ydn.crm.inj.sugar.PanelsBody');
 
 
 /**

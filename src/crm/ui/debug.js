@@ -6,7 +6,7 @@
 
 
 goog.provide('ydn.crm.ui.Debug');
-goog.require('goog.debug.Logger');
+goog.require('goog.log');
 goog.require('goog.dom');
 goog.require('goog.events');
 goog.require('goog.style');
@@ -44,7 +44,7 @@ ydn.crm.ui.Debug = function() {
  * @type {goog.debug.Logger}
  */
 ydn.crm.ui.Debug.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.ui.Debug');
+    goog.log.getLogger('ydn.crm.ui.Debug');
 
 
 /**

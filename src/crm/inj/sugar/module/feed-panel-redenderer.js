@@ -35,7 +35,7 @@ ydn.crm.inj.sugar.FeedPanelRenderer.DEBUG = false;
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.FeedPanelRenderer.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.FeedPanelRenderer');
+    goog.log.getLogger('ydn.crm.inj.sugar.FeedPanelRenderer');
 
 
 /**

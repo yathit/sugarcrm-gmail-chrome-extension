@@ -65,7 +65,7 @@ ydn.crm.inj.sugar.module.RecordCtrl.NEW_RECORD_EVENT = 'new-record';
  * @type {goog.debug.Logger}
  */
 ydn.crm.inj.sugar.module.RecordCtrl.prototype.logger =
-    goog.debug.Logger.getLogger('ydn.crm.inj.sugar.module.RecordCtrl');
+    goog.log.getLogger('ydn.crm.inj.sugar.module.RecordCtrl');
 
 
 /**
