@@ -97,16 +97,18 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   goog.dom.classes.add(root, this.getCssClass());
 
   this.addChild(this.tabbar, true);
-  var feed_ele = dom.createDom('div', ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED, 'Fe');
+  var feed_ele = dom.createDom('div');
   var up = new goog.ui.Tab(feed_ele);
   up.setTooltip('Activity feed');
   this.tabbar.addChild(up, true);
+  up.getContentElement().classList.add(ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED);
   for (var i = 0; i < ydn.crm.sugar.ACTIVITY_MODULES.length; i++) {
     var caption = ydn.crm.sugar.ACTIVITY_MODULES[i].substr(0, 2);
-    var ele = dom.createDom('div', ydn.crm.sugar.ACTIVITY_MODULES[i], caption);
+    var ele = dom.createDom('div', null, caption);
     var tab = new goog.ui.Tab(ele);
     tab.setTooltip(ydn.crm.sugar.ACTIVITY_MODULES[i]);
     this.tabbar.addChild(tab, true);
+    tab.getContentElement().classList.add(ydn.crm.sugar.ACTIVITY_MODULES[i]);
     tab.setVisible(false);
   }
 
@@ -125,11 +127,23 @@ ydn.crm.ui.sugar.activity.Panel.prototype.enterDocument = function() {
   hd.listen(sugar, ydn.crm.sugar.model.Sugar.Event.LOGIN, this.updaterLater_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.SELECT, this.handleTabSelect_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.UNSELECT, this.handleTabUnSelect_);
+  hd.listen(this.detail_panel.getElement(), 'click', this.handleDetailPanelClick_);
   goog.style.setElementShown(this.getElement(), false);
-
   // if already login, update at the beginning.
   if (sugar.isLogin()) {
     this.updaterLater_();
+  }
+};
+
+
+/**
+ * @param {Event} e
+ * @private
+ */
+ydn.crm.ui.sugar.activity.Panel.prototype.handleDetailPanelClick_ = function(e) {
+  var name = e.target.getAttribute('name');
+  if (name == 'close') {
+    this.tabbar.setSelectedTabIndex(-1);
   }
 };
 
@@ -229,7 +243,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
  */
 ydn.crm.ui.sugar.activity.Panel.prototype.setActivityCount = function(cnt, since) {
   var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(0));
-  var ele = tab.getContentElement();
+  var ele = tab.getContentElement().firstElementChild;
   if (cnt > 0) {
     ele.textContent = cnt;
     var t = goog.date.relative.format(since.getTime()) || since.toLocaleDateString();
@@ -248,12 +262,13 @@ ydn.crm.ui.sugar.activity.Panel.prototype.setActivityCount = function(cnt, since
 ydn.crm.ui.sugar.activity.Panel.prototype.setCount = function(name, cnt) {
   var idx = ydn.crm.sugar.ACTIVITY_MODULES.indexOf(name);
   var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(idx + 1));
+  var ele = tab.getContentElement().firstElementChild;
   if (cnt) {
-    tab.getContentElement().textContent = cnt;
+    ele.textContent = cnt;
     tab.setTooltip(cnt + ' upcoming ' + name);
     tab.setVisible(true);
   } else {
-    tab.getContentElement().textContent = name.substr(0, 2);
+    ele.textContent = name.substr(0, 2);
     tab.setTooltip('');
     tab.setVisible(false);
   }

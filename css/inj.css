@@ -1,14 +1,91 @@
 
-div.canvas {
-    overflow: hidden;
+.activity-panel .goog-tab-bar {
+    border-bottom: none;
 }
+
+.activity-panel .goog-tab-bar-top {
+    border-bottom: none !important;
+}
+
+.activity-panel .activity-feed {
+    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
+    min-width: 16px;
+    border-radius: 3px;
+    background-color: lightgreen;
+}
+
+.activity-panel .goog-tab {
+    min-width: 16px;
+    border-radius: 3px;
+}
+
+.activity-panel .goog-tab.Calls {
+    background-color: #0b3a72;
+}
+
+.activity-panel .goog-tab.Meetings {
+    background-color: #e6af17;
+}
+
+.activity-panel .goog-tab.Opportunities {
+    background-color: #7115ce;
+}
+
+.activity-panel .goog-tab.Tasks {
+    background-color: #d81982;
+}
+
+.activity-panel .goog-tab > * {
+    text-align: center;
+    color: white;
+}
+
+.activity-panel .goog-tab:after {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    font-size: 60%;
+    color: #808080;
+    font-weight: 400;
+}
+
+.activity-panel .goog-tab.Calls:after {
+    content: "Ca";
+}
+
+.activity-panel .goog-tab.Meetings:after {
+    content: "Me";
+}
+
+.activity-panel .goog-tab.Opportunities:after {
+    content: "Op";
+}
+
+.activity-panel .goog-tab.Tasks:after {
+    content: "Ta";
+}
+
 
 .detail-panel {
 
 }
 
-.detail-item {
+.detail-panel .detail-item {
     padding: 4px;
+}
+
+.detail-panel > .header > .close {
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.detail-panel > .content {
+    clear: both;
+}
+
+.activity-panel .goog-tab {
+    text-decoration: none;
 }
 
 .left {

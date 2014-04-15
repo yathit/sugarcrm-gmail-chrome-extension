@@ -16,6 +16,7 @@
 /**
  * @fileoverview Activity detail panel.
  *
+ * Note: Events are handled by the parent activity panel.
  *
  * @author kyawtun@yathit.com (Kyaw Tun)
  */
@@ -53,6 +54,13 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.getModel;
  * @type {string}
  */
 ydn.crm.ui.sugar.activity.DetailPanel.CSS_CLASS_ITEM = 'detail-item';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.activity.DetailPanel.CSS_CLASS_CLOSE = 'close';
 
 
 /**
@@ -125,7 +133,7 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.enterDocument = function() {
  * @private
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.handleClick_ = function(e) {
-  // e.preventDefault();
+
 };
 
 
@@ -218,6 +226,19 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderActivity = function() {
   var root = this.getElement();
   this.getModel().send(ydn.crm.Ch.SReq.ACTIVITY_STREAM).addCallbacks(function(ans) {
     // window.console.log(ans);
+    var dom = this.getDomHelper();
+    var title = dom.createDom('span');
+    if (ans.length > 0) {
+      var since = ydn.crm.sugar.utils.parseDate(ans[ans.length - 1]['date_modified']);
+      var t = goog.date.relative.format(since.getTime()) || since.toLocaleDateString();
+      title.textContent = ans.length + ' records updated since ' + t;
+    } else {
+      title.appendChild(dom.createTextNode('No activity? Have you '));
+      var link = dom.createDom('a', {'href': chrome.extension.getURL('setup.html')}, 'setup');
+      title.appendChild(link);
+      title.appendChild(dom.createTextNode('?'));
+    }
+    this.renderHeader_(title);
     for (var i = 0; i < ans.length; i++) {
       this.renderItem_(ans[i]);
     }
@@ -257,6 +278,23 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcomingItem_ = function(o
 
 
 /**
+ * Render header using given element as title.
+ * @param {Element} el
+ * @private
+ */
+ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderHeader_ = function(el) {
+  var head = this.getHeadElement();
+  head.innerHTML = '';
+  head.appendChild(el);
+  var close = this.getDomHelper().createDom('div', ydn.crm.ui.sugar.activity.DetailPanel.CSS_CLASS_CLOSE);
+  close.innerHTML = '&#x25B2';
+  close.setAttribute('title', 'Close');
+  close.setAttribute('name', 'close');
+  head.appendChild(close);
+};
+
+
+/**
  * Render upcoming activity.
  * @param {number} idx
  */
@@ -264,8 +302,9 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcoming = function(idx) {
   var q = this.queryUpcoming(idx);
   this.getModel().send(ydn.crm.Ch.SReq.LIST, [q]).addCallbacks(function(arr) {
     var results = /** @type {Array.<SugarCrm.Record>} */ (arr[0]['result']);
-    var head = this.getHeadElement();
+    var head = this.getDomHelper().createDom('span');
     head.textContent = results.length + ' upcoming ' + ydn.crm.sugar.ACTIVITY_MODULES[idx];
+    this.renderHeader_(head);
     for (var i = 0; i < results.length; i++) {
       this.renderUpcomingItem_(results[i]);
     }
