@@ -21,6 +21,7 @@ var Credentials = function() {
   var li = document.createElement('li');
   list.appendChild(li);
   gdata.render(li);
+  gdata.refresh();
 
   SugarCrmModel.list(function(models) {
     for (var i = 0; i < models.length; i++) {

@@ -7,9 +7,10 @@
 /**
  * GData credential widget.
  * @param {SugarCrmModel} model
+ * @param {boolean=} opt_hide_title
  * @constructor
  */
-var SugarCrmWidget = function(model) {
+var SugarCrmWidget = function(model, opt_hide_title) {
   /**
    * @protected
    * @type {SugarCrmModel}
@@ -19,6 +20,7 @@ var SugarCrmWidget = function(model) {
    * @type {Element}
    */
   this.root = document.createElement('div');
+  this.hide_title_ = !!opt_hide_title;
 };
 
 
@@ -63,6 +65,10 @@ SugarCrmWidget.prototype.render = function(ele) {
       me.handleLogin(e);
     }
   }, false);
+
+  if (this.hide_title_) {
+    this.root.querySelector('h3').style.display = 'none';
+  }
 
   this.refresh();
 };

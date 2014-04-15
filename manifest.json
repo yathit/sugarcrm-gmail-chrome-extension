@@ -23,9 +23,8 @@
   },
 
   "web_accessible_resources": [
-    "option-page.html",
+    "setup.html",
     "host-permission.html",
-    "js/option/option-page.js",
     "jsc/*",
     "image/*"],
 

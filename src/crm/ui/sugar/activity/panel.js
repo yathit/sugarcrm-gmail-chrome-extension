@@ -125,7 +125,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.enterDocument = function() {
   hd.listen(sugar, ydn.crm.sugar.model.Sugar.Event.LOGIN, this.updaterLater_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.SELECT, this.handleTabSelect_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.UNSELECT, this.handleTabUnSelect_);
-
+  goog.style.setElementShown(this.getElement(), false);
 
   // if already login, update at the beginning.
   if (sugar.isLogin()) {
@@ -183,6 +183,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateActivity_ = function() {
     if (ans.length > 0) {
       // Note: result are sorted by date_modified in descending ordering.
       var since = ydn.crm.sugar.utils.parseDate(ans[ans.length - 1]['date_modified']);
+      goog.style.setElementShown(this.getElement(), true);
       this.setActivityCount(ans.length, since);
     }
   }, function(e) {
@@ -214,6 +215,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
       // so that event if renderer fail, updating continue.
       this.updateUpcomingActivity_(true, next);
     }
+    goog.style.setElementShown(this.getElement(), true);
     this.setCount(ydn.crm.sugar.ACTIVITY_MODULES[index], query_result.result.length);
   }, function(e) {
     throw e;

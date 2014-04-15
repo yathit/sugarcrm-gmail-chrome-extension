@@ -10,6 +10,21 @@ div.canvas {
 .detail-item {
     padding: 4px;
 }
+
+.left {
+    float: left;
+    display: inline-block;
+    z-index: 0;
+}
+
+.right {
+    float: right;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1;
+}
+
+
 /* toolbar items */
 .toolbar > * {
     padding-left: 4px;

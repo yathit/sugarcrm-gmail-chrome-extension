@@ -119,6 +119,8 @@ PopupPage.prototype.init_ = function() {
   // here we can use extension.getURL, but need more robust on dev.
   var option_page = window.location.href.replace(/#.*/, '')
       .replace('popup.html', 'option-page.html');
+  var setup_page = window.location.href.replace(/#.*/, '')
+      .replace('popup.html', 'setup.html');
 
   ydn.msg.getChannel().send('login-info').addCallbacks(function(info) {
 
@@ -171,8 +173,8 @@ PopupPage.prototype.init_ = function() {
         {
           tagName: 'A',
           textContent: 'Setup',
-          target: 'option-page',
-          href: option_page
+          target: 'setup',
+          href: setup_page
         }
       ];
       this.renderFeed(arr, true);
@@ -183,21 +185,10 @@ PopupPage.prototype.init_ = function() {
 
 };
 
+ydn.msg.initPipe('popup');
+var app = new PopupPage();
+app.init();
 
-chrome.storage.local.get('ydn-crm-src', function(obj) {
-  var fn = obj['ydn-crm-src'];
-  var node = document.createElement('script');
-  node.type = 'text/javascript';
-  node.onload = function() {
-    // now run the app
-    ydn.msg.initPipe('popup');
-    window.app = new PopupPage();
-    window.app.init();
-  };
-  node.src = fn;
-  var head = document.getElementsByTagName('head')[0];
-  head.appendChild(node);
-});
 
 
 

@@ -6,13 +6,15 @@
 
 /**
  * GData credential widget.
+ * @param {boolean=} opt_hide_title
  * @constructor
  */
-var GDataCredentialWidget = function() {
+var GDataCredentialWidget = function(opt_hide_title) {
   /**
    * @type {Element}
    */
   this.root = null;
+  this.hide_title_ = !!opt_hide_title;
 };
 
 
@@ -29,7 +31,10 @@ GDataCredentialWidget.prototype.render = function(ele) {
   var a_revoke = this.root.querySelector('a[name=gdata-token-revoke]');
   a_revoke.addEventListener('click', this.revoke_.bind(this), true);
 
-  this.refresh();
+  if (this.hide_title_) {
+    this.root.querySelector('h3').style.display = 'none';
+  }
+
 };
 
 
@@ -60,8 +65,11 @@ GDataCredentialWidget.prototype.revoke_ = function(e) {
 
 /**
  * Refresh the data.
+ * @param {function(this: T, boolean)=} opt_cb return true if has token.
+ * @param {T=} opt_scope
+ * @template T
  */
-GDataCredentialWidget.prototype.refresh = function() {
+GDataCredentialWidget.prototype.refresh = function(opt_cb, opt_scope) {
   ydn.msg.getChannel().send('gdata-token', window.location.href).addCallback(function(data) {
     var token = /** @type {YdnApiToken} */ (data);
 
@@ -75,11 +83,17 @@ GDataCredentialWidget.prototype.refresh = function() {
       scopes.textContent = token.Scopes.join(', ');
       display_panel.style.display = '';
       authorize_panel.style.display = 'none';
+      if (opt_cb) {
+        opt_cb.call(opt_scope, true);
+      }
     } else {
       var btn = authorize_panel.querySelector('a');
       btn.href = token.authorize_url;
       display_panel.style.display = 'none';
       authorize_panel.style.display = '';
+      if (opt_cb) {
+        opt_cb.cal(opt_scope, true);
+      }
     }
   }, this);
 };

@@ -21,6 +21,7 @@ var SugarCrmModel = function(data) {
    * @type {SugarCrm.ServerInfo}
    */
   this.info = null;
+
 };
 
 
@@ -53,18 +54,22 @@ SugarCrmModel.prototype.isLogin = function() {
 
 /**
  * Query host permission.
- * @param {function(this: T, boolean)} cb
+ * @param {function(this: T, boolean)=} opt_cb
  * @param {T} scope
  * @template T
+ * @return {boolean}
  */
-SugarCrmModel.prototype.hasHostPermission = function(cb, scope) {
+SugarCrmModel.prototype.hasHostPermission = function(opt_cb, scope) {
   var permissions = {
     origins: ['http://' + this.data.domain + '/*', 'https://' + this.data.domain + '/*']
   };
   chrome.permissions.contains(permissions, function(grant) {
     // console.log(scope, grant);
-    cb.call(scope, grant);
+    if (opt_cb) {
+      opt_cb.call(scope, grant);
+    }
   });
+  return !!this.data && !!this.data.hostPermission;
 };
 
 
