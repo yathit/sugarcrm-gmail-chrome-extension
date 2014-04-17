@@ -114,17 +114,13 @@ ydn.crm.ui.sugar.record.Secondary.prototype.handleChanged = function(e) {
    */
   var model = this.getModel();
   if (model.hasRecord()) {
-    /**
-     * @type {ydn.crm.sugar.Record}
-     */
-    var record = model.getRecord();
     var sugar = model.getSugar();
-    var req = ydn.crm.Ch.SReq.LIST;
+    var req = ydn.crm.Ch.SReq.QUERY;
     var query = [{
       'store': ydn.crm.sugar.ModuleName.NOTES,
       'index': 'parent',
       'reverse': true,
-      'keyRange': ydn.db.KeyRange.starts([model.getModuleName(), record.getId()])
+      'keyRange': ydn.db.KeyRange.starts([model.getModuleName(), model.getId()])
     }];
     sugar.send(req, query).addCallbacks(function(x) {
       var arr = /** @type {Array.<CrmReqQuery>} */ (x);

@@ -49,10 +49,10 @@ ydn.crm.sugar.model.Group = function(parent, group_name) {
    */
   this.group_name = group_name || '';
   /**
-   * @type {Object.<!ydn.crm.sugar.model.Field>}
+   * @type {Array.<!ydn.crm.sugar.model.Field>}
    * @private
    */
-  this.fields_ = {};
+  this.fields_ = [];
 };
 
 
@@ -84,14 +84,6 @@ ydn.crm.sugar.model.Group.prototype.getModuleInfo = function() {
  */
 ydn.crm.sugar.model.Group.prototype.getFieldInfo = function(name) {
   return this.module.getFieldInfo(name);
-};
-
-
-/**
- * @return {ydn.crm.sugar.Record} return sugarcrm record entry.
- */
-ydn.crm.sugar.model.Group.prototype.getRecord = function() {
-  return this.module.getRecord();
 };
 
 
@@ -170,19 +162,56 @@ ydn.crm.sugar.model.Group.prototype.hasField = function(name) {
  * @param {string} name
  * @return {!ydn.crm.sugar.model.Field}
  */
-ydn.crm.sugar.model.Group.prototype.getFieldModel = function(name) {
-  if (!this.fields_[name]) {
-    var field_info = this.module.getFieldInfo(name);
-    if (this.group_name) {
-      goog.asserts.assert(this.group_name == field_info.group,
-          name + ' not in group ' + this.group_name);
-    } else {
-      goog.asserts.assert(!field_info.group,
-          name + ' not in group ' + this.group_name);
-    }
-    this.fields_[name] = new ydn.crm.sugar.model.Field(this, name);
+ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
+  var index = this.fields_.indexOf(name);
+  if (index >= 0) {
+    return this.fields_[index];
   }
-  return this.fields_[name];
+  var field_info = this.module.getFieldInfo(name);
+  if (this.group_name) {
+    goog.asserts.assert(this.group_name == field_info.group,
+        name + ' not in group ' + this.group_name);
+  } else {
+    goog.asserts.assert(!field_info.group,
+        name + ' not in group ' + this.group_name);
+  }
+  var f = new ydn.crm.sugar.model.Field(this, name);
+  this.fields_.push(f);
+  return f;
+};
+
+
+/**
+ * Get number of field models.
+ * @return {number}
+ */
+ydn.crm.sugar.model.Group.prototype.countFieldModel = function() {
+  return this.fields_.length;
+};
+
+
+/**
+ * Get field model at given index.
+ * @param {number} idx
+ * @return {ydn.crm.sugar.model.Field}
+ */
+ydn.crm.sugar.model.Group.prototype.getFieldModelAt = function(idx) {
+  return this.fields_[idx];
+};
+
+
+/**
+ * Get field model at given index.
+ * @param {string} name
+ * @return {ydn.crm.sugar.model.Field}
+ */
+ydn.crm.sugar.model.Group.prototype.getFieldModelByName = function(name) {
+  for (var i = 0; i < this.fields_.length; i++) {
+    if (this.fields_[i].getFieldName() == name) {
+      return this.fields_[i];
+    }
+  }
+  return null;
 };
 
 

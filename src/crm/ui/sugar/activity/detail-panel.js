@@ -300,8 +300,8 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderHeader_ = function(el) {
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcoming = function(idx) {
   var q = this.queryUpcoming(idx);
-  this.getModel().send(ydn.crm.Ch.SReq.LIST, [q]).addCallbacks(function(arr) {
-    var results = /** @type {Array.<SugarCrm.Record>} */ (arr[0]['result']);
+  this.getModel().send(ydn.crm.Ch.SReq.VALUES, q).addCallbacks(function(arr) {
+    var results = /** @type {Array.<SugarCrm.Record>} */ (arr);
     var head = this.getDomHelper().createDom('span');
     head.textContent = results.length + ' upcoming ' + ydn.crm.sugar.ACTIVITY_MODULES[idx];
     this.renderHeader_(head);

@@ -21,8 +21,6 @@
 
 
 goog.provide('ydn.crm.ui.sugar.record.Note');
-goog.require('ydn.crm.ui.sugar.field.Input');
-goog.require('ydn.crm.ui.sugar.field.TextArea');
 goog.require('ydn.crm.ui.sugar.record.Body');
 
 
@@ -53,29 +51,32 @@ ydn.crm.ui.sugar.record.Note.prototype.createDom = function() {
   // get default group that comprise `name` and `description` fields.
   var name_group = model.getGroupModel('name');
   var group = model.getGroupModel('');
-  var input_field = name_group.getFieldModel('name');
-  var description_field = group.getFieldModel('description');
+  var input_field = name_group.createOrGetFieldModel('name');
+  var description_field = group.createOrGetFieldModel('description');
   goog.asserts.assert(input_field, 'name field missing in ' + group);
   goog.asserts.assert(description_field, 'description field missing in ' + group);
-  this.addChild(new ydn.crm.ui.sugar.field.Input(input_field, dom), true);
-  this.addChild(new ydn.crm.ui.sugar.field.TextArea(description_field, dom), true);
+  this.addChild(new ydn.crm.ui.sugar.field.Field(input_field, null, dom), true);
+  this.addChild(new ydn.crm.ui.sugar.field.Field(description_field, null, dom), true);
 };
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.record.Note.prototype.collectData = function(record_panel) {
+ydn.crm.ui.sugar.record.Note.prototype.collectData = function(record_panel, dirty_fields) {
+  var model = this.getModel();
+  var obj = model.getRecordValue() || /** @type {SugarCrm.Record} */ (/** @type {Object} */ ({}));
+
   var title = (/** @type {ydn.crm.ui.sugar.field.Input} */ (this.getChildAt(0))).collectData();
   var text = (/** @type {ydn.crm.ui.sugar.field.TextArea} */ (this.getChildAt(1))).collectData();
   if (!title) {
     ydn.crm.ui.StatusBar.instance.setMessage('Note title required.', true);
     return null;
   }
-  var obj = {
-    'name': title,
-    'description': text
-  };
+  var has_changed = (obj['name'] != title) || (obj['description'] != text);
+  obj['name'] = title;
+  obj['description'] = text;
+
   var parent = record_panel.getParentPanel();
   if (parent) {
     /**
@@ -89,6 +90,6 @@ ydn.crm.ui.sugar.record.Note.prototype.collectData = function(record_panel) {
   if (ydn.crm.ui.sugar.record.Body.DEBUG) {
     window.console.log(obj);
   }
-  return /** @type {SugarCrm.Record} */ (/** @type {Object} */ (obj));
+  return obj;
 };
 

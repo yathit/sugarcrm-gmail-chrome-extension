@@ -67,6 +67,60 @@
 .browse-panel .search-result {
     border-bottom: thin solid lightgrey;
 }
+
+.field:hover > sup.name {
+    display: inline !important;
+}
+
+.record-body .record-group.normally-hide, .field.normally-hide {
+    display: none;
+}
+
+.record-body.detail .record-group.normally-hide,
+.record-body.detail .field.normally-hide {
+    display: inherit;
+}
+
+
+.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
+    content: ', ';
+}
+
+
+.record-panel INPUT.enum {
+    width: 2em;
+    background: none repeat scroll 0 0 transparent;
+    border: 0;
+    color: #000000;
+}
+
+
+/*
+ * make input look like label. This setting is obtained from Gmail contact editor.
+*/
+.record-body.view INPUT {
+    margin: 2px;
+    border: 0;
+    padding: 1px 2px;
+    background-color: transparent;
+    vertical-align: text-top;
+}
+
+.record-body.view TEXTAREA {
+    margin: 2px;
+    border: 0;
+    padding: 1px 2px;
+    background-color: transparent;
+    resize: none;
+}
+
+.record-body.view .field.empty {
+    display: none;
+}
+
+.record-body .field {
+    margin-left: 4px;
+}
 /*
 * Closure Library CSS
 */
@@ -1392,63 +1446,10 @@ footer {
 }
 
 
-
-.field:hover > sup.name {
-    display: inline !important;
-}
-
-.record-body .record-group.normally-hide, .field.normally-hide {
-    display: none;
-}
-
-.record-body.detail .record-group.normally-hide,
-.record-body.detail .field.normally-hide {
-    display: inherit;
-}
-
-
-.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
-    content: ', ';
-}
-
 .record-body-header > * {
     padding-left: 4px;
 }
 
-.record-panel INPUT.enum {
-    width: 2em;
-    background: none repeat scroll 0 0 transparent;
-    border: 0;
-    color: #000000;
-}
-
-
-/*
- * make input look like label. This setting is obtained from Gmail contact editor.
-*/
-.record-body.view INPUT {
-    margin: 2px;
-    border: 0;
-    padding: 1px 2px;
-    background-color: transparent;
-    vertical-align: text-top;
-}
-
-.record-body.view TEXTAREA {
-    margin: 2px;
-    border: 0;
-    padding: 1px 2px;
-    background-color: transparent;
-    resize: none;
-}
-
-.record-body.view .field.empty {
-    display: none;
-}
-
-.record-body .field {
-    margin-left: 4px;
-}
 
 .record-footer  {
     display: none;

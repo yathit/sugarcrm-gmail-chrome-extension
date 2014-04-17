@@ -160,7 +160,7 @@ ydn.crm.inj.sugar.GDataModule.prototype.invalidateContactModel_ = function(conta
     }
   }
 
-  this.getChannel().send(ydn.crm.Ch.SReq.LIST, query).addCallback(function(x) {
+  this.getChannel().send(ydn.crm.Ch.SReq.QUERY, query).addCallback(function(x) {
     var results = /** @type {Array.<SugarCrm.Query>} */ (x);
 
     var result = results[0];
@@ -195,8 +195,8 @@ ydn.crm.inj.sugar.GDataModule.prototype.canImportToSugar = function() {
  * @return {!goog.async.Deferred} Return {ydn.crm.sugar.Record} on success.
  */
 ydn.crm.inj.sugar.GDataModule.prototype.importToSugar = function() {
-  var record = this.getRecord();
-  goog.asserts.assert(!record, 'already imported?');
+  // var record = this.getRecord();
+  goog.asserts.assert(this.hasRecord(), 'already imported?');
   var df = new ydn.async.Deferred();
   var gdata = this.getUnboundGData();
   goog.asserts.assert(gdata, 'No unbound contact gdata');
@@ -223,8 +223,8 @@ ydn.crm.inj.sugar.GDataModule.prototype.importToSugar = function() {
  * @return {!goog.async.Deferred} Return {ydn.crm.sugar.Record} on success.
  */
 ydn.crm.inj.sugar.GDataModule.prototype.addToSugar = function() {
-  var record = this.getRecord();
-  goog.asserts.assert(!record, 'already imported?');
+  // var record = this.getRecord();
+  goog.asserts.assert(!this.hasRecord(), 'already imported?');
   var df = new ydn.async.Deferred();
   var contact = this.getParent().getContactModel();
   goog.asserts.assert(contact, 'no context contact');
@@ -285,34 +285,35 @@ ydn.crm.inj.sugar.GDataModule.prototype.canLink = function() {
  * @return {!goog.async.Deferred}
  */
 ydn.crm.inj.sugar.GDataModule.prototype.link = function() {
-  var record = this.getRecord();
-  if (!record) {
-    return goog.async.Deferred.fail('no Record to link.');
-  }
-  var sugar_id = record.getId();
-  window.console.log(record);
-  goog.asserts.assertString(sugar_id, 'no Record ID'); // this will not happen.
-  var gdata = this.getGData();
-  goog.asserts.assert(gdata + ' has already link to ' + record);
-  gdata = this.getUnboundGData();
-  if (!gdata) {
-    return goog.async.Deferred.fail('Not contact data to link.');
-  }
-
-  var ex_id = new ydn.gdata.m8.ExternalId(ydn.gdata.m8.ExternalId.Scheme.SUGARCRM,
-      this.getDomain(), this.getModuleName(), record.getId(), (+gdata.getUpdatedDate()));
-  var data = {
-    'kind': gdata.getKind(),
-    'gdata-id': gdata.getId(),
-    'external-id': ex_id.toExternalId()
-  };
-  var df1 = this.getChannel().send(ydn.crm.Ch.SReq.LINK, data);
-  return df1.addCallback(function(entry) {
-    if (ydn.crm.inj.sugar.GDataModule.DEBUG) {
-      window.console.log('link', entry);
-    }
-    this.setGData(new ydn.gdata.m8.ContactEntry(entry));
-  }, this);
+  throw new Error('Not implemented');
+//  var record = this.getRecord();
+//  if (!record) {
+//    return goog.async.Deferred.fail('no Record to link.');
+//  }
+//  var sugar_id = record.getId();
+//  window.console.log(record);
+//  goog.asserts.assertString(sugar_id, 'no Record ID'); // this will not happen.
+//  var gdata = this.getGData();
+//  goog.asserts.assert(gdata + ' has already link to ' + record);
+//  gdata = this.getUnboundGData();
+//  if (!gdata) {
+//    return goog.async.Deferred.fail('Not contact data to link.');
+//  }
+//
+//  var ex_id = new ydn.gdata.m8.ExternalId(ydn.gdata.m8.ExternalId.Scheme.SUGARCRM,
+//      this.getDomain(), this.getModuleName(), record.getId(), (+gdata.getUpdatedDate()));
+//  var data = {
+//    'kind': gdata.getKind(),
+//    'gdata-id': gdata.getId(),
+//    'external-id': ex_id.toExternalId()
+//  };
+//  var df1 = this.getChannel().send(ydn.crm.Ch.SReq.LINK, data);
+//  return df1.addCallback(function(entry) {
+//    if (ydn.crm.inj.sugar.GDataModule.DEBUG) {
+//      window.console.log('link', entry);
+//    }
+//    this.setGData(new ydn.gdata.m8.ContactEntry(entry));
+//  }, this);
 
 };
 
@@ -322,12 +323,12 @@ ydn.crm.inj.sugar.GDataModule.prototype.link = function() {
  * @return {!ydn.async.Deferred}
  */
 ydn.crm.inj.sugar.GDataModule.prototype.save = function() {
-  var record = this.getRecord();
-  goog.asserts.assertObject(record, 'no record save');
+  // var record = this.getRecord();
+  goog.asserts.assertObject(this.hasRecord(), 'no record save');
   if (ydn.crm.inj.sugar.GDataModule.DEBUG) {
-    window.console.log(record);
+    window.console.log(this.record);
   }
-  var df = this.getChannel().send(ydn.crm.Ch.SReq.PUT_RECORD, record);
+  var df = this.getChannel().send(ydn.crm.Ch.SReq.PUT_RECORD, this.record);
   df.addCallback(function(data) {
     goog.asserts.assert(data, this + ' receiving unexpected put record result ' + data);
     goog.asserts.assertString(data['id'], this + ' record id missing in ' + data);
@@ -335,7 +336,7 @@ ydn.crm.inj.sugar.GDataModule.prototype.save = function() {
     if (ydn.crm.inj.sugar.GDataModule.DEBUG) {
       window.console.log(data);
     }
-    record.setData(data);
+    this.record.setData(data);
   }, this);
   return df;
 };
@@ -349,7 +350,6 @@ ydn.crm.inj.sugar.GDataModule.prototype.disposeInternal = function() {
   goog.base(this, 'disposeInternal');
   this.handler.dispose();
   this.handler = null;
-  this.record = null;
 };
 
 

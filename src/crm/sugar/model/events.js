@@ -144,8 +144,7 @@ ydn.crm.sugar.model.events.ContextGDataChangeEvent.prototype.pop = function(name
  * @constructor
  * @struct
  */
-ydn.crm.sugar.model.events.ModuleRecordChangeEvent = function(delta,
-                                                              opt_event_target) {
+ydn.crm.sugar.model.events.RecordChangeEvent = function(delta, opt_event_target) {
   goog.base(this, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, opt_event_target);
 
   /**
@@ -154,7 +153,7 @@ ydn.crm.sugar.model.events.ModuleRecordChangeEvent = function(delta,
    */
   this.delta = delta;
 };
-goog.inherits(ydn.crm.sugar.model.events.ModuleRecordChangeEvent, ydn.crm.sugar.model.events.Event);
+goog.inherits(ydn.crm.sugar.model.events.RecordChangeEvent, ydn.crm.sugar.model.events.Event);
 
 
 
@@ -170,7 +169,7 @@ goog.inherits(ydn.crm.sugar.model.events.ModuleRecordChangeEvent, ydn.crm.sugar.
  */
 ydn.crm.sugar.model.events.ModuleChangeEvent = function(module, update,
                                                         opt_event_target) {
-  goog.base(this, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, opt_event_target);
+  goog.base(this, ydn.crm.sugar.model.events.Type.MODULE_CHANGE, opt_event_target);
   /**
    * @final
    * @type {ydn.crm.sugar.ModuleName?} old module name.
@@ -195,7 +194,7 @@ goog.inherits(ydn.crm.sugar.model.events.ModuleChangeEvent, ydn.crm.sugar.model.
  * @constructor
  * @struct
  */
-ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent = function(delta, opt_event_target) {
+ydn.crm.sugar.model.events.RecordUpdatedEvent = function(delta, opt_event_target) {
   goog.base(this, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, opt_event_target);
 
   /**
@@ -204,7 +203,7 @@ ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent = function(delta, opt_event_
    */
   this.delta = delta;
 };
-goog.inherits(ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent, ydn.crm.sugar.model.events.Event);
+goog.inherits(ydn.crm.sugar.model.events.RecordUpdatedEvent, ydn.crm.sugar.model.events.Event);
 
 
 

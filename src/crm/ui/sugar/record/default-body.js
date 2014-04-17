@@ -14,20 +14,20 @@
 
 
 /**
- * @fileoverview SugarCRM Notes Record panel.
+ * @fileoverview Default body implement creating Group components.
  *                                                 `
  * @author kyawtun@yathit.com (Kyaw Tun)
  */
 
 
 goog.provide('ydn.crm.ui.sugar.record.Default');
-goog.require('ydn.crm.inj.sugar.module.Group');
-goog.require('ydn.crm.inj.sugar.module.group.Address');
-goog.require('ydn.crm.inj.sugar.module.group.Email');
-goog.require('ydn.crm.inj.sugar.module.group.List');
-goog.require('ydn.crm.inj.sugar.module.group.Name');
 goog.require('ydn.crm.ui.sugar.field.Input');
 goog.require('ydn.crm.ui.sugar.field.TextArea');
+goog.require('ydn.crm.ui.sugar.group.Address');
+goog.require('ydn.crm.ui.sugar.group.Email');
+goog.require('ydn.crm.ui.sugar.group.Group');
+goog.require('ydn.crm.ui.sugar.group.List');
+goog.require('ydn.crm.ui.sugar.group.Name');
 goog.require('ydn.crm.ui.sugar.record.Body');
 
 
@@ -57,21 +57,21 @@ ydn.crm.ui.sugar.record.Default.prototype.createDom = function() {
    */
   var model = this.getModel();
   var groups = model.listGroups();
-  var group_renderer = ydn.crm.inj.sugar.module.GroupRenderer.getInstance();
+  var group_renderer = ydn.crm.ui.sugar.group.GroupRenderer.getInstance();
   for (var i = 0; i < groups.length; i++) {
     var name = groups[i];
     var field;
     var field_model = model.getGroupModel(name);
     if (/address/i.test(name)) {
-      field = new ydn.crm.inj.sugar.module.group.Address(field_model, dom);
+      field = new ydn.crm.ui.sugar.group.Address(field_model, dom);
     } else if (name == 'email') {
-      field = new ydn.crm.inj.sugar.module.group.Email(field_model, dom);
+      field = new ydn.crm.ui.sugar.group.Email(field_model, dom);
     } else if (name == 'phone') {
-      field = new ydn.crm.inj.sugar.module.group.List(field_model, dom);
+      field = new ydn.crm.ui.sugar.group.List(field_model, dom);
     } else if (name == 'name') {
-      field = new ydn.crm.inj.sugar.module.group.Name(field_model, dom);
+      field = new ydn.crm.ui.sugar.group.Name(field_model, dom);
     } else {
-      field = new ydn.crm.inj.sugar.module.Group(field_model, group_renderer, dom);
+      field = new ydn.crm.ui.sugar.group.Group(field_model, group_renderer, dom);
     }
     this.addChild(field, true);
   }

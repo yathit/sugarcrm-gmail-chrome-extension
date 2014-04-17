@@ -65,8 +65,7 @@ ydn.crm.sugar.model.Field.prototype.getFieldId = function() {
  * @return {string?}
  */
 ydn.crm.sugar.model.Field.prototype.getFieldValue = function() {
-  var record = this.parent.getRecord();
-  return record ? record.value(this.field_name) : null;
+  return this.parent.module.value(this.field_name);
 };
 
 
@@ -76,6 +75,15 @@ ydn.crm.sugar.model.Field.prototype.getFieldValue = function() {
  */
 ydn.crm.sugar.model.Field.prototype.getField = function() {
   return this.getFieldValue();
+};
+
+
+/**
+ * @return {boolean} true if field has value set.
+ */
+ydn.crm.sugar.model.Field.prototype.hasFieldValue = function() {
+  var v = this.getFieldValue();
+  return goog.isString(v) ? !goog.string.isEmpty(v) : goog.isDefAndNotNull(v);
 };
 
 
@@ -102,7 +110,7 @@ ydn.crm.sugar.model.Field.prototype.getLabel = function() {
  */
 ydn.crm.sugar.model.Field.prototype.getType = function() {
   var info = this.getFieldInfo();
-  return info.type || 'varchar';
+  return info ? info.type || 'varchar' : 'varchar';
 };
 
 
@@ -141,6 +149,16 @@ ydn.crm.sugar.model.Field.isNormallyHide = function(name) {
 ydn.crm.sugar.model.Field.prototype.getUserSetting = function() {
   var setting = this.parent.getUserSetting();
   return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['fields', this.field_name]) : null;
+};
+
+
+/**
+ * Check the field value is calculated or not.
+ * @return {boolean}
+ */
+ydn.crm.sugar.model.Field.prototype.isCalculated = function() {
+  var setting = this.getFieldInfo();
+  return setting ? !!setting['calculated'] : false;
 };
 
 

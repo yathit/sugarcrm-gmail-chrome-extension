@@ -80,7 +80,7 @@ ydn.crm.inj.sugar.module.group.AddressRenderer.prototype.createDom = function(x)
   var ren = ydn.crm.inj.sugar.module.SimpleFieldRenderer.getInstance();
   for (var i = 0; i < fields.length; i++) {
     var name = fields[i];
-    var field_model = model.getFieldModel(name);
+    var field_model = model.createOrGetFieldModel(name);
     var field = new ydn.crm.inj.sugar.module.Field(field_model, ren, dom);
     ctrl.addChild(field, true);
   }

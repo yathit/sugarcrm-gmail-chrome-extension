@@ -169,7 +169,7 @@ ydn.crm.ui.GmailCmd.prototype.updateLabel_ = function() {
         'index': 'message_id',
         'key': info.message_id
       };
-      me.getModel().send(ydn.crm.Ch.SReq.LIST, [q]).addCallbacks(function(arr) {
+      me.getModel().send(ydn.crm.Ch.SReq.QUERY, [q]).addCallbacks(function(arr) {
         if (ydn.crm.ui.GmailCmd.DEBUG) {
           window.console.log(arr);
         }

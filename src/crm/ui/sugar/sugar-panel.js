@@ -110,7 +110,7 @@ ydn.crm.ui.sugar.SugarPanel.prototype.getContentElement = function() {
 };
 
 
-/**
+/**                                          ````
  * @return {ydn.crm.sugar.model.GDataSugar}
  * @override
  */

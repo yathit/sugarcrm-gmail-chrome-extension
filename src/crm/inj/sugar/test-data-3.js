@@ -49,7 +49,7 @@ var queryGData = function(email) {
 
 
 var getSugarData = function(email, domain) {
-  var msg_sc = new ydn.msg.Message(ydn.crm.Ch.SReq.LIST, function(results) {
+  var msg_sc = new ydn.msg.Message(ydn.crm.Ch.SReq.QUERY, function(results) {
     console.log(results)
   });
   msg_sc.setData([

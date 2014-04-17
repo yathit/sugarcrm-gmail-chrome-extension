@@ -21,7 +21,7 @@
  */
 
 
-goog.provide('ydn.crm.inj.sugar.module.group.EmailRenderer');
+goog.provide('ydn.crm.ui.sugar.group.EmailRenderer');
 goog.require('goog.ui.ControlRenderer');
 
 
@@ -30,32 +30,31 @@ goog.require('goog.ui.ControlRenderer');
  * Panel renderer for listed items.
  * @constructor
  * @struct
- * @extends {goog.ui.ControlRenderer}
- * @suppress {checkStructDictInheritance} suppress closure-library code.
+ * @extends {ydn.crm.ui.sugar.group.GroupRenderer}
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer = function() {
+ydn.crm.ui.sugar.group.EmailRenderer = function() {
   goog.base(this);
 };
-goog.inherits(ydn.crm.inj.sugar.module.group.EmailRenderer, goog.ui.ControlRenderer);
-goog.addSingletonGetter(ydn.crm.inj.sugar.module.group.EmailRenderer);
+goog.inherits(ydn.crm.ui.sugar.group.EmailRenderer, ydn.crm.ui.sugar.group.GroupRenderer);
+goog.addSingletonGetter(ydn.crm.ui.sugar.group.EmailRenderer);
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.DEBUG = false;
+ydn.crm.ui.sugar.group.EmailRenderer.DEBUG = false;
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.CSS_CLASS = 'email';
+ydn.crm.ui.sugar.group.EmailRenderer.CSS_CLASS = 'email';
 
 
 /** @return {string} */
-ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.getCssClass = function() {
-  return ydn.crm.inj.sugar.module.group.EmailRenderer.CSS_CLASS;
+ydn.crm.ui.sugar.group.EmailRenderer.prototype.getCssClass = function() {
+  return ydn.crm.ui.sugar.group.EmailRenderer.CSS_CLASS;
 };
 
 
@@ -63,26 +62,26 @@ ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.getCssClass = function() 
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.CSS_CONTENT_CLASS = 'content';
+ydn.crm.ui.sugar.group.EmailRenderer.CSS_CONTENT_CLASS = 'content';
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.createDom = function(x) {
-  var root = goog.base(this, 'createDom', x);
-  var ctrl = /** @type {ydn.crm.inj.sugar.module.Group} */ (x);
+ydn.crm.ui.sugar.group.EmailRenderer.prototype.createDom = function(x) {
+  var dom = x.getDomHelper();
+  var root = dom.createDom('div', this.getCssClass());
+  var ctrl = /** @type {ydn.crm.ui.sugar.group.Email} */ (x);
   /**
    * @type {ydn.crm.sugar.model.Group}
    */
   var model = ctrl.getModel();
-  var dom = ctrl.getDomHelper();
   root.setAttribute('name', model.getGroupName());
-  root.classList.add(ydn.crm.inj.sugar.module.GroupRenderer.CSS_CLASS);
+  root.classList.add(ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS);
   var head = dom.createDom('div');
   head.setAttribute('title', model.getGroupLabel());
   root.appendChild(head);
-  var content = dom.createDom('div', ydn.crm.inj.sugar.module.group.EmailRenderer.CSS_CONTENT_CLASS);
+  var content = dom.createDom('div', ydn.crm.ui.sugar.group.EmailRenderer.CSS_CONTENT_CLASS);
   root.appendChild(head);
   root.appendChild(content);
 
@@ -102,7 +101,7 @@ ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.createDom = function(x) {
  * @param {boolean=} opt_is_deleted
  * @private
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.render_email_ = function(ele, email, opt_label,
+ydn.crm.ui.sugar.group.EmailRenderer.prototype.render_email_ = function(ele, email, opt_label,
     opt_is_primary, opt_is_opt_out, opt_is_deleted) {
   if (!email) {
     ele.textContent = '';
@@ -129,13 +128,13 @@ ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.render_email_ = function(
  * @const
  * @type {string}
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.EMAIL_TAG = 'SPAN';
+ydn.crm.ui.sugar.group.EmailRenderer.EMAIL_TAG = 'SPAN';
 
 
 /**
- * @param {ydn.crm.inj.sugar.module.group.Email} ctrl
+ * @param {ydn.crm.ui.sugar.group.Email} ctrl
  */
-ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.refresh = function(ctrl) {
+ydn.crm.ui.sugar.group.EmailRenderer.prototype.refresh = function(ctrl) {
   var ele_field = ctrl.getElement();
 
   var model = /** @type {ydn.crm.sugar.model.Group} */ (ctrl.getModel());
@@ -145,7 +144,7 @@ ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.refresh = function(ctrl) 
   }
   var dom = ctrl.getDomHelper();
 
-  if (ydn.crm.inj.sugar.module.group.EmailRenderer.DEBUG) {
+  if (ydn.crm.ui.sugar.group.EmailRenderer.DEBUG) {
     window.console.log(model);
   }
   var email = model.createOrGetFieldModel('email');
@@ -158,7 +157,7 @@ ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.refresh = function(ctrl) 
       var email_bean = /** @type {SugarCrm.EmailField} */ (email_values[i]);
       var ele = body.children[i];
       if (!ele) {
-        ele = dom.createDom(ydn.crm.inj.sugar.module.group.EmailRenderer.EMAIL_TAG);
+        ele = dom.createDom(ydn.crm.ui.sugar.group.EmailRenderer.EMAIL_TAG);
         body.appendChild(ele);
       }
       if (email_bean) {
@@ -177,7 +176,7 @@ ydn.crm.inj.sugar.module.group.EmailRenderer.prototype.refresh = function(ctrl) 
       var name = fields[i];
       var ele = body.children[i];
       if (!ele) {
-        ele = dom.createDom(ydn.crm.inj.sugar.module.group.EmailRenderer.EMAIL_TAG);
+        ele = dom.createDom(ydn.crm.ui.sugar.group.EmailRenderer.EMAIL_TAG);
         body.appendChild(ele);
       }
       var field_model = model.createOrGetFieldModel(name);

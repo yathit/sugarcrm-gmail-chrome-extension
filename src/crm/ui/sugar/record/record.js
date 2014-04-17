@@ -24,7 +24,7 @@
 
 goog.provide('ydn.crm.ui.sugar.record.Record');
 goog.require('goog.ui.Component');
-goog.require('ydn.crm.inj.sugar.module.Field');
+goog.require('ydn.crm.ui.sugar.field.Field');
 goog.require('ydn.crm.sugar');
 goog.require('ydn.crm.sugar.model.Sugar');
 goog.require('ydn.crm.ui');
@@ -81,6 +81,13 @@ ydn.crm.ui.sugar.record.Record = function(model, dom, opt_parent) {
    * @type {ydn.crm.ui.sugar.record.FooterRenderer}
    */
   this.footer_panel = ydn.crm.ui.sugar.record.FooterRenderer.getInstance();
+  this.observer_ = new MutationObserver(this.mutationObserver.bind(this));
+  /**
+   * List of dirty field names.
+   * @type {Array.<string>}
+   * @private
+   */
+  this.dirty_fields_ = [];
 };
 goog.inherits(ydn.crm.ui.sugar.record.Record, goog.ui.Component);
 
@@ -103,7 +110,7 @@ ydn.crm.ui.sugar.record.Record.prototype.logger =
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.record.Record.DEBUG = false;
+ydn.crm.ui.sugar.record.Record.DEBUG = true;
 
 
 /**
@@ -189,6 +196,21 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
 
 
 /**
+ * @const
+ * @type {MutationObserverInit}
+ */
+ydn.crm.ui.sugar.record.Record.MOConfig = /** @type {MutationObserverInit} */ (/** @type {Object} */ ({
+  'childList': false,
+  'attributes': true,
+  'characterData': true,
+  'subtree': true,
+  'attributeOldValue': false,
+  'characterDataOldValue': false,
+  'attributeFilter': ['value']
+}));
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
@@ -200,17 +222,44 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
   var model = this.getModel();
   // Note: we do not listen events on element of children of these component.
   hd.listen(model, 'click', this.handleModuleChanged, false);
-
-  hd.listen(this.footer_panel.getSaveButton(this.getElement()),
-      'click', this.handleSave, true);
+  var footer_ele = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS);
+  hd.listen(footer_ele, 'click', this.handleFooterClick, true);
   hd.listen(model, ydn.crm.sugar.model.events.Type.MODULE_CHANGE, this.handleModuleChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.GDATA_CHANGE, this.handleRecordChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.handleRecordChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, this.handleRecordUpdated);
   var header_ele = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS);
-  hd.listen(header_ele, goog.events.EventType.CLICK, this.handleClick, false);
+  hd.listen(header_ele, goog.events.EventType.CLICK, this.handleHeaderClick, false);
   hd.listen(this.getElement(), goog.events.EventType.DBLCLICK, this.handleDbClick, false);
+
   this.reset();
+};
+
+
+/**
+ * Notify changes.
+ * @param {Array.<MutationRecord>} mutations
+ */
+ydn.crm.ui.sugar.record.Record.prototype.mutationObserver = function(mutations) {
+  window.console.log(mutations);
+  var mode = this.body_panel.getEditMode();
+  if (!mode) {
+    this.setEditMode(true);
+  }
+  for (var i = 0; i < mutations.length; i++) {
+    var target_ele = mutations[i].target instanceof Element ? mutations[i].target :
+        mutations[i].target.parentElement;
+    if (target_ele.classList.contains('value')) {
+      var field_root = goog.dom.getAncestorByClass(target_ele, ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS);
+      if (!field_root) {
+        continue;
+      }
+      var field = field_root.getAttribute('name');
+      if (field && this.dirty_fields_.indexOf(field) == -1) {
+        this.dirty_fields_.push(field);
+      }
+    }
+  }
 };
 
 
@@ -218,7 +267,7 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
  * @protected
  * @param e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleClick = function(e) {
+ydn.crm.ui.sugar.record.Record.prototype.handleHeaderClick = function(e) {
   this.getElement().classList.add(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ACTIVATED);
   var name = e.target.getAttribute('name');
   if (e.target.classList.contains(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_NEW_ITEM)) {
@@ -289,6 +338,8 @@ ydn.crm.ui.sugar.record.Record.prototype.setEditMode = function(val) {
     this.getElement().classList.remove(ydn.crm.ui.CSS_CLASS_EMPTY);
   } else {
     if (this.getModel().hasRecord()) {
+      this.body_panel.refresh();
+    } else {
       this.getElement().classList.add(ydn.crm.ui.CSS_CLASS_EMPTY);
     }
   }
@@ -310,26 +361,66 @@ ydn.crm.ui.sugar.record.Record.prototype.setMessage = function(s, opt_is_error) 
  * @protected
  * @param {Event} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleSave = function(e) {
-  var btn = e.target;
-  var data = this.body_panel.collectData(this);
-  if (!data) {
-    return;
+ydn.crm.ui.sugar.record.Record.prototype.handleFooterClick = function(e) {
+  var name = e.target.getAttribute('name');
+  if (name == ydn.crm.ui.sugar.record.FooterRenderer.NAME_SAVE) {
+    this.handleSave(e);
+  } else if (name == ydn.crm.ui.sugar.record.FooterRenderer.NAME_CANCEL) {
+    this.handleCancel(e);
   }
-  btn.textContent = 'saving...';
-  btn.setAttribute('disabled', '1');
+};
+
+
+/**
+ * @protected
+ * @param {Event} e
+ */
+ydn.crm.ui.sugar.record.Record.prototype.handleCancel = function(e) {
+  this.observer_.disconnect();
+  this.setEditMode(false);
+  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
+};
+
+
+/**
+ * @return {SugarCrm.Record?}
+ */
+ydn.crm.ui.sugar.record.Record.prototype.collectData = function() {
+  if (this.dirty_fields_.length == 0) {
+    return null;
+  }
+
+  return this.body_panel.collectData(this, this.dirty_fields_);
+
+};
+
+
+/**
+ * @protected
+ * @param {Event} e
+ */
+ydn.crm.ui.sugar.record.Record.prototype.handleSave = function(e) {
   /**
    * @type {ydn.crm.sugar.model.Record}
    */
   var model = this.getModel();
-  /**
-   * @type {ydn.crm.sugar.Record}
-   */
-  var r = model.getRecord();
-  r.updateData(data);
-  model.save().addCallbacks(function(x) {
+  var btn = e.target;
+  var obj = this.collectData();
+  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+    window.console.log(model.getRecordValue(),obj);
+  }
+  if (!obj) {
+    this.setMessage('data not modified');
+    return;
+  }
+  btn.textContent = 'saving...';
+  btn.setAttribute('disabled', '1');
+
+  model.save(obj).addCallbacks(function(x) {
     this.setMessage('saved');
+    this.observer_.disconnect();
     this.setEditMode(false);
+    this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
     btn.textContent = 'Save';
     btn.removeAttribute('disabled');
   }, function(e) {
@@ -386,11 +477,14 @@ ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
+  this.observer_.disconnect();
   this.reset();
   this.removeChild(this.body_panel, true);
   this.body_panel.dispose();
   this.body_panel = this.getBodyPanel();
   this.addChildAt(this.body_panel, 0, true);
+  this.body_panel.refresh();
+  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
@@ -402,7 +496,9 @@ ydn.crm.ui.sugar.record.Record.prototype.handleRecordChanged = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
+  this.observer_.disconnect();
   this.reset();
+  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
@@ -414,7 +510,9 @@ ydn.crm.ui.sugar.record.Record.prototype.handleRecordUpdated = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
+  this.observer_.disconnect();
   this.refresh();
+  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
@@ -427,14 +525,26 @@ ydn.crm.ui.sugar.record.Record.prototype.reset = function() {
     window.console.log('reset ' + model);
   }
   var root = this.getElement();
+  this.setEditMode(false);
   this.head_panel.reset(this);
   this.footer_panel.reset(this);
+  this.body_panel.reset();
+  this.body_panel.refresh();
   if (model.hasRecord()) {
     root.className = this.getCssClass() + ' ' + model.getModuleName();
   } else {
     root.className = this.getCssClass() + ' ' + model.getModuleName() + ' ' + ydn.crm.ui.CSS_CLASS_EMPTY;
   }
 
+};
+
+
+/**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.record.Record.prototype.exitDocument = function() {
+  goog.base(this, 'exitDocument');
+  this.observer_.disconnect();
 };
 
 
@@ -449,6 +559,8 @@ ydn.crm.ui.sugar.record.Record.prototype.refresh = function() {
   }
   this.head_panel.refresh(this);
   this.footer_panel.reset(this);
+  this.body_panel.refresh();
+  this.dirty_fields_.length = 0;
 };
 
 

@@ -11,10 +11,11 @@ goog.provide('ydn.crm.ui.sugar.field.Input');
  * @param {ydn.crm.sugar.model.Field} model
  * @param {goog.dom.DomHelper} dom
  * @constructor
- *  @struct
+ * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  * @implements {ydn.crm.ui.Refreshable}
+ * @deprecated
  */
 ydn.crm.ui.sugar.field.Input = function(model, dom) {
   goog.base(this, dom);

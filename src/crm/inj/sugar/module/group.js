@@ -6,6 +6,7 @@
 
 
 goog.provide('ydn.crm.inj.sugar.module.Group');
+goog.require('ydn.crm.inj.sugar.module.Field');
 goog.require('ydn.crm.inj.sugar.module.GroupRenderer');
 goog.require('ydn.crm.sugar');
 goog.require('ydn.crm.sugar.model.Group');

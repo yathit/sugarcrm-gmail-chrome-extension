@@ -14,8 +14,7 @@
 
 
 /**
- * @fileoverview The heading of a record panel. Children must implements
- * ydn.crm.ui.Refreshable.
+ * @fileoverview Render record body component.
  *
  *
  * @author kyawtun@yathit.com (Kyaw Tun)
@@ -63,30 +62,6 @@ ydn.crm.ui.sugar.record.Body.prototype.getModel;
 
 
 /**
- * @inheritDoc
- */
-ydn.crm.ui.sugar.record.Body.prototype.enterDocument = function() {
-  goog.base(this, 'enterDocument');
-  var root = this.getElement();
-  var dom = this.getDomHelper();
-  var model = this.getModel();
-  var hd = this.getHandler();
-  hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.handleChanged);
-  hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, this.handleChanged);
-  this.handleChanged(null);
-};
-
-
-/**
- * @protected
- * @param {*} e
- */
-ydn.crm.ui.sugar.record.Body.prototype.handleChanged = function(e) {
-  this.refresh();
-};
-
-
-/**
  * Change edit mode.
  * @param {boolean} val
  */
@@ -116,11 +91,6 @@ ydn.crm.ui.sugar.record.Body.prototype.reset = function() {
   var root = this.getElement();
   root.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
   root.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
-  while (this.hasChildren()) {
-    var child = this.getChildAt(0);
-    this.removeChild(child, true);
-    child.dispose();
-  }
 };
 
 
@@ -165,10 +135,28 @@ ydn.crm.ui.sugar.record.Body.prototype.createDom = function() {
 /**
  * Return data from UI values. Return null, if invalid data present.
  * @param {ydn.crm.ui.sugar.record.Record} record_panel
- * @return {SugarCrm.Record?}
+ * @param {Array.<string>} dirty_fields
+ * @return {SugarCrm.Record?} null if data is not valid.
  */
-ydn.crm.ui.sugar.record.Body.prototype.collectData = function(record_panel) {
-  return null;
+ydn.crm.ui.sugar.record.Body.prototype.collectData = function(record_panel, dirty_fields) {
+  var model = this.getModel();
+  var obj = model.getRecordValue() || /** @type {SugarCrm.Record} */ (/** @type {Object} */ ({}));
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
+    var m = g.getModel();
+    for (var j = 0; j < dirty_fields.length; j++) {
+      var field = dirty_fields[j];
+      if (m.hasField(field)) {
+        var f = g.getChildByField(field);
+        if (f) {
+          obj[field] = f.collectData();
+        }
+      }
+    }
+
+  }
+  return obj;
 };
 
 
@@ -179,7 +167,7 @@ ydn.crm.ui.sugar.record.Body.prototype.collectData = function(record_panel) {
 ydn.crm.ui.sugar.record.Body.prototype.refresh = function() {
   for (var i = 0; i < this.getChildCount(); i++) {
     var child = this.getChildAt(i);
-    var g = /** @type {ydn.crm.ui.Refreshable} */ (child);
+    var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
     g.refresh();
   }
 };

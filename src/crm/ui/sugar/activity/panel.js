@@ -220,9 +220,8 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
     return;
   }
   var query = this.detail_panel.queryUpcoming(index);
-  this.getModel().send(ydn.crm.Ch.SReq.KEYS, [query]).addCallbacks(function(ans) {
-    // window.console.log(ans);
-    var query_result = /** @type {CrmReqQuery} */ (ans[0]);
+  this.getModel().send(ydn.crm.Ch.SReq.KEYS, query).addCallbacks(function(ans) {
+    var query_result = /** @type {Array.<string>} */ (ans);
     var next = index + 1;
     if (opt_continue) {
       // let next update do first before updating UI
@@ -230,7 +229,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
       this.updateUpcomingActivity_(true, next);
     }
     goog.style.setElementShown(this.getElement(), true);
-    this.setCount(ydn.crm.sugar.ACTIVITY_MODULES[index], query_result.result.length);
+    this.setCount(ydn.crm.sugar.ACTIVITY_MODULES[index], query_result.length);
   }, function(e) {
     throw e;
   }, this);

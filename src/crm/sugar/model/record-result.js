@@ -61,7 +61,7 @@ ydn.crm.sugar.model.ResultRecord.prototype.queryRecord_ = function() {
   if (ydn.crm.sugar.model.ResultRecord.DEBUG) {
     goog.global.console.log(query);
   }
-  this.parent.send(ydn.crm.Ch.SReq.LIST, [query])
+  this.parent.send(ydn.crm.Ch.SReq.QUERY, [query])
       .addCallback(function(arr) {
         var result = arr[0].result;
         if (ydn.crm.sugar.model.ResultRecord.DEBUG) {

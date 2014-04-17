@@ -621,7 +621,7 @@ ydn.crm.ui.gmail.Template.prototype.fillTemplate = function(id, opt_contact) {
       'key': email,
       'limit': 1
     }];
-    return sugar.send(ydn.crm.Ch.SReq.LIST, query).addCallback(function(x) {
+    return sugar.send(ydn.crm.Ch.SReq.QUERY, query).addCallback(function(x) {
       var results = /** @type {Array.<SugarCrm.Query>} */ (x);
       var record = null;
       if (results[0].result[0]) {

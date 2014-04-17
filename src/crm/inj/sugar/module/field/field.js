@@ -6,6 +6,7 @@
 goog.provide('ydn.crm.inj.sugar.module.Field');
 goog.require('goog.ui.Control');
 goog.require('ydn.crm.inj.sugar.module.FieldRenderer');
+goog.require('ydn.crm.inj.sugar.module.SimpleFieldRenderer');
 goog.require('ydn.crm.ui.Refreshable');
 
 

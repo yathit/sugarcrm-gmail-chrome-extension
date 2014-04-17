@@ -25,7 +25,7 @@ ydn.crm.sugar.model.Sugar.list().addCallbacks(function(sugars) {
     template.attach(cm);
 
     // list template names
-    sugar.send(ydn.crm.Ch.SReq.LIST, [{
+    sugar.send(ydn.crm.Ch.SReq.QUERY, [{
       'store': ydn.crm.sugar.ModuleName.EMAIL_TEMPLATES
     }]).addCallbacks(function(q) {
       console.log(q);

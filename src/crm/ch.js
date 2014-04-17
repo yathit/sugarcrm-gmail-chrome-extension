@@ -101,9 +101,11 @@ ydn.crm.Ch.SReq = {
   LOGIN_USER: 'login-user', // current login user record (Users module)
   NEW_RECORD: 'new-record', // create a new record
   PUT_RECORD: 'put-record', //
+  QUERY: 'query',
   REST: 'rest', // SugarCRM REST request
   SEARCH: 'search', // free text query
   SERVER_INFO: 'server-info',
-  SYNC_ENTRY: 'sync-entry'
+  SYNC_ENTRY: 'sync-entry',
+  VALUES: 'values' // record values query
 };
 

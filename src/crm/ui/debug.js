@@ -178,7 +178,7 @@ ydn.crm.ui.Debug.prototype.init = function(ele) {
       input.value = '';
     } else if (select.value == ydn.crm.Ch.SReq.INFO_MODULE) {
       input.value = 'Contacts';
-    } else if (select.value == ydn.crm.Ch.SReq.LIST) {
+    } else if (select.value == ydn.crm.Ch.SReq.QUERY) {
       input.value = 'kyawtuns@gmail.com';
     }
   }, false, this);

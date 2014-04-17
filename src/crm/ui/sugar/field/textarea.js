@@ -15,6 +15,7 @@ goog.provide('ydn.crm.ui.sugar.field.TextArea');
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  * @implements {ydn.crm.ui.Refreshable}
+ * @deprecated
  */
 ydn.crm.ui.sugar.field.TextArea = function(model, dom) {
   goog.base(this, dom);

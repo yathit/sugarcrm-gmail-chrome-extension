@@ -140,7 +140,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.createDom = function(ctrl) {
   toolbar.appendChild(dom.createDom('a', {
     'name': ydn.crm.ui.sugar.record.HeadRenderer.NAME_DETAIL,
     'href': '#detail'
-  }, 'detail'));
+  }, 'Detail'));
   // goog.style.setElementShown(ele_header, false);
   head.appendChild(ele_header);
   head.appendChild(toolbar);
@@ -154,7 +154,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.createDom = function(ctrl) {
 ydn.crm.ui.sugar.record.HeadRenderer.prototype.reset = function(ctrl) {
   var root = ctrl.getElement();
   var a_detail = this.getDetailButton(root);
-  a_detail.textContent = 'detail';
+  a_detail.textContent = 'Detail';
   goog.style.setElementShown(a_detail, true);
   var show_annotate_ui = ctrl.getModel().isPeople();
   var new_btns = ctrl.getElement().querySelectorAll('.' +
@@ -169,7 +169,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.reset = function(ctrl) {
       header);
   icon.textContent = m_name.substring(0, 2);
   var edit = header.querySelector('a[name=' + ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT + ']');
-  goog.style.setElementShown(edit, record.isEditable());
+  goog.style.setElementShown(edit, false /* record.isEditable() */);
 
   // goog.style.setElementShown(this.getToolbarElement(root), !record.isSimple());
   this.refresh(ctrl);
@@ -190,7 +190,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.refresh = function(ctrl) {
 
   if (record.hasRecord()) {
     ele_title.textContent = record.getTitle();
-    ele_title.href = record.getRecord().getViewLink();
+    ele_title.href = record.getViewLink();
     ele_title.target = record.getDomain();
     if (record instanceof ydn.crm.sugar.model.GDataRecord) {
       var g_record = /** @type {ydn.crm.sugar.model.GDataRecord} */ (record);

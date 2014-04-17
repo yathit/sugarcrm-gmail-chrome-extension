@@ -249,10 +249,7 @@ ydn.crm.ui.GDataPanel.prototype.getLabels = function() {
    * @type {ydn.gdata.m8.ContactEntry}
    */
   var contact = model.getGData();
-  /**
-   * @type {ydn.crm.sugar.Record}
-   */
-  var record = model.getRecord();
+
   var module_name = model.getModuleName();
 
   var is_synced = false; // gdata and record are in sync.
@@ -276,7 +273,7 @@ ydn.crm.ui.GDataPanel.prototype.getLabels = function() {
       } else {
         link_label = 'link';
         link_title = 'Link Gmail contact ' + contact.getSingleId() +
-            ' with this SugarCRM ' + module_name + ' ' + record.getId();
+            ' with this SugarCRM ' + module_name + ' ' + model;
       }
     }
   } else if (model.hasValidGData()) {

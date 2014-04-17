@@ -388,7 +388,7 @@ ydn.crm.sugar.model.Sugar.prototype.listRecords = function(module, opt_order, op
   if (opt_offset) {
     query['offset'] = opt_offset;
   }
-  return this.getChannel().send(ydn.crm.Ch.SReq.LIST, [query]);
+  return this.getChannel().send(ydn.crm.Ch.SReq.QUERY, [query]);
 };
 
 

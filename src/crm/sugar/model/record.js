@@ -31,7 +31,7 @@ ydn.crm.sugar.model.Record = function(parent, r) {
    */
   this.parent = parent;
   /**
-   * @type {ydn.crm.sugar.Record}
+   * @type {!ydn.crm.sugar.Record}
    * @protected
    */
   this.record = r;
@@ -182,29 +182,30 @@ ydn.crm.sugar.model.Record.prototype.getChannel = function() {
 
 /**
  * Save the record.
+ * @param {SugarCrm.Record} obj
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Record.prototype.save = function() {
-  var r = this.getRecord();
-  if (!r.hasRecord()) {
-    return goog.async.Deferred.fail('empty record to save');
-  }
-  return this.parent.saveRecord(r).addCallback(function(x) {
+ydn.crm.sugar.model.Record.prototype.save = function(obj) {
+  var record = new ydn.crm.sugar.Record(this.getDomain(), this.getModuleName(), obj);
+
+  return this.parent.saveRecord(record).addCallback(function(x) {
     var me = this;
     var is_new = !this.hasRecord();
     var v = /** @type {SugarCrm.Record} */ (x);
-    r.updateData(v);
+    this.record.updateData(v);
     var name = this.getModuleName();
     setTimeout(function() {
       if (is_new) {
-        me.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordChangeEvent(
+        me.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(
             v, me));
       } else {
-        me.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent(
+        me.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(
             v, me));
       }
     }, 10);
   }, this);
+
+
 };
 
 
@@ -219,18 +220,20 @@ ydn.crm.sugar.model.Record.prototype.disposeInternal = function() {
 
 
 /**
- * @return {ydn.crm.sugar.Record} return sugarcrm record entry.
+ * Get sugar crm view link.
+ * @return {string}
  */
-ydn.crm.sugar.model.Record.prototype.getRecord = function() {
-  return this.record;
+ydn.crm.sugar.model.Record.prototype.getViewLink = function() {
+  return this.record.getViewLink();
 };
 
 
 /**
- * @return {SugarCrm.Record?}
+ * @return {SugarCrm.Record?} get clone data.
  */
 ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
-  return this.record ? this.record.getData() : null;
+  return this.record ? /** @type {SugarCrm.Record} */ (/** @type {Object} */ (
+      ydn.object.clone(this.record.getData()))) : null;
 };
 
 
@@ -249,7 +252,6 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
   var has_change = false;
   var has_module_changed = false;
   var has_key_changed = false;
-  goog.asserts.assert(this.record, 'record cannot be null');
   if (!!record) {
     if (record !== this.record) {
       has_change = true;
@@ -273,9 +275,9 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
   if (has_module_changed) {
     this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(name, record, this));
   } else if (has_key_changed) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordChangeEvent(record, this));
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(record, this));
   } else if (has_change) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleRecordUpdatedEvent(record, this));
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(record, this));
   }
 };
 

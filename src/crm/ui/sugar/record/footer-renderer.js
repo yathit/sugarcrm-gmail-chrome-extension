@@ -53,6 +53,13 @@ ydn.crm.ui.sugar.record.FooterRenderer.NAME_SAVE = 'save';
  * @const
  * @type {string}
  */
+ydn.crm.ui.sugar.record.FooterRenderer.NAME_CANCEL = 'cancel';
+
+
+/**
+ * @const
+ * @type {string}
+ */
 ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS_MESSAGE = 'message';
 
 
@@ -62,12 +69,17 @@ ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS_MESSAGE = 'message';
 ydn.crm.ui.sugar.record.FooterRenderer.prototype.createDom = function(ctrl) {
   var dom = ctrl.getDomHelper();
   var ele = this.getFooterElement(ctrl.getElement());
-  var btn = dom.createDom('button', {
+  var btn_save = dom.createDom('button', {
     'type': 'button',
     'name': ydn.crm.ui.sugar.record.FooterRenderer.NAME_SAVE
   }, 'Save');
+  var btn_cancel = dom.createDom('button', {
+    'type': 'button',
+    'name': ydn.crm.ui.sugar.record.FooterRenderer.NAME_CANCEL
+  }, 'Cancel');
   var msg = dom.createDom('div', ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS_MESSAGE);
-  ele.appendChild(btn);
+  ele.appendChild(btn_save);
+  ele.appendChild(btn_cancel);
   ele.appendChild(msg);
 };
 
