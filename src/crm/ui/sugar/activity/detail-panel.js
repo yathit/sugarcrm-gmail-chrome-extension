@@ -251,12 +251,12 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderActivity = function() {
 /**
  * Render upcoming activity item.
  * @param {SugarCrm.Record} obj
+ * @param {ydn.crm.sugar.ModuleName} m_name
  * @private
  */
-ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcomingItem_ = function(obj) {
+ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcomingItem_ = function(obj, m_name) {
   var dom = this.getDomHelper();
   var domain = this.getModel().getDomain();
-  var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (obj._module);
   var r = new ydn.crm.sugar.Record(domain, m_name, obj);
   var msg = dom.createDom('span');
   var verb = ydn.crm.sugar.Record.moduleAsVerb(m_name);
@@ -303,10 +303,11 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcoming = function(idx) {
   this.getModel().send(ydn.crm.Ch.SReq.VALUES, q).addCallbacks(function(arr) {
     var results = /** @type {Array.<SugarCrm.Record>} */ (arr);
     var head = this.getDomHelper().createDom('span');
-    head.textContent = results.length + ' upcoming ' + ydn.crm.sugar.ACTIVITY_MODULES[idx];
+    var m_name = ydn.crm.sugar.ACTIVITY_MODULES[idx];
+    head.textContent = results.length + ' upcoming ' + m_name;
     this.renderHeader_(head);
     for (var i = 0; i < results.length; i++) {
-      this.renderUpcomingItem_(results[i]);
+      this.renderUpcomingItem_(results[i], m_name);
     }
   }, function(e) {
     throw e;

@@ -82,6 +82,22 @@ ydn.crm.ui.SidebarPanel.prototype.createDom = function() {
  */
 ydn.crm.ui.SidebarPanel.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
+  this.getHandler().listen(ydn.msg.getMain(), ydn.crm.Ch.Req.LIST_SUGAR, this.handleChannelMessage);
+};
+
+
+/**
+ * @param {ydn.msg.Event} e
+ */
+ydn.crm.ui.SidebarPanel.prototype.handleChannelMessage = function(e) {
+  if (e.type == ydn.crm.Ch.Req.LIST_SUGAR) {
+    var domains = e.getData();
+    goog.asserts.assertArray(domains, 'list of domains must be array');
+    var sugars = domains.map(function(name) {
+      return {'domain': name};
+    });
+    this.prepareSugarPanels_(/** @type {Array.<SugarCrm.About>} */ (sugars));
+  }
 };
 
 
@@ -102,6 +118,7 @@ ydn.crm.ui.SidebarPanel.prototype.logger =
 ydn.crm.ui.SidebarPanel.prototype.initSugar_ = function(about) {
   var name = about.domain;
   var df = this.user_setting.getModuleInfo(name);
+
   return df.addCallback(function(modules_info) {
     var ac = this.user_setting.getGmail();
     var sugar = new ydn.crm.sugar.model.GDataSugar(about, modules_info, ac);
@@ -109,15 +126,16 @@ ydn.crm.ui.SidebarPanel.prototype.initSugar_ = function(about) {
       this.logger.finer('compose template initialized.');
       this.gmail_template_ = new ydn.crm.ui.gmail.Template(sugar);
     }
-    var panel = new ydn.crm.ui.sugar.SugarPanel(sugar, this.dom_);
     for (var i = 0; i < this.getChildCount(); i++) {
       var child = /** @type {ydn.crm.ui.sugar.SugarPanel} */ (this.getChildAt(i));
       if (child instanceof ydn.crm.ui.sugar.SugarPanel) {
         if (child.getDomainName() == name) {
+          this.logger.finer('sugar panel already exist created');
           return;
         }
       }
     }
+    var panel = new ydn.crm.ui.sugar.SugarPanel(sugar, this.dom_);
     this.logger.finer('sugar panel ' + name + ' created');
     this.addChild(panel, true);
   }, this);
@@ -200,6 +218,51 @@ ydn.crm.ui.SidebarPanel.prototype.hasSugarPanel = function(name) {
 
 
 /**
+ * Prepare sugar panels.
+ * @param {Array.<SugarCrm.About>} sugars list of sugar domain.
+ * @private
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.ui.SidebarPanel.prototype.prepareSugarPanels_ = function(sugars) {
+  if (ydn.crm.ui.SidebarPanel.DEBUG) {
+    window.console.log(sugars);
+  }
+  var sugar_setup = this.getChildAt(0);
+  sugar_setup.setModel(sugars);
+  var dfs = [];
+  for (var i = this.getChildCount() - 1; i > 0; i--) {
+    var ch = this.getChildAt(i);
+    if (ch instanceof ydn.crm.ui.sugar.SugarPanel) {
+      var has_it = sugars.some(function(x) {
+        return x.domain == ch.getDomain();
+      });
+      if (!has_it) {
+        this.logger.fine('disposing sugar panel ' + ch.getDomainName());
+        ch.getModel().dispose();
+        this.removeChild(ch, true);
+      }
+    }
+  }
+  for (var i = 0; i < sugars.length; i++) {
+    if (!this.hasSugarPanel(sugars[i].domain)) {
+      this.logger.fine('adding sugar panel ' + sugars[i].domain);
+      var about = sugars[i];
+      if (!about.userName) {
+        var channel = ydn.msg.getChannel(ydn.msg.Group.SUGAR, about.domain);
+        dfs.push(channel.send(ydn.crm.Ch.SReq.ABOUT).addCallback(function(ab) {
+          return this.initSugar_(ab);
+        }, this));
+      } else {
+
+        dfs.push(this.initSugar_(about));
+      }
+    }
+  }
+  return goog.async.DeferredList.gatherResults(dfs);
+};
+
+
+/**
  * Initialize available sugar panels.
  * @return {!goog.async.Deferred}
  */
@@ -209,19 +272,7 @@ ydn.crm.ui.SidebarPanel.prototype.init = function() {
     return goog.async.Deferred.succeed(); // already initialize sugar panel.
   }
   return ydn.msg.getChannel().send(ydn.crm.Ch.Req.LIST_SUGAR).addCallback(function(sugars) {
-    if (ydn.crm.ui.SidebarPanel.DEBUG) {
-      window.console.log('init sugar', sugars);
-    }
-
-    var sugar_setup = this.getChildAt(0);
-    sugar_setup.setModel(sugars);
-    var dfs = [];
-    for (var i = 0; i < sugars.length; i++) {
-      if (!this.hasSugarPanel(sugars[i])) {
-        dfs.push(this.initSugar_(sugars[i]));
-      }
-    }
-    return goog.async.DeferredList.gatherResults(dfs);
+    return this.prepareSugarPanels_(sugars);
   }, this);
 };
 

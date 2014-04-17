@@ -10,8 +10,8 @@ goog.require('goog.style');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.base');
 goog.require('ydn.crm.sugar');
-goog.require('ydn.crm.ui.sugar.activity.Panel');
 goog.require('ydn.crm.ui.sugar.SearchPanel');
+goog.require('ydn.crm.ui.sugar.activity.Panel');
 
 
 
@@ -27,7 +27,6 @@ goog.require('ydn.crm.ui.sugar.SearchPanel');
 ydn.crm.ui.sugar.Header = function(model, dom) {
   goog.base(this, dom);
   this.setModel(model);
-
 };
 goog.inherits(ydn.crm.ui.sugar.Header, goog.ui.Component);
 
@@ -45,9 +44,9 @@ ydn.crm.ui.sugar.Header.USE_IFRAME = false;
 
 
 /**
- * @define {boolean} whether to use iframe.
+ * @define {boolean} whether to use popup.
  */
-ydn.crm.ui.sugar.Header.USE_POPUP = false;
+ydn.crm.ui.sugar.Header.USE_POPUP = true;
 
 
 /**
@@ -86,21 +85,6 @@ ydn.crm.ui.sugar.Header.prototype.getCssClass = function() {
 
 
 /**
- * Instead of creating a new tab, open like a dialog box.
- * @param {Event} e
- */
-ydn.crm.ui.sugar.Header.openPageAsDialog = function(e) {
-  e.preventDefault();
-  var w = 200;
-  var h = 100;
-  var left = (screen.width / 2) - (w / 2);
-  var top = (screen.height / 2) - (h / 2);
-  var url = e.target.href;
-  window.open(url, undefined, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-};
-
-
-/**
  * @inheritDoc
  */
 ydn.crm.ui.sugar.Header.prototype.getContentElement = function() {
@@ -134,7 +118,7 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
     var target = 'option-page';
     var msg = 'Setup host permission';
     if (ydn.crm.ui.sugar.Header.USE_POPUP) {
-      href = chrome.extension.getURL(ydn.crm.base.HOST_PERMISSION_PAGE);
+      href = chrome.extension.getURL(ydn.crm.base.HOST_PERMISSION_PAGE) + '?' + model.getDomain();
       target = 'host-permission';
       msg = 'Grant host permission';
     }
@@ -151,8 +135,8 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
   var div_password = dom.createDom('div', null, [ps]);
   var div_msg = dom.createDom('div', 'message');
   var div_login = dom.createDom('div', 'login-form', [div_username, div_password, div_msg]);
-  goog.style.setElementShown(div_grant, false);
-  goog.style.setElementShown(div_login, false);
+  goog.style.setElementShown(div_grant, !model.hasHostPermission());
+  goog.style.setElementShown(div_login, !model.isLogin());
   root.appendChild(div_login);
   root.appendChild(dom.createDom('div', ydn.crm.ui.sugar.Header.CSS_CLASS_CONTENT));
 
@@ -177,32 +161,21 @@ ydn.crm.ui.sugar.Header.prototype.enterDocument = function() {
   handler.listen(kh, goog.events.KeyHandler.EventType.KEY, this.handleLogin);
   if (ydn.crm.ui.sugar.Header.USE_POPUP) {
     var a_grant = grant.querySelector('a');
-    handler.listen(a_grant, 'click', ydn.crm.ui.sugar.Header.openPageAsDialog, true);
+    handler.listen(a_grant, 'click', ydn.crm.base.openPageAsDialog, true);
   }
 
-  handler.listen(ydn.msg.getMain(), ydn.msg.Pipe.EventType, function(e) {
-    var ev = /** @type {ydn.msg.Event} */ (e);
-    var msg = ev.getMessage();
-    // window.console.log('receiving broadcast msg ' + JSON.stringify(msg));
-    if (msg.req == ydn.crm.Ch.Req.UPDATE_HOST_PERMISSION) {
-      var permissions = msg.data;
-      // window.console.log(permissions);
-      if (permissions && permissions['origins']) {
-        var origins = permissions['origins'];
-        var domain = this.getModel().getDomain();
-        for (var i = 0; i < origins.length; i++) {
-          var uri = new goog.Uri(origins[i]);
-          // window.console.log(uri.getDomain() + ' ' + domain);
-          if (uri.getDomain() == domain) {
-            this.logger.finer('has host permission on ' + domain);
-            var info = /** @type {ydn.crm.sugar.model.Sugar} */ (this.getModel());
-            info.setHostPermission(true);
-            this.setModel(info);
-          }
-        }
-      }
-    }
-  }, false);
+  handler.listen(this.getModel(), ydn.crm.sugar.model.Sugar.Event.HOST_ACCESS_GRANT,
+      this.handleHostGrant);
+};
+
+
+/**
+ * Listen model event for host grant access.
+ * @param {Event} e
+ */
+ydn.crm.ui.sugar.Header.prototype.handleHostGrant = function(e) {
+  var grant = this.getElement().querySelector('.host-permission');
+  goog.style.setElementShown(grant, !this.getModel().hasHostPermission());
 };
 
 
@@ -254,30 +227,6 @@ ydn.crm.ui.sugar.Header.prototype.injectGrantIframe_ = function(domain) {
   iframe_ele.setAttribute('name', 'host-permission');
   iframe_ele.src = iframe_url + '?' + domain;
   grant.appendChild(iframe_ele);
-};
-
-
-/**
- * @protected
- * @param {Event} e
- */
-ydn.crm.ui.sugar.Header.prototype.handleGrantClick = function(e) {
-  var model = this.getModel();
-  var domain = model.getDomain();
-  var origins = ['http://' + domain + '/', 'https://' + domain + '/'];
-  var permission = {'origins': origins};
-  var me = this;
-  chrome.permissions.request(permission, function(grant) {
-    var model = me.getModel();
-    if (grant) {
-      var ch = ydn.msg.getChannel(ydn.msg.Group.SUGAR, domain);
-      ch.send(ydn.crm.Ch.Req.UPDATE_HOST_PERMISSION).addCallback(function(about) {
-        model.setAbout(about);
-        var grant = me.getElement().querySelector('.host-permission');
-        goog.style.setElementShown(grant, !model.hasHostPermission());
-      });
-    }
-  });
 };
 
 

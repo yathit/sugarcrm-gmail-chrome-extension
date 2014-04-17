@@ -32,7 +32,7 @@ ydn.crm.ui.SugarSetupLink.prototype.createDom = function() {
   goog.dom.classes.add(root, 'sugarcrm-link-panel');
   var a = dom.createElement('a');
   a.textContent = 'Setup SugarCRM';
-  a.href = chrome.extension.getURL(ydn.crm.base.OPTION_PAGE) + '#credentials';
+  a.href = chrome.extension.getURL(ydn.crm.base.SETUP_PAGE);
   a.className = 'sugarcrm-setup-link';
   root.appendChild(a);
   goog.style.setElementShown(root, false);

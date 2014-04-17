@@ -76,6 +76,6 @@ HostPermission.prototype.run = function() {
 };
 
 
-ydn.msg.setMainChannelName('host-permission');
+ydn.msg.initPipe('hostper');
 var app = new HostPermission();
 app.run();

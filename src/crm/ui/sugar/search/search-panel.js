@@ -98,12 +98,15 @@ ydn.crm.ui.sugar.SearchPanel.prototype.createDom = function() {
   }
   var tbn = new goog.ui.ToolbarSelect('Module', record_types, null, dom);
   this.toolbar.addChild(tbn, true);
-  this.toolbar.addChild(new wgui.TextInput(''), true);
+  var search_input = new wgui.TextInput('');
+  this.toolbar.addChild(search_input, true);
   this.toolbar.render(header);
   tbn.setVisible(false);
   var content = dom.createDom('div', 'content');
   root.appendChild(content);
   this.addChild(this.result_panel, true);
+  var ele_input = search_input.getElement().querySelector('input');
+  ele_input.setAttribute('placeholder', 'Search name, email, id, etc...');
 };
 
 
@@ -201,18 +204,19 @@ ydn.crm.ui.sugar.SearchPanel.prototype.addResult_ = function(result) {
 
 /**
  * Update for an module query. This will invoke updateSearch_().
- * @param {string} module
+ * @param {string} m_name
  * @param {string} index
  * @param {string} q
  * @private
  */
-ydn.crm.ui.sugar.SearchPanel.prototype.updateSearchFor_ = function(module, index, q) {
+ydn.crm.ui.sugar.SearchPanel.prototype.updateSearchFor_ = function(m_name, index, q) {
   if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
-    window.console.log(module, index, q);
+    window.console.log(m_name, index, q);
   }
-  this.getModel().listRecords(module, index, q, true).addCallbacks(function(arr) {
+
+  this.getModel().listRecords(m_name, index, q, true).addCallbacks(function(arr) {
     if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
-      window.console.log(module, index, q, arr);
+      window.console.log(m_name, index, q, arr);
     }
     var result = arr[0];
     if (result['result'][0]) {
@@ -234,7 +238,7 @@ ydn.crm.ui.sugar.SearchPanel.prototype.updateSearchFor_ = function(module, index
     this.updateSearch_();
   }, function(e) {
     if (ydn.crm.ui.sugar.SearchPanel.DEBUG) {
-      window.console.log(module, index, q, e);
+      window.console.log(m_name, index, q, e);
     }
     this.updateSearch_();
     throw e;

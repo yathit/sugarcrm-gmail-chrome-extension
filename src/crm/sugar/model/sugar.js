@@ -79,6 +79,8 @@ ydn.crm.sugar.model.Sugar = function(about, arr) {
    */
   this.user_ = new ydn.crm.sugar.Record(this.getDomain(), ydn.crm.sugar.ModuleName.USERS);
   this.initUser_();
+  var pipe = ydn.msg.getMain();
+  this.handler.listen(pipe, [ydn.crm.Ch.SReq.LOGIN, ydn.crm.Ch.Req.HOST_PERMISSION], this.handleMessage);
 };
 goog.inherits(ydn.crm.sugar.model.Sugar, goog.events.EventTarget);
 
@@ -95,7 +97,25 @@ ydn.crm.sugar.model.Sugar.DEBUG = false;
  */
 ydn.crm.sugar.model.Sugar.Event = {
   LOGIN: 'login',
-  LOGOUT: 'logout'
+  LOGOUT: 'logout',
+  HOST_ACCESS_GRANT: 'hag'
+};
+
+
+/**
+ * Handle message from channel.
+ * @param {ydn.msg.Event} e
+ */
+ydn.crm.sugar.model.Sugar.prototype.handleMessage = function(e) {
+  if (e.type == ydn.crm.Ch.SReq.LOGIN) {
+    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.LOGIN));
+  } else if (e.type == ydn.crm.Ch.Req.HOST_PERMISSION && this.about) {
+    var msg = e.getData();
+    if (msg['grant'] && msg['grant'] == this.getDomain()) {
+      this.about.hostPermission = true;
+      this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.HOST_ACCESS_GRANT));
+    }
+  }
 };
 
 
@@ -264,7 +284,6 @@ ydn.crm.sugar.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
 };
 
 
-
 /**
  * @param {SugarCrm.ServerInfo} info
  */
@@ -357,7 +376,7 @@ ydn.crm.sugar.model.Sugar.prototype.send = function(req, opt_data) {
 
 /**
  * Query list of records.
- * @param {string} module
+ * @param {string} m_name
  * @param {string=} opt_order
  * @param {(ydn.db.KeyRange|string)=} opt_range key or key range.
  * @param {boolean=} opt_prefix prefix search.
@@ -365,11 +384,11 @@ ydn.crm.sugar.model.Sugar.prototype.send = function(req, opt_data) {
  * @param {number=} opt_offset offset
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.listRecords = function(module, opt_order, opt_range,
+ydn.crm.sugar.model.Sugar.prototype.listRecords = function(m_name, opt_order, opt_range,
                                                            opt_prefix, opt_limit, opt_offset) {
-  goog.asserts.assert(ydn.crm.sugar.Modules.indexOf(module) >= 0, module);
+  goog.asserts.assert(ydn.crm.sugar.Modules.indexOf(m_name) >= 0, m_name);
   var query = {
-    'store': module
+    'store': m_name
   };
   if (opt_order) {
     query['index'] = opt_order;

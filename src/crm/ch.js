@@ -64,19 +64,19 @@ ydn.crm.Ch.Req = {
   GDATA_LIST_CONTACT_BY_EMAIL: 'gdata-list-contact-by-email',
   GDATA_TOKEN: 'gdata-token', //
   GDATA_TOKEN_REVOKE: 'gdata-token-revoke',
+  HOST_PERMISSION: 'host-permission',
   LIST_SUGAR: 'list-sugarcrm', // list of domain name of sugarcrm
   LOG_BUG: 'log-bug', // log bug
   LOGIN_INFO: 'login-info', // google user info, email and id
   LOGGED_IN: 'logged-in', // has been logged to server.
-  LOGOUT: 'logout',
+  LOGGED_OUT: 'logged-out', // notice that to differenciate SUGAR login
   NEW_ENTRY: 'new-entry',
   NEW_SUGAR: 'new-sugarcrm', // create a new sugar channel, if not already exist.
   NUKE: 'nk', // clear db
   REMOVE_SUGAR: 'remove-sugar',
   SERVER_AUDIT_LOG: 'server-audit-log',
   SUGAR_SERVER_INFO: 'sugar-server-info',
-  USER_SETTING: 'user-setting',
-  UPDATE_HOST_PERMISSION: 'update-host-permission'
+  USER_SETTING: 'user-setting'
 };
 
 

@@ -110,7 +110,7 @@ ydn.crm.ui.sugar.record.Record.prototype.logger =
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.record.Record.DEBUG = true;
+ydn.crm.ui.sugar.record.Record.DEBUG = false;
 
 
 /**

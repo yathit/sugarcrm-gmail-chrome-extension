@@ -4,8 +4,9 @@
 
 // ydn.msg.Pipe.DEBUG = true;
 ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.ConsoleStatusBar();
-ydn.msg.initPipe('popup');
+ydn.msg.initPipe('dev');
 ydn.debug.log('ydn.crm', 'finer');
+ydn.debug.log('ydn.msg', 'finest');
 var panel, sugar;
 var user = ydn.crm.inj.UserSetting.getInstance();
 var inj = document.querySelector('.inj');
