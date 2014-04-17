@@ -150,8 +150,9 @@ SugarCrmWidget.prototype.refresh = function() {
     h3.textContent = 'SugarCRM';
   }
   var about = this.model.getDetails();
-  var login_panel = this.root.querySelector('div.sugar-login');
-  var info_panel = this.root.querySelector('div.info');
+  var login_panel = this.root.querySelector('div[name=login-panel]');
+  var info_panel = this.root.querySelector('div[name=info-panel]');
+  var remove_panel = this.root.querySelector('div[name=remove-panel]');
   var permission_panel = this.root.querySelector('#grant-host-permission');
   if (about) {
     if (about.isLogin) {
@@ -171,15 +172,19 @@ SugarCrmWidget.prototype.refresh = function() {
       }, this);
       login_panel.style.display = 'none';
       info_panel.style.display = '';
+      remove_panel.style.display = '';
     } else {
-      login_panel.querySelector('#domain').textContent = about.baseUrl;
-      login_panel.querySelector('#username').textContent = about.userName;
+      login_panel.querySelector('#domain').value = about.baseUrl;
+      login_panel.querySelector('#username').value = about.userName;
       login_panel.style.display = '';
       permission_panel.style.display = 'none';
+      info_panel.style.display = 'none';
+      remove_panel.style.display = '';
     }
   } else {
     login_panel.style.display = '';
     info_panel.style.display = 'none';
+    remove_panel.style.display = 'none';
   }
 };
 

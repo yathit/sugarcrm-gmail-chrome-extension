@@ -148,7 +148,7 @@
         }
     </style>
     <h3>SugarCRM</h3>
-    <div class="sugar-login" style="display: none">
+    <div name="login-panel" style="display: none">
         <div class="domain">
             <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
             <div><input name="domain" id="domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
@@ -169,13 +169,15 @@
             <button name="login">Login</button>
         </div>
     </div>
-    <div class="info" style="display: none">
+    <div name="info-panel" style="display: none">
         <div>Instance: <a name="instance"></a> <span name="instance-info"></span></div>
         <div>User: <span name="user"></span></div>
         <div id="grant-host-permission" style="display: none">
             <button>Grant host permission</button>
             <p>Your permission is required to connect your server from this extension.</p>
         </div>
+    </div>
+    <div name="remove-panel" style="display: none">
         <p>
             <a href="#" name="remove">Remove</a>
         </p>

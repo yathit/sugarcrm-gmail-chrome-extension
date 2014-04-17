@@ -92,7 +92,7 @@ GDataCredentialWidget.prototype.refresh = function(opt_cb, opt_scope) {
       display_panel.style.display = 'none';
       authorize_panel.style.display = '';
       if (opt_cb) {
-        opt_cb.cal(opt_scope, true);
+        opt_cb.call(opt_scope, true);
       }
     }
   }, this);

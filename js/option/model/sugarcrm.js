@@ -184,7 +184,7 @@ SugarCrmModel.prototype.login = function(url, username, password, cb, scope) {
     // whether user give permission or not, we still continue login.
     // console.log(permission, me.data);
     ydn.msg.getChannel().send('new-sugarcrm', me.data).addCallbacks(function(info) {
-      console.log(info);
+      // console.log(info);
       me.data = info;
       cb.call(scope, info);
     }, function(e) {
