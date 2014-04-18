@@ -202,8 +202,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.update = function(email, full_name, pho
   if (this.isLogin()) {
     this.update_(email, full_name, phone);
   } else {
-    // these two information may change at this time.
-    // we should listen change from the background page, but currently it is not.
+    // background page dispatch login event, but glitchy.
     // remove this code if background page notify changes in login and host permission
     // status.
     this.updateStatus().addBoth(function() {

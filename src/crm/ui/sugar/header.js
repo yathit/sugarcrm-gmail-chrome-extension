@@ -168,10 +168,21 @@ ydn.crm.ui.sugar.Header.prototype.enterDocument = function() {
 
   handler.listen(this.getModel(), ydn.crm.sugar.model.Sugar.Event.HOST_ACCESS_GRANT,
       this.handleHostGrant);
+  handler.listen(this.getModel(), ydn.crm.sugar.model.Sugar.Event.LOGIN,
+      this.handleModelLogin);
 
   if (ydn.crm.ui.sugar.Header.USE_IFRAME) {
     this.injectGrantIframe_(this.getModel().getDomain());
   }
+};
+
+
+/**
+ * @param e
+ */
+ydn.crm.ui.sugar.Header.prototype.handleModelLogin = function(e) {
+  var div_login = this.getElement().querySelector('.login-form');
+  goog.style.setElementShown(div_login, !this.getModel().isLogin());
 };
 
 
