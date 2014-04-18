@@ -135,10 +135,12 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
   var div_password = dom.createDom('div', null, [ps]);
   var div_msg = dom.createDom('div', 'message');
   var div_login = dom.createDom('div', 'login-form', [div_username, div_password, div_msg]);
+  var content_ele = dom.createDom('div', ydn.crm.ui.sugar.Header.CSS_CLASS_CONTENT);
+  root.appendChild(div_login);
+  root.appendChild(content_ele);
   goog.style.setElementShown(div_grant, !model.hasHostPermission());
   goog.style.setElementShown(div_login, !model.isLogin());
-  root.appendChild(div_login);
-  root.appendChild(dom.createDom('div', ydn.crm.ui.sugar.Header.CSS_CLASS_CONTENT));
+  goog.style.setElementShown(content_ele, this.getModel().hasHostPermission());
 
   var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
   this.addChild(search, true);
@@ -166,6 +168,10 @@ ydn.crm.ui.sugar.Header.prototype.enterDocument = function() {
 
   handler.listen(this.getModel(), ydn.crm.sugar.model.Sugar.Event.HOST_ACCESS_GRANT,
       this.handleHostGrant);
+
+  if (ydn.crm.ui.sugar.Header.USE_IFRAME) {
+    this.injectGrantIframe_(this.getModel().getDomain());
+  }
 };
 
 
@@ -175,7 +181,12 @@ ydn.crm.ui.sugar.Header.prototype.enterDocument = function() {
  */
 ydn.crm.ui.sugar.Header.prototype.handleHostGrant = function(e) {
   var grant = this.getElement().querySelector('.host-permission');
-  goog.style.setElementShown(grant, !this.getModel().hasHostPermission());
+  var has_per = this.getModel().hasHostPermission();
+  goog.style.setElementShown(grant, !has_per);
+  goog.style.setElementShown(this.getContentElement(), has_per);
+  if (ydn.crm.ui.sugar.Header.USE_IFRAME && !has_per) {
+    this.injectGrantIframe_(this.getModel().getDomain());
+  }
 };
 
 
@@ -221,6 +232,9 @@ ydn.crm.ui.sugar.Header.prototype.injectGrantIframe_ = function(domain) {
       grant.removeChild(iframe_ele);
     }
   }
+  if (ydn.crm.ui.sugar.Header.DEBUG) {
+    window.console.log('injected host permiossion iframe for ' + domain);
+  }
   var iframe_url = chrome.extension.getURL(ydn.crm.base.HOST_PERMISSION_PAGE);
   iframe_ele = this.dom_.createElement('IFRAME');
   iframe_ele.setAttribute('frameborder', '0');
@@ -255,9 +269,11 @@ ydn.crm.ui.sugar.Header.prototype.handleSugarChanged = function() {
   a_title.href = model.getBaseUrl() || 'https://' + domain;
   var user_name = login.querySelector('input[name=username]');
   user_name.textContent = model.getUserName() || '';
+  var content_ele = this.getContentElement();
   goog.style.setElementShown(login, false);
   goog.style.setElementShown(grant, false);
   goog.style.setElementShown(root, true);
+  goog.style.setElementShown(content_ele, true);
   if (!model.isLogin()) {
     var ch = ydn.msg.getChannel(ydn.msg.Group.SUGAR, domain).send(ydn.crm.Ch.SReq.ABOUT);
     ch.addCallback(function(x) {
@@ -275,6 +291,7 @@ ydn.crm.ui.sugar.Header.prototype.handleSugarChanged = function() {
       a_grant.href = hp_url + '?' + domain;
     }
     goog.style.setElementShown(grant, true);
+    goog.style.setElementShown(content_ele, false);
   }
 };
 

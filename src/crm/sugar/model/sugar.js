@@ -108,7 +108,10 @@ ydn.crm.sugar.model.Sugar.Event = {
  */
 ydn.crm.sugar.model.Sugar.prototype.handleMessage = function(e) {
   if (e.type == ydn.crm.Ch.SReq.LOGIN) {
-    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.LOGIN));
+    var about = /** @type {SugarCrm.About} */ (e.getData());
+    if (!!about && about.domain == this.getDomain()) {
+      this.setAbout(about);
+    }
   } else if (e.type == ydn.crm.Ch.Req.HOST_PERMISSION && this.about) {
     var msg = e.getData();
     if (msg['grant'] && msg['grant'] == this.getDomain()) {

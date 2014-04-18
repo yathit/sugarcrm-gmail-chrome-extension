@@ -29,20 +29,6 @@ HostPermission.prototype.handleHostPermissionClick = function(e) {
       if (grant) {
         window.open('', '_self').close();
       }
-      /*
-      document.querySelector('.host-permission').style.display = grant ? 'none' : '';
-      var req = ydn.msg.getChannel().send('update-host-permission', {
-        permissions: permissions,
-        grant: grant
-      });
-      req.addCallbacks(function(resp) {
-        if (resp == 'close') {
-          window.open('', '_self').close();
-        }
-      }, function(e) {
-        throw e;
-      }, this);
-      */
     });
   } else {
     document.querySelector('.host-permission').style.display = 'none';
@@ -64,7 +50,6 @@ HostPermission.prototype.requestHost = function(domain) {
   document.querySelector('.host-permission').style.display =
       this.permissions ? '' : 'none';
 
-
 };
 
 
@@ -76,6 +61,5 @@ HostPermission.prototype.run = function() {
 };
 
 
-ydn.msg.initPipe('hostper');
 var app = new HostPermission();
 app.run();

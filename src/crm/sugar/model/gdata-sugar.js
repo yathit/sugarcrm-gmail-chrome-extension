@@ -199,7 +199,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.export2GData = function(record) {
  * @param {string?} phone found in sniffing gmail thread.
  */
 ydn.crm.sugar.model.GDataSugar.prototype.update = function(email, full_name, phone) {
-  if (this.isLogin() && this.hasHostPermission()) {
+  if (this.isLogin()) {
     this.update_(email, full_name, phone);
   } else {
     // these two information may change at this time.
