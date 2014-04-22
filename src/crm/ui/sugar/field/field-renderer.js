@@ -163,7 +163,7 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.refresh = function(ele_field, mod
     ele_value.textContent = is_def ? value : '';
   } else {
     if (model.getType() == 'bool' && !goog.isBoolean(value)) {
-      if (value == '1' || value == 'on') {
+      if (value == '1' || value == 'on' || value == 'true') {
         value = true;
       } else {
         value = false;
@@ -172,7 +172,7 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.refresh = function(ele_field, mod
     goog.dom.forms.setValue(ele_value, value);
   }
   if (ydn.crm.ui.sugar.field.FieldRenderer.DEBUG) {
-    window.console.log(model.getFieldName(), value);
+    window.console.log(model.getFieldName(), model.getType(), value);
   }
   if (is_def) {
     ele_field.classList.remove(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_EMPTY);
@@ -185,25 +185,18 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.refresh = function(ele_field, mod
 /**
  * Collect data.
  * @param {ydn.crm.ui.sugar.field.Field} ctrl
- * @return {string|boolean}  if field value is not available empty string return.
+ * @return {*} return value of the element.
  */
 ydn.crm.ui.sugar.field.FieldRenderer.prototype.collectValue = function(ctrl) {
   var ele = ctrl.getContentElement();
   var ele_value = ele.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
   if (ele_value.tagName == goog.dom.TagName.LABEL ||
       ele_value.tagName == goog.dom.TagName.SPAN || ele_value.tagName == goog.dom.TagName.DIV) {
-    return ele_value.textContent.trim();
-  } else if (ele_value.tagName == goog.dom.TagName.INPUT && ele_value.type == 'checkbox') {
-    var prev_value = ctrl.getModel().getFieldValue();
-    if (goog.isBoolean(prev_value)) {
-      return ele_value.checked ? true : false;
-    } else if (prev_value == 'on' || prev_value == 'off') {
-      return ele_value.checked ? 'on' : 'off';
-    } else {
-      return ele_value.checked ? '1' : '0';
-    }
+    return ele_value.textContent;
+  } else if (ele_value.type == 'checkbox') {
+    return ele_value.checked; // goog.dom.forms get value incorrect.
   } else {
-    return ele_value.value.trim();
+    return ele_value.value; // goog.dom.forms.getValue(ele_value);
   }
 };
 

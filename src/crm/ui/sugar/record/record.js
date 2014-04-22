@@ -81,13 +81,7 @@ ydn.crm.ui.sugar.record.Record = function(model, dom, opt_parent) {
    * @type {ydn.crm.ui.sugar.record.FooterRenderer}
    */
   this.footer_panel = ydn.crm.ui.sugar.record.FooterRenderer.getInstance();
-  this.observer_ = new MutationObserver(this.mutationObserver.bind(this));
-  /**
-   * List of dirty field names.
-   * @type {Array.<string>}
-   * @private
-   */
-  this.dirty_fields_ = [];
+
 };
 goog.inherits(ydn.crm.ui.sugar.record.Record, goog.ui.Component);
 
@@ -237,33 +231,6 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
 
 
 /**
- * Notify changes.
- * @param {Array.<MutationRecord>} mutations
- */
-ydn.crm.ui.sugar.record.Record.prototype.mutationObserver = function(mutations) {
-  window.console.log(mutations);
-  var mode = this.body_panel.getEditMode();
-  if (!mode) {
-    this.setEditMode(true);
-  }
-  for (var i = 0; i < mutations.length; i++) {
-    var target_ele = mutations[i].target instanceof Element ? mutations[i].target :
-        mutations[i].target.parentElement;
-    if (target_ele.classList.contains('value')) {
-      var field_root = goog.dom.getAncestorByClass(target_ele, ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS);
-      if (!field_root) {
-        continue;
-      }
-      var field = field_root.getAttribute('name');
-      if (field && this.dirty_fields_.indexOf(field) == -1) {
-        this.dirty_fields_.push(field);
-      }
-    }
-  }
-};
-
-
-/**
  * @protected
  * @param e
  */
@@ -376,22 +343,28 @@ ydn.crm.ui.sugar.record.Record.prototype.handleFooterClick = function(e) {
  * @param {Event} e
  */
 ydn.crm.ui.sugar.record.Record.prototype.handleCancel = function(e) {
-  this.observer_.disconnect();
   this.setEditMode(false);
-  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
 /**
- * @return {SugarCrm.Record?}
+ * @return {SugarCrm.Record?} null if record value is not updated.
  */
-ydn.crm.ui.sugar.record.Record.prototype.collectData = function() {
-  if (this.dirty_fields_.length == 0) {
-    return null;
+ydn.crm.ui.sugar.record.Record.prototype.getUpdatedValue = function() {
+
+  var delta = this.body_panel.collectData(this);
+  if (delta) {
+    var old_value = this.getModel().getRecordValue();
+    if (old_value) {
+      for (var name in delta) {
+        old_value[name] = delta[name];
+      }
+      return old_value;
+    } else {
+      return delta;
+    }
   }
-
-  return this.body_panel.collectData(this, this.dirty_fields_);
-
+  return null;
 };
 
 
@@ -405,9 +378,9 @@ ydn.crm.ui.sugar.record.Record.prototype.handleSave = function(e) {
    */
   var model = this.getModel();
   var btn = e.target;
-  var obj = this.collectData();
+  var obj = this.getUpdatedValue();
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
-    window.console.log(model.getRecordValue(),obj);
+    window.console.log(model.getRecordValue(), obj);
   }
   if (!obj) {
     this.setMessage('data not modified');
@@ -418,9 +391,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleSave = function(e) {
 
   model.save(obj).addCallbacks(function(x) {
     this.setMessage('saved');
-    this.observer_.disconnect();
     this.setEditMode(false);
-    this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
     btn.textContent = 'Save';
     btn.removeAttribute('disabled');
   }, function(e) {
@@ -440,11 +411,11 @@ ydn.crm.ui.sugar.record.Record.prototype.handleDetailClick = function(e) {
   var root = this.getElement();
   var body_ele = this.body_panel.getElement();
   var a_view = this.head_panel.getDetailButton(root);
-  if (a_view.textContent != 'detail') {
-    a_view.textContent = 'detail';
+  if (a_view.textContent != 'Detail') {
+    a_view.textContent = 'Detail';
     body_ele.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_DETAIL);
   } else {
-    a_view.textContent = 'less';
+    a_view.textContent = 'Less';
     body_ele.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_DETAIL);
   }
 };
@@ -477,14 +448,12 @@ ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
-  this.observer_.disconnect();
   this.reset();
   this.removeChild(this.body_panel, true);
   this.body_panel.dispose();
   this.body_panel = this.getBodyPanel();
   this.addChildAt(this.body_panel, 0, true);
   this.body_panel.refresh();
-  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
@@ -496,9 +465,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleRecordChanged = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
-  this.observer_.disconnect();
   this.reset();
-  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
@@ -510,9 +477,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleRecordUpdated = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
-  this.observer_.disconnect();
   this.refresh();
-  this.observer_.observe(this.body_panel.getContentElement(), ydn.crm.ui.sugar.record.Record.MOConfig);
 };
 
 
@@ -544,7 +509,6 @@ ydn.crm.ui.sugar.record.Record.prototype.reset = function() {
  */
 ydn.crm.ui.sugar.record.Record.prototype.exitDocument = function() {
   goog.base(this, 'exitDocument');
-  this.observer_.disconnect();
 };
 
 
@@ -560,7 +524,6 @@ ydn.crm.ui.sugar.record.Record.prototype.refresh = function() {
   this.head_panel.refresh(this);
   this.footer_panel.reset(this);
   this.body_panel.refresh();
-  this.dirty_fields_.length = 0;
 };
 
 
