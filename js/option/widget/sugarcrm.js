@@ -184,8 +184,9 @@ SugarCrmWidget.prototype.refresh = function() {
       info_panel.style.display = '';
       remove_panel.style.display = '';
     } else {
-      login_panel.querySelector('#domain').value = about.baseUrl;
-      login_panel.querySelector('#username').value = about.userName;
+      // baseUrl ?
+      login_panel.querySelector('#sugarcrm-domain').value = about.baseUrl;
+      login_panel.querySelector('#sugarcrm-username').value = about.userName;
       login_panel.style.display = '';
       permission_panel.style.display = 'none';
       info_panel.style.display = 'none';
