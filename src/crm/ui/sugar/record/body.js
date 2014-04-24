@@ -44,7 +44,7 @@ goog.inherits(ydn.crm.ui.sugar.record.Body, goog.ui.Component);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.record.Body.DEBUG = false;
+ydn.crm.ui.sugar.record.Body.DEBUG = true;
 
 
 /**
@@ -73,6 +73,24 @@ ydn.crm.ui.sugar.record.Body.prototype.setEditMode = function(val) {
     this.getElement().classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
     this.getElement().classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
   }
+};
+
+
+/**
+ * Get child group component by group name.
+ * @param {string} group_name
+ * @return {ydn.crm.ui.sugar.group.Group}
+ */
+ydn.crm.ui.sugar.record.Body.prototype.getChildByGroup = function(group_name) {
+
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
+    if (g.getGroupName() == group_name) {
+      return g;
+    }
+  }
+  return null;
 };
 
 
@@ -135,28 +153,25 @@ ydn.crm.ui.sugar.record.Body.prototype.createDom = function() {
 /**
  * Return data from UI values. Return null, if invalid data present.
  * @param {ydn.crm.ui.sugar.record.Record} record_panel
- * @param {Array.<string>} dirty_fields
  * @return {SugarCrm.Record?} null if data is not valid.
  */
-ydn.crm.ui.sugar.record.Body.prototype.collectData = function(record_panel, dirty_fields) {
+ydn.crm.ui.sugar.record.Body.prototype.collectData = function(record_panel) {
   var model = this.getModel();
-  var obj = model.getRecordValue() || /** @type {SugarCrm.Record} */ (/** @type {Object} */ ({}));
+  var obj = null;
   for (var i = 0; i < this.getChildCount(); i++) {
     var child = this.getChildAt(i);
     var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
-    var m = g.getModel();
-    for (var j = 0; j < dirty_fields.length; j++) {
-      var field = dirty_fields[j];
-      if (m.hasField(field)) {
-        var f = g.getChildByField(field);
-        if (f) {
-          obj[field] = f.collectData();
-        }
+    var value = g.collectData();
+    if (value) {
+      if (!obj) {
+        obj = {};
+      }
+      for (var name in value) {
+        obj[name] = value[name];
       }
     }
-
   }
-  return obj;
+  return /** @type {SugarCrm.Record} */ (/** @type {Object} */ (obj));
 };
 
 

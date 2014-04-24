@@ -131,7 +131,8 @@ ydn.crm.sugar.SIMPLE_MODULES = [ydn.crm.sugar.ModuleName.NOTES];
  * @const
  * @type {Array.<ydn.crm.sugar.ModuleName>}
  */
-ydn.crm.sugar.EDITABLE_MODULES = ydn.crm.sugar.CacheModules;
+ydn.crm.sugar.EDITABLE_MODULES = [ydn.crm.sugar.ModuleName.CONTACTS, ydn.crm.sugar.ModuleName.LEADS,
+  ydn.crm.sugar.ModuleName.NOTES];
 
 
 /**

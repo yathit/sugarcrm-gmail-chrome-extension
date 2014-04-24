@@ -21,8 +21,6 @@
 
 
 goog.provide('ydn.crm.ui.sugar.record.Default');
-goog.require('ydn.crm.ui.sugar.field.Input');
-goog.require('ydn.crm.ui.sugar.field.TextArea');
 goog.require('ydn.crm.ui.sugar.group.Address');
 goog.require('ydn.crm.ui.sugar.group.Email');
 goog.require('ydn.crm.ui.sugar.group.Group');

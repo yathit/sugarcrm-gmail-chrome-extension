@@ -6,7 +6,11 @@
 goog.provide('ydn.crm.ui.sugar.field.Field');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.ui.Refreshable');
+goog.require('ydn.crm.ui.sugar.field.CheckboxFieldRenderer');
+goog.require('ydn.crm.ui.sugar.field.EnumFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.FieldRenderer');
+goog.require('ydn.crm.ui.sugar.field.InputFieldRenderer');
+goog.require('ydn.crm.ui.sugar.field.TextFieldRenderer');
 
 
 
@@ -29,7 +33,7 @@ ydn.crm.ui.sugar.field.Field = function(info, opt_renderer, opt_domHelper) {
    * @protected
    * @type {ydn.crm.ui.sugar.field.FieldRenderer}
    */
-  this.renderer = opt_renderer || ydn.crm.ui.sugar.field.FieldRenderer.getInstance();
+  this.renderer = opt_renderer || ydn.crm.ui.sugar.field.Field.selectFieldRenderer(info.getType());
   this.setModel(info);
 
 };
@@ -54,6 +58,24 @@ ydn.crm.ui.sugar.field.Field.prototype.getModel;
  */
 ydn.crm.ui.sugar.field.Field.prototype.getRenderer = function() {
   return this.renderer;
+};
+
+
+/**
+ * Select suitable renderer for a given type.
+ * @param {string} type
+ * @return {ydn.crm.ui.sugar.field.FieldRenderer}
+ */
+ydn.crm.ui.sugar.field.Field.selectFieldRenderer = function(type) {
+  if (type == 'bool') {
+    return ydn.crm.ui.sugar.field.CheckboxFieldRenderer.getInstance();
+  } else if (type == 'text') {
+    return ydn.crm.ui.sugar.field.TextFieldRenderer.getInstance();
+  } else if (type == 'enum') {
+    return ydn.crm.ui.sugar.field.EnumFieldRenderer.getInstance();
+  } else {
+    return ydn.crm.ui.sugar.field.InputFieldRenderer.getInstance();
+  }
 };
 
 

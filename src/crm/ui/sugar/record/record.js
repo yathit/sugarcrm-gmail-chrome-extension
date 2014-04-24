@@ -24,11 +24,11 @@
 
 goog.provide('ydn.crm.ui.sugar.record.Record');
 goog.require('goog.ui.Component');
-goog.require('ydn.crm.ui.sugar.field.Field');
 goog.require('ydn.crm.sugar');
 goog.require('ydn.crm.sugar.model.Sugar');
 goog.require('ydn.crm.ui');
 goog.require('ydn.crm.ui.StatusBar');
+goog.require('ydn.crm.ui.sugar.field.Field');
 goog.require('ydn.crm.ui.sugar.record.Body');
 goog.require('ydn.crm.ui.sugar.record.Default');
 goog.require('ydn.crm.ui.sugar.record.FooterRenderer');
@@ -448,12 +448,11 @@ ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
-  this.reset();
   this.removeChild(this.body_panel, true);
   this.body_panel.dispose();
   this.body_panel = this.getBodyPanel();
   this.addChildAt(this.body_panel, 0, true);
-  this.body_panel.refresh();
+  this.reset();
 };
 
 

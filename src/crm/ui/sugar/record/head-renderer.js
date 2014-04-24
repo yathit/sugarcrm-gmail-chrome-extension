@@ -136,7 +136,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.createDom = function(ctrl) {
   toolbar.appendChild(dom.createDom('a', {
     'name': ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT,
     'href': '#edit'
-  }, 'edit'));
+  }, 'Edit'));
   toolbar.appendChild(dom.createDom('a', {
     'name': ydn.crm.ui.sugar.record.HeadRenderer.NAME_DETAIL,
     'href': '#detail'
@@ -169,7 +169,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.reset = function(ctrl) {
       header);
   icon.textContent = m_name.substring(0, 2);
   var edit = header.querySelector('a[name=' + ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT + ']');
-  goog.style.setElementShown(edit, false /* record.isEditable() */);
+  goog.style.setElementShown(edit, record.isEditable());
 
   // goog.style.setElementShown(this.getToolbarElement(root), !record.isSimple());
   this.refresh(ctrl);

@@ -74,35 +74,7 @@
         <div id="statusbar"></div>
     </footer>
 </div>
-<template id="sugarcrm-login-form">
-    <style>
-        .domain input {
-            min-width: 30em;
-        }
-    </style>
-    <h3>Add a new SugarCRM</h3>
-    <div class="sugar-login">
-        <div class="domain">
-            <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
-            <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
-                <span class="message"></span></div>
-        </div>
-        <div>
-            <div><label for="sugarcrm-username">Username</label></div>
-            <div><input name="username" id="sugarcrm-username" type="text"/></div>
-        </div>
-        <div>
-            <div><label for="sugarcrm-password">Password</label></div>
-            <div><input name="password" id="sugarcrm-password" type="password"/></div>
-        </div>
-        <div>
-            <div class="message"></div>
-        </div>
-        <div>
-            <button name="login">Login</button>
-        </div>
-    </div>
-</template>
+
 <template id="sugarcrm-details">
     <div class="sugarcrm">
         <h3>SugarCRM</h3>
@@ -143,7 +115,7 @@
 </template>
 <template id="sugarcrm-template">
     <style>
-        #domain {
+        #sugarcrm-domain {
             width: 30em;
         }
     </style>
@@ -151,16 +123,16 @@
     <div name="login-panel" style="display: none">
         <div class="domain">
             <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
-            <div><input name="domain" id="domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
+            <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
                 <span class="message"></span></div>
         </div>
         <div>
             <div><label for="sugarcrm-username">Username</label></div>
-            <div><input name="username" id="username" type="text"/></div>
+            <div><input name="username" id="sugarcrm-username" type="text"/></div>
         </div>
         <div>
             <div><label for="sugarcrm-password">Password</label></div>
-            <div><input name="password" id="password" type="password"/></div>
+            <div><input name="password" id="sugarcrm-password" type="password"/></div>
         </div>
         <div>
             <div class="message"></div>
@@ -168,6 +140,7 @@
         <div>
             <button name="login">Login</button>
         </div>
+        <input name="baseurl" type="text" hidden="true"/>
     </div>
     <div name="info-panel" style="display: none">
         <div>Instance: <a name="instance"></a> <span name="instance-info"></span></div>

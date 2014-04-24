@@ -100,7 +100,7 @@ SugarCrmModel.prototype.requestHostPermission = function(cb, scope) {
  * @template T
  */
 SugarCrmModel.prototype.setInstanceUrl = function(url, cb, scope) {
-  var url = url.trim().toLocaleLowerCase();
+  url = url.trim();
   var domain = url.replace(/^https?:\/\//, '');
   domain = domain.replace(/\/.*/, ''); // remove after /
   if (url.length < 3 || !/\./.test(url)) {
@@ -114,11 +114,16 @@ SugarCrmModel.prototype.setInstanceUrl = function(url, cb, scope) {
     return;
   }
   ydn.msg.getChannel().send('sugar-server-info', url).addCallbacks(function(info) {
+    var base_url = /^http/.test(url) ? url : null;
+    if (info['baseUrl']) {
+      base_url = info['baseUrl'];
+    }
     this.data = {
-      baseUrl: /^http/.test(url) ? url : null,
+      baseUrl: base_url,
       domain: domain,
       isLogin: false
     };
+    // console.log(info);
     this.info = info;
     if (cb) {
       cb.call(scope, info);
@@ -166,9 +171,7 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
  */
 SugarCrmModel.prototype.login = function(url, username, password, cb, scope) {
   this.setInstanceUrl(url);
-  if (!this.data) {
-    this.data = /** @type {SugarCrm.About} */ (/** @type {Object} */ ({}));
-  }
+  window.console.assert(!this.data, 'Not initialized');
   if (username) {
     this.data.userName = username;
   }
@@ -182,7 +185,7 @@ SugarCrmModel.prototype.login = function(url, username, password, cb, scope) {
   var me = this;
   chrome.permissions.request(permission, function(grant) {
     // whether user give permission or not, we still continue login.
-    // console.log(permission, me.data);
+    console.log(permission, me.data);
     ydn.msg.getChannel().send('new-sugarcrm', me.data).addCallbacks(function(info) {
       // console.log(info);
       me.data = info;

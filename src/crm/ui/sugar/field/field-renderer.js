@@ -87,6 +87,7 @@ ydn.crm.ui.sugar.field.FieldRenderer.getDataList = function(model) {
 
 /**
  * @param {ydn.crm.ui.sugar.field.Field} field
+ * @return {Element}
  */
 ydn.crm.ui.sugar.field.FieldRenderer.prototype.createDom = function(field) {
 
@@ -97,50 +98,9 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.createDom = function(field) {
   var dom = field.getDomHelper();
   var el = dom.createDom('div');
   el.classList.add(this.getCssClass());
-  field.setElementInternal(el);
-  var ele_value;
-  var ele_label;
-  var label = model.getLabel();
-  var type = model.getType();
-  var calculated = model.isCalculated();
-  // console.log(label, type, calculated);
-  if (type == 'bool') {
-    var id = goog.ui.IdGenerator.getInstance().getNextUniqueId();
-    ele_value = dom.createDom('input', {
-      'type': 'checkbox',
-      'id': id
-    });
-    ele_label = dom.createDom('label', {'for': id}, label);
-    if (calculated) {
-      ele_value.setAttribute('disabled', 'true');
-    }
-  } else if (type == 'text') {
-    ele_value = dom.createDom(goog.dom.TagName.TEXTAREA);
-  } else if (type == 'enum') {
-    ele_value = dom.createDom('input', {
-      'class': 'enum',
-      'type': 'text'
-    });
-    ele_value.setAttribute('list', ydn.crm.ui.sugar.field.FieldRenderer.getDataList(model));
-  } else {
-    ele_value = dom.createDom('div', 'value');
-    if (!calculated) {
-      ele_value.setAttribute('contenteditable', 'true');
-    }
-    // ele_value = dom.createDom('input', 'value');
-  }
-  ele_value.classList.add(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
-  // ele_value.setAttribute('disabled', '1');
-
-  el.classList.add(this.getCssClass());
   el.setAttribute('name', model.getFieldName());
-  el.appendChild(ele_value);
-  if (ele_label) {
-    el.appendChild(ele_label);
-  } else {
-    ele_value.setAttribute('title', label);
-  }
-
+  field.setElementInternal(el);
+  return el;
 };
 
 
@@ -154,26 +114,12 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.refresh = function(ele_field, mod
     return;
   }
   var value = model.getFieldValue();
-  var is_def = goog.isString(value) ? !goog.string.isEmpty(value) :
-      goog.isDefAndNotNull(value);
-  // console.log(model.getFieldName() + ' ' + value);
-  var ele_value = ele_field.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
-  if (ele_value.tagName == goog.dom.TagName.LABEL ||
-      ele_value.tagName == goog.dom.TagName.SPAN || ele_value.tagName == goog.dom.TagName.DIV) {
-    ele_value.textContent = is_def ? value : '';
-  } else {
-    if (model.getType() == 'bool' && !goog.isBoolean(value)) {
-      if (value == '1' || value == 'on' || value == 'true') {
-        value = true;
-      } else {
-        value = false;
-      }
-    }
-    goog.dom.forms.setValue(ele_value, value);
-  }
+  ele_field.textContent = value;
   if (ydn.crm.ui.sugar.field.FieldRenderer.DEBUG) {
     window.console.log(model.getFieldName(), model.getType(), value);
   }
+  var is_def = goog.isString(value) ? !goog.string.isEmpty(value) :
+      goog.isDefAndNotNull(value);
   if (is_def) {
     ele_field.classList.remove(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_EMPTY);
   } else {
@@ -189,15 +135,7 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.refresh = function(ele_field, mod
  */
 ydn.crm.ui.sugar.field.FieldRenderer.prototype.collectValue = function(ctrl) {
   var ele = ctrl.getContentElement();
-  var ele_value = ele.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
-  if (ele_value.tagName == goog.dom.TagName.LABEL ||
-      ele_value.tagName == goog.dom.TagName.SPAN || ele_value.tagName == goog.dom.TagName.DIV) {
-    return ele_value.textContent;
-  } else if (ele_value.type == 'checkbox') {
-    return ele_value.checked; // goog.dom.forms get value incorrect.
-  } else {
-    return ele_value.value; // goog.dom.forms.getValue(ele_value);
-  }
+  return ele.textContent;
 };
 
 

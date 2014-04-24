@@ -67,11 +67,10 @@ ydn.crm.ui.sugar.group.GroupRenderer.prototype.createDom = function(ctrl) {
    */
   var model = ctrl.getModel();
   var groups = model.listFields();
-  var ren = ydn.crm.ui.sugar.field.FieldRenderer.getInstance();
   for (var i = 0; i < groups.length; i++) {
     var name = groups[i];
     var field_model = model.createOrGetFieldModel(name);
-    var field = new ydn.crm.ui.sugar.field.Field(field_model, ren, dom);
+    var field = new ydn.crm.ui.sugar.field.Field(field_model, null, dom);
     ctrl.addChild(field, true);
   }
 

@@ -198,7 +198,7 @@
 }
 
 
-.record-panel INPUT.enum {
+.record-body > .field > INPUT.enum {
     width: 2em;
     background: none repeat scroll 0 0 transparent;
     border: 0;
@@ -209,7 +209,10 @@
 /*
  * make input look like label. This setting is obtained from Gmail contact editor.
 */
-.record-body.view INPUT {
+.record-body.view > .field > INPUT,
+.record-body.view > .record-group > .field > INPUT,
+.record-body.view > .record-group > * > .field > INPUT,
+.record-body.view > .record-group > DETAILS > * > .field > INPUT {
     margin: 2px;
     border: 0;
     padding: 1px 2px;
@@ -217,21 +220,37 @@
     vertical-align: text-top;
 }
 
-.record-body.view TEXTAREA {
+.record-body .field > * {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.record-body.view > .field >  TEXTAREA,
+.record-body.view > .record-group > .field >  TEXTAREA,
+.record-body.view > .record-group > DETAILS > * > .field >  TEXTAREA,
+.record-body.view > .record-group > * > .field >  TEXTAREA {
     margin: 2px;
     border: 0;
     padding: 1px 2px;
     background-color: transparent;
     resize: none;
+
 }
 
-.record-body.view .field.empty {
+.record-body.view > .field.empty,
+.record-body.view > .record-group > .field.empty,
+.record-body.view > .record-group > .field > .empty,
+.record-body.view > .record-group > * > .field.empty,
+.record-body.view > .record-group > * > * > .field.empty {
     display: none;
 }
 
-.record-body .field {
-    margin-left: 4px;
+
+.record-body span.field ~ span.field {
+    padding-left: 4px;
 }
+
+
 .sidebar {
     font-size: 13px;
     font-family: arial,sans-serif;
@@ -1552,26 +1571,7 @@ a.sugarcrm-setup-link {
     background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
 }
 
-.sugar-panel .fields {
-    padding-left: 20px;
-}
 
-.sugar-panel .field.empty {
-    display: none;
-}
-
-.sugar-panel .field .name {
-    padding-left: 4px;
-}
-
-.sugar-panel span.field ~ span.field {
-    padding-left: 4px;
-}
-
-.sugar-panel .field sup.name {
-    font-size: 80%;
-    display: none;
-}
 
 .sugar-body .goog-tab {
     width: 16px;

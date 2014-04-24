@@ -62,7 +62,7 @@ ydn.crm.ui.sugar.group.EmailRenderer.prototype.getCssClass = function() {
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.group.EmailRenderer.CSS_CONTENT_CLASS = 'content';
+ydn.crm.ui.sugar.group.EmailRenderer.CSS_CONTENT_CLASS = ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS;
 
 
 /**
@@ -108,19 +108,22 @@ ydn.crm.ui.sugar.group.EmailRenderer.prototype.render_email_ = function(ele, ema
     ele.className = 'empty';
     return;
   }
-  ele.textContent = opt_label || email;
+  if (ele.tagName == goog.dom.TagName.INPUT) {
+    ele.value = opt_label || email;
+  } else {
+    ele.textContent = opt_label || email;
+  }
   ele.setAttribute('name', email);
-  var cls = '';
+  ele.className = '';
   if (opt_is_primary) {
-    cls += ' primary';
+    ele.classList.add('primary');
   }
   if (opt_is_opt_out) {
-    cls += ' optout';
+    ele.classList.add('optout');
   }
   if (opt_is_deleted) {
-    cls += ' deleted';
+    ele.classList('deleted');
   }
-  ele.className = cls;
 };
 
 
@@ -128,7 +131,7 @@ ydn.crm.ui.sugar.group.EmailRenderer.prototype.render_email_ = function(ele, ema
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.group.EmailRenderer.EMAIL_TAG = 'SPAN';
+ydn.crm.ui.sugar.group.EmailRenderer.EMAIL_TAG = 'INPUT';
 
 
 /**

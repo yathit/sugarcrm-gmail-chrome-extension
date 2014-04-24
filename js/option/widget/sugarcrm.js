@@ -29,7 +29,7 @@ var SugarCrmWidget = function(model, opt_hide_title) {
  * @type {{domain: string, user_name: string, password: string}}
  */
 SugarCrmWidget.trialCredentials = {
-  domain: 'https://xiwxzn5048.trial.sugarcrm.com',
+  domain: 'https://njcpia4508.trial.sugarcrm.com/index.php',
   user_name: 'jane',
   password: '!Jane1'
 };
@@ -56,6 +56,9 @@ SugarCrmWidget.prototype.render = function(ele) {
   var input_domain = this.root.querySelector('input[name=domain]');
   input_domain.onblur = this.onDomainBlur.bind(this);
   input_domain.setAttribute('placeholder', SugarCrmWidget.trialCredentials.domain);
+
+  var input_baseurl = this.root.querySelector('input[name=baseurl]');
+  input_baseurl.value = '';
 
   var btn_new_sugar = this.root.querySelector('button');
   btn_new_sugar.onclick = this.handleLogin.bind(this);
@@ -93,12 +96,19 @@ SugarCrmWidget.prototype.onDomainBlur = function(e) {
     this.root.querySelector('input[name=password]').value = SugarCrmWidget.trialCredentials.password;
   }
   this.model.setInstanceUrl(domain, function(info) {
+    var input_baseurl = this.root.querySelector('input[name=baseurl]');
+    input_baseurl.value = '';
     if (info instanceof Error) {
-      ele_message.textContent = info.name + ': ' + info.message;
+      ele_message.textContent = info.name;
       ele_message.className = 'error';
+      ele_message.setAttribute('title', info.message || '');
     } else {
       ele_message.textContent = 'SugarCRM ' + info.flavor + ' ' + info.version;
       ele_message.className = '';
+      if (info['baseUrl']) {
+        input_baseurl.value = info['baseUrl'];
+      }
+      ele_message.removeAttribute('title');
     }
   }, this);
 };
@@ -201,6 +211,10 @@ SugarCrmWidget.prototype.handleLogin = function(e) {
   var url = root.querySelector('input[name="domain"]').value;
   var username = root.querySelector('input[name="username"]').value;
   var password = root.querySelector('input[name="password"]').value;
+  var baseurl = root.querySelector('input[name="baseurl"]').value;
+  if (baseurl) {
+    url = baseurl;
+  }
 
   var btn_new_sugar = this.root.querySelector('button');
   btn_new_sugar.textContent = 'logging in...';

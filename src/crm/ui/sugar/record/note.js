@@ -55,25 +55,34 @@ ydn.crm.ui.sugar.record.Note.prototype.createDom = function() {
   var description_field = group.createOrGetFieldModel('description');
   goog.asserts.assert(input_field, 'name field missing in ' + group);
   goog.asserts.assert(description_field, 'description field missing in ' + group);
-  this.addChild(new ydn.crm.ui.sugar.field.Field(input_field, null, dom), true);
-  this.addChild(new ydn.crm.ui.sugar.field.Field(description_field, null, dom), true);
+  var input = ydn.crm.ui.sugar.field.InputFieldRenderer.getInstance();
+  var text = ydn.crm.ui.sugar.field.TextFieldRenderer.getInstance();
+  this.addChild(new ydn.crm.ui.sugar.field.Field(input_field, input, dom), true);
+  this.addChild(new ydn.crm.ui.sugar.field.Field(description_field, text, dom), true);
 };
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.record.Note.prototype.collectData = function(record_panel, dirty_fields) {
+ydn.crm.ui.sugar.record.Note.prototype.collectData = function(record_panel) {
   var model = this.getModel();
   var obj = model.getRecordValue() || /** @type {SugarCrm.Record} */ (/** @type {Object} */ ({}));
 
-  var title = (/** @type {ydn.crm.ui.sugar.field.Input} */ (this.getChildAt(0))).collectData();
-  var text = (/** @type {ydn.crm.ui.sugar.field.TextArea} */ (this.getChildAt(1))).collectData();
+  var title_field = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(0))
+  var text_field = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(1));
+  var title = title_field.collectData();
+  var text = text_field.collectData();
+  if (!title && !text) {
+    // no change.
+    return null;
+  }
+  title = title || title_field.getValue();
+  text = text || text_field.getValue();
   if (!title) {
     ydn.crm.ui.StatusBar.instance.setMessage('Note title required.', true);
     return null;
   }
-  var has_changed = (obj['name'] != title) || (obj['description'] != text);
   obj['name'] = title;
   obj['description'] = text;
 

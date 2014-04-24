@@ -52,6 +52,15 @@ ydn.crm.ui.sugar.group.Group.prototype.createDom = function() {
 
 
 /**
+ * Get group name.
+ * @return {string}
+ */
+ydn.crm.ui.sugar.group.Group.prototype.getGroupName = function() {
+  return this.getModel().getGroupName();
+};
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.ui.sugar.group.Group.prototype.getContentElement = function() {
@@ -61,22 +70,22 @@ ydn.crm.ui.sugar.group.Group.prototype.getContentElement = function() {
 
 
 /**
- * Collect data from the ui.
- * @param {SugarCrm.Record} obj
- * @return {boolean} true if collected data is different from model.
+ * Collect data of the field user has changes..
+ * @return {Object?} null if no change in data.
  */
-ydn.crm.ui.sugar.group.Group.prototype.collectData = function(obj) {
-  var has_changed = false;
+ydn.crm.ui.sugar.group.Group.prototype.collectData = function() {
+  var obj = null;
   for (var j = 0; j < this.getChildCount(); j++) {
     var f = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(j));
-    var new_value = f.collectData();
-    var old_value = f.getValue();
-    if (new_value != old_value) {
-      has_changed = true;
-      obj[f.getFieldName()] = new_value;
+    var value = f.collectData();
+    if (!goog.isNull(value)) {
+      if (!obj) {
+        obj = {};
+      }
+      obj[f.getFieldName()] = value;
     }
   }
-  return has_changed;
+  return obj;
 };
 
 
