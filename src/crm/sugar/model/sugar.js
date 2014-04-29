@@ -521,7 +521,7 @@ ydn.crm.sugar.model.Sugar.prototype.saveRecord = function(record) {
  * @return {!goog.async.Deferred}
  */
 ydn.crm.sugar.model.Sugar.list = function() {
-  var user = ydn.crm.inj.UserSetting.getInstance();
+  var user = ydn.crm.ui.UserSetting.getInstance();
   return ydn.msg.getChannel().send('list-sugarcrm').addCallback(function(abouts) {
     var models = [];
     var dfs = [];

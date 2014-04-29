@@ -6,16 +6,16 @@
 goog.provide('ydn.crm.ui.SidebarPanel');
 goog.require('goog.Timer');
 goog.require('goog.async.DeferredList');
-goog.require('goog.log');
 goog.require('goog.dom.classes');
+goog.require('goog.log');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
 goog.require('ydn.crm.inj.ContactModel');
-goog.require('ydn.crm.ui.sugar.SugarPanel');
 goog.require('ydn.crm.inj.Task');
-goog.require('ydn.crm.inj.UserSetting');
 goog.require('ydn.crm.inj.sugar.model.GDataSugar');
 goog.require('ydn.crm.ui.SugarSetupLink');
+goog.require('ydn.crm.ui.UserSetting');
+goog.require('ydn.crm.ui.sugar.SugarPanel');
 goog.require('ydn.gdata.m8.ContactEntry');
 goog.require('ydn.msg.Message');
 
@@ -33,9 +33,9 @@ ydn.crm.ui.SidebarPanel = function(opt_dom) {
   goog.base(this, opt_dom);
 
   /**
-   * @type {ydn.crm.inj.UserSetting}
+   * @type {ydn.crm.ui.UserSetting}
    */
-  this.user_setting = ydn.crm.inj.UserSetting.getInstance();
+  this.user_setting = ydn.crm.ui.UserSetting.getInstance();
 
   /**
    * @type {ydn.crm.ui.gmail.Template}
@@ -278,42 +278,6 @@ ydn.crm.ui.SidebarPanel.prototype.init = function() {
 
 
 /**
- * Sniff contact and suitable element to inject ui.
- * @param {boolean=} opt_log_detail
- * @return {HTMLTableElement}
- */
-ydn.crm.ui.SidebarPanel.prototype.getRightBarTable = function(opt_log_detail) {
-  var root = this.getElement();
-
-  // sniff position
-  var main = document.querySelector('table[role="presentation"]');
-  // the main layout table has one row and three column.
-  // take the last column
-  if (!main) {
-    if (opt_log_detail) {
-      this.logger.warning('Could not find main view');
-    }
-    return null;
-  }
-  if (opt_log_detail && main.childElementCount != 1) {
-    this.logger.warning('Probably our assumption about layout is wrong');
-  }
-  var tr = main.querySelector('tr');
-  if (opt_log_detail && tr.childElementCount != 3) {
-    this.logger.warning('Probably our assumption about layout is very wrong');
-    return null;
-  }
-  var td_main = tr.children[0];
-  var td_sidebar = tr.children[2];
-  if (opt_log_detail && !td_sidebar.style.height) {
-    this.logger.warning('Probably our assumption about layout is wrong');
-  }
-
-  return /** @type {HTMLTableElement} */ (td_sidebar.querySelector('table'));
-};
-
-
-/**
  * Get current contact showing on sidebar of gmail.
  * @return {ydn.crm.inj.ContactModel}
  * @override
@@ -333,6 +297,7 @@ ydn.crm.ui.SidebarPanel.prototype.setVisible = function(val) {
 /**
  * Attach to Gmail right side bar.
  * @param {HTMLTableElement} contact_table right bar table
+ * @protected
  */
 ydn.crm.ui.SidebarPanel.prototype.attachToGmailRightBar = function(contact_table) {
 

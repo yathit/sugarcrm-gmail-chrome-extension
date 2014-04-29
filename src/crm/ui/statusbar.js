@@ -13,6 +13,7 @@ goog.provide('ydn.crm.ui.StatusBar');
 /**
  * Abstract status bar.
  * @constructor
+ * @struct
  */
 ydn.crm.ui.StatusBar = function() {
   this.count_ = 0;
@@ -27,7 +28,7 @@ ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.StatusBar();
 
 
 /**
- * Render status bar.
+ * Render status bar. This can be called multiple times.
  * @param {Element} el
  */
 ydn.crm.ui.StatusBar.prototype.render = function(el) {
@@ -94,6 +95,7 @@ ydn.crm.ui.ConsoleStatusBar.prototype.setMessage = function(s, err) {
  * Simple status bar.
  * @constructor
  * @extends {ydn.crm.ui.StatusBar}
+ * @struct
  */
 ydn.crm.ui.SimpleStatusBar = function() {
   goog.base(this);
@@ -114,7 +116,23 @@ goog.inherits(ydn.crm.ui.SimpleStatusBar, ydn.crm.ui.StatusBar);
  * @inheritDoc
  */
 ydn.crm.ui.SimpleStatusBar.prototype.render = function(el) {
-  el.appendChild(this.el_msg_.parentElement);
+  var root = this.getElement();
+  if (root.parentElement == el) {
+    return;
+  }
+  if (root.parentElement) {
+    root.parentElement.removeChild(root);
+  }
+  el.appendChild(root);
+};
+
+
+/**
+ * Get root element.
+ * @return {Element}
+ */
+ydn.crm.ui.SimpleStatusBar.prototype.getElement = function() {
+  return this.el_msg_.parentElement;
 };
 
 
@@ -123,7 +141,8 @@ ydn.crm.ui.SimpleStatusBar.prototype.render = function(el) {
  */
 ydn.crm.ui.SimpleStatusBar.prototype.setMessage = function(s, err) {
   var out = goog.base(this, 'setMessage', s, err);
-  this.el_msg_.textMessage = s;
+  this.el_msg_.textContent = s;
+  this.el_msg_.setAttribute('title', this.el_msg_.textContent);
   if (err) {
     this.el_msg_.classList.add('error');
   } else {
@@ -142,3 +161,4 @@ ydn.crm.ui.SimpleStatusBar.prototype.clearMessage = function(idx) {
     this.el_msg_.classList.remove('error');
   }
 };
+

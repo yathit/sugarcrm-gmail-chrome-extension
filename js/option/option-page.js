@@ -86,27 +86,27 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
   var btn_login = document.getElementById('user-login');
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
     this.setStatus('logging in...');
-    ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
-      var user_info = /** @type {YdnApiUser} */ (data);
-      this.user_info = user_info;
-      this.setStatus('');
-      this.updateUserInfo_(user_info);
-      SugarCrmModel.list(function(models) {
-        for (var i = 0; i < models.length; i++) {
-          if (models[i].isLogin()) {
-            document.querySelector('#main-menu li[name=search-menu]').style.display = '';
-            this.search.setup(models[i]);
-            break;
+    var user = ydn.crm.ui.UserSetting.getInstance();
+    user.onReady().addCallback(function() {
+      if (user.isLogin()) {
+        var user_info = user.getUserInfo();
+        this.setStatus('');
+        this.updateUserInfo_(user_info);
+        SugarCrmModel.list(function(models) {
+          for (var i = 0; i < models.length; i++) {
+            if (models[i].isLogin()) {
+              document.querySelector('#main-menu li[name=search-menu]').style.display = '';
+              this.search.setup(models[i]);
+              break;
+            }
           }
+        }, this);
+        if (opt_cb) {
+          opt_cb.call(opt_scope, user_info);
         }
-      }, this);
-      if (opt_cb) {
-        opt_cb.call(opt_scope, user_info);
+      } else {
+        this.setStatus('Not login');
       }
-    }, function(e) {
-      this.setStatus(e.name + ' ' + e.message);
-      // btn_login.href = '?' + Math.random(); // refresh the page
-      // btn_login.textContent = 'refresh';
     }, this);
   }, function(e) {
     // btn_login.href = '?' + Math.random(); // refresh the page
@@ -114,7 +114,6 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
     var msg = e instanceof Error ? e.name + ' ' + e.message : e;
     this.setStatus('Failed to connect to background page: ' + msg);
   }, this);
-
 };
 
 

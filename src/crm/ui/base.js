@@ -4,6 +4,7 @@
 
 
 goog.provide('ydn.crm.ui');
+goog.provide('ydn.crm.ui.ContextPanelPosition');
 
 
 /**
@@ -53,3 +54,27 @@ ydn.crm.ui.json2element = function(json) {
   }
   return ele;
 };
+
+
+/**
+ * @enum {string} position of context panel in Gmail.
+ */
+ydn.crm.ui.ContextPanelPosition = {
+  WIDGET: 'wg',
+  INLINE: 'in',
+  NONE: 'no',
+  RIGHT_BAR: 'rb',
+  STICKY: 'st'
+};
+
+
+/**
+ * All positions.
+ * @type {Array.<ydn.crm.ui.ContextPanelPosition>}
+ */
+ydn.crm.ui.ContextPanelPositions = [
+  ydn.crm.ui.ContextPanelPosition.WIDGET,
+  ydn.crm.ui.ContextPanelPosition.INLINE,
+  ydn.crm.ui.ContextPanelPosition.NONE,
+  ydn.crm.ui.ContextPanelPosition.RIGHT_BAR,
+  ydn.crm.ui.ContextPanelPosition.STICKY];

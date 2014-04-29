@@ -106,7 +106,8 @@ ydn.crm.ui.sugar.SearchPanel.prototype.createDom = function() {
   root.appendChild(content);
   this.addChild(this.result_panel, true);
   var ele_input = search_input.getElement().querySelector('input');
-  ele_input.setAttribute('placeholder', 'Search name, email, id, etc...');
+  ele_input.setAttribute('placeholder', 'Search ...');
+  ele_input.setAttribute('title', 'Search name, email, phone, id, title, description, etc.');
 };
 
 
@@ -326,7 +327,7 @@ ydn.crm.ui.sugar.SearchPanel.prototype.updateSearch_ = function() {
   } else if (task.taskNo == 3) {
     // Task 2. full text search on name
     model.searchRecords(task.module, task.q).addCallbacks(function(x) {
-      var arr = /** @type {Array.<CrmReqQuery>} */ (x);
+      var arr = /** @type {Array.<CrmApp.ReqQuery>} */ (x);
       var result = arr[0].fullTextResult;
       var n = result.length || 0;
       for (var i = 0; i < n; i++) {

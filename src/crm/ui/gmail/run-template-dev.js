@@ -13,7 +13,7 @@ var fn = 'test-data-1.html';
 // ydn.msg.Pipe.DEBUG = true;
 ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.ConsoleStatusBar();
 ydn.msg.initPipe('dev');
-var user = ydn.crm.inj.UserSetting.getInstance();
+var user = ydn.crm.ui.UserSetting.getInstance();
 ydn.debug.log('ydn.crm', 'finer');
 
 var sugar, template;

@@ -7,7 +7,7 @@ ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.ConsoleStatusBar();
 ydn.msg.initPipe('popup');
 ydn.debug.log('ydn.crm', 'finer');
 var panel, sugar;
-var user = ydn.crm.inj.UserSetting.getInstance();
+var user = ydn.crm.ui.UserSetting.getInstance();
 var inj = document.querySelector('.inj');
 inj.style.maxWidth = '20em';
 var div = document.getElementById('hud-root');

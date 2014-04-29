@@ -14,6 +14,22 @@ var HomePanel = function() {
    */
   this.root = document.getElementById('home');
   this.feed = new FeedWidget();
+  this.render();
+};
+
+
+/**
+ * Render ui.
+ */
+HomePanel.prototype.render = function() {
+  var div = document.createElement('div');
+  var btn = document.createElement('button');
+  btn.textContent = 'Setting...';
+  btn.onclick = function() {
+    ydn.crm.ui.UserSetting.getInstance().show();
+  };
+  div.appendChild(btn);
+  this.root.appendChild(div);
   this.feed.render(this.root);
 };
 

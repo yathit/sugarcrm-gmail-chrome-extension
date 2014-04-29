@@ -81,6 +81,16 @@ PopupPage.prototype.renderFeed = function(feeds, opt_append) {
  * @param {Event} e
  * @private
  */
+PopupPage.prototype.handleSettingClick_ = function(e) {
+  e.preventDefault();
+
+}
+
+
+/**
+ * @param {Event} e
+ * @private
+ */
 PopupPage.prototype.handleHostPermissionRequest_ = function(e) {
   var a = e.target;
   if (a.tagName == 'BUTTON') {

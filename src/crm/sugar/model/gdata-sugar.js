@@ -283,7 +283,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.update_ = function(email, full_name, ph
  * @return {!goog.async.Deferred}
  */
 ydn.crm.sugar.model.GDataSugar.list = function() {
-  var user = ydn.crm.inj.UserSetting.getInstance();
+  var user = ydn.crm.ui.UserSetting.getInstance();
   return user.onReady().branch().addCallback(function() {
     return ydn.msg.getChannel().send('list-sugarcrm').addCallback(function(abouts) {
       var models = [];

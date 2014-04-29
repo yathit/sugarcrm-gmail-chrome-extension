@@ -87,6 +87,10 @@
 .activity-panel .goog-tab {
     text-decoration: none;
 }
+.ydn-crm {
+    font-family: arial,sans-serif;
+    font-size: 12px;
+}
 
 .left {
     float: left;
@@ -123,6 +127,10 @@
     padding: 4px 2px;
     margin: 0;
     font-size: small;
+}
+
+.sticky-right .statusbar {
+    position: relative;
 }
 
 .wgui-textinput-clear {
@@ -1289,6 +1297,55 @@ a.widget-task {
     width: 100%;
 }
 
+#root-panel.sticky-right {
+    /* Gmail right bar has width of 220px and gutter of 14px */
+    width: 220px;
+    background-color: white;
+    padding: 0;
+    position:absolute;
+    visibility:hidden;
+    z-index: 10;
+}
+
+#root-panel.sticky-right > .container {
+    border: thin solid lightgrey;
+    padding: 4px 0 0 0;
+}
+
+.sticker {
+    position: fixed;
+    top: 240px;
+    right: 0;
+    width: 30px;
+    height: 50px;
+    background-color: #d3d3d3;
+}
+
+.sticker > .disp-button {
+    position:absolute;
+    top: 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    margin:0 auto;
+    width: 30px;
+    font-size: 12px;
+    font-weight: normal;
+
+}
+
+.sticker > .disp-button:hover {
+    background-color: #9d9d9d;
+}
+
+#root-panel .statusbar > .setting {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') left center no-repeat;
+}
+
 
 .root-panel-failback {
     z-index: 10; /* overlay */
@@ -1353,8 +1410,8 @@ a.sugarcrm-setup-link {
 
 
 .inj .sugar-panel {
-    padding: 8px;
-    border-bottom: thin solid lightgrey;
+    /* padding: 8px;
+    border-bottom: thin solid lightgrey; */
 }
 
 .inj .goog-toolbar {
@@ -1591,7 +1648,10 @@ a.sugarcrm-setup-link {
 
 
 
-/*
+.setting-dialog .group-panel {
+    border: thin solid #d3d3d3;
+    padding: 8px;
+}/*
  * Customerization of tab.css and tabbar.css
  * Use difference class tag, so as to decouple with gmail dom manipulation.
  */

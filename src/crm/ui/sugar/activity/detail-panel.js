@@ -203,7 +203,7 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.clear = function() {
 /**
  * Return query.
  * @param {number} index
- * @return {CrmReqQuery} query
+ * @return {CrmApp.ReqQuery} query
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.queryUpcoming = function(index) {
   var assigned_user_id = this.getModel().getUser().getId();
@@ -215,7 +215,7 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.queryUpcoming = function(index) 
     'index': ydn.crm.sugar.Record.getIndexForDeadline(ydn.crm.sugar.ACTIVITY_MODULES[index]),
     'keyRange': kr
   };
-  return /** @type {CrmReqQuery} */ (/** @type {Object} */ (query));
+  return /** @type {CrmApp.ReqQuery} */ (/** @type {Object} */ (query));
 };
 
 

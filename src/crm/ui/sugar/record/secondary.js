@@ -123,10 +123,10 @@ ydn.crm.ui.sugar.record.Secondary.prototype.handleChanged = function(e) {
       'keyRange': ydn.db.KeyRange.starts([model.getModuleName(), model.getId()])
     }];
     sugar.send(req, query).addCallbacks(function(x) {
-      var arr = /** @type {Array.<CrmReqQuery>} */ (x);
+      var arr = /** @type {Array.<CrmApp.ReqQuery>} */ (x);
       for (var i = 0; i < arr.length; i++) {
         /**
-         * @type {CrmReqQuery}
+         * @type {CrmApp.ReqQuery}
          */
         var q = arr[i];
         if (q.result && q.result.length > 0) {

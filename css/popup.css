@@ -1,4 +1,8 @@
 
+.ydn-crm {
+    font-family: arial,sans-serif;
+    font-size: 12px;
+}
 
 .left {
     float: left;
@@ -35,6 +39,10 @@
     padding: 4px 2px;
     margin: 0;
     font-size: small;
+}
+
+.sticky-right .statusbar {
+    position: relative;
 }
 
 .wgui-textinput-clear {
