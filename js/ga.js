@@ -8,6 +8,7 @@
 })(window,document,'script','https://www.google-analytics.com/analytics.js','googleAnalytic');
 
 googleAnalytic('create', 'UA-33861582-6', 'auto');
+googleAnalytic('require', 'displayfeatures');
 googleAnalytic('send', 'pageview');
 
 
