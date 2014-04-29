@@ -197,7 +197,7 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.refresh = function(ctrl) {
       ele_link.textContent = '';
       if (g_record.isSynced()) {
         ele_link.classList.add(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_SYNCED);
-        ele_link.setAttribute('title', 'Gmail contact ' + g_record.getGData().getSingleId() +
+        ele_link.setAttribute('title', 'Gmail contact ' + g_record.getSyncedGData().getSingleId() +
             ' is synced with SugarCRM ' + m_name + ' ' + g_record.getId());
       } else {
         ele_link.classList.remove(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_SYNCED);

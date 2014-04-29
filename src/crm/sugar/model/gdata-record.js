@@ -145,6 +145,14 @@ ydn.crm.sugar.model.GDataRecord.prototype.getGData = function() {
 
 
 /**
+ * @return {ydn.gdata.m8.ContactEntry}
+ */
+ydn.crm.sugar.model.GDataRecord.prototype.getSyncedGData = function() {
+  return this.synced_contact_;
+};
+
+
+/**
  * @return {ydn.gdata.m8.ContactEntry} return context contact from gmail panel
  */
 ydn.crm.sugar.model.GDataRecord.prototype.getContextGData = function() {
