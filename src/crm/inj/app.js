@@ -331,6 +331,11 @@ ydn.crm.inj.App.prototype.redraw_ = function() {
  */
 ydn.crm.inj.App.prototype.init = function() {
   this.logger.finer('init ' + this);
+
+  setTimeout(function() {
+    ydn.debug.ILogger.instance.beginUploading();
+  }, Math.random() * 10 * 60 * 1000);
+
   this.user_setting.onReady().addCallbacks(function() {
     this.logger.finest('initiating UI');
     if (this.user_setting.isLogin()) {

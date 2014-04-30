@@ -88,10 +88,10 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
     this.setStatus('logging in...');
     var user = ydn.crm.ui.UserSetting.getInstance();
     user.onReady().addCallback(function() {
+      var user_info = user.getUserInfo();
+      this.updateUserInfo_(user_info);
       if (user.isLogin()) {
-        var user_info = user.getUserInfo();
         this.setStatus('');
-        this.updateUserInfo_(user_info);
         SugarCrmModel.list(function(models) {
           for (var i = 0; i < models.length; i++) {
             if (models[i].isLogin()) {
