@@ -29,7 +29,7 @@ var SugarCrmWidget = function(model, opt_hide_title) {
  * @type {{domain: string, user_name: string, password: string}}
  */
 SugarCrmWidget.trialCredentials = {
-  domain: 'https://njcpia4508.trial.sugarcrm.com/index.php',
+  domain: 'https://qzihat7936.trial.sugarcrm.com/index.php',
   user_name: 'jane',
   password: '!Jane1'
 };
