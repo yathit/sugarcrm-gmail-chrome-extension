@@ -66,7 +66,7 @@ ydn.crm.Ch.Req = {
   GDATA_TOKEN_REVOKE: 'gdata-token-revoke',
   HOST_PERMISSION: 'host-permission',
   LIST_SUGAR: 'list-sugarcrm', // list of domain name of sugarcrm
-  LOG_BUG: 'log-bug', // log bug
+  LOG: 'log', // log bug
   LOGIN_INFO: 'login-info', // google user info, email and id
   LOGGED_IN: 'logged-in', // has been logged to server.
   LOGGED_OUT: 'logged-out', // notice that to differenciate SUGAR login
