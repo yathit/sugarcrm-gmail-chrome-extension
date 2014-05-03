@@ -393,7 +393,7 @@ a.widget-task {
 
 
 .goog-combobox {
-  background: #ddd url(https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
+  background: #ddd url(https:https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
   border: 1px solid #b5b6b5;
   font: normal small arial, sans-serif;
 }
@@ -486,7 +486,7 @@ a.widget-task {
 
 .modal-dialog-title-close {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: #e0edfe url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  background: #e0edfe url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
   cursor: default;
   height: 15px;
   position: absolute;
@@ -646,7 +646,7 @@ a.widget-task {
 .goog-option-selected .goog-menuitem-checkbox,
 .goog-option-selected .goog-menuitem-icon {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0;
+  background: url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0;
 }
 
 /* Keyboard shortcut ("accelerator") style. */
@@ -697,7 +697,7 @@ a.widget-task {
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #ddd url(https://ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  background: #ddd url(https:https://ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
@@ -823,7 +823,7 @@ a.widget-task {
   height: 15px;
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: top;
 }
 
@@ -888,7 +888,7 @@ a.widget-task {
 
 .goog-toolbar {
   /* Client apps may override the URL at which they serve the image. */
-  background: #fafafa url(https://ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
+  background: #fafafa url(https:https://ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
   border-bottom: 1px solid #d5d5d5;
   cursor: default;
   font: normal 12px Arial, sans-serif;
@@ -1223,7 +1223,7 @@ a.widget-task {
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: middle;
 }
 

@@ -118,23 +118,32 @@ Setup.prototype.init = function() {
 };
 
 
-Setup.renderFinishStatus = function() {
+/**
+ * Open DETAILS content of the first remaining stage.
+ */
+Setup.showCurrentStage = function() {
   if (Setup.finish_running_) {
     return;
   }
   Setup.finish_running_ = true;
   setTimeout(function() {
-    var list = document.getElementById('step-list').children;
+    var step_list = document.getElementById('step-list');
     var finished = true;
     // note last page is not to be taken.
-    for (var i = 0, n = list.length - 1; i < n; i++) {
-      if (list[i].classList.contains('fail')) {
-        finished = false;
+    var step = step_list.firstElementChild;
+    while (step) {
+      if (!step.classList.contains('success')) {
+        step.setAttribute('open', '1');
+        break;
       }
+      step = step.nextElementSibling;
     }
-    // Note finish step is reverse of other.
-    Setup.decorateStatus('li-finish', finished, finished);
-    // console.log('finished ' + finished);
+    if (!step || step == step_list.lastElementChild) {
+      // all finished.
+      step = step_list.lastElementChild;
+      step.setAttribute('open', '1');
+      step.classList.add('success');
+    }
     Setup.finish_running_ = false;
   }, 200);
 };
@@ -159,7 +168,7 @@ Setup.decorateStatus = function(id, status, opt_open) {
     li.setAttribute('open', '1');
   }
 
-  Setup.renderFinishStatus();
+  Setup.showCurrentStage();
 };
 
 
@@ -202,9 +211,11 @@ Setup.prototype.run = function() {
         model.requestHostPermission(function(ok) {
           Setup.decorateStatus('li-host', ok);
         }, this);
-      }
+      };
     } else {
-      Setup.decorateStatus('li-host', true);
+      // neighter success nor fail
+      var li = document.querySelector('#li-host');
+      li.className = '';
     }
   }, this);
 };

@@ -113,6 +113,12 @@ SugarCrmModel.prototype.setInstanceUrl = function(url, cb, scope) {
     }
     return;
   }
+  if (!this.data) {
+    this.data = {
+      domain: domain,
+      isLogin: false
+    };
+  }
   ydn.msg.getChannel().send('sugar-server-info', url).addCallbacks(function(info) {
     var base_url = /^http/.test(url) ? url : null;
     if (info['baseUrl']) {
