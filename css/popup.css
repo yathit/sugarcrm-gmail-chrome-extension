@@ -1,6 +1,21 @@
 .ydn-crm {
-  font-family: arial,sans-serif;
+  font-family: arial, sans-serif;
   font-size: 12px; }
+  .ydn-crm INPUT {
+    font-family: arial, sans-serif;
+    /* Overridden by font: -webkit-small-control; */
+    font-size: 100%; }
+  .ydn-crm INPUT[type=text], .ydn-crm TEXTAREA {
+    -webkit-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD; }
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm TEXTAREA:focus {
+    box-shadow: 0 0 5px #51cbee;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #51cbee; }
 
 .left {
   float: left;
@@ -69,3 +84,5 @@ ul {
 
 #status-bar-content span {
   padding: 0 2px; }
+
+/*# sourceMappingURL=popup.css.map */

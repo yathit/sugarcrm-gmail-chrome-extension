@@ -1,340 +1,131 @@
-
-.activity-panel .goog-tab-bar {
-    border-bottom: none;
-}
-
-.activity-panel .goog-tab-bar-top {
-    border-bottom: none !important;
-}
-
-.activity-panel .activity-feed {
-    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
-    min-width: 16px;
-    border-radius: 3px;
-    background-color: lightgreen;
-}
-
-.activity-panel .goog-tab {
-    min-width: 16px;
-    border-radius: 3px;
-}
-
-.activity-panel .goog-tab.Calls {
-    background-color: #0b3a72;
-}
-
-.activity-panel .goog-tab.Meetings {
-    background-color: #e6af17;
-}
-
-.activity-panel .goog-tab.Opportunities {
-    background-color: #7115ce;
-}
-
-.activity-panel .goog-tab.Tasks {
-    background-color: #d81982;
-}
-
-.activity-panel .goog-tab > * {
-    text-align: center;
-    color: white;
-}
-
-.activity-panel .goog-tab:after {
-    position: absolute;
-    top: 0;
-    left: 1px;
-    font-size: 60%;
-    color: #808080;
-    font-weight: 400;
-}
-
-.activity-panel .goog-tab.Calls:after {
-    content: "Ca";
-}
-
-.activity-panel .goog-tab.Meetings:after {
-    content: "Me";
-}
-
-.activity-panel .goog-tab.Opportunities:after {
-    content: "Op";
-}
-
-.activity-panel .goog-tab.Tasks:after {
-    content: "Ta";
-}
-
-
-.detail-panel {
-
-}
-
-.detail-panel .detail-item {
-    padding: 4px;
-}
-
-.detail-panel > .header > .close {
-    float: right;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.detail-panel > .content {
-    clear: both;
-}
-
-.activity-panel .goog-tab {
-    text-decoration: none;
-}
 .ydn-crm {
-    font-family: arial,sans-serif;
-    font-size: 12px;
-}
+  font-family: arial, sans-serif;
+  font-size: 12px; }
+  .ydn-crm INPUT {
+    font-family: arial, sans-serif;
+    /* Overridden by font: -webkit-small-control; */
+    font-size: 100%; }
+  .ydn-crm INPUT[type=text], .ydn-crm TEXTAREA {
+    -webkit-transition: all 0.30s ease-in-out;
+    outline: none;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #DDDDDD; }
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm TEXTAREA:focus {
+    box-shadow: 0 0 5px #51cbee;
+    padding: 3px 0px 3px 3px;
+    margin: 5px 1px 3px 0px;
+    border: 1px solid #51cbee; }
 
 .left {
-    float: left;
-    display: inline-block;
-    z-index: 0;
-}
+  float: left;
+  display: inline-block;
+  z-index: 0; }
 
 .right {
-    float: right;
-    display: inline-block;
-    overflow: hidden;
-    z-index: 1;
-}
-
+  float: right;
+  display: inline-block;
+  overflow: hidden;
+  z-index: 1; }
 
 /* toolbar items */
 .toolbar > * {
-    padding-left: 4px;
-}
-
+  padding-left: 4px; }
 
 .statusbar {
-    right: 0;
-    left: 0;
-    clear: both;
-    position: fixed;
-    bottom: 0;
-    z-index: 100;
-    height: 14px;
-    overflow: hidden;
-    border: solid thin #d3d3d3;
-    border-top: solid thin #ffffff;
-    background: #d3d3d3;
-    padding: 4px 2px;
-    margin: 0;
-    font-size: small;
-}
+  right: 0;
+  left: 0;
+  clear: both;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  height: 14px;
+  overflow: hidden;
+  border: solid thin #d3d3d3;
+  border-top: solid thin #ffffff;
+  background: #d3d3d3;
+  padding: 4px 2px;
+  margin: 0;
+  font-size: small; }
 
 .sticky-right .statusbar {
-    position: relative;
-}
-
-.wgui-textinput-clear {
-    position: absolute;
-    right: 5px;
-    top: 4px;
-    padding-top: 1px;
-    padding-left: 5px;
-    display: none;
-    color: #808080;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    box-sizing: border-box;
-}
-
-.wgui-textinput-clear:hover {
-    font-weight: bold;
-    color: white;
-    background-color: #808080;
-}
-
-.wgui-textinput-outer-box:hover .wgui-textinput-clear {
-    display: inherit;
-}/*
- * Detail panel with + / - sign on right instead of default left arrow.
- */
-
-.inj summary::-webkit-details-marker {
-    display: none
-}
-
-.inj summary:after {
-    border: thin solid lightgrey;
-    border-radius: 3px;
-    content: "+";
-
-    float: right;
-    font-weight: bold;
-    margin: 0 0 0 0;
-    padding: 0;
-    text-align: center;
-    width: 14px;
-    line-height: 1em;
-}
-
-.inj summary:hover:after {
-    color: white;
-    background-color: black;
-}
-
-.inj details[open] > summary:after {
-    content: "-";
-}
-
-
-.field:hover > sup.name {
-    display: inline !important;
-}
-
-.record-body .record-group.normally-hide, .field.normally-hide {
-    display: none;
-}
-
-.record-body.detail .record-group.normally-hide,
-.record-body.detail .field.normally-hide {
-    display: inherit;
-}
-
-
-.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
-    content: ', ';
-}
-
-
-.record-body > .field > INPUT.enum {
-    width: 2em;
-    background: none repeat scroll 0 0 transparent;
-    border: 0;
-    color: #000000;
-}
-
+  position: relative; }
 
 /*
- * make input look like label. This setting is obtained from Gmail contact editor.
-*/
-.record-body.view > .field > INPUT,
-.record-body.view > .record-group > .field > INPUT,
-.record-body.view > .record-group > * > .field > INPUT,
-.record-body.view > .record-group > DETAILS > * > .field > INPUT {
-    margin: 2px;
-    border: 0;
-    padding: 1px 2px;
-    background-color: transparent;
-    vertical-align: text-top;
-}
+ * Activity panel (bar?) is horizontal panel showing upcoming activities.
+ */
+/* CSS related to specific modules */
+.activity-panel .goog-tab-bar {
+  border-bottom: none; }
+.activity-panel .goog-tab-bar-top {
+  border-bottom: none !important; }
+.activity-panel .activity-feed {
+  background: url("chrome-extension://__MSG_@@extension_id__/image/feed.svg") center center no-repeat;
+  min-width: 16px;
+  border-radius: 3px;
+  background-color: lightgreen; }
+.activity-panel .goog-tab {
+  min-width: 16px;
+  border-radius: 3px; }
+.activity-panel .goog-tab.Calls {
+  background-color: #0b3a72; }
+.activity-panel .goog-tab.Meetings {
+  background-color: #e6af17; }
+.activity-panel .goog-tab.Opportunities {
+  background-color: #7115ce; }
+.activity-panel .goog-tab.Tasks {
+  background-color: #d81982; }
+.activity-panel .goog-tab > * {
+  text-align: center;
+  color: white; }
+.activity-panel .goog-tab:after {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  font-size: 60%;
+  color: #808080;
+  font-weight: 400; }
+.activity-panel .goog-tab.Calls:after {
+  content: "Ca"; }
+.activity-panel .goog-tab.Meetings:after {
+  content: "Me"; }
+.activity-panel .goog-tab.Opportunities:after {
+  content: "Op"; }
+.activity-panel .goog-tab.Tasks:after {
+  content: "Ta"; }
+.activity-panel .detail-panel .detail-item {
+  padding: 4px; }
+.activity-panel .detail-panel > .header > .close {
+  float: right;
+  display: inline-block;
+  cursor: pointer; }
+.activity-panel .detail-panel > .content {
+  clear: both; }
+.activity-panel .goog-tab {
+  text-decoration: none; }
 
-.record-body .field > * {
-    box-sizing: border-box;
-    width: 100%;
-}
+/*
+ * Detail panel with + / - sign on right instead of default left arrow.
+ */
+.ydn-crm SUMMARY::-webkit-details-marker {
+  display: none; }
+.ydn-crm SUMMARY:after {
+  border: thin solid lightgrey;
+  border-radius: 3px;
+  content: "+";
+  float: right;
+  font-weight: bold;
+  margin: 0 0 0 0;
+  padding: 0;
+  text-align: center;
+  width: 14px;
+  line-height: 1em; }
+.ydn-crm SUMMARY:hover:after {
+  color: white;
+  background-color: black; }
+.ydn-crm DETAILS[open] > SUMMARY:after {
+  content: "-"; }
 
-.record-body.view > .field >  TEXTAREA,
-.record-body.view > .record-group > .field >  TEXTAREA,
-.record-body.view > .record-group > DETAILS > * > .field >  TEXTAREA,
-.record-body.view > .record-group > * > .field >  TEXTAREA {
-    margin: 2px;
-    border: 0;
-    padding: 1px 2px;
-    background-color: transparent;
-    resize: none;
-
-}
-
-.record-body.view > .field.empty,
-.record-body.view > .record-group > .field.empty,
-.record-body.view > .record-group > .field > .empty,
-.record-body.view > .record-group > * > .field.empty,
-.record-body.view > .record-group > * > * > .field.empty {
-    display: none;
-}
-
-
-.record-body span.field ~ span.field {
-    padding-left: 4px;
-}
-
-
-.sidebar {
-    font-size: 13px;
-    font-family: arial,sans-serif;
-}
-
-.sidebar a {
-    text-decoration: none;
-}
-
-.sidebar a:hover {
-    text-decoration: underline;
-}
-
-#ydn-tabbar {
-}
-
-
-.tabbar-failback {
-    width: 156px;
-    padding: 4px;
-    z-index: 10; /* overlay */
-    position: fixed;
-    bottom: 0;
-    left: 4px;
-    height: 28px;
-}
-
-#ydn-tabbar > div:first-child {
-    /* this align UI, 16 px when debug button is not present. */
-    margin-left: 12px;
-}
-
-
-#btn-show-panel {
-    border: none;
-    cursor: pointer;
-    height: 17px;
-    float: none;
-    display: inline-block;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-#btn-show-panel div {
-    padding-top: 7px;
-    width: 16px;
-    height: 18px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/logo.png') no-repeat center center;
-}
-
-
-.widget {
-    font-size: 13px;
-    font-family: arial, sans-serif;
-}
-
-.widget a {
-    padding: 0 4px;
-}
-
-a.widget-task {
-    text-decoration: none;
-    color: rgb(17, 85, 204);
-}
-
-.widget-label {
-    cursor: pointer;
-}
-
-.widget .error {
-    color: red;
-}
-
-.widget-topraw {
-    border-top: thin solid red;
-}
 /*
 * Closure Library CSS
 */
@@ -344,7 +135,6 @@ a.widget-task {
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Cross-browser implementation of the "display: inline-block" CSS property.
  * See http://www.w3.org/TR/CSS21/visuren.html#propdef-display for details.
@@ -352,15 +142,14 @@ a.widget-task {
  *
  * @author attila@google.com (Attila Bodis)
  */
-
 /*
  * Default rule; only Safari, Webkit, and Opera handle it without hacks.
  */
 .goog-inline-block {
   position: relative;
-  display: -moz-inline-box; /* Ignored by FF3 and later. */
-  display: inline-block;
-}
+  display: -moz-inline-box;
+  /* Ignored by FF3 and later. */
+  display: inline-block; }
 
 /*
  * Pre-IE7 IE hack.  On IE, "display: inline-block" only gives the element
@@ -368,35 +157,29 @@ a.widget-task {
  * to inline does the trick.
  */
 * html .goog-inline-block {
-  display: inline;
-}
+  display: inline; }
 
 /*
  * IE7-only hack.  On IE, "display: inline-block" only gives the element
  * layout, but doesn't give it inline behavior.  Subsequently setting display
  * to inline does the trick.
  */
-*:first-child+html .goog-inline-block {
-  display: inline;
-}
+*:first-child + html .goog-inline-block {
+  display: inline; }
+
 /*
  * Copyright 2007 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /* Author: pupius@google.com (Daniel Pupius) */
 /* Author: pallosp@google.com (Peter Pallos) */
-
 /* Styles for goog.ui.ComboBox and its derivatives. */
-
-
 .goog-combobox {
-  background: #ddd url(https:https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
+  background: #dddddd url(//ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
   border: 1px solid #b5b6b5;
-  font: normal small arial, sans-serif;
-}
+  font: normal small arial, sans-serif; }
 
 .goog-combobox input {
   background-color: #fff;
@@ -406,69 +189,61 @@ a.widget-task {
   font: normal small arial, sans-serif;
   margin: 0;
   padding: 0 0 0 2px;
-  vertical-align: bottom; /* override demo.css */
-  width: 200px;
-}
+  vertical-align: bottom;
+  /* override demo.css */
+  width: 200px; }
 
 .goog-combobox input.label-input-label {
   background-color: #fff;
-  color: #aaa;
-}
+  color: #aaa; }
 
 .goog-combobox .goog-menu {
   margin-top: -1px;
-  width: 219px;  /* input width + button width + 3 * 1px border */
-  z-index: 1000;
-}
+  width: 219px;
+  /* input width + button width + 3 * 1px border */
+  z-index: 1000; }
 
 .goog-combobox-button {
   cursor: pointer;
   display: inline-block;
   font-size: 10px;
   text-align: center;
-  width: 16px;
-}
+  width: 16px; }
 
 /* IE6 only hack */
 * html .goog-combobox-button {
-  padding: 0 3px;
-}
+  padding: 0 3px; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Standard styling for goog.ui.Dialog.
  *
  * @author ssaviano@google.com (Steven Saviano)
  * @author attila@google.com (Attila Bodis)
  */
-
-
 .modal-dialog {
   background: #c1d9ff;
   border: 1px solid #3a5774;
   color: #000;
   padding: 4px;
-  position: absolute;
-}
+  position: absolute; }
 
 .modal-dialog a,
 .modal-dialog a:link,
-.modal-dialog a:visited  {
+.modal-dialog a:visited {
   color: #06c;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .modal-dialog-bg {
   background: #666;
   left: 0;
   position: absolute;
-  top: 0;
-}
+  top: 0; }
 
 .modal-dialog-title {
   background: #e0edfe;
@@ -476,49 +251,42 @@ a.widget-task {
   cursor: pointer;
   font-size: 120%;
   font-weight: bold;
-
   /* Add padding on the right to ensure the close button has room. */
   padding: 8px 31px 8px 8px;
-
   position: relative;
-  _zoom: 1; /* Ensures proper width in IE6 RTL. */
-}
+  _zoom: 1;
+  /* Ensures proper width in IE6 RTL. */ }
 
 .modal-dialog-title-close {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: #e0edfe url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  background: #e0edfe url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
   cursor: default;
   height: 15px;
   position: absolute;
   right: 10px;
   top: 8px;
   width: 15px;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
 .modal-dialog-buttons,
 .modal-dialog-content {
   background-color: #fff;
-  padding: 8px;
-}
+  padding: 8px; }
 
 .goog-buttonset-default {
-  font-weight: bold;
-}
+  font-weight: bold; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Standard styling for menus created by goog.ui.MenuRenderer.
  *
  * @author attila@google.com (Attila Bodis)
  */
-
-
 .goog-menu {
   background: #fff;
   border-color: #ccc #666 #666 #ccc;
@@ -530,22 +298,20 @@ a.widget-task {
   outline: none;
   padding: 4px 0;
   position: absolute;
-  z-index: 20000; /* Arbitrary, but some apps depend on it... */
-}
+  z-index: 20000;
+  /* Arbitrary, but some apps depend on it... */ }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Standard styling for menus created by goog.ui.MenuItemRenderer.
  *
  * @author attila@google.com (Attila Bodis)
  */
-
-
 /**
  * State: resting.
  *
@@ -568,46 +334,40 @@ a.widget-task {
   margin: 0;
   /* 28px on the left for icon or checkbox; 7em on the right for shortcut. */
   padding: 4px 7em 4px 28px;
-  white-space: nowrap;
-}
+  white-space: nowrap; }
 
 /* BiDi override for the resting state. */
 /* @noflip */
 .goog-menuitem.goog-menuitem-rtl {
   /* Flip left/right padding for BiDi. */
   padding-left: 7em;
-  padding-right: 28px;
-}
+  padding-right: 28px; }
 
 /* If a menu doesn't have checkable items or items with icons, remove padding. */
 .goog-menu-nocheckbox .goog-menuitem,
 .goog-menu-noicon .goog-menuitem {
-  padding-left: 12px;
-}
+  padding-left: 12px; }
 
 /*
  * If a menu doesn't have items with shortcuts, leave just enough room for
  * submenu arrows, if they are rendered.
  */
 .goog-menu-noaccel .goog-menuitem {
-  padding-right: 20px;
-}
+  padding-right: 20px; }
 
 .goog-menuitem-content {
   color: #000;
-  font: normal 13px Arial, sans-serif;
-}
+  font: normal 13px Arial, sans-serif; }
 
 /* State: disabled. */
 .goog-menuitem-disabled .goog-menuitem-accel,
 .goog-menuitem-disabled .goog-menuitem-content {
-  color: #ccc !important;
-}
+  color: #ccc !important; }
+
 .goog-menuitem-disabled .goog-menuitem-icon {
   opacity: 0.3;
   -moz-opacity: 0.3;
-  filter: alpha(opacity=30);
-}
+  filter: alpha(opacity=30); }
 
 /* State: hover. */
 .goog-menuitem-highlight,
@@ -619,8 +379,7 @@ a.widget-task {
   border-style: dotted;
   border-width: 1px 0;
   padding-bottom: 3px;
-  padding-top: 3px;
-}
+  padding-top: 3px; }
 
 /* State: selected/checked. */
 .goog-menuitem-checkbox,
@@ -631,8 +390,7 @@ a.widget-task {
   position: absolute;
   right: auto;
   vertical-align: middle;
-  width: 16px;
-}
+  width: 16px; }
 
 /* BiDi override for the selected/checked state. */
 /* @noflip */
@@ -640,26 +398,24 @@ a.widget-task {
 .goog-menuitem-rtl .goog-menuitem-icon {
   /* Flip left/right positioning. */
   left: auto;
-  right: 6px;
-}
+  right: 6px; }
 
 .goog-option-selected .goog-menuitem-checkbox,
 .goog-option-selected .goog-menuitem-icon {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0;
-}
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
 
 /* Keyboard shortcut ("accelerator") style. */
 .goog-menuitem-accel {
   color: #999;
   /* Keyboard shortcuts are untranslated; always left-to-right. */
-  /* @noflip */ direction: ltr;
+  /* @noflip */
+  direction: ltr;
   left: auto;
   padding: 0 6px;
   position: absolute;
   right: 0;
-  text-align: right;
-}
+  text-align: right; }
 
 /* BiDi override for shortcut style. */
 /* @noflip */
@@ -667,37 +423,32 @@ a.widget-task {
   /* Flip left/right positioning and text alignment. */
   left: 0;
   right: auto;
-  text-align: left;
-}
+  text-align: left; }
 
 /* Mnemonic styles. */
 .goog-menuitem-mnemonic-hint {
-  text-decoration: underline;
-}
+  text-decoration: underline; }
 
 .goog-menuitem-mnemonic-separator {
   color: #999;
   font-size: 12px;
-  padding-left: 4px;
-}
+  padding-left: 4px; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Standard styling for buttons created by goog.ui.MenuButtonRenderer.
  *
  * @author attila@google.com (Attila Bodis)
  */
-
-
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #ddd url(https:https://ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  background: #dddddd url(//ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
@@ -706,189 +457,171 @@ a.widget-task {
   outline: none;
   padding: 0;
   text-decoration: none;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
 /* Pseudo-rounded corners. */
 .goog-menu-button-outer-box,
 .goog-menu-button-inner-box {
   border-style: solid;
   border-color: #aaa;
-  vertical-align: top;
-}
+  vertical-align: top; }
+
 .goog-menu-button-outer-box {
   margin: 0;
   border-width: 1px 0;
-  padding: 0;
-}
+  padding: 0; }
+
 .goog-menu-button-inner-box {
   margin: 0 -1px;
   border-width: 0 1px;
-  padding: 3px 4px;
-}
+  padding: 3px 4px; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-menu-button-inner-box {
   /* IE6 needs to have the box shifted to make the borders line up. */
-  left: -1px;
-}
+  left: -1px; }
 
 /* Pre-IE7 BiDi fixes. */
 * html .goog-menu-button-rtl .goog-menu-button-outer-box {
-  /* @noflip */ left: -1px;
-  /* @noflip */ right: auto;
-}
+  /* @noflip */
+  left: -1px;
+  /* @noflip */
+  right: auto; }
+
 * html .goog-menu-button-rtl .goog-menu-button-inner-box {
-  /* @noflip */ right: auto;
-}
+  /* @noflip */
+  right: auto; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-menu-button-inner-box {
+*:first-child + html .goog-menu-button-inner-box {
   /* IE7 needs to have the box shifted to make the borders line up. */
-  left: -1px;
-}
+  left: -1px; }
+
 /* IE7 BiDi fix. */
-*:first-child+html .goog-menu-button-rtl .goog-menu-button-inner-box {
-  /* @noflip */ left: 1px;
-  /* @noflip */ right: auto;
-}
+*:first-child + html .goog-menu-button-rtl .goog-menu-button-inner-box {
+  /* @noflip */
+  left: 1px;
+  /* @noflip */
+  right: auto; }
 
 /* Safari-only hacks. */
 ::root .goog-menu-button,
 ::root .goog-menu-button-outer-box,
 ::root .goog-menu-button-inner-box {
   /* Required to make pseudo-rounded corners work on Safari. */
-  line-height: 0;
-}
+  line-height: 0; }
+
 ::root .goog-menu-button-caption,
 ::root .goog-menu-button-dropdown {
   /* Required to make pseudo-rounded corners work on Safari. */
-  line-height: normal;
-}
+  line-height: normal; }
 
 /* State: disabled. */
 .goog-menu-button-disabled {
   background-image: none !important;
   opacity: 0.3;
   -moz-opacity: 0.3;
-  filter: alpha(opacity=30);
-}
+  filter: alpha(opacity=30); }
+
 .goog-menu-button-disabled .goog-menu-button-outer-box,
 .goog-menu-button-disabled .goog-menu-button-inner-box,
 .goog-menu-button-disabled .goog-menu-button-caption,
 .goog-menu-button-disabled .goog-menu-button-dropdown {
   color: #333 !important;
-  border-color: #999 !important;
-}
+  border-color: #999 !important; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-menu-button-disabled {
   margin: 2px 1px !important;
-  padding: 0 1px !important;
-}
+  padding: 0 1px !important; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-menu-button-disabled {
+*:first-child + html .goog-menu-button-disabled {
   margin: 2px 1px !important;
-  padding: 0 1px !important;
-}
+  padding: 0 1px !important; }
 
 /* State: hover. */
 .goog-menu-button-hover .goog-menu-button-outer-box,
 .goog-menu-button-hover .goog-menu-button-inner-box {
-  border-color: #9cf #69e #69e #7af !important; /* Hover border wins. */
-}
+  border-color: #9cf #69e #69e #7af !important;
+  /* Hover border wins. */ }
 
 /* State: active, open. */
 .goog-menu-button-active,
 .goog-menu-button-open {
   background-color: #bbb;
-  background-position: bottom left;
-}
+  background-position: bottom left; }
 
 /* State: focused. */
 .goog-menu-button-focused .goog-menu-button-outer-box,
 .goog-menu-button-focused .goog-menu-button-inner-box {
-  border-color: orange;
-}
+  border-color: orange; }
 
 /* Caption style. */
 .goog-menu-button-caption {
   padding: 0 4px 0 0;
-  vertical-align: top;
-}
+  vertical-align: top; }
 
 /* Dropdown arrow style. */
 .goog-menu-button-dropdown {
   height: 15px;
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
-  vertical-align: top;
-}
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  vertical-align: top; }
 
 /* Pill (collapsed border) styles. */
 /* TODO(gboyer): Remove specific menu button styles and have any button support being a menu button. */
 .goog-menu-button-collapse-right,
 .goog-menu-button-collapse-right .goog-menu-button-outer-box,
 .goog-menu-button-collapse-right .goog-menu-button-inner-box {
-  margin-right: 0;
-}
+  margin-right: 0; }
 
 .goog-menu-button-collapse-left,
 .goog-menu-button-collapse-left .goog-menu-button-outer-box,
 .goog-menu-button-collapse-left .goog-menu-button-inner-box {
-  margin-left: 0;
-}
+  margin-left: 0; }
 
-.goog-menu-button-collapse-left .goog-menu-button-inner-box  {
-  border-left: 1px solid #fff;
-}
+.goog-menu-button-collapse-left .goog-menu-button-inner-box {
+  border-left: 1px solid #fff; }
 
 .goog-menu-button-collapse-left.goog-menu-button-checked
 .goog-menu-button-inner-box {
-  border-left: 1px solid #ddd;
-}
+  border-left: 1px solid #ddd; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Standard styling for menus created by goog.ui.MenuSeparatorRenderer.
  *
  * @author attila@google.com (Attila Bodis)
  */
-
-
 .goog-menuseparator {
   border-top: 1px solid #ccc;
   margin: 4px 0;
-  padding: 0;
-}
+  padding: 0; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /*
  * Standard styling for toolbars and toolbar items.
  *
  * @author attila@google.com (Attila Bodis)
  */
-
-
 /*
  * Styles used by goog.ui.ToolbarRenderer.
  */
-
 .goog-toolbar {
   /* Client apps may override the URL at which they serve the image. */
-  background: #fafafa url(https:https://ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
+  background: #fafafa url(//ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
   border-bottom: 1px solid #d5d5d5;
   cursor: default;
   font: normal 12px Arial, sans-serif;
@@ -896,13 +629,12 @@ a.widget-task {
   outline: none;
   padding: 2px;
   position: relative;
-  zoom: 1; /* The toolbar element must have layout on IE. */
-}
+  zoom: 1;
+  /* The toolbar element must have layout on IE. */ }
 
 /*
  * Styles used by goog.ui.ToolbarButtonRenderer.
  */
-
 .goog-toolbar-button {
   margin: 0 2px;
   border: 0;
@@ -913,94 +645,83 @@ a.widget-task {
   list-style: none;
   vertical-align: middle;
   cursor: default;
-  outline: none;
-}
+  outline: none; }
 
 /* Pseudo-rounded corners. */
 .goog-toolbar-button-outer-box,
 .goog-toolbar-button-inner-box {
   border: 0;
-  vertical-align: top;
-}
+  vertical-align: top; }
 
 .goog-toolbar-button-outer-box {
   margin: 0;
-  padding: 1px 0;
-}
+  padding: 1px 0; }
 
 .goog-toolbar-button-inner-box {
   margin: 0 -1px;
-  padding: 3px 4px;
-}
+  padding: 3px 4px; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-toolbar-button-inner-box {
   /* IE6 needs to have the box shifted to make the borders line up. */
-  left: -1px;
-}
+  left: -1px; }
 
 /* Pre-IE7 BiDi fixes. */
 * html .goog-toolbar-button-rtl .goog-toolbar-button-outer-box {
-  /* @noflip */ left: -1px;
-}
-* html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
-  /* @noflip */ right: auto;
-}
+  /* @noflip */
+  left: -1px; }
 
+* html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
+  /* @noflip */
+  right: auto; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-toolbar-button-inner-box {
+*:first-child + html .goog-toolbar-button-inner-box {
   /* IE7 needs to have the box shifted to make the borders line up. */
-  left: -1px;
-}
+  left: -1px; }
 
 /* IE7 BiDi fix. */
-*:first-child+html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
-  /* @noflip */ left: 1px;
-  /* @noflip */ right: auto;
-}
+*:first-child + html .goog-toolbar-button-rtl .goog-toolbar-button-inner-box {
+  /* @noflip */
+  left: 1px;
+  /* @noflip */
+  right: auto; }
 
 /* Safari-only hacks. */
 ::root .goog-toolbar-button,
 ::root .goog-toolbar-button-outer-box {
   /* Required to make pseudo-rounded corners work on Safari. */
-  line-height: 0;
-}
+  line-height: 0; }
 
 ::root .goog-toolbar-button-inner-box {
   /* Required to make pseudo-rounded corners work on Safari. */
-  line-height: normal;
-}
+  line-height: normal; }
 
 /* Disabled styles. */
 .goog-toolbar-button-disabled {
   opacity: 0.3;
   -moz-opacity: 0.3;
-  filter: alpha(opacity=30);
-}
+  filter: alpha(opacity=30); }
 
 .goog-toolbar-button-disabled .goog-toolbar-button-outer-box,
 .goog-toolbar-button-disabled .goog-toolbar-button-inner-box {
   /* Disabled text/border color trumps everything else. */
   color: #333 !important;
-  border-color: #999 !important;
-}
+  border-color: #999 !important; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-toolbar-button-disabled {
   /* IE can't apply alpha to an element with a transparent background... */
   background-color: #f0f0f0;
   margin: 0 1px;
-  padding: 0 1px;
-}
+  padding: 0 1px; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-toolbar-button-disabled {
+*:first-child + html .goog-toolbar-button-disabled {
   /* IE can't apply alpha to an element with a transparent background... */
   background-color: #f0f0f0;
   margin: 0 1px;
-  padding: 0 1px;
-}
+  padding: 0 1px; }
 
 /* Only draw borders when in a non-default state. */
 .goog-toolbar-button-hover .goog-toolbar-button-outer-box,
@@ -1009,8 +730,7 @@ a.widget-task {
 .goog-toolbar-button-selected .goog-toolbar-button-outer-box {
   border-width: 1px 0;
   border-style: solid;
-  padding: 0;
-}
+  padding: 0; }
 
 .goog-toolbar-button-hover .goog-toolbar-button-inner-box,
 .goog-toolbar-button-active .goog-toolbar-button-inner-box,
@@ -1018,23 +738,20 @@ a.widget-task {
 .goog-toolbar-button-selected .goog-toolbar-button-inner-box {
   border-width: 0 1px;
   border-style: solid;
-  padding: 3px;
-}
+  padding: 3px; }
 
 /* Hover styles. */
 .goog-toolbar-button-hover .goog-toolbar-button-outer-box,
 .goog-toolbar-button-hover .goog-toolbar-button-inner-box {
   /* Hover border style wins over active/checked/selected. */
-  border-color: #a1badf !important;
-}
+  border-color: #a1badf !important; }
 
 /* Active/checked/selected styles. */
 .goog-toolbar-button-active,
 .goog-toolbar-button-checked,
 .goog-toolbar-button-selected {
   /* Active/checked/selected background color always wins. */
-  background-color: #dde1eb !important;
-}
+  background-color: #dde1eb !important; }
 
 .goog-toolbar-button-active .goog-toolbar-button-outer-box,
 .goog-toolbar-button-active .goog-toolbar-button-inner-box,
@@ -1042,38 +759,31 @@ a.widget-task {
 .goog-toolbar-button-checked .goog-toolbar-button-inner-box,
 .goog-toolbar-button-selected .goog-toolbar-button-outer-box,
 .goog-toolbar-button-selected .goog-toolbar-button-inner-box {
-  border-color: #729bd1;
-}
+  border-color: #729bd1; }
 
 /* Pill (collapsed border) styles. */
 .goog-toolbar-button-collapse-right,
 .goog-toolbar-button-collapse-right .goog-toolbar-button-outer-box,
 .goog-toolbar-button-collapse-right .goog-toolbar-button-inner-box {
-  margin-right: 0;
-}
+  margin-right: 0; }
 
 .goog-toolbar-button-collapse-left,
 .goog-toolbar-button-collapse-left .goog-toolbar-button-outer-box,
 .goog-toolbar-button-collapse-left .goog-toolbar-button-inner-box {
-  margin-left: 0;
-}
+  margin-left: 0; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-toolbar-button-collapse-left .goog-toolbar-button-inner-box {
-  left: 0;
-}
+  left: 0; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-toolbar-button-collapse-left
+*:first-child + html .goog-toolbar-button-collapse-left
 .goog-toolbar-button-inner-box {
-  left: 0;
-}
-
+  left: 0; }
 
 /*
  * Styles used by goog.ui.ToolbarMenuButtonRenderer.
  */
-
 .goog-toolbar-menu-button {
   margin: 0 2px;
   border: 0;
@@ -1084,96 +794,86 @@ a.widget-task {
   list-style: none;
   vertical-align: middle;
   cursor: default;
-  outline: none;
-}
+  outline: none; }
 
 /* Pseudo-rounded corners. */
 .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-menu-button-inner-box {
   border: 0;
-  vertical-align: top;
-}
+  vertical-align: top; }
 
 .goog-toolbar-menu-button-outer-box {
   margin: 0;
-  padding: 1px 0;
-}
+  padding: 1px 0; }
 
 .goog-toolbar-menu-button-inner-box {
   margin: 0 -1px;
-  padding: 3px 4px;
-}
+  padding: 3px 4px; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-toolbar-menu-button-inner-box {
   /* IE6 needs to have the box shifted to make the borders line up. */
-  left: -1px;
-}
+  left: -1px; }
 
 /* Pre-IE7 BiDi fixes. */
 * html .goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-outer-box {
-  /* @noflip */ left: -1px;
-}
+  /* @noflip */
+  left: -1px; }
+
 * html .goog-toolbar-menu-button-rtl .goog-toolbar-menu-button-inner-box {
-  /* @noflip */ right: auto;
-}
+  /* @noflip */
+  right: auto; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-toolbar-menu-button-inner-box {
+*:first-child + html .goog-toolbar-menu-button-inner-box {
   /* IE7 needs to have the box shifted to make the borders line up. */
-  left: -1px;
-}
+  left: -1px; }
 
 /* IE7 BiDi fix. */
-*:first-child+html .goog-toolbar-menu-button-rtl
-  .goog-toolbar-menu-button-inner-box {
-  /* @noflip */ left: 1px;
-  /* @noflip */ right: auto;
-}
+*:first-child + html .goog-toolbar-menu-button-rtl
+.goog-toolbar-menu-button-inner-box {
+  /* @noflip */
+  left: 1px;
+  /* @noflip */
+  right: auto; }
 
 /* Safari-only hacks. */
 ::root .goog-toolbar-menu-button,
 ::root .goog-toolbar-menu-button-outer-box,
 ::root .goog-toolbar-menu-button-inner-box {
   /* Required to make pseudo-rounded corners work on Safari. */
-  line-height: 0;
-}
+  line-height: 0; }
 
 ::root .goog-toolbar-menu-button-caption,
 ::root .goog-toolbar-menu-button-dropdown {
   /* Required to make pseudo-rounded corners work on Safari. */
-  line-height: normal;
-}
+  line-height: normal; }
 
 /* Disabled styles. */
 .goog-toolbar-menu-button-disabled {
   opacity: 0.3;
   -moz-opacity: 0.3;
-  filter: alpha(opacity=30);
-}
+  filter: alpha(opacity=30); }
 
 .goog-toolbar-menu-button-disabled .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-menu-button-disabled .goog-toolbar-menu-button-inner-box {
   /* Disabled text/border color trumps everything else. */
   color: #333 !important;
-  border-color: #999 !important;
-}
+  border-color: #999 !important; }
 
 /* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
 * html .goog-toolbar-menu-button-disabled {
   /* IE can't apply alpha to an element with a transparent background... */
   background-color: #f0f0f0;
   margin: 0 1px;
-  padding: 0 1px;
-}
+  padding: 0 1px; }
 
 /* IE7-only hack; ignored by all other browsers. */
-*:first-child+html .goog-toolbar-menu-button-disabled {
+*:first-child + html .goog-toolbar-menu-button-disabled {
   /* IE can't apply alpha to an element with a transparent background... */
   background-color: #f0f0f0;
   margin: 0 1px;
-  padding: 0 1px;
-}
+  padding: 0 1px; }
 
 /* Only draw borders when in a non-default state. */
 .goog-toolbar-menu-button-hover .goog-toolbar-menu-button-outer-box,
@@ -1181,57 +881,48 @@ a.widget-task {
 .goog-toolbar-menu-button-open .goog-toolbar-menu-button-outer-box {
   border-width: 1px 0;
   border-style: solid;
-  padding: 0;
-}
+  padding: 0; }
 
 .goog-toolbar-menu-button-hover .goog-toolbar-menu-button-inner-box,
 .goog-toolbar-menu-button-active .goog-toolbar-menu-button-inner-box,
 .goog-toolbar-menu-button-open .goog-toolbar-menu-button-inner-box {
   border-width: 0 1px;
   border-style: solid;
-  padding: 3px;
-}
+  padding: 3px; }
 
 /* Hover styles. */
 .goog-toolbar-menu-button-hover .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-menu-button-hover .goog-toolbar-menu-button-inner-box {
   /* Hover border color trumps active/open style. */
-  border-color: #a1badf !important;
-}
+  border-color: #a1badf !important; }
 
 /* Active/open styles. */
 .goog-toolbar-menu-button-active,
 .goog-toolbar-menu-button-open {
   /* Active/open background color wins. */
-  background-color: #dde1eb !important;
-}
+  background-color: #dde1eb !important; }
 
 .goog-toolbar-menu-button-active .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-menu-button-active .goog-toolbar-menu-button-inner-box,
 .goog-toolbar-menu-button-open .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-menu-button-open .goog-toolbar-menu-button-inner-box {
-  border-color: #729bd1;
-}
+  border-color: #729bd1; }
 
 /* Menu button caption style. */
 .goog-toolbar-menu-button-caption {
   padding: 0 4px 0 0;
-  vertical-align: middle;
-}
+  vertical-align: middle; }
 
 /* Dropdown style. */
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https:https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
-  vertical-align: middle;
-}
-
+  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  vertical-align: middle; }
 
 /*
  * Styles used by goog.ui.ToolbarSeparatorRenderer.
  */
-
 .goog-toolbar-separator {
   margin: 0 2px;
   border-left: 1px solid #d6d6d6;
@@ -1244,429 +935,315 @@ a.widget-task {
   vertical-align: middle;
   line-height: normal;
   font-size: 120%;
-  overflow: hidden;
-}
-
+  overflow: hidden; }
 
 /*
  * Additional styling for toolbar select controls, which always have borders.
  */
-
 .goog-toolbar-select .goog-toolbar-menu-button-outer-box {
   border-width: 1px 0;
   border-style: solid;
-  padding: 0;
-}
+  padding: 0; }
 
 .goog-toolbar-select .goog-toolbar-menu-button-inner-box {
   border-width: 0 1px;
   border-style: solid;
-  padding: 3px;
-}
+  padding: 3px; }
 
 .goog-toolbar-select .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-select .goog-toolbar-menu-button-inner-box {
-  border-color: #bfcbdf;
-}
+  border-color: #bfcbdf; }
 
+.menu_bar {
+  padding: 0 4px 0 4px;
+  font-size: medium;
+  overflow: hidden;
+  border-bottom: thin solid lightgrey; }
+
+/* Old style Google menu bar */
+.menu_bar ul {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-size: 13px;
+  padding: 0;
+  margin: 0;
+  height: 20px; }
+
+.menu_bar ul li {
+  padding: 4px;
+  list-style: none;
+  display: inline; }
+
+.menu_bar li.selected {
+  border-top: medium solid green; }
+
+.menu_bar ul li a {
+  color: inherit; }
+
+.menu_bar .left {
+  text-transform: uppercase; }
+
+.menu_bar .right {
+  padding-top: 4px; }
+
+.menu_bar .left a {
+  text-decoration: none; }
+
+.menu_bar .left ul li {
+  display: inline-block;
+  text-align: center; }
+
+/* Record */
+.field:hover > sup.name {
+  display: inline !important; }
+
+.record-body > .field > INPUT.enum {
+  width: 2em;
+  background: none repeat scroll 0 0 transparent;
+  border: 0;
+  color: #000000; }
+
+/*
+ * make input look like label. This setting is obtained from Gmail contact editor.
+*/
+.record-body.view > .field > INPUT,
+.record-body.view > .record-group > .field > INPUT,
+.record-body.view > .record-group > * > .field > INPUT,
+.record-body.view > .record-group > DETAILS > * > .field > INPUT {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  vertical-align: text-top; }
+
+.record-body .field > * {
+  box-sizing: border-box;
+  width: 100%; }
+
+.record-body.view > .field > TEXTAREA,
+.record-body.view > .record-group > .field > TEXTAREA,
+.record-body.view > .record-group > DETAILS > * > .field > TEXTAREA,
+.record-body.view > .record-group > * > .field > TEXTAREA {
+  margin: 2px;
+  border: 0;
+  padding: 1px 2px;
+  background-color: transparent;
+  resize: none; }
+
+.record-body.view > .field.empty,
+.record-body.view > .record-group > .field.empty,
+.record-body.view > .record-group > .field > .empty,
+.record-body.view > .record-group > * > .field.empty,
+.record-body.view > .record-group > * > * > .field.empty {
+  display: none; }
+
+.record-body span.field ~ span.field {
+  padding-left: 4px; }
 
 /*
  * Prevent Superscripts and Subscripts from Affecting Line-Height
  * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
  */
 .record-group sup, sub {
-    vertical-align: baseline;
-    position: relative;
-    top: -0.4em;
-}
-.record-group sub { top: 0.4em; }
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em; }
+
+.record-group sub {
+  top: 0.4em; }
 
 .record-group a.null {
-    text-decoration: none !important;
-}/*
- * Base CSS for Gmail content script UI.
- */
+  text-decoration: none !important; }
 
-
-.inj, #root-panel {
-    font-family: arial,sans-serif;
-    font-size: 12px;
+/*
+.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
+  content: ', ';
 }
-
-#root-panel {
-    width: 100%;
-}
-
-#root-panel.sticky-right {
-    /* Gmail right bar has width of 220px and gutter of 14px */
-    width: 220px;
-    background-color: white;
-    padding: 0;
-    position:absolute;
-    visibility:hidden;
-    z-index: 10;
-}
-
-#root-panel.sticky-right > .container {
-    border: thin solid lightgrey;
-    padding: 4px 0 0 0;
-}
-
-.sticker {
-    position: fixed;
-    top: 240px;
-    right: 0;
-    width: 30px;
-    height: 50px;
-    background-color: #d3d3d3;
-}
-
-.sticker > .disp-button {
-    position:absolute;
-    top: 0;
-    text-align: center;
-    cursor: pointer;
-    display: inline-block;
-    margin:0 auto;
-    width: 30px;
-    font-size: 12px;
-    font-weight: normal;
-
-}
-
-.sticker > .disp-button:hover {
-    background-color: #9d9d9d;
-}
-
-#root-panel .statusbar > .setting {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') left center no-repeat;
-}
-
-
-.root-panel-failback {
-    z-index: 10; /* overlay */
-    position: fixed;
-    bottom: 30px;
-    left: 4px;
-    height: 160px;
-}
-
-.sugarcrm-link-panel {
-
-}
-
-a.sugarcrm-setup-link {
-    padding-left: 20px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/logo-16.svg') left center no-repeat;
-}
-
-.host-permission iframe {
-    height: 60px;
-    width: 100px;
-    margin: 0;
-    padding: 0;
-}
-
-
-.inj .goog-tab .home {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/home.svg') center center no-repeat;
-}
-
-.inj .goog-tab .feed {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/feed.svg') center center no-repeat;
-}
-
-.inj .goog-tab .setting {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/setting.svg') center center no-repeat;
-}
-
-.inj .goog-tab .tools {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/tools.svg') center center no-repeat;
-}
-
-.inj .goog-tab .search {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/search.svg') center center no-repeat;
-}
-
-.inj .goog-tab .debug {
-    width: 16px;
-    height: 16px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/debug.svg') center center no-repeat;
-}
-
-
-.inj .sugar-panel {
-    /* padding: 8px;
-    border-bottom: thin solid lightgrey; */
-}
-
-.inj .goog-toolbar {
-    background-image: none;
-    border-bottom: none;
-    background-color: inherit;
-}
-
+*/
 /* CSS related to specific modules */
-
-
+/* CSS related to specific modules */
 .Accounts .icon {
-    background-color: #37880e;
-}
+  background-color: #37880e; }
 
 .Bugs .icon {
-    background-color: #e61718;
-}
+  background-color: #e61718; }
 
 .Calls .icon {
-    background-color: #0b3a72;
-}
+  background-color: #0b3a72; }
 
 .Calendar .icon {
-    background-color: #125db8;
-}
+  background-color: #125db8; }
 
 .Campaigns .icon {
-    background-color: #788d0e;
-}
+  background-color: #788d0e; }
 
 .CampaignLog .icon {
-    background-color: #60710b;
-}
+  background-color: #60710b; }
 
 .Cases .icon {
-    background-color: #b81213;
-}
+  background-color: #b81213; }
 
 .Contacts .icon {
-    background-color: #245a09;
-}
+  background-color: #245a09; }
 
 .Documents .icon {
-    background-color: #81380f;
-}
+  background-color: #81380f; }
 
 .Emails .icon, .EmailText .icon, .EmailTemplates .icon {
-    background-color: #aa1466;
-}
+  background-color: #aa1466; }
 
 .Employees .icon {
-    background-color: #313130;
-}
+  background-color: #313130; }
 
 .Files .icon {
-    background-color: #984112;
-}
+  background-color: #984112; }
 
 .Forecasts .icon {
-    background-color: #af4b14;
-}
+  background-color: #af4b14; }
 
 .KBDocuments .icon {
-    background-color: #6b2e0c;
-}
+  background-color: #6b2e0c; }
 
 .Leads .icon {
-    background-color: #448fec;
-}
+  background-color: #448fec; }
 
 .Meetings .icon {
-    background-color: #e6af17;
-}
+  background-color: #e6af17; }
 
 .Notes .icon {
-    background-color: #129cb7;
-}
+  background-color: #129cb7; }
 
 .Opportunities .icon {
-    background-color: #7115ce;
-}
-
-.Prospects .icon {
-    background-color: #7d0e4b;
-}
+  background-color: #7115ce; }
 
 .ProspectLists .icon, .Prospects .icon {
-    background-color: #7d0e4b;
-}
+  background-color: #7d0e4b; }
 
 .Reports .icon {
-    background-color: #c65517;
-}
+  background-color: #c65517; }
 
 .RevenueLineItems .icon {
-    background-color: #4b0e88;
-}
+  background-color: #4b0e88; }
 
 .Quotes .icon {
-    background-color: #0e7488;
-}
+  background-color: #0e7488; }
 
 .Targets .icon {
-    background-color: #931159;
-}
+  background-color: #931159; }
 
 .Tasks .icon {
-    background-color: #d81982;
-}
+  background-color: #d81982; }
 
 .Users .icon {
-    background-color: #313130;
-}
+  background-color: #313130; }
 
 .Workflow .icon {
-    background-color: #414c08;
-}/* Record */
-
+  background-color: #414c08; }
 
 .record-header .title {
-    vertical-align: middle;
-    line-height: 20px;
-}
-
+  vertical-align: middle;
+  line-height: 20px; }
 
 .record-header .icon {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 3px;
-    font-weight: 400;
-    font-size: 10px;
-    padding: 0 0 0 2px;
-    margin: 0 4px 0 0;
-    border: none;
-    color: #ffffff;
-    vertical-align: middle;
-}
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 10px;
+  padding: 0 0 0 2px;
+  margin: 0 4px 0 0;
+  border: none;
+  color: #ffffff;
+  vertical-align: middle; }
 
 .record-header .link {
-    float: right;
-    display: none;
-}
+  float: right;
+  display: none; }
 
 .record-header:hover .link {
-    display: inline !important;
-}
+  display: inline !important; }
 
 .record-header .link.synced {
-    display: inline;
-    float: right;
-    width: 20px;
-    height: 16px;
-    vertical-align: middle;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/sync.svg') left center no-repeat;
-}
-
+  display: inline;
+  float: right;
+  width: 20px;
+  height: 16px;
+  vertical-align: middle;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/sync.svg") left center no-repeat; }
 
 .record-body-header > * {
-    padding-left: 4px;
-}
+  padding-left: 4px; }
 
+.record-body .normally-hide {
+  display: none; }
 
-.record-footer  {
-    display: none;
-}
+.record-body.detail .normally-hide {
+  display: inherit; }
+
+.record-footer {
+  display: none; }
 
 .record-footer.edit {
-    display: inherit;
-}
+  display: inherit; }
 
 .secondary {
-    margin-left: 4px;
-    padding-left: 2px;
-    border-left: thin solid lightblue;
-}
-
+  margin-left: 4px;
+  padding-left: 2px;
+  border-left: thin solid lightblue; }
 
 .search-result {
-    padding: 4px;
-}
-
+  padding: 4px; }
 
 /* In search panel, record show only its header.
  * > is require to specific immediate element */
 .search-panel .record-panel > .content,
 .search-panel .record-panel .record-header .toolbar {
-    display: none;
-}
+  display: none; }
 
 /* A search result is activated by clicking on the result panel */
 .search-panel .record-panel:hover > .content,
-.search-panel .record-panel.activated  > .content,
+.search-panel .record-panel.activated > .content,
 .search-panel .record-panel:hover .record-header .toolbar,
 .search-panel .record-panel.activated .record-header .toolbar {
-    display: inherit;
-}
+  display: inherit; }
 
 .search-panel .content {
-    padding: 4px;
-}
+  padding: 4px; }
 
-.search-panel  .record-panel.empty {
-    display: none;
-}
-
-
-
-
+.search-panel .record-panel.empty {
+  display: none; }
 
 .sugar-panel .main-title {
-    padding-left: 20px;
-    background: url('chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg') left center no-repeat;
-}
-
-
+  padding-left: 20px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg") left center no-repeat; }
 
 .sugar-body .goog-tab {
-    width: 16px;
-    height: 16px;
-}
+  width: 16px;
+  height: 16px; }
 
 .sugar-panel .record-panel.empty {
-    display: none;
-}
+  display: none; }
 
 .gmail-cmd-panel {
-    display: inline-block;
-    padding: 4px;
-}
-
-
-
-
+  display: inline-block;
+  padding: 4px; }
 
 .setting-dialog .group-panel {
-    border: thin solid #d3d3d3;
-    padding: 8px;
-}/*
+  border: thin solid #d3d3d3;
+  padding: 8px; }
+
+/*
  * Customerization of tab.css and tabbar.css
  * Use difference class tag, so as to decouple with gmail dom manipulation.
  */
-
 /*
  * Copyright 2008 The Closure Library Authors. All Rights Reserved.
  *
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /* Author: attila@google.com (Attila Bodis) */
 /* Author: eae@google.com (Emil A. Eklund) */
-
-
 /*
  * Styles used by goog.ui.TabRenderer.
  */
@@ -1675,14 +1252,12 @@ a.sugarcrm-setup-link {
   padding: 4px 4px;
   /*color: #00c;*/
   text-decoration: underline;
-  cursor: default;
-}
+  cursor: default; }
 
 .goog-tab-bar-top .goog-tab {
   margin: 1px 4px 0 0;
   border-bottom: 0;
-  float: left;
-}
+  float: left; }
 
 .goog-tab-bar-top:after,
 .goog-tab-bar-bottom:after {
@@ -1690,34 +1265,28 @@ a.sugarcrm-setup-link {
   display: block;
   height: 0;
   clear: both;
-  visibility: hidden;
-}
+  visibility: hidden; }
 
 .goog-tab-bar-bottom .goog-tab {
   margin: 0 4px 1px 0;
   border-top: 0;
-  float: left;
-}
+  float: left; }
 
 .goog-tab-bar-start .goog-tab {
   margin: 0 0 4px 1px;
-  border-right: 0;
-}
+  border-right: 0; }
 
 .goog-tab-bar-end .goog-tab {
   margin: 0 1px 4px 0;
-  border-left: 0;
-}
+  border-left: 0; }
 
 /* State: Hover */
 .goog-tab-hover {
-  background: #eee;
-}
+  background: #eee; }
 
 /* State: Disabled */
 .goog-tab-disabled {
-  color: #666;
-}
+  color: #666; }
 
 /* State: Selected */
 .goog-tab-selected {
@@ -1725,14 +1294,13 @@ a.sugarcrm-setup-link {
   background: #fff;
   text-decoration: none;
   font-weight: bold;
-   border: 1px solid lightblue;
-}
+  border: 1px solid lightblue; }
 
 .goog-tab-bar-top {
   padding-top: 5px !important;
   padding-left: 5px !important;
-  border-bottom: 1px solid lightblue !important;
-}
+  border-bottom: 1px solid lightblue !important; }
+
 /*
  * Shift selected tabs 1px towards the contents (and compensate via margin and
  * padding) to visually merge the borders of the tab with the borders of the
@@ -1741,27 +1309,22 @@ a.sugarcrm-setup-link {
 .goog-tab-bar-top .goog-tab-selected {
   top: 1px;
   margin-top: 0;
-  padding-bottom: 5px;
-}
+  padding-bottom: 5px; }
 
 .goog-tab-bar-bottom .goog-tab-selected {
   top: -1px;
   margin-bottom: 0;
-  padding-top: 5px;
-}
+  padding-top: 5px; }
 
 .goog-tab-bar-start .goog-tab-selected {
   left: 1px;
   margin-left: 0;
-  padding-right: 9px;
-}
+  padding-right: 9px; }
 
 .goog-tab-bar-end .goog-tab-selected {
   left: -1px;
   margin-right: 0;
-  padding-left: 9px;
-}
-
+  padding-left: 9px; }
 
 /*
  * Copyright 2008 The Closure Library Authors. All Rights Reserved.
@@ -1769,11 +1332,8 @@ a.sugarcrm-setup-link {
  * Use of this source code is governed by the Apache License, Version 2.0.
  * See the COPYING file for details.
  */
-
 /* Author: attila@google.com (Attila Bodis) */
 /* Author: eae@google.com (Emil A. Eklund) */
-
-
 /*
  * Styles used by goog.ui.TabBarRenderer.
  */
@@ -1784,21 +1344,140 @@ a.sugarcrm-setup-link {
   list-style: none;
   cursor: default;
   outline: none;
-  /* background: #ebeff9; */
-}
+  /* background: #ebeff9; */ }
 
 .goog-tab-bar-clear {
   clear: both;
   height: 0;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
 .goog-tab-bar-start {
-  float: left;
-}
+  float: left; }
 
 .goog-tab-bar-end {
-  float: right;
-}
+  float: right; }
 
+.wgui-textinput-clear {
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  padding-top: 1px;
+  padding-left: 5px;
+  display: none;
+  color: #808080;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  box-sizing: border-box; }
 
+.wgui-textinput-clear:hover {
+  font-weight: bold;
+  color: white;
+  background-color: #808080; }
+
+.wgui-textinput-outer-box:hover .wgui-textinput-clear {
+  display: inherit; }
+
+#root-panel {
+  width: 100%; }
+
+#root-panel.sticky-right {
+  /* Gmail right bar has width of 220px and gutter of 14px */
+  width: 220px;
+  background-color: white;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  z-index: 10; }
+
+#root-panel.sticky-right > .container {
+  border: thin solid lightgrey;
+  padding: 4px 0 0 0; }
+
+.sticker {
+  position: fixed;
+  top: 240px;
+  right: 0;
+  width: 30px;
+  height: 50px;
+  background-color: #d3d3d3; }
+
+.sticker > .disp-button {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 auto;
+  width: 30px;
+  font-size: 12px;
+  font-weight: normal; }
+
+.sticker > .disp-button:hover {
+  background-color: #9d9d9d; }
+
+#root-panel .statusbar > .setting {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/setting.svg") left center no-repeat; }
+
+.root-panel-failback {
+  z-index: 10;
+  /* overlay */
+  position: fixed;
+  bottom: 30px;
+  left: 4px;
+  height: 160px; }
+
+a.sugarcrm-setup-link {
+  padding-left: 20px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
+
+.host-permission iframe {
+  height: 60px;
+  width: 100px;
+  margin: 0;
+  padding: 0; }
+
+.inj .goog-tab .home {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/home.svg") center center no-repeat; }
+
+.inj .goog-tab .feed {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/feed.svg") center center no-repeat; }
+
+.inj .goog-tab .setting {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/setting.svg") center center no-repeat; }
+
+.inj .goog-tab .tools {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/tools.svg") center center no-repeat; }
+
+.inj .goog-tab .search {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/search.svg") center center no-repeat; }
+
+.inj .goog-tab .debug {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/debug.svg") center center no-repeat; }
+
+.inj .sugar-panel {
+  /* padding: 8px;
+  border-bottom: thin solid lightgrey; */ }
+
+.inj .goog-toolbar {
+  background-image: none;
+  border-bottom: none;
+  background-color: inherit; }
+
+/*# sourceMappingURL=inj.css.map */

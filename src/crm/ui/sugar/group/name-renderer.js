@@ -71,7 +71,6 @@ ydn.crm.ui.sugar.group.NameRenderer.prototype.createDom = function(x) {
 
   ctrl.setElementInternal(root);
 
-
   var fields = model.listFields();
 
   var field_model, field;
