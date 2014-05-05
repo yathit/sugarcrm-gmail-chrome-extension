@@ -78,7 +78,7 @@ ydn.crm.inj.AppRenderer.CSS_CLASS_STICKY_RIGHT = 'sticky-right';
  * @const
  * @type {string} class name for this app.
  */
-ydn.crm.inj.AppRenderer.CSS_CLASS = 'ydn-crm';
+ydn.crm.inj.AppRenderer.CSS_CLASS = 'inj';
 
 
 /**
@@ -99,7 +99,7 @@ ydn.crm.inj.AppRenderer.prototype.createDom = function() {
    */
   var ele_root = document.createElement('div');
   ele_root.id = ydn.crm.inj.AppRenderer.ID_ROOT_ELE;
-  ele_root.className = ydn.crm.inj.AppRenderer.CSS_CLASS;
+  ele_root.className = ydn.crm.inj.AppRenderer.CSS_CLASS + ' ' + ydn.crm.ui.CSS_CLASS;
   // temporarily attached to document.
   document.body.appendChild(ele_root);
   goog.style.setElementShown(ele_root, false);
@@ -111,10 +111,35 @@ ydn.crm.inj.AppRenderer.prototype.createDom = function() {
     container.appendChild(ele);
   }
 
+  // header
+  var header = document.createElement('div');
+  var a = document.createElement('a');
+  a.textContent = 'Setup';
+  a.href = chrome.extension.getURL(ydn.crm.base.SETUP_PAGE);
+  a.className = 'setup-link';
+  header.appendChild(a);
+  ele_root.firstElementChild.appendChild(header);
+  goog.style.setElementShown(header, false);
+
   var status_bar = new ydn.crm.ui.AppStatusBar();
   ydn.crm.ui.StatusBar.instance = status_bar;
   status_bar.render(ele_root.lastElementChild);
   return ele_root;
+};
+
+
+/**
+ * Set user info.
+ * @param {ydn.crm.ui.UserSetting} user
+ */
+ydn.crm.inj.AppRenderer.prototype.setUserSetting = function(user) {
+  var header = this.getHeaderElement();
+  if (user && user.isLogin()) {
+    goog.style.setElementShown(header, false);
+  } else {
+    // show header link to login.
+    goog.style.setElementShown(header, true);
+  }
 };
 
 

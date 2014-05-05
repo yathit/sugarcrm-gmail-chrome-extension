@@ -124,7 +124,11 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
     }
     // var btn = dom.createDom('button', null, msg);
     // using button inside a doesn't work, possible for strict security of chrome extension
-    var btn_grant = dom.createDom('a', {'href': href, 'target': target}, msg);
+    var btn_grant = dom.createDom('a', {
+      'className': 'class-button',
+      'href': href,
+      'target': target
+    }, msg);
     btn_grant.setAttribute('title', 'Your permission is required to connect your' +
         ' server from this extension. Without permission request to server will be slow.');
     grants.push(btn_grant);

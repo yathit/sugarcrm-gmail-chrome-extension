@@ -9,6 +9,13 @@ goog.provide('ydn.crm.ui.ContextPanelPosition');
 
 /**
  * @const
+ * @type {string} root class name for all UI.
+ */
+ydn.crm.ui.CSS_CLASS = 'ydn-crm';
+
+
+/**
+ * @const
  * @type {string} error class
  */
 ydn.crm.ui.CSS_CLASS_EMPTY = 'empty';

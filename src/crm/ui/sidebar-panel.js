@@ -13,7 +13,7 @@ goog.require('ydn.crm.Ch');
 goog.require('ydn.crm.inj.ContactModel');
 goog.require('ydn.crm.inj.Task');
 goog.require('ydn.crm.inj.sugar.model.GDataSugar');
-goog.require('ydn.crm.ui.SugarSetupLink');
+goog.require('ydn.crm.ui.SidebarHeader');
 goog.require('ydn.crm.ui.UserSetting');
 goog.require('ydn.crm.ui.sugar.SugarPanel');
 goog.require('ydn.gdata.m8.ContactEntry');
@@ -56,7 +56,7 @@ ydn.crm.ui.SidebarPanel.DEBUG = false;
  * @const
  * @type {string}
  */
-ydn.crm.ui.SidebarPanel.CSS_CLASS = 'inj';
+ydn.crm.ui.SidebarPanel.CSS_CLASS = 'sidebar';
 
 
 /** @return {string} */
@@ -72,7 +72,7 @@ ydn.crm.ui.SidebarPanel.prototype.createDom = function() {
   goog.base(this, 'createDom');
   var root = this.getElement();
   root.classList.add(this.getCssClass());
-  var sugar_setup = new ydn.crm.ui.SugarSetupLink();
+  var sugar_setup = new ydn.crm.ui.SidebarHeader();
   this.addChild(sugar_setup, true);
 };
 
@@ -292,60 +292,6 @@ ydn.crm.ui.SidebarPanel.prototype.getModel;
 ydn.crm.ui.SidebarPanel.prototype.setVisible = function(val) {
   goog.style.setElementShown(this.getElement(), val);
 };
-
-
-/**
- * Attach to Gmail right side bar.
- * @param {HTMLTableElement} contact_table right bar table
- * @protected
- */
-ydn.crm.ui.SidebarPanel.prototype.attachToGmailRightBar = function(contact_table) {
-
-  // locate root element
-  var root_container;
-  var ele_stack = contact_table;
-  for (var i = 0; i < 4; i++) {
-    if (ele_stack.parentElement) {
-      ele_stack = ele_stack.parentElement;
-      if (ele_stack.nextElementSibling && ele_stack.nextElementSibling.tagName == 'DIV') {
-        var parent = ele_stack.parentElement;
-        var last = parent.lastElementChild;
-        var is_ad = !!last.querySelector('a[href]'); // ad links
-        root_container = document.createElement('div');
-        if (is_ad) {
-          parent.parentElement.insertBefore(root_container, last);
-        } else {
-          parent.appendChild(root_container);
-        }
-        break;
-      }
-    }
-  }
-  // root_container = null;
-  if (!root_container) {
-    // this technique is robust, but place in the table.
-    this.logger.warning('usual root position is not available, locating on second best position');
-    var doc = contact_table.ownerDocument;
-    var td = doc.createElement('td');
-    td.setAttribute('colspan', '2');
-    var tr = doc.createElement('tr');
-    tr.className = 'widget-topraw';
-    tr.appendChild(td);
-    // window.console.log(this.root.parentElement, table);
-    var base = contact_table.querySelector('tbody') || contact_table;
-    base.appendChild(tr);
-    root_container = td;
-  }
-  var root = this.getElement();
-  if (root.parentElement) {
-    root.parentElement.removeChild(this.getElement());
-    root_container.appendChild(root);
-  } else {
-    root_container.appendChild(root);
-  }
-  goog.style.setElementShown(this.getElement(), true);
-};
-
 
 
 

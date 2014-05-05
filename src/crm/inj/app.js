@@ -173,6 +173,8 @@ ydn.crm.inj.App.prototype.handleTimerTick_ = function(e) {
     if (this.renderer) {
       this.renderer.attachToGmailRightBar(contact_table);
     }
+  } else if (ydn.crm.inj.App.DEBUG) {
+    window.console.log('contact_table cannot find');
   }
 
   var is_advanced_stage = this.sniff_count_ > 5;
@@ -310,17 +312,26 @@ ydn.crm.inj.App.prototype.redraw_ = function() {
     if (!this.renderer || !(this.renderer instanceof ydn.crm.inj.InlineRenderer)) {
       this.renderer = new ydn.crm.inj.InlineRenderer(this.root_ele);
       this.renderer.attach();
+      if (ydn.crm.inj.App.DEBUG) {
+        window.console.log('InlineRenderer attached');
+      }
     }
   } else if (this.context_panel_position == ydn.crm.ui.ContextPanelPosition.WIDGET) {
     if (!this.renderer || !(this.renderer instanceof ydn.crm.inj.WidgetRenderer)) {
       this.renderer = new ydn.crm.inj.WidgetRenderer(this.root_ele);
       this.renderer.attach();
+      if (ydn.crm.inj.App.DEBUG) {
+        window.console.log('WidgetRenderer attached');
+      }
     }
   } else {
     // default ydn.crm.ui.ContextPanelPosition.STICKY
     if (!this.renderer || !(this.renderer instanceof ydn.crm.inj.StickyRenderer)) {
       this.renderer = new ydn.crm.inj.StickyRenderer(this.root_ele);
       this.renderer.attach();
+      if (ydn.crm.inj.App.DEBUG) {
+        window.console.log('StickyRenderer attached');
+      }
     }
   }
 };
@@ -339,6 +350,7 @@ ydn.crm.inj.App.prototype.init = function() {
 
   this.user_setting.onReady().addCallbacks(function() {
     this.logger.finest('initiating UI');
+    this.renderer.setUserSetting(this.user_setting);
     if (this.user_setting.isLogin()) {
       this.sidebar.init();
       this.history.setEnabled(true);

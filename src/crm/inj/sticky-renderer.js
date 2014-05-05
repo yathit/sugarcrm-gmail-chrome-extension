@@ -61,6 +61,7 @@ ydn.crm.inj.StickyRenderer = function(ele) {
   this.displayBtn.onclick = this.handleBtnClick.bind(this);
   this.stick_panel.appendChild(this.displayBtn);
 
+  this.sidebar_has_attached_ = false;
 };
 goog.inherits(ydn.crm.inj.StickyRenderer, ydn.crm.inj.AppRenderer);
 
@@ -237,15 +238,22 @@ ydn.crm.inj.StickyRenderer.prototype.detach = function() {
 /**
  * @inheritDoc
  */
-ydn.crm.inj.StickyRenderer.prototype.attachToGmailRightBar = function(table) {
-  var n = this.getBtnState_();
-  var an = Math.abs(n);
-  if (!!table) {
+ydn.crm.inj.StickyRenderer.prototype.attachToGmailRightBar = function(contact_table) {
+  if (!contact_table) {
+    this.sidebar_has_attached_ = false;
+    var n = this.getBtnState_();
+    var an = Math.abs(n);
     // in email view, popup up have to be show again
     if (!this.popup.isVisible() && an >= 2) {
       this.updateUi_(an == 2 ? 2 : 3);
     }
-  } else {
+  } else if (!this.sidebar_has_attached_) {
+    if (ydn.crm.inj.AppRenderer.DEBUG) {
+      window.console.log('Attaching panel');
+    }
+    this.sidebar_has_attached_ = true;
+    var n = this.getBtnState_();
+    var an = Math.abs(n);
     if (this.popup.isVisible()) {
       // check if necessary to hide
       if (an == 2) {
@@ -253,4 +261,5 @@ ydn.crm.inj.StickyRenderer.prototype.attachToGmailRightBar = function(table) {
       }
     }
   }
+
 };
