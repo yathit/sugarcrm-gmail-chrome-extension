@@ -1464,7 +1464,7 @@
   left: 4px;
   height: 160px; }
 
-.class-button {
+.classic-button {
   font: bold 11px Arial;
   font-size: 100%;
   border-radius: 4px;
@@ -1490,8 +1490,7 @@ a.setup-link {
   padding: 8px 12px;
   text-decoration: none;
   display: inline-block;
-  margin: 4px 2px;
-  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
+  margin: 4px 2px; }
 
 .host-permission iframe {
   height: 60px;

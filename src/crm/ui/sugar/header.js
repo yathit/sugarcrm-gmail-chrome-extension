@@ -125,7 +125,7 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
     // var btn = dom.createDom('button', null, msg);
     // using button inside a doesn't work, possible for strict security of chrome extension
     var btn_grant = dom.createDom('a', {
-      'className': 'class-button',
+      'className': 'classic-button',
       'href': href,
       'target': target
     }, msg);
