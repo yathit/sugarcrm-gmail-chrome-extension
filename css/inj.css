@@ -1032,6 +1032,12 @@
 .record-body span.field ~ span.field {
   padding-left: 4px; }
 
+.showonhover-field {
+  display: none; }
+
+.field:hover .showonhover-field {
+  display: inline-block; }
+
 /*
  * Prevent Superscripts and Subscripts from Affecting Line-Height
  * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
