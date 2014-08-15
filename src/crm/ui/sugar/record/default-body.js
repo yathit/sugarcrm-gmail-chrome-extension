@@ -26,6 +26,7 @@ goog.require('ydn.crm.ui.sugar.group.Email');
 goog.require('ydn.crm.ui.sugar.group.Group');
 goog.require('ydn.crm.ui.sugar.group.List');
 goog.require('ydn.crm.ui.sugar.group.Name');
+goog.require('ydn.crm.ui.sugar.group.Phone');
 goog.require('ydn.crm.ui.sugar.record.Body');
 
 
@@ -60,16 +61,23 @@ ydn.crm.ui.sugar.record.Default.prototype.createDom = function() {
     var name = groups[i];
     var field;
     var field_model = model.getGroupModel(name);
-    if (/address/i.test(name)) {
-      field = new ydn.crm.ui.sugar.group.Address(field_model, dom);
-    } else if (name == 'email') {
-      field = new ydn.crm.ui.sugar.group.Email(field_model, dom);
-    } else if (name == 'phone') {
-      field = new ydn.crm.ui.sugar.group.List(field_model, dom);
-    } else if (name == 'name') {
-      field = new ydn.crm.ui.sugar.group.Name(field_model, dom);
+    if (field_model instanceof ydn.crm.sugar.model.EmailGroup) {
+      var email = /** @type {ydn.crm.sugar.model.EmailGroup} */ (field_model);
+      field = new ydn.crm.ui.sugar.group.Email(email, dom);
+    } else if (field_model instanceof ydn.crm.sugar.model.AddressGroup) {
+      var address = /** @type {ydn.crm.sugar.model.AddressGroup} */ (field_model);
+      field = new ydn.crm.ui.sugar.group.Address(address, dom);
+    } else if (field_model instanceof ydn.crm.sugar.model.PhoneGroup) {
+      var phone = /** @type {ydn.crm.sugar.model.PhoneGroup} */ (field_model);
+      field = new ydn.crm.ui.sugar.group.Phone(phone, dom);
+    } else if (field_model instanceof ydn.crm.sugar.model.NameGroup) {
+      var name_group = /** @type {ydn.crm.sugar.model.NameGroup} */ (field_model);
+      field = new ydn.crm.ui.sugar.group.Name(name_group, dom);
+    } else if (field_model instanceof ydn.crm.sugar.model.Group) {
+      var group_model = /** @type {ydn.crm.sugar.model.Group} */ (field_model);
+      field = new ydn.crm.ui.sugar.group.Group(group_model, group_renderer, dom);
     } else {
-      field = new ydn.crm.ui.sugar.group.Group(field_model, group_renderer, dom);
+      throw new Error('Invalid group: ' + name);
     }
     this.addChild(field, true);
   }

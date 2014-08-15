@@ -65,7 +65,7 @@ ydn.crm.Ch.Req = {
   GDATA_TOKEN: 'gdata-token', //
   GDATA_TOKEN_REVOKE: 'gdata-token-revoke',
   HOST_PERMISSION: 'host-permission',
-  LIST_SUGAR: 'list-sugarcrm', // list of domain name of sugarcrm
+  LIST_SUGAR: 'list-sugarcrm', // list sugarcrm
   LOG: 'log', // log bug
   LOGIN_INFO: 'login-info', // google user info, email and id
   LOGGED_IN: 'logged-in', // has been logged to server.
@@ -77,6 +77,16 @@ ydn.crm.Ch.Req = {
   SERVER_AUDIT_LOG: 'server-audit-log',
   SUGAR_SERVER_INFO: 'sugar-server-info',
   USER_SETTING: 'user-setting'
+};
+
+
+/**
+ * Broadcast requests.
+ * @enum {string}
+ */
+ydn.crm.Ch.BReq = {
+  LIST_DOMAINS: 'list-sugarcrm-domains', // list of domain name of sugarcrm
+  HOST_PERMISSION: 'host-permission'
 };
 
 

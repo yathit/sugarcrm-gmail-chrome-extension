@@ -5,17 +5,17 @@
     font-family: arial, sans-serif;
     /* Overridden by font: -webkit-small-control; */
     font-size: 100%; }
-  .ydn-crm INPUT[type=text], .ydn-crm TEXTAREA {
-    -webkit-transition: all 0.30s ease-in-out;
+  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA {
+    transition: all 0.30s ease-in-out;
     outline: none;
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD; }
-  .ydn-crm INPUT[type=text]:focus, .ydn-crm TEXTAREA:focus {
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus {
     box-shadow: 0 0 5px #51cbee;
-    padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
     border: 1px solid #51cbee; }
+  .ydn-crm INPUT:invalid {
+    color: red; }
 
 .left {
   float: left;
@@ -97,6 +97,13 @@
 .activity-panel .goog-tab {
   text-decoration: none; }
 
+.browse-panel > .content {
+  padding: 8px;
+  max-width: 20em; }
+
+.browse-panel .search-result {
+  border-bottom: thin solid lightgrey; }
+
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
  */
@@ -118,6 +125,101 @@
   background-color: black; }
 .ydn-crm DETAILS[open] > SUMMARY:after {
   content: "-"; }
+
+.section .maia-button {
+  margin: 10px auto; }
+
+.maia-button {
+  background: linear-gradient(top, #7ddc1f 0, #64c306 100%);
+  background-color: #7ddc1f;
+  border-color: #5dba00;
+  letter-spacing: .5px;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.54;
+  padding: 7px 12px;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08); }
+
+.maia-button:hover {
+  background-color: #64c306;
+  background-image: none; }
+
+.maia-button.blue {
+  background-image: linear-gradient(#709ffb, #5583df); }
+
+.maia-button.blue:hover, .maia-button.blue:focus {
+  background-color: #396bbc;
+  background-image: linear-gradient(top, #5587d7, #396bbc); }
+
+.maia-button.gray {
+  background: #efefef;
+  background-image: linear-gradient(#efefef, #e7e7e7);
+  border: 1px solid #dbdbdb;
+  color: #5e94ff !important;
+  padding: 8px 32px; }
+
+.maia-button.gray:hover {
+  background: #e2e2e2;
+  background-image: linear-gradient(#e2e2e2, #dadada);
+  border: 1px solid #cecece; }
+
+.maia-button.disabled {
+  background: #d4d4d4;
+  background-image: linear-gradient(#d4d4d4, #b9b9b9);
+  color: #fff !important;
+  cursor: pointer; }
+
+a.maia-button {
+  color: #fff !important;
+  text-decoration: none; }
+
+button.maia-button {
+  margin: 0;
+  overflow: visible;
+  white-space: normal; }
+
+.maia-button.maia-button-secondary {
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #f9f9f9, whitesmoke);
+  background-image: -webkit-linear-gradient(top, #f9f9f9, whitesmoke);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f9f9f9), color-stop(1, whitesmoke));
+  background-image: linear-gradient(top, #f9f9f9, whitesmoke);
+  border: 1px solid #e5e5e5;
+  color: #444;
+  padding: 6px 11px;
+  text-shadow: 0 1px 0 white; }
+
+a.maia-button.maia-button-secondary {
+  color: #444444 !important; }
+
+.maia-button.maia-button-secondary:hover, .maia-button.maia-button-secondary:focus {
+  background-color: #f1f1f1;
+  background-image: -moz-linear-gradient(top, whitesmoke, #f1f1f1);
+  background-image: -webkit-linear-gradient(top, whitesmoke, #f1f1f1);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, whitesmoke), color-stop(1, #f1f1f1));
+  background-image: linear-gradient(top, whitesmoke, #f1f1f1);
+  border-color: #e1e1e1; }
+
+.maia-button.maia-button-secondary:active {
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12); }
+
+.maia-button.maia-button-secondary[disabled], .maia-button.maia-button-secondary.maia-button-disabled {
+  background-color: #f9f9f9;
+  background-image: -moz-linear-gradient(top, #fafafa, #f9f9f9);
+  background-image: -webkit-linear-gradient(top, #fafafa, #f9f9f9);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #f9f9f9));
+  background-image: linear-gradient(top, #fafafa, #f9f9f9);
+  border-color: #eee;
+  color: #aaaaaa !important; }
 
 /*
 * Closure Library CSS
@@ -170,7 +272,7 @@
 /* Author: pallosp@google.com (Peter Pallos) */
 /* Styles for goog.ui.ComboBox and its derivatives. */
 .goog-combobox {
-  background: #dddddd url(//ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
+  background: #dddddd url(https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
   border: 1px solid #b5b6b5;
   font: normal small arial, sans-serif; }
 
@@ -252,7 +354,7 @@
 
 .modal-dialog-title-close {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: #e0edfe url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  background: #e0edfe url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
   cursor: default;
   height: 15px;
   position: absolute;
@@ -396,7 +498,7 @@
 .goog-option-selected .goog-menuitem-checkbox,
 .goog-option-selected .goog-menuitem-icon {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
+  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
 
 /* Keyboard shortcut ("accelerator") style. */
 .goog-menuitem-accel {
@@ -441,7 +543,7 @@
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #dddddd url(//ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  background: #dddddd url(https://ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
@@ -560,7 +662,7 @@
   height: 15px;
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: top; }
 
 /* Pill (collapsed border) styles. */
@@ -614,7 +716,7 @@
  */
 .goog-toolbar {
   /* Client apps may override the URL at which they serve the image. */
-  background: #fafafa url(//ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
+  background: #fafafa url(https://ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
   border-bottom: 1px solid #d5d5d5;
   cursor: default;
   font: normal 12px Arial, sans-serif;
@@ -910,7 +1012,7 @@
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: middle; }
 
 /*
@@ -986,8 +1088,43 @@
   text-align: center; }
 
 /* Record */
+.iconic {
+  width: 16px;
+  height: 16px; }
+
+.icons, .logo-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 16px;
+  height: 16px; }
+
+.icons-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 14px;
+  height: 14px; }
+
+.logo-small {
+  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
+
+.icon-box {
+  display: inline-block;
+  margin: auto auto; }
+
+.field {
+  display: flex;
+  flex-flow: row wrap; }
+
+.field .value {
+  flex-grow: 1; }
+
 .field:hover > sup.name {
   display: inline !important; }
+
+.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field TEXTAREA {
+  padding: 1px 0px 1px 1px;
+  margin: 2px 0 2px 0px;
+  border: 1px transparent; }
 
 .record-body > .field > INPUT.enum {
   width: 2em;
@@ -995,39 +1132,25 @@
   border: 0;
   color: #000000; }
 
+.record-body .field.empty {
+  display: none; }
+
 /*
  * make input look like label. This setting is obtained from Gmail contact editor.
 */
-.record-body.view > .field > INPUT,
-.record-body.view > .record-group > .field > INPUT,
-.record-body.view > .record-group > * > .field > INPUT,
-.record-body.view > .record-group > DETAILS > * > .field > INPUT {
-  margin: 0;
-  border: 0;
-  padding: 0;
+.record-body .field INPUT {
   background-color: transparent;
   vertical-align: text-top; }
 
 .record-body .field > * {
-  box-sizing: border-box;
-  width: 100%; }
+  box-sizing: border-box; }
 
-.record-body.view > .field > TEXTAREA,
-.record-body.view > .record-group > .field > TEXTAREA,
-.record-body.view > .record-group > DETAILS > * > .field > TEXTAREA,
-.record-body.view > .record-group > * > .field > TEXTAREA {
+.record-body.view .field TEXTAREA {
   margin: 2px;
   border: 0;
   padding: 1px 2px;
   background-color: transparent;
   resize: none; }
-
-.record-body.view > .field.empty,
-.record-body.view > .record-group > .field.empty,
-.record-body.view > .record-group > .field > .empty,
-.record-body.view > .record-group > * > .field.empty,
-.record-body.view > .record-group > * > * > .field.empty {
-  display: none; }
 
 .record-body span.field ~ span.field {
   padding-left: 4px; }
@@ -1037,6 +1160,65 @@
 
 .field:hover .showonhover-field {
   display: inline-block; }
+
+.field-edit-dialog table {
+  padding: 20px 65px 10px 65px;
+  border-collapse: separate;
+  border-spacing: 2px; }
+
+.field-edit-dialog td:first-child {
+  text-align: right; }
+
+.field-edit-dialog td:last-child {
+  text-align: left; }
+
+.field .hover-button {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 19px;
+  height: 19px; }
+
+.field .hover-button {
+  display: none; }
+
+.field:hover .hover-button {
+  display: inherit;
+  border: thin solid #d3d3d3;
+  border-radius: 2px; }
+
+.delete-field {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/delete.svg") left center no-repeat; }
+
+.delete-field.confirm {
+  display: inline-block;
+  fill: #ff0000; }
+
+.more-menu {
+  position: relative; }
+
+.flyout-menu {
+  position: absolute;
+  left: -9em;
+  width: 10em;
+  top: 16px;
+  display: none; }
+  .flyout-menu .goog-menuitem:hover {
+    /* copy from goog-menuitem-highlight */
+    background-color: #d6e9f8;
+    border-color: #d6e9f8;
+    border-style: dotted;
+    border-width: 1px 0;
+    padding-bottom: 3px;
+    padding-top: 3px; }
+
+.more-menu:hover .flyout-menu {
+  display: block; }
+
+.field-edit-dialog .field {
+  display: table-row; }
 
 /*
  * Prevent Superscripts and Subscripts from Affecting Line-Height
@@ -1138,6 +1320,18 @@
 .Workflow .icon {
   background-color: #414c08; }
 
+.Contacts SVG.fill {
+  fill: white;
+  background-color: #245a09; }
+
+.Leads SVG.fill {
+  fill: white;
+  background-color: #448fec; }
+
+.Accounts SVG.fill {
+  fill: white;
+  background-color: #37880e; }
+
 .record-header .title {
   vertical-align: middle;
   line-height: 20px; }
@@ -1179,12 +1373,6 @@
 .record-body.detail .normally-hide {
   display: inherit; }
 
-.record-footer {
-  display: none; }
-
-.record-footer.edit {
-  display: inherit; }
-
 .secondary {
   margin-left: 4px;
   padding-left: 2px;
@@ -1213,8 +1401,12 @@
   display: none; }
 
 .sugar-panel .main-title {
-  padding-left: 20px;
-  background: url("chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg") left center no-repeat; }
+  margin: 4px;
+  overflow: hidden;
+  vertical-align: middle; }
+.sugar-panel .icon-box {
+  vertical-align: middle;
+  padding-right: 4px; }
 
 .sugar-body .goog-tab {
   width: 16px;
@@ -1222,6 +1414,8 @@
 
 .sugar-panel .record-panel.empty {
   display: none; }
+.sugar-panel .goog-toolbar {
+  border-bottom: none; }
 
 .gmail-cmd-panel {
   display: inline-block;

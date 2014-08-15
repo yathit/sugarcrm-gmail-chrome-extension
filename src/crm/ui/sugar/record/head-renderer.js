@@ -82,13 +82,6 @@ ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_NEW_ITEM = 'new-item';
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT = 'edit';
-
-
-/**
- * @const
- * @type {string}
- */
 ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ACTIVATED = 'activated';
 
 
@@ -134,10 +127,6 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.createDom = function(ctrl) {
     'href': '#new-' + ydn.crm.sugar.ModuleName.NOTES
   }, 'Add Note'));
   toolbar.appendChild(dom.createDom('a', {
-    'name': ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT,
-    'href': '#edit'
-  }, 'Edit'));
-  toolbar.appendChild(dom.createDom('a', {
     'name': ydn.crm.ui.sugar.record.HeadRenderer.NAME_DETAIL,
     'href': '#detail'
   }, 'Detail'));
@@ -168,8 +157,6 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.reset = function(ctrl) {
   var icon = goog.dom.getElementByClass(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ICON,
       header);
   icon.textContent = m_name.substring(0, 2);
-  var edit = header.querySelector('a[name=' + ydn.crm.ui.sugar.record.HeadRenderer.NAME_EDIT + ']');
-  goog.style.setElementShown(edit, record.isEditable());
 
   // goog.style.setElementShown(this.getToolbarElement(root), !record.isSimple());
   this.refresh(ctrl);

@@ -13,7 +13,7 @@ var HostPermission = function() {
 /**
  * @define {boolean} debug flag.
  */
-HostPermission.DEBUG = true;
+HostPermission.DEBUG = false;
 
 
 /**

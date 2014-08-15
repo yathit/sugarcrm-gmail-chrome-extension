@@ -6,7 +6,9 @@
 
 
 goog.provide('ydn.crm.ui.sugar.group.GroupRenderer');
-goog.require('goog.ui.ControlRenderer');
+goog.require('ydn.crm.ui.sugar.field.Email');
+goog.require('ydn.crm.ui.sugar.field.Field');
+goog.require('ydn.crm.ui.sugar.field.Phone');
 
 
 
@@ -38,7 +40,21 @@ ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS = 'record-group';
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.group.GroupRenderer.CSS_CONTENT_CLASS = 'content';
+ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS_HEADER = 'header';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS_FOOTER = 'footer';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS_CONTENT = 'content';
 
 
 /** @return {string} */
@@ -55,7 +71,7 @@ ydn.crm.ui.sugar.group.GroupRenderer.prototype.createDom = function(ctrl) {
   var dom = ctrl.getDomHelper();
   var root = dom.createDom('div', this.getCssClass());
   var head = dom.createDom('div');
-  var content = dom.createDom('div', ydn.crm.ui.sugar.group.GroupRenderer.CSS_CONTENT_CLASS);
+  var content = dom.createDom('div', ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS_CONTENT);
   root.appendChild(head);
   root.appendChild(content);
   ctrl.setElementInternal(root);
@@ -70,7 +86,16 @@ ydn.crm.ui.sugar.group.GroupRenderer.prototype.createDom = function(ctrl) {
   for (var i = 0; i < groups.length; i++) {
     var name = groups[i];
     var field_model = model.createOrGetFieldModel(name);
-    var field = new ydn.crm.ui.sugar.field.Field(field_model, null, dom);
+    var field;
+    if (field_model instanceof ydn.crm.sugar.model.EmailField) {
+      var email = /** @type {ydn.crm.sugar.model.EmailField} */(field_model);
+      field = new ydn.crm.ui.sugar.field.Email(email, dom);
+    } else if (field_model instanceof ydn.crm.sugar.model.PhoneField) {
+      var phone = /** @type {ydn.crm.sugar.model.PhoneField} */(field_model);
+      field = new ydn.crm.ui.sugar.field.Phone(phone, dom);
+    } else {
+      field = new ydn.crm.ui.sugar.field.Field(field_model, null, dom);
+    }
     ctrl.addChild(field, true);
   }
 

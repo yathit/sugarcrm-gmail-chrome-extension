@@ -25,6 +25,8 @@
 
 goog.provide('ydn.crm.sugar.model.Group');
 goog.require('ydn.crm.sugar.gdata');
+goog.require('ydn.crm.sugar.model.BaseGroup');
+goog.require('ydn.crm.sugar.model.EmailField');
 goog.require('ydn.crm.sugar.model.Field');
 
 
@@ -34,26 +36,18 @@ goog.require('ydn.crm.sugar.model.Field');
  * @param {ydn.crm.sugar.model.Record} parent
  * @param {string} group_name
  * @constructor
+ * @extends {ydn.crm.sugar.model.BaseGroup}
  * @struct
  */
 ydn.crm.sugar.model.Group = function(parent, group_name) {
-  /**
-   * @final
-   * @type {ydn.crm.sugar.model.Record}
-   */
-  this.module = parent;
-  /**
-   * @final
-   * @protected
-   * @type {string}
-   */
-  this.group_name = group_name || '';
+  goog.base(this, parent, group_name);
   /**
    * @type {Array.<!ydn.crm.sugar.model.Field>}
-   * @private
+   * @protected
    */
-  this.fields_ = [];
+  this.fields = [];
 };
+goog.inherits(ydn.crm.sugar.model.Group, ydn.crm.sugar.model.BaseGroup);
 
 
 /**
@@ -63,109 +57,14 @@ ydn.crm.sugar.model.Group.DEBUG = false;
 
 
 /**
- * @return {string}
- */
-ydn.crm.sugar.model.Group.prototype.getDomain = function() {
-  return this.module.getDomain();
-};
-
-
-/**
- * @return {SugarCrm.ModuleInfo}
- */
-ydn.crm.sugar.model.Group.prototype.getModuleInfo = function() {
-  return this.module.getModuleInfo();
-};
-
-
-/**
- * @param {string} name field name.
- * @return {SugarCrm.ModuleField}
- */
-ydn.crm.sugar.model.Group.prototype.getFieldInfo = function(name) {
-  return this.module.getFieldInfo(name);
-};
-
-
-/**
- * Return default setting.
- * @param {string} name group name.
- * @return {boolean}
- */
-ydn.crm.sugar.model.Group.isNormallyHide = function(name) {
-  if (/address/i.test(name)) {
-    return false;
-  } else if (['email', 'name', 'phone'].indexOf(name) >= 0) {
-    return false;
-  } else {
-    return true;
-  }
-};
-
-
-/**
- * @return {boolean}
- */
-ydn.crm.sugar.model.Group.prototype.isNormallyHide = function() {
-  var setting = this.getUserSetting();
-  return setting ? !!setting['normallyHide'] : ydn.crm.sugar.model.Group.isNormallyHide(this.group_name);
-};
-
-
-/**
- * Get user setting.
- * @return {*}
- */
-ydn.crm.sugar.model.Group.prototype.getUserSetting = function() {
-  var setting = this.module.getUserSetting();
-  return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['groups', this.group_name]) : null;
-};
-
-
-/**
- * Get list of field name in this group.
- * @return {Array.<string>}
- */
-ydn.crm.sugar.model.Group.prototype.listFields = function() {
-  var module_info = this.module.getModuleInfo();
-  var fields = [];
-  for (var name in module_info.module_fields) {
-    var field = module_info.module_fields[name];
-    if (this.group_name && field.group == this.group_name) {
-      fields.push(name);
-    } else if (!this.group_name && !field.group) {
-      fields.push(name);
-    }
-  }
-  return fields;
-};
-
-
-/**
- * Check existant of a field name.
- * @param {string} name
- * @return {boolean}
- */
-ydn.crm.sugar.model.Group.prototype.hasField = function(name) {
-  var module_info = this.module.getModuleInfo();
-  for (var x in module_info.module_fields) {
-    if (x == name) {
-      return true;
-    }
-  }
-  return false;
-};
-
-
-/**
  * Create a new field model if the field present in the record.
  * @param {string} name
  * @return {!ydn.crm.sugar.model.Field}
  */
 ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
-  var index = this.fields_.indexOf(name);
+  var index = this.fields.indexOf(name);
   if (index >= 0) {
-    return this.fields_[index];
+    return this.fields[index];
   }
   var field_info = this.module.getFieldInfo(name);
   if (this.group_name) {
@@ -176,7 +75,7 @@ ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
         name + ' not in group ' + this.group_name);
   }
   var f = new ydn.crm.sugar.model.Field(this, name);
-  this.fields_.push(f);
+  this.fields.push(f);
   return f;
 };
 
@@ -186,7 +85,7 @@ ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
  * @return {number}
  */
 ydn.crm.sugar.model.Group.prototype.countFieldModel = function() {
-  return this.fields_.length;
+  return this.fields.length;
 };
 
 
@@ -196,7 +95,7 @@ ydn.crm.sugar.model.Group.prototype.countFieldModel = function() {
  * @return {ydn.crm.sugar.model.Field}
  */
 ydn.crm.sugar.model.Group.prototype.getFieldModelAt = function(idx) {
-  return this.fields_[idx];
+  return this.fields[idx];
 };
 
 
@@ -206,37 +105,12 @@ ydn.crm.sugar.model.Group.prototype.getFieldModelAt = function(idx) {
  * @return {ydn.crm.sugar.model.Field}
  */
 ydn.crm.sugar.model.Group.prototype.getFieldModelByName = function(name) {
-  for (var i = 0; i < this.fields_.length; i++) {
-    if (this.fields_[i].getFieldName() == name) {
-      return this.fields_[i];
+  for (var i = 0; i < this.fields.length; i++) {
+    if (this.fields[i].getFieldName() == name) {
+      return this.fields[i];
     }
   }
   return null;
 };
 
-
-/**
- * @return {ydn.crm.sugar.ModuleName}
- */
-ydn.crm.sugar.model.Group.prototype.getModuleName = function() {
-  return this.module.getModuleName();
-};
-
-
-/**
- * @return {string}
- */
-ydn.crm.sugar.model.Group.prototype.getGroupName = function() {
-  return this.group_name;
-};
-
-
-/**
- * @return {string}
- */
-ydn.crm.sugar.model.Group.prototype.getGroupLabel = function() {
-  var label = this.group_name.replace('_', ' ');
-  label = label.charAt(0).toUpperCase() + label.substr(1);
-  return label;
-};
 

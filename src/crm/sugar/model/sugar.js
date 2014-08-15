@@ -22,6 +22,7 @@
  */
 
 goog.provide('ydn.crm.sugar.model.Sugar');
+goog.require('goog.events.EventHandler');
 goog.require('ydn.crm.Ch');
 goog.require('ydn.crm.sugar.model.Module');
 goog.require('ydn.crm.sugar.model.events');
@@ -262,7 +263,7 @@ ydn.crm.sugar.model.Sugar.prototype.getDomain = function() {
 
 
 /**
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.sugar.model.Sugar.prototype.getBaseUrl = function() {
   return this.about.baseUrl || null;
@@ -283,7 +284,8 @@ ydn.crm.sugar.model.Sugar.prototype.getHomeUrl = function() {
  * @return {string}
  */
 ydn.crm.sugar.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
-  return this.getHomeUrl() + '/index.php?module=EmailTemplates&action=EditView&return_module=EmailTemplates&return_action=DetailView';
+  return this.getHomeUrl() +
+      '/index.php?module=EmailTemplates&action=EditView&return_module=EmailTemplates&return_action=DetailView';
 };
 
 

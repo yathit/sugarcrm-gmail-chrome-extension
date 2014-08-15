@@ -37,13 +37,22 @@ ydn.crm.ui.sugar.field.InputFieldRenderer.prototype.createDom = function(field) 
   // console.log(label, type, calculated);
 
   var ele_value = dom.createDom('input', {
-    'type': 'text'
+    'type': 'text',
+    'class': ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE,
+    'title': label
   });
-
-  ele_value.classList.add(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
-
   el.appendChild(ele_value);
-  ele_value.setAttribute('title', label);
+
+  var options = model.getMoreOptions();
+  if (options.length > 0) {
+    var more_el = dom.createDom('div', {
+      'class': ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_HOVER_BUTTON + ' ' +
+          ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU
+    });
+    el.appendChild(more_el);
+    ydn.crm.ui.sugar.field.FieldRenderer.renderPopupMenu(more_el, options);
+  }
+
   return el;
 };
 
@@ -64,6 +73,13 @@ ydn.crm.ui.sugar.field.InputFieldRenderer.prototype.refresh = function(ele_field
   var ele_value = ele_field.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
 
   ele_value.value = is_def ? value : '';
+
+  var more_el = ele_field.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU);
+  if (more_el) {
+    more_el.innerHTML = '';
+    var options = model.getMoreOptions();
+    var new_el = ydn.crm.ui.sugar.field.FieldRenderer.renderPopupMenu(more_el, options);
+  }
 
   if (is_def) {
     ele_field.classList.remove(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_EMPTY);

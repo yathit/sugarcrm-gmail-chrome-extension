@@ -35,11 +35,12 @@ goog.require('goog.ui.TabBar');
 goog.require('templ.ydn.crm.inj');
 goog.require('ydn.crm.base');
 goog.require('ydn.crm.inj');
+goog.require('ydn.crm.inj.Hud');
 goog.require('ydn.crm.inj.InlineRenderer');
 goog.require('ydn.crm.inj.StickyRenderer');
 goog.require('ydn.crm.inj.WidgetRenderer');
 goog.require('ydn.crm.shared');
-goog.require('ydn.crm.ui.SidebarPanel');
+goog.require('ydn.crm.ui.GmailContextPanel');
 goog.require('ydn.debug');
 goog.require('ydn.gmail.Utils.GmailViewState');
 goog.require('ydn.msg.Pipe');
@@ -52,7 +53,6 @@ goog.require('ydn.msg.Pipe');
  * @struct
  */
 ydn.crm.inj.App = function() {
-
 
   // connection channel with background page.
   ydn.msg.initPipe(ydn.msg.ChannelName.GMAIL);
@@ -70,9 +70,9 @@ ydn.crm.inj.App = function() {
 
   /**
    * @protected
-   * @type {ydn.crm.ui.SidebarPanel}
+   * @type {ydn.crm.ui.GmailContextPanel}
    */
-  this.sidebar = new ydn.crm.ui.SidebarPanel();
+  this.sidebar = new ydn.crm.ui.GmailContextPanel();
   this.sidebar.render(this.renderer.getContentElement());
 
   this.sniff_timer_ = new goog.Timer(400);
@@ -96,11 +96,16 @@ ydn.crm.inj.App = function() {
   this.user_setting = ydn.crm.ui.UserSetting.getInstance();
 
   /**
-   * To get consistent value, we need to cache this. // better idea?
    * @protected
    * @type {ydn.crm.ui.ContextPanelPosition}
    */
-  this.context_panel_position = this.user_setting.getContextPanelPosition();
+  this.context_panel_position = ydn.crm.ui.ContextPanelPosition.INLINE;
+
+  /**
+   * @final
+   * @type {ydn.crm.inj.Hud}
+   */
+  this.hud = new ydn.crm.inj.Hud();
 
 };
 
@@ -343,6 +348,8 @@ ydn.crm.inj.App.prototype.redraw_ = function() {
 ydn.crm.inj.App.prototype.init = function() {
   this.logger.finer('init ' + this);
 
+  this.hud.render();
+
   var delay = (0.5 + Math.random()) * 60 * 1000;
   setTimeout(function() {
     ydn.debug.ILogger.instance.beginUploading();
@@ -353,6 +360,7 @@ ydn.crm.inj.App.prototype.init = function() {
     this.renderer.setUserSetting(this.user_setting);
     if (this.user_setting.isLogin()) {
       this.sidebar.init();
+      this.hud.init();
       this.history.setEnabled(true);
       this.redraw_();
     } else {

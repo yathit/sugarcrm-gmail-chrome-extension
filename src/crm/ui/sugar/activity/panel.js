@@ -29,6 +29,7 @@ goog.provide('ydn.crm.ui.sugar.activity.Panel');
 goog.require('goog.date.relative');
 goog.require('goog.ui.Tab');
 goog.require('goog.ui.TabBar');
+goog.require('ydn.crm.sugar.utils');
 goog.require('ydn.crm.ui.sugar.activity.DetailPanel');
 
 
@@ -94,7 +95,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   goog.base(this, 'createDom');
   var dom = this.dom_;
   var root = this.getElement();
-  goog.dom.classes.add(root, this.getCssClass());
+  goog.dom.classlist.add(root, this.getCssClass());
 
   this.addChild(this.tabbar, true);
   var feed_ele = dom.createDom('div');

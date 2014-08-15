@@ -26,7 +26,7 @@ goog.addSingletonGetter(ydn.crm.ui.sugar.group.ListRenderer);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.group.ListRenderer.DEBUG = goog.DEBUG;
+ydn.crm.ui.sugar.group.ListRenderer.DEBUG = false;
 
 
 /**

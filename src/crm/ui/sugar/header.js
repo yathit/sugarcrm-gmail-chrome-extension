@@ -104,13 +104,15 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
    */
   var model = this.getModel();
   var dom = this.getDomHelper();
-  goog.dom.classes.add(root, this.getCssClass());
+  goog.dom.classlist.add(root, this.getCssClass());
   var a = dom.createDom('a');
   a.textContent = model.getDomain();
   a.href = model.getHomeUrl();
+  var svg = ydn.crm.ui.createSvgIcon('sugarcrm');
+  var div_svg = dom.createDom('div', 'icon-box', svg);
   var ele_title = dom.createDom('div', {
     'class': 'main-title',
-    'title': 'SugarCRM'}, [a]);
+    'title': 'SugarCRM'}, [div_svg, a]);
   root.appendChild(ele_title);
   var grants = [];
   if (!ydn.crm.ui.sugar.Header.USE_IFRAME) {
@@ -125,7 +127,7 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
     // var btn = dom.createDom('button', null, msg);
     // using button inside a doesn't work, possible for strict security of chrome extension
     var btn_grant = dom.createDom('a', {
-      'className': 'classic-button',
+      'className': 'maia-button blue',
       'href': href,
       'target': target
     }, msg);
@@ -178,6 +180,7 @@ ydn.crm.ui.sugar.Header.prototype.enterDocument = function() {
       this.handleModelLogin);
 
   if (ydn.crm.ui.sugar.Header.USE_IFRAME) {
+    window.console.log('injecting iframe');
     this.injectGrantIframe_(this.getModel().getDomain());
   }
 };
@@ -258,6 +261,7 @@ ydn.crm.ui.sugar.Header.prototype.injectGrantIframe_ = function(domain) {
   iframe_ele.setAttribute('name', 'host-permission');
   iframe_ele.src = iframe_url + '?' + domain;
   grant.appendChild(iframe_ele);
+  window.console.log(grant, iframe_ele);
 };
 
 

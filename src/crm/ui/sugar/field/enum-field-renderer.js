@@ -29,7 +29,10 @@ ydn.crm.ui.sugar.field.EnumFieldRenderer.prototype.createDom = function(field) {
   var model = field.getModel();
   var ele_value = el.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
   ele_value.classList.add('enum');
-  ele_value.setAttribute('list', ydn.crm.ui.sugar.field.FieldRenderer.getDataList(model));
+  var lid =  field.getDataList();
+  if (lid) {
+    ele_value.setAttribute('list', lid);
+  }
   return el;
 };
 

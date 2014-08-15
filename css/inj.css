@@ -5,17 +5,17 @@
     font-family: arial, sans-serif;
     /* Overridden by font: -webkit-small-control; */
     font-size: 100%; }
-  .ydn-crm INPUT[type=text], .ydn-crm TEXTAREA {
-    -webkit-transition: all 0.30s ease-in-out;
+  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA {
+    transition: all 0.30s ease-in-out;
     outline: none;
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD; }
-  .ydn-crm INPUT[type=text]:focus, .ydn-crm TEXTAREA:focus {
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus {
     box-shadow: 0 0 5px #51cbee;
-    padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
     border: 1px solid #51cbee; }
+  .ydn-crm INPUT:invalid {
+    color: red; }
 
 .left {
   float: left;
@@ -43,6 +43,29 @@
 
 .sticky-right .statusbar {
   position: relative; }
+
+.iconic {
+  width: 16px;
+  height: 16px; }
+
+.icons, .logo-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 16px;
+  height: 16px; }
+
+.icons-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 14px;
+  height: 14px; }
+
+.logo-small {
+  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
+
+.icon-box {
+  display: inline-block;
+  margin: auto auto; }
 
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
@@ -170,7 +193,7 @@
 /* Author: pallosp@google.com (Peter Pallos) */
 /* Styles for goog.ui.ComboBox and its derivatives. */
 .goog-combobox {
-  background: #dddddd url(//ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
+  background: #dddddd url(https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
   border: 1px solid #b5b6b5;
   font: normal small arial, sans-serif; }
 
@@ -252,7 +275,7 @@
 
 .modal-dialog-title-close {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: #e0edfe url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  background: #e0edfe url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
   cursor: default;
   height: 15px;
   position: absolute;
@@ -396,7 +419,7 @@
 .goog-option-selected .goog-menuitem-checkbox,
 .goog-option-selected .goog-menuitem-icon {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
+  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
 
 /* Keyboard shortcut ("accelerator") style. */
 .goog-menuitem-accel {
@@ -441,7 +464,7 @@
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #dddddd url(//ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  background: #dddddd url(https://ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
@@ -560,7 +583,7 @@
   height: 15px;
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: top; }
 
 /* Pill (collapsed border) styles. */
@@ -614,7 +637,7 @@
  */
 .goog-toolbar {
   /* Client apps may override the URL at which they serve the image. */
-  background: #fafafa url(//ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
+  background: #fafafa url(https://ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
   border-bottom: 1px solid #d5d5d5;
   cursor: default;
   font: normal 12px Arial, sans-serif;
@@ -910,7 +933,7 @@
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(//ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: middle; }
 
 /*
@@ -946,6 +969,218 @@
 .goog-toolbar-select .goog-toolbar-menu-button-outer-box,
 .goog-toolbar-select .goog-toolbar-menu-button-inner-box {
   border-color: #bfcbdf; }
+
+.sidebar {
+  font-size: 13px;
+  font-family: arial,sans-serif; }
+
+.sidebar a {
+  text-decoration: none; }
+
+.sidebar a:hover {
+  text-decoration: underline; }
+
+.tabbar-failback {
+  width: 156px;
+  padding: 4px;
+  z-index: 10;
+  /* overlay */
+  position: fixed;
+  bottom: 0;
+  left: 4px;
+  height: 28px; }
+
+#ydn-tabbar > div:first-child {
+  /* this align UI, 16 px when debug button is not present. */
+  margin-left: 12px; }
+
+#btn-show-panel {
+  border: none;
+  cursor: pointer;
+  height: 17px;
+  float: none;
+  display: inline-block;
+  padding-left: 8px;
+  padding-right: 8px; }
+
+#btn-show-panel div {
+  padding-top: 7px;
+  width: 16px;
+  height: 18px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/logo.png") no-repeat center center; }
+
+/** CSS for UI inside Gmail */
+/**
+ * Gmail sidebar width as defined in gmail.com.
+ */
+.gmail-button {
+  border-radius: 2px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  white-space: nowrap;
+  margin-right: 16px;
+  height: 42px;
+  outline: 0;
+  padding: 0 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #444;
+  background-image: -webkit-linear-gradient(top, whitesmoke, #f1f1f1); }
+
+/*
+General theme
+*/
+.google-menubar {
+  padding: 4px 8px 8px 24px;
+  font-size: medium; }
+
+.google-toolbar {
+  background-color: #2D2D2D;
+  background-image: none;
+  _background-image: none;
+  background-position: 0 -138px;
+  background-repeat: repeat-x;
+  border-bottom: 1px solid black;
+  font-size: 24px;
+  height: 29px;
+  _height: 30px;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  top: 0;
+  width: 100%;
+  z-index: 990; }
+
+/* Google style button */
+.google-button {
+  border-radius: 2px;
+  cursor: default;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 16px;
+  height: 27px;
+  line-height: 27px;
+  min-width: 54px;
+  outline: 0px;
+  padding: 0 8px;
+  display: inline-block; }
+  .google-button :disabled {
+    background-color: #dcdcdc; }
+
+.google-button.create {
+  background-color: #D14836;
+  background-image: linear-gradient(top, #dd4b39, #d14836);
+  border: 1px solid #B0281A;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  text-decoration: none; }
+
+.google-button.create:hover {
+  background-color: #C53727;
+  background-image: linear-gradient(top, #dd4b39, #c53727); }
+
+.google-button.action {
+  background-color: #4D90FE;
+  background-image: linear-gradient(top, #4d90fe, #4787ed);
+  border: 1px solid #3079ED;
+  color: white; }
+
+.section .maia-button {
+  margin: 10px auto; }
+
+.maia-button {
+  background: linear-gradient(top, #7ddc1f 0, #64c306 100%);
+  background-color: #7ddc1f;
+  border-color: #5dba00;
+  letter-spacing: .5px;
+  border: 0;
+  border-radius: 2px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.54;
+  padding: 7px 12px;
+  text-align: center;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.08); }
+
+.maia-button:hover {
+  background-color: #64c306;
+  background-image: none; }
+
+.maia-button.blue {
+  background-image: linear-gradient(#709ffb, #5583df); }
+
+.maia-button.blue:hover, .maia-button.blue:focus {
+  background-color: #396bbc;
+  background-image: linear-gradient(top, #5587d7, #396bbc); }
+
+.maia-button.gray {
+  background: #efefef;
+  background-image: linear-gradient(#efefef, #e7e7e7);
+  border: 1px solid #dbdbdb;
+  color: #5e94ff !important;
+  padding: 8px 32px; }
+
+.maia-button.gray:hover {
+  background: #e2e2e2;
+  background-image: linear-gradient(#e2e2e2, #dadada);
+  border: 1px solid #cecece; }
+
+.maia-button.disabled {
+  background: #d4d4d4;
+  background-image: linear-gradient(#d4d4d4, #b9b9b9);
+  color: #fff !important;
+  cursor: pointer; }
+
+a.maia-button {
+  color: #fff !important;
+  text-decoration: none; }
+
+button.maia-button {
+  margin: 0;
+  overflow: visible;
+  white-space: normal; }
+
+.maia-button.maia-button-secondary {
+  background-color: #f5f5f5;
+  background-image: -moz-linear-gradient(top, #f9f9f9, whitesmoke);
+  background-image: -webkit-linear-gradient(top, #f9f9f9, whitesmoke);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f9f9f9), color-stop(1, whitesmoke));
+  background-image: linear-gradient(top, #f9f9f9, whitesmoke);
+  border: 1px solid #e5e5e5;
+  color: #444;
+  padding: 6px 11px;
+  text-shadow: 0 1px 0 white; }
+
+a.maia-button.maia-button-secondary {
+  color: #444444 !important; }
+
+.maia-button.maia-button-secondary:hover, .maia-button.maia-button-secondary:focus {
+  background-color: #f1f1f1;
+  background-image: -moz-linear-gradient(top, whitesmoke, #f1f1f1);
+  background-image: -webkit-linear-gradient(top, whitesmoke, #f1f1f1);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, whitesmoke), color-stop(1, #f1f1f1));
+  background-image: linear-gradient(top, whitesmoke, #f1f1f1);
+  border-color: #e1e1e1; }
+
+.maia-button.maia-button-secondary:active {
+  -moz-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12); }
+
+.maia-button.maia-button-secondary[disabled], .maia-button.maia-button-secondary.maia-button-disabled {
+  background-color: #f9f9f9;
+  background-image: -moz-linear-gradient(top, #fafafa, #f9f9f9);
+  background-image: -webkit-linear-gradient(top, #fafafa, #f9f9f9);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #f9f9f9));
+  background-image: linear-gradient(top, #fafafa, #f9f9f9);
+  border-color: #eee;
+  color: #aaaaaa !important; }
 
 .menu_bar {
   padding: 0 4px 0 4px;
@@ -986,8 +1221,43 @@
   text-align: center; }
 
 /* Record */
+.iconic {
+  width: 16px;
+  height: 16px; }
+
+.icons, .logo-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 16px;
+  height: 16px; }
+
+.icons-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 14px;
+  height: 14px; }
+
+.logo-small {
+  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
+
+.icon-box {
+  display: inline-block;
+  margin: auto auto; }
+
+.field {
+  display: flex;
+  flex-flow: row wrap; }
+
+.field .value {
+  flex-grow: 1; }
+
 .field:hover > sup.name {
   display: inline !important; }
+
+.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field TEXTAREA {
+  padding: 1px 0px 1px 1px;
+  margin: 2px 0 2px 0px;
+  border: 1px transparent; }
 
 .record-body > .field > INPUT.enum {
   width: 2em;
@@ -995,39 +1265,25 @@
   border: 0;
   color: #000000; }
 
+.record-body .field.empty {
+  display: none; }
+
 /*
  * make input look like label. This setting is obtained from Gmail contact editor.
 */
-.record-body.view > .field > INPUT,
-.record-body.view > .record-group > .field > INPUT,
-.record-body.view > .record-group > * > .field > INPUT,
-.record-body.view > .record-group > DETAILS > * > .field > INPUT {
-  margin: 0;
-  border: 0;
-  padding: 0;
+.record-body .field INPUT {
   background-color: transparent;
   vertical-align: text-top; }
 
 .record-body .field > * {
-  box-sizing: border-box;
-  width: 100%; }
+  box-sizing: border-box; }
 
-.record-body.view > .field > TEXTAREA,
-.record-body.view > .record-group > .field > TEXTAREA,
-.record-body.view > .record-group > DETAILS > * > .field > TEXTAREA,
-.record-body.view > .record-group > * > .field > TEXTAREA {
+.record-body.view .field TEXTAREA {
   margin: 2px;
   border: 0;
   padding: 1px 2px;
   background-color: transparent;
   resize: none; }
-
-.record-body.view > .field.empty,
-.record-body.view > .record-group > .field.empty,
-.record-body.view > .record-group > .field > .empty,
-.record-body.view > .record-group > * > .field.empty,
-.record-body.view > .record-group > * > * > .field.empty {
-  display: none; }
 
 .record-body span.field ~ span.field {
   padding-left: 4px; }
@@ -1037,6 +1293,65 @@
 
 .field:hover .showonhover-field {
   display: inline-block; }
+
+.field-edit-dialog table {
+  padding: 20px 65px 10px 65px;
+  border-collapse: separate;
+  border-spacing: 2px; }
+
+.field-edit-dialog td:first-child {
+  text-align: right; }
+
+.field-edit-dialog td:last-child {
+  text-align: left; }
+
+.field .hover-button {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 19px;
+  height: 19px; }
+
+.field .hover-button {
+  display: none; }
+
+.field:hover .hover-button {
+  display: inherit;
+  border: thin solid #d3d3d3;
+  border-radius: 2px; }
+
+.delete-field {
+  width: 16px;
+  height: 16px;
+  background: url("chrome-extension://__MSG_@@extension_id__/image/delete.svg") left center no-repeat; }
+
+.delete-field.confirm {
+  display: inline-block;
+  fill: #ff0000; }
+
+.more-menu {
+  position: relative; }
+
+.flyout-menu {
+  position: absolute;
+  left: -9em;
+  width: 10em;
+  top: 16px;
+  display: none; }
+  .flyout-menu .goog-menuitem:hover {
+    /* copy from goog-menuitem-highlight */
+    background-color: #d6e9f8;
+    border-color: #d6e9f8;
+    border-style: dotted;
+    border-width: 1px 0;
+    padding-bottom: 3px;
+    padding-top: 3px; }
+
+.more-menu:hover .flyout-menu {
+  display: block; }
+
+.field-edit-dialog .field {
+  display: table-row; }
 
 /*
  * Prevent Superscripts and Subscripts from Affecting Line-Height
@@ -1138,6 +1453,18 @@
 .Workflow .icon {
   background-color: #414c08; }
 
+.Contacts SVG.fill {
+  fill: white;
+  background-color: #245a09; }
+
+.Leads SVG.fill {
+  fill: white;
+  background-color: #448fec; }
+
+.Accounts SVG.fill {
+  fill: white;
+  background-color: #37880e; }
+
 .record-header .title {
   vertical-align: middle;
   line-height: 20px; }
@@ -1179,12 +1506,6 @@
 .record-body.detail .normally-hide {
   display: inherit; }
 
-.record-footer {
-  display: none; }
-
-.record-footer.edit {
-  display: inherit; }
-
 .secondary {
   margin-left: 4px;
   padding-left: 2px;
@@ -1213,8 +1534,12 @@
   display: none; }
 
 .sugar-panel .main-title {
-  padding-left: 20px;
-  background: url("chrome-extension://__MSG_@@extension_id__/image/sugarcrm.svg") left center no-repeat; }
+  margin: 4px;
+  overflow: hidden;
+  vertical-align: middle; }
+.sugar-panel .icon-box {
+  vertical-align: middle;
+  padding-right: 4px; }
 
 .sugar-body .goog-tab {
   width: 16px;
@@ -1222,6 +1547,8 @@
 
 .sugar-panel .record-panel.empty {
   display: none; }
+.sugar-panel .goog-toolbar {
+  border-bottom: none; }
 
 .gmail-cmd-panel {
   display: inline-block;
@@ -1377,46 +1704,76 @@
 .wgui-textinput-outer-box:hover .wgui-textinput-clear {
   display: inherit; }
 
-.sidebar {
-  font-size: 13px;
-  font-family: arial,sans-serif; }
-
-.sidebar a {
-  text-decoration: none; }
-
-.sidebar a:hover {
-  text-decoration: underline; }
-
-.tabbar-failback {
-  width: 156px;
-  padding: 4px;
-  z-index: 10;
-  /* overlay */
+#sticky-hud-base {
   position: fixed;
-  bottom: 0;
-  left: 4px;
-  height: 28px; }
+  right: 0;
+  top: 240px; }
 
-#ydn-tabbar > div:first-child {
-  /* this align UI, 16 px when debug button is not present. */
-  margin-left: 12px; }
-
-#btn-show-panel {
-  border: none;
+.hud-button {
+  position: relative;
+  left: 16px;
+  border-radius: 4px 0 0 4px;
   cursor: pointer;
-  height: 17px;
-  float: none;
-  display: inline-block;
-  padding-left: 8px;
-  padding-right: 8px; }
+  text-align: center;
+  margin-right: 16px;
+  width: 28px;
+  height: 38px;
+  outline: 0;
+  padding: 6px 0 0 2px;
+  border: 1px solid;
+  border-color: #DDD #FFFFFF #DDD #DDD;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  opacity: 1; }
 
-#btn-show-panel div {
-  padding-top: 7px;
-  width: 16px;
-  height: 18px;
-  background: url("chrome-extension://__MSG_@@extension_id__/image/logo.png") no-repeat center center; }
+.hud-button .logo-small {
+  margin-top: 4px; }
 
-/** CSS for UI inside Gmail */
+#sticky-hud-base.open .hud-button {
+  left: -222px; }
+
+#sticky-hud-base:not(.open) .hud-button:hover {
+  left: 18px;
+  width: 32px;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out; }
+
+.hud-popup {
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  z-index: 1000;
+  background-color: white;
+  margin-left: -190px;
+  width: 220px;
+  max-height: 400px;
+  overflow: hidden;
+  display: none;
+  opacity: 1;
+  position: relative; }
+
+.popup-container {
+  display: flex;
+  flex-direction: column; }
+  .popup-container .popup-content {
+    flex-grow: 1; }
+  .popup-container .popup-footer {
+    align-self: flex-end; }
+
+#sticky-hud-base.open .hud-popup {
+  margin-top: -48px;
+  display: inherit; }
+
+.popup-footer {
+  border-top: 8px;
+  font-size: 11px;
+  color: #767676; }
+  .popup-footer a:not(:hover) {
+    text-decoration: none;
+    color: #767676; }
+
+.arrow-box {
+  padding-top: 0; }
+
 #root-panel {
   width: 100%; }
 
@@ -1484,19 +1841,8 @@
   display: inline-block;
   margin: 4px 2px; }
 
-a.setup-link {
-  font: bold 11px Arial;
-  font-size: 100%;
-  border-radius: 4px;
-  border: solid 1px #20538D;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 1px rgba(0, 0, 0, 0.2);
-  background: #4479BA;
-  color: #FFF;
-  padding: 8px 12px;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px; }
+.host-permission {
+  padding: 8px; }
 
 .host-permission iframe {
   height: 60px;

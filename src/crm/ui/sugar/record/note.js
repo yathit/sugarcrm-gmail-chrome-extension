@@ -69,7 +69,7 @@ ydn.crm.ui.sugar.record.Note.prototype.collectData = function(record_panel) {
   var model = this.getModel();
   var obj = model.getRecordValue() || /** @type {SugarCrm.Record} */ (/** @type {Object} */ ({}));
 
-  var title_field = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(0))
+  var title_field = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(0));
   var text_field = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(1));
   var title = title_field.collectData();
   var text = text_field.collectData();

@@ -46,20 +46,6 @@ ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS = 'record-footer';
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.record.FooterRenderer.NAME_SAVE = 'save';
-
-
-/**
- * @const
- * @type {string}
- */
-ydn.crm.ui.sugar.record.FooterRenderer.NAME_CANCEL = 'cancel';
-
-
-/**
- * @const
- * @type {string}
- */
 ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS_MESSAGE = 'message';
 
 
@@ -69,17 +55,9 @@ ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS_MESSAGE = 'message';
 ydn.crm.ui.sugar.record.FooterRenderer.prototype.createDom = function(ctrl) {
   var dom = ctrl.getDomHelper();
   var ele = this.getFooterElement(ctrl.getElement());
-  var btn_save = dom.createDom('button', {
-    'type': 'button',
-    'name': ydn.crm.ui.sugar.record.FooterRenderer.NAME_SAVE
-  }, 'Save');
-  var btn_cancel = dom.createDom('button', {
-    'type': 'button',
-    'name': ydn.crm.ui.sugar.record.FooterRenderer.NAME_CANCEL
-  }, 'Cancel');
+
   var msg = dom.createDom('div', ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS_MESSAGE);
-  ele.appendChild(btn_save);
-  ele.appendChild(btn_cancel);
+
   ele.appendChild(msg);
 };
 
@@ -106,18 +84,6 @@ ydn.crm.ui.sugar.record.FooterRenderer.prototype.getMsgElement = function(ele) {
 
 
 /**
- * Get View click control
- * @param {Element} ele
- * @return {Element}
- */
-ydn.crm.ui.sugar.record.FooterRenderer.prototype.getSaveButton = function(ele) {
-  return ele.querySelector(
-      '.' + ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS + ' button[name=' +
-          ydn.crm.ui.sugar.record.FooterRenderer.NAME_SAVE + ']');
-};
-
-
-/**
  * Reset UI for new model.
  * @param {ydn.crm.ui.sugar.record.Record} ctrl
  */
@@ -125,24 +91,5 @@ ydn.crm.ui.sugar.record.FooterRenderer.prototype.reset = function(ctrl) {
   var msg = this.getMsgElement(ctrl.getElement());
   msg.textContent = '';
   msg.classList.remove(ydn.crm.ui.CSS_CLASS_ERROR);
-  var save = this.getSaveButton(ctrl.getElement());
-  save.textContent = 'Save';
-  save.removeAttribute('disabled');
 };
 
-
-/**
- * Change edit mode.
- * @param {ydn.crm.ui.sugar.record.Record} ctrl
- * @param {boolean} val
- */
-ydn.crm.ui.sugar.record.FooterRenderer.prototype.setEditMode = function(ctrl, val) {
-  var ele = this.getFooterElement(ctrl.getElement());
-  if (val) {
-    ele.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
-    ele.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
-  } else {
-    ele.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
-    ele.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
-  }
-};

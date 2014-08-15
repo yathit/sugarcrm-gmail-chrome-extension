@@ -72,7 +72,7 @@ ydn.crm.ui.sugar.SearchPanel.prototype.getModel;
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.SearchPanel.CSS_CLASS = 'search-panel';
+ydn.crm.ui.sugar.SearchPanel.CSS_CLASS = 'browse-panel';
 
 
 /** @return {string} */

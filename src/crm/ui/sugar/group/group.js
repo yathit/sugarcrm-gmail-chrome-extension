@@ -1,39 +1,42 @@
 /**
- * @fileoverview Panel for group of field in a module.
+ * @fileoverview Group controller.
  *
- * Parent record panel is responsible to refresh if model has changed.
+ * Group controller manage changes in filed of the records.
  */
 
 
 goog.provide('ydn.crm.ui.sugar.group.Group');
-goog.require('ydn.crm.inj.sugar.module.Field');
-goog.require('ydn.crm.sugar');
+goog.require('goog.ui.Dialog');
 goog.require('ydn.crm.sugar.model.Group');
+goog.require('ydn.crm.ui.sugar.group.AbstractGroup');
 goog.require('ydn.crm.ui.sugar.group.GroupRenderer');
 
 
 
 /**
- * Contact sidebar panel.
+ * Group controller.
  * @param {ydn.crm.sugar.model.Group} model
  * @param {ydn.crm.ui.sugar.group.GroupRenderer=} opt_renderer
  * @param {goog.dom.DomHelper=} opt_dom
  * @constructor
  * @struct
- * @extends {goog.ui.Component}
- * @suppress {checkStructDictInheritance} suppress closure-library code.
- * @implements {ydn.crm.ui.Refreshable}
+ * @extends {ydn.crm.ui.sugar.group.AbstractGroup}
  */
 ydn.crm.ui.sugar.group.Group = function(model, opt_renderer, opt_dom) {
-  goog.base(this, opt_dom);
   /**
    * @protected
    * @type {ydn.crm.ui.sugar.group.GroupRenderer}
    */
-  this.renderer = opt_renderer || new ydn.crm.ui.sugar.group.GroupRenderer();
-  this.setModel(model);
+  this.renderer = opt_renderer || ydn.crm.ui.sugar.group.GroupRenderer.getInstance();
+  goog.base(this, model, opt_dom);
 };
-goog.inherits(ydn.crm.ui.sugar.group.Group, goog.ui.Component);
+goog.inherits(ydn.crm.ui.sugar.group.Group, ydn.crm.ui.sugar.group.AbstractGroup);
+
+
+/**
+ * @define {boolean} debug flag.
+ */
+ydn.crm.ui.sugar.group.Group.DEBUG = false;
 
 
 /**
@@ -47,31 +50,71 @@ ydn.crm.ui.sugar.group.Group.prototype.getModel;
  * @inheritDoc
  */
 ydn.crm.ui.sugar.group.Group.prototype.createDom = function() {
-  this.renderer.createDom(this);
+  goog.base(this, 'createDom');
+  var root = this.getElement();
+
+  /**
+   * @type {ydn.crm.sugar.model.Group}
+   */
+  var model = this.getModel();
+  var dom = this.getDomHelper();
+  var groups = model.listFields();
+  for (var i = 0; i < groups.length; i++) {
+    var name = groups[i];
+    var field_model = model.createOrGetFieldModel(name);
+    var field;
+    if (field_model instanceof ydn.crm.sugar.model.EmailField) {
+      var email = /** @type {ydn.crm.sugar.model.EmailField} */(field_model);
+      field = new ydn.crm.ui.sugar.field.Email(email, dom);
+    } else if (field_model instanceof ydn.crm.sugar.model.PhoneField) {
+      var phone = /** @type {ydn.crm.sugar.model.PhoneField} */(field_model);
+      field = new ydn.crm.ui.sugar.field.Phone(phone, dom);
+    } else {
+      field = new ydn.crm.ui.sugar.field.Field(field_model, null, dom);
+    }
+    this.addChild(field, true);
+  }
+
 };
 
 
 /**
- * Get group name.
- * @return {string}
+ * Attach handlers when the control become editable.
+ * Superclass override to attach handlers. This will be called only when
+ * handlers were not being attached.
+ * @protected
  */
-ydn.crm.ui.sugar.group.Group.prototype.getGroupName = function() {
-  return this.getModel().getGroupName();
+ydn.crm.ui.sugar.group.Group.prototype.attachHandlers = function() {
+
 };
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.group.Group.prototype.getContentElement = function() {
-  return goog.dom.getElementByClass(ydn.crm.ui.sugar.group.GroupRenderer.CSS_CONTENT_CLASS,
-      this.getElement());
+ydn.crm.ui.sugar.group.Group.prototype.enterDocument = function() {
+  goog.base(this, 'enterDocument');
+  if (this.isEditable()) {
+    this.attachHandlers();
+  }
+
+  this.getHandler().listen(this, ydn.crm.ui.sugar.field.EventType.ACTION,
+      this.onMenuAction);
+
 };
 
 
 /**
- * Collect data of the field user has changes..
- * @return {Object?} null if no change in data.
+ * @param {ydn.crm.ui.sugar.field.MenuActionEvent} ma
+ * @protected
+ */
+ydn.crm.ui.sugar.group.Group.prototype.onMenuAction = function(ma) {
+
+};
+
+
+/**
+ * @inheritDoc
  */
 ydn.crm.ui.sugar.group.Group.prototype.collectData = function() {
   var obj = null;
@@ -94,7 +137,7 @@ ydn.crm.ui.sugar.group.Group.prototype.collectData = function() {
  * @param {string} name
  * @return {ydn.crm.ui.sugar.field.Field}
  */
-ydn.crm.ui.sugar.group.Group.prototype.getChildByField = function(name) {
+ydn.crm.ui.sugar.group.Group.prototype.getFieldByName = function(name) {
   for (var j = 0; j < this.getChildCount(); j++) {
     var f = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(j));
     if (f.getFieldName() == name) {
@@ -106,11 +149,14 @@ ydn.crm.ui.sugar.group.Group.prototype.getChildByField = function(name) {
 
 
 /**
- * refresh.
+ * @override
  */
 ydn.crm.ui.sugar.group.Group.prototype.refresh = function() {
   for (var i = 0; i < this.getChildCount(); i++) {
     var child = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(i));
+    if (ydn.crm.ui.sugar.group.Group.DEBUG && !child) {
+      console.error(this + ' child ' + i + ' ' + child);
+    }
     child.refresh();
   }
 };

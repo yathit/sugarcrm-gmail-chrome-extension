@@ -18,7 +18,7 @@ for (var i = 0; i < sugarCrmModuleInfos.length; i++) {
 }
 var panel = new ydn.crm.inj.SugarPanel(null, about, mod_infos);
 
-ydn.msg.main_ = new ydn.msg.MockChannel('main', main_pre);
+ydn.msg.main_ = new ydn.msg.MockPipe('main', main_pre);
 var ch_name = 'sugar-' + domain;
 
 var ele_sidebar = document.getElementById('sidebar');

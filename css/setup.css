@@ -6,17 +6,17 @@
     font-family: arial, sans-serif;
     /* Overridden by font: -webkit-small-control; */
     font-size: 100%; }
-  .ydn-crm INPUT[type=text], .ydn-crm TEXTAREA {
-    -webkit-transition: all 0.30s ease-in-out;
+  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA {
+    transition: all 0.30s ease-in-out;
     outline: none;
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD; }
-  .ydn-crm INPUT[type=text]:focus, .ydn-crm TEXTAREA:focus {
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus {
     box-shadow: 0 0 5px #51cbee;
-    padding: 3px 0px 3px 3px;
-    margin: 5px 1px 3px 0px;
     border: 1px solid #51cbee; }
+  .ydn-crm INPUT:invalid {
+    color: red; }
 
 .left {
   float: left;

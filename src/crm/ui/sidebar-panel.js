@@ -82,7 +82,8 @@ ydn.crm.ui.SidebarPanel.prototype.createDom = function() {
  */
 ydn.crm.ui.SidebarPanel.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
-  this.getHandler().listen(ydn.msg.getMain(), ydn.crm.Ch.Req.LIST_SUGAR, this.handleChannelMessage);
+  this.getHandler().listen(ydn.msg.getMain(), ydn.crm.Ch.BReq.LIST_DOMAINS,
+      this.handleChannelMessage);
 };
 
 
@@ -90,7 +91,7 @@ ydn.crm.ui.SidebarPanel.prototype.enterDocument = function() {
  * @param {ydn.msg.Event} e
  */
 ydn.crm.ui.SidebarPanel.prototype.handleChannelMessage = function(e) {
-  if (e.type == ydn.crm.Ch.Req.LIST_SUGAR) {
+  if (e.type == ydn.crm.Ch.BReq.LIST_DOMAINS) {
     var domains = e.getData();
     goog.asserts.assertArray(domains, 'list of domains must be array');
     var sugars = domains.map(function(name) {

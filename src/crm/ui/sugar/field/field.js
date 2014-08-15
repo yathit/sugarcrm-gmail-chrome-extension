@@ -1,3 +1,5 @@
+
+
 /**
  * @fileoverview SugarCrm module field.
  */
@@ -5,7 +7,9 @@
 
 goog.provide('ydn.crm.ui.sugar.field.Field');
 goog.require('goog.ui.Component');
+goog.require('goog.ui.PopupMenu');
 goog.require('ydn.crm.ui.Refreshable');
+goog.require('ydn.crm.ui.sugar.field.ChangedEvent');
 goog.require('ydn.crm.ui.sugar.field.CheckboxFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.EnumFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.FieldRenderer');
@@ -17,8 +21,8 @@ goog.require('ydn.crm.ui.sugar.field.TextFieldRenderer');
 /**
  * Create a new module record field.
  * @param {ydn.crm.sugar.model.Field} info
- * @param {ydn.crm.ui.sugar.field.FieldRenderer=} opt_renderer Renderer used to render or
- *     decorate the component; defaults to {@link goog.ui.ControlRenderer}.
+ * @param {ydn.crm.ui.sugar.field.FieldRenderer=} opt_renderer Renderer used to
+ * render or decorate the component; defaults to {@link goog.ui.ControlRenderer}.
  * @param {goog.dom.DomHelper=} opt_domHelper Optional DOM helper, used for
  *     document interaction.
  * @extends {goog.ui.Component}
@@ -84,6 +88,182 @@ ydn.crm.ui.sugar.field.Field.selectFieldRenderer = function(type) {
  */
 ydn.crm.ui.sugar.field.Field.prototype.createDom = function() {
   this.renderer.createDom(this);
+};
+
+
+/**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.field.Field.prototype.enterDocument = function() {
+  var input = this.getElement().querySelector('input');
+  if (input) {
+    this.getHandler().listen(input,
+        goog.events.EventType.BLUR, this.handleInputBlur);
+  }
+  var el_more = this.getElement().getElementsByClassName(
+      ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU)[0];
+  if (el_more) {
+    this.getHandler().listen(el_more, 'click', this.onMoreMenuClick);
+  }
+};
+
+
+/**
+ * @param {Event} e
+ * @protected
+ */
+ydn.crm.ui.sugar.field.Field.prototype.onMoreMenuClick = function(e) {
+  var el = /** @type {Element} */ (e.target);
+  var cmd = /** @type {ydn.crm.sugar.model.Field.Command} */ (el.getAttribute('name'));
+  console.log(e, cmd);
+  if (cmd) {
+    // menu action are handle in group level.
+    var ev = new ydn.crm.ui.sugar.field.MenuActionEvent(cmd, this);
+    this.dispatchEvent(ev);
+    var menu = /** @type {Element} */ (goog.dom.getAncestorByClass(el,
+        ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU));
+    // hide menu immediately
+    goog.style.setElementShown(menu, false);
+    setTimeout(function() {
+      // menu show/hide status is determine by hover state
+      goog.style.setElementShown(menu, true);
+    }, 1000);
+
+    if (!ev.defaultPrevented) {
+      if (ev.command == ydn.crm.sugar.model.Field.Command.REMOVE) {
+        var obj = this.createClearPatch();
+        var ce = new ydn.crm.ui.sugar.field.ChangedEvent(obj, this);
+        this.dispatchEvent(ce);
+      } else if (ev.command == ydn.crm.sugar.model.Field.Command.EDIT) {
+        this.showEditor();
+      }
+    }
+  }
+};
+
+
+/**
+ * Get template data for editor dialog.
+ * @return {{
+ *   fields: !Array.<{label: string, listId: (null|string|undefined), name: string, type: string, value: string}>
+ * }}
+ */
+ydn.crm.ui.sugar.field.Field.prototype.getTemplateData = function() {
+
+  var model = this.getModel();
+  var lid = this.getDataList();
+  var fields = [{
+    label: model.getLabel(),
+    name: model.getFieldName(),
+    value: model.getFieldValue(),
+    type: model.getType(),
+    listId: lid
+  }];
+  return {
+    fields: fields
+  };
+};
+
+
+/**
+ * Make datalist of given enum field. If already exist, this will return it.
+ * @return {?string} datalist id.
+ */
+ydn.crm.ui.sugar.field.Field.prototype.getDataList = function() {
+  var model = this.getModel();
+  return ydn.crm.ui.sugar.field.FieldRenderer.getDataList(
+      model.getModuleName(), model.getFieldInfo());
+};
+
+
+/**
+ * Create editor dialog.
+ * Dialog is disposed on hide.
+ * @param {{
+ *   fields: !Array.<{label: string, listId: (null|string|undefined), name: string, type: string, value: string}>
+ * }} data template data.
+ * @return {goog.ui.Dialog}
+ */
+ydn.crm.ui.sugar.field.Field.createEditor = function(data) {
+  var dialog = new goog.ui.Dialog();
+  dialog.setButtonSet(goog.ui.Dialog.ButtonSet.createOkCancel());
+  dialog.setTitle('Edit name');
+  dialog.setEscapeToCancel(true);
+  dialog.setHasTitleCloseButton(true);
+  dialog.setModal(true);
+  dialog.setDisposeOnHide(true);
+  dialog.getContentElement().classList.add('ydn-crm');
+  var html = templ.ydn.crm.app.nameEditor(data);
+  dialog.setContent(html);
+
+  return dialog;
+};
+
+
+/**
+ * Show field editor.
+ */
+ydn.crm.ui.sugar.field.Field.prototype.showEditor = function() {
+
+  var dialog = ydn.crm.ui.sugar.field.Field.createEditor(this.getTemplateData());
+
+  this.getHandler().listen(dialog, goog.ui.Dialog.EventType.SELECT, this.handleEditorSelect, false);
+  this.getHandler().listenOnce(dialog, goog.ui.PopupBase.EventType.HIDE, function(e) {
+    this.getHandler().unlisten(dialog, goog.ui.Dialog.EventType.SELECT, this.handleEditorSelect, false);
+  }, false);
+
+  dialog.setVisible(true);
+};
+
+
+/**
+ * @param {goog.ui.Dialog.Event} e
+ * @protected
+ */
+ydn.crm.ui.sugar.field.Field.prototype.handleEditorSelect = function(e) {
+
+  if (e.key == goog.ui.Dialog.DefaultButtonKeys.OK) {
+    var dialog = /** @type {goog.ui.Dialog} */ (e.target);
+    var el = dialog.getContentElement();
+    var fields_el = el.querySelectorAll('.field');
+    var patches = {};
+    var model = this.getModel();
+    for (var i = 0; i < fields_el.length; i++) {
+      var field_name = fields_el[i].getAttribute('name');
+      var field_value = fields_el[i].querySelector('.value').value;
+      var original_value = model.getFieldValue();
+      if (original_value != field_value) {
+        patches[field_name] = field_value;
+      }
+    }
+    var ev = new ydn.crm.ui.sugar.field.ChangedEvent(patches, this);
+    this.dispatchEvent(ev);
+  }
+};
+
+
+/**
+ * @param {Event} e
+ * @protected
+ */
+ydn.crm.ui.sugar.field.Field.prototype.handleInputBlur = function(e) {
+  var new_val = this.getRenderer().collectValue(this);
+  var model = this.getModel();
+  var patch = model.patch(new_val);
+  if (patch) {
+    var ev = new ydn.crm.ui.sugar.field.ChangedEvent(patch, this);
+    this.dispatchEvent(ev);
+  }
+};
+
+
+/**
+ * @return {Object} patch to clear the field.
+ */
+ydn.crm.ui.sugar.field.Field.prototype.createClearPatch = function() {
+  var obj = {};
+  obj[this.getModel().getFieldName()] = '';
+  return obj;
 };
 
 
@@ -156,7 +336,5 @@ ydn.crm.ui.sugar.field.Field.prototype.getValue = function() {
 ydn.crm.ui.sugar.field.Field.prototype.hasChanged = function() {
   return this.getValue() != this.collectData();
 };
-
-
 
 

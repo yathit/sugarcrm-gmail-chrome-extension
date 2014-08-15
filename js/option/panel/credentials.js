@@ -38,38 +38,8 @@ var Credentials = function() {
 
 
 /**
- * @param {string} agent
- * @return {string}
- */
-Credentials.sniffUA = function(agent) {
-  var pf = '';
-  var pd = 'Unknown';
-  var ty = '';
-  if (/Chrome/.test(agent)) {
-    pd = 'Chrome';
-  } else if (/Safari/.test(agent)) {
-    pd = 'Safari';
-  } else if (/IE/.test(agent)) {
-    pd = 'IE';
-  } else if (/Firefox/i.test(agent)) {
-    pd = 'Firefox';
-  } else if (/Opera/i.test(agent)) {
-    pd = 'Firefox';
-  }
-  if (/mobile/i.test(agent)) {
-    ty = 'Mobile';
-  }
-  if (/iOS/i.test(agent)) {
-    pf = 'iOS ';
-  } else if (/android/i.test(agent)) {
-    pf = 'Android ';
-  }
-  return pf + pd + ' ' + ty;
-};
-
-
-/**
  * @param {Event} e
+ * @return {boolean}
  */
 Credentials.prototype.displayDetailLog = function(e) {
   e.preventDefault();
@@ -79,7 +49,7 @@ Credentials.prototype.displayDetailLog = function(e) {
     var result_list = this.root.querySelector('.audit-log .result-list');
     if (!result_list.style.display) {
       result_list.style.display = 'none';
-      return; // hide
+      return false; // hide
     }
     result_list.style.display = '';
     var tbody = this.root.querySelector('.audit-log tbody');
@@ -104,12 +74,6 @@ Credentials.prototype.displayDetailLog = function(e) {
       var td = document.createElement('td');
       td.textContent = item.resource || 'Login';
       tr.appendChild(td);
-      /*
-      td = document.createElement('td');
-      td.textContent = Credentials.sniffUA(item.agent);
-      td.setAttribute('title', item.agent);
-      tr.appendChild(td);
-      */
       td = document.createElement('td');
       var rg = item.region ? ' (' + item.region + ')' : '';
       var star = item.ip == data.ip ? '* ' : '';

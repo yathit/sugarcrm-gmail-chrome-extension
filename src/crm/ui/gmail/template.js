@@ -81,7 +81,7 @@ ydn.crm.ui.gmail.Template.prototype.getModel = function() {
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.gmail.Template.DEBUG = false;
+ydn.crm.ui.gmail.Template.DEBUG = true;
 
 
 /**
@@ -117,7 +117,7 @@ ydn.crm.ui.gmail.Template.form2BodyTable = function(form) {
  *   var email = ydn.crm.ui.gmail.Template.extractRecipientEmail(last_td);
  * </pre>
  * @param {Element} form
- * @return {HTMLTableColElement?}
+ * @return {?HTMLTableColElement}
  */
 ydn.crm.ui.gmail.Template.form2TDLastChild = function(form) {
   var body_table = ydn.crm.ui.gmail.Template.form2BodyTable(form);
@@ -356,7 +356,7 @@ ydn.crm.ui.gmail.Template.extractRecipientEmail = function(last_td, opt_logger) 
 
 /**
  * Extract recipient email from the gmail compose panel.
- * @return {string?}
+ * @return {?string}
  * @protected
  */
 ydn.crm.ui.gmail.Template.prototype.extractRecipientEmail = function() {
@@ -441,7 +441,7 @@ ydn.crm.ui.gmail.Template.prototype.handleMenuAction = function(e) {
  * @const
  * @type {string}
  */
-ydn.crm.ui.gmail.Template.CSS_CLASS = 'crm-template inj';
+ydn.crm.ui.gmail.Template.CSS_CLASS = 'ydn-crm crm-template inj';
 
 
 /**
@@ -579,7 +579,7 @@ ydn.crm.ui.gmail.Template.prototype.renderTemplate = function(template, opt_targ
   }
 
   if (ydn.crm.ui.gmail.Template.DEBUG) {
-    window.console.log(template, user, opt_target);
+    window.console.log(template);
   }
 
   if (opt_target && opt_target.hasRecord()) {
@@ -588,6 +588,7 @@ ydn.crm.ui.gmail.Template.prototype.renderTemplate = function(template, opt_targ
       var value = opt_target.value(name);
       if (goog.isString(value)) {
         template = template.replace(new RegExp('\\$contact_' + name, 'g'), value);
+        template = template.replace(new RegExp('{::future::Contacts::' + name + '::}', 'g'), value);
         // template = template.replace(new RegExp('\\$contact_account_' + name, 'g'), value);
       }
     }

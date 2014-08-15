@@ -15,6 +15,22 @@ var Setup = function() {
    */
   this.user_info = null;
 
+  if (/modal/.test(location.hash)) {
+    var go_gmail = document.getElementById('go-to-gmail');
+    go_gmail.style.display = 'none';
+    var close = document.getElementById('close');
+    close.style.display = '';
+    var a_close = close.querySelector('a');
+    a_close.onclick = this.close.bind(this);
+  }
+};
+
+
+/**
+ * Close window.
+ */
+Setup.prototype.close = function() {
+  window.open('', '_self').close();
 };
 
 

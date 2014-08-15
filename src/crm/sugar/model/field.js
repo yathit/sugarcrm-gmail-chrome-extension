@@ -29,8 +29,16 @@ ydn.crm.sugar.model.Field = function(parent, field) {
    * @type {string}
    */
   this.field_name = field;
-  goog.asserts.assertObject(this.parent.getFieldInfo(this.field_name),
-      this.field_name + ' in ' + parent.getModuleName());
+  // goog.asserts.assertObject(this.parent.getFieldInfo(this.field_name),
+  //    this.field_name + ' in ' + parent.getModuleName());
+};
+
+
+/**
+ * @return {ydn.crm.sugar.ModuleName}
+ */
+ydn.crm.sugar.model.Field.prototype.getModuleName = function() {
+  return this.parent.getModuleName();
 };
 
 
@@ -53,16 +61,28 @@ ydn.crm.sugar.model.Field.prototype.getFieldInfo = function() {
 
 /**
  * Get unique field id within sugarcrm instance.
+ * @param {string} module_name
+ * @param {string} field_name
+ * @return {string}
+ */
+ydn.crm.sugar.model.Field.getFieldId = function(module_name, field_name) {
+  return module_name + '-' + field_name;
+};
+
+
+/**
+ * Get unique field id within sugarcrm instance.
  * @return {string}
  */
 ydn.crm.sugar.model.Field.prototype.getFieldId = function() {
-  return this.parent.getModuleName() + '-' + this.field_name;
+  return ydn.crm.sugar.model.Field.getFieldId(this.parent.getModuleName(),
+      this.field_name);
 };
 
 
 /**
  * Get field value.
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.sugar.model.Field.prototype.getFieldValue = function() {
   return this.parent.module.value(this.field_name);
@@ -97,7 +117,8 @@ ydn.crm.sugar.model.Field.prototype.getOptions = function() {
 
 
 /**
- * @return {string}
+ * Get field label.
+ * @return {string} field label, default to SugarCrm.ModuleField#label.
  */
 ydn.crm.sugar.model.Field.prototype.getLabel = function() {
   var info = this.getFieldInfo();
@@ -163,6 +184,45 @@ ydn.crm.sugar.model.Field.prototype.isCalculated = function() {
 
 
 /**
+ * Menu commands.
+ * @enum {string}
+ */
+ydn.crm.sugar.model.Field.Command = {
+  ADD: 'add',
+  EDIT: 'edit',
+  OPT_OUT: 'optout',
+  PRIMARY: 'primary',
+  REMOVE: 'remove'
+};
+
+
+/**
+ * @typedef {{
+ *   label: string,
+ *   name: ydn.crm.sugar.model.Field.Command,
+ *   value: *,
+ *   type: (string|undefined)
+ * }}
+ * label: menu text.
+ * name: commend in dispatching event.
+ * type: SugarCrm.ModuleField#type for input type, default to type='text', for
+ * 'bool', it becomes type='checkbox'
+ * When type is 'bool', value can be 'true' or 'false'.
+ */
+ydn.crm.sugar.model.Field.FieldOption;
+
+
+/**
+ * Check the field value is deletable.
+ * Extra field like, phone number, address, email are deletable.
+ * @return {Array.<ydn.crm.sugar.model.Field.FieldOption>}
+ */
+ydn.crm.sugar.model.Field.prototype.getMoreOptions = function() {
+  return [];
+};
+
+
+/**
  * @return {boolean}
  */
 ydn.crm.sugar.model.Field.prototype.isNormallyHide = function() {
@@ -179,3 +239,21 @@ if (goog.DEBUG) {
     return this.parent + ';Field:' + this.field_name;
   };
 }
+
+
+/**
+ * Get the patch object for given user input field value.
+ * @param {*} value input value.
+ * @return {?Object} patch object. `null` if patch is not necessary.
+ */
+ydn.crm.sugar.model.Field.prototype.patch = function(value) {
+  if (this.isCalculated()) {
+    return null;
+  }
+  if (value == this.getFieldValue()) {
+    return null;
+  }
+  var obj = {};
+  obj[this.field_name] = value;
+  return obj;
+};

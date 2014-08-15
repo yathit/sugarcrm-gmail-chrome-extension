@@ -110,7 +110,7 @@ ydn.crm.ui.sugar.SugarPanel.prototype.getContentElement = function() {
 };
 
 
-/**                                          ````
+/**
  * @return {ydn.crm.sugar.model.GDataSugar}
  * @override
  */
@@ -124,7 +124,7 @@ ydn.crm.ui.sugar.SugarPanel.prototype.createDom = function() {
   goog.base(this, 'createDom');
   var dom = this.dom_;
   var root = this.getElement();
-  goog.dom.classes.add(root, this.getCssClass());
+  goog.dom.classlist.add(root, this.getCssClass());
   var head_ele = dom.createDom('div');
   var content_ele = dom.createDom('div', ydn.crm.ui.sugar.SugarPanel.CSS_CLASS_CONTENT);
   root.appendChild(head_ele);

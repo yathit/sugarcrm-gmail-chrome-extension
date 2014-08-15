@@ -9,7 +9,11 @@
 
 goog.provide('ydn.crm.sugar.model.Record');
 goog.require('ydn.crm.sugar.Record');
+goog.require('ydn.crm.sugar.model.AddressGroup');
+goog.require('ydn.crm.sugar.model.EmailGroup');
 goog.require('ydn.crm.sugar.model.Group');
+goog.require('ydn.crm.sugar.model.NameGroup');
+goog.require('ydn.crm.sugar.model.PhoneGroup');
 goog.require('ydn.msg');
 
 
@@ -36,7 +40,7 @@ ydn.crm.sugar.model.Record = function(parent, r) {
    */
   this.record = r;
   /**
-   * @type {Object.<!ydn.crm.sugar.model.Group>}
+   * @type {Object.<!ydn.crm.sugar.model.BaseGroup>}
    * @private
    */
   this.groups_ = {};
@@ -88,8 +92,9 @@ ydn.crm.sugar.model.Record.prototype.getId = function() {
 
 /**
  * Get record field value.
+ * Note: Newer bean format many return as Object or array of Objects.
  * @param {string} name field name
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.sugar.model.Record.prototype.value = function(name) {
   return this.record.value(name);
@@ -205,7 +210,33 @@ ydn.crm.sugar.model.Record.prototype.save = function(obj) {
     }, 10);
   }, this);
 
+};
 
+
+/**
+ * Patch record to server.
+ * @param {Object} patches
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.sugar.model.Record.prototype.patch = function(patches) {
+  if (!patches || Object.keys(patches) == 0) {
+    return goog.async.Deferred.succeed(false);
+  }
+  var obj = ydn.object.clone(this.record.getData());
+  for (var key in patches) {
+    obj[key] = patches[key];
+  }
+  var record = new ydn.crm.sugar.Record(this.getDomain(), this.getModuleName(), obj);
+
+  return this.parent.saveRecord(record).addCallback(function(x) {
+    var me = this;
+    var v = /** @type {SugarCrm.Record} */ (x);
+    this.record.updateData(v);
+    setTimeout(function() {
+      me.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(
+          v, me));
+    }, 10);
+  }, this);
 };
 
 
@@ -221,15 +252,15 @@ ydn.crm.sugar.model.Record.prototype.disposeInternal = function() {
 
 /**
  * Get sugar crm view link.
- * @return {string}
+ * @return {?string} null if record is not set.
  */
 ydn.crm.sugar.model.Record.prototype.getViewLink = function() {
-  return this.record.getViewLink();
+  return this.record && this.record.hasRecord() ? this.record.getViewLink() : null;
 };
 
 
 /**
- * @return {SugarCrm.Record?} get clone data.
+ * @return {?SugarCrm.Record} get clone data.
  */
 ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
   return this.record ? /** @type {SugarCrm.Record} */ (/** @type {Object} */ (
@@ -311,11 +342,21 @@ ydn.crm.sugar.model.Record.prototype.listGroups = function() {
 /**
  * Create a new field model if the field present in the record.
  * @param {string} name
- * @return {!ydn.crm.sugar.model.Group}
+ * @return {!ydn.crm.sugar.model.BaseGroup}
  */
 ydn.crm.sugar.model.Record.prototype.getGroupModel = function(name) {
   if (!this.groups_[name]) {
-    this.groups_[name] = new ydn.crm.sugar.model.Group(this, name);
+    if (name == 'name') {
+      this.groups_[name] = new ydn.crm.sugar.model.NameGroup(this);
+    } else if (['address', 'alt_address', 'primary_address'].indexOf(name) >= 0) {
+      this.groups_[name] = new ydn.crm.sugar.model.AddressGroup(this, name);
+    } else if (name == 'email') {
+      this.groups_[name] = new ydn.crm.sugar.model.EmailGroup(this);
+    } else if (name == 'phone') {
+      this.groups_[name] = new ydn.crm.sugar.model.PhoneGroup(this);
+    } else {
+      this.groups_[name] = new ydn.crm.sugar.model.Group(this, name);
+    }
   }
   return this.groups_[name];
 };

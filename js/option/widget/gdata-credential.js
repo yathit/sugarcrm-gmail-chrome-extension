@@ -24,7 +24,7 @@ var GDataCredentialWidget = function(opt_hide_title) {
 GDataCredentialWidget.prototype.render = function(ele) {
   var div = document.createElement('div');
   ele.appendChild(div);
-  this.root = div.webkitCreateShadowRoot ? div.webkitCreateShadowRoot() : div.createShadowRoot();
+  this.root = div.createShadowRoot();
   var template = document.querySelector('#gdata-credentail-template');
   this.root.appendChild(template.content);
 
@@ -41,6 +41,7 @@ GDataCredentialWidget.prototype.render = function(ele) {
 /**
  * Revoke credential.
  * @param {Event} e
+ * @return {boolean} true
  * @private
  */
 GDataCredentialWidget.prototype.revoke_ = function(e) {
