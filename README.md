@@ -79,6 +79,8 @@ Dependency
 10. SugarCRM Core https://bitbucket.org/ytkyaw/crm-ex (private)
 11. SugarCRM UI https://bitbucket.org/ytkyaw/crm-ex/ui (content script UI, to be released under Apache v2)
 
+Compiled dependency files are available in http://ydn-src-1.storage.googleapis.com/
+
 Licensing
 ---------
 
