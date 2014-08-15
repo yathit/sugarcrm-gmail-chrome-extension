@@ -81,6 +81,11 @@ Dependency
 
 Compiled dependency files are available in http://ydn-src-1.storage.googleapis.com/
 
+Pricing
+-------
+
+Open source does not mean zero cost. Open source means that you can change source code to suite your use case and inspect them for security or privacy concern. I would expect pricing will be around $5/user/month. 
+
 Licensing
 ---------
 

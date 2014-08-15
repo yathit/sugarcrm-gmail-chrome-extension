@@ -72,7 +72,7 @@ ydn.crm.ui.sugar.SearchPanel.prototype.getModel;
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.SearchPanel.CSS_CLASS = 'browse-panel';
+ydn.crm.ui.sugar.SearchPanel.CSS_CLASS = 'search-panel';
 
 
 /** @return {string} */
@@ -103,7 +103,8 @@ ydn.crm.ui.sugar.SearchPanel.prototype.createDom = function() {
   this.toolbar.render(header);
   tbn.setVisible(false);
   var content = dom.createDom('div', 'content');
-  root.appendChild(content);
+  var wrapper = dom.createDom('div', 'content-wrapper', [content]);
+  root.appendChild(wrapper);
   this.addChild(this.result_panel, true);
   var ele_input = search_input.getElement().querySelector('input');
   ele_input.setAttribute('placeholder', 'Search ...');

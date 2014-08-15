@@ -97,9 +97,12 @@
 .activity-panel .goog-tab {
   text-decoration: none; }
 
-.browse-panel > .content {
-  padding: 8px;
+.browse-panel > .content-wrapper {
   max-width: 20em; }
+
+.browse-panel > .content-wrapper > .content {
+  padding: 8px;
+  overflow: auto; }
 
 .browse-panel .search-result {
   border-bottom: thin solid lightgrey; }
@@ -1381,24 +1384,13 @@ a.maia-button.maia-button-secondary {
 .search-result {
   padding: 4px; }
 
-/* In search panel, record show only its header.
- * > is require to specific immediate element */
-.search-panel .record-panel > .content,
-.search-panel .record-panel .record-header .toolbar {
-  display: none; }
+.search-panel > .content-wrapper {
+  max-width: 20em;
+  padding: 4px;
+  height: 200px; }
 
-/* A search result is activated by clicking on the result panel */
-.search-panel .record-panel:hover > .content,
-.search-panel .record-panel.activated > .content,
-.search-panel .record-panel:hover .record-header .toolbar,
-.search-panel .record-panel.activated .record-header .toolbar {
-  display: inherit; }
-
-.search-panel .content {
-  padding: 4px; }
-
-.search-panel .record-panel.empty {
-  display: none; }
+.search-panel > .content-wrapper > .content {
+  overflow: scroll; }
 
 .sugar-panel .main-title {
   margin: 4px;

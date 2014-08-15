@@ -11,8 +11,8 @@ goog.require('goog.ui.Toolbar');
 goog.require('goog.ui.ToolbarSelect');
 goog.require('wgui.TextInput');
 goog.require('ydn.crm.sugar.model.Sugar');
-goog.require('ydn.crm.ui.sugar.record.Record');
 goog.require('ydn.crm.ui.sugar.SearchPanel');
+goog.require('ydn.crm.ui.sugar.record.Record');
 
 
 
@@ -101,7 +101,8 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.createDom = function() {
   this.toolbar.addChild(new wgui.TextInput(''), true);
   this.toolbar.render(header);
   var content = dom.createDom('div', 'content');
-  root.appendChild(content);
+  var wrapper = dom.createDom('div', 'content-wrapper', [content]);
+  root.appendChild(wrapper);
   this.addChild(this.result_panel, true);
 };
 
@@ -117,7 +118,7 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.enterDocument = function() {
 
 
 /**
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.ui.sugar.BrowsePanel.prototype.getRecordType = function() {
   var sel = /** @type {goog.ui.ToolbarSelect} */ (this.toolbar.getChildAt(0));
@@ -321,7 +322,7 @@ ydn.crm.ui.sugar.BrowsePanel.prototype.updateSearch_ = function() {
 
 /**
  * @protected
- * @returns {wgui.TextInput}
+ * @return {wgui.TextInput}
  */
 ydn.crm.ui.sugar.BrowsePanel.prototype.getSearchInput = function() {
   return /** @type {wgui.TextInput} */ (this.toolbar.getChildAt(1));
