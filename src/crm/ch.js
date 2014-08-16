@@ -86,7 +86,8 @@ ydn.crm.Ch.Req = {
  */
 ydn.crm.Ch.BReq = {
   LIST_DOMAINS: 'list-sugarcrm-domains', // list of domain name of sugarcrm
-  HOST_PERMISSION: 'host-permission'
+  HOST_PERMISSION: 'host-permission',
+  LOGGED_OUT: 'logout'
 };
 
 

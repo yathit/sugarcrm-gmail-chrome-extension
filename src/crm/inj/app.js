@@ -366,6 +366,7 @@ ydn.crm.inj.App.prototype.init = function() {
     } else {
       // we are not showing any UI if user is not login.
       // user should use browser bandage to login and refresh the page.
+      this.hud.init();
       this.logger.warning('user not login');
       this.history.setEnabled(false);
     }

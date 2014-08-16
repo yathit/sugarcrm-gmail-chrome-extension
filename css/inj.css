@@ -1516,10 +1516,10 @@ a.maia-button.maia-button-secondary {
 
 .search-panel > .content-wrapper {
   max-width: 20em;
-  padding: 4px;
-  height: 200px; }
+  padding: 4px; }
 
 .search-panel > .content-wrapper > .content {
+  max-height: 200px;
   overflow: scroll; }
 
 .sugar-panel .main-title {
@@ -1542,6 +1542,13 @@ a.maia-button.maia-button-secondary {
 .gmail-cmd-panel {
   display: inline-block;
   padding: 4px; }
+
+.sugarcrm-link-panel {
+  text-align: center;
+  padding: 8px 0; }
+
+.sugarcrm-link-panel > * {
+  margin: auto auto; }
 
 .setting-dialog .group-panel {
   border: thin solid #d3d3d3;
@@ -1730,10 +1737,10 @@ a.maia-button.maia-button-secondary {
   padding: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
-  z-index: 1000;
   background-color: white;
   margin-left: -190px;
   width: 220px;
+  min-height: 40px;
   max-height: 400px;
   overflow: hidden;
   display: none;
@@ -1755,10 +1762,20 @@ a.maia-button.maia-button-secondary {
 .popup-footer {
   border-top: 8px;
   font-size: 11px;
-  color: #767676; }
+  color: #767676;
+  width: 100%; }
   .popup-footer a:not(:hover) {
     text-decoration: none;
     color: #767676; }
+
+.popup-footer-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }
+  .popup-footer-bar .center-item {
+    flex-grow: 1; }
+  .popup-footer-bar .right-item {
+    align-self: flex-end; }
 
 .arrow-box {
   padding-top: 0; }
