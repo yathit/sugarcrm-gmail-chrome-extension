@@ -82,6 +82,10 @@ ydn.crm.sugar.model.Sugar = function(about, arr) {
   this.initUser_();
   var pipe = ydn.msg.getMain();
   this.handler.listen(pipe, [ydn.crm.Ch.SReq.LOGIN, ydn.crm.Ch.Req.HOST_PERMISSION], this.handleMessage);
+
+  if (ydn.crm.sugar.model.Sugar.DEBUG) {
+    this.sugar_random_id_ = Math.random();
+  }
 };
 goog.inherits(ydn.crm.sugar.model.Sugar, goog.events.EventTarget);
 
@@ -559,7 +563,11 @@ if (goog.DEBUG) {
    * @inheritDoc
    */
   ydn.crm.sugar.model.Sugar.prototype.toString = function() {
-    return 'ydn.crm.sugar.model.Sugar:' + this.getDomain();
+    var s = 'ydn.crm.sugar.model.Sugar:' + this.getDomain();
+    if (ydn.crm.sugar.model.Sugar.DEBUG) {
+      s += this.sugar_random_id_;
+    }
+    return s;
   };
 }
 

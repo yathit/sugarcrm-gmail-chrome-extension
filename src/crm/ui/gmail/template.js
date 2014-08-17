@@ -81,7 +81,7 @@ ydn.crm.ui.gmail.Template.prototype.getModel = function() {
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.gmail.Template.DEBUG = true;
+ydn.crm.ui.gmail.Template.DEBUG = false;
 
 
 /**

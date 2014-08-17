@@ -226,7 +226,7 @@ ydn.crm.ui.SidebarPanel.prototype.hasSugarPanel = function(name) {
  */
 ydn.crm.ui.SidebarPanel.prototype.prepareSugarPanels_ = function(sugars) {
   if (ydn.crm.ui.SidebarPanel.DEBUG) {
-    window.console.log(sugars);
+    window.console.log('sugars', sugars);
   }
   var sugar_setup = this.getChildAt(0);
   sugar_setup.setModel(sugars);

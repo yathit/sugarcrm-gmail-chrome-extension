@@ -31,11 +31,11 @@
 
 
 goog.provide('ydn.crm.ui.sugar.SugarPanel');
+goog.require('ydn.crm.ui.GmailCmdInjector');
 goog.require('goog.log');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.Ch');
 goog.require('ydn.crm.sugar.model.GDataSugar');
-goog.require('ydn.crm.ui.GmailCmdInjector');
 goog.require('ydn.crm.ui.gmail.Template');
 goog.require('ydn.crm.ui.sugar.FeedBody');
 goog.require('ydn.crm.ui.sugar.Header');
@@ -57,21 +57,12 @@ ydn.crm.ui.sugar.SugarPanel = function(model, dom) {
   goog.base(this, dom);
   this.setModel(model);
 
-  /**
-   * @type {ydn.crm.ui.GmailCmdInjector}
-   * @private
-   */
-  this.gmail_cmd_inj_ = new ydn.crm.ui.GmailCmdInjector(model);
-  this.gmail_cmd_inj_.observeEmailThreadToolbar(document.body);
-
-  /**
-   * @protected
-   * @type {Array.<ydn.crm.ui.GDataPanel>}
-   */
-  this.module_panels = ydn.crm.sugar.PANEL_MODULES.map(function(x) {
+  for (var i = 0; i < ydn.crm.sugar.PANEL_MODULES.length; i++) {
+    var x = ydn.crm.sugar.PANEL_MODULES[i];
     var m = new ydn.crm.sugar.model.GDataRecord(model, x);
-    return new ydn.crm.ui.GDataPanel(m, dom);
-  });
+    var child = new ydn.crm.ui.GDataPanel(m, dom);
+    this.addChild(child, true);
+  }
 };
 goog.inherits(ydn.crm.ui.sugar.SugarPanel, goog.ui.Component);
 
@@ -133,11 +124,6 @@ ydn.crm.ui.sugar.SugarPanel.prototype.createDom = function() {
 
   var header_panel = new ydn.crm.ui.sugar.Header(this.getModel(), dom);
   header_panel.render(head_ele);
-
-  for (var i = 0; i < this.module_panels.length; i++) {
-    this.addChild(this.module_panels[i], true);
-  }
-
 };
 
 

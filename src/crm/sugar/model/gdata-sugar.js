@@ -46,6 +46,12 @@ goog.inherits(ydn.crm.sugar.model.GDataSugar, ydn.crm.sugar.model.Sugar);
 
 
 /**
+ * @define {boolean} debug flag.
+ */
+ydn.crm.sugar.model.GDataSugar.DEBUG = false;
+
+
+/**
  * @return {ydn.gdata.m8.ContactEntry} return GData contact that is not associate
  * with any module.
  */
@@ -98,7 +104,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.handleModuleChanges = function(e) {
 
 
 /**
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.sugar.model.GDataSugar.prototype.getContextGmail = function() {
   return this.context_ ? this.context_.getEmails()[0] || null : null;
@@ -164,7 +170,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.link = function(record) {
   };
   var df1 = this.getChannel().send(ydn.crm.Ch.SReq.LINK, data);
   return df1.addCallback(function(entry) {
-    if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+    if (ydn.crm.sugar.model.GDataSugar.DEBUG) {
       window.console.log('link', entry);
     }
     var old = this.contact_;
@@ -220,7 +226,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.update = function(email, full_name, pho
  * @private
  */
 ydn.crm.sugar.model.GDataSugar.prototype.update_ = function(email, full_name, phone) {
-  if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+  if (ydn.crm.sugar.model.GDataSugar.DEBUG) {
     window.console.log(this + ' update for ' + email);
   }
   var old_context = this.context_;
@@ -255,7 +261,7 @@ ydn.crm.sugar.model.GDataSugar.prototype.update_ = function(email, full_name, ph
         return new ydn.gdata.m8.ContactEntry(x);
       });
       var scores = this.score(contacts);
-      if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+      if (ydn.crm.sugar.model.GDataSugar.DEBUG) {
         window.console.log(results, scores, contacts);
       }
       // Note: Module listener will pop out `contacts` if they are associated with the module

@@ -77,10 +77,13 @@ ydn.crm.sugar.model.GDataRecord.prototype.disposeInternal = function() {
 
 
 /**
- * Dispatch event.
+ * Dispatch events due to changes from parent GDataSugar.
  * @param {ydn.crm.sugar.model.events.Event} e
  */
 ydn.crm.sugar.model.GDataRecord.prototype.relayGDataEvent = function(e) {
+  if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+    window.console.log('relayGDataEvent: ' + e.type + ' ' + this);
+  }
   if (e instanceof ydn.crm.sugar.model.events.ContextGDataChangeEvent) {
     var ce = /** @type {ydn.crm.sugar.model.events.ContextGDataChangeEvent} */ (e);
     // the record is not longer valid.
@@ -94,7 +97,8 @@ ydn.crm.sugar.model.GDataRecord.prototype.relayGDataEvent = function(e) {
     }
   } else if (e.type == ydn.crm.sugar.model.events.Type.GDATA_CHANGE) {
     // unpaired GData entry is available
-    if (!this.hasRecord()) {
+    var has_record = this.hasRecord();
+    if (!has_record) {
       // if we already have synced contact, we don't dispatch the event, since
       // unpaired record is not relevant to this module.
       var ge = /** @type {ydn.crm.sugar.model.events.GDataEvent} */ (e);
@@ -115,16 +119,25 @@ ydn.crm.sugar.model.GDataRecord.prototype.relayGDataEvent = function(e) {
 
           if (result && result.result[0]) {
             var r = new ydn.crm.sugar.Record(this.getDomain(), this.getModuleName(), result.result[0]);
+            if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+              window.console.log('relayGDataEvent: ' + e.type + ' swallow as (setRecord)');
+            }
             this.setRecord(r);
           } else {
+            if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+              window.console.log('relayGDataEvent: ' + e.type + ' to ' + e.type);
+            }
             this.dispatchEvent(e);
           }
         }, this);
       } else {
+        if (ydn.crm.sugar.model.GDataRecord.DEBUG) {
+          window.console.log('relayGDataEvent: ' + e.type + ' to ' + e.type);
+        }
         this.dispatchEvent(e);
       }
     }
-  }             
+  }
 };
 
 
@@ -420,14 +433,11 @@ if (goog.DEBUG) {
    * @inheritDoc
    */
   ydn.crm.sugar.model.GDataRecord.prototype.toString = function() {
-    var s = '';
-    if (this.record) {
-      s += ':' + this.record;
-    }
+    var s = goog.base(this, 'toString');
     var contact = this.getGData();
     if (contact) {
       s += ':' + contact;
     }
-    return 'RecordModel:' + this.getModuleName() + s;
+    return 'GDataRecord:' + this.getModuleName() + s;
   };
 }

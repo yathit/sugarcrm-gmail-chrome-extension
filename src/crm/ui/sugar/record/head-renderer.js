@@ -37,6 +37,12 @@ goog.addSingletonGetter(ydn.crm.ui.sugar.record.HeadRenderer);
 
 
 /**
+ * @define {boolean} debug flag.
+ */
+ydn.crm.ui.sugar.record.HeadRenderer.DEBUG = false;
+
+
+/**
  * @const
  * @type {string} CSS class name for secondary records panel.
  */
@@ -153,6 +159,9 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.reset = function(ctrl) {
   }
   var record = ctrl.getModel();
   var m_name = record.getModuleName();
+  if (ydn.crm.ui.sugar.record.HeadRenderer.DEBUG) {
+    window.console.log('HeadRenderer:reset:' + + m_name + ':' + record);
+  }
   var header = this.getHeadElement(ctrl.getElement());
   var icon = goog.dom.getElementByClass(ydn.crm.ui.sugar.record.HeadRenderer.CSS_CLASS_ICON,
       header);
@@ -174,7 +183,9 @@ ydn.crm.ui.sugar.record.HeadRenderer.prototype.refresh = function(ctrl) {
   var m_name = record.getModuleName();
   var ele_title = this.getTitleElement(ctrl.getElement());
   var ele_link = this.getLinkElement(ctrl.getElement());
-
+  if (ydn.crm.ui.sugar.record.HeadRenderer.DEBUG) {
+    window.console.log('HeadRenderer:refresh:' + + m_name + ':' + record);
+  }
   if (record.hasRecord()) {
     ele_title.textContent = record.getTitle();
     ele_title.href = record.getViewLink();

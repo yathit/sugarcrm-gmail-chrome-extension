@@ -18,14 +18,14 @@ goog.require('ydn.ui.Reportable');
 /**
  * Contact sidebar panel.
  * @param {ydn.crm.sugar.model.GDataRecord} model model
- * @param {goog.dom.DomHelper} dom
+ * @param {goog.dom.DomHelper=} opt_dom
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.GDataPanel = function(model, dom) {
-  goog.base(this, dom);
+ydn.crm.ui.GDataPanel = function(model, opt_dom) {
+  goog.base(this, opt_dom);
   this.setModel(model);
   /**
    * @final
@@ -167,7 +167,6 @@ ydn.crm.ui.GDataPanel.prototype.createDom = function() {
   // goog.style.setElementShown(heading, false);
   heading.appendChild(imp_div);
 
-
   var body = new ydn.crm.ui.sugar.record.Record(model, dom);
   this.addChild(body, true);
 
@@ -182,6 +181,9 @@ ydn.crm.ui.GDataPanel.prototype.enterDocument = function() {
   var root = this.getElement();
   var hd = this.getHandler();
   var model = this.getModel();
+  if (ydn.crm.ui.GDataPanel.DEBUG) {
+    window.console.log('GDataPanel:enterDocument:' + model);
+  }
   this.import_link.attachElement(goog.dom.getElementsByTagNameAndClass('A',
       ydn.crm.ui.GDataPanel.CSS_CLASS_A_IMPORT, root)[0]);
   hd.listen(this.import_link, 'click', this.handleImportClick, false);
@@ -189,7 +191,8 @@ ydn.crm.ui.GDataPanel.prototype.enterDocument = function() {
   hd.listen(this.sync_link, 'click', this.handleLinkClick, false);
   hd.listen(model, [ydn.crm.sugar.model.events.Type.GDATA_CHANGE],
       this.handleGDataOrRecordChanged);
-  hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.handleGDataOrRecordChanged);
+  hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE,
+      this.handleGDataOrRecordChanged);
 };
 
 

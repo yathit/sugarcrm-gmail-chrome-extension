@@ -44,7 +44,7 @@ goog.inherits(ydn.crm.ui.sugar.record.Body, goog.ui.Component);
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.record.Body.DEBUG = true;
+ydn.crm.ui.sugar.record.Body.DEBUG = false;
 
 
 /**
@@ -77,6 +77,23 @@ ydn.crm.ui.sugar.record.Body.prototype.setEditMode = function(val) {
 
 
 /**
+ * @param {string} field_name
+ * @return {ydn.crm.ui.sugar.field.Field}
+ */
+ydn.crm.ui.sugar.record.Body.prototype.getFieldByName = function(field_name) {
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
+    var field = g.getFieldByName(field_name);
+    if (field) {
+      return field;
+    }
+  }
+  return null;
+};
+
+
+/**
  * Get child group component by group name.
  * @param {string} group_name
  * @return {ydn.crm.ui.sugar.group.Group}
@@ -88,6 +105,27 @@ ydn.crm.ui.sugar.record.Body.prototype.getChildByGroup = function(group_name) {
     var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
     if (g.getGroupName() == group_name) {
       return g;
+    }
+  }
+  return null;
+};
+
+
+/**
+ * @param {Element} ele
+ * @return {ydn.crm.ui.sugar.group.Group?}
+ */
+ydn.crm.ui.sugar.record.Body.prototype.getGroupByFieldValueElement = function(ele) {
+  var group_ele = goog.dom.getAncestorByClass(ele, ydn.crm.ui.sugar.group.GroupRenderer.CSS_CLASS);
+  if (group_ele) {
+    for (var i = 0; i < this.getChildCount(); i++) {
+      var child = this.getChildAt(i);
+      var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
+      // here we compare Element, but not class name, because, we want to make sure this element
+      // is belong to this control.
+      if (g.getElement() == group_ele) {
+        return g;
+      }
     }
   }
   return null;

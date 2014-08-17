@@ -40,15 +40,15 @@ goog.require('ydn.crm.ui.sugar.record.Secondary');
 /**
  * Contact sidebar panel.
  * @param {ydn.crm.sugar.model.Record} model
- * @param {goog.dom.DomHelper} dom
+ * @param {goog.dom.DomHelper=} opt_dom
  * @param {ydn.crm.ui.sugar.record.Record=} opt_parent parent panel for for child record panel.
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.record.Record = function(model, dom, opt_parent) {
-  goog.base(this, dom);
+ydn.crm.ui.sugar.record.Record = function(model, opt_dom, opt_parent) {
+  goog.base(this, opt_dom);
   goog.asserts.assert(model);
   this.setModel(model);
   /**
@@ -73,7 +73,7 @@ ydn.crm.ui.sugar.record.Record = function(model, dom, opt_parent) {
    * @protected
    * @type {ydn.crm.ui.sugar.record.Secondary}
    */
-  this.secondary_panel = new ydn.crm.ui.sugar.record.Secondary(model, dom);
+  this.secondary_panel = new ydn.crm.ui.sugar.record.Secondary(model, opt_dom);
   /**
    * @final
    * @protected
@@ -188,6 +188,7 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
 /**
  * @const
  * @type {MutationObserverInit}
+ * @deprecated not using
  */
 ydn.crm.ui.sugar.record.Record.MOConfig = /** @type {MutationObserverInit} */ (/** @type {Object} */ ({
   'childList': false,
@@ -433,7 +434,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
  */
 ydn.crm.ui.sugar.record.Record.prototype.handleRecordChanged = function(e) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
-    window.console.log(e.type, e);
+    window.console.log('Record:handleRecordChanged:' + e.type);
   }
   this.reset();
 };
@@ -467,7 +468,8 @@ ydn.crm.ui.sugar.record.Record.prototype.reset = function() {
   if (model.hasRecord()) {
     root.className = this.getCssClass() + ' ' + model.getModuleName();
   } else {
-    root.className = this.getCssClass() + ' ' + model.getModuleName() + ' ' + ydn.crm.ui.CSS_CLASS_EMPTY;
+    root.className = this.getCssClass() + ' ' + model.getModuleName() + ' ' +
+        ydn.crm.ui.CSS_CLASS_EMPTY;
   }
 
 };
@@ -485,7 +487,11 @@ ydn.crm.ui.sugar.record.Record.prototype.exitDocument = function() {
  * @protected
  */
 ydn.crm.ui.sugar.record.Record.prototype.refresh = function() {
-  if (this.getModel().hasRecord()) {
+  var model = this.getModel();
+  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+    window.console.log('Record:refresh:' + model + ' hasRecord:' + model.hasRecord());
+  }
+  if (model.hasRecord()) {
     this.getElement().classList.remove(ydn.crm.ui.CSS_CLASS_EMPTY);
   } else {
     this.getElement().classList.add(ydn.crm.ui.CSS_CLASS_EMPTY);

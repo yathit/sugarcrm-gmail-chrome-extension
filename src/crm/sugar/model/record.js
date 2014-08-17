@@ -44,6 +44,10 @@ ydn.crm.sugar.model.Record = function(parent, r) {
    * @private
    */
   this.groups_ = {};
+
+  if (ydn.crm.sugar.model.Record.DEBUG) {
+    this.randomId_ = Math.random();
+  }
 };
 goog.inherits(ydn.crm.sugar.model.Record, goog.events.EventTarget);
 
@@ -303,6 +307,11 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
   }
   var name = this.record.getModule();
 
+  if (ydn.crm.sugar.model.Record.DEBUG) {
+    window.console.log(this + ' ' + has_module_changed ? 'module-change' :
+        has_key_changed ? 'key-change' : has_change ? 'change' : 'no-change');
+  }
+
   if (has_module_changed) {
     this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(name, record, this));
   } else if (has_key_changed) {
@@ -368,6 +377,10 @@ if (goog.DEBUG) {
    * @inheritDoc
    */
   ydn.crm.sugar.model.Record.prototype.toString = function() {
-    return 'ydn.crm.sugar.model.Record:' + this.record;
+    var s = 'ydn.crm.sugar.model.Record:' + this.record;
+    if (ydn.crm.sugar.model.Record.DEBUG) {
+      s += this.randomId_;
+    }
+    return s;
   };
 }

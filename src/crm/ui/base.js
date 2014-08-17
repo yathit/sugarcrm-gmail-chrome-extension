@@ -6,6 +6,7 @@
 goog.provide('ydn.crm.ui');
 goog.provide('ydn.crm.ui.ContextPanelPosition');
 goog.require('goog.soy.Renderer');
+goog.require('ydn.crm.base');
 
 
 /**
@@ -141,7 +142,8 @@ ydn.crm.ui.getSvgDoc_ = function() {
  */
 ydn.crm.ui.createSvgIcon = function(name, opt_cls) {
   var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  var symbol = ydn.crm.ui.getSvgDoc_().documentElement.getElementById(name);
+  var svg_doc = ydn.crm.ui.getSvgDoc_();
+  var symbol = svg_doc.documentElement.getElementById(name);
   if (symbol) {
     svg.setAttribute('viewBox', symbol.getAttribute('viewBox'));
     svg.innerHTML = symbol.innerHTML;

@@ -29,14 +29,14 @@ goog.provide('ydn.crm.ui.sugar.record.Secondary');
 /**
  * Secondary record panel
  * @param {ydn.crm.sugar.model.Record} model
- * @param {goog.dom.DomHelper} dom
+ * @param {goog.dom.DomHelper=} opt_dom
  * @constructor
  *  @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.record.Secondary = function(model, dom) {
-  goog.base(this, dom);
+ydn.crm.ui.sugar.record.Secondary = function(model, opt_dom) {
+  goog.base(this, opt_dom);
   this.setModel(model);
 };
 goog.inherits(ydn.crm.ui.sugar.record.Secondary, goog.ui.Component);
