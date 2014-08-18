@@ -40,7 +40,7 @@ goog.require('ydn.crm.inj.InlineRenderer');
 goog.require('ydn.crm.inj.StickyRenderer');
 goog.require('ydn.crm.inj.WidgetRenderer');
 goog.require('ydn.crm.shared');
-goog.require('ydn.crm.ui.GmailContextPanel');
+goog.require('ydn.crm.ui.SimpleSidebarPanel');
 goog.require('ydn.debug');
 goog.require('ydn.gmail.Utils.GmailViewState');
 goog.require('ydn.msg.Pipe');
@@ -70,9 +70,9 @@ ydn.crm.inj.App = function() {
 
   /**
    * @protected
-   * @type {ydn.crm.ui.GmailContextPanel}
+   * @type {ydn.crm.ui.SimpleSidebarPanel}
    */
-  this.sidebar = new ydn.crm.ui.GmailContextPanel();
+  this.sidebar = new ydn.crm.ui.SimpleSidebarPanel();
   this.sidebar.render(this.renderer.getContentElement());
 
   this.sniff_timer_ = new goog.Timer(400);
@@ -278,7 +278,7 @@ ydn.crm.inj.App.prototype.handleHistory = function(e) {
  * Compose panel appear.
  */
 ydn.crm.inj.App.prototype.updateForCompose = function() {
-  var val = this.sidebar.injectTemplateMenu();
+  var val = this.hud.injectTemplateMenu();
   this.logger.finest('inject compose ' + (val ? 'ok' : 'fail'));
 };
 

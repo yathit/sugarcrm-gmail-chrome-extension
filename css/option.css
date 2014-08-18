@@ -53,7 +53,6 @@
 .activity-panel .goog-tab-bar-top {
   border-bottom: none !important; }
 .activity-panel .activity-feed {
-  background: url("chrome-extension://__MSG_@@extension_id__/image/feed.svg") center center no-repeat;
   min-width: 16px;
   border-radius: 3px;
   background-color: lightgreen; }
@@ -71,21 +70,6 @@
 .activity-panel .goog-tab > * {
   text-align: center;
   color: white; }
-.activity-panel .goog-tab:after {
-  position: absolute;
-  top: 0;
-  left: 1px;
-  font-size: 60%;
-  color: #808080;
-  font-weight: 400; }
-.activity-panel .goog-tab.Calls:after {
-  content: "Ca"; }
-.activity-panel .goog-tab.Meetings:after {
-  content: "Me"; }
-.activity-panel .goog-tab.Opportunities:after {
-  content: "Op"; }
-.activity-panel .goog-tab.Tasks:after {
-  content: "Ta"; }
 .activity-panel .detail-panel .detail-item {
   padding: 4px; }
 .activity-panel .detail-panel > .header > .close {
@@ -96,16 +80,6 @@
   clear: both; }
 .activity-panel .goog-tab {
   text-decoration: none; }
-
-.browse-panel > .content-wrapper {
-  max-width: 20em; }
-
-.browse-panel > .content-wrapper > .content {
-  padding: 8px;
-  overflow: auto; }
-
-.browse-panel .search-result {
-  border-bottom: thin solid lightgrey; }
 
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
@@ -1186,7 +1160,7 @@ a.maia-button.maia-button-secondary {
   display: none; }
 
 .field:hover .hover-button {
-  display: inherit;
+  display: inline-block;
   border: thin solid #d3d3d3;
   border-radius: 2px; }
 

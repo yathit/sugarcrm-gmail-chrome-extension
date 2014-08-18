@@ -75,6 +75,13 @@ ydn.crm.ui.sugar.activity.Panel.prototype.getModel;
 ydn.crm.ui.sugar.activity.Panel.CSS_CLASS = 'activity-panel';
 
 
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL = 'activity-tab-label';
+
+
 /** @return {string} */
 ydn.crm.ui.sugar.activity.Panel.prototype.getCssClass = function() {
   return ydn.crm.ui.sugar.activity.Panel.CSS_CLASS;
@@ -105,12 +112,13 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   up.getContentElement().classList.add(ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED);
   for (var i = 0; i < ydn.crm.sugar.ACTIVITY_MODULES.length; i++) {
     var caption = ydn.crm.sugar.ACTIVITY_MODULES[i].substr(0, 2);
-    var ele = dom.createDom('div', null, caption);
+    var ele = dom.createDom('div', ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL,
+        caption);
     var tab = new goog.ui.Tab(ele);
     tab.setTooltip(ydn.crm.sugar.ACTIVITY_MODULES[i]);
     this.tabbar.addChild(tab, true);
     tab.getContentElement().classList.add(ydn.crm.sugar.ACTIVITY_MODULES[i]);
-    tab.setVisible(false);
+    // tab.setVisible(false);
   }
 
   this.addChild(this.detail_panel, true);
@@ -262,15 +270,16 @@ ydn.crm.ui.sugar.activity.Panel.prototype.setActivityCount = function(cnt, since
 ydn.crm.ui.sugar.activity.Panel.prototype.setCount = function(name, cnt) {
   var idx = ydn.crm.sugar.ACTIVITY_MODULES.indexOf(name);
   var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(idx + 1));
-  var ele = tab.getContentElement().firstElementChild;
+  var ele = tab.getContentElement().querySelector('.' +
+      ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL);
   if (cnt) {
     ele.textContent = cnt;
     tab.setTooltip(cnt + ' upcoming ' + name);
-    tab.setVisible(true);
+    // tab.setVisible(true);
   } else {
-    ele.textContent = name.substr(0, 2);
-    tab.setTooltip('');
-    tab.setVisible(false);
+    ele.textContent = '0';
+    tab.setTooltip('No upcoming ' + name);
+    // tab.setVisible(false);
   }
 
 };

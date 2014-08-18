@@ -89,6 +89,6 @@ Open source does not mean zero cost. Open source means that you can change sourc
 Licensing
 ---------
 
-All UI components, base utilities and database api will be released under Apache v2 license. Backend and database synchronization will not be open source, but license to partners.
+All UI components, data models and base utilities are released under GNU Lesser General Public License. Backend and database synchronization will not be open source, but license to partners.
 
 

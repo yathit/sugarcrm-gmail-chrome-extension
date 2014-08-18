@@ -1,5 +1,6 @@
 /**
- * @fileoverview SugarCRM header panel for account setup and host access grant.
+ * @fileoverview SugarCRM header panel for account setup, host access grant and
+ * display activity and search toolbar.
  *
  */
 
@@ -16,7 +17,7 @@ goog.require('ydn.crm.ui.sugar.activity.Panel');
 
 
 /**
- * Contact sidebar panel.
+ * SugarCRM header panel.
  * @param {ydn.crm.sugar.model.Sugar} model
  * @param {goog.dom.DomHelper} dom
  * @constructor
@@ -261,7 +262,9 @@ ydn.crm.ui.sugar.Header.prototype.injectGrantIframe_ = function(domain) {
   iframe_ele.setAttribute('name', 'host-permission');
   iframe_ele.src = iframe_url + '?' + domain;
   grant.appendChild(iframe_ele);
-  window.console.log(grant, iframe_ele);
+  if (ydn.crm.ui.sugar.Header.DEBUG) {
+    window.console.log(grant, iframe_ele);
+  }
 };
 
 

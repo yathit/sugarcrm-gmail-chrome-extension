@@ -113,6 +113,18 @@ ydn.crm.ui.sugar.SearchPanel.prototype.createDom = function() {
 
 
 /**
+ * Set toolbar options.
+ * @param {!Object} options
+ */
+ydn.crm.ui.sugar.SearchPanel.prototype.setToolbarOptions = function(options) {
+  var show_module = options['module'];
+  if (goog.isBoolean(show_module)) {
+    this.toolbar.getChildAt(0).setVisible(show_module);
+  }
+};
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.ui.sugar.SearchPanel.prototype.enterDocument = function() {
