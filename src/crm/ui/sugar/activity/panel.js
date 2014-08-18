@@ -30,6 +30,7 @@ goog.require('goog.date.relative');
 goog.require('goog.ui.Tab');
 goog.require('goog.ui.TabBar');
 goog.require('ydn.crm.sugar.utils');
+goog.require('ydn.crm.ui.sugar.SearchPanel');
 goog.require('ydn.crm.ui.sugar.activity.DetailPanel');
 
 
@@ -57,6 +58,12 @@ ydn.crm.ui.sugar.activity.Panel = function(model, dom) {
    * @type {ydn.crm.ui.sugar.activity.DetailPanel}
    */
   this.detail_panel = new ydn.crm.ui.sugar.activity.DetailPanel(model, dom);
+
+  /**
+   * @protected
+   * @type {ydn.crm.ui.sugar.SearchPanel}
+   */
+  this.search = new ydn.crm.ui.sugar.SearchPanel(model, dom);
 };
 goog.inherits(ydn.crm.ui.sugar.activity.Panel, goog.ui.Component);
 
@@ -92,6 +99,13 @@ ydn.crm.ui.sugar.activity.Panel.prototype.getCssClass = function() {
  * @const
  * @type {string}
  */
+ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_SEARCH = 'activity-search';
+
+
+/**
+ * @const
+ * @type {string}
+ */
 ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED = 'activity-feed';
 
 
@@ -105,11 +119,24 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   goog.dom.classlist.add(root, this.getCssClass());
 
   this.addChild(this.tabbar, true);
-  var feed_ele = dom.createDom('div');
-  var up = new goog.ui.Tab(feed_ele);
-  up.setTooltip('Activity feed');
-  this.tabbar.addChild(up, true);
-  up.getContentElement().classList.add(ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED);
+
+  var search_el = dom.createDom('div');
+  var search_svg = ydn.crm.ui.createSvgIcon('search', 'icons');
+  search_el.appendChild(search_svg);
+  var search_tab = new goog.ui.Tab(search_el);
+  search_tab.setTooltip('Search');
+  this.tabbar.addChild(search_tab, true);
+  search_tab.getContentElement().classList.add(
+      ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_SEARCH);
+
+  var feed_el = dom.createDom('div');
+  feed_el = 'Fe';
+  var feed_tab = new goog.ui.Tab(feed_el);
+  feed_tab.setTooltip('Activity feed');
+  this.tabbar.addChild(feed_tab, true);
+  feed_tab.getContentElement().classList.add(
+      ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED);
+
   for (var i = 0; i < ydn.crm.sugar.ACTIVITY_MODULES.length; i++) {
     var caption = ydn.crm.sugar.ACTIVITY_MODULES[i].substr(0, 2);
     var ele = dom.createDom('div', ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL,
@@ -120,6 +147,8 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
     tab.getContentElement().classList.add(ydn.crm.sugar.ACTIVITY_MODULES[i]);
     // tab.setVisible(false);
   }
+
+  this.addChild(this.search, true);
 
   this.addChild(this.detail_panel, true);
 };
@@ -138,6 +167,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.enterDocument = function() {
   hd.listen(this.tabbar, goog.ui.Component.EventType.UNSELECT, this.handleTabUnSelect_);
   hd.listen(this.detail_panel.getElement(), 'click', this.handleDetailPanelClick_);
   goog.style.setElementShown(this.getElement(), false);
+  goog.style.setElementShown(this.detail_panel.getElement(), false);
   // if already login, update at the beginning.
   if (sugar.isLogin()) {
     this.updaterLater_();
@@ -173,9 +203,17 @@ ydn.crm.ui.sugar.activity.Panel.prototype.handleTabUnSelect_ = function(e) {
 ydn.crm.ui.sugar.activity.Panel.prototype.handleTabSelect_ = function(e) {
   var idx = this.tabbar.getSelectedTabIndex();
   if (idx == 0) {
-    this.detail_panel.renderActivity();
+    goog.style.setElementShown(this.search.getElement(), true);
+    goog.style.setElementShown(this.detail_panel.getElement(), false);
   } else {
-    this.detail_panel.renderUpcoming(idx - 1);
+    goog.style.setElementShown(this.search.getElement(), false);
+    goog.style.setElementShown(this.detail_panel.getElement(), true);
+    if (idx == 1) {
+      this.detail_panel.renderActivity();
+    } else {
+      var m_name = ydn.crm.sugar.ACTIVITY_MODULES[idx - 2];
+      this.detail_panel.renderUpcoming(m_name);
+    }
   }
 };
 
@@ -225,10 +263,11 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateActivity_ = function() {
 ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
     opt_continue, opt_idx) {
   var index = opt_idx || 0;
-  if (index >= ydn.crm.sugar.ACTIVITY_MODULES.length) {
+  var m_name = ydn.crm.sugar.ACTIVITY_MODULES[index];
+  if (!m_name) {
     return;
   }
-  var query = this.detail_panel.queryUpcoming(index);
+  var query = this.detail_panel.queryUpcoming(m_name);
   this.getModel().send(ydn.crm.Ch.SReq.KEYS, query).addCallbacks(function(ans) {
     var query_result = /** @type {Array.<string>} */ (ans);
     var next = index + 1;
@@ -238,7 +277,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
       this.updateUpcomingActivity_(true, next);
     }
     goog.style.setElementShown(this.getElement(), true);
-    this.setCount(ydn.crm.sugar.ACTIVITY_MODULES[index], query_result.length);
+    this.setCount(m_name, query_result.length);
   }, function(e) {
     throw e;
   }, this);
@@ -250,7 +289,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.updateUpcomingActivity_ = function(
  * @param {Date} since
  */
 ydn.crm.ui.sugar.activity.Panel.prototype.setActivityCount = function(cnt, since) {
-  var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(0));
+  var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(1));
   var ele = tab.getContentElement().firstElementChild;
   if (cnt > 0) {
     ele.textContent = cnt;
@@ -264,12 +303,12 @@ ydn.crm.ui.sugar.activity.Panel.prototype.setActivityCount = function(cnt, since
 
 
 /**
- * @param {string} name
+ * @param {ydn.crm.sugar.ModuleName} name
  * @param {number} cnt
  */
 ydn.crm.ui.sugar.activity.Panel.prototype.setCount = function(name, cnt) {
   var idx = ydn.crm.sugar.ACTIVITY_MODULES.indexOf(name);
-  var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(idx + 1));
+  var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(idx + 2));
   var ele = tab.getContentElement().querySelector('.' +
       ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL);
   if (cnt) {

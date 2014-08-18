@@ -17,15 +17,15 @@ goog.require('ydn.crm.sugar.model.Sugar');
 
 /**
  * Panel to synchronize SugarCRM and GData Contact.
- * @param {goog.dom.DomHelper} dom
  * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {goog.dom.DomHelper=} opt_dom
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.SearchPanel = function(dom, model) {
-  goog.base(this, dom);
+ydn.crm.ui.sugar.SearchPanel = function(model, opt_dom) {
+  goog.base(this, opt_dom);
   goog.asserts.assertInstanceof(model, ydn.crm.sugar.model.Sugar,
       'model must be ydn.crm.sugar.model.Sugar instance');
   this.setModel(model);
@@ -33,7 +33,7 @@ ydn.crm.ui.sugar.SearchPanel = function(dom, model) {
    * @protected
    * @type {goog.ui.Component}
    */
-  this.result_panel = new goog.ui.Component(dom);
+  this.result_panel = new goog.ui.Component(opt_dom);
   /**
    * @protected
    * @type {goog.ui.Toolbar}
@@ -135,7 +135,7 @@ ydn.crm.ui.sugar.SearchPanel.prototype.enterDocument = function() {
 
 
 /**
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.ui.sugar.SearchPanel.prototype.getRecordType = function() {
   var sel = /** @type {goog.ui.ToolbarSelect} */ (this.toolbar.getChildAt(0));

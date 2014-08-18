@@ -137,7 +137,8 @@ ydn.crm.ui.getSvgDoc_ = function() {
 /**
  * Create SVG element for icon.
  * @param {string} name icon name in the svg sprite file.
- * @param {string=} opt_cls icon class, default to 'icons'.
+ * @param {string=} opt_cls icon class, default to 'icons'. 'icons-small' use
+ * 14px x 14px sized icon.
  * @return {Element}
  */
 ydn.crm.ui.createSvgIcon = function(name, opt_cls) {

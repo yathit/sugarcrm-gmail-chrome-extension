@@ -1,3 +1,19 @@
+// Copyright 2014 YDN Authors. All Rights Reserved.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
 /**
  * @fileoverview SugarCRM header panel for account setup, host access grant and
  * display activity and search toolbar.
@@ -11,7 +27,6 @@ goog.require('goog.style');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.base');
 goog.require('ydn.crm.sugar');
-goog.require('ydn.crm.ui.sugar.SearchPanel');
 goog.require('ydn.crm.ui.sugar.activity.Panel');
 
 
@@ -150,9 +165,6 @@ ydn.crm.ui.sugar.Header.prototype.createDom = function() {
   goog.style.setElementShown(div_grant, !model.hasHostPermission());
   goog.style.setElementShown(div_login, !model.isLogin());
   goog.style.setElementShown(content_ele, this.getModel().hasHostPermission());
-
-  var search = new ydn.crm.ui.sugar.SearchPanel(dom, model);
-  this.addChild(search, true);
 
   var activity_panel = new ydn.crm.ui.sugar.activity.Panel(model, dom);
   this.addChild(activity_panel, true);

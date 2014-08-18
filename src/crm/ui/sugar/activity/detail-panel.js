@@ -202,17 +202,17 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.clear = function() {
 
 /**
  * Return query.
- * @param {number} index
+ * @param {ydn.crm.sugar.ModuleName} m_name one of ydn.crm.sugar.ACTIVITY_MODULES.
  * @return {CrmApp.ReqQuery} query
  */
-ydn.crm.ui.sugar.activity.DetailPanel.prototype.queryUpcoming = function(index) {
+ydn.crm.ui.sugar.activity.DetailPanel.prototype.queryUpcoming = function(m_name) {
   var assigned_user_id = this.getModel().getUser().getId();
   var start_date = ydn.crm.sugar.utils.toDateString(new Date());
   var kr = ydn.db.KeyRange.bound([assigned_user_id, start_date], [assigned_user_id, '\uffff']);
 
   var query = {
-    'store': ydn.crm.sugar.ACTIVITY_MODULES[index],
-    'index': ydn.crm.sugar.Record.getIndexForDeadline(ydn.crm.sugar.ACTIVITY_MODULES[index]),
+    'store': m_name,
+    'index': ydn.crm.sugar.Record.getIndexForDeadline(m_name),
     'keyRange': kr
   };
   return /** @type {CrmApp.ReqQuery} */ (/** @type {Object} */ (query));
@@ -296,14 +296,13 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderHeader_ = function(el) {
 
 /**
  * Render upcoming activity.
- * @param {number} idx
+ * @param {ydn.crm.sugar.ModuleName} m_name one of ydn.crm.sugar.ACTIVITY_MODULES.
  */
-ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcoming = function(idx) {
-  var q = this.queryUpcoming(idx);
+ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcoming = function(m_name) {
+  var q = this.queryUpcoming(m_name);
   this.getModel().send(ydn.crm.Ch.SReq.VALUES, q).addCallbacks(function(arr) {
     var results = /** @type {Array.<SugarCrm.Record>} */ (arr);
     var head = this.getDomHelper().createDom('span');
-    var m_name = ydn.crm.sugar.ACTIVITY_MODULES[idx];
     head.textContent = results.length + ' upcoming ' + m_name;
     this.renderHeader_(head);
     for (var i = 0; i < results.length; i++) {
