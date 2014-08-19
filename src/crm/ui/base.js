@@ -38,6 +38,20 @@ ydn.crm.ui.CSS_CLASS_TOOLBAR = 'toolbar';
 
 
 /**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_HEAD = 'head';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_CONTENT = 'content';
+
+
+/**
  * Convert JSON to Element.
  * @param {Object} json
  * @return {Element}
@@ -138,7 +152,7 @@ ydn.crm.ui.getSvgDoc_ = function() {
  * Create SVG element for icon.
  * @param {string} name icon name in the svg sprite file.
  * @param {string=} opt_cls icon class, default to 'icons'. 'icons-small' use
- * 14px x 14px sized icon.
+ * 14px x 14px sized icon. If `null` no class will be added.
  * @return {Element}
  */
 ydn.crm.ui.createSvgIcon = function(name, opt_cls) {
@@ -149,7 +163,11 @@ ydn.crm.ui.createSvgIcon = function(name, opt_cls) {
     svg.setAttribute('viewBox', symbol.getAttribute('viewBox'));
     svg.innerHTML = symbol.innerHTML;
   }
-  svg.classList.add(opt_cls || 'icons');
+  if (arguments.length < 2) {
+    svg.classList.add('icons');
+  } else if (goog.isString(opt_cls)) {
+    svg.classList.add(opt_cls);
+  }
   // NOTE: work around https://crbug.com/370136
   svg.style.pointerEvents = 'none';
   return svg;

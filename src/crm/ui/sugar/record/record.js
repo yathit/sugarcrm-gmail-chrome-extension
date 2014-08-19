@@ -67,7 +67,7 @@ ydn.crm.ui.sugar.record.Record = function(model, opt_dom, opt_parent) {
    * @protected
    * @type {ydn.crm.ui.sugar.record.Body}
    */
-  this.body_panel = this.getBodyPanel();
+  this.body_panel = this.createBodyPanel();
   /**
    * @final
    * @protected
@@ -143,8 +143,9 @@ ydn.crm.ui.sugar.record.Record.prototype.getParentPanel = function() {
 
 /**
  * @return {ydn.crm.ui.sugar.record.Body}
+ * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.getBodyPanel = function() {
+ydn.crm.ui.sugar.record.Record.prototype.createBodyPanel = function() {
   var model = this.getModel();
   var dom = this.getDomHelper();
   var mn = model.getModuleName();
@@ -183,22 +184,6 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
   root.appendChild(footer);
   this.footer_panel.createDom(this);
 };
-
-
-/**
- * @const
- * @type {MutationObserverInit}
- * @deprecated not using
- */
-ydn.crm.ui.sugar.record.Record.MOConfig = /** @type {MutationObserverInit} */ (/** @type {Object} */ ({
-  'childList': false,
-  'attributes': true,
-  'characterData': true,
-  'subtree': true,
-  'attributeOldValue': false,
-  'characterDataOldValue': false,
-  'attributeFilter': ['value']
-}));
 
 
 /**
@@ -422,7 +407,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
   }
   this.removeChild(this.body_panel, true);
   this.body_panel.dispose();
-  this.body_panel = this.getBodyPanel();
+  this.body_panel = this.createBodyPanel();
   this.addChildAt(this.body_panel, 0, true);
   this.reset();
 };

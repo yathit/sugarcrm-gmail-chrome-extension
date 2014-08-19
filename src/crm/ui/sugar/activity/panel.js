@@ -32,6 +32,7 @@ goog.require('goog.ui.TabBar');
 goog.require('ydn.crm.sugar.utils');
 goog.require('ydn.crm.ui.sugar.SearchPanel');
 goog.require('ydn.crm.ui.sugar.activity.DetailPanel');
+goog.require('ydn.crm.ui.sugar.activity.NewRecord');
 
 
 
@@ -96,6 +97,14 @@ ydn.crm.ui.sugar.activity.Panel.prototype.getCssClass = function() {
 
 
 /**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.activity.Panel.prototype.getContentElement = function() {
+  return this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_CONTENT);
+};
+
+
+/**
  * @const
  * @type {string}
  */
@@ -117,11 +126,13 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   var dom = this.dom_;
   var root = this.getElement();
   goog.dom.classlist.add(root, this.getCssClass());
+  var content = dom.createDom('div', ydn.crm.ui.CSS_CLASS_CONTENT);
+  root.appendChild(content);
 
   this.addChild(this.tabbar, true);
 
   var search_el = dom.createDom('div');
-  var search_svg = ydn.crm.ui.createSvgIcon('search', 'icons');
+  var search_svg = ydn.crm.ui.createSvgIcon('magnifying-glass');
   search_el.appendChild(search_svg);
   var search_tab = new goog.ui.Tab(search_el);
   search_tab.setTooltip('Search');
@@ -130,7 +141,8 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
       ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_SEARCH);
 
   var feed_el = dom.createDom('div');
-  feed_el = 'Fe';
+  var feed_svg = ydn.crm.ui.createSvgIcon('rss');
+  feed_el.appendChild(feed_svg);
   var feed_tab = new goog.ui.Tab(feed_el);
   feed_tab.setTooltip('Activity feed');
   this.tabbar.addChild(feed_tab, true);
@@ -138,13 +150,14 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
       ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED);
 
   for (var i = 0; i < ydn.crm.sugar.ACTIVITY_MODULES.length; i++) {
-    var caption = ydn.crm.sugar.ACTIVITY_MODULES[i].substr(0, 2);
-    var ele = dom.createDom('div', ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL,
-        caption);
+    var module_name = ydn.crm.sugar.ACTIVITY_MODULES[i];
+    // var caption = module_name.substr(0, 2);
+    var svg = ydn.crm.ui.createSvgIcon(module_name);
+    var ele = dom.createDom('div', ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL, svg);
     var tab = new goog.ui.Tab(ele);
-    tab.setTooltip(ydn.crm.sugar.ACTIVITY_MODULES[i]);
+    tab.setTooltip(module_name);
     this.tabbar.addChild(tab, true);
-    tab.getContentElement().classList.add(ydn.crm.sugar.ACTIVITY_MODULES[i]);
+    tab.getContentElement().classList.add(module_name);
     // tab.setVisible(false);
   }
 
@@ -165,24 +178,11 @@ ydn.crm.ui.sugar.activity.Panel.prototype.enterDocument = function() {
   hd.listen(sugar, ydn.crm.sugar.model.Sugar.Event.LOGIN, this.updaterLater_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.SELECT, this.handleTabSelect_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.UNSELECT, this.handleTabUnSelect_);
-  hd.listen(this.detail_panel.getElement(), 'click', this.handleDetailPanelClick_);
   goog.style.setElementShown(this.getElement(), false);
   goog.style.setElementShown(this.detail_panel.getElement(), false);
   // if already login, update at the beginning.
   if (sugar.isLogin()) {
     this.updaterLater_();
-  }
-};
-
-
-/**
- * @param {Event} e
- * @private
- */
-ydn.crm.ui.sugar.activity.Panel.prototype.handleDetailPanelClick_ = function(e) {
-  var name = e.target.getAttribute('name');
-  if (name == 'close') {
-    this.tabbar.setSelectedTabIndex(-1);
   }
 };
 
@@ -292,11 +292,9 @@ ydn.crm.ui.sugar.activity.Panel.prototype.setActivityCount = function(cnt, since
   var tab = /** @type {goog.ui.Tab} */ (this.tabbar.getChildAt(1));
   var ele = tab.getContentElement().firstElementChild;
   if (cnt > 0) {
-    ele.textContent = cnt;
     var t = goog.date.relative.format(since.getTime()) || since.toLocaleDateString();
     tab.setTooltip(cnt + ' records updated since ' + t);
   } else {
-    ele.textContent = 'Fe';
     tab.setTooltip('');
   }
 };
@@ -312,11 +310,11 @@ ydn.crm.ui.sugar.activity.Panel.prototype.setCount = function(name, cnt) {
   var ele = tab.getContentElement().querySelector('.' +
       ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_TAB_LABEL);
   if (cnt) {
-    ele.textContent = cnt;
+    // ele.textContent = cnt;
     tab.setTooltip(cnt + ' upcoming ' + name);
     // tab.setVisible(true);
   } else {
-    ele.textContent = '0';
+    // ele.textContent = '0';
     tab.setTooltip('No upcoming ' + name);
     // tab.setVisible(false);
   }

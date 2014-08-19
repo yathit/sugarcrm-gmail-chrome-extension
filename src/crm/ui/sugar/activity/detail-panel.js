@@ -286,11 +286,6 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderHeader_ = function(el) {
   var head = this.getHeadElement();
   head.innerHTML = '';
   head.appendChild(el);
-  var close = this.getDomHelper().createDom('div', ydn.crm.ui.sugar.activity.DetailPanel.CSS_CLASS_CLOSE);
-  close.innerHTML = '&#x25B2';
-  close.setAttribute('title', 'Close');
-  close.setAttribute('name', 'close');
-  head.appendChild(close);
 };
 
 

@@ -71,27 +71,15 @@
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
  */
 /* CSS related to specific modules */
-.activity-panel .goog-tab-bar {
-  border-bottom: none; }
-.activity-panel .goog-tab-bar-top {
-  border-bottom: none !important; }
-.activity-panel .activity-feed {
-  min-width: 16px;
-  background-color: lightgreen; }
 .activity-panel .goog-tab {
   min-width: 16px;
-  border-radius: 3px; }
-.activity-panel .goog-tab.Calls {
-  background-color: #0b3a72; }
-.activity-panel .goog-tab.Meetings {
-  background-color: #e6af17; }
-.activity-panel .goog-tab.Opportunities {
-  background-color: #7115ce; }
-.activity-panel .goog-tab.Tasks {
-  background-color: #d81982; }
+  text-decoration: none; }
 .activity-panel .goog-tab > * {
-  text-align: center;
-  color: white; }
+  text-align: center; }
+.activity-panel .detail-panel, .activity-panel .search-panel {
+  border-bottom: 1px solid lightblue;
+  border-left: 1px solid lightblue;
+  border-right: 1px solid lightblue; }
 .activity-panel .detail-panel .detail-item {
   padding: 4px; }
 .activity-panel .detail-panel > .header > .close {
@@ -99,9 +87,9 @@
   display: inline-block;
   cursor: pointer; }
 .activity-panel .detail-panel > .content {
-  clear: both; }
-.activity-panel .goog-tab {
-  text-decoration: none; }
+  clear: both;
+  max-height: 200px;
+  overflow: auto; }
 
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
@@ -1752,6 +1740,7 @@ a.maia-button.maia-button-secondary {
     color: #767676; }
 
 .popup-footer-bar {
+  padding-top: 4px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start; }
