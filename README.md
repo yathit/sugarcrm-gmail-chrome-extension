@@ -9,9 +9,7 @@ Try out: [Yathit CRM Bridge (Beta)](https://chrome.google.com/webstore/detail/ya
 
 #### Developer and marketer wanted
 
-Since I, Kyaw Tun, does not have enough time for this endeavor, I am looking for developers and marketers to bootstrip this project. If interested, please drop me (kyawtun@yathit.com) describing how you would like to do.
-
-Also let me know if you have problem with project setup.
+I am looking for developers and marketers to bootstrip this project into viable product. If interested, please drop me (kyawtun@yathit.com) describing how you would like to do.
 
 
 Design Goal
