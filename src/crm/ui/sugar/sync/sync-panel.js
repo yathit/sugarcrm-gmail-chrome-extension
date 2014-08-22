@@ -152,7 +152,7 @@ ydn.crm.ui.sugar.SyncPanel.prototype.setRecordType = function(type) {
           }
         }
         if (i >= cn) {
-          var mm = new ydn.crm.sugar.model.Module(this.getModel(), module_name);
+          var mm = new ydn.crm.sugar.model.ImmutableRecord(this.getModel(), module_name);
           mm.setRecord(arr[i]);
           var child_panel = new ydn.crm.ui.sugar.Record(this.getDomHelper(), mm);
           this.content_sugar.addChild(child_panel, true);

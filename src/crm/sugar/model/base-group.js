@@ -88,33 +88,14 @@ ydn.crm.sugar.model.BaseGroup.prototype.getFieldInfo = function(name) {
  * @param {string} name group name.
  * @return {boolean}
  */
-ydn.crm.sugar.model.BaseGroup.isNormallyHide = function(name) {
+ydn.crm.sugar.model.BaseGroup.getNormallyHideDefaultSetting = function(name) {
   if (/address/i.test(name)) {
     return false;
-  } else if (['email', 'name', 'phone'].indexOf(name) >= 0) {
+  } else if (['email', 'name', 'phone', ''].indexOf(name) >= 0) {
     return false;
   } else {
     return true;
   }
-};
-
-
-/**
- * @return {boolean}
- */
-ydn.crm.sugar.model.BaseGroup.prototype.isNormallyHide = function() {
-  var setting = this.getUserSetting();
-  return setting ? !!setting['normallyHide'] : ydn.crm.sugar.model.BaseGroup.isNormallyHide(this.group_name);
-};
-
-
-/**
- * Get user setting.
- * @return {*}
- */
-ydn.crm.sugar.model.BaseGroup.prototype.getUserSetting = function() {
-  var setting = this.module.getUserSetting();
-  return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['groups', this.group_name]) : null;
 };
 
 

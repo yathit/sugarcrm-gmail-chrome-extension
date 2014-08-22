@@ -75,8 +75,7 @@ ydn.crm.Ch.Req = {
   NUKE: 'nk', // clear db
   REMOVE_SUGAR: 'remove-sugar',
   SERVER_AUDIT_LOG: 'server-audit-log',
-  SUGAR_SERVER_INFO: 'sugar-server-info',
-  USER_SETTING: 'user-setting'
+  SUGAR_SERVER_INFO: 'sugar-server-info'
 };
 
 

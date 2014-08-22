@@ -15,6 +15,7 @@ goog.require('ydn.crm.ui.sugar.field.EnumFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.FieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.InputFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.TextFieldRenderer');
+goog.require('ydn.crm.ui.sugar.setting.Field');
 
 
 
@@ -62,6 +63,14 @@ ydn.crm.ui.sugar.field.Field.prototype.getModel;
  */
 ydn.crm.ui.sugar.field.Field.prototype.getRenderer = function() {
   return this.renderer;
+};
+
+
+/**
+ * @return {!ydn.crm.ui.sugar.setting.Field}
+ */
+ydn.crm.ui.sugar.field.Field.prototype.getSetting = function() {
+  return new ydn.crm.ui.sugar.setting.Field(this.getModel().getFieldInfo());
 };
 
 
@@ -279,8 +288,7 @@ ydn.crm.ui.sugar.field.Field.prototype.getFieldName = function() {
  * Refresh UI for model changes.
  */
 ydn.crm.ui.sugar.field.Field.prototype.refresh = function() {
-  var renderer = /** @type {ydn.crm.ui.sugar.field.FieldRenderer} */ (this.getRenderer());
-  renderer.refresh(this.getElement(), this.getModel());
+  this.renderer.refresh(this);
 };
 
 
@@ -338,3 +346,34 @@ ydn.crm.ui.sugar.field.Field.prototype.hasChanged = function() {
 };
 
 
+/**
+ * Get user setting.
+ * @return {?CrmApp.SugarCrmSettingUnit}
+ */
+ydn.crm.ui.sugar.field.Field.prototype.getUserSetting = function() {
+  var setting = ydn.crm.ui.UserSetting.getInstance().getSugarCrmSetting();
+  return setting.Field[this.getFieldName()] || null;
+};
+
+
+/**
+ * Get normally hide status as display in DOM.
+ * @return {?boolean}
+ */
+ydn.crm.ui.sugar.field.Field.prototype.isNormallyHide = function() {
+  var field = this.getElement();
+  return field.classList.contains(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
+};
+
+
+/**
+ * @param {boolean} val
+ */
+ydn.crm.ui.sugar.field.Field.prototype.setNormallyHide = function(val) {
+  var ele = this.getElement();
+  if (val) {
+    ele.classList.add(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
+  } else {
+    ele.classList.remove(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
+  }
+};

@@ -1,7 +1,7 @@
 /**
- * @fileoverview Record module panel for Accounts, Contacts, Leads, etc.
+ * @fileoverview Default group renderer, create all fields by default field
+ * component.
  *
- * This module provide adding, linking and syncing.
  */
 
 
@@ -13,7 +13,7 @@ goog.require('ydn.crm.ui.sugar.field.Phone');
 
 
 /**
- * Contact sidebar panel.
+ * Default group renderer.
  * @constructor
  * @struct
  */
@@ -99,13 +99,26 @@ ydn.crm.ui.sugar.group.GroupRenderer.prototype.createDom = function(ctrl) {
     ctrl.addChild(field, true);
   }
 
-  if (model.isNormallyHide()) {
-    root.classList.add('normally-hide');
+  if (ctrl.getSetting().getNormallyHide()) {
+    root.classList.add(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
   }
 
   return root;
 };
 
 
+/**
+ * @param {ydn.crm.ui.sugar.group.Group} ctrl
+ */
+ydn.crm.ui.sugar.group.GroupRenderer.prototype.refresh = function(ctrl) {
+
+  for (var i = 0; i < ctrl.getChildCount(); i++) {
+    var child = /** @type {ydn.crm.ui.sugar.field.Field} */ (ctrl.getChildAt(i));
+    if (ydn.crm.ui.sugar.group.GroupRenderer.DEBUG && !child) {
+      window.console.error(this + ' child ' + i + ' ' + child);
+    }
+    child.refresh();
+  }
+};
 
 

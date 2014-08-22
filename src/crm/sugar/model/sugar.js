@@ -1,16 +1,16 @@
 // Copyright 2014 YDN Authors. All Rights Reserved.
 //
 // This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
+//    GNU Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU General Public License
+// You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
@@ -25,7 +25,7 @@
 goog.provide('ydn.crm.sugar.model.Sugar');
 goog.require('goog.events.EventHandler');
 goog.require('ydn.crm.Ch');
-goog.require('ydn.crm.sugar.model.Module');
+goog.require('ydn.crm.sugar.model.ImmutableRecord');
 goog.require('ydn.crm.sugar.model.events');
 goog.require('ydn.debug.error.ConstraintError');
 
@@ -64,11 +64,6 @@ ydn.crm.sugar.model.Sugar = function(about, arr) {
    */
   this.info = /** @type {SugarCrm.ServerInfo} */ ({});
 
-  /**
-   * User setting.
-   * @type {Object}
-   */
-  this.user_setting = null;
   /**
    * @protected
    * @type {goog.events.EventHandler}
@@ -162,12 +157,15 @@ ydn.crm.sugar.model.Sugar.prototype.isLogin = function() {
  * @private
  */
 ydn.crm.sugar.model.Sugar.prototype.initUser_ = function() {
-  if (this.about && this.about.userName) {
-    this.send(ydn.crm.Ch.SReq.LOGIN_USER).addCallback(function(obj) {
-      if (obj && obj['id']) {
-        this.user_.setData(/** @type {SugarCrm.Record} */ (obj));
-      }
-    }, this);
+  if (this.about) {
+    if (this.about.userName) {
+      this.send(ydn.crm.Ch.SReq.LOGIN_USER).addCallback(function(obj) {
+        if (obj && obj['id']) {
+          this.user_.setData(/** @type {SugarCrm.Record} */ (obj));
+        }
+      }, this);
+    }
+
   }
 };
 
@@ -192,7 +190,7 @@ ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
 
 
 /**
- * @return {string?}
+ * @return {?string}
  */
 ydn.crm.sugar.model.Sugar.prototype.getUserLabel = function() {
   return this.user_.value('name') || this.about.userName || null;
@@ -212,24 +210,6 @@ ydn.crm.sugar.model.Sugar.prototype.getUser = function() {
  */
 ydn.crm.sugar.model.Sugar.prototype.getChannel = function() {
   return ydn.msg.getChannel(ydn.msg.Group.SUGAR, this.getDomain());
-};
-
-
-/**
- * Set user setting.
- * @param {Object} setting
- */
-ydn.crm.sugar.model.Sugar.prototype.setUserSetting = function(setting) {
-  this.user_setting = setting;
-};
-
-
-/**
- * Get user setting.
- * @return {Object}
- */
-ydn.crm.sugar.model.Sugar.prototype.getUserSetting = function() {
-  return this.user_setting || null;
 };
 
 
@@ -552,7 +532,6 @@ ydn.crm.sugar.model.Sugar.list = function() {
 ydn.crm.sugar.model.Sugar.prototype.disposeInternal = function() {
   goog.base(this, 'disposeInternal');
   this.info = null;
-  this.user_setting = null;
   this.handler.dispose();
   this.handler = null;
 };

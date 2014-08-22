@@ -13,7 +13,7 @@ goog.require('ydn.crm.inj.sugar.RecordRenderer');
 /**
  * Panel to synchronize SugarCRM and GData Contact.
  * @param {goog.dom.DomHelper} dom
- * @param {ydn.crm.sugar.model.Module} model
+ * @param {ydn.crm.sugar.model.ImmutableRecord} model
  * @constructor
  * @struct
  * @extends {goog.ui.Control}
@@ -27,7 +27,7 @@ goog.inherits(ydn.crm.ui.sugar.Record, goog.ui.Control);
 
 
 /**
- * @return {ydn.crm.sugar.model.Module}
+ * @return {ydn.crm.sugar.model.ImmutableRecord}
  */
 ydn.crm.ui.sugar.Record.prototype.getModel;
 

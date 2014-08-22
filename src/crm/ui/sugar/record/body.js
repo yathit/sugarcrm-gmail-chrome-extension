@@ -26,11 +26,11 @@ goog.provide('ydn.crm.ui.sugar.record.Body');
 
 
 /**
- * Heading panel
+ * Record body panel.
  * @param {ydn.crm.sugar.model.Record} model
  * @param {goog.dom.DomHelper} dom
  * @constructor
- *  @struct
+ * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
@@ -48,13 +48,6 @@ ydn.crm.ui.sugar.record.Body.DEBUG = false;
 
 
 /**
- * @const
- * @type {string} class name for body content when viewing.
- */
-ydn.crm.ui.sugar.record.Body.CSS_CLASS_DETAIL = 'detail';
-
-
-/**
  * @return {ydn.crm.sugar.model.Record}
  * @override
  */
@@ -66,12 +59,13 @@ ydn.crm.ui.sugar.record.Body.prototype.getModel;
  * @param {boolean} val
  */
 ydn.crm.ui.sugar.record.Body.prototype.setEditMode = function(val) {
+  var root = this.getElement();
   if (val) {
-    this.getElement().classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
-    this.getElement().classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
+    root.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
+    root.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
   } else {
-    this.getElement().classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
-    this.getElement().classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
+    root.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
+    root.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
   }
 };
 
@@ -226,5 +220,22 @@ ydn.crm.ui.sugar.record.Body.prototype.refresh = function() {
 };
 
 
-
-
+/**
+ * @param {ydn.crm.ui.sugar.events.SettingChangeEvent} ev
+ */
+ydn.crm.ui.sugar.record.Body.prototype.handleSettingChange = function(ev) {
+  if (ev.key == ydn.crm.ui.UserSetting.SugarCrmSettingUnitKey.NORMALLY_HIDE) {
+    var value = /** @type {boolean} */ (ev.value);
+    if (ev.setting instanceof ydn.crm.ui.sugar.setting.Field) {
+      var field = this.getFieldByName(ev.setting.getName());
+      if (field) {
+        field.setNormallyHide(value);
+      }
+    } else if (ev.setting instanceof ydn.crm.ui.sugar.setting.Group) {
+      var group = this.getChildByGroup(ev.setting.getName());
+      if (group) {
+        group.setNormallyHide(value);
+      }
+    }
+  }
+};

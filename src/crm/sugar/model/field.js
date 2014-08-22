@@ -1,16 +1,16 @@
 // Copyright 2014 YDN Authors. All Rights Reserved.
 //
 // This program is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// it under the terms of the GNU Lesser General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
 // (at your option) any later version.
 //
 //    This program is distributed in the hope that it will be useful,
 //    but WITHOUT ANY WARRANTY; without even the implied warranty of
 //    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
+//    GNU Lesser General Public License for more details.
 //
-// You should have received a copy of the GNU General Public License
+// You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
@@ -72,6 +72,16 @@ ydn.crm.sugar.model.Field.prototype.getFieldName = function() {
  */
 ydn.crm.sugar.model.Field.prototype.getFieldInfo = function() {
   return this.parent.getFieldInfo(this.field_name);
+};
+
+
+/**
+ * Get group name.
+ * @return {string}
+ */
+ydn.crm.sugar.model.Field.prototype.getGroupName = function() {
+  var info = this.getFieldInfo();
+  return info ? info.group : '';
 };
 
 
@@ -152,44 +162,6 @@ ydn.crm.sugar.model.Field.prototype.getType = function() {
 
 
 /**
- * @const
- * @type {!Array.<string>}
- */
-ydn.crm.sugar.model.Field.NORMALLY_HIDE = ['full_name', 'converted', 'date_entered', 'date_modified',
-  'modified_user_id', 'modified_by_name', 'created_by', 'created_by_name', 'deleted', 'account_id',
-  'email_and_name1', 'invalid_email', 'team_id',
-  'team_set_id', 'team_count', 'assigned_user_id', 'preferred_language', 'status', 'id'];
-
-
-/**
- * List of normally hide group names.
- * @const
- * @type {Array.<string>}
- */
-ydn.crm.sugar.model.Field.NORMALLY_SHOW = ['name', 'email'];
-
-
-/**
- * Return default setting.
- * @param {string} name group name.
- * @return {boolean}
- */
-ydn.crm.sugar.model.Field.isNormallyHide = function(name) {
-  return ydn.crm.sugar.model.Field.NORMALLY_SHOW.indexOf(name) == -1;
-};
-
-
-/**
- * Get user setting.
- * @return {*}
- */
-ydn.crm.sugar.model.Field.prototype.getUserSetting = function() {
-  var setting = this.parent.getUserSetting();
-  return goog.isObject(setting) ? goog.object.getValueByKeys(setting, ['fields', this.field_name]) : null;
-};
-
-
-/**
  * Check the field value is calculated or not.
  * @return {boolean}
  */
@@ -235,15 +207,6 @@ ydn.crm.sugar.model.Field.FieldOption;
  */
 ydn.crm.sugar.model.Field.prototype.getMoreOptions = function() {
   return [];
-};
-
-
-/**
- * @return {boolean}
- */
-ydn.crm.sugar.model.Field.prototype.isNormallyHide = function() {
-  var setting = this.getUserSetting();
-  return setting ? !!setting['normallyHide'] : ydn.crm.sugar.model.Field.isNormallyHide(this.field_name);
 };
 
 

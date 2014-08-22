@@ -599,6 +599,39 @@
  * See the COPYING file for details.
  */
 /*
+ * Standard styling for menus created by goog.ui.SubMenuRenderer.
+ *
+ * @author attila@google.com (Attila Bodis)
+ */
+/* State: resting. */
+/* @noflip */
+.goog-submenu-arrow {
+  color: #000;
+  left: auto;
+  padding-right: 6px;
+  position: absolute;
+  right: 0;
+  text-align: right; }
+
+/* BiDi override. */
+/* @noflip */
+.goog-menuitem-rtl .goog-submenu-arrow {
+  text-align: left;
+  left: 0;
+  right: auto;
+  padding-left: 6px; }
+
+/* State: disabled. */
+.goog-menuitem-disabled .goog-submenu-arrow {
+  color: #ccc; }
+
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/*
  * Standard styling for toolbars and toolbar items.
  *
  * @author attila@google.com (Attila Bodis)
@@ -1192,29 +1225,6 @@ a.maia-button.maia-button-secondary {
   text-align: center; }
 
 /* Record */
-.iconic {
-  width: 16px;
-  height: 16px; }
-
-.icons, .logo-small {
-  margin: auto auto;
-  display: inline-block;
-  width: 16px;
-  height: 16px; }
-
-.icons-small {
-  margin: auto auto;
-  display: inline-block;
-  width: 14px;
-  height: 14px; }
-
-.logo-small {
-  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
-
-.icon-box {
-  display: inline-block;
-  margin: auto auto; }
-
 .field {
   display: flex;
   flex-flow: row wrap; }
@@ -1224,6 +1234,9 @@ a.maia-button.maia-button-secondary {
 
 .field:hover > sup.name {
   display: inline !important; }
+
+.record-body .field.empty {
+  display: none; }
 
 .record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field TEXTAREA {
   padding: 1px 0px 1px 1px;
@@ -1236,13 +1249,10 @@ a.maia-button.maia-button-secondary {
   border: 0;
   color: #000000; }
 
-.record-body .field.empty {
-  display: none; }
-
 /*
  * make input look like label. This setting is obtained from Gmail contact editor.
 */
-.record-body .field INPUT {
+.record-body .field > INPUT {
   background-color: transparent;
   vertical-align: text-top; }
 
@@ -1290,15 +1300,6 @@ a.maia-button.maia-button-secondary {
   display: inline-block;
   border: thin solid #d3d3d3;
   border-radius: 2px; }
-
-.delete-field {
-  width: 16px;
-  height: 16px;
-  background: url("chrome-extension://__MSG_@@extension_id__/image/delete.svg") left center no-repeat; }
-
-.delete-field.confirm {
-  display: inline-block;
-  fill: #ff0000; }
 
 .more-menu {
   position: relative; }
@@ -1436,10 +1437,33 @@ a.maia-button.maia-button-secondary {
   fill: white;
   background-color: #37880e; }
 
+.edit-button {
+  padding: 2px 4px;
+  box-sizing: border-box;
+  border-radius: 2px; }
+
+.edit-button.active {
+  background-color: #d3d3d3; }
+
+.record-body-header > * {
+  padding-left: 4px; }
+
+.record-body .normally-hide {
+  display: none; }
+
+.record.detail .record-body .normally-hide {
+  display: block; }
+
+.record-header .head {
+  display: flex;
+  flex-direction: row; }
+  .record-header .head .center {
+    flex-grow: 1;
+    flex-shrink: 1; }
 .record-header .title {
   vertical-align: middle;
-  line-height: 20px; }
-
+  line-height: 20px;
+  text-overflow: ellipsis; }
 .record-header .icon {
   display: inline-block;
   width: 16px;
@@ -1452,30 +1476,17 @@ a.maia-button.maia-button-secondary {
   border: none;
   color: #ffffff;
   vertical-align: middle; }
-
 .record-header .link {
-  float: right;
   display: none; }
-
-.record-header:hover .link {
-  display: inline !important; }
-
 .record-header .link.synced {
   display: inline;
-  float: right;
   width: 20px;
   height: 16px;
   vertical-align: middle;
   background: url("chrome-extension://__MSG_@@extension_id__/image/sync.svg") left center no-repeat; }
 
-.record-body-header > * {
-  padding-left: 4px; }
-
-.record-body .normally-hide {
-  display: none; }
-
-.record-body.detail .normally-hide {
-  display: inherit; }
+.record-header:hover .link {
+  display: inline !important; }
 
 .secondary {
   margin-left: 4px;

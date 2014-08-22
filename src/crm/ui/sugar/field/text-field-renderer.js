@@ -51,10 +51,11 @@ ydn.crm.ui.sugar.field.TextFieldRenderer.prototype.createDom = function(field) {
 
 
 /**
- * @param {Element} ele_field
- * @param {ydn.crm.sugar.model.Field?} model Element to decorate.
+ * @inheritDoc
  */
-ydn.crm.ui.sugar.field.TextFieldRenderer.prototype.refresh = function(ele_field, model) {
+ydn.crm.ui.sugar.field.TextFieldRenderer.prototype.refresh = function(ctrl) {
+  var ele_field = ctrl.getElement();
+  var model = ctrl.getModel();
   goog.style.setElementShown(ele_field, !!model);
   if (!model) {
     return;
@@ -72,6 +73,10 @@ ydn.crm.ui.sugar.field.TextFieldRenderer.prototype.refresh = function(ele_field,
     ele_field.classList.remove(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_EMPTY);
   } else {
     ele_field.classList.add(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_EMPTY);
+  }
+
+  if (!model.getGroupName() && ctrl.getSetting().getNormallyHide()) {
+    ele_field.classList.add(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
   }
 };
 

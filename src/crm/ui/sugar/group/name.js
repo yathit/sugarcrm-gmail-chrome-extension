@@ -23,8 +23,7 @@ goog.require('ydn.crm.ui.sugar.group.SimpleGroup');
  * @extends {ydn.crm.ui.sugar.group.SimpleGroup}
  */
 ydn.crm.ui.sugar.group.Name = function(model, opt_dom) {
-  var renderer = ydn.crm.ui.sugar.group.NameRenderer.getInstance();
-  goog.base(this, model, renderer, opt_dom);
+  goog.base(this, model, null, opt_dom);
 };
 goog.inherits(ydn.crm.ui.sugar.group.Name, ydn.crm.ui.sugar.group.SimpleGroup);
 

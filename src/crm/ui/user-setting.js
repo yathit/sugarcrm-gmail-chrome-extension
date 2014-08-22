@@ -20,10 +20,17 @@ goog.require('ydn.ui.MessageBox');
  */
 ydn.crm.ui.UserSetting = function() {
   /**
-   * @type {YdnApiUser?}
+   * @type {?YdnApiUser}
    */
   this.login_info = null;
   this.user_setting = null;
+
+  /**
+   * User setting for sugarcrm.
+   * @type {?CrmApp.SugarCrmSetting}
+   * @private
+   */
+  this.sugar_settings_ = null;
 
   /**
    * @type {goog.async.Deferred}
@@ -58,7 +65,7 @@ ydn.crm.ui.UserSetting.prototype.isLogin = function() {
 
 
 /**
- * @return {YdnApiUser?}
+ * @return {?YdnApiUser}
  */
 ydn.crm.ui.UserSetting.prototype.getUserInfo = function() {
   return this.login_info; // should return cloned object.
@@ -95,9 +102,14 @@ ydn.crm.ui.UserSetting.prototype.getContextPanelPosition = function() {
 ydn.crm.ui.UserSetting.prototype.onReady = function() {
   if (!this.df_) {
     // init data.
-    var req1 = ydn.msg.getChannel().send(ydn.crm.Ch.Req.USER_SETTING).addCallback(function(x) {
-      this.user_setting = x || ydn.crm.ui.UserSetting.USER_SETTING_DEFAULT;
-    }, this);
+    var me = this;
+    var req1 = new goog.async.Deferred();
+    chrome.storage.sync.get(ydn.crm.base.SyncKey.USER_SETTING, function(val) {
+      var x = val[ydn.crm.base.SyncKey.USER_SETTING];
+      me.user_setting = x || ydn.crm.ui.UserSetting.USER_SETTING_DEFAULT;
+      req1.callback(me.user_setting);
+    });
+
     var req2 = ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOGIN_INFO).addCallbacks(function(x) {
       if (!x) {
         this.logger.warning('login fail');
@@ -218,41 +230,6 @@ ydn.crm.ui.UserSetting.Key = {
  * @const
  * @type {!Object}
  */
-ydn.crm.ui.UserSetting.BASE_DEFAULT = {
-  'Display': {
-    'NormallyHide': {
-      'full_name': true,
-      'converted': true,
-      'date_entered': true,
-      'date_modified': true,
-      'modified_user_id': true,
-      'modified_by_name': true,
-      'created_by': true,
-      'created_by_name': true,
-      'deleted': true,
-      'account_id': true,
-      'email_and_name1': true,
-      'invalid_email': true,
-      'team_id': true,
-      'team_set_id': true,
-      'team_count': true,
-      'assigned_user_id': true,
-      'preferred_language': true,
-      'status': true,
-      'id': true
-    },
-    'NormallyShow': {
-      'name': true,
-      'email': true
-    }
-  }
-};
-
-
-/**
- * @const
- * @type {!Object}
- */
 ydn.crm.ui.UserSetting.USER_SETTING_DEFAULT = {};
 
 
@@ -267,37 +244,67 @@ ydn.crm.ui.UserSetting.prototype.getSetting = function(key_path) {
 
 
 /**
- * Get module default setting.
- * @param {string} name module name.
- * @return {Object} modules_info
+ * @type {!CrmApp.SugarCrmSetting}
+ * @private
  */
-ydn.crm.ui.UserSetting.prototype.getModuleDefault = function(name) {
-  var base_info = /** @type {Object} */ (goog.object.getValueByKeys(
-      ydn.crm.ui.UserSetting.BASE_DEFAULT,
-      'Display', 'NormallyShow'));
-  return base_info;
+ydn.crm.ui.UserSetting.DEFAULT_SUGAR_SETTING_ = /** @type {!CrmApp.SugarCrmSetting} */ (
+    {'Group': {}, 'Field': {}});
+
+
+/**
+ * Get SugarCrm setting.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.ui.UserSetting.prototype.loadSugarCrmSetting = function() {
+  // keep setting in memory so that, setting is shared among sugarcrm instance.
+  if (!this.sugar_settings_) {
+    var me = this;
+    var df = new goog.async.Deferred();
+    var key = ydn.crm.base.SyncKey.SUGAR_SETTING;
+    chrome.storage.sync.get(key, function(val) {
+      me.sugar_settings_ = val[key] || ydn.crm.ui.UserSetting.DEFAULT_SUGAR_SETTING_;
+      df.callback(me.sugar_settings_);
+    });
+    return df;
+  } else {
+    return goog.async.Deferred.succeed(this.sugar_settings_);
+  }
 };
 
 
 /**
- * Apply user display setting.
- * @param {Object} modules_info
+ * Persist sugarcrm setting.
+ * @return {!goog.async.Deferred}
  */
-ydn.crm.ui.UserSetting.prototype.applyUserSetting = function(modules_info) {
+ydn.crm.ui.UserSetting.prototype.saveSugarCrmSetting = function() {
+  var key = ydn.crm.base.SyncKey.SUGAR_SETTING;
+  var obj = {};
+  obj[key] = this.sugar_settings_;
+  var df = new goog.async.Deferred();
+  chrome.storage.sync.set(obj, function() {
+    df.callback(obj);
+  });
+  return df;
+};
 
 
-  var normallyShow = this.getSetting(['Modules', modules_info.module_name,
-    'Display', 'NormallyShow']);
-  if (!goog.isDef(normallyShow)) {
-    normallyShow = this.getModuleDefault(modules_info.module_name);
+/**
+ * Key of CrmApp.SugarCrmSettingUnit
+ * @enum {string}
+ */
+ydn.crm.ui.UserSetting.SugarCrmSettingUnitKey = {
+  NORMALLY_HIDE: 'normallyHide'
+};
+
+
+/**
+ * @return {!CrmApp.SugarCrmSetting}
+ */
+ydn.crm.ui.UserSetting.prototype.getSugarCrmSetting = function() {
+  if (!this.sugar_settings_) {
+    this.loadSugarCrmSetting();
   }
-  if (normallyShow) {
-    for (var field in modules_info.module_fields) {
-      if (!normallyShow[field]) {
-        modules_info.module_fields[field]['normallyHide'] = true;
-      }
-    }
-  }
+  return this.sugar_settings_ || ydn.object.clone(ydn.crm.ui.UserSetting.DEFAULT_SUGAR_SETTING_);
 };
 
 

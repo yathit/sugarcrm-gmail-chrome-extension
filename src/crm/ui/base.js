@@ -27,6 +27,13 @@ ydn.crm.ui.CSS_CLASS_EMPTY = 'empty';
  * @const
  * @type {string} error class
  */
+ydn.crm.ui.CSS_CLASS_ACTIVE = 'active';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
 ydn.crm.ui.CSS_CLASS_ERROR = 'error';
 
 
@@ -49,6 +56,13 @@ ydn.crm.ui.CSS_CLASS_HEAD = 'head';
  * @type {string} error class
  */
 ydn.crm.ui.CSS_CLASS_CONTENT = 'content';
+
+
+/**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE = 'normally-hide';
 
 
 /**
