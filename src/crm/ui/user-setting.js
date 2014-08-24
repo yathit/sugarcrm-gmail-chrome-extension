@@ -39,7 +39,15 @@ ydn.crm.ui.UserSetting = function() {
   this.df_ = null;
 
   ydn.crm.shared.init(); // make sure initialized.
+
+  /**
+   * Gmail.
+   * @type {?string}
+   * @private
+   */
+  this.gmail_ = null;
 };
+goog.addSingletonGetter(ydn.crm.ui.UserSetting);
 
 
 /**
@@ -65,21 +73,20 @@ ydn.crm.ui.UserSetting.prototype.isLogin = function() {
 
 
 /**
- * @return {?YdnApiUser}
+ * True if login to YDN server and, if in content script, email account and
+ * login account are same.
+ * @return {boolean}
  */
-ydn.crm.ui.UserSetting.prototype.getUserInfo = function() {
-  return this.login_info; // should return cloned object.
+ydn.crm.ui.UserSetting.prototype.hasValidLogin = function() {
+  return this.isLogin() && (!this.gmail_ || this.gmail_ == this.login_info.email);
 };
 
 
 /**
- * @return {ydn.crm.ui.UserSetting}
+ * @return {?YdnApiUser}
  */
-ydn.crm.ui.UserSetting.getInstance = function() {
-  if (!ydn.crm.ui.UserSetting.instance_) {
-    ydn.crm.ui.UserSetting.instance_ = new ydn.crm.ui.UserSetting();
-  }
-  return ydn.crm.ui.UserSetting.instance_;
+ydn.crm.ui.UserSetting.prototype.getUserInfo = function() {
+  return this.login_info; // should return cloned object.
 };
 
 
@@ -103,26 +110,42 @@ ydn.crm.ui.UserSetting.prototype.onReady = function() {
   if (!this.df_) {
     // init data.
     var me = this;
-    var req1 = new goog.async.Deferred();
+
     chrome.storage.sync.get(ydn.crm.base.SyncKey.USER_SETTING, function(val) {
       var x = val[ydn.crm.base.SyncKey.USER_SETTING];
       me.user_setting = x || ydn.crm.ui.UserSetting.USER_SETTING_DEFAULT;
-      req1.callback(me.user_setting);
     });
 
-    var req2 = ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOGIN_INFO).addCallbacks(function(x) {
-      if (!x) {
+    this.df_ = ydn.gmail.Utils.getUserEmail().addBoth(function(email) {
+      this.gmail_ = email;
+      return ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOGIN_INFO, {
+        'gmail': email
+      }).addCallbacks(function(x) {
+        if (!x) {
+          this.logger.warning('login fail');
+        }
+        this.login_info = x;
+      }, function(e) {
+        this.login_info = null;
         this.logger.warning('login fail');
-      }
-      this.login_info = x;
-    }, function(e) {
-      this.login_info = null;
-      this.logger.warning('login fail');
+      }, this);
     }, this);
 
-    this.df_ = goog.async.DeferredList.gatherResults([req1, req2]);
   }
   return this.df_;
+};
+
+
+/**
+ * Invalidate login and user setting data.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.ui.UserSetting.prototype.invalidate = function() {
+  this.login_info = null;
+  this.user_setting = null;
+  this.df_ = null;
+  // this.gmail_ = null; // cannot be change.
+  return this.onReady();
 };
 
 
@@ -131,9 +154,18 @@ ydn.crm.ui.UserSetting.prototype.onReady = function() {
  * @return {string} gdata_account Google account id, i.e., email address. If call
  * before ready cause assertion error.
  */
-ydn.crm.ui.UserSetting.prototype.getGmail = function() {
+ydn.crm.ui.UserSetting.prototype.getLoginEmail = function() {
   goog.asserts.assert(this.login_info, 'UserSetting not ready');
   return this.login_info.email;
+};
+
+
+/**
+ * In gmail content script, this return gmail address.
+ * @return {?string} gmail address.
+ */
+ydn.crm.ui.UserSetting.prototype.getGmail = function() {
+  return this.gmail_;
 };
 
 
@@ -384,7 +416,7 @@ ydn.crm.ui.UserSetting.Dialog.prototype.handleCancel = function(e) {
  */
 ydn.crm.ui.UserSetting.prototype.show = function() {
   var title = 'Yathit CRM Setting';
-  if (!this.isLogin()) {
+  if (!this.hasValidLogin()) {
     return ydn.ui.MessageBox.show(title, 'User setting cannot change because ' +
         'you are not login Yathit server.');
   }

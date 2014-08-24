@@ -61,7 +61,7 @@ ydn.crm.inj.App = function() {
    * @protected
    * @type {ydn.crm.inj.AppRenderer}
    */
-  this.renderer = new ydn.crm.inj.AppRenderer();
+  this.renderer = new ydn.crm.inj.InlineRenderer();
 
   /**
    * @type {Element}
@@ -307,38 +307,71 @@ ydn.crm.inj.App.SHOW_TABPANE = true;
 
 
 /**
- * Attach context panel as in user setting.
- * @private
+ * @param {ydn.msg.Event} e
  */
-ydn.crm.inj.App.prototype.redraw_ = function() {
-  // update positioning
-  this.context_panel_position = this.user_setting.getContextPanelPosition();
-  if (this.context_panel_position == ydn.crm.ui.ContextPanelPosition.INLINE) {
-    if (!this.renderer || !(this.renderer instanceof ydn.crm.inj.InlineRenderer)) {
-      this.renderer = new ydn.crm.inj.InlineRenderer(this.root_ele);
-      this.renderer.attach();
-      if (ydn.crm.inj.App.DEBUG) {
-        window.console.log('InlineRenderer attached');
-      }
+ydn.crm.inj.App.prototype.handleChannelMessage = function(e) {
+  if (ydn.crm.inj.App.DEBUG) {
+    window.console.log(e.type);
+  }
+  var us = /** @type {ydn.crm.ui.UserSetting} */ (ydn.crm.ui.UserSetting.getInstance());
+  if (e.type == ydn.crm.Ch.BReq.LIST_DOMAINS) {
+    this.updateSugarPanels_();
+  } else if (e.type == ydn.crm.Ch.BReq.LOGGED_IN) {
+    if (!us.hasValidLogin()) {
+      us.invalidate();
+      this.resetUser_();
     }
-  } else if (this.context_panel_position == ydn.crm.ui.ContextPanelPosition.WIDGET) {
-    if (!this.renderer || !(this.renderer instanceof ydn.crm.inj.WidgetRenderer)) {
-      this.renderer = new ydn.crm.inj.WidgetRenderer(this.root_ele);
-      this.renderer.attach();
-      if (ydn.crm.inj.App.DEBUG) {
-        window.console.log('WidgetRenderer attached');
-      }
-    }
-  } else {
-    // default ydn.crm.ui.ContextPanelPosition.STICKY
-    if (!this.renderer || !(this.renderer instanceof ydn.crm.inj.StickyRenderer)) {
-      this.renderer = new ydn.crm.inj.StickyRenderer(this.root_ele);
-      this.renderer.attach();
-      if (ydn.crm.inj.App.DEBUG) {
-        window.console.log('StickyRenderer attached');
-      }
+  } else if (e.type == ydn.crm.Ch.BReq.LOGGED_OUT) {
+    if (us.getLoginEmail()) {
+      us.invalidate();
+      this.resetUser_();
     }
   }
+};
+
+
+/**
+ * Reset user setting
+ * @private
+ */
+ydn.crm.inj.App.prototype.resetUser_ = function() {
+  this.user_setting.onReady().addCallbacks(function() {
+    this.logger.finest('initiating UI');
+    this.renderer.setUserSetting(this.user_setting);
+    if (this.user_setting.hasValidLogin()) {
+      this.sidebar.updateHeader();
+      this.hud.updateHeader();
+      this.updateSugarPanels_();
+      this.history.setEnabled(true);
+    } else {
+      // we are not showing any UI if user is not login.
+      // user should use browser bandage to login and refresh the page.
+      this.sidebar.updateHeader();
+      this.hud.updateHeader();
+      this.sidebar.updateSugarPanels([]);
+      this.hud.updateSugarPanels([]);
+      this.logger.warning('user not login');
+      this.history.setEnabled(false);
+    }
+  }, function(e) {
+    window.console.error(e);
+  }, this);
+};
+
+
+/**
+ * Update sugar panels.
+ * @private
+ */
+ydn.crm.inj.App.prototype.updateSugarPanels_ = function() {
+  ydn.msg.getChannel().send(ydn.crm.Ch.Req.LIST_SUGAR).addCallback(
+      function(sugars) {
+        if (ydn.crm.ui.SimpleSidebarPanel.DEBUG) {
+          window.console.log(sugars);
+        }
+        this.sidebar.updateSugarPanels(sugars);
+        this.hud.updateSugarPanels(sugars);
+      }, this);
 };
 
 
@@ -350,29 +383,17 @@ ydn.crm.inj.App.prototype.init = function() {
 
   this.hud.render();
 
+  goog.events.listen(ydn.msg.getMain(),
+      [ydn.crm.Ch.BReq.LIST_DOMAINS,
+        ydn.crm.Ch.BReq.LOGGED_OUT, ydn.crm.Ch.BReq.LOGGED_IN],
+      this.handleChannelMessage, false, this);
+
   var delay = (0.5 + Math.random()) * 60 * 1000;
   setTimeout(function() {
     ydn.debug.ILogger.instance.beginUploading();
   }, delay);
 
-  this.user_setting.onReady().addCallbacks(function() {
-    this.logger.finest('initiating UI');
-    this.renderer.setUserSetting(this.user_setting);
-    if (this.user_setting.isLogin()) {
-      this.sidebar.init();
-      this.hud.init();
-      this.history.setEnabled(true);
-      this.redraw_();
-    } else {
-      // we are not showing any UI if user is not login.
-      // user should use browser bandage to login and refresh the page.
-      this.hud.init();
-      this.logger.warning('user not login');
-      this.history.setEnabled(false);
-    }
-  }, function(e) {
-    throw e;
-  }, this);
+  this.resetUser_();
 
 };
 
@@ -396,21 +417,6 @@ ydn.crm.inj.App.prototype.initData = function(user_info) {
 
 
 /**
- * @param {YdnApiUser} user_info
- * @protected
- */
-ydn.crm.inj.App.prototype.handleLogin = function(user_info) {
-  if (user_info && user_info.email) {
-    this.logger.finest('user ' + user_info.email + ' login');
-    this.sidebar.init();
-    this.history.setEnabled(true);
-  } else {
-    this.history.setEnabled(false);
-  }
-};
-
-
-/**
  * Main entry script to run the app.
  * @return {ydn.crm.inj.App}
  */
@@ -418,19 +424,7 @@ ydn.crm.inj.App.runApp = function() {
   ydn.crm.shared.init();
 
   var app = new ydn.crm.inj.App();
-  // wait a bit while gmail loading other gadgets so that we are not slowing
-  // down gmail buildin.
-  /*
-  var tid1 = window.setInterval(function() {
-    // this footer is loaded very lately.
-    var ele = document.querySelector('a[href="http://mail.google.com/mail/help/terms.html"]');
-    if (ele) {
-      window.clearTimeout(tid1);
-      window.clearTimeout(tid2);
-      app.init();
-    }
-  }, 500);
-  */
+
   var tid2 = window.setTimeout(function() {
     // after 15 sec, we will load anyways
     app.init();

@@ -4,7 +4,6 @@
 
 
 goog.provide('ydn.crm.ui.SidebarPanel');
-goog.require('ydn.crm.ui.SidebarHeader');
 goog.require('ydn.crm.ui.SimpleSidebarPanel');
 goog.require('ydn.crm.ui.sugar.SugarPanel');
 

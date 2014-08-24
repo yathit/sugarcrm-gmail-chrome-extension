@@ -115,7 +115,7 @@ Setup.prototype.init = function() {
   link.addEventListener('click', function(e) {
     e.preventDefault();
     if (link.textContent == 'logout') {
-      ydn.msg.getChannel().send('logout');
+      ydn.msg.getChannel().send('logged-out');
     }
     Setup.openPageAsDialog_(e);
   }, true);

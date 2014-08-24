@@ -123,13 +123,6 @@ ydn.crm.ui.sugar.record.Record.CSS_CLASS = 'record-panel';
 
 /**
  * @const
- * @type {string}
- */
-ydn.crm.ui.sugar.record.Record.CSS_CLASS_CONTENT = 'content';
-
-
-/**
- * @const
  * @type {string} class name for body content when viewing.
  */
 ydn.crm.ui.sugar.record.Record.CSS_CLASS_DETAIL = 'detail';
@@ -165,7 +158,7 @@ ydn.crm.ui.sugar.record.Record.prototype.createBodyPanel = function() {
  * @inheritDoc
  */
 ydn.crm.ui.sugar.record.Record.prototype.getContentElement = function() {
-  return this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.Record.CSS_CLASS_CONTENT);
+  return this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_CONTENT);
 };
 
 
@@ -173,7 +166,7 @@ ydn.crm.ui.sugar.record.Record.prototype.getContentElement = function() {
  * @return {Element}
  */
 ydn.crm.ui.sugar.record.Record.prototype.getHeaderElement = function() {
-  return this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.Head.CSS_CLASS);
+  return this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_HEAD);
 };
 
 
@@ -186,8 +179,8 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
   var dom = this.getDomHelper();
   // root.classList.add(this.getCssClass());
   root.className = this.getCssClass() + ' ' + this.getModel().getModuleName();
-  var header = dom.createDom('div', ydn.crm.ui.sugar.record.Head.CSS_CLASS);
-  var content = dom.createDom('div', ydn.crm.ui.sugar.record.Record.CSS_CLASS_CONTENT);
+  var header = dom.createDom('div', ydn.crm.ui.CSS_CLASS_HEAD);
+  var content = dom.createDom('div', ydn.crm.ui.CSS_CLASS_CONTENT);
   root.appendChild(header);
   root.appendChild(content);
 

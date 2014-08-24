@@ -69,7 +69,7 @@ ydn.crm.Ch.Req = {
   LOG: 'log', // log bug
   LOGIN_INFO: 'login-info', // google user info, email and id
   LOGGED_IN: 'logged-in', // has been logged to server.
-  LOGGED_OUT: 'logged-out', // notice that to differenciate SUGAR login
+  LOGGED_OUT: 'logged-out',
   NEW_ENTRY: 'new-entry',
   NEW_SUGAR: 'new-sugarcrm', // create a new sugar channel, if not already exist.
   NUKE: 'nk', // clear db
@@ -86,7 +86,8 @@ ydn.crm.Ch.Req = {
 ydn.crm.Ch.BReq = {
   LIST_DOMAINS: 'list-sugarcrm-domains', // list of domain name of sugarcrm
   HOST_PERMISSION: 'host-permission',
-  LOGGED_OUT: 'logout'
+  LOGGED_OUT: 'logout',
+  LOGGED_IN: 'login'
 };
 
 

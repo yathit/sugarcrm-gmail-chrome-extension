@@ -134,7 +134,7 @@ ydn.crm.inj.AppRenderer.prototype.createDom = function() {
  */
 ydn.crm.inj.AppRenderer.prototype.setUserSetting = function(user) {
   var header = this.getHeaderElement();
-  if (user && user.isLogin()) {
+  if (user && user.hasValidLogin()) {
     goog.style.setElementShown(header, false);
   } else {
     // show header link to login.

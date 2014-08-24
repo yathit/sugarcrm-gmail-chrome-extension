@@ -1297,26 +1297,10 @@ a.maia-button.maia-button-secondary {
   fill: white;
   background-color: #37880e; }
 
-.edit-button {
-  padding: 2px 4px;
-  box-sizing: border-box;
-  border-radius: 2px; }
-
-.edit-button.active {
-  background-color: #d3d3d3; }
-
-.record-body-header > * {
-  padding-left: 4px; }
-
-.record-body .normally-hide {
-  display: none; }
-
-.record.detail .record-body .normally-hide {
-  display: block; }
-
 .record-header .head {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  align-items: center; }
   .record-header .head .center {
     flex-grow: 1;
     flex-shrink: 1; }
@@ -1347,6 +1331,24 @@ a.maia-button.maia-button-secondary {
 
 .record-header:hover .link {
   display: inline !important; }
+
+.edit-button {
+  padding: 2px 4px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  cursor: pointer; }
+
+.edit-button.active {
+  background-color: #d3d3d3; }
+
+.record-body-header > * {
+  padding-left: 4px; }
+
+.record-body .normally-hide {
+  display: none; }
+
+.record.detail .record-body .normally-hide {
+  display: block; }
 
 .secondary {
   margin-left: 4px;

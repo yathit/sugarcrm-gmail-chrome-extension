@@ -128,7 +128,7 @@ ydn.crm.ui.GmailCmd.prototype.setViewLink = function(obj) {
       ydn.crm.sugar.ModuleName.EMAILS, obj['id']);
   /*
    var message_id = obj['message_id'];
-  var gmail = ydn.crm.ui.UserSetting.getInstance().getGmail();
+  var gmail = ydn.crm.ui.UserSetting.getInstance().getLoginEmail();
    var mail_id = obj['mailbox_id'];
   if (mail_id == gmail) {
     link = ydn.crm.ui.GmailCmd.messageId2GmailLink(gmail, message_id);
@@ -307,7 +307,7 @@ ydn.crm.ui.GmailCmd.gatherEmailInfo = function(el) {
     ydn.crm.shared.logger.warning('expect a presentation role TABLE');
   }
 
-  var gmail = ydn.crm.ui.UserSetting.getInstance().getGmail();
+  var gmail = ydn.crm.ui.UserSetting.getInstance().getLoginEmail();
 
   return {
     from_addr: from_addr,

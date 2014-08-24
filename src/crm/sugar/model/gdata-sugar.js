@@ -298,7 +298,7 @@ ydn.crm.sugar.model.GDataSugar.list = function() {
         var about = /** @type {SugarCrm.About} */ (abouts[i]);
         if (about.isLogin) {
           dfs.push(user.getModuleInfo(about.domain).addCallback(function(info) {
-            return new ydn.crm.sugar.model.GDataSugar(this, info, user.getGmail());
+            return new ydn.crm.sugar.model.GDataSugar(this, info, user.getLoginEmail());
           }, about));
         }
       }

@@ -1437,26 +1437,10 @@ a.maia-button.maia-button-secondary {
   fill: white;
   background-color: #37880e; }
 
-.edit-button {
-  padding: 2px 4px;
-  box-sizing: border-box;
-  border-radius: 2px; }
-
-.edit-button.active {
-  background-color: #d3d3d3; }
-
-.record-body-header > * {
-  padding-left: 4px; }
-
-.record-body .normally-hide {
-  display: none; }
-
-.record.detail .record-body .normally-hide {
-  display: block; }
-
 .record-header .head {
   display: flex;
-  flex-direction: row; }
+  flex-direction: row;
+  align-items: center; }
   .record-header .head .center {
     flex-grow: 1;
     flex-shrink: 1; }
@@ -1487,6 +1471,24 @@ a.maia-button.maia-button-secondary {
 
 .record-header:hover .link {
   display: inline !important; }
+
+.edit-button {
+  padding: 2px 4px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  cursor: pointer; }
+
+.edit-button.active {
+  background-color: #d3d3d3; }
+
+.record-body-header > * {
+  padding-left: 4px; }
+
+.record-body .normally-hide {
+  display: none; }
+
+.record.detail .record-body .normally-hide {
+  display: block; }
 
 .secondary {
   margin-left: 4px;
@@ -1715,6 +1717,9 @@ a.maia-button.maia-button-secondary {
   width: 32px;
   transition: width 0.3s ease-in-out, left 0.3s ease-in-out; }
 
+#sticky-hud-base.invalid:not(.open) .hud-button {
+  left: 44px; }
+
 .hud-popup {
   padding: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -1762,6 +1767,12 @@ a.maia-button.maia-button-secondary {
 
 .arrow-box {
   padding-top: 0; }
+
+.invalid-login-panel {
+  padding: 8px;
+  text-align: center;
+  border-radius: 4px;
+  background-color: #f1f1f1; }
 
 #root-panel {
   width: 100%; }
