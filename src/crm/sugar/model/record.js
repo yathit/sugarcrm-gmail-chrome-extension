@@ -114,8 +114,8 @@ ydn.crm.sugar.model.Record.prototype.value = function(name) {
  * Get record title.
  * @return {string}
  */
-ydn.crm.sugar.model.Record.prototype.getTitle = function() {
-  return this.record.hasRecord() ? this.record.getTitle() : '';
+ydn.crm.sugar.model.Record.prototype.getLabel = function() {
+  return this.record.hasRecord() ? this.record.getLabel() : '';
 };
 
 
@@ -264,7 +264,11 @@ ydn.crm.sugar.model.Record.prototype.disposeInternal = function() {
  * @return {?string} null if record is not set.
  */
 ydn.crm.sugar.model.Record.prototype.getViewLink = function() {
-  return this.record && this.record.hasRecord() ? this.record.getViewLink() : null;
+  if (this.record.hasRecord()) {
+    return this.parent.getRecordViewLink(this.getModuleName(), this.getId());
+  } else {
+    return null;
+  }
 };
 
 
@@ -283,32 +287,40 @@ ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
  * @param {ydn.crm.sugar.Record} record sugarcrm record entry.
  */
 ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
+  if (record == this.record) {
+    return;
+  }
   if (ydn.crm.sugar.model.Record.DEBUG) {
     window.console.log('setRecord ' + this.record + ' to ' + record);
   }
   // validate null record
-  record = record ? record.hasRecord() ? record : null : null;
+  var m_name = record ? record.getModule() : null;
+  var vd_record = record ? record.hasRecord() ? record : null : null;
   // we dont keed null record.
   var has_change = false;
   var has_module_changed = false;
   var has_key_changed = false;
-  if (!!record) {
-    if (record !== this.record) {
+  if (!!vd_record) {
+    if (vd_record !== this.record) {
       has_change = true;
-      has_module_changed = this.record.getModule() != record.getModule();
+      has_module_changed = this.record.getModule() != vd_record.getModule();
       if (!has_module_changed) {
         if (this.hasRecord()) {
-          has_key_changed = this.record.getId() != record.getId();
+          has_key_changed = this.record.getId() != vd_record.getId();
         } else {
           has_key_changed = true;
         }
       }
-      this.record = record;
+      this.record = vd_record;
     }
-  } else if (!record && this.hasRecord()) {
+  } else if (!vd_record && this.hasRecord()) {
     has_change = true;
     has_key_changed = true;
     this.record.setData(null);
+  } else if (record && m_name != this.record.getModule()) {
+    has_module_changed = true;
+    this.record = record;
+    vd_record = record;
   }
   var name = this.record.getModule();
 
@@ -318,11 +330,11 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
   }
 
   if (has_module_changed) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(name, record, this));
+    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(name, vd_record, this));
   } else if (has_key_changed) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(record, this));
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(vd_record, this));
   } else if (has_change) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(record, this));
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(vd_record, this));
   }
 };
 
@@ -376,6 +388,14 @@ ydn.crm.sugar.model.Record.prototype.getGroupModel = function(name) {
 };
 
 
+/**
+ * @return {?SugarCrm.Record} get clone of underlying data.
+ */
+ydn.crm.sugar.model.Record.prototype.cloneData = function() {
+  return ydn.object.clone(this.record.getData());
+};
+
+
 
 if (goog.DEBUG) {
   /**
@@ -384,7 +404,7 @@ if (goog.DEBUG) {
   ydn.crm.sugar.model.Record.prototype.toString = function() {
     var s = 'ydn.crm.sugar.model.Record:' + this.record;
     if (ydn.crm.sugar.model.Record.DEBUG) {
-      s += this.randomId_;
+      s += String(this.randomId_);
     }
     return s;
   };

@@ -12,6 +12,7 @@ goog.provide('ydn.crm.sugar.model.events');
  * @enum {string}
  */
 ydn.crm.sugar.model.events.Type = {
+  CONTEXT_CHANGE: 'context-change',
   CONTEXT_DATA_CHANGE: 'context-data-change',
   CONTEXT_GDATA_CHANGE: 'context-gdata-change',
   MODULE_CHANGE: 'module-change', // change in module name
@@ -65,6 +66,41 @@ goog.inherits(ydn.crm.sugar.model.events.Event, goog.events.Event);
 
 /**
  * Event when inbox contact data change.
+ * @param {?ydn.crm.inj.ContactModel} context new contact data.
+ * @param {ydn.gdata.m8.ContactEntry=} opt_gdata contact gdata of matching email with
+ * context.
+ * @param {ydn.crm.sugar.Record=} opt_record SugarCRM record of matching email with
+ * context.
+ * @param {Object=} opt_event_target target.
+ * @extends {ydn.crm.sugar.model.events.Event}
+ * @constructor
+ * @struct
+ */
+ydn.crm.sugar.model.events.ContextChangeEvent = function(context,
+    opt_gdata, opt_record, opt_event_target) {
+  goog.base(this, ydn.crm.sugar.model.events.Type.CONTEXT_CHANGE, opt_event_target);
+  /**
+   * @final
+   * @type {?ydn.crm.inj.ContactModel}
+   */
+  this.context = context;
+  /**
+   * @final
+   * @type {?ydn.gdata.m8.ContactEntry}
+   */
+  this.gdata = opt_gdata || null;
+  /**
+   * @final
+   * @type {?ydn.crm.sugar.Record}
+   */
+  this.record = opt_record || null;
+};
+goog.inherits(ydn.crm.sugar.model.events.ContextChangeEvent, ydn.crm.sugar.model.events.Event);
+
+
+
+/**
+ * Event when inbox contact data change.
  * @param {ydn.crm.inj.ContactModel} contact new contact data.
  * @param {Object=} opt_event_target target.
  * @extends {ydn.crm.sugar.model.events.Event}
@@ -86,7 +122,7 @@ goog.inherits(ydn.crm.sugar.model.events.ContextDataChangeEvent, ydn.crm.sugar.m
 /**
  * Event when inbox contact data change.
  * @param {string} domain
- * @param {ydn.gdata.m8.NewContactEntry} contact new contact data.
+ * @param {ydn.crm.inj.ContactModel} contact new contact data.
  * @param {!Array.<ydn.gdata.m8.ContactEntry>} contacts
  * @param {Object=} opt_event_target target.
  * @extends {ydn.crm.sugar.model.events.Event}
@@ -103,7 +139,7 @@ ydn.crm.sugar.model.events.ContextGDataChangeEvent = function(domain, contact, c
   /**
    * Gmail context contact data.
    * @final
-   * @type {ydn.gdata.m8.NewContactEntry}
+   * @type {ydn.crm.inj.ContactModel}
    */
   this.context = contact;
   /**

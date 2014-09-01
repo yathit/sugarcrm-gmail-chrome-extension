@@ -55,7 +55,49 @@ ydn.crm.ui.CSS_CLASS_HEAD = 'head';
  * @const
  * @type {string} error class
  */
+ydn.crm.ui.CSS_CLASS_TITLE = 'title';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_BADGE = 'badge';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_OK_BUTTON = 'ok-button';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_MORE_MENU = 'more-menu';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_FLEX_BAR = 'flex-bar';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
 ydn.crm.ui.CSS_CLASS_CONTENT = 'content';
+
+
+/**
+ * @const
+ * @type {string} error class
+ */
+ydn.crm.ui.CSS_CLASS_FOOTER = 'footer';
 
 
 /**
@@ -183,7 +225,7 @@ ydn.crm.ui.createSvgIcon = function(name, opt_cls) {
     svg.classList.add(opt_cls);
   }
   // NOTE: work around https://crbug.com/370136
-  svg.style.pointerEvents = 'none';
+  // svg.style.pointerEvents = 'none';
   return svg;
 };
 
@@ -207,3 +249,47 @@ ydn.crm.ui.createSvgIconBySymbol = function(fileName, name) {
   svg.appendChild(use);
   return svg;
 };
+
+
+/**
+ * @type {Document}
+ * @private
+ */
+ydn.crm.ui.template_doc_ = null;
+
+
+/**
+ * Load template synchronously.
+ * @return {Document}
+ * @private
+ */
+ydn.crm.ui.getTemplate_ = function() {
+  if (!ydn.crm.ui.template_doc_) {
+    var url = chrome.extension.getURL(ydn.crm.base.INJ_TEMPLATE);
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, false);
+    xhr.onload = function() {
+      var parser = new DOMParser();
+      ydn.crm.ui.template_doc_ = parser.parseFromString(xhr.responseText, 'text/html');
+      xhr = null;
+    };
+    xhr.send();
+  }
+  return ydn.crm.ui.template_doc_;
+};
+
+
+/**
+ * @param {string} id
+ * @return {Element}
+ */
+ydn.crm.ui.getTemplateElement = function(id) {
+  var doc = ydn.crm.ui.getTemplate_();
+  var el = doc.documentElement.querySelector('#' + id);
+  if (!document.body.contains(el)) {
+    el = document.importNode(el, true);
+    document.body.appendChild(el);
+  }
+  return /** @type {Element} */ (el);
+};
+

@@ -51,16 +51,23 @@ ydn.crm.ui.sugar.group.Group.prototype.getModel;
  */
 ydn.crm.ui.sugar.group.Group.prototype.createDom = function() {
   goog.base(this, 'createDom');
-  var root = this.getElement();
 
+  this.createFields();
+};
+
+
+/**
+ * @protected
+ */
+ydn.crm.ui.sugar.group.Group.prototype.createFields = function() {
   /**
    * @type {ydn.crm.sugar.model.Group}
    */
   var model = this.getModel();
   var dom = this.getDomHelper();
-  var groups = model.listFields();
-  for (var i = 0; i < groups.length; i++) {
-    var name = groups[i];
+  var fields = model.listFields();
+  for (var i = 0; i < fields.length; i++) {
+    var name = fields[i];
     var field_model = model.createOrGetFieldModel(name);
     var field;
     if (field_model instanceof ydn.crm.sugar.model.EmailField) {
@@ -74,7 +81,6 @@ ydn.crm.ui.sugar.group.Group.prototype.createDom = function() {
     }
     this.addChild(field, true);
   }
-
 };
 
 
@@ -98,14 +104,14 @@ ydn.crm.ui.sugar.group.Group.prototype.enterDocument = function() {
     this.attachHandlers();
   }
 
-  this.getHandler().listen(this, ydn.crm.ui.sugar.field.EventType.ACTION,
+  this.getHandler().listen(this, ydn.crm.ui.sugar.events.Type.ACTION,
       this.onMenuAction);
 
 };
 
 
 /**
- * @param {ydn.crm.ui.sugar.field.MenuActionEvent} ma
+ * @param {ydn.crm.ui.sugar.events.FieldMenuActionEvent} ma
  * @protected
  */
 ydn.crm.ui.sugar.group.Group.prototype.onMenuAction = function(ma) {
@@ -162,3 +168,16 @@ ydn.crm.ui.sugar.group.Group.prototype.refresh = function() {
 };
 
 
+/**
+ * @override
+ */
+ydn.crm.ui.sugar.group.Group.prototype.reset = function() {
+  goog.base(this, 'reset');
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = /** @type {ydn.crm.ui.sugar.field.Field} */ (this.getChildAt(i));
+    if (ydn.crm.ui.sugar.group.Group.DEBUG && !child) {
+      console.error(this + ' child ' + i + ' ' + child);
+    }
+    child.reset();
+  }
+};

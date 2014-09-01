@@ -8,7 +8,7 @@
 
 goog.provide('ydn.crm.ui.sugar.FeedBody');
 goog.require('goog.ui.Component');
-goog.require('ydn.crm.ui.GDataPanel');
+goog.require('ydn.crm.ui.sugar.record.Record');
 
 
 
@@ -27,7 +27,7 @@ ydn.crm.ui.sugar.FeedBody = function(model, dom) {
   /**
    * Object pool for module panels.
    * @final
-   * @type {Array.<!ydn.crm.ui.GDataPanel>}
+   * @type {Array.<!ydn.crm.ui.sugar.record.Record>}
    */
   this.panel_pool = [];
 };
@@ -86,7 +86,7 @@ ydn.crm.ui.sugar.FeedBody.CSS_CLASS_CONTENT = 'feed-body';
 /**
  * Obtain a free module panel form object pool.
  * @param {ydn.crm.sugar.ModuleName} type panel type or module name.
- * @return {!ydn.crm.ui.GDataPanel}
+ * @return {!ydn.crm.ui.sugar.record.Record}
  */
 ydn.crm.ui.sugar.FeedBody.prototype.popPanel = function(type) {
   for (var i = 0; i < this.panel_pool.length; i++) {
@@ -100,8 +100,9 @@ ydn.crm.ui.sugar.FeedBody.prototype.popPanel = function(type) {
    * @type {ydn.crm.sugar.model.GDataSugar}
    */
   var sugar = this.getModel();
-  var m = new ydn.crm.sugar.model.GDataRecord(sugar, type);
-  return new ydn.crm.ui.GDataPanel(m, this.getDomHelper());
+  var r = new ydn.crm.sugar.Record(sugar.getDomain(), type);
+  var m = new ydn.crm.sugar.model.Record(sugar, r);
+  return new ydn.crm.ui.sugar.record.Record(m, this.getDomHelper());
 };
 
 
@@ -112,7 +113,7 @@ ydn.crm.ui.sugar.FeedBody.prototype.popPanel = function(type) {
 ydn.crm.ui.sugar.FeedBody.prototype.getContexts = function() {
   var contexts = [];
   for (var i = 0; i < this.getChildCount(); i++) {
-    var child = /** @type {ydn.crm.ui.GDataPanel} */ (this.getChildAt(i));
+    var child = /** @type {ydn.crm.ui.sugar.record.Record} */ (this.getChildAt(i));
     /**
      * @type {ydn.crm.sugar.model.GDataRecord}
      */
@@ -130,7 +131,7 @@ ydn.crm.ui.sugar.FeedBody.prototype.getContexts = function() {
 
 /**
  * Free panel if no longer use.
- * @param {ydn.crm.ui.GDataPanel} panel
+ * @param {ydn.crm.ui.sugar.record.Record} panel
  */
 ydn.crm.ui.sugar.FeedBody.prototype.freePanel = function(panel) {
   if (panel) {
@@ -166,16 +167,15 @@ ydn.crm.ui.sugar.FeedBody.prototype.createDom = function() {
 
 /**
  * Change contact model when inbox changes.
- * @param {string?} email
- * @param {string?} name
- * @param {string?} phone
+ * @param {?string} email
+ * @param {?string} name
  */
-ydn.crm.ui.sugar.FeedBody.prototype.update = function(email, name, phone) {
+ydn.crm.ui.sugar.FeedBody.prototype.update = function(email, name) {
 
   goog.style.setElementShown(this.getElement(), !!email);
   /**
    * @type {ydn.crm.sugar.model.GDataSugar}
    */
   var model = this.getModel();
-  model.update(email, name, phone);
+  model.update(email, name);
 };

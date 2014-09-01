@@ -135,6 +135,16 @@ ydn.crm.sugar.model.BaseGroup.prototype.listFields = function() {
 
 
 /**
+ * Get record field value.
+ * @param {string} name
+ * @return {?string}
+ */
+ydn.crm.sugar.model.BaseGroup.prototype.getFieldValue = function(name) {
+  return this.module.value(name);
+};
+
+
+/**
  * Get record field value as string.
  * @param {string} name
  * @return {string}
@@ -190,7 +200,7 @@ ydn.crm.sugar.model.BaseGroup.prototype.getGroupValue = function() {
 
 /**
  * Option menu items.
- * @return {?Array|ydn.crm.sugar.model.Field.FieldOption} menu items. If string return, a horizontal dot will
+ * @return {?Array|ydn.ui.FlyoutMenu.ItemOption} menu items. If string return, a horizontal dot will
  * show and action is immediately invoked, if Array is return, a vertical dot
  * will show and a menu will show.
  */
@@ -198,3 +208,32 @@ ydn.crm.sugar.model.BaseGroup.prototype.getAdditionalOptions = function() {
   return null;
 };
 
+
+/**
+ * Get the patch object for given user input field value.
+ * @param {*} value input value.
+ * @return {?Object} patch object. `null` if patch is not necessary.
+ */
+ydn.crm.sugar.model.BaseGroup.prototype.patch = function(value) {
+  if (!goog.isObject(value)) {
+    return null;
+  }
+  var has_changed = false;
+  var obj = {};
+  for (var name in value) {
+    if (this.hasField(name)) {
+      var field_value = this.module.value(name);
+      if (value[name] !== field_value) {
+        has_changed = true;
+        obj[name] = value[name];
+      }
+    } else {
+      has_changed = true;
+      obj[name] = value[name];
+      if (ydn.crm.sugar.model.BaseGroup.DEBUG) {
+        window.console.warn('New field: ' + name + ' was introduced to ' + this);
+      }
+    }
+  }
+  return has_changed ? obj : null;
+};

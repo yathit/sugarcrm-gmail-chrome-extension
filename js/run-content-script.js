@@ -29,7 +29,10 @@
       if (!scriptLoaded && i < 10) {
         loadScript();
       }
-    }, 1000);
+    }, 5000);
+    // we delay enough so that we are not interfering with gmail loading
+    // It has observed that, if we load in 1000 ms, somethime, gmail content
+    // become blank page.
   };
   loadScript();
 

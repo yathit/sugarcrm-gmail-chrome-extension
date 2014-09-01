@@ -41,5 +41,21 @@ goog.inherits(ydn.crm.ui.sugar.group.Email, ydn.crm.ui.sugar.group.Group);
 ydn.crm.ui.sugar.group.Email.prototype.getModel;
 
 
-
+/**
+ * @override
+ */
+ydn.crm.ui.sugar.group.Email.prototype.reset = function() {
+  // we have to remove child, Field, because their name, i.e., bean id
+  // are not same for different record.
+  for (var i = this.getChildCount() - 1; i >= 0; i--) {
+    var child = this.removeChildAt(i);
+    child.dispose();
+  }
+  this.createFields();
+  /*
+  var model = this.getModel();
+  var fields = model.listFields();
+  console.log('email reset', model, fields);
+  */
+};
 

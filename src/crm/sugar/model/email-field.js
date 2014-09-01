@@ -102,7 +102,10 @@ ydn.crm.sugar.model.EmailField.prototype.patch = function(email) {
         };
       }
     }
-    return null;
+    // Note: we create with non-bean value.
+    var obj = {};
+    obj[this.field_name] = email;
+    return obj;
   } else {
     // old format
     var original_value = email_model.module.value(this.field_name);
@@ -153,7 +156,7 @@ ydn.crm.sugar.model.EmailField.prototype.removeEmail = function() {
 /**
  * Check the field value is deletable.
  * Extra field like, phone number, address, email are deletable.
- * @return {Array.<ydn.crm.sugar.model.Field.FieldOption>}
+ * @return {Array.<ydn.ui.FlyoutMenu.ItemOption>}
  */
 ydn.crm.sugar.model.EmailField.prototype.getMoreOptions = function() {
   // Note: only InputFieldRenderer display delete button.

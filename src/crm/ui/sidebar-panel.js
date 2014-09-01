@@ -18,12 +18,6 @@ goog.require('ydn.crm.ui.sugar.SugarPanel');
  */
 ydn.crm.ui.SidebarPanel = function(opt_dom) {
   goog.base(this, opt_dom);
-
-  /**
-   * @type {ydn.crm.ui.gmail.Template}
-   * @private
-   */
-  this.gmail_template_ = null;
 };
 goog.inherits(ydn.crm.ui.SidebarPanel, ydn.crm.ui.SimpleSidebarPanel);
 
@@ -43,33 +37,32 @@ ydn.crm.ui.SidebarPanel.prototype.logger =
 
 
 /**
- * Add sugarcrm panel as child component.
- * @param {ydn.crm.sugar.model.GDataSugar} sugar
- * @protected
+ * @inheritDoc
  */
-ydn.crm.ui.SidebarPanel.prototype.addSugarPanel = function(sugar) {
-  var panel = new ydn.crm.ui.sugar.SugarPanel(sugar, this.dom_);
-  this.logger.finer('sugar panel ' + sugar.getDomain() + ' created');
-  this.addChild(panel, true);
-
-  if (!this.gmail_template_ && sugar.isLogin()) {
-    this.logger.finer('compose template initialized.');
-    this.gmail_template_ = new ydn.crm.ui.gmail.Template(sugar);
-  }
+ydn.crm.ui.SidebarPanel.prototype.createDom = function() {
+  goog.base(this, 'createDom');
+  // status bar
+  var dom = this.getDomHelper();
+  var status_el = dom.createDom('div', ydn.crm.ui.SimpleSidebarPanel.CSS_CLASS_STATUS);
+  var status = new ydn.app.msg.StatusBar();
+  status.render(status_el);
+  ydn.app.msg.Manager.addConsumer(status);
+  var root = this.getElement();
+  root.insertBefore(status_el, root.firstElementChild);
 };
 
 
 /**
- * Inject template menu on Gmail compose panel.
- * @return {boolean} true if injected.
+ * @inheritDoc
  */
-ydn.crm.ui.SidebarPanel.prototype.injectTemplateMenu = function() {
-  if (this.gmail_template_) {
-    return this.gmail_template_.attach();
-  } else {
-    this.logger.warning('SugarCRM instance not ready.');
-    return false;
+ydn.crm.ui.SidebarPanel.prototype.addSugarPanel = function(sugar) {
+  var panel = new ydn.crm.ui.sugar.SugarPanel(sugar, this.dom_);
+  this.addChild(panel, true);
+  if (ydn.crm.ui.SidebarPanel.DEBUG) {
+    window.console.info('sugar panel ' + sugar.getDomain() + ' created, now ' +
+        this.getChildCount() + ' panels');
   }
 };
+
 
 

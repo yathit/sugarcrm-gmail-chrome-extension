@@ -9,7 +9,7 @@ goog.provide('ydn.crm.ui.sugar.field.Field');
 goog.require('goog.ui.Component');
 goog.require('goog.ui.PopupMenu');
 goog.require('ydn.crm.ui.Refreshable');
-goog.require('ydn.crm.ui.sugar.field.ChangedEvent');
+goog.require('ydn.crm.ui.sugar.events.ChangedEvent');
 goog.require('ydn.crm.ui.sugar.field.CheckboxFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.EnumFieldRenderer');
 goog.require('ydn.crm.ui.sugar.field.FieldRenderer');
@@ -110,7 +110,7 @@ ydn.crm.ui.sugar.field.Field.prototype.enterDocument = function() {
         goog.events.EventType.BLUR, this.handleInputBlur);
   }
   var el_more = this.getElement().getElementsByClassName(
-      ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU)[0];
+      ydn.crm.ui.CSS_CLASS_MORE_MENU)[0];
   if (el_more) {
     this.getHandler().listen(el_more, 'click', this.onMoreMenuClick);
   }
@@ -123,14 +123,15 @@ ydn.crm.ui.sugar.field.Field.prototype.enterDocument = function() {
  */
 ydn.crm.ui.sugar.field.Field.prototype.onMoreMenuClick = function(e) {
   var el = /** @type {Element} */ (e.target);
-  var cmd = /** @type {ydn.crm.sugar.model.Field.Command} */ (el.getAttribute('name'));
-  console.log(e, cmd);
+  var item = goog.dom.getAncestorByClass(el, 'goog-menuitem');
+  var cmd = /** @type {ydn.crm.sugar.model.Field.Command} */ (item.getAttribute('name'));
+
   if (cmd) {
     // menu action are handle in group level.
-    var ev = new ydn.crm.ui.sugar.field.MenuActionEvent(cmd, this);
+    var ev = new ydn.crm.ui.sugar.events.FieldMenuActionEvent(cmd, this);
     this.dispatchEvent(ev);
     var menu = /** @type {Element} */ (goog.dom.getAncestorByClass(el,
-        ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU));
+        ydn.crm.ui.CSS_CLASS_MORE_MENU));
     // hide menu immediately
     goog.style.setElementShown(menu, false);
     setTimeout(function() {
@@ -141,7 +142,7 @@ ydn.crm.ui.sugar.field.Field.prototype.onMoreMenuClick = function(e) {
     if (!ev.defaultPrevented) {
       if (ev.command == ydn.crm.sugar.model.Field.Command.REMOVE) {
         var obj = this.createClearPatch();
-        var ce = new ydn.crm.ui.sugar.field.ChangedEvent(obj, this);
+        var ce = new ydn.crm.ui.sugar.events.ChangedEvent(obj, this);
         this.dispatchEvent(ce);
       } else if (ev.command == ydn.crm.sugar.model.Field.Command.EDIT) {
         this.showEditor();
@@ -245,7 +246,7 @@ ydn.crm.ui.sugar.field.Field.prototype.handleEditorSelect = function(e) {
         patches[field_name] = field_value;
       }
     }
-    var ev = new ydn.crm.ui.sugar.field.ChangedEvent(patches, this);
+    var ev = new ydn.crm.ui.sugar.events.ChangedEvent(patches, this);
     this.dispatchEvent(ev);
   }
 };
@@ -260,7 +261,7 @@ ydn.crm.ui.sugar.field.Field.prototype.handleInputBlur = function(e) {
   var model = this.getModel();
   var patch = model.patch(new_val);
   if (patch) {
-    var ev = new ydn.crm.ui.sugar.field.ChangedEvent(patch, this);
+    var ev = new ydn.crm.ui.sugar.events.ChangedEvent(patch, this);
     this.dispatchEvent(ev);
   }
 };
@@ -293,6 +294,14 @@ ydn.crm.ui.sugar.field.Field.prototype.refresh = function() {
 
 
 /**
+ * Refresh UI when record is changed with different ID.
+ */
+ydn.crm.ui.sugar.field.Field.prototype.reset = function() {
+  this.setNormallyHide(this.getSetting().getNormallyHide());
+};
+
+
+/**
  * Collect data from UI.
  * @return {*} return null if not modified.
  */
@@ -303,7 +312,7 @@ ydn.crm.ui.sugar.field.Field.prototype.collectData = function() {
    */
   var m = this.getModel();
   var old_value = m.getField();
-  if (m.getType() == 'bool' && !goog.isBoolean(old_value)) {
+  if (m.getType() == 'bool' && (goog.isDef(old_value) && !goog.isBoolean(old_value))) {
     if (old_value == 'on' || old_value == 'off') {
       new_value = new_value ? 'on' : 'off';
     } else if (old_value == 'true' || old_value == 'false') {
@@ -313,12 +322,11 @@ ydn.crm.ui.sugar.field.Field.prototype.collectData = function() {
     }
   } else if (old_value === false && !m.getType() != 'bool' && new_value == 'false') {
     new_value = old_value; // restore wired old value.
-  } else if (!goog.isDef(old_value) || !new_value) {
+  } else if (!goog.isDef(old_value) && !new_value) {
     new_value = old_value; // restore undefined status.
   }
   if (ydn.crm.ui.sugar.field.Field.DEBUG) {
-    window.console.log(this.getFieldName(), m.getType(), m.getField(),
-        this.getRenderer().collectValue(this), new_value);
+    window.console.log(this.getFieldName(), m.getType(), old_value, new_value);
   }
   if (new_value != old_value) {
     return new_value;

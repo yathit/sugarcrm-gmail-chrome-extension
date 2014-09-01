@@ -137,6 +137,12 @@ ydn.crm.ui.GDataPanel.prototype.getHeadElement = function() {
 
 
 /**
+ * @define {boolean} hide header.
+ */
+ydn.crm.ui.GDataPanel.HIDE_HEADER = true;
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.ui.GDataPanel.prototype.createDom = function() {
@@ -150,7 +156,16 @@ ydn.crm.ui.GDataPanel.prototype.createDom = function() {
   el.appendChild(root);
   var heading = dom.createDom('div', ydn.crm.ui.GDataPanel.CSS_CLASS_HEAD);
   var content = dom.createDom('div', ydn.crm.ui.GDataPanel.CSS_CLASS_CONTENT);
-  root.appendChild(heading);
+
+  if (ydn.crm.ui.GDataPanel.HIDE_HEADER) {
+    var wrapper = dom.createDom('div');
+    wrapper.style.display = 'none';
+    wrapper.appendChild(heading);
+    root.appendChild(wrapper);
+  } else {
+    root.appendChild(heading);
+  }
+
   root.appendChild(content);
   root.classList.add(module);
   var icon = dom.createDom('span', {
@@ -333,6 +348,15 @@ ydn.crm.ui.GDataPanel.prototype.handleLinkClick = function(e) {
  * @param {Event} e
  */
 ydn.crm.ui.GDataPanel.prototype.handleImportClick = function(e) {
+  this.importGData();
+};
+
+
+/**
+ * Import context ContactEntry to SugarCRM record.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.ui.GDataPanel.prototype.importGData = function() {
   var model = this.getModel();
   var module_name = model.getModuleName();
   this.import_link.setLink('Adding... to ' + module_name);
@@ -352,10 +376,11 @@ ydn.crm.ui.GDataPanel.prototype.handleImportClick = function(e) {
     import_req = model.addToSugar();
   }
 
-  import_req.addCallbacks(function(entry) {
+  return import_req.addCallbacks(function(entry) {
     this.import_link.setLink(null);
     var done = new goog.events.Event(goog.ui.Component.EventType.CHANGE, this);
     this.dispatchEvent(done);
+    return 'Imported';
   }, function(e) {
     var msg = e instanceof Error ? e.name + ' ' + e.message :
         goog.isObject(e) ? ydn.json.toShortString(e) : e;
@@ -368,6 +393,7 @@ ydn.crm.ui.GDataPanel.prototype.handleImportClick = function(e) {
       'error': msg
     };
     this.import_link.setError(msg, load);
+    throw new Error(msg); // update error message.
   }, this);
 };
 

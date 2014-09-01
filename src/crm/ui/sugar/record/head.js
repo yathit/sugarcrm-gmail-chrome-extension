@@ -25,6 +25,12 @@
 
 goog.provide('ydn.crm.ui.sugar.record.Head');
 goog.require('goog.ui.CheckBoxMenuItem');
+goog.require('goog.ui.ColorMenuButton');
+goog.require('goog.ui.Css3ButtonRenderer');
+goog.require('goog.ui.CustomButton');
+goog.require('goog.ui.ToggleButton');
+goog.require('goog.ui.Toolbar');
+goog.require('goog.ui.decorate');
 goog.require('ydn.crm.ui.sugar.events');
 goog.require('ydn.crm.ui.sugar.setting.Field');
 
@@ -42,6 +48,12 @@ goog.require('ydn.crm.ui.sugar.setting.Field');
 ydn.crm.ui.sugar.record.Head = function(model, opt_dom) {
   goog.base(this, opt_dom);
   this.setModel(model);
+
+  /**
+   * @type {boolean}
+   * @private
+   */
+  this.head_visible_ = true;
 };
 goog.inherits(ydn.crm.ui.sugar.record.Head, goog.ui.Component);
 
@@ -78,13 +90,6 @@ ydn.crm.ui.sugar.record.Head.CSS_CLASS_ICON = 'icon';
  * @type {string}
  */
 ydn.crm.ui.sugar.record.Head.CSS_CLASS_SYNCED = 'synced';
-
-
-/**
- * @const
- * @type {string}
- */
-ydn.crm.ui.sugar.record.Head.CSS_CLASS_LINK = 'link';
 
 
 /**
@@ -158,24 +163,22 @@ ydn.crm.ui.sugar.record.Head.prototype.createDom = function() {
 
   var icon = dom.createDom('span', ydn.crm.ui.sugar.record.Head.CSS_CLASS_ICON,
       ydn.crm.sugar.toModuleSymbol(m_name));
-  // This link is responsible to show 'link', 'export' or 'sync'
-  var sync = dom.createDom('a', {
-    'href': '#link',
-    'class': ydn.crm.ui.sugar.record.Head.CSS_CLASS_LINK
-  });
-  var option_svg = ydn.crm.ui.createSvgIcon('tools');
-  var option = dom.createDom('span', ydn.crm.ui.sugar.record.Head.CSS_CLASS_EDIT,
+
+  var option_svg = ydn.crm.ui.createSvgIcon('pencil');
+  var option = dom.createDom('div', ydn.crm.ui.sugar.record.Head.CSS_CLASS_EDIT,
       option_svg);
+  option.classList.add('svg-button');
+
   ele_header.appendChild(icon);
   ele_header.appendChild(title);
   ele_header.appendChild(dom.createDom('div', 'center'));
-  ele_header.appendChild(sync);
   ele_header.appendChild(option);
 
   var root = this.getElement();
   root.classList.add(ydn.crm.ui.sugar.record.Head.CSS_CLASS);
   root.appendChild(ele_header);
   root.appendChild(ele_content);
+
 };
 
 
@@ -184,50 +187,12 @@ ydn.crm.ui.sugar.record.Head.prototype.createDom = function() {
  */
 ydn.crm.ui.sugar.record.Head.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
+  goog.style.setElementShown(this.getHeadElement(), this.head_visible_);
   var hd = this.getHandler();
   var edit_ele = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.Head.CSS_CLASS_EDIT);
   hd.listen(edit_ele, goog.events.EventType.CLICK, this.handleEditClick, false);
-};
 
-
-/**
- * @protected
- * @param {goog.events.Event} e
- */
-ydn.crm.ui.sugar.record.Head.prototype.handleLinkClick = function(e) {
-  e.preventDefault();
-  // link click, it could be one of 'link', 'export', 'synced' state.
-  var a_link = e.target;
-  if (a_link.classList.contains(ydn.crm.ui.sugar.record.Head.CSS_CLASS_SYNCED)) {
-    // sync
-    this.logger.finer('record in sync');
-  } else {
-    /**
-     * @type {ydn.crm.sugar.model.Record}
-     */
-    var record = this.getModel();
-    if (record instanceof ydn.crm.sugar.model.GDataRecord) {
-      // this is always true, because link element is shown only for GDataRecord
-      var g_record = /** @type {ydn.crm.sugar.model.GDataRecord} */ (record);
-      if (g_record.canSync()) {
-        a_link.textContent = '...';
-        g_record.link().addCallbacks(function(x) {
-          a_link.textContent = '';
-        }, function(e) {
-          a_link.textContent = 'error';
-          throw e;
-        }, this);
-      } else {
-        a_link.textContent = '...';
-        g_record.export2GData().addCallbacks(function(x) {
-          a_link.textContent = '';
-        }, function(e) {
-          a_link.textContent = 'error';
-          throw e;
-        }, this);
-      }
-    }
-  }
+  // toolbar handlers are listen in showToolbar method.
 };
 
 
@@ -247,6 +212,16 @@ ydn.crm.ui.sugar.record.Head.prototype.showToolbar = function() {
    */
   var model = this.getModel();
   var m_name = model.getModuleName();
+
+  // new record
+  var new_record = new goog.ui.Select('New');
+  new_record.setTooltip('Create a new record');
+  for (var i = 0; i < ydn.crm.sugar.CacheModules.length; i++) {
+    var name = ydn.crm.sugar.CacheModules[i];
+    var item = new goog.ui.Option(name);
+    new_record.addItem(item);
+  }
+  toolbar.addChild(new_record, true);
 
   // field selection
   var menu = new goog.ui.Menu();
@@ -280,10 +255,27 @@ ydn.crm.ui.sugar.record.Head.prototype.showToolbar = function() {
     menu.addChild(new goog.ui.MenuSeparator(), true);
     menu.addChild(other_group, true);
   }
-  var select = new goog.ui.MenuButton('Display', menu);
-  toolbar.addChild(select, true);
+  var display = new goog.ui.MenuButton('Display', menu);
+  display.setTooltip('Show or hide record field');
+  toolbar.addChild(display, true);
+
+  var save_btn = new goog.ui.CustomButton('Save',
+      goog.ui.Css3ButtonRenderer.getInstance());
+  save_btn.setEnabled(false);
+  toolbar.addChild(save_btn, true);
+
   this.addChild(toolbar, true);
   this.getHandler().listen(menu, goog.ui.Component.EventType.ACTION, this.handleDisplayMenuAction);
+  this.getHandler().listen(save_btn, goog.ui.Component.EventType.ACTION, this.onSave);
+  this.getHandler().listen(new_record, goog.ui.Component.EventType.CHANGE, this.onNewRecordSelect);
+};
+
+
+/**
+ * @param {goog.events.Event} e
+ */
+ydn.crm.ui.sugar.record.Head.prototype.onSave = function(e) {
+  this.dispatchEvent(ydn.crm.ui.sugar.events.Type.SAVE);
 };
 
 
@@ -315,11 +307,23 @@ ydn.crm.ui.sugar.record.Head.prototype.handleDisplayMenuAction = function(e) {
  * @param {goog.events.Event} e
  */
 ydn.crm.ui.sugar.record.Head.prototype.handleEditClick = function(e) {
-  e.target.classList.toggle(ydn.crm.ui.CSS_CLASS_ACTIVE);
-  var is_active = e.target.classList.contains(ydn.crm.ui.CSS_CLASS_ACTIVE);
-  if (is_active) {
+  var btn = e.currentTarget;
+  var is_active = btn.classList.contains(ydn.crm.ui.CSS_CLASS_ACTIVE);
+  this.dispatchEvent(new ydn.crm.ui.sugar.events.EditEvent(!is_active));
+};
+
+
+/**
+ * Change edit mode.
+ * @param {boolean} val
+ */
+ydn.crm.ui.sugar.record.Head.prototype.setEditMode = function(val) {
+  var btn = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.Head.CSS_CLASS_EDIT);
+  if (val) {
+    btn.classList.add(ydn.crm.ui.CSS_CLASS_ACTIVE);
     this.showToolbar();
   } else {
+    btn.classList.remove(ydn.crm.ui.CSS_CLASS_ACTIVE);
     goog.style.setElementShown(this.getContentElement(), false);
   }
 };
@@ -339,17 +343,24 @@ ydn.crm.ui.sugar.record.Head.prototype.reset = function() {
   var record = this.getModel();
   var m_name = record.getModuleName();
   if (ydn.crm.ui.sugar.record.Head.DEBUG) {
-    window.console.log('HeadRenderer:reset:' + + m_name + ':' + record);
+    window.console.log('HeadRenderer:reset:' + m_name + ':' + record);
   }
   var header = this.getHeadElement();
   var icon = goog.dom.getElementByClass(ydn.crm.ui.sugar.record.Head.CSS_CLASS_ICON,
       header);
   icon.textContent = m_name.substring(0, 2);
 
-  if (this.getChildCount() > 0) {
-    var toolbar = this.removeChildAt(0, true);
-    toolbar.dispose();
+  var toolbar = this.getToolbar();
+  if (toolbar) {
+    var menu = toolbar.removeChildAt(0, true);
+    var save_btn = toolbar.removeChildAt(1, true);
+    this.getHandler().unlisten(menu, goog.ui.Component.EventType.ACTION, this.handleDisplayMenuAction);
+    this.getHandler().unlisten(save_btn, goog.ui.Component.EventType.ACTION, this.onSave);
+    menu.dispose();
+    save_btn.dispose();
   }
+
+  goog.style.setElementShown(header, this.head_visible_);
 
   // goog.style.setElementShown(this.getToolbarElement(root), !record.isSimple());
   this.refresh();
@@ -365,38 +376,13 @@ ydn.crm.ui.sugar.record.Head.prototype.refresh = function() {
   var record = this.getModel();
   var m_name = record.getModuleName();
   var ele_title = this.getTitleElement();
-  var ele_link = this.getLinkElement();
   if (ydn.crm.ui.sugar.record.Head.DEBUG) {
-    window.console.log('HeadRenderer:refresh:' + + m_name + ':' + record);
+    window.console.log('HeadRenderer:refresh:' + m_name + ':' + record);
   }
   if (record.hasRecord()) {
-    ele_title.textContent = record.getTitle();
+    ele_title.textContent = record.getLabel();
     ele_title.href = record.getViewLink();
     ele_title.target = record.getDomain();
-    if (record instanceof ydn.crm.sugar.model.GDataRecord) {
-      var g_record = /** @type {ydn.crm.sugar.model.GDataRecord} */ (record);
-      ele_link.innerHTML = '';
-      if (g_record.isSynced()) {
-        ele_link.classList.add(ydn.crm.ui.sugar.record.Head.CSS_CLASS_SYNCED);
-        ele_link.appendChild(ydn.crm.ui.createSvgIcon('link-intact'));
-        ele_link.setAttribute('title', 'Gmail contact ' + g_record.getSyncedGData().getSingleId() +
-            ' is synced with SugarCRM ' + m_name + ' ' + g_record.getId());
-      } else {
-        ele_link.classList.remove(ydn.crm.ui.sugar.record.Head.CSS_CLASS_SYNCED);
-        if (g_record.canSync()) {
-          ele_link.appendChild(ydn.crm.ui.createSvgIcon('link-broken'));
-          ele_link.setAttribute('title', 'Link Gmail contact ' + g_record.getGData().getSingleId() +
-              ' with SugarCRM ' + m_name + ' ' + g_record.getId());
-        } else {
-          ele_link.appendChild(ydn.crm.ui.createSvgIcon('contact-add'));
-          ele_link.setAttribute('title', 'Export SugarCRM ' + m_name + ' ' + g_record.getId() +
-              ' to Gmail My Contact');
-        }
-      }
-      goog.style.setElementShown(ele_link, true);
-    } else {
-      goog.style.setElementShown(ele_link, false);
-    }
   } else {
     ele_title.innerHTML = '';
     ele_title.href = '';
@@ -429,22 +415,74 @@ ydn.crm.ui.sugar.record.Head.prototype.getTitleElement = function() {
 
 
 /**
- * @return {Element}
+ * @return {?goog.ui.Toolbar}
  */
-ydn.crm.ui.sugar.record.Head.prototype.getLinkElement = function() {
-  return this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.Head.CSS_CLASS_LINK);
+ydn.crm.ui.sugar.record.Head.prototype.getToolbar = function() {
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    if (child instanceof goog.ui.Toolbar) {
+      return child;
+    }
+  }
+  return null;
 };
 
 
 /**
- * @return {?Element}
+ * @return {?goog.ui.Button}
  */
-ydn.crm.ui.sugar.record.Head.prototype.getToolbarElement = function() {
-  return this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_TOOLBAR);
+ydn.crm.ui.sugar.record.Head.prototype.getSaveButton = function() {
+  var toolbar = this.getToolbar();
+  if (!toolbar) {
+    return null;
+  }
+  return /** @type {goog.ui.Button} */ (toolbar.getChildAt(2));
 };
 
 
+/**
+ * @param {boolean} val
+ */
+ydn.crm.ui.sugar.record.Head.prototype.setHeadVisible = function(val) {
+  this.head_visible_ = !!val;
+  if (this.isInDocument()) {
+    goog.style.setElementShown(this.getHeadElement(), this.head_visible_);
+  }
+};
 
 
+/**
+ * Set record content dirty so that save button is enable.
+ * @param {boolean} val
+ */
+ydn.crm.ui.sugar.record.Head.prototype.setDirty = function(val) {
+  var save_btn = this.getSaveButton();
+  if (save_btn) {
+    save_btn.setEnabled(val);
+  } else if (ydn.crm.ui.sugar.record.Head.DEBUG) {
+    window.console.warn('No toolbar to set dirty');
+  }
+};
+
+
+/**
+ * @return {goog.ui.Select}
+ */
+ydn.crm.ui.sugar.record.Head.prototype.getNewRecord = function() {
+  var toolbar = this.getToolbar();
+  goog.asserts.assert(toolbar, 'Toolbar not ready');
+  return /** @type {goog.ui.Select} */ (toolbar.getChildAt(0));
+};
+
+
+/**
+ * @protected
+ * @param {goog.events.Event} e
+ */
+ydn.crm.ui.sugar.record.Head.prototype.onNewRecordSelect = function(e) {
+  var select = this.getNewRecord();
+  var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (select.getValue());
+  this.dispatchEvent(new ydn.crm.ui.sugar.events.NewRecord(m_name));
+};
 
 

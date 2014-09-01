@@ -88,6 +88,29 @@ ydn.crm.ui.sugar.record.Body.prototype.getFieldByName = function(field_name) {
 
 
 /**
+ * @param {string} field_name
+ * @return {ydn.crm.ui.sugar.group.Group}
+ * @see #getChildByGroup
+ */
+ydn.crm.ui.sugar.record.Body.prototype.getGroupByFieldName = function(field_name) {
+  var model = this.getModel();
+  var info = model.getFieldInfo(field_name);
+  if (!info) {
+    return null;
+  }
+  var group_name = info.group || '';
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
+    if (g.getGroupName() == group_name) {
+      return g;
+    }
+  }
+  return null;
+};
+
+
+/**
  * Get child group component by group name.
  * @param {string} group_name
  * @return {ydn.crm.ui.sugar.group.Group}
@@ -136,11 +159,17 @@ ydn.crm.ui.sugar.record.Body.prototype.getEditMode = function() {
 
 /**
  * Reset control UI to initial state.
+ * Record id many change or or user setting, but record type does not change.
  */
 ydn.crm.ui.sugar.record.Body.prototype.reset = function() {
   var root = this.getElement();
   root.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_VIEW);
   root.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    var g = /** @type {ydn.crm.ui.sugar.group.Group} */ (child);
+    g.reset();
+  }
 };
 
 
@@ -184,11 +213,9 @@ ydn.crm.ui.sugar.record.Body.prototype.createDom = function() {
 
 /**
  * Return data from UI values. Return null, if invalid data present.
- * @param {ydn.crm.ui.sugar.record.Record} record_panel
- * @return {SugarCrm.Record?} null if data is not valid.
+ * @return {?SugarCrm.Record} null if data is not valid.
  */
-ydn.crm.ui.sugar.record.Body.prototype.collectData = function(record_panel) {
-  var model = this.getModel();
+ydn.crm.ui.sugar.record.Body.prototype.collectData = function() {
   var obj = null;
   for (var i = 0; i < this.getChildCount(); i++) {
     var child = this.getChildAt(i);
@@ -236,6 +263,23 @@ ydn.crm.ui.sugar.record.Body.prototype.handleSettingChange = function(ev) {
       if (group) {
         group.setNormallyHide(value);
       }
+    }
+  }
+};
+
+
+/**
+ * Simulate user edit.
+ * This will simulate input change event.
+ * @param {Object} user_patch patch object of field name and its value, of user edited.
+ */
+ydn.crm.ui.sugar.record.Body.prototype.simulateEdit = function(user_patch) {
+  for (var name in user_patch) {
+    var group = this.getGroupByFieldName(name);
+    if (group) {
+      group.simulateEditByField(name, user_patch[name]);
+    } else if (ydn.crm.ui.sugar.record.Body.DEBUG) {
+      window.console.warn('Field ' + name + ' not found');
     }
   }
 };

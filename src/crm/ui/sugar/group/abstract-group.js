@@ -36,6 +36,12 @@ goog.inherits(ydn.crm.ui.sugar.group.AbstractGroup, goog.ui.Component);
 
 
 /**
+ * @define {boolean} debug flag.
+ */
+ydn.crm.ui.sugar.group.AbstractGroup.DEBUG = false;
+
+
+/**
  * @return {ydn.crm.sugar.model.BaseGroup}
  * @override
  */
@@ -77,7 +83,7 @@ ydn.crm.ui.sugar.group.AbstractGroup.prototype.getContentElement = function() {
 
 
 /**
- * Collect data of the field user has changes..
+ * Collect data of the field user has changes.
  * @return {?Object} null if no change in data.
  */
 ydn.crm.ui.sugar.group.AbstractGroup.prototype.collectData = function() {
@@ -131,15 +137,51 @@ ydn.crm.ui.sugar.group.AbstractGroup.prototype.createDom = function() {
   var group_name = model.getGroupName();
   root.setAttribute('name', group_name);
   if (this.getSetting().getNormallyHide()) {
-    root.classList.add('normally-hide');
+    root.classList.add(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
   }
 };
 
 
 /**
- * Refresh UI with model data.
+ * Refresh UI when record is updated
  */
 ydn.crm.ui.sugar.group.AbstractGroup.prototype.refresh = function() {
 
+};
+
+
+/**
+ * Refresh UI when record is changed with different ID.
+ */
+ydn.crm.ui.sugar.group.AbstractGroup.prototype.reset = function() {
+  this.setNormallyHide(this.getSetting().getNormallyHide());
+};
+
+
+/**
+ * Simulate user edit.
+ * If input field is not found, edit is ignored.
+ * @param {?string} name
+ * @param {string} value
+ */
+ydn.crm.ui.sugar.group.AbstractGroup.prototype.simulateEditByField = function(name, value) {
+  var field_sel = name ? '[name="' + name + '"]' : '';
+  var input = this.getContentElement().querySelector('div.field' + field_sel + ' input.value');
+  if (input) {
+    input.value = value;
+  } else if (ydn.crm.ui.sugar.group.AbstractGroup.DEBUG) {
+    window.console.warn('field ' + field_sel + ' not found in ' + this.getGroupName());
+  }
+};
+
+
+/**
+ * Get field component by field name.
+ * Subclass should override this, default implementation return null.
+ * @param {string} name
+ * @return {ydn.crm.ui.sugar.field.Field}
+ */
+ydn.crm.ui.sugar.group.AbstractGroup.prototype.getFieldByName = function(name) {
+  return null;
 };
 

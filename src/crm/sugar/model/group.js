@@ -62,9 +62,9 @@ ydn.crm.sugar.model.Group.DEBUG = false;
  * @return {!ydn.crm.sugar.model.Field}
  */
 ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
-  var index = this.fields.indexOf(name);
-  if (index >= 0) {
-    return this.fields[index];
+  var f = this.getFieldModelByName(name);
+  if (f) {
+    return f;
   }
   var field_info = this.module.getFieldInfo(name);
   if (this.group_name) {
@@ -74,7 +74,7 @@ ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
     goog.asserts.assert(!field_info.group,
         name + ' not in group ' + this.group_name);
   }
-  var f = new ydn.crm.sugar.model.Field(this, name);
+  f = new ydn.crm.sugar.model.Field(this, name);
   this.fields.push(f);
   return f;
 };

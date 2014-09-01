@@ -39,18 +39,22 @@ ydn.crm.ui.sugar.field.InputFieldRenderer.prototype.createDom = function(field) 
   var ele_value = dom.createDom('input', {
     'type': 'text',
     'class': ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE,
-    'title': label
+    'title': label,
+    'placeholder': label
   });
   el.appendChild(ele_value);
+  if (model.isCalculated()) {
+    ele_value.setAttribute('disabled', '1');
+  }
 
   var options = model.getMoreOptions();
   if (options.length > 0) {
     var more_el = dom.createDom('div', {
       'class': ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_HOVER_BUTTON + ' ' +
-          ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU
+          ydn.crm.ui.CSS_CLASS_MORE_MENU
     });
     el.appendChild(more_el);
-    ydn.crm.ui.sugar.field.FieldRenderer.renderPopupMenu(more_el, options);
+    ydn.ui.FlyoutMenu.decoratePopupMenu(more_el, options);
   }
 
   return el;
@@ -75,11 +79,11 @@ ydn.crm.ui.sugar.field.InputFieldRenderer.prototype.refresh = function(ctrl) {
 
   ele_value.value = is_def ? value : '';
 
-  var more_el = ele_field.querySelector('.' + ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU);
+  var more_el = ele_field.querySelector('.' + ydn.crm.ui.CSS_CLASS_MORE_MENU);
   if (more_el) {
     more_el.innerHTML = '';
     var options = model.getMoreOptions();
-    var new_el = ydn.crm.ui.sugar.field.FieldRenderer.renderPopupMenu(more_el, options);
+    var new_el = ydn.ui.FlyoutMenu.decoratePopupMenu(more_el, options);
   }
 
   if (is_def) {

@@ -38,14 +38,14 @@ ydn.crm.ui.sugar.field.TextFieldRenderer.prototype.createDom = function(field) {
   var label = model.getLabel();
   // console.log(label, type, calculated);
 
-  ele_value = dom.createDom(goog.dom.TagName.TEXTAREA);
-  // console.log(label, type, calculated);
-
-  ele_value.classList.add(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE);
+  ele_value = dom.createDom(goog.dom.TagName.TEXTAREA, {
+    'class': ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE,
+    'title': label,
+    'placeholder': label
+  });
   // ele_value.setAttribute('disabled', '1');
 
   el.appendChild(ele_value);
-  ele_value.setAttribute('title', label);
   return el;
 };
 

@@ -121,9 +121,6 @@ ydn.crm.inj.AppRenderer.prototype.createDom = function() {
   ele_root.firstElementChild.appendChild(header);
   goog.style.setElementShown(header, false);
 
-  var status_bar = new ydn.crm.ui.AppStatusBar();
-  ydn.crm.ui.StatusBar.instance = status_bar;
-  status_bar.render(ele_root.lastElementChild);
   return ele_root;
 };
 

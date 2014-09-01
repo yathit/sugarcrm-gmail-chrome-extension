@@ -192,8 +192,15 @@ ydn.crm.ui.sugar.setting.Field.prototype.createUserSetting = function() {
  */
 ydn.crm.ui.sugar.setting.Field.prototype.getNormallyHide = function() {
   var setting = this.getUserSetting();
-  return setting ? !!setting[ydn.crm.ui.UserSetting.SugarCrmSettingUnitKey.NORMALLY_HIDE] :
-      ydn.crm.ui.sugar.setting.Field.getNormallyHideDefault(this.getName());
+  if (setting) {
+    return !!setting[ydn.crm.ui.UserSetting.SugarCrmSettingUnitKey.NORMALLY_HIDE];
+  } else {
+    if (this.field.group) {
+      return ydn.crm.ui.sugar.setting.Group.getNormallyHideDefault(this.field.group);
+    } else {
+      return ydn.crm.ui.sugar.setting.Field.getNormallyHideDefault(this.getName());
+    }
+  }
 };
 
 
@@ -247,7 +254,7 @@ ydn.crm.ui.sugar.setting.Group.prototype.createUserSetting = function() {
  * @const
  * @type {Array.<string>}
  */
-ydn.crm.ui.sugar.setting.Group.NORMALLY_SHOW = ['name', 'email', ''];
+ydn.crm.ui.sugar.setting.Group.NORMALLY_SHOW = ['name', 'email', 'phone', ''];
 
 
 /**

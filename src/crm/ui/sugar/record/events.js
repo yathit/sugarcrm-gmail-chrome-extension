@@ -6,17 +6,6 @@ goog.provide('ydn.crm.ui.sugar.events');
 goog.require('ydn.crm.ui.sugar.setting.Field');
 
 
-/**
- * Event types.
- *
- * Note: these event type string are exported.
- * @enum {string}
- */
-ydn.crm.ui.sugar.events.Type = {
-  NORMALLY_HIDE: 'normally-hide'
-};
-
-
 
 /**
  * Event for sugar models.
@@ -30,7 +19,7 @@ ydn.crm.ui.sugar.events.Type = {
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
 ydn.crm.ui.sugar.events.SettingChangeEvent = function(setting, key, value, opt_event_target) {
-  goog.base(this, ydn.crm.ui.sugar.events.SettingChangeEvent.TYPE, opt_event_target);
+  goog.base(this, ydn.crm.ui.sugar.events.Type.SETTING_CHANGE, opt_event_target);
 
   /**
    * @final
@@ -51,10 +40,26 @@ ydn.crm.ui.sugar.events.SettingChangeEvent = function(setting, key, value, opt_e
 goog.inherits(ydn.crm.ui.sugar.events.SettingChangeEvent, goog.events.Event);
 
 
+
 /**
- * @const
- * @type {string}
+ * Edit click event.
+ * @param {boolean} value new value.
+ * @param {Object=} opt_event_target target.
+ * @extends {goog.events.Event}
+ * @constructor
+ * @struct
+ * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.events.SettingChangeEvent.TYPE = 'setting-change';
+ydn.crm.ui.sugar.events.EditEvent = function(value, opt_event_target) {
+  goog.base(this, ydn.crm.ui.sugar.events.Type.EDIT, opt_event_target);
+
+  /**
+   * @final
+   * @type {boolean}
+   */
+  this.value = value;
+};
+goog.inherits(ydn.crm.ui.sugar.events.EditEvent, goog.events.Event);
+
 
 

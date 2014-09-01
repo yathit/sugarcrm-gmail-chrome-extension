@@ -87,7 +87,7 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
     this.setStatus('logging in...');
     var user = ydn.crm.ui.UserSetting.getInstance();
-    user.onReady().addCallback(function() {
+    user.onReady().addCallbacks(function() {
       var user_info = user.getUserInfo();
       this.updateUserInfo_(user_info);
       if (user.isLogin()) {
@@ -107,6 +107,9 @@ OptionPage.prototype.login = function(context, opt_cb, opt_scope) {
       } else {
         this.setStatus('Not login');
       }
+    }, function(e) {
+      var msg = e.message ? e.message : e;
+      this.setStatus('Error: ' + msg);
     }, this);
   }, function(e) {
     // btn_login.href = '?' + Math.random(); // refresh the page

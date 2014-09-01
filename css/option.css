@@ -44,6 +44,35 @@
 .sticky-right .statusbar {
   position: relative; }
 
+.flex-bar {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center; }
+  .flex-bar > .center {
+    flex-grow: 1; }
+
+.svg-button {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 3px;
+  margin: 0 2px;
+  padding: 2px; }
+
+.svg-button:hover {
+  background-color: #dddddd; }
+
+dialog {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  padding: 8px 48px 16px 48px; }
+  dialog .content {
+    max-height: 20em;
+    overflow: auto; }
+  dialog .button-bar {
+    padding: 8px; }
+
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
  */
@@ -53,10 +82,11 @@
   text-decoration: none; }
 .activity-panel .goog-tab > * {
   text-align: center; }
-.activity-panel .detail-panel, .activity-panel .search-panel {
+.activity-panel .detail-panel, .activity-panel .search-panel, .activity-panel .new-record {
   border-bottom: 1px solid lightblue;
   border-left: 1px solid lightblue;
-  border-right: 1px solid lightblue; }
+  border-right: 1px solid lightblue;
+  padding: 1px; }
 .activity-panel .detail-panel .detail-item {
   padding: 4px; }
 .activity-panel .detail-panel > .header > .close {
@@ -236,7 +266,7 @@ a.maia-button.maia-button-secondary {
 /* Author: pallosp@google.com (Peter Pallos) */
 /* Styles for goog.ui.ComboBox and its derivatives. */
 .goog-combobox {
-  background: #dddddd url(https://ssl.gstatic.com/closure/button-bg.gif) repeat-x scroll left top;
+  background: #dddddd url(chrome-extension://__MSG_@@extension_id__/image/goog/closure/button-bg.gif) repeat-x scroll left top;
   border: 1px solid #b5b6b5;
   font: normal small arial, sans-serif; }
 
@@ -272,6 +302,237 @@ a.maia-button.maia-button-secondary {
 /* IE6 only hack */
 * html .goog-combobox-button {
   padding: 0 3px; }
+
+/*
+ * Copyright 2010 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/* Author: slightlyoff@google.com (Alex Russell) */
+/* Author: eae@google.com (Emil A Eklund) */
+/* Imageless button styles. */
+.goog-css3-button {
+  margin: 0 2px;
+  padding: 3px 6px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: default;
+  outline: none;
+  font-family: Arial, sans-serif;
+  color: #000;
+  border: 1px solid #bbb;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  /* TODO(eae): Change this to -webkit-linear-gradient once
+                https://bugs.webkit.org/show_bug.cgi?id=28152 is resolved. */
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#f9f9f9), to(#e3e3e3));
+  /* @alternate */
+  background: -moz-linear-gradient(top, #f9f9f9, #e3e3e3); }
+
+/* Styles for different states (hover, active, focused, open, checked). */
+.goog-css3-button-hover {
+  border-color: #939393 !important; }
+
+.goog-css3-button-focused {
+  border-color: #444; }
+
+.goog-css3-button-active, .goog-css3-button-open, .goog-css3-button-checked {
+  border-color: #444 !important;
+  background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#e3e3e3), to(#f9f9f9));
+  /* @alternate */
+  background: -moz-linear-gradient(top, #e3e3e3, #f9f9f9); }
+
+.goog-css3-button-disabled {
+  color: #888; }
+
+.goog-css3-button-primary {
+  font-weight: bold; }
+
+/*
+ * Pill (collapsed border) styles.
+ */
+.goog-css3-button-collapse-right {
+  margin-right: 0 !important;
+  border-right: 1px solid #bbb;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px; }
+
+.goog-css3-button-collapse-left {
+  border-left: 1px solid #f9f9f9;
+  margin-left: 0 !important;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-bottomleft: 0px; }
+
+/*
+ * Copyright 2010 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/*
+ * Standard styling for buttons created by goog.ui.Css3MenuButtonRenderer.
+ *
+ * @author attila@google.com (Attila Bodis)
+ * @author dalewis@google.com (Darren Lewis)
+ */
+/* Dropdown arrow style. */
+.goog-css3-button-dropdown {
+  height: 16px;
+  width: 7px;
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/editortoolbar.png) no-repeat -388px 0;
+  vertical-align: top;
+  margin-left: 3px; }
+
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/*
+ * Styling for custom buttons rendered by goog.ui.CustomButtonRenderer.
+ *
+ * @author attila@google.com (Attila Bodis)
+ */
+.goog-custom-button {
+  margin: 2px;
+  border: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  color: #000;
+  /* Client apps may override the URL at which they serve the image. */
+  background: #dddddd url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/button-bg.png) repeat-x top left;
+  text-decoration: none;
+  list-style: none;
+  vertical-align: middle;
+  cursor: default;
+  outline: none; }
+
+/* Pseudo-rounded corners. */
+.goog-custom-button-outer-box,
+.goog-custom-button-inner-box {
+  border-style: solid;
+  border-color: #aaa;
+  vertical-align: top; }
+
+.goog-custom-button-outer-box {
+  margin: 0;
+  border-width: 1px 0;
+  padding: 0; }
+
+.goog-custom-button-inner-box {
+  margin: 0 -1px;
+  border-width: 0 1px;
+  padding: 3px 4px;
+  white-space: nowrap;
+  /* Prevents buttons from line breaking on android. */ }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-custom-button-inner-box {
+  /* IE6 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* Pre-IE7 BiDi fixes. */
+* html .goog-custom-button-rtl .goog-custom-button-outer-box {
+  /* @noflip */
+  left: -1px; }
+
+* html .goog-custom-button-rtl .goog-custom-button-inner-box {
+  /* @noflip */
+  right: auto; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-custom-button-inner-box {
+  /* IE7 needs to have the box shifted to make the borders line up. */
+  left: -1px; }
+
+/* IE7 BiDi fix. */
+*:first-child + html .goog-custom-button-rtl .goog-custom-button-inner-box {
+  /* @noflip */
+  left: 1px; }
+
+/* Safari-only hacks. */
+::root .goog-custom-button,
+::root .goog-custom-button-outer-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: 0; }
+
+::root .goog-custom-button-inner-box {
+  /* Required to make pseudo-rounded corners work on Safari. */
+  line-height: normal; }
+
+/* State: disabled. */
+.goog-custom-button-disabled {
+  background-image: none !important;
+  opacity: 0.3;
+  -moz-opacity: 0.3;
+  filter: alpha(opacity=30); }
+
+.goog-custom-button-disabled .goog-custom-button-outer-box,
+.goog-custom-button-disabled .goog-custom-button-inner-box {
+  color: #333 !important;
+  border-color: #999 !important; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-custom-button-disabled {
+  margin: 2px 1px !important;
+  padding: 0 1px !important; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-custom-button-disabled {
+  margin: 2px 1px !important;
+  padding: 0 1px !important; }
+
+/* State: hover. */
+.goog-custom-button-hover .goog-custom-button-outer-box,
+.goog-custom-button-hover .goog-custom-button-inner-box {
+  border-color: #9cf #69e #69e #7af !important;
+  /* Hover border wins. */ }
+
+/* State: active, checked. */
+.goog-custom-button-active,
+.goog-custom-button-checked {
+  background-color: #bbb;
+  background-position: bottom left; }
+
+/* State: focused. */
+.goog-custom-button-focused .goog-custom-button-outer-box,
+.goog-custom-button-focused .goog-custom-button-inner-box {
+  border-color: orange; }
+
+/* Pill (collapsed border) styles. */
+.goog-custom-button-collapse-right,
+.goog-custom-button-collapse-right .goog-custom-button-outer-box,
+.goog-custom-button-collapse-right .goog-custom-button-inner-box {
+  margin-right: 0; }
+
+.goog-custom-button-collapse-left,
+.goog-custom-button-collapse-left .goog-custom-button-outer-box,
+.goog-custom-button-collapse-left .goog-custom-button-inner-box {
+  margin-left: 0; }
+
+.goog-custom-button-collapse-left .goog-custom-button-inner-box {
+  border-left: 1px solid #fff; }
+
+.goog-custom-button-collapse-left.goog-custom-button-checked
+.goog-custom-button-inner-box {
+  border-left: 1px solid #ddd; }
+
+/* Pre-IE7 IE hack; ignored by IE7 and all non-IE browsers. */
+* html .goog-custom-button-collapse-left .goog-custom-button-inner-box {
+  left: 0; }
+
+/* IE7-only hack; ignored by all other browsers. */
+*:first-child + html .goog-custom-button-collapse-left
+.goog-custom-button-inner-box {
+  left: 0; }
 
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
@@ -318,7 +579,7 @@ a.maia-button.maia-button-secondary {
 
 .modal-dialog-title-close {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: #e0edfe url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  background: #e0edfe url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/editortoolbar.png) no-repeat -528px 0;
   cursor: default;
   height: 15px;
   position: absolute;
@@ -462,7 +723,7 @@ a.maia-button.maia-button-secondary {
 .goog-option-selected .goog-menuitem-checkbox,
 .goog-option-selected .goog-menuitem-icon {
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -512px 0; }
+  background: url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/editortoolbar.png) no-repeat -512px 0; }
 
 /* Keyboard shortcut ("accelerator") style. */
 .goog-menuitem-accel {
@@ -507,7 +768,7 @@ a.maia-button.maia-button-secondary {
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #dddddd url(https://ssl.gstatic.com/editor/button-bg.png) repeat-x top left;
+  background: #dddddd url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
@@ -626,7 +887,7 @@ a.maia-button.maia-button-secondary {
   height: 15px;
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: top; }
 
 /* Pill (collapsed border) styles. */
@@ -713,7 +974,7 @@ a.maia-button.maia-button-secondary {
  */
 .goog-toolbar {
   /* Client apps may override the URL at which they serve the image. */
-  background: #fafafa url(https://ssl.gstatic.com/editor/toolbar-bg.png) repeat-x bottom left;
+  background: #fafafa url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/toolbar-bg.png) repeat-x bottom left;
   border-bottom: 1px solid #d5d5d5;
   cursor: default;
   font: normal 12px Arial, sans-serif;
@@ -1009,7 +1270,7 @@ a.maia-button.maia-button-secondary {
 .goog-toolbar-menu-button-dropdown {
   width: 7px;
   /* Client apps may override the URL at which they serve the sprite. */
-  background: url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -388px 0;
+  background: url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/editortoolbar.png) no-repeat -388px 0;
   vertical-align: middle; }
 
 /*
@@ -1098,6 +1359,9 @@ a.maia-button.maia-button-secondary {
 .record-body .field.empty {
   display: none; }
 
+.record-body.edit .field.empty:not(.normally-hide) {
+  display: flex; }
+
 .record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field TEXTAREA {
   padding: 1px 0px 1px 1px;
   margin: 2px 0 2px 0px;
@@ -1145,42 +1409,6 @@ a.maia-button.maia-button-secondary {
 
 .field-edit-dialog td:last-child {
   text-align: left; }
-
-.field .hover-button {
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  width: 19px;
-  height: 19px; }
-
-.field .hover-button {
-  display: none; }
-
-.field:hover .hover-button {
-  display: inline-block;
-  border: thin solid #d3d3d3;
-  border-radius: 2px; }
-
-.more-menu {
-  position: relative; }
-
-.flyout-menu {
-  position: absolute;
-  left: -9em;
-  width: 10em;
-  top: 16px;
-  display: none; }
-  .flyout-menu .goog-menuitem:hover {
-    /* copy from goog-menuitem-highlight */
-    background-color: #d6e9f8;
-    border-color: #d6e9f8;
-    border-style: dotted;
-    border-width: 1px 0;
-    padding-bottom: 3px;
-    padding-top: 3px; }
-
-.more-menu:hover .flyout-menu {
-  display: block; }
 
 .field-edit-dialog .field {
   display: table-row; }
@@ -1286,16 +1514,13 @@ a.maia-button.maia-button-secondary {
   background-color: #414c08; }
 
 .Contacts SVG.fill {
-  fill: white;
-  background-color: #245a09; }
+  fill: #245a09; }
 
 .Leads SVG.fill {
-  fill: white;
-  background-color: #448fec; }
+  fill: #448fec; }
 
 .Accounts SVG.fill {
-  fill: white;
-  background-color: #37880e; }
+  fill: #37880e; }
 
 .record-header .head {
   display: flex;
@@ -1310,16 +1535,20 @@ a.maia-button.maia-button-secondary {
   text-overflow: ellipsis; }
 .record-header .icon {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
   border-radius: 3px;
   font-weight: 400;
   font-size: 10px;
-  padding: 0 0 0 2px;
   margin: 0 4px 0 0;
   border: none;
   color: #ffffff;
   vertical-align: middle; }
+.record-header .icon.small {
+  width: 15px;
+  height: 15px;
+  padding: 1px; }
 .record-header .link {
   display: none; }
 .record-header .link.synced {
@@ -1333,13 +1562,7 @@ a.maia-button.maia-button-secondary {
   display: inline !important; }
 
 .edit-button {
-  padding: 2px 4px;
-  box-sizing: border-box;
-  border-radius: 2px;
-  cursor: pointer; }
-
-.edit-button.active {
-  background-color: #d3d3d3; }
+  padding: 2px 4px; }
 
 .record-body-header > * {
   padding-left: 4px; }
@@ -1350,10 +1573,18 @@ a.maia-button.maia-button-secondary {
 .record.detail .record-body .normally-hide {
   display: block; }
 
+.record-panel.empty:not(.edit) {
+  display: none; }
+
 .secondary {
   margin-left: 4px;
   padding-left: 2px;
   border-left: thin solid lightblue; }
+
+#field-table td {
+  text-align: center; }
+#field-table td:last-child {
+  text-align: left; }
 
 .search-result {
   padding: 4px; }
@@ -1366,22 +1597,22 @@ a.maia-button.maia-button-secondary {
   max-height: 200px;
   overflow: scroll; }
 
-.sugar-panel .main-title {
-  margin: 4px;
-  overflow: hidden;
-  vertical-align: middle; }
-.sugar-panel .icon-box {
-  vertical-align: middle;
-  padding-right: 4px; }
+.sugar-panel {
+  clear: both; }
+  .sugar-panel .main-title {
+    margin: 4px;
+    overflow: hidden;
+    vertical-align: middle; }
+  .sugar-panel .icon-box {
+    vertical-align: middle;
+    padding-right: 4px; }
+
+.sugar-panel-content {
+  margin: 2px 0; }
 
 .sugar-body .goog-tab {
   width: 16px;
   height: 16px; }
-
-.sugar-panel .record-panel.empty {
-  display: none; }
-.sugar-panel .goog-toolbar {
-  border-bottom: none; }
 
 .gmail-cmd-panel {
   display: inline-block;

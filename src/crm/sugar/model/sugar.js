@@ -34,13 +34,14 @@ goog.require('ydn.debug.error.ConstraintError');
 /**
  * SugarCRM server info
  * @param {SugarCrm.About} about setup for particular domain.
- * @param {Array.<SugarCrm.ModuleInfo>} arr
+ * @param {Array.<SugarCrm.ModuleInfo>|Object.<SugarCrm.ModuleInfo>} arr
+ * @param {SugarCrm.ServerInfo=} opt_info
  * @constructor
  * @extends {goog.events.EventTarget}
  * @struct
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.sugar.model.Sugar = function(about, arr) {
+ydn.crm.sugar.model.Sugar = function(about, arr, opt_info) {
   goog.base(this);
   /**
    * @protected
@@ -48,8 +49,12 @@ ydn.crm.sugar.model.Sugar = function(about, arr) {
    */
   this.about = about;
   var modules_info = {};
-  for (var i = 0; i < arr.length; i++) {
-    modules_info[arr[i]['module_name']] = arr[i];
+  if (goog.isArray(arr)) {
+    for (var i = 0; i < arr.length; i++) {
+      modules_info[arr[i]['module_name']] = arr[i];
+    }
+  } else {
+    modules_info = arr;
   }
   /**
    * @protected
@@ -62,7 +67,7 @@ ydn.crm.sugar.model.Sugar = function(about, arr) {
    * @protected
    * @type {SugarCrm.ServerInfo}
    */
-  this.info = /** @type {SugarCrm.ServerInfo} */ ({});
+  this.info = opt_info || /** @type {SugarCrm.ServerInfo} */ ({});
 
   /**
    * @protected
@@ -77,11 +82,18 @@ ydn.crm.sugar.model.Sugar = function(about, arr) {
   this.user_ = new ydn.crm.sugar.Record(this.getDomain(), ydn.crm.sugar.ModuleName.USERS);
   this.initUser_();
   var pipe = ydn.msg.getMain();
-  this.handler.listen(pipe, [ydn.crm.Ch.SReq.LOGIN, ydn.crm.Ch.Req.HOST_PERMISSION], this.handleMessage);
+  this.handler.listen(pipe, [ydn.crm.Ch.SReq.LOGIN, ydn.crm.Ch.Req.HOST_PERMISSION],
+      this.handleMessage);
 
   if (ydn.crm.sugar.model.Sugar.DEBUG) {
     this.sugar_random_id_ = Math.random();
   }
+
+  /**
+   * @type {?boolean}
+   * @private
+   */
+  this.is_version_7_ = null;
 };
 goog.inherits(ydn.crm.sugar.model.Sugar, goog.events.EventTarget);
 
@@ -120,6 +132,41 @@ ydn.crm.sugar.model.Sugar.prototype.handleMessage = function(e) {
       this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.HOST_ACCESS_GRANT));
     }
   }
+};
+
+
+/**
+ * Get version.
+ * @return {string} SugarCrmVersion
+ */
+ydn.crm.sugar.model.Sugar.prototype.getVersion = function() {
+  return this.info ? this.info.version || '' : '';
+};
+
+
+/**
+ * Check require version.
+ * <pre>
+ *   sugar.hasVersion('7');
+ * </pre>
+ * @param {string} ver sugarcrm version, such as '7'.
+ * @return {boolean} return true if sugarcrm version is higher or equal to
+ * given version.
+ * @private
+ */
+ydn.crm.sugar.model.Sugar.prototype.hasVersion_ = function(ver) {
+  return goog.string.compareVersions(this.getVersion(), ver) >= 0;
+};
+
+
+/**
+ * @return {?boolean} true if SugarCrm backend has version 7.
+ */
+ydn.crm.sugar.model.Sugar.prototype.isVersion7 = function() {
+  if (!goog.isDefAndNotNull(this.is_version_7_) && this.info) {
+    this.is_version_7_ = this.hasVersion_('7');
+  }
+  return this.is_version_7_;
 };
 
 
@@ -290,6 +337,21 @@ ydn.crm.sugar.model.Sugar.prototype.setInfo = function(info) {
  */
 ydn.crm.sugar.model.Sugar.prototype.getInfo = function() {
   return /** @type {!SugarCrm.ServerInfo} */ (goog.object.clone(this.info));
+};
+
+
+/**
+ * Get url for contact entry of given id
+ * @param {string} module
+ * @param {string} id
+ * @return {string}
+ */
+ydn.crm.sugar.model.Sugar.prototype.getRecordViewLink = function(module, id) {
+  if (this.isVersion7()) {
+    return ydn.crm.sugar.getViewLinkV7(this.getHomeUrl(), module, id);
+  } else {
+    return ydn.crm.sugar.getViewLinkV6(this.getHomeUrl(), module, id);
+  }
 };
 
 
@@ -522,6 +584,14 @@ ydn.crm.sugar.model.Sugar.list = function() {
     }
     return goog.async.DeferredList.gatherResults(dfs);
   });
+};
+
+
+/**
+ * @return {ydn.crm.sugar.model.Sugar}
+ */
+ydn.crm.sugar.model.Sugar.prototype.clone = function() {
+  return new ydn.crm.sugar.model.Sugar(this.about, this.module_info);
 };
 
 

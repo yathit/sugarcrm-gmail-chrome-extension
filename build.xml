@@ -7,7 +7,7 @@
         <sequential>
             <delete file="extension.zip"/>
             <zip basedir="${ydn-crm.dir}" destfile="extension.zip"
-                 includes="manifest.json,*.html,css/*,lib/*.js,jsc/*,image/*,js/**">
+                 includes="manifest.json,*.html,css/*,lib/*.js,jsc/*,image/**,js/**">
 
             </zip>
         </sequential>

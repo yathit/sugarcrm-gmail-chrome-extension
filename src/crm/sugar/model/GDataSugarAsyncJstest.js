@@ -30,7 +30,7 @@ GDataSugarAsyncJsTest.prototype.testContextGDataChangeEvent = function(queue) {
   queue.call('update event', function(callbacks) {
     assertEquals('update event type', ydn.crm.sugar.model.events.Type.CONTEXT_GDATA_CHANGE, type);
     assertEquals('context name', fn, context.getFullName());
-    assertEquals('context email', [email], context.getEmails());
+    assertEquals('context email', email, context.getEmail());
     type = null; context = null;
   });
 

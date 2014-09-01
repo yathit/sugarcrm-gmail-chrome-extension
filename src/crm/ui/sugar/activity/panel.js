@@ -65,6 +65,12 @@ ydn.crm.ui.sugar.activity.Panel = function(model, dom) {
    * @type {ydn.crm.ui.sugar.SearchPanel}
    */
   this.search = new ydn.crm.ui.sugar.SearchPanel(model, dom);
+
+  /**
+   * @protected
+   * @type {ydn.crm.ui.sugar.activity.NewRecord}
+   */
+  this.new_record = new ydn.crm.ui.sugar.activity.NewRecord(model, dom);
 };
 goog.inherits(ydn.crm.ui.sugar.activity.Panel, goog.ui.Component);
 
@@ -119,6 +125,13 @@ ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_FEED = 'activity-feed';
 
 
 /**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_NEW = 'new';
+
+
+/**
  * @inheritDoc
  */
 ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
@@ -139,6 +152,15 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   this.tabbar.addChild(search_tab, true);
   search_tab.getContentElement().classList.add(
       ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_SEARCH);
+
+  var new_el = dom.createDom('div');
+  var new_svg = ydn.crm.ui.createSvgIcon('plus');
+  new_el.appendChild(new_svg);
+  var new_tab = new goog.ui.Tab(new_el);
+  new_tab.setTooltip('Create a new record');
+  this.tabbar.addChild(new_tab, true);
+  new_tab.getContentElement().classList.add(
+      ydn.crm.ui.sugar.activity.Panel.CSS_CLASS_NEW);
 
   var feed_el = dom.createDom('div');
   var feed_svg = ydn.crm.ui.createSvgIcon('rss');
@@ -162,7 +184,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.createDom = function() {
   }
 
   this.addChild(this.search, true);
-
+  this.addChild(this.new_record, true);
   this.addChild(this.detail_panel, true);
 };
 
@@ -179,6 +201,7 @@ ydn.crm.ui.sugar.activity.Panel.prototype.enterDocument = function() {
   hd.listen(this.tabbar, goog.ui.Component.EventType.SELECT, this.handleTabSelect_);
   hd.listen(this.tabbar, goog.ui.Component.EventType.UNSELECT, this.handleTabUnSelect_);
   goog.style.setElementShown(this.getElement(), false);
+  goog.style.setElementShown(this.new_record.getElement(), false);
   goog.style.setElementShown(this.detail_panel.getElement(), false);
   // if already login, update at the beginning.
   if (sugar.isLogin()) {
@@ -204,14 +227,20 @@ ydn.crm.ui.sugar.activity.Panel.prototype.handleTabSelect_ = function(e) {
   var idx = this.tabbar.getSelectedTabIndex();
   if (idx == 0) {
     goog.style.setElementShown(this.search.getElement(), true);
+    goog.style.setElementShown(this.new_record.getElement(), false);
+    goog.style.setElementShown(this.detail_panel.getElement(), false);
+  } else if (idx == 1) {
+    goog.style.setElementShown(this.search.getElement(), false);
+    goog.style.setElementShown(this.new_record.getElement(), true);
     goog.style.setElementShown(this.detail_panel.getElement(), false);
   } else {
     goog.style.setElementShown(this.search.getElement(), false);
+    goog.style.setElementShown(this.new_record.getElement(), false);
     goog.style.setElementShown(this.detail_panel.getElement(), true);
-    if (idx == 1) {
+    if (idx == 2) {
       this.detail_panel.renderActivity();
     } else {
-      var m_name = ydn.crm.sugar.ACTIVITY_MODULES[idx - 2];
+      var m_name = ydn.crm.sugar.ACTIVITY_MODULES[idx - 3];
       this.detail_panel.renderUpcoming(m_name);
     }
   }

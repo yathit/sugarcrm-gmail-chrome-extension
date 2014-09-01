@@ -27,22 +27,6 @@ goog.inherits(ydn.crm.sugar.model.AddressGroup, ydn.crm.sugar.model.BaseGroup);
 
 
 /**
- * @inheritDoc
- */
-ydn.crm.sugar.model.AddressGroup.prototype.getGroupLabel = function() {
-  return 'Name';
-};
-
-
-/**
- * @inheritDoc
- */
-ydn.crm.sugar.model.AddressGroup.prototype.hasGroupValue = function() {
-  return !!this.getGroupLabel();
-};
-
-
-/**
  * Get address field value by address field.
  * @param {string} fn address field name, such as 'city', 'country', etc.
  * @return {?string}

@@ -22,6 +22,7 @@ goog.require('ydn.gdata.m8.NewContactEntry');
  * @constructor
  * @extends {ydn.crm.sugar.model.Record}
  * @struct
+ * @deprecated use ydn.crm.sugar.model.Record instead.
  */
 ydn.crm.sugar.model.GDataRecord = function(parent, module_name) {
   var r = new ydn.crm.sugar.Record(parent.getDomain(), module_name);
@@ -40,13 +41,13 @@ ydn.crm.sugar.model.GDataRecord = function(parent, module_name) {
   this.module_name = module_name;
 
   /**
+   * FIXME: generally we don't like event handler on model.
    * @protected
    * @type {goog.events.EventHandler}
    */
   this.handler = new goog.events.EventHandler(this);
-  this.handler.listen(parent, [ydn.crm.sugar.model.events.Type.GDATA_CHANGE,
-    ydn.crm.sugar.model.events.Type.GDATA_UPDATED,
-    ydn.crm.sugar.model.events.Type.CONTEXT_GDATA_CHANGE], this.relayGDataEvent);
+  this.handler.listen(parent, [ydn.crm.sugar.model.events.Type.CONTEXT_CHANGE],
+      this.relayContextChange);
 
 };
 goog.inherits(ydn.crm.sugar.model.GDataRecord, ydn.crm.sugar.model.Record);
@@ -73,6 +74,15 @@ ydn.crm.sugar.model.GDataRecord.prototype.disposeInternal = function() {
   goog.base(this, 'disposeInternal');
   this.handler.dispose();
   this.handler = null;
+};
+
+
+/**
+ * Dispatch events due to changes from parent GDataSugar.
+ * @param {ydn.crm.sugar.model.events.Event} e
+ */
+ydn.crm.sugar.model.GDataRecord.prototype.relayContextChange = function(e) {
+  this.dispatchEvent(e);
 };
 
 
@@ -166,10 +176,10 @@ ydn.crm.sugar.model.GDataRecord.prototype.getSyncedGData = function() {
 
 
 /**
- * @return {ydn.gdata.m8.ContactEntry} return context contact from gmail panel
+ * @return {ydn.crm.inj.ContactModel} return context contact from gmail panel
  */
-ydn.crm.sugar.model.GDataRecord.prototype.getContextGData = function() {
-  return this.getParent().getContextGData();
+ydn.crm.sugar.model.GDataRecord.prototype.getContext = function() {
+  return this.getParent().getContext();
 };
 
 
@@ -178,20 +188,6 @@ ydn.crm.sugar.model.GDataRecord.prototype.getContextGData = function() {
  */
 ydn.crm.sugar.model.GDataRecord.prototype.getModuleName = function() {
   return this.module_name;
-};
-
-
-/**
- * Set sugarcrm record. This will dispatch ModuleRecordChangeEvent.
- * @param {ydn.crm.sugar.Record} record sugarcrm record entry.
- */
-ydn.crm.sugar.model.GDataRecord.prototype.setRecord = function(record) {
-  // check valid record.
-  if (record && record.getModule() != this.module_name) {
-    throw new Error('Module name must be ' + this.module_name + ' but found ' +
-        record.getModule());
-  }
-  goog.base(this, 'setRecord', record);
 };
 
 
@@ -339,7 +335,7 @@ ydn.crm.sugar.model.GDataRecord.prototype.importToSugar = function() {
  */
 ydn.crm.sugar.model.GDataRecord.prototype.addToSugar = function() {
   goog.asserts.assert(!this.hasRecord(), 'already imported?');
-  var contact = this.getContextGData();
+  var contact = this.getContext().toContactEntry();
   goog.asserts.assertObject(contact, 'no contact gdata to import?');
 
   goog.asserts.assert(!this.hasRecord(), 'already imported as ' + this.record);
@@ -401,7 +397,7 @@ ydn.crm.sugar.model.GDataRecord.prototype.link = function() {
   if (!this.hasRecord()) {
     return goog.async.Deferred.fail('no Record to link.');
   }
-  return this.getParent().link(this.record);
+  throw new Error('deprecated');
 };
 
 

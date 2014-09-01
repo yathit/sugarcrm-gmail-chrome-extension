@@ -43,6 +43,12 @@ goog.inherits(ydn.crm.ui.sugar.activity.DetailPanel, goog.ui.Component);
 
 
 /**
+ * @define {boolean} debug flag.
+ */
+ydn.crm.ui.sugar.activity.DetailPanel.DEBUG = false;
+
+
+/**
  * @return {ydn.crm.sugar.model.Sugar}
  * @override
  */
@@ -144,23 +150,24 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.handleClick_ = function(e) {
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderItem_ = function(record) {
   var dom = this.getDomHelper();
-  var domain = this.getModel().getDomain();
+  var sugar = this.getModel();
+  var domain = sugar.getDomain();
   var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (record._module);
   var r = new ydn.crm.sugar.Record(domain, m_name, record);
-  var icon = dom.createDom('div', 'icon', record._module.substr(0, 2));
+  var icon = dom.createDom('div', 'icon small', record._module.substr(0, 2));
   var msg = dom.createDom('span');
   var mod_id = r.value('modified_user_id');
   var user_id = r.value('created_by');
   if (mod_id) {
     var mod_link = dom.createDom('a', {
-      'href': ydn.crm.sugar.getViewLink(domain, ydn.crm.sugar.ModuleName.USERS, mod_id),
+      'href': sugar.getRecordViewLink(ydn.crm.sugar.ModuleName.USERS, mod_id),
       'target': '_blank'
     }, r.value('modified_user_name'));
     msg.appendChild(mod_link);
     msg.appendChild(dom.createTextNode(' '));
   } else if (user_id) {
     var user_link = dom.createDom('a', {
-      'href': ydn.crm.sugar.getViewLink(domain, ydn.crm.sugar.ModuleName.USERS, user_id),
+      'href': sugar.getRecordViewLink(ydn.crm.sugar.ModuleName.USERS, user_id),
       'target': '_blank'
     }, r.value('created_by_name'));
     msg.appendChild(user_link);
@@ -170,9 +177,9 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderItem_ = function(record) {
   var type = record.date_modified == record.date_entered ? 'created ' : 'updated ';
   msg.appendChild(dom.createTextNode(type));
   var link = dom.createDom('a', {
-    'href': r.getViewLink(),
+    'href': sugar.getRecordViewLink(r.getModule(), r.getId()),
     'target': '_blank'
-  }, r.value('name'));
+  }, r.getLabel());
   msg.appendChild(link);
 
   var m_no_s = ydn.crm.sugar.Record.moduleAsNoun(m_name);
@@ -224,10 +231,16 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.queryUpcoming = function(m_name)
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderActivity = function() {
   var root = this.getElement();
+  if (ydn.crm.ui.sugar.activity.DetailPanel.DEBUG) {
+    window.console.info('renderActivity');
+  }
   this.getModel().send(ydn.crm.Ch.SReq.ACTIVITY_STREAM).addCallbacks(function(ans) {
     // window.console.log(ans);
     var dom = this.getDomHelper();
     var title = dom.createDom('span');
+    if (ydn.crm.ui.sugar.activity.DetailPanel.DEBUG) {
+      window.console.log('receiving renderUpcoming ' + ans.length + ' items', ans);
+    }
     if (ans.length > 0) {
       var since = ydn.crm.sugar.utils.parseDate(ans[ans.length - 1]['date_modified']);
       var t = goog.date.relative.format(since.getTime()) || since.toLocaleDateString();
@@ -256,16 +269,17 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderActivity = function() {
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcomingItem_ = function(obj, m_name) {
   var dom = this.getDomHelper();
-  var domain = this.getModel().getDomain();
+  var sugar = this.getModel();
+  var domain = sugar.getDomain();
   var r = new ydn.crm.sugar.Record(domain, m_name, obj);
   var msg = dom.createDom('span');
   var verb = ydn.crm.sugar.Record.moduleAsVerb(m_name);
   verb = verb.charAt(0).toUpperCase() + verb.substr(1) + ' ';
   msg.appendChild(dom.createTextNode(verb));
   var link = dom.createDom('a', {
-    'href': r.getViewLink(),
-    'target': '_blank'
-  }, r.value('name'));
+    'href': sugar.getRecordViewLink(r.getModule(), r.getId()),
+    'target': domain
+  }, r.getLabel());
   msg.appendChild(link);
   var deadline = r.getDeadline();
   var time_msg = goog.date.relative.format(deadline.getTime()) || 'on ' + deadline.toLocaleDateString();
@@ -295,8 +309,14 @@ ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderHeader_ = function(el) {
  */
 ydn.crm.ui.sugar.activity.DetailPanel.prototype.renderUpcoming = function(m_name) {
   var q = this.queryUpcoming(m_name);
+  if (ydn.crm.ui.sugar.activity.DetailPanel.DEBUG) {
+    window.console.log('renderUpcoming for ' + m_name, q);
+  }
   this.getModel().send(ydn.crm.Ch.SReq.VALUES, q).addCallbacks(function(arr) {
     var results = /** @type {Array.<SugarCrm.Record>} */ (arr);
+    if (ydn.crm.ui.sugar.activity.DetailPanel.DEBUG) {
+      window.console.log('receiving renderUpcoming ' + results.length + ' items', arr);
+    }
     var head = this.getDomHelper().createDom('span');
     head.textContent = results.length + ' upcoming ' + m_name;
     this.renderHeader_(head);

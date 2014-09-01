@@ -40,10 +40,11 @@ goog.require('ydn.crm.inj.InlineRenderer');
 goog.require('ydn.crm.inj.StickyRenderer');
 goog.require('ydn.crm.inj.WidgetRenderer');
 goog.require('ydn.crm.shared');
-goog.require('ydn.crm.ui.SimpleSidebarPanel');
+goog.require('ydn.crm.ui.ContextSidebar');
 goog.require('ydn.debug');
 goog.require('ydn.gmail.Utils.GmailViewState');
 goog.require('ydn.msg.Pipe');
+goog.require('ydn.app.msg.Manager');
 
 
 
@@ -57,6 +58,8 @@ ydn.crm.inj.App = function() {
   // connection channel with background page.
   ydn.msg.initPipe(ydn.msg.ChannelName.GMAIL);
 
+  ydn.app.msg.Manager.addStatus('Starting ' + ydn.crm.version + '...');
+
   /**
    * @protected
    * @type {ydn.crm.inj.AppRenderer}
@@ -64,15 +67,10 @@ ydn.crm.inj.App = function() {
   this.renderer = new ydn.crm.inj.InlineRenderer();
 
   /**
-   * @type {Element}
-   */
-  this.root_ele = this.renderer.getElement();
-
-  /**
    * @protected
-   * @type {ydn.crm.ui.SimpleSidebarPanel}
+   * @type {ydn.crm.ui.ContextSidebar}
    */
-  this.sidebar = new ydn.crm.ui.SimpleSidebarPanel();
+  this.sidebar = new ydn.crm.ui.ContextSidebar();
   this.sidebar.render(this.renderer.getContentElement());
 
   this.sniff_timer_ = new goog.Timer(400);
@@ -94,12 +92,6 @@ ydn.crm.inj.App = function() {
    * @final
    */
   this.user_setting = ydn.crm.ui.UserSetting.getInstance();
-
-  /**
-   * @protected
-   * @type {ydn.crm.ui.ContextPanelPosition}
-   */
-  this.context_panel_position = ydn.crm.ui.ContextPanelPosition.INLINE;
 
   /**
    * @final
@@ -159,7 +151,7 @@ ydn.crm.inj.App.prototype.getRightBarTable = function(opt_log_detail) {
 
 /**
  * Sniff contact and set to model.
- * @param e
+ * @param {Event} e
  * @private
  */
 ydn.crm.inj.App.prototype.handleTimerTick_ = function(e) {
@@ -227,8 +219,9 @@ ydn.crm.inj.App.sniffEmail = function(contact_table, adv) {
         if (name.length > 0) {
           var email_span = document.querySelector('span[name="' + name + '"][email]');
           if (email_span) {
+            var account = ydn.crm.ui.UserSetting.getInstance().getLoginEmail();
             var email = email_span.getAttribute('email');
-            return new ydn.crm.inj.ContactModel(email, name);
+            return new ydn.crm.inj.ContactModel(account, email, name);
           }
         }
       }
@@ -244,7 +237,8 @@ ydn.crm.inj.App.sniffEmail = function(contact_table, adv) {
   }
   var span_title = td_1.nextElementSibling.querySelector('span[title]');
   var contact_name = span_title.getAttribute('title');
-  return new ydn.crm.inj.ContactModel(email, contact_name);
+  var account = ydn.crm.ui.UserSetting.getInstance().getLoginEmail();
+  return new ydn.crm.inj.ContactModel(account, email, contact_name);
 };
 
 
@@ -278,7 +272,7 @@ ydn.crm.inj.App.prototype.handleHistory = function(e) {
  * Compose panel appear.
  */
 ydn.crm.inj.App.prototype.updateForCompose = function() {
-  var val = this.hud.injectTemplateMenu();
+  var val = this.sidebar.injectTemplateMenu();
   this.logger.finest('inject compose ' + (val ? 'ok' : 'fail'));
 };
 
@@ -364,7 +358,7 @@ ydn.crm.inj.App.prototype.resetUser_ = function() {
  * @private
  */
 ydn.crm.inj.App.prototype.updateSugarPanels_ = function() {
-  ydn.msg.getChannel().send(ydn.crm.Ch.Req.LIST_SUGAR).addCallback(
+  ydn.msg.getChannel().send(ydn.crm.Ch.Req.LIST_SUGAR_DOMAIN).addCallback(
       function(sugars) {
         if (ydn.crm.ui.SimpleSidebarPanel.DEBUG) {
           window.console.log(sugars);

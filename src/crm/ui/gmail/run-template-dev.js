@@ -10,8 +10,8 @@
  */
 var fn = 'test-data-1.html';
 
-// ydn.msg.Pipe.DEBUG = true;
-ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.ConsoleStatusBar();
+
+ydn.app.msg.Manager.addConsumer(new ydn.app.msg.ConsoleStatusBar());
 ydn.msg.initPipe('dev');
 var user = ydn.crm.ui.UserSetting.getInstance();
 ydn.debug.log('ydn.crm', 'finer');

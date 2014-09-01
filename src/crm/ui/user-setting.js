@@ -118,15 +118,21 @@ ydn.crm.ui.UserSetting.prototype.onReady = function() {
 
     this.df_ = ydn.gmail.Utils.getUserEmail().addBoth(function(email) {
       this.gmail_ = email;
+      ydn.app.msg.Manager.addStatus('Loading setting for ' + email);
       return ydn.msg.getChannel().send(ydn.crm.Ch.Req.LOGIN_INFO, {
         'gmail': email
       }).addCallbacks(function(x) {
-        if (!x) {
+        var info = /** @type {YdnApiUser} */ (x);
+        this.login_info = info;
+        if (!info || !info.is_login) {
+          ydn.app.msg.Manager.addStatus(info.email + ' login failed.');
           this.logger.warning('login fail');
+        } else {
+          ydn.app.msg.Manager.addStatus(info.email + ' login.');
         }
-        this.login_info = x;
       }, function(e) {
         this.login_info = null;
+        ydn.app.msg.Manager.addStatus('login error.');
         this.logger.warning('login fail');
       }, this);
     }, this);

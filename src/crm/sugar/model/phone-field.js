@@ -28,7 +28,7 @@ goog.inherits(ydn.crm.sugar.model.PhoneField, ydn.crm.sugar.model.Field);
 /**
  * Check the field value is deletable.
  * Extra field like, phone number, address, email are deletable.
- * @return {Array.<ydn.crm.sugar.model.Field.FieldOption>}
+ * @return {Array.<ydn.ui.FlyoutMenu.ItemOption>}
  */
 ydn.crm.sugar.model.PhoneField.prototype.getMoreOptions = function() {
   // Note: only InputFieldRenderer display delete button.

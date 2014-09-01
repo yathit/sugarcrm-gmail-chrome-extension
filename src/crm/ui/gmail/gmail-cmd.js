@@ -22,13 +22,14 @@ goog.provide('ydn.crm.ui.GmailCmd');
 goog.require('goog.dom.TagName');
 goog.require('goog.ui.Component');
 goog.require('ydn.crm.sugar.model.Sugar');
+goog.require('ydn.ui.Reportable');
 
 
 
 /**
  * Gmail command panel.
  * @param {ydn.crm.sugar.model.Sugar} sugar
- * @param {ydn.crm.ui.sugar.SugarPanel=} opt_parent
+ * @param {ydn.crm.ui.sugar.ContextSugarPanel=} opt_parent
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
@@ -39,7 +40,7 @@ ydn.crm.ui.GmailCmd = function(sugar, opt_parent) {
   this.setModel(sugar);
   /**
    * @protected
-   * @type {ydn.crm.ui.sugar.SugarPanel?}
+   * @type {?ydn.crm.ui.sugar.ContextSugarPanel}
    */
   this.parent = opt_parent || null;
   this.a_archive_ = new ydn.ui.Reportable();
@@ -124,7 +125,7 @@ ydn.crm.ui.GmailCmd.messageId2GmailLink = function(gmail, id) {
  * @param {Object} obj Email module record
  */
 ydn.crm.ui.GmailCmd.prototype.setViewLink = function(obj) {
-  var link = ydn.crm.sugar.getViewLink(this.getModel().getDomain(),
+  var link = this.getModel().getRecordViewLink(
       ydn.crm.sugar.ModuleName.EMAILS, obj['id']);
   /*
    var message_id = obj['message_id'];
@@ -337,10 +338,10 @@ ydn.crm.ui.GmailCmd.prototype.handleArchiveClick = function(e) {
     this.a_archive_.setLink('archiving...');
     var module_name = undefined;
     var record_id = undefined;
-    var contexts = this.parent ? this.parent.getContexts() : [];
-    if (contexts[0]) {
-      module_name = contexts[0].module;
-      record_id = contexts[0].id;
+    var context = this.parent ? this.parent.getContext() : null;
+    if (context) {
+      module_name = context.module;
+      record_id = context.id;
     }
     var info = ydn.crm.ui.GmailCmd.gatherEmailInfo(this.getElement());
     if (ydn.crm.ui.GmailCmd.DEBUG) {

@@ -185,25 +185,9 @@ ydn.crm.sugar.model.Field.Command = {
 
 
 /**
- * @typedef {{
- *   label: string,
- *   name: ydn.crm.sugar.model.Field.Command,
- *   value: *,
- *   type: (string|undefined)
- * }}
- * label: menu text.
- * name: commend in dispatching event.
- * type: SugarCrm.ModuleField#type for input type, default to type='text', for
- * 'bool', it becomes type='checkbox'
- * When type is 'bool', value can be 'true' or 'false'.
- */
-ydn.crm.sugar.model.Field.FieldOption;
-
-
-/**
  * Check the field value is deletable.
  * Extra field like, phone number, address, email are deletable.
- * @return {Array.<ydn.crm.sugar.model.Field.FieldOption>}
+ * @return {Array.<ydn.ui.FlyoutMenu.ItemOption>}
  */
 ydn.crm.sugar.model.Field.prototype.getMoreOptions = function() {
   return [];
@@ -229,7 +213,7 @@ ydn.crm.sugar.model.Field.prototype.patch = function(value) {
   if (this.isCalculated()) {
     return null;
   }
-  if (value == this.getFieldValue()) {
+  if (value === this.getFieldValue()) {
     return null;
   }
   var obj = {};

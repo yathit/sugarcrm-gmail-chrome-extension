@@ -1,16 +1,17 @@
 /**
- * @fileoverview SugarCrm module field.
+ * @fileoverview Basic field renderer.
  */
 
 
 goog.provide('ydn.crm.ui.sugar.field.FieldRenderer');
 goog.require('goog.dom.TagName');
 goog.require('goog.dom.forms');
+goog.require('ydn.ui.FlyoutMenu');
 
 
 
 /**
- * Create a new module record field.
+ * Field renderer.
  * @constructor
  * @struct
  * @suppress {checkStructDictInheritance} suppress closure-library code.
@@ -46,13 +47,6 @@ ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE = 'value';
  * @type {string} button show on hover.
  */
 ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_HOVER_BUTTON = 'hover-button';
-
-
-/**
- * @const
- * @type {string} trash icon button for deleting field value.
- */
-ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_MORE_MENU = 'more-menu';
 
 
 /**
@@ -192,47 +186,6 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.collectValue = function(ctrl) {
 };
 
 
-/**
- * @param {Element} el
- * @param {Array.<ydn.crm.sugar.model.Field.FieldOption>} options
- */
-ydn.crm.ui.sugar.field.FieldRenderer.renderPopupMenu = function(
-    el, options) {
-  var dom = goog.dom.getDomHelper(el);
-  // console.log(options);
-  var items = [];
-  for (var i = 0; i < options.length; i++) {
-    var opt = options[i];
-    var menu_content = [dom.createDom('div', {
-      'class': 'goog-menuitem-content'
-    }, opt.label)];
-    if (opt.type == 'bool') {
-      var chk = dom.createDom('div', {
-        'class': 'goog-menuitem-checkbox',
-        'role': 'menuitem'
-      });
-      menu_content.unshift(chk);
-    }
-    var menuitem = dom.createDom('div', {
-      'class': 'goog-menuitem',
-      'role': opt.type == 'bool' ? 'goog-menuitem-checkbox' : 'menuitem'
-    }, menu_content);
-    menuitem.setAttribute('name', opt.name);
-    if (opt.value) {
-      menuitem.classList.add('goog-option-selected');
-    }
-    items.push(menuitem);
-  }
-  var svg = ydn.crm.ui.createSvgIcon('more-vert');
-  var menu = dom.createDom('div',
-      {
-        'class': 'flyout-menu goog-menu goog-menu-vertical',
-        'role': 'menu'
-      },
-      items);
-  el.appendChild(svg);
-  el.appendChild(menu);
-};
 
 
 

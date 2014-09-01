@@ -23,6 +23,7 @@ ydn.crm.ui.StatusBar = function() {
 /**
  * Singlaton instance of status bar. This should be override by the app.
  * @type {ydn.crm.ui.StatusBar}
+ * @deprecated use ydn.app.msg.Manager instead.
  */
 ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.StatusBar();
 
@@ -58,6 +59,7 @@ ydn.crm.ui.StatusBar.prototype.clearMessage = function(cnt) {
 
 /**
  * @return {number} get current message count.
+ * @final
  */
 ydn.crm.ui.StatusBar.prototype.getCount = function() {
   return this.count_;

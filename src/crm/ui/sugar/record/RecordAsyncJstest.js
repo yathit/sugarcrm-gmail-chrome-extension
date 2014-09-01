@@ -1,17 +1,18 @@
 
 
-ydn.crm.ui.sugar.record.RecordAsyncJsTest = AsyncTestCase("ydn.crm.ui.sugar.record.RecordAsyncJsTest");
+RecordAsyncJsTest = AsyncTestCase("RecordAsyncJsTest");
 
 
 
-ydn.crm.ui.sugar.record.RecordAsyncJsTest.prototype.setUp = function() {
+RecordAsyncJsTest.prototype.setUp = function() {
+  // jstestdriver.plugins.async.CallbackPool.TIMEOUT = 2;
   ydn.crm.test.init();
   ydn.crm.test.getMain().addMockRespond('gdata-list-contact-by-email', []);
   ydn.crm.test.getMain().addMockSugarRespond('query', [{result: []}]);
 };
 
 
-ydn.crm.ui.sugar.record.RecordAsyncJsTest.prototype.testRendering = function(queue) {
+RecordAsyncJsTest.prototype.test_rendering = function(queue) {
 
   var record = ydn.crm.test.createContactRecord();
 
@@ -40,7 +41,29 @@ ydn.crm.ui.sugar.record.RecordAsyncJsTest.prototype.testRendering = function(que
 };
 
 
-ydn.crm.ui.sugar.record.RecordAsyncJsTest.prototype.test_normally_hide_setting = function(queue) {
+
+RecordAsyncJsTest.prototype.test_rendering_account_name = function(queue) {
+
+  var obj = {
+    "id": "14931041-0811-1232-7bfc-5402b6f6dd93",
+    "name": "Chaw Su"
+  };
+  var sugar = ydn.crm.test.createSugar();
+  var r = new ydn.crm.sugar.Record(sugar.getDomain(), ydn.crm.sugar.ModuleName.ACCOUNTS, obj);
+  var record = new ydn.crm.sugar.model.Record(sugar, r);
+
+  var panel = new ydn.crm.ui.sugar.record.Record(record);
+  panel.render(document.body);
+
+  var name_group = document.querySelector('div.record-group[name="name"]');
+  var name_el = name_group.querySelector('input.value');
+  assertEquals('name', obj.name, name_el.value);
+
+};
+
+
+
+RecordAsyncJsTest.prototype.test_normally_hide_setting = function(queue) {
   var record = ydn.crm.test.createContactRecord();
   var panel = new ydn.crm.ui.sugar.record.Record(record);
   panel.render(document.body);
@@ -52,6 +75,53 @@ ydn.crm.ui.sugar.record.RecordAsyncJsTest.prototype.test_normally_hide_setting =
 
 
 
+RecordAsyncJsTest.prototype.test_edit_name = function(queue) {
+
+  var record = ydn.crm.test.createContactRecord(null, {});
+  var record_panel = new ydn.crm.ui.sugar.record.Record(record);
+
+  var patch;
+  queue.call('user edit', function(callbacks) {
+    record_panel.patch = callbacks.add(function(x) {
+      patch = x;
+    });
+    record_panel.simulateEdit({'full_name': 'Kyaw Tun'}, true);
+  });
+
+  queue.call('verify patch', function() {
+    assertEquals('edited fields', ['salutation', 'full_name', 'first_name', 'last_name'], Object.keys(patch));
+    assertTrue('salutation', !patch['salutation']);
+    assertEquals('first name', 'Kyaw', patch['first_name']);
+    assertEquals('last name', 'Tun', patch['last_name']);
+    assertEquals('full name', 'Kyaw Tun', patch['full_name']);
+  });
+
+  record_panel.render(document.body);
+
+};
+
+
+RecordAsyncJsTest.prototype.test_edit_email = function(queue) {
+
+  var record = ydn.crm.test.createContactRecord(null, {});
+  var record_panel = new ydn.crm.ui.sugar.record.Record(record);
+
+  var patch;
+  queue.call('user edit', function(callbacks) {
+    record_panel.patch = callbacks.add(function(x) {
+      patch = x;
+    });
+    record_panel.simulateEdit({'email': 'foo@example.com'}, true);
+  });
+
+  queue.call('verify patch', function() {
+    assertEquals('edited fields', ['email'], Object.keys(patch));
+    assertEquals('email', 'foo@example.com', patch['email']);
+  });
+
+  record_panel.render(document.body);
+
+};
 
 
 

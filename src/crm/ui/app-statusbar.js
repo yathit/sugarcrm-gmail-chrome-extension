@@ -15,6 +15,7 @@ goog.require('ydn.crm.ui.UserSetting');
  * @constructor
  * @extends {ydn.crm.ui.SimpleStatusBar}
  * @struct
+ * @deprecated use ydn.app.msg.Manager instead.
  */
 ydn.crm.ui.AppStatusBar = function() {
   goog.base(this);

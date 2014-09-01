@@ -2,8 +2,7 @@
  * @fileoverview About this file
  */
 
-// ydn.msg.Pipe.DEBUG = true;
-ydn.crm.ui.StatusBar.instance = new ydn.crm.ui.ConsoleStatusBar();
+ydn.app.msg.Manager.addConsumer(new ydn.app.msg.ConsoleStatusBar());
 ydn.msg.initPipe('popup');
 ydn.debug.log('ydn.crm', 'finer');
 var panel, sugar;

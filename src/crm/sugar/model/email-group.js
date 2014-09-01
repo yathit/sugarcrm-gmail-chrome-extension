@@ -38,11 +38,16 @@ ydn.crm.sugar.model.EmailGroup.prototype.listFields = function() {
       return x.email_address_id;
     });
   } else {
+    var is_bean = this.isBean();
     var module_info = this.module.getModuleInfo();
     var emails = [];
     for (var name in module_info.module_fields) {
       var field = module_info.module_fields[name];
       if (field.group == 'email') {
+        if (is_bean && name == 'email') {
+          // In V7, 'email' field cannot be used to set or update
+          continue;
+        }
         emails.push(name);
       }
     }
@@ -55,11 +60,11 @@ ydn.crm.sugar.model.EmailGroup.prototype.listFields = function() {
  * @inheritDoc
  */
 ydn.crm.sugar.model.EmailGroup.prototype.createOrGetFieldModel = function(name) {
-  var index = this.fields.indexOf(name);
-  if (index >= 0) {
-    return this.fields[index];
+  var f = this.getFieldModelByName(name);
+  if (f) {
+    return f;
   }
-  var f = new ydn.crm.sugar.model.EmailField(this, name);
+  f = new ydn.crm.sugar.model.EmailField(this, name);
   this.fields.push(f);
   return f;
 };
@@ -70,7 +75,11 @@ ydn.crm.sugar.model.EmailGroup.prototype.createOrGetFieldModel = function(name) 
  */
 ydn.crm.sugar.model.EmailGroup.prototype.isBean = function() {
   var email = this.module.value('email');
-  return goog.isArray(email);
+  if (goog.isDef(email)) {
+    return goog.isArray(email);
+  } else {
+    return !!this.module.getSugar().isVersion7();
+  }
 };
 
 
@@ -150,13 +159,15 @@ ydn.crm.sugar.model.EmailGroup.prototype.getEmails = function() {
   } else {
     var module_info = this.module.getModuleInfo();
     var emails = [];
+    var has_primary = true;
     for (var name in module_info.module_fields) {
       var field = module_info.module_fields[name];
       if (field.group == 'email') {
+        var is_primary = !has_primary && emails.length > 0;
         emails.push({
           'email_address_id': name,
-          'email_address': this.module.value(name),
-          'primary_address': emails.length == 0 ? '1' : '0'
+          'email_address': email,
+          'primary_address': is_primary ? '1' : '0'
         });
       }
     }
