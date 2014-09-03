@@ -81,6 +81,12 @@ ydn.crm.ui.sugar.setting.Setting.prototype.getNormallyHide = goog.abstractMethod
 
 
 /**
+ * @return {boolean}
+ */
+ydn.crm.ui.sugar.setting.Setting.prototype.getNormallyHideDefault = goog.abstractMethod;
+
+
+/**
  * Persist normally hide user setting.
  * @param {boolean} val
  * @return {!goog.async.Deferred}
@@ -89,7 +95,7 @@ ydn.crm.ui.sugar.setting.Setting.prototype.getNormallyHide = goog.abstractMethod
 ydn.crm.ui.sugar.setting.Setting.prototype.setNormallyHide = function(val) {
   var user_setting = ydn.crm.ui.UserSetting.getInstance();
   var setting = this.getUserSetting();
-  var default_val = this.getNormallyHide();
+  var default_val = this.getNormallyHideDefault();
   if (val == default_val) {
     if (setting) {
       delete setting.normallyHide;
@@ -167,9 +173,18 @@ ydn.crm.ui.sugar.setting.Field.getNormallyHideDefault = function(name) {
 /**
  * @inheritDoc
  */
+ydn.crm.ui.sugar.setting.Field.prototype.getNormallyHideDefault = function() {
+  return ydn.crm.ui.sugar.setting.Field.getNormallyHideDefault(this.getName());
+};
+
+
+/**
+ * @inheritDoc
+ */
 ydn.crm.ui.sugar.setting.Field.prototype.getUserSetting = function() {
   var user_setting = ydn.crm.ui.UserSetting.getInstance();
   var all_setting = user_setting.getSugarCrmSetting();
+  var value = all_setting.Field[this.field.name];
   return all_setting.Field[this.field.name] || null;
 };
 
@@ -192,7 +207,7 @@ ydn.crm.ui.sugar.setting.Field.prototype.createUserSetting = function() {
  */
 ydn.crm.ui.sugar.setting.Field.prototype.getNormallyHide = function() {
   var setting = this.getUserSetting();
-  if (setting) {
+  if (setting && goog.isDef(setting[ydn.crm.ui.UserSetting.SugarCrmSettingUnitKey.NORMALLY_HIDE])) {
     return !!setting[ydn.crm.ui.UserSetting.SugarCrmSettingUnitKey.NORMALLY_HIDE];
   } else {
     if (this.field.group) {
@@ -277,3 +292,10 @@ ydn.crm.ui.sugar.setting.Group.prototype.getNormallyHide = function() {
       ydn.crm.ui.sugar.setting.Group.getNormallyHideDefault(this.name);
 };
 
+
+/**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.setting.Group.prototype.getNormallyHideDefault = function() {
+  return ydn.crm.ui.sugar.setting.Group.getNormallyHideDefault(this.getName());
+};

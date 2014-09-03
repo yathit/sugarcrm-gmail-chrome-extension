@@ -27,6 +27,7 @@ goog.provide('ydn.crm.sugar.model.BaseGroup');
 goog.require('ydn.crm.sugar.gdata');
 goog.require('ydn.crm.sugar.model.EmailField');
 goog.require('ydn.crm.sugar.model.Field');
+goog.require('ydn.ui.FlyoutMenu');
 
 
 

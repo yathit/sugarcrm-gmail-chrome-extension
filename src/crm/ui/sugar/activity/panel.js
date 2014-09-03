@@ -30,9 +30,9 @@ goog.require('goog.date.relative');
 goog.require('goog.ui.Tab');
 goog.require('goog.ui.TabBar');
 goog.require('ydn.crm.sugar.utils');
+goog.require('ydn.crm.ui.sugar.NewRecord');
 goog.require('ydn.crm.ui.sugar.SearchPanel');
 goog.require('ydn.crm.ui.sugar.activity.DetailPanel');
-goog.require('ydn.crm.ui.sugar.activity.NewRecord');
 
 
 
@@ -66,11 +66,14 @@ ydn.crm.ui.sugar.activity.Panel = function(model, dom) {
    */
   this.search = new ydn.crm.ui.sugar.SearchPanel(model, dom);
 
+  var new_record = new ydn.crm.sugar.model.Record(model,
+      new ydn.crm.sugar.Record(model.getDomain(), ydn.crm.ui.DEFAULT_MODULE));
+
   /**
    * @protected
-   * @type {ydn.crm.ui.sugar.activity.NewRecord}
+   * @type {ydn.crm.ui.sugar.NewRecord}
    */
-  this.new_record = new ydn.crm.ui.sugar.activity.NewRecord(model, dom);
+  this.new_record = new ydn.crm.ui.sugar.NewRecord(new_record, dom);
 };
 goog.inherits(ydn.crm.ui.sugar.activity.Panel, goog.ui.Component);
 

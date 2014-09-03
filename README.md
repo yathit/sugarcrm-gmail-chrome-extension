@@ -55,11 +55,12 @@ Features
 7. Promise base centralized communication between extension pages.
 8. Customizable full text search.
 
-Backend server:
+Backend server
+--------------
 
 Google AppEngine (Java) backend server provides authentication and authorization. For SugarCRM, hash password is kept in the browser with encryption. Backend server also provide proxy with authorization header.
 
-Please contact to info@yathit.com for deployment of your extension to use YDN backend server.
+Please contact to info@yathit.com to use YDN backend server for your extension. A new application id, `ydn.crm.base.APP_ID` will be created for your extension. A valid (paid) user login is required to use the service.
 
 Dependency
 ----------

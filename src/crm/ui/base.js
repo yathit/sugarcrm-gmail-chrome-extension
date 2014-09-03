@@ -293,3 +293,10 @@ ydn.crm.ui.getTemplateElement = function(id) {
   return /** @type {Element} */ (el);
 };
 
+
+/**
+ * Default module when no module name is defined in new record panel, etc.
+ * @const
+ * @type {ydn.crm.sugar.ModuleName}
+ */
+ydn.crm.ui.DEFAULT_MODULE = ydn.crm.sugar.ModuleName.LEADS;

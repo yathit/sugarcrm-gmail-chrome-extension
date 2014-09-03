@@ -1819,11 +1819,11 @@ a.maia-button.maia-button-secondary {
   display: inline-block;
   padding: 4px; }
 
-.sugarcrm-link-panel {
+.sugarcrm-link-panel, .no-sugar-panel {
   text-align: center;
   padding: 8px 0; }
 
-.sugarcrm-link-panel > * {
+.sugarcrm-link-panel > *, .no-sugar-panel > * {
   margin: auto auto; }
 
 .context-sidebar {

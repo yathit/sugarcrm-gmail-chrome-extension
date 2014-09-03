@@ -163,6 +163,87 @@ ydn.crm.sugar.model.GDataSugar.prototype.linkGDataToRecord = function() {
 
 
 /**
+ * Remove external id link GData Contact to sugar record.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.sugar.model.GDataSugar.prototype.unlinkGDataToRecord = function() {
+  if (!this.record_) {
+    return goog.async.Deferred.fail('No SugarCRM Record to unlink with Gmail contact.');
+  }
+  var sugar_id = this.record_.getId();
+  var module_name = this.record_.getModule();
+  // window.console.log(record);
+  goog.asserts.assertString(sugar_id, 'no Record ID'); // this will not happen.
+  var gdata = this.contact_;
+  if (!gdata) {
+    return goog.async.Deferred.fail('Not Gmail contact data to link.');
+  }
+  var xp = gdata.getExternalId(ydn.gdata.m8.ExternalId.Scheme.SUGARCRM,
+      this.getDomain(), module_name, sugar_id);
+  if (!xp) {
+    return goog.async.Deferred.fail('No link exists between SugarCRM ' + module_name +
+        ' ' + sugar_id + ' and Gmail Contact ' + gdata.getSingleId());
+  }
+
+  var data = {
+    'kind': gdata.getKind(),
+    'gdata-id': gdata.getId(),
+    'external-id': xp.getValue()
+  };
+  var df1 = this.getChannel().send(ydn.crm.Ch.SReq.UNLINK, data);
+  return df1.addCallback(function(entry) {
+    if (ydn.crm.sugar.model.GDataSugar.DEBUG) {
+      window.console.log('unlink', entry);
+    }
+    this.contact_ = new ydn.gdata.m8.ContactEntry(entry);
+    var ev = new ydn.crm.sugar.model.events.ContextChangeEvent(this.context_,
+        this.contact_, this.record_);
+    this.dispatchEvent(ev);
+  }, this);
+
+};
+
+
+/**
+ * Remove all external id link on GData Contact for this SugarCRM instance.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.sugar.model.GDataSugar.prototype.unlinkGData = function() {
+  var sugar_id = this.record_.getId();
+  var module_name = this.record_.getModule();
+  // window.console.log(record);
+  goog.asserts.assertString(sugar_id, 'no Record ID'); // this will not happen.
+  var gdata = this.contact_;
+  if (!gdata) {
+    return goog.async.Deferred.fail('Not Gmail contact data to link.');
+  }
+  var xp = gdata.getExternalId(ydn.gdata.m8.ExternalId.Scheme.SUGARCRM,
+      this.getDomain());
+  if (!xp) {
+    return goog.async.Deferred.fail('No link exists for SugarCRM ' + this.getDomain() +
+        ' in Gmail Contact ' + gdata.getSingleId());
+  }
+
+  var data = {
+    'kind': gdata.getKind(),
+    'gdata-id': gdata.getId(),
+    'external-id': xp.getValue()
+  };
+  var df1 = this.getChannel().send(ydn.crm.Ch.SReq.UNLINK, data);
+  return df1.addCallback(function(entry) {
+    if (ydn.crm.sugar.model.GDataSugar.DEBUG) {
+      window.console.log('unlink', entry);
+    }
+    this.contact_ = new ydn.gdata.m8.ContactEntry(entry);
+    var ev = new ydn.crm.sugar.model.events.ContextChangeEvent(this.context_,
+        this.contact_, this.record_);
+    this.dispatchEvent(ev);
+  }, this);
+
+};
+
+
+/**
  * Import from gdata to a new sugar entry.
  * @param {ydn.crm.sugar.ModuleName} m_name module name.
  * @return {!goog.async.Deferred} Return {ydn.crm.sugar.Record} on success.

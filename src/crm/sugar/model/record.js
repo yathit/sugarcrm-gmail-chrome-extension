@@ -203,22 +203,31 @@ ydn.crm.sugar.model.Record.prototype.save = function(obj) {
   var record = new ydn.crm.sugar.Record(this.getDomain(), this.getModuleName(), obj);
 
   return this.parent.saveRecord(record).addCallback(function(x) {
-    var me = this;
-    var is_new = !this.hasRecord();
     var v = /** @type {SugarCrm.Record} */ (x);
-    this.record.updateData(v);
-    var name = this.getModuleName();
-    setTimeout(function() {
-      if (is_new) {
-        me.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(
-            v, me));
-      } else {
-        me.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(
-            v, me));
-      }
-    }, 10);
+    this.updateRecord_(v);
   }, this);
 
+};
+
+
+/**
+ * Update record data.
+ * @param {SugarCrm.Record} patch
+ * @private
+ */
+ydn.crm.sugar.model.Record.prototype.updateRecord_ = function(patch) {
+  var old_id = this.record.hasRecord() ? this.record.getId() : null;
+  this.record.updateData(patch);
+  if (this.record.hasRecord()) {
+    if (goog.isDefAndNotNull(patch.id)) {
+      goog.asserts.assert(patch.id == this.getId(), 'updating record must ' +
+          'not change id, from ' + this.getId() + ' to ' + patch.id);
+    }
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent());
+  } else {
+    goog.asserts.assertString(patch.id, 'Id require for updating null record');
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(null));
+  }
 };
 
 
@@ -240,11 +249,7 @@ ydn.crm.sugar.model.Record.prototype.patch = function(patches) {
   return this.parent.saveRecord(record).addCallback(function(x) {
     var me = this;
     var v = /** @type {SugarCrm.Record} */ (x);
-    this.record.updateData(v);
-    setTimeout(function() {
-      me.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(
-          v, me));
-    }, 10);
+    this.updateRecord_(v);
   }, this);
 };
 
@@ -287,54 +292,41 @@ ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
  * @param {ydn.crm.sugar.Record} record sugarcrm record entry.
  */
 ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
-  if (record == this.record) {
-    return;
-  }
+
   if (ydn.crm.sugar.model.Record.DEBUG) {
     window.console.log('setRecord ' + this.record + ' to ' + record);
   }
-  // validate null record
-  var m_name = record ? record.getModule() : null;
-  var vd_record = record ? record.hasRecord() ? record : null : null;
-  // we dont keed null record.
-  var has_change = false;
-  var has_module_changed = false;
-  var has_key_changed = false;
-  if (!!vd_record) {
-    if (vd_record !== this.record) {
-      has_change = true;
-      has_module_changed = this.record.getModule() != vd_record.getModule();
-      if (!has_module_changed) {
-        if (this.hasRecord()) {
-          has_key_changed = this.record.getId() != vd_record.getId();
-        } else {
-          has_key_changed = true;
-        }
-      }
-      this.record = vd_record;
+  if (record == this.record) {
+    // what if underlying data are different.
+    return;
+  } else if (!record) {
+    if (this.record.hasRecord()) {
+      this.record.setData(null);
+      this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(null, this));
     }
-  } else if (!vd_record && this.hasRecord()) {
-    has_change = true;
-    has_key_changed = true;
-    this.record.setData(null);
-  } else if (record && m_name != this.record.getModule()) {
-    has_module_changed = true;
+  } else if (record.getModule() != this.record.getModule()) {
+    var old_module = this.record.getModule();
     this.record = record;
-    vd_record = record;
-  }
-  var name = this.record.getModule();
-
-  if (ydn.crm.sugar.model.Record.DEBUG) {
-    window.console.log(this + ' ' + has_module_changed ? 'module-change' :
-        has_key_changed ? 'key-change' : has_change ? 'change' : 'no-change');
-  }
-
-  if (has_module_changed) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(name, vd_record, this));
-  } else if (has_key_changed) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(vd_record, this));
-  } else if (has_change) {
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(vd_record, this));
+    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(old_module,
+        this));
+  } else if (!record.hasRecord()) {
+    if (this.record.hasRecord()) {
+      var old_id = this.record.getId();
+      this.record = record;
+      this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(old_id, this));
+    }
+  } else if (!this.record.hasRecord()) {
+    if (record.hasRecord()) {
+      this.record = record;
+      this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(null, this));
+    }
+  } else if (record.getId() != this.record.getId()) {
+    var old_id = this.record.getId();
+    this.record = record;
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(old_id, this));
+  } else {
+    this.record = record;
+    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(this));
   }
 };
 

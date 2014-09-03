@@ -106,7 +106,11 @@ ydn.crm.Ch.SReq = {
   IMPORT_GDATA: 'import-gdata',
   INFO_MODULE: 'info-module', // list module field
   KEYS: 'keys', // list keys
-  LINK: 'link', // link with sugar entry
+  /**
+   * @desc link contact gdata with sugar record by ExternalId attribute.
+   * @see #UNLINK
+   */
+  LINK: 'link',
   LIST: 'list',  // list records (all module) by an email.
   LIST_MODULE: 'list-module',
   LOGIN: 'login',
@@ -118,6 +122,11 @@ ydn.crm.Ch.SReq = {
   SEARCH: 'search', // free text query
   SERVER_INFO: 'server-info',
   SYNC_ENTRY: 'sync-entry',
+  /**
+   * @desc remove ExternalId that link contact gdata with sugar record.
+   * @see #LINK
+   */
+  UNLINK: 'unlink',
   VALUES: 'values' // record values query
 };
 

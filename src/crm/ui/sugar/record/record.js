@@ -43,7 +43,7 @@ goog.require('ydn.ui.FlyoutMenu');
 
 /**
  * Contact sidebar panel.
-   * @param {ydn.crm.sugar.model.Record} model
+ * @param {ydn.crm.sugar.model.Record} model
  * @param {goog.dom.DomHelper=} opt_dom
  * @param {ydn.crm.ui.sugar.record.Record=} opt_parent parent panel for for child record panel.
  * @constructor
@@ -197,6 +197,7 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
       ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_ICON);
   var save_btn = dom.createDom('span', 'svg-button ' + ydn.crm.ui.CSS_CLASS_OK_BUTTON,
       ydn.crm.ui.createSvgIcon('check-circle'));
+  save_btn.setAttribute('title', 'Save');
 
   ele_header.appendChild(record_type_badge);
   ele_header.appendChild(title);
@@ -228,7 +229,6 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
   var footer_ele = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS);
   var menu_ele = this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_HEAD +
       ' .' + ydn.ui.FlyoutMenu.CSS_CLASS);
-  hd.listen(model.parent, ydn.crm.sugar.model.events.Type.CONTEXT_CHANGE, this.onContextChange);
   hd.listen(model, ydn.crm.sugar.model.events.Type.MODULE_CHANGE, this.handleModuleChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.handleRecordChanged);
   hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, this.handleRecordUpdated);
@@ -249,13 +249,19 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
  */
 ydn.crm.ui.sugar.record.Record.prototype.handleHeaderMenuClick = function(e) {
   var cmd = this.head_menu.handleClick(e);
-  console.log(cmd);
+  var dp_ = ydn.crm.ui.sugar.record.Record.MenuName.DUPLICATE + '-';
   if (cmd == 'edit') {
     this.setEditMode(!this.getEditMode());
-  } else if (cmd == 'field-option') {
+  } else if (cmd == ydn.crm.ui.sugar.record.Record.MenuName.FIELDS_OPTION) {
     this.showFieldDisplayDialog();
-  } else if (cmd == 'record-detail') {
+  } else if (cmd == ydn.crm.ui.sugar.record.Record.MenuName.DETAILS) {
     this.showDetailDialog();
+  } else if (!!cmd && goog.string.startsWith(cmd, 'new-')) {
+    var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (cmd.substr('new-'.length));
+    this.newRecord(m_name, false);
+  } else if (!!cmd && goog.string.startsWith(cmd, dp_)) {
+    var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (cmd.substr(dp_.length));
+    this.newRecord(m_name, true);
   }
 };
 
@@ -292,12 +298,12 @@ ydn.crm.ui.sugar.record.Record.prototype.showFieldDisplayDialog = function() {
     var close_btn = dialog.querySelector('button.apply');
     var cancel_btn = dialog.querySelector('button.cancel');
     close_btn.onclick = function() {
-      dialog.close('close');
+      dialog.close('apply');
     };
     cancel_btn.onclick = function() {
       dialog.close('cancel');
     };
-    this.getHandler().listen(dialog, 'close', this.onFieldDisplayDialogClose_);
+    dialog.onclose = this.onFieldDisplayDialogClose_.bind(this);
   }
   var record = this.getModel();
   var dom = this.getDomHelper();
@@ -354,25 +360,31 @@ ydn.crm.ui.sugar.record.Record.prototype.showFieldDisplayDialog = function() {
  * @private
  */
 ydn.crm.ui.sugar.record.Record.prototype.getFieldDisplayDialog_ = function() {
-  return /** @type {HTMLDialogElement} */ (ydn.crm.ui.getTemplateElement('field-display-dialog'));
+  var dialog = document.querySelector('#field-display-dialog') || ydn.crm.ui.getTemplateElement('field-display-dialog');
+  return /** @type {HTMLDialogElement} */ (dialog);
 };
 
 
 /**
- * @param {goog.events.BrowserEvent} e
+ * @param {Event} e
  * @private
  */
 ydn.crm.ui.sugar.record.Record.prototype.onFieldDisplayDialogClose_ = function(e) {
-  if (e.type == 'close') {
-    var dialog = /** @type {HTMLDialogElement} */ (e.target);
+  var dialog = /** @type {HTMLDialogElement} */ (e.target);
+  if (dialog.returnValue == 'apply') {
     var group_body = dialog.querySelector('.group-body');
     var group_display_setting = this.collectDisplaySetting_(group_body);
     this.setFieldDisplaySetting(true, group_display_setting);
     var field_body = dialog.querySelector('.field-body');
     var field_display_setting = this.collectDisplaySetting_(field_body);
     this.setFieldDisplaySetting(false, field_display_setting);
+
+    var is_edit = this.getEditMode();
     this.body_panel.reset();
     this.body_panel.refresh();
+    if (is_edit) {
+      this.body_panel.setEditMode(true);
+    }
   }
 };
 
@@ -601,24 +613,6 @@ ydn.crm.ui.sugar.record.Record.prototype.addNewItem = function(module_name) {
 
 /**
  * @protected
- * @param {ydn.crm.sugar.model.events.ContextChangeEvent} e
- */
-ydn.crm.ui.sugar.record.Record.prototype.onContextChange = function(e) {
-  var model = this.getModel();
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
-    window.console.log('onContextChange: ' + e.record);
-  }
-  if (e.record) {
-    model.setRecord(e.record);
-  } else if (!e.record) {
-    var record = new ydn.crm.sugar.Record(model.getDomain(), model.getModuleName());
-    model.setRecord(record);
-  }
-};
-
-
-/**
- * @protected
  * @param {*} e
  */
 ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
@@ -741,26 +735,29 @@ if (goog.DEBUG) {
 /**
  * Render new record creation UI for given module.
  * @param {ydn.crm.sugar.ModuleName} m_name
+ * @param {boolean=} opt_duplicate duplicate existing record data.
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.newRecord = function(m_name) {
+ydn.crm.ui.sugar.record.Record.prototype.newRecord = function(m_name, opt_duplicate) {
   if (ydn.crm.ui.sugar.record.Record.DEBUG) {
     window.console.log('new record prepare for ' + m_name);
   }
 
   var model = this.getModel();
-  var patches = model.cloneData();
-  delete patches.id;
-  delete patches._module;
-  delete patches.date_entered;
-  delete patches.date_modified;
+  var patches = null;
+  if (opt_duplicate) {
+    patches = model.cloneData();
+    delete patches.id;
+    delete patches._module;
+    delete patches.date_entered;
+    delete patches.date_modified;
+  }
   var r = new ydn.crm.sugar.Record(model.getDomain(), m_name);
   // var r = new ydn.crm.sugar.Record(sugar.getDomain(), m_name, patches);
   // NOTE: we don't modify model for UI edit, but simulate user edit bellow.
   model.setRecord(r);
   if (patches) {
     this.simulateEdit(patches);
-    // this.head_panel.setDirty(this, true);
   }
 
   this.setEditMode(true);
@@ -776,47 +773,42 @@ ydn.crm.ui.sugar.record.Record.prototype.onNewRecord = function(e) {
 
 
 /**
- * @const
- * @type {Array.<?ydn.ui.FlyoutMenu.ItemOption>}
+ * @enum {string}
  */
-ydn.crm.ui.sugar.record.Record.BASE_MENU_ITEMS = [
-  {
-    name: 'edit',
-    label: 'Edit'
-  }, null, {
-    name: 'new',
-    label: 'New',
-    children: [{
-      name: 'new-Contacts',
-      label: 'Contacts'
-    }, {
-      name: 'new-Leads',
-      label: 'Leads'
-    }, {
-      name: 'new-Accounts',
-      label: 'Accounts'
-    }]
-  }, {
-    name: 'duplicate',
-    label: 'Duplicate to',
-    children: [{
-      name: 'duplicate-Contacts',
-      label: 'Contacts'
-    }, {
-      name: 'duplicate-Leads',
-      label: 'Leads'
-    }, {
-      name: 'duplicate-Accounts',
-      label: 'Accounts'
-    }]
-  }, null, {
-    name: 'record-detail',
-    label: 'View details ...'
-  }, {
-    name: 'field-option',
-    label: 'Fields ...'
-  }
-];
+ydn.crm.ui.sugar.record.Record.MenuName = {
+  DUPLICATE: 'duplicate',
+  NEW: 'new',
+  UNSYNC: 'unsync',
+  DETAILS: 'record-detail',
+  FIELDS_OPTION: 'field-option'
+};
+
+
+/**
+ * @return {boolean}
+ * @protected
+ */
+ydn.crm.ui.sugar.record.Record.prototype.getRecordEditable = function() {
+  return true;
+};
+
+
+/**
+ * @return {Array.<ydn.crm.sugar.ModuleName>}
+ * @protected
+ */
+ydn.crm.ui.sugar.record.Record.prototype.getNewModuleList = function() {
+  return [];
+};
+
+
+/**
+ * @return {Array.<ydn.crm.sugar.ModuleName>}
+ * @protected
+ */
+ydn.crm.ui.sugar.record.Record.prototype.getDuplicateModuleList = function() {
+  return [];
+};
 
 
 /**
@@ -826,11 +818,90 @@ ydn.crm.ui.sugar.record.Record.BASE_MENU_ITEMS = [
 ydn.crm.ui.sugar.record.Record.prototype.getMenuItems = function() {
   var record = this.getModel();
   var m_name = record.getModuleName();
-  var items = ydn.object.clone(ydn.crm.ui.sugar.record.Record.BASE_MENU_ITEMS);
-  if (ydn.crm.sugar.PEOPLE_MODULES.indexOf(m_name) == -1) {
-    items[2].disabled = true;
+  var items = [];
+  if (this.getRecordEditable()) {
+    items.push({
+      name: 'edit',
+      label: 'Edit'
+    }, null);
   }
+  var new_list = this.getNewModuleList();
+  if (new_list.length > 0) {
+    var new_items = [];
+    for (var i = 0; i < new_list.length; i++) {
+      new_items[i] = {
+        name: ydn.crm.ui.sugar.record.Record.MenuName.NEW + '-' + new_list[i],
+        label: new_list[i]
+      };
+    }
+    items.push({
+      name: ydn.crm.ui.sugar.record.Record.MenuName.NEW,
+      label: 'New',
+      children: new_items
+    });
+  }
+  var dup_list = this.getDuplicateModuleList();
+  if (dup_list.length > 0) {
+    var dup_items = [];
+    for (var i = 0; i < dup_list.length; i++) {
+      dup_items[i] = {
+        name: ydn.crm.ui.sugar.record.Record.MenuName.DUPLICATE + '-' + dup_list[i],
+        label: dup_list[i]
+      };
+    }
+    items.push({
+      name: ydn.crm.ui.sugar.record.Record.MenuName.DUPLICATE,
+      label: 'Duplicate to',
+      children: dup_items
+    });
+  }
+  if (new_list.length > 0 || dup_list.length > 0) {
+    items.push(null);
+  }
+
+  items.push({
+    name: ydn.crm.ui.sugar.record.Record.MenuName.DETAILS,
+    label: 'View details ...'
+  }, {
+    name: ydn.crm.ui.sugar.record.Record.MenuName.FIELDS_OPTION,
+    label: 'Fields ...'
+  });
+
+  // how to add sync and export to menu here?
+
   return items;
+};
+
+
+/**
+ * Remove sync link from Gmail contact.
+ * @return {!goog.async.Deferred}
+ */
+ydn.crm.ui.sugar.record.Record.prototype.removeSync = function() {
+  var sugar = this.getModel();
+  if (sugar instanceof ydn.crm.sugar.model.GDataSugar) {
+    var gdata = sugar.getGData();
+    if (!gdata) {
+      return goog.async.Deferred.fail('No Gmail contact exist to remove the link.');
+    }
+
+    var gid = gdata.getSingleId();
+    var mid = ydn.app.msg.Manager.addStatus('Removing link from Gmail contact ' +
+        gid);
+    return sugar.unlinkGDataToRecord().addCallbacks(function() {
+      ydn.app.msg.Manager.setStatus(mid, 'Removed link from ' + gid);
+    }, function(e) {
+      window.console.error(e.stack || e);
+      ydn.app.msg.Manager.setStatus(mid, 'Removing link failed ' + (e.message || '.'),
+          ydn.app.msg.MessageType.ERROR);
+    });
+  } else {
+    var msg = '';
+    if (goog.DEBUG) {
+      msg = 'Sync service not available in this model.';
+    }
+    throw new Error(msg);
+  }
 };
 
 
@@ -843,8 +914,8 @@ ydn.crm.ui.sugar.record.Record.prototype.resetHeader = function() {
   var record = this.getModel();
   var dom = this.getDomHelper();
   var m_name = record.getModuleName();
-  if (ydn.crm.ui.sugar.record.HeaderRenderer.DEBUG) {
-    window.console.log('HeadRenderer:reset:' + m_name + ':' + record);
+  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+    window.console.log('resetHeader' + m_name + ':' + record);
   }
   var badge = ele_header.querySelector('span.' +
           ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_ICON);
@@ -865,16 +936,19 @@ ydn.crm.ui.sugar.record.Record.prototype.refreshHeader = function() {
   var ele_header = this.getHeaderElement();
   var record = this.getModel();
   var m_name = record.getModuleName();
-  if (ydn.crm.ui.sugar.record.HeaderRenderer.DEBUG) {
-    window.console.log('HeadRenderer:refresh:' + m_name + ':' + record);
+  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+    window.console.log('refreshHeader:' + m_name + ':' + record);
   }
   var ele_title = ele_header.querySelector('a.' + ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_TITLE);
   if (record.hasRecord()) {
     ele_title.textContent = record.getLabel();
     ele_title.href = record.getViewLink();
     ele_title.target = record.getDomain();
+    this.head_menu.setEnableMenuItem('duplicate', false);
   } else {
     ele_title.innerHTML = '';
     ele_title.href = '';
+    this.head_menu.setEnableMenuItem('duplicate', false);
+    this.head_menu.setEnableMenuItem('duplicate', false);
   }
 };

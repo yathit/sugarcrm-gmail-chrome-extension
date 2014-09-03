@@ -116,6 +116,8 @@ ydn.crm.ui.UserSetting.prototype.onReady = function() {
       me.user_setting = x || ydn.crm.ui.UserSetting.USER_SETTING_DEFAULT;
     });
 
+    this.loadSugarCrmSetting();
+
     this.df_ = ydn.gmail.Utils.getUserEmail().addBoth(function(email) {
       this.gmail_ = email;
       ydn.app.msg.Manager.addStatus('Loading setting for ' + email);

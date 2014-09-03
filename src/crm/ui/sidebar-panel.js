@@ -29,6 +29,13 @@ ydn.crm.ui.SidebarPanel.DEBUG = false;
 
 
 /**
+ * @const
+ * @type {string}
+ */
+ydn.crm.ui.SidebarPanel.CSS_CLASS_INVALID_LOGIN_PANEL = 'invalid-login-panel';
+
+
+/**
  * @protected
  * @type {goog.debug.Logger}
  */
@@ -43,11 +50,16 @@ ydn.crm.ui.SidebarPanel.prototype.createDom = function() {
   goog.base(this, 'createDom');
   // status bar
   var dom = this.getDomHelper();
+  var root = this.getElement();
+  var header = root.querySelector('.' + ydn.crm.ui.CSS_CLASS_HEAD);
+
+  var invalid_login = dom.createDom('div', ydn.crm.ui.SidebarPanel.CSS_CLASS_INVALID_LOGIN_PANEL);
+  header.appendChild(invalid_login);
+
   var status_el = dom.createDom('div', ydn.crm.ui.SimpleSidebarPanel.CSS_CLASS_STATUS);
   var status = new ydn.app.msg.StatusBar();
   status.render(status_el);
   ydn.app.msg.Manager.addConsumer(status);
-  var root = this.getElement();
   root.insertBefore(status_el, root.firstElementChild);
 };
 
@@ -65,4 +77,27 @@ ydn.crm.ui.SidebarPanel.prototype.addSugarPanel = function(sugar) {
 };
 
 
+/**
+ * @override
+ */
+ydn.crm.ui.SidebarPanel.prototype.updateHeader = function() {
+  goog.base(this, 'updateHeader');
+
+  var us = /** @type {ydn.crm.ui.UserSetting} */ (ydn.crm.ui.UserSetting.getInstance());
+  if (us.isLogin()) {
+    var msg_panel = this.getHeaderElement().querySelector('.' +
+        ydn.crm.ui.SidebarPanel.CSS_CLASS_INVALID_LOGIN_PANEL);
+
+    if (!us.hasValidLogin()) {
+      var data = {
+        ydn_login: us.getLoginEmail()
+      };
+      goog.soy.renderElement(msg_panel, templ.ydn.crm.inj.wrongLogin, data);
+      goog.style.setElementShown(msg_panel, true);
+    } else {
+      goog.style.setElementShown(msg_panel, false);
+    }
+  }
+
+};
 

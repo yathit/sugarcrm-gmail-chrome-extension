@@ -171,6 +171,8 @@ ydn.crm.ui.sugar.field.FieldRenderer.prototype.refresh = function(ctrl) {
 
   if (!model.getGroupName() && ctrl.getSetting().getNormallyHide()) {
     ele_field.classList.add(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
+  } else {
+    ele_field.classList.remove(ydn.crm.ui.CSS_CLASS_NORMALLY_HIDE);
   }
 };
 
