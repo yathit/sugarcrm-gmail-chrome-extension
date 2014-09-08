@@ -23,35 +23,35 @@
  */
 
 
-goog.provide('ydn.crm.ui.sugar.record.Record');
+goog.provide('ydn.crm.sugarcrm.ui.record.Record');
 goog.require('goog.ui.Component');
 goog.require('ydn.app.msg.Manager');
-goog.require('ydn.crm.sugar');
-goog.require('ydn.crm.sugar.model.Sugar');
+goog.require('ydn.crm.sugarcrm');
+goog.require('ydn.crm.sugarcrm.model.Sugar');
+goog.require('ydn.crm.sugarcrm.ui.events');
+goog.require('ydn.crm.sugarcrm.ui.field.Field');
+goog.require('ydn.crm.sugarcrm.ui.record.Body');
+goog.require('ydn.crm.sugarcrm.ui.record.Default');
+goog.require('ydn.crm.sugarcrm.ui.record.FooterRenderer');
+goog.require('ydn.crm.sugarcrm.ui.record.HeaderRenderer');
+goog.require('ydn.crm.sugarcrm.ui.record.Secondary');
 goog.require('ydn.crm.ui');
 goog.require('ydn.crm.ui.StatusBar');
-goog.require('ydn.crm.ui.sugar.events');
-goog.require('ydn.crm.ui.sugar.field.Field');
-goog.require('ydn.crm.ui.sugar.record.Body');
-goog.require('ydn.crm.ui.sugar.record.Default');
-goog.require('ydn.crm.ui.sugar.record.FooterRenderer');
-goog.require('ydn.crm.ui.sugar.record.HeaderRenderer');
-goog.require('ydn.crm.ui.sugar.record.Secondary');
 goog.require('ydn.ui.FlyoutMenu');
 
 
 
 /**
  * Contact sidebar panel.
- * @param {ydn.crm.sugar.model.Record} model
+ * @param {ydn.crm.sugarcrm.model.Record} model
  * @param {goog.dom.DomHelper=} opt_dom
- * @param {ydn.crm.ui.sugar.record.Record=} opt_parent parent panel for for child record panel.
+ * @param {ydn.crm.sugarcrm.ui.record.Record=} opt_parent parent panel for for child record panel.
  * @constructor
  * @struct
  * @extends {goog.ui.Component}
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.ui.sugar.record.Record = function(model, opt_dom, opt_parent) {
+ydn.crm.sugarcrm.ui.record.Record = function(model, opt_dom, opt_parent) {
   goog.base(this, opt_dom);
   goog.asserts.assert(model);
   this.setModel(model);
@@ -59,7 +59,7 @@ ydn.crm.ui.sugar.record.Record = function(model, opt_dom, opt_parent) {
   /**
    * @final
    * @protected
-   * @type {ydn.crm.ui.sugar.record.Record}
+   * @type {ydn.crm.sugarcrm.ui.record.Record}
    */
   this.parent_panel = opt_parent || null;
   /**
@@ -72,93 +72,93 @@ ydn.crm.ui.sugar.record.Record = function(model, opt_dom, opt_parent) {
   });
   /**
    * @protected
-   * @type {ydn.crm.ui.sugar.record.Body}
+   * @type {ydn.crm.sugarcrm.ui.record.Body}
    */
   this.body_panel = this.createBodyPanel();
   /**
    * @final
    * @protected
-   * @type {ydn.crm.ui.sugar.record.Secondary}
+   * @type {ydn.crm.sugarcrm.ui.record.Secondary}
    */
-  this.secondary_panel = new ydn.crm.ui.sugar.record.Secondary(model, opt_dom);
+  this.secondary_panel = new ydn.crm.sugarcrm.ui.record.Secondary(model, opt_dom);
   /**
    * @final
    * @protected
-   * @type {ydn.crm.ui.sugar.record.FooterRenderer}
+   * @type {ydn.crm.sugarcrm.ui.record.FooterRenderer}
    */
-  this.footer_panel = ydn.crm.ui.sugar.record.FooterRenderer.getInstance();
+  this.footer_panel = ydn.crm.sugarcrm.ui.record.FooterRenderer.getInstance();
 
 };
-goog.inherits(ydn.crm.ui.sugar.record.Record, goog.ui.Component);
+goog.inherits(ydn.crm.sugarcrm.ui.record.Record, goog.ui.Component);
 
 
 /**
  * @protected
  * @type {goog.debug.Logger}
  */
-ydn.crm.ui.sugar.record.Record.prototype.logger =
-    goog.log.getLogger('ydn.crm.ui.sugar.record.Record');
+ydn.crm.sugarcrm.ui.record.Record.prototype.logger =
+    goog.log.getLogger('ydn.crm.sugarcrm.ui.record.Record');
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.ui.sugar.record.Record.DEBUG = false;
+ydn.crm.sugarcrm.ui.record.Record.DEBUG = false;
 
 
 /**
- * @return {ydn.crm.sugar.model.Record}
+ * @return {ydn.crm.sugarcrm.model.Record}
  * @override
  */
-ydn.crm.ui.sugar.record.Record.prototype.getModel;
+ydn.crm.sugarcrm.ui.record.Record.prototype.getModel;
 
 
 /**
  * @const
  * @type {string}
  */
-ydn.crm.ui.sugar.record.Record.CSS_CLASS = 'record-panel';
+ydn.crm.sugarcrm.ui.record.Record.CSS_CLASS = 'record-panel';
 
 
 /**
  * @const
  * @type {string} class name for body content when viewing.
  */
-ydn.crm.ui.sugar.record.Record.CSS_CLASS_DETAIL = 'detail';
+ydn.crm.sugarcrm.ui.record.Record.CSS_CLASS_DETAIL = 'detail';
 
 
 /**
  * @return {string}
  */
-ydn.crm.ui.sugar.record.Record.prototype.getCssClass = function() {
-  return ydn.crm.ui.sugar.record.Record.CSS_CLASS;
+ydn.crm.sugarcrm.ui.record.Record.prototype.getCssClass = function() {
+  return ydn.crm.sugarcrm.ui.record.Record.CSS_CLASS;
 };
 
 
 /**
- * @return {?ydn.crm.ui.sugar.record.Record}
+ * @return {?ydn.crm.sugarcrm.ui.record.Record}
  */
-ydn.crm.ui.sugar.record.Record.prototype.getParentPanel = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getParentPanel = function() {
   return this.parent_panel;
 };
 
 
 /**
- * @return {ydn.crm.ui.sugar.record.Body}
+ * @return {ydn.crm.sugarcrm.ui.record.Body}
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.createBodyPanel = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.createBodyPanel = function() {
   var model = this.getModel();
   var dom = this.getDomHelper();
   var mn = model.getModuleName();
-  return new ydn.crm.ui.sugar.record.Default(model, dom);
+  return new ydn.crm.sugarcrm.ui.record.Default(model, dom);
 };
 
 
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.record.Record.prototype.getContentElement = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getContentElement = function() {
   return this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_CONTENT);
 };
 
@@ -166,7 +166,7 @@ ydn.crm.ui.sugar.record.Record.prototype.getContentElement = function() {
 /**
  * @return {Element}
  */
-ydn.crm.ui.sugar.record.Record.prototype.getHeaderElement = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getHeaderElement = function() {
   return this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_HEAD);
 };
 
@@ -174,7 +174,7 @@ ydn.crm.ui.sugar.record.Record.prototype.getHeaderElement = function() {
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.createDom = function() {
   goog.base(this, 'createDom');
   var root = this.getElement();
   var dom = this.getDomHelper();
@@ -185,16 +185,16 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
   root.appendChild(ele_header);
   root.appendChild(content);
 
-  ele_header.classList.add(ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS);
+  ele_header.classList.add(ydn.crm.sugarcrm.ui.record.HeaderRenderer.CSS_CLASS);
   ele_header.classList.add(ydn.crm.ui.CSS_CLASS_FLEX_BAR);
 
   var title = dom.createDom('a', {
-    'class': ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_TITLE + ' center',
+    'class': ydn.crm.sugarcrm.ui.record.HeaderRenderer.CSS_CLASS_TITLE + ' center',
     'title': 'Open in SugarCRM'
   });
 
   var record_type_badge = dom.createDom('span',
-      ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_ICON);
+      ydn.crm.sugarcrm.ui.record.HeaderRenderer.CSS_CLASS_ICON);
   var save_btn = dom.createDom('span', 'svg-button ' + ydn.crm.ui.CSS_CLASS_OK_BUTTON,
       ydn.crm.ui.createSvgIcon('check-circle'));
   save_btn.setAttribute('title', 'Save');
@@ -207,7 +207,7 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
   this.addChild(this.body_panel, true);
   this.addChild(this.secondary_panel, true);
 
-  var footer = dom.createDom('div', ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS);
+  var footer = dom.createDom('div', ydn.crm.sugarcrm.ui.record.FooterRenderer.CSS_CLASS);
   root.appendChild(footer);
   this.footer_panel.createDom(this);
 };
@@ -216,24 +216,24 @@ ydn.crm.ui.sugar.record.Record.prototype.createDom = function() {
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.enterDocument = function() {
   goog.base(this, 'enterDocument');
   var hd = this.getHandler();
   /**
-   * @type {ydn.crm.sugar.model.Record}
+   * @type {ydn.crm.sugarcrm.model.Record}
    */
   var model = this.getModel();
 
   // Note: we do not listen events on element of children of these component.
   hd.listen(model, 'click', this.handleModuleChanged, false);
-  var footer_ele = this.getElement().querySelector('.' + ydn.crm.ui.sugar.record.FooterRenderer.CSS_CLASS);
+  var footer_ele = this.getElement().querySelector('.' + ydn.crm.sugarcrm.ui.record.FooterRenderer.CSS_CLASS);
   var menu_ele = this.getElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_HEAD +
       ' .' + ydn.ui.FlyoutMenu.CSS_CLASS);
-  hd.listen(model, ydn.crm.sugar.model.events.Type.MODULE_CHANGE, this.handleModuleChanged);
-  hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_CHANGE, this.handleRecordChanged);
-  hd.listen(model, ydn.crm.sugar.model.events.Type.RECORD_UPDATE, this.handleRecordUpdated);
+  hd.listen(model, ydn.crm.sugarcrm.model.events.Type.MODULE_CHANGE, this.handleModuleChanged);
+  hd.listen(model, ydn.crm.sugarcrm.model.events.Type.RECORD_CHANGE, this.handleRecordChanged);
+  hd.listen(model, ydn.crm.sugarcrm.model.events.Type.RECORD_UPDATE, this.handleRecordUpdated);
   hd.listen(this.getContentElement(), goog.events.EventType.CLICK, this.handleContentClick, false);
-  hd.listen(this, [ydn.crm.ui.sugar.events.Type.CHANGE], this.handleInputChanged);
+  hd.listen(this, [ydn.crm.sugarcrm.ui.events.Type.CHANGE], this.handleInputChanged);
   hd.listen(menu_ele, 'click', this.handleHeaderMenuClick);
 
   var ok_btn = this.getHeaderElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_OK_BUTTON);
@@ -247,20 +247,20 @@ ydn.crm.ui.sugar.record.Record.prototype.enterDocument = function() {
  * @protected
  * @param {goog.events.BrowserEvent} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleHeaderMenuClick = function(e) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleHeaderMenuClick = function(e) {
   var cmd = this.head_menu.handleClick(e);
-  var dp_ = ydn.crm.ui.sugar.record.Record.MenuName.DUPLICATE + '-';
+  var dp_ = ydn.crm.sugarcrm.ui.record.Record.MenuName.DUPLICATE + '-';
   if (cmd == 'edit') {
     this.setEditMode(!this.getEditMode());
-  } else if (cmd == ydn.crm.ui.sugar.record.Record.MenuName.FIELDS_OPTION) {
+  } else if (cmd == ydn.crm.sugarcrm.ui.record.Record.MenuName.FIELDS_OPTION) {
     this.showFieldDisplayDialog();
-  } else if (cmd == ydn.crm.ui.sugar.record.Record.MenuName.DETAILS) {
+  } else if (cmd == ydn.crm.sugarcrm.ui.record.Record.MenuName.DETAILS) {
     this.showDetailDialog();
   } else if (!!cmd && goog.string.startsWith(cmd, 'new-')) {
-    var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (cmd.substr('new-'.length));
+    var m_name = /** @type {ydn.crm.sugarcrm.ModuleName} */ (cmd.substr('new-'.length));
     this.newRecord(m_name, false);
   } else if (!!cmd && goog.string.startsWith(cmd, dp_)) {
-    var m_name = /** @type {ydn.crm.sugar.ModuleName} */ (cmd.substr(dp_.length));
+    var m_name = /** @type {ydn.crm.sugarcrm.ModuleName} */ (cmd.substr(dp_.length));
     this.newRecord(m_name, true);
   }
 };
@@ -270,7 +270,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleHeaderMenuClick = function(e) {
  * @protected
  * @param {goog.events.BrowserEvent} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.onSaveClick = function(e) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.onSaveClick = function(e) {
   var patches = this.body_panel.collectData();
   var mid = ydn.app.msg.Manager.addStatus('Saving...');
   var model = this.getModel();
@@ -289,7 +289,7 @@ ydn.crm.ui.sugar.record.Record.prototype.onSaveClick = function(e) {
  * Show record detail dialog to change default display.
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.showFieldDisplayDialog = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.showFieldDisplayDialog = function() {
   var dialog = this.getFieldDisplayDialog_();
   var content = dialog.querySelector('.content');
   var m_name = content.getAttribute('name');
@@ -328,13 +328,13 @@ ydn.crm.ui.sugar.record.Record.prototype.showFieldDisplayDialog = function() {
         if (groups.indexOf(group) == -1) {
           groups.push(group);
           group_body.appendChild(tr);
-          setting = new ydn.crm.ui.sugar.setting.Group(group);
+          setting = new ydn.crm.sugarcrm.ui.setting.Group(group);
         } else {
           continue;
         }
       } else {
         field_body.appendChild(tr);
-        setting = new ydn.crm.ui.sugar.setting.Field(field);
+        setting = new ydn.crm.sugarcrm.ui.setting.Field(field);
       }
       tr.setAttribute('name', setting.getName());
       var show_td = document.createElement('td');
@@ -359,7 +359,7 @@ ydn.crm.ui.sugar.record.Record.prototype.showFieldDisplayDialog = function() {
  * @return {HTMLDialogElement}
  * @private
  */
-ydn.crm.ui.sugar.record.Record.prototype.getFieldDisplayDialog_ = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getFieldDisplayDialog_ = function() {
   var dialog = document.querySelector('#field-display-dialog') || ydn.crm.ui.getTemplateElement('field-display-dialog');
   return /** @type {HTMLDialogElement} */ (dialog);
 };
@@ -369,7 +369,7 @@ ydn.crm.ui.sugar.record.Record.prototype.getFieldDisplayDialog_ = function() {
  * @param {Event} e
  * @private
  */
-ydn.crm.ui.sugar.record.Record.prototype.onFieldDisplayDialogClose_ = function(e) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.onFieldDisplayDialogClose_ = function(e) {
   var dialog = /** @type {HTMLDialogElement} */ (e.target);
   if (dialog.returnValue == 'apply') {
     var group_body = dialog.querySelector('.group-body');
@@ -395,7 +395,7 @@ ydn.crm.ui.sugar.record.Record.prototype.onFieldDisplayDialogClose_ = function(e
  * @return {Object.<boolean>}
  * @private
  */
-ydn.crm.ui.sugar.record.Record.prototype.collectDisplaySetting_ = function(tbody) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.collectDisplaySetting_ = function(tbody) {
   var settings = {};
   var n = tbody.childElementCount;
   for (var i = 0; i < n; i++) {
@@ -413,7 +413,7 @@ ydn.crm.ui.sugar.record.Record.prototype.collectDisplaySetting_ = function(tbody
  * @param {boolean} is_group
  * @param {Object.<boolean>} settings
  */
-ydn.crm.ui.sugar.record.Record.prototype.setFieldDisplaySetting = function(is_group, settings) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.setFieldDisplaySetting = function(is_group, settings) {
   var record = this.getModel();
   var module_info = record.getModuleInfo();
   var us = ydn.crm.ui.UserSetting.getInstance();
@@ -422,9 +422,9 @@ ydn.crm.ui.sugar.record.Record.prototype.setFieldDisplaySetting = function(is_gr
     var field = module_info.module_fields[name];
     var setting;
     if (is_group) {
-      setting = new ydn.crm.ui.sugar.setting.Group(name);
+      setting = new ydn.crm.sugarcrm.ui.setting.Group(name);
     } else {
-      setting = new ydn.crm.ui.sugar.setting.Field(field);
+      setting = new ydn.crm.sugarcrm.ui.setting.Field(field);
     }
     setting.setNormallyHide(settings[name]);
   }
@@ -435,7 +435,7 @@ ydn.crm.ui.sugar.record.Record.prototype.setFieldDisplaySetting = function(is_gr
  * Show record detail dialog to see the fields.
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.showDetailDialog = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.showDetailDialog = function() {
   var record = this.getModel();
   var data = record.cloneData();
   var dialog = /** @type {HTMLDialogElement} */ (ydn.crm.ui.getTemplateElement('record-detail-dialog'));
@@ -461,13 +461,13 @@ ydn.crm.ui.sugar.record.Record.prototype.showDetailDialog = function() {
 
 /**
  * @protected
- * @param {ydn.crm.ui.sugar.events.ChangedEvent} e
+ * @param {ydn.crm.sugarcrm.ui.events.ChangedEvent} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleInputChanged = function(e) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleInputChanged = function(e) {
   if (this.getEditMode()) {
     // patch is not applied, but marked as modal data is dirty.
     // event dispatcher may need to store the patches.
-    // @see ydn.crm.ui.sugar.group.Address#doEditorApplyDefault
+    // @see ydn.crm.sugarcrm.ui.group.Address#doEditorApplyDefault
     this.setDirty(true);
   } else {
     // patch is applied, so default is prevented.
@@ -481,7 +481,7 @@ ydn.crm.ui.sugar.record.Record.prototype.handleInputChanged = function(e) {
  * Set record is dirty.
  * @param {boolean} val
  */
-ydn.crm.ui.sugar.record.Record.prototype.setDirty = function(val) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.setDirty = function(val) {
   var btn = this.getHeaderElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_OK_BUTTON);
   goog.style.setElementShown(btn, !!val);
 };
@@ -491,20 +491,21 @@ ydn.crm.ui.sugar.record.Record.prototype.setDirty = function(val) {
  * Get record is dirty.
  * @return {boolean} dirty state.
  */
-ydn.crm.ui.sugar.record.Record.prototype.getDirty = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getDirty = function() {
   var btn = this.getHeaderElement().querySelector('.' + ydn.crm.ui.CSS_CLASS_OK_BUTTON);
   return goog.style.isElementShown(btn);
 };
 
 
 /**
- * Save patch record to server.
- * @param {Object} patches
- * @return {!goog.async.Deferred}
+ * Patch record and update to server.
+ * @param {Object} patches Field name-value pairs to patch the record data.
+ * @return {!goog.async.Deferred.<SugarCrm.Record>} Resolved with record object
+ * as return from the server.
  */
-ydn.crm.ui.sugar.record.Record.prototype.patch = function(patches) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.patch = function(patches) {
   /**
-   * @type {ydn.crm.sugar.model.Record}
+   * @type {ydn.crm.sugarcrm.model.Record}
    */
   var model = this.getModel();
   return model.patch(patches);
@@ -514,31 +515,32 @@ ydn.crm.ui.sugar.record.Record.prototype.patch = function(patches) {
 /**
  * Return data from UI values. Return null, if invalid data present.
  * @return {?SugarCrm.Record} null if data is not valid.
+ * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.collectData = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.collectData = function() {
   return this.body_panel.collectData();
 };
 
 
 /**
  * @protected
- * @param {ydn.crm.ui.sugar.events.SettingChangeEvent} e
+ * @param {ydn.crm.sugarcrm.ui.events.SettingChangeEvent} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleSettingChange = function(e) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleSettingChange = function(e) {
   this.body_panel.handleSettingChange(e);
 };
 
 
 /**
- * Change edit mode.
- * @param {boolean} val
+ * Change edit mode status.
+ * @param {boolean} val <code>true</code> to edit mode, <code>false</code> to view mode.
  */
-ydn.crm.ui.sugar.record.Record.prototype.setEditMode = function(val) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.setEditMode = function(val) {
   var root = this.getElement();
   if (val) {
-    root.classList.add(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
+    root.classList.add(ydn.crm.sugarcrm.ui.record.Body.CSS_CLASS_EDIT);
   } else {
-    root.classList.remove(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
+    root.classList.remove(ydn.crm.sugarcrm.ui.record.Body.CSS_CLASS_EDIT);
   }
 
   this.body_panel.setEditMode(val);
@@ -548,8 +550,8 @@ ydn.crm.ui.sugar.record.Record.prototype.setEditMode = function(val) {
 /**
  * @return {boolean}
  */
-ydn.crm.ui.sugar.record.Record.prototype.getEditMode = function() {
-  return this.getElement().classList.contains(ydn.crm.ui.sugar.record.Body.CSS_CLASS_EDIT);
+ydn.crm.sugarcrm.ui.record.Record.prototype.getEditMode = function() {
+  return this.getElement().classList.contains(ydn.crm.sugarcrm.ui.record.Body.CSS_CLASS_EDIT);
 };
 
 
@@ -557,8 +559,8 @@ ydn.crm.ui.sugar.record.Record.prototype.getEditMode = function() {
  * @protected
  * @param {Event} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleContentClick = function(e) {
-  if (e.target.classList.contains(ydn.crm.ui.sugar.field.FieldRenderer.CSS_CLASS_VALUE)) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleContentClick = function(e) {
+  if (e.target.classList.contains(ydn.crm.sugarcrm.ui.field.FieldRenderer.CSS_CLASS_VALUE)) {
     var group = this.body_panel.getGroupByFieldValueElement(/** @type {Element} */ (e.target));
 
   }
@@ -571,16 +573,17 @@ ydn.crm.ui.sugar.record.Record.prototype.handleContentClick = function(e) {
  * @param {boolean=} opt_is_error
  * @return {number}
  */
-ydn.crm.ui.sugar.record.Record.prototype.setMessage = function(s, opt_is_error) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.setMessage = function(s, opt_is_error) {
   var type = opt_is_error ? ydn.app.msg.MessageType.ERROR : ydn.app.msg.MessageType.NORMAL;
   return ydn.app.msg.Manager.addStatus(s, '', type);
 };
 
 
 /**
+ * Get user updated record value, if edited.
  * @return {?SugarCrm.Record} null if record value is not updated.
  */
-ydn.crm.ui.sugar.record.Record.prototype.getUpdatedValue = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getUpdatedValue = function() {
 
   var delta = this.body_panel.collectData();
   if (delta) {
@@ -599,19 +602,19 @@ ydn.crm.ui.sugar.record.Record.prototype.getUpdatedValue = function() {
 
 
 /**
- * @param {ydn.crm.sugar.ModuleName} module_name
+ * @param {ydn.crm.sugarcrm.ModuleName} module_name
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.addNewItem = function(module_name) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.addNewItem = function(module_name) {
 
   /**
-   * @type {ydn.crm.sugar.model.Record}
+   * @type {ydn.crm.sugarcrm.model.Record}
    */
   var this_record = this.getModel();
   var sugar = this_record.getSugar();
-  var r = new ydn.crm.sugar.Record(sugar.getDomain(), module_name);
-  var model = new ydn.crm.sugar.model.Record(sugar, r);
-  var new_panel = new ydn.crm.ui.sugar.record.Record(model, this.getDomHelper(), this);
+  var r = new ydn.crm.sugarcrm.Record(sugar.getDomain(), module_name);
+  var model = new ydn.crm.sugarcrm.model.Record(sugar, r);
+  var new_panel = new ydn.crm.sugarcrm.ui.record.Record(model, this.getDomHelper(), this);
   this.secondary_panel.addChild(new_panel, true);
 };
 
@@ -620,8 +623,8 @@ ydn.crm.ui.sugar.record.Record.prototype.addNewItem = function(module_name) {
  * @protected
  * @param {*} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleModuleChanged = function(e) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('handleModuleChanged');
   }
   this.removeChild(this.body_panel, true);
@@ -636,8 +639,8 @@ ydn.crm.ui.sugar.record.Record.prototype.handleModuleChanged = function(e) {
  * @protected
  * @param {*} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleRecordChanged = function(e) {
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleRecordChanged = function(e) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('Record:handleRecordChanged:');
   }
   this.reset();
@@ -648,8 +651,8 @@ ydn.crm.ui.sugar.record.Record.prototype.handleRecordChanged = function(e) {
  * @protected
  * @param {*} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.handleRecordUpdated = function(e) {
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.handleRecordUpdated = function(e) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log(e.type, e);
   }
   this.refresh();
@@ -660,9 +663,9 @@ ydn.crm.ui.sugar.record.Record.prototype.handleRecordUpdated = function(e) {
  * Reset UI when record ID or user setting changed.
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.reset = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.reset = function() {
   var model = this.getModel();
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('reset ' + model);
   }
   var root = this.getElement();
@@ -684,7 +687,7 @@ ydn.crm.ui.sugar.record.Record.prototype.reset = function() {
 /**
  * @inheritDoc
  */
-ydn.crm.ui.sugar.record.Record.prototype.exitDocument = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.exitDocument = function() {
   goog.base(this, 'exitDocument');
 };
 
@@ -693,9 +696,9 @@ ydn.crm.ui.sugar.record.Record.prototype.exitDocument = function() {
  * Refresh UI when record is updated.
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.refresh = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.refresh = function() {
   var model = this.getModel();
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('Record:refresh:' + model + ' hasRecord:' + model.hasRecord());
   }
   if (model.hasRecord()) {
@@ -714,14 +717,15 @@ ydn.crm.ui.sugar.record.Record.prototype.refresh = function() {
  * @param {Object} user_patch patch object of field name and its value, of user edited.
  * @param {boolean=} opt_dispatch_event dispatch change event.
  */
-ydn.crm.ui.sugar.record.Record.prototype.simulateEdit = function(user_patch, opt_dispatch_event) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.simulateEdit = function(user_patch,
+    opt_dispatch_event) {
   if (!user_patch) {
     return;
   }
   this.body_panel.simulateEdit(user_patch);
   if (opt_dispatch_event) {
     var patch = this.collectData();
-    var ev = new ydn.crm.ui.sugar.events.ChangedEvent(patch, this);
+    var ev = new ydn.crm.sugarcrm.ui.events.ChangedEvent(patch, this);
     this.dispatchEvent(ev);
   }
 };
@@ -731,20 +735,20 @@ if (goog.DEBUG) {
   /**
    * @inheritDoc
    */
-  ydn.crm.ui.sugar.record.Record.prototype.toString = function() {
-    return 'ydn.crm.ui.sugar.record.Record:' + this.getModel();
+  ydn.crm.sugarcrm.ui.record.Record.prototype.toString = function() {
+    return 'ydn.crm.sugarcrm.ui.record.Record:' + this.getModel();
   };
 }
 
 
 /**
  * Render new record creation UI for given module.
- * @param {ydn.crm.sugar.ModuleName} m_name
+ * @param {ydn.crm.sugarcrm.ModuleName} m_name
  * @param {boolean=} opt_duplicate duplicate existing record data.
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.newRecord = function(m_name, opt_duplicate) {
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.newRecord = function(m_name, opt_duplicate) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('new record prepare for ' + m_name);
   }
 
@@ -757,8 +761,8 @@ ydn.crm.ui.sugar.record.Record.prototype.newRecord = function(m_name, opt_duplic
     delete patches.date_entered;
     delete patches.date_modified;
   }
-  var r = new ydn.crm.sugar.Record(model.getDomain(), m_name);
-  // var r = new ydn.crm.sugar.Record(sugar.getDomain(), m_name, patches);
+  var r = new ydn.crm.sugarcrm.Record(model.getDomain(), m_name);
+  // var r = new ydn.crm.sugarcrm.Record(sugar.getDomain(), m_name, patches);
   // NOTE: we don't modify model for UI edit, but simulate user edit bellow.
   model.setRecord(r);
   if (patches) {
@@ -770,9 +774,9 @@ ydn.crm.ui.sugar.record.Record.prototype.newRecord = function(m_name, opt_duplic
 
 
 /**
- * @param {ydn.crm.ui.sugar.events.NewRecord} e
+ * @param {ydn.crm.sugarcrm.ui.events.NewRecord} e
  */
-ydn.crm.ui.sugar.record.Record.prototype.onNewRecord = function(e) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.onNewRecord = function(e) {
   this.newRecord(e.module_name);
 };
 
@@ -780,7 +784,7 @@ ydn.crm.ui.sugar.record.Record.prototype.onNewRecord = function(e) {
 /**
  * @enum {string}
  */
-ydn.crm.ui.sugar.record.Record.MenuName = {
+ydn.crm.sugarcrm.ui.record.Record.MenuName = {
   DUPLICATE: 'duplicate',
   NEW: 'new',
   UNSYNC: 'unsync',
@@ -793,25 +797,25 @@ ydn.crm.ui.sugar.record.Record.MenuName = {
  * @return {boolean}
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.getRecordEditable = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getRecordEditable = function() {
   return true;
 };
 
 
 /**
- * @return {Array.<ydn.crm.sugar.ModuleName>}
+ * @return {Array.<ydn.crm.sugarcrm.ModuleName>}
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.getNewModuleList = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getNewModuleList = function() {
   return [];
 };
 
 
 /**
- * @return {Array.<ydn.crm.sugar.ModuleName>}
+ * @return {Array.<ydn.crm.sugarcrm.ModuleName>}
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.getDuplicateModuleList = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getDuplicateModuleList = function() {
   return [];
 };
 
@@ -820,7 +824,7 @@ ydn.crm.ui.sugar.record.Record.prototype.getDuplicateModuleList = function() {
  * @return {Array.<?ydn.ui.FlyoutMenu.ItemOption>}
  * @protected
  */
-ydn.crm.ui.sugar.record.Record.prototype.getMenuItems = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.getMenuItems = function() {
   var record = this.getModel();
   var m_name = record.getModuleName();
   var items = [];
@@ -835,12 +839,12 @@ ydn.crm.ui.sugar.record.Record.prototype.getMenuItems = function() {
     var new_items = [];
     for (var i = 0; i < new_list.length; i++) {
       new_items[i] = {
-        name: ydn.crm.ui.sugar.record.Record.MenuName.NEW + '-' + new_list[i],
+        name: ydn.crm.sugarcrm.ui.record.Record.MenuName.NEW + '-' + new_list[i],
         label: new_list[i]
       };
     }
     items.push({
-      name: ydn.crm.ui.sugar.record.Record.MenuName.NEW,
+      name: ydn.crm.sugarcrm.ui.record.Record.MenuName.NEW,
       label: 'New',
       children: new_items
     });
@@ -850,12 +854,12 @@ ydn.crm.ui.sugar.record.Record.prototype.getMenuItems = function() {
     var dup_items = [];
     for (var i = 0; i < dup_list.length; i++) {
       dup_items[i] = {
-        name: ydn.crm.ui.sugar.record.Record.MenuName.DUPLICATE + '-' + dup_list[i],
+        name: ydn.crm.sugarcrm.ui.record.Record.MenuName.DUPLICATE + '-' + dup_list[i],
         label: dup_list[i]
       };
     }
     items.push({
-      name: ydn.crm.ui.sugar.record.Record.MenuName.DUPLICATE,
+      name: ydn.crm.sugarcrm.ui.record.Record.MenuName.DUPLICATE,
       label: 'Duplicate to',
       children: dup_items
     });
@@ -865,10 +869,10 @@ ydn.crm.ui.sugar.record.Record.prototype.getMenuItems = function() {
   }
 
   items.push({
-    name: ydn.crm.ui.sugar.record.Record.MenuName.DETAILS,
+    name: ydn.crm.sugarcrm.ui.record.Record.MenuName.DETAILS,
     label: 'View details ...'
   }, {
-    name: ydn.crm.ui.sugar.record.Record.MenuName.FIELDS_OPTION,
+    name: ydn.crm.sugarcrm.ui.record.Record.MenuName.FIELDS_OPTION,
     label: 'Fields ...'
   });
 
@@ -882,9 +886,9 @@ ydn.crm.ui.sugar.record.Record.prototype.getMenuItems = function() {
  * Remove sync link from Gmail contact.
  * @return {!goog.async.Deferred}
  */
-ydn.crm.ui.sugar.record.Record.prototype.removeSync = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.removeSync = function() {
   var sugar = this.getModel();
-  if (sugar instanceof ydn.crm.sugar.model.GDataSugar) {
+  if (sugar instanceof ydn.crm.sugarcrm.model.GDataSugar) {
     var gdata = sugar.getGData();
     if (!gdata) {
       return goog.async.Deferred.fail('No Gmail contact exist to remove the link.');
@@ -914,17 +918,17 @@ ydn.crm.ui.sugar.record.Record.prototype.removeSync = function() {
  * Reset header.
  * Record type, record id may change.
  */
-ydn.crm.ui.sugar.record.Record.prototype.resetHeader = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.resetHeader = function() {
   var ele_header = this.getHeaderElement();
   var record = this.getModel();
   var dom = this.getDomHelper();
   var m_name = record.getModuleName();
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('resetHeader' + m_name + ':' + record);
   }
   var badge = ele_header.querySelector('span.' +
-          ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_ICON);
-  badge.textContent = ydn.crm.sugar.toModuleSymbol(m_name);
+          ydn.crm.sugarcrm.ui.record.HeaderRenderer.CSS_CLASS_ICON);
+  badge.textContent = ydn.crm.sugarcrm.toModuleSymbol(m_name);
 
   this.head_menu.setItems(this.getMenuItems());
 
@@ -936,15 +940,15 @@ ydn.crm.ui.sugar.record.Record.prototype.resetHeader = function() {
 /**
  * Refresh header.
  */
-ydn.crm.ui.sugar.record.Record.prototype.refreshHeader = function() {
+ydn.crm.sugarcrm.ui.record.Record.prototype.refreshHeader = function() {
 
   var ele_header = this.getHeaderElement();
   var record = this.getModel();
   var m_name = record.getModuleName();
-  if (ydn.crm.ui.sugar.record.Record.DEBUG) {
+  if (ydn.crm.sugarcrm.ui.record.Record.DEBUG) {
     window.console.log('refreshHeader:' + m_name + ':' + record);
   }
-  var ele_title = ele_header.querySelector('a.' + ydn.crm.ui.sugar.record.HeaderRenderer.CSS_CLASS_TITLE);
+  var ele_title = ele_header.querySelector('a.' + ydn.crm.sugarcrm.ui.record.HeaderRenderer.CSS_CLASS_TITLE);
   if (record.hasRecord()) {
     ele_title.textContent = record.getLabel();
     ele_title.href = record.getViewLink();
@@ -964,7 +968,7 @@ ydn.crm.ui.sugar.record.Record.prototype.refreshHeader = function() {
  * @param {ydn.social.MetaContact} meta
  * @return {boolean}
  */
-ydn.crm.ui.sugar.record.Record.prototype.fillByMetaContact = function(meta) {
+ydn.crm.sugarcrm.ui.record.Record.prototype.fillByMetaContact = function(meta) {
   var val = this.body_panel.fillByMetaContact(meta);
   if (val) {
     this.setDirty(true);

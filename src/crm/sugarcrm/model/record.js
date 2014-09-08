@@ -23,78 +23,78 @@
  */
 
 
-goog.provide('ydn.crm.sugar.model.Record');
-goog.require('ydn.crm.sugar.Record');
-goog.require('ydn.crm.sugar.model.AddressGroup');
-goog.require('ydn.crm.sugar.model.EmailGroup');
-goog.require('ydn.crm.sugar.model.Group');
-goog.require('ydn.crm.sugar.model.NameGroup');
-goog.require('ydn.crm.sugar.model.PhoneGroup');
+goog.provide('ydn.crm.sugarcrm.model.Record');
+goog.require('ydn.crm.sugarcrm.Record');
+goog.require('ydn.crm.sugarcrm.model.AddressGroup');
+goog.require('ydn.crm.sugarcrm.model.EmailGroup');
+goog.require('ydn.crm.sugarcrm.model.Group');
+goog.require('ydn.crm.sugarcrm.model.NameGroup');
+goog.require('ydn.crm.sugarcrm.model.PhoneGroup');
 goog.require('ydn.msg');
 
 
 
 /**
  * SugarCRM module model.
- * @param {ydn.crm.sugar.model.Sugar} parent
- * @param {!ydn.crm.sugar.Record} r
+ * @param {ydn.crm.sugarcrm.model.Sugar} parent
+ * @param {!ydn.crm.sugarcrm.Record} r
  * @constructor
  * @extends {goog.events.EventTarget}
  * @struct
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.sugar.model.Record = function(parent, r) {
+ydn.crm.sugarcrm.model.Record = function(parent, r) {
   goog.base(this);
   /**
    * @final
-   * @type {ydn.crm.sugar.model.Sugar}
+   * @type {ydn.crm.sugarcrm.model.Sugar}
    */
   this.parent = parent;
   /**
-   * @type {!ydn.crm.sugar.Record}
+   * @type {!ydn.crm.sugarcrm.Record}
    * @protected
    */
   this.record = r;
   /**
-   * @type {Object.<!ydn.crm.sugar.model.BaseGroup>}
+   * @type {Object.<!ydn.crm.sugarcrm.model.BaseGroup>}
    * @private
    */
   this.groups_ = {};
 
-  if (ydn.crm.sugar.model.Record.DEBUG) {
+  if (ydn.crm.sugarcrm.model.Record.DEBUG) {
     this.randomId_ = Math.random();
   }
 };
-goog.inherits(ydn.crm.sugar.model.Record, goog.events.EventTarget);
+goog.inherits(ydn.crm.sugarcrm.model.Record, goog.events.EventTarget);
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.sugar.model.Record.DEBUG = false;
+ydn.crm.sugarcrm.model.Record.DEBUG = false;
 
 
 /**
  * @protected
  * @type {goog.debug.Logger}
  */
-ydn.crm.sugar.model.Record.prototype.logger =
-    goog.log.getLogger('ydn.crm.sugar.model.Record');
+ydn.crm.sugarcrm.model.Record.prototype.logger =
+    goog.log.getLogger('ydn.crm.sugarcrm.model.Record');
 
 
 /**
  * @return {string}
  */
-ydn.crm.sugar.model.Record.prototype.getDomain = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getDomain = function() {
   return this.parent.getDomain();
 };
 
 
 /**
- * Get record id.
+ * Get record Id, as generated from SugarCRM
  * @return {string}
  */
-ydn.crm.sugar.model.Record.prototype.getId = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getId = function() {
   return this.record.getId();
 };
 
@@ -103,9 +103,9 @@ ydn.crm.sugar.model.Record.prototype.getId = function() {
  * Get record field value.
  * Note: Newer bean format many return as Object or array of Objects.
  * @param {string} name field name
- * @return {?string}
+ * @return {?string} field value.
  */
-ydn.crm.sugar.model.Record.prototype.value = function(name) {
+ydn.crm.sugarcrm.model.Record.prototype.value = function(name) {
   return this.record.value(name);
 };
 
@@ -114,24 +114,24 @@ ydn.crm.sugar.model.Record.prototype.value = function(name) {
  * Get record title.
  * @return {string}
  */
-ydn.crm.sugar.model.Record.prototype.getLabel = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getLabel = function() {
   return this.record.hasRecord() ? this.record.getLabel() : '';
 };
 
 
 /**
  * SugarCRM instance.
- * @return {ydn.crm.sugar.model.Sugar}
+ * @return {ydn.crm.sugarcrm.model.Sugar}
  */
-ydn.crm.sugar.model.Record.prototype.getSugar = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getSugar = function() {
   return this.parent;
 };
 
 
 /**
- * @return {ydn.crm.sugar.ModuleName}
+ * @return {ydn.crm.sugarcrm.ModuleName}
  */
-ydn.crm.sugar.model.Record.prototype.getModuleName = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getModuleName = function() {
   return this.record.getModule();
 };
 
@@ -139,7 +139,7 @@ ydn.crm.sugar.model.Record.prototype.getModuleName = function() {
 /**
  * @return {SugarCrm.ModuleInfo}
  */
-ydn.crm.sugar.model.Record.prototype.getModuleInfo = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getModuleInfo = function() {
   return this.parent.getModuleInfo(this.getModuleName());
 };
 
@@ -147,40 +147,41 @@ ydn.crm.sugar.model.Record.prototype.getModuleInfo = function() {
 /**
  * @return {boolean} return true if the module is a primary module.
  */
-ydn.crm.sugar.model.Record.prototype.isPrimary = function() {
-  return ydn.crm.sugar.PRIMARY_MODULES.indexOf(this.getModuleName()) >= 0;
+ydn.crm.sugarcrm.model.Record.prototype.isPrimary = function() {
+  return ydn.crm.sugarcrm.PRIMARY_MODULES.indexOf(this.getModuleName()) >= 0;
 };
 
 
 /**
  * @return {boolean} return true if the module represent a people.
  */
-ydn.crm.sugar.model.Record.prototype.isPeople = function() {
-  return ydn.crm.sugar.PEOPLE_MODULES.indexOf(this.getModuleName()) >= 0;
+ydn.crm.sugarcrm.model.Record.prototype.isPeople = function() {
+  return ydn.crm.sugarcrm.PEOPLE_MODULES.indexOf(this.getModuleName()) >= 0;
 };
 
 
 /**
  * @return {boolean} return true if the module represent a people.
  */
-ydn.crm.sugar.model.Record.prototype.isEditable = function() {
-  return ydn.crm.sugar.EDITABLE_MODULES.indexOf(this.getModuleName()) >= 0;
+ydn.crm.sugarcrm.model.Record.prototype.isEditable = function() {
+  return ydn.crm.sugarcrm.EDITABLE_MODULES.indexOf(this.getModuleName()) >= 0;
 };
 
 
 /**
  * @return {boolean} check simple module
  */
-ydn.crm.sugar.model.Record.prototype.isSimple = function() {
-  return ydn.crm.sugar.SIMPLE_MODULES.indexOf(this.getModuleName()) >= 0;
+ydn.crm.sugarcrm.model.Record.prototype.isSimple = function() {
+  return ydn.crm.sugarcrm.SIMPLE_MODULES.indexOf(this.getModuleName()) >= 0;
 };
 
 
 /**
+ * Get SugarCRM field information.
  * @param {string} name field name.
  * @return {SugarCrm.ModuleField}
  */
-ydn.crm.sugar.model.Record.prototype.getFieldInfo = function(name) {
+ydn.crm.sugarcrm.model.Record.prototype.getFieldInfo = function(name) {
   var info = this.getModuleInfo();
   return info.module_fields[name];
 };
@@ -189,18 +190,18 @@ ydn.crm.sugar.model.Record.prototype.getFieldInfo = function(name) {
 /**
  * @return {ydn.msg.Channel}
  */
-ydn.crm.sugar.model.Record.prototype.getChannel = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getChannel = function() {
   return this.parent.getChannel();
 };
 
 
 /**
- * Save the record.
- * @param {SugarCrm.Record} obj
- * @return {!goog.async.Deferred}
+ * Send update or create request to SugarCRM server and update.
+ * @param {SugarCrm.Record} obj Record value to be sent.
+ * @return {!goog.async.Deferred} Resolved with record object as return from the server.
  */
-ydn.crm.sugar.model.Record.prototype.save = function(obj) {
-  var record = new ydn.crm.sugar.Record(this.getDomain(), this.getModuleName(), obj);
+ydn.crm.sugarcrm.model.Record.prototype.save = function(obj) {
+  var record = new ydn.crm.sugarcrm.Record(this.getDomain(), this.getModuleName(), obj);
 
   return this.parent.saveRecord(record).addCallback(function(x) {
     var v = /** @type {SugarCrm.Record} */ (x);
@@ -215,7 +216,7 @@ ydn.crm.sugar.model.Record.prototype.save = function(obj) {
  * @param {SugarCrm.Record} patch
  * @private
  */
-ydn.crm.sugar.model.Record.prototype.updateRecord_ = function(patch) {
+ydn.crm.sugarcrm.model.Record.prototype.updateRecord_ = function(patch) {
   var old_id = this.record.hasRecord() ? this.record.getId() : null;
   this.record.updateData(patch);
   if (this.record.hasRecord()) {
@@ -223,20 +224,21 @@ ydn.crm.sugar.model.Record.prototype.updateRecord_ = function(patch) {
       goog.asserts.assert(patch.id == this.getId(), 'updating record must ' +
           'not change id, from ' + this.getId() + ' to ' + patch.id);
     }
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent());
+    this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordUpdatedEvent());
   } else {
     goog.asserts.assertString(patch.id, 'Id require for updating null record');
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(null));
+    this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordChangeEvent(null));
   }
 };
 
 
 /**
- * Patch record to server.
- * @param {Object} patches
- * @return {!goog.async.Deferred}
+ * Patch record and update to server.
+ * @param {Object} patches field name-value pair as Object.
+ * @return {!goog.async.Deferred.<SugarCrm.Record>} Resolved with record object
+ * as return from the server.
  */
-ydn.crm.sugar.model.Record.prototype.patch = function(patches) {
+ydn.crm.sugarcrm.model.Record.prototype.patch = function(patches) {
   if (!patches || Object.keys(patches) == 0) {
     return goog.async.Deferred.succeed(false);
   }
@@ -244,7 +246,7 @@ ydn.crm.sugar.model.Record.prototype.patch = function(patches) {
   for (var key in patches) {
     obj[key] = patches[key];
   }
-  var record = new ydn.crm.sugar.Record(this.getDomain(), this.getModuleName(), obj);
+  var record = new ydn.crm.sugarcrm.Record(this.getDomain(), this.getModuleName(), obj);
 
   return this.parent.saveRecord(record).addCallback(function(x) {
     var me = this;
@@ -258,7 +260,7 @@ ydn.crm.sugar.model.Record.prototype.patch = function(patches) {
  * @override
  * @protected
  */
-ydn.crm.sugar.model.Record.prototype.disposeInternal = function() {
+ydn.crm.sugarcrm.model.Record.prototype.disposeInternal = function() {
   goog.base(this, 'disposeInternal');
   this.groups_ = null;
 };
@@ -268,7 +270,7 @@ ydn.crm.sugar.model.Record.prototype.disposeInternal = function() {
  * Get sugar crm view link.
  * @return {?string} null if record is not set.
  */
-ydn.crm.sugar.model.Record.prototype.getViewLink = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getViewLink = function() {
   if (this.record.hasRecord()) {
     return this.parent.getRecordViewLink(this.getModuleName(), this.getId());
   } else {
@@ -280,7 +282,7 @@ ydn.crm.sugar.model.Record.prototype.getViewLink = function() {
 /**
  * @return {?SugarCrm.Record} get clone data.
  */
-ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
+ydn.crm.sugarcrm.model.Record.prototype.getRecordValue = function() {
   return this.record ? /** @type {SugarCrm.Record} */ (/** @type {Object} */ (
       ydn.object.clone(this.record.getData()))) : null;
 };
@@ -289,11 +291,11 @@ ydn.crm.sugar.model.Record.prototype.getRecordValue = function() {
 /**
  * Set sugarcrm record. This will dispatch ModuleRecordChangeEvent or
  * ModuleRecordUpdatedEvent.
- * @param {ydn.crm.sugar.Record} record sugarcrm record entry.
+ * @param {ydn.crm.sugarcrm.Record} record sugarcrm record entry.
  */
-ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
+ydn.crm.sugarcrm.model.Record.prototype.setRecord = function(record) {
 
-  if (ydn.crm.sugar.model.Record.DEBUG) {
+  if (ydn.crm.sugarcrm.model.Record.DEBUG) {
     window.console.log('setRecord ' + this.record + ' to ' + record);
   }
   if (record == this.record) {
@@ -302,31 +304,31 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
   } else if (!record) {
     if (this.record.hasRecord()) {
       this.record.setData(null);
-      this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(null, this));
+      this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordChangeEvent(null, this));
     }
   } else if (record.getModule() != this.record.getModule()) {
     var old_module = this.record.getModule();
     this.record = record;
-    this.dispatchEvent(new ydn.crm.sugar.model.events.ModuleChangeEvent(old_module,
+    this.dispatchEvent(new ydn.crm.sugarcrm.model.events.ModuleChangeEvent(old_module,
         this));
   } else if (!record.hasRecord()) {
     if (this.record.hasRecord()) {
       var old_id = this.record.getId();
       this.record = record;
-      this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(old_id, this));
+      this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordChangeEvent(old_id, this));
     }
   } else if (!this.record.hasRecord()) {
     if (record.hasRecord()) {
       this.record = record;
-      this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(null, this));
+      this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordChangeEvent(null, this));
     }
   } else if (record.getId() != this.record.getId()) {
     var old_id = this.record.getId();
     this.record = record;
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordChangeEvent(old_id, this));
+    this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordChangeEvent(old_id, this));
   } else {
     this.record = record;
-    this.dispatchEvent(new ydn.crm.sugar.model.events.RecordUpdatedEvent(this));
+    this.dispatchEvent(new ydn.crm.sugarcrm.model.events.RecordUpdatedEvent(this));
   }
 };
 
@@ -334,7 +336,7 @@ ydn.crm.sugar.model.Record.prototype.setRecord = function(record) {
 /**
  * @return {boolean}
  */
-ydn.crm.sugar.model.Record.prototype.hasRecord = function() {
+ydn.crm.sugarcrm.model.Record.prototype.hasRecord = function() {
   return this.record.hasRecord();
 };
 
@@ -343,7 +345,7 @@ ydn.crm.sugar.model.Record.prototype.hasRecord = function() {
  * Get list of group name in this module.
  * @return {Array.<string>}
  */
-ydn.crm.sugar.model.Record.prototype.listGroups = function() {
+ydn.crm.sugarcrm.model.Record.prototype.listGroups = function() {
   var groups = [];
   var module_info = this.getModuleInfo();
   for (var name in module_info.module_fields) {
@@ -358,22 +360,22 @@ ydn.crm.sugar.model.Record.prototype.listGroups = function() {
 
 
 /**
- * Create a new field model if the field present in the record.
+ * Retrieve or create a new field model if the field present in the record.
  * @param {string} name
- * @return {!ydn.crm.sugar.model.BaseGroup}
+ * @return {!ydn.crm.sugarcrm.model.BaseGroup}
  */
-ydn.crm.sugar.model.Record.prototype.getGroupModel = function(name) {
+ydn.crm.sugarcrm.model.Record.prototype.getGroupModel = function(name) {
   if (!this.groups_[name]) {
     if (name == 'name') {
-      this.groups_[name] = new ydn.crm.sugar.model.NameGroup(this);
+      this.groups_[name] = new ydn.crm.sugarcrm.model.NameGroup(this);
     } else if (['address', 'alt_address', 'primary_address'].indexOf(name) >= 0) {
-      this.groups_[name] = new ydn.crm.sugar.model.AddressGroup(this, name);
+      this.groups_[name] = new ydn.crm.sugarcrm.model.AddressGroup(this, name);
     } else if (name == 'email') {
-      this.groups_[name] = new ydn.crm.sugar.model.EmailGroup(this);
+      this.groups_[name] = new ydn.crm.sugarcrm.model.EmailGroup(this);
     } else if (name == 'phone') {
-      this.groups_[name] = new ydn.crm.sugar.model.PhoneGroup(this);
+      this.groups_[name] = new ydn.crm.sugarcrm.model.PhoneGroup(this);
     } else {
-      this.groups_[name] = new ydn.crm.sugar.model.Group(this, name);
+      this.groups_[name] = new ydn.crm.sugarcrm.model.Group(this, name);
     }
   }
   return this.groups_[name];
@@ -383,7 +385,7 @@ ydn.crm.sugar.model.Record.prototype.getGroupModel = function(name) {
 /**
  * @return {?SugarCrm.Record} get clone of underlying data.
  */
-ydn.crm.sugar.model.Record.prototype.cloneData = function() {
+ydn.crm.sugarcrm.model.Record.prototype.cloneData = function() {
   return ydn.object.clone(this.record.getData());
 };
 
@@ -393,9 +395,9 @@ if (goog.DEBUG) {
   /**
    * @inheritDoc
    */
-  ydn.crm.sugar.model.Record.prototype.toString = function() {
-    var s = 'ydn.crm.sugar.model.Record:' + this.record;
-    if (ydn.crm.sugar.model.Record.DEBUG) {
+  ydn.crm.sugarcrm.model.Record.prototype.toString = function() {
+    var s = 'ydn.crm.sugarcrm.model.Record:' + this.record;
+    if (ydn.crm.sugarcrm.model.Record.DEBUG) {
       s += String(this.randomId_);
     }
     return s;

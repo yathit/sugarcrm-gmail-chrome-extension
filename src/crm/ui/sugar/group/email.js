@@ -59,3 +59,4 @@ ydn.crm.ui.sugar.group.Email.prototype.reset = function() {
   */
 };
 
+

@@ -23,45 +23,45 @@
  */
 
 
-goog.provide('ydn.crm.sugar.model.Group');
-goog.require('ydn.crm.sugar.gdata');
-goog.require('ydn.crm.sugar.model.BaseGroup');
-goog.require('ydn.crm.sugar.model.EmailField');
-goog.require('ydn.crm.sugar.model.Field');
+goog.provide('ydn.crm.sugarcrm.model.Group');
+goog.require('ydn.crm.sugarcrm.gdata');
+goog.require('ydn.crm.sugarcrm.model.BaseGroup');
+goog.require('ydn.crm.sugarcrm.model.EmailField');
+goog.require('ydn.crm.sugarcrm.model.Field');
 
 
 
 /**
  * SugarCRM module model.
- * @param {ydn.crm.sugar.model.Record} parent
+ * @param {ydn.crm.sugarcrm.model.Record} parent
  * @param {string} group_name
  * @constructor
- * @extends {ydn.crm.sugar.model.BaseGroup}
+ * @extends {ydn.crm.sugarcrm.model.BaseGroup}
  * @struct
  */
-ydn.crm.sugar.model.Group = function(parent, group_name) {
+ydn.crm.sugarcrm.model.Group = function(parent, group_name) {
   goog.base(this, parent, group_name);
   /**
-   * @type {Array.<!ydn.crm.sugar.model.Field>}
+   * @type {Array.<!ydn.crm.sugarcrm.model.Field>}
    * @protected
    */
   this.fields = [];
 };
-goog.inherits(ydn.crm.sugar.model.Group, ydn.crm.sugar.model.BaseGroup);
+goog.inherits(ydn.crm.sugarcrm.model.Group, ydn.crm.sugarcrm.model.BaseGroup);
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.sugar.model.Group.DEBUG = false;
+ydn.crm.sugarcrm.model.Group.DEBUG = false;
 
 
 /**
  * Create a new field model if the field present in the record.
  * @param {string} name
- * @return {!ydn.crm.sugar.model.Field}
+ * @return {!ydn.crm.sugarcrm.model.Field}
  */
-ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
+ydn.crm.sugarcrm.model.Group.prototype.createOrGetFieldModel = function(name) {
   var f = this.getFieldModelByName(name);
   if (f) {
     return f;
@@ -74,7 +74,7 @@ ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
     goog.asserts.assert(!field_info.group,
         name + ' not in group ' + this.group_name);
   }
-  f = new ydn.crm.sugar.model.Field(this, name);
+  f = new ydn.crm.sugarcrm.model.Field(this, name);
   this.fields.push(f);
   return f;
 };
@@ -84,7 +84,7 @@ ydn.crm.sugar.model.Group.prototype.createOrGetFieldModel = function(name) {
  * Get number of field models.
  * @return {number}
  */
-ydn.crm.sugar.model.Group.prototype.countFieldModel = function() {
+ydn.crm.sugarcrm.model.Group.prototype.countFieldModel = function() {
   return this.fields.length;
 };
 
@@ -92,9 +92,9 @@ ydn.crm.sugar.model.Group.prototype.countFieldModel = function() {
 /**
  * Get field model at given index.
  * @param {number} idx
- * @return {ydn.crm.sugar.model.Field}
+ * @return {ydn.crm.sugarcrm.model.Field}
  */
-ydn.crm.sugar.model.Group.prototype.getFieldModelAt = function(idx) {
+ydn.crm.sugarcrm.model.Group.prototype.getFieldModelAt = function(idx) {
   return this.fields[idx];
 };
 
@@ -102,9 +102,9 @@ ydn.crm.sugar.model.Group.prototype.getFieldModelAt = function(idx) {
 /**
  * Get field model at given index.
  * @param {string} name
- * @return {ydn.crm.sugar.model.Field}
+ * @return {ydn.crm.sugarcrm.model.Field}
  */
-ydn.crm.sugar.model.Group.prototype.getFieldModelByName = function(name) {
+ydn.crm.sugarcrm.model.Group.prototype.getFieldModelByName = function(name) {
   for (var i = 0; i < this.fields.length; i++) {
     if (this.fields[i].getFieldName() == name) {
       return this.fields[i];

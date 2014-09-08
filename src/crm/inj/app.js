@@ -116,7 +116,8 @@ ydn.crm.inj.App.prototype.logger = goog.log.getLogger('ydn.crm.inj.App');
 
 
 /**
- * Sniff contact and suitable element to inject ui.
+ * In gmail message thread page, sniff main contact of the message and suitable
+ * element to inject ui.
  * @param {boolean=} opt_log_detail
  * @return {HTMLTableElement}
  */
@@ -199,7 +200,7 @@ ydn.crm.inj.App.MAX_SNIFF_COUNT = 40;
  * Sniff email from contact table.
  * @param {Element} contact_table
  * @param {boolean} adv
- * @return {ydn.crm.inj.ContactModel}
+ * @return {ydn.crm.inj.Context}
  */
 ydn.crm.inj.App.sniffEmail = function(contact_table, adv) {
   // span element with email address.
@@ -221,7 +222,7 @@ ydn.crm.inj.App.sniffEmail = function(contact_table, adv) {
           if (email_span) {
             var account = ydn.crm.ui.UserSetting.getInstance().getLoginEmail();
             var email = email_span.getAttribute('email');
-            return new ydn.crm.inj.ContactModel(account, email, name);
+            return new ydn.crm.inj.Context(account, email, name);
           }
         }
       }
@@ -238,7 +239,7 @@ ydn.crm.inj.App.sniffEmail = function(contact_table, adv) {
   var span_title = td_1.nextElementSibling.querySelector('span[title]');
   var contact_name = span_title.getAttribute('title');
   var account = ydn.crm.ui.UserSetting.getInstance().getLoginEmail();
-  return new ydn.crm.inj.ContactModel(account, email, contact_name);
+  return new ydn.crm.inj.Context(account, email, contact_name);
 };
 
 

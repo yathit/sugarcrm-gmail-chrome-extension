@@ -10,6 +10,7 @@ goog.require('ydn.crm.sugar');
 goog.require('ydn.crm.sugar.model.Group');
 goog.require('ydn.crm.ui.UserSetting');
 goog.require('ydn.crm.ui.sugar.group.GroupRenderer');
+goog.require('ydn.social.MetaContact');
 
 
 
@@ -183,5 +184,15 @@ ydn.crm.ui.sugar.group.AbstractGroup.prototype.simulateEditByField = function(na
  */
 ydn.crm.ui.sugar.group.AbstractGroup.prototype.getFieldByName = function(name) {
   return null;
+};
+
+
+/**
+ * Fill up by meta contact data.
+ * @param {ydn.social.MetaContact} meta
+ * @return {boolean} true if updated.
+ */
+ydn.crm.ui.sugar.group.AbstractGroup.prototype.fillByMetaContact = function(meta) {
+  return false;
 };
 

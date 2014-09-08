@@ -22,11 +22,11 @@
  * @author kyawtun@yathit.com (Kyaw Tun)
  */
 
-goog.provide('ydn.crm.sugar.model.Sugar');
+goog.provide('ydn.crm.sugarcrm.model.Sugar');
 goog.require('goog.events.EventHandler');
 goog.require('ydn.crm.Ch');
-goog.require('ydn.crm.sugar.model.ImmutableRecord');
-goog.require('ydn.crm.sugar.model.events');
+goog.require('ydn.crm.sugarcrm.model.ImmutableRecord');
+goog.require('ydn.crm.sugarcrm.model.events');
 goog.require('ydn.debug.error.ConstraintError');
 
 
@@ -41,7 +41,7 @@ goog.require('ydn.debug.error.ConstraintError');
  * @struct
  * @suppress {checkStructDictInheritance} suppress closure-library code.
  */
-ydn.crm.sugar.model.Sugar = function(about, arr, opt_info) {
+ydn.crm.sugarcrm.model.Sugar = function(about, arr, opt_info) {
   goog.base(this);
   /**
    * @protected
@@ -76,16 +76,16 @@ ydn.crm.sugar.model.Sugar = function(about, arr, opt_info) {
   this.handler = new goog.events.EventHandler(this);
   /**
    * User record.
-   * @type {!ydn.crm.sugar.Record}
+   * @type {!ydn.crm.sugarcrm.Record}
    * @private
    */
-  this.user_ = new ydn.crm.sugar.Record(this.getDomain(), ydn.crm.sugar.ModuleName.USERS);
+  this.user_ = new ydn.crm.sugarcrm.Record(this.getDomain(), ydn.crm.sugarcrm.ModuleName.USERS);
   this.initUser_();
   var pipe = ydn.msg.getMain();
   this.handler.listen(pipe, [ydn.crm.Ch.SReq.LOGIN, ydn.crm.Ch.Req.HOST_PERMISSION],
       this.handleMessage);
 
-  if (ydn.crm.sugar.model.Sugar.DEBUG) {
+  if (ydn.crm.sugarcrm.model.Sugar.DEBUG) {
     this.sugar_random_id_ = Math.random();
   }
 
@@ -95,20 +95,20 @@ ydn.crm.sugar.model.Sugar = function(about, arr, opt_info) {
    */
   this.is_version_7_ = null;
 };
-goog.inherits(ydn.crm.sugar.model.Sugar, goog.events.EventTarget);
+goog.inherits(ydn.crm.sugarcrm.model.Sugar, goog.events.EventTarget);
 
 
 /**
  * @define {boolean} debug flag.
  */
-ydn.crm.sugar.model.Sugar.DEBUG = false;
+ydn.crm.sugarcrm.model.Sugar.DEBUG = false;
 
 
 /**
  * Events
  * @enum {string}
  */
-ydn.crm.sugar.model.Sugar.Event = {
+ydn.crm.sugarcrm.model.Sugar.Event = {
   LOGIN: 'login',
   LOGOUT: 'logout',
   HOST_ACCESS_GRANT: 'hag'
@@ -119,7 +119,7 @@ ydn.crm.sugar.model.Sugar.Event = {
  * Handle message from channel.
  * @param {ydn.msg.Event} e
  */
-ydn.crm.sugar.model.Sugar.prototype.handleMessage = function(e) {
+ydn.crm.sugarcrm.model.Sugar.prototype.handleMessage = function(e) {
   if (e.type == ydn.crm.Ch.SReq.LOGIN) {
     var about = /** @type {SugarCrm.About} */ (e.getData());
     if (!!about && about.domain == this.getDomain()) {
@@ -129,7 +129,7 @@ ydn.crm.sugar.model.Sugar.prototype.handleMessage = function(e) {
     var msg = e.getData();
     if (msg['grant'] && msg['grant'] == this.getDomain()) {
       this.about.hostPermission = true;
-      this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.HOST_ACCESS_GRANT));
+      this.dispatchEvent(new goog.events.Event(ydn.crm.sugarcrm.model.Sugar.Event.HOST_ACCESS_GRANT));
     }
   }
 };
@@ -139,7 +139,7 @@ ydn.crm.sugar.model.Sugar.prototype.handleMessage = function(e) {
  * Get version.
  * @return {string} SugarCrmVersion
  */
-ydn.crm.sugar.model.Sugar.prototype.getVersion = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getVersion = function() {
   return this.info ? this.info.version || '' : '';
 };
 
@@ -154,7 +154,7 @@ ydn.crm.sugar.model.Sugar.prototype.getVersion = function() {
  * given version.
  * @private
  */
-ydn.crm.sugar.model.Sugar.prototype.hasVersion_ = function(ver) {
+ydn.crm.sugarcrm.model.Sugar.prototype.hasVersion_ = function(ver) {
   return goog.string.compareVersions(this.getVersion(), ver) >= 0;
 };
 
@@ -162,7 +162,7 @@ ydn.crm.sugar.model.Sugar.prototype.hasVersion_ = function(ver) {
 /**
  * @return {?boolean} true if SugarCrm backend has version 7.
  */
-ydn.crm.sugar.model.Sugar.prototype.isVersion7 = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.isVersion7 = function() {
   if (!goog.isDefAndNotNull(this.is_version_7_) && this.info) {
     this.is_version_7_ = this.hasVersion_('7');
   }
@@ -174,7 +174,7 @@ ydn.crm.sugar.model.Sugar.prototype.isVersion7 = function() {
  * Set about.
  * @param {SugarCrm.About} about
  */
-ydn.crm.sugar.model.Sugar.prototype.setAbout = function(about) {
+ydn.crm.sugarcrm.model.Sugar.prototype.setAbout = function(about) {
   if (!about) {
     return;
   }
@@ -184,9 +184,9 @@ ydn.crm.sugar.model.Sugar.prototype.setAbout = function(about) {
   var is_login = !!about && about.isLogin;
   this.about = about;
   if (!was_login && is_login) {
-    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.LOGIN, this));
+    this.dispatchEvent(new goog.events.Event(ydn.crm.sugarcrm.model.Sugar.Event.LOGIN, this));
   } else if (was_login && !is_login) {
-    this.dispatchEvent(new goog.events.Event(ydn.crm.sugar.model.Sugar.Event.LOGOUT, this));
+    this.dispatchEvent(new goog.events.Event(ydn.crm.sugarcrm.model.Sugar.Event.LOGOUT, this));
   }
 };
 
@@ -194,7 +194,7 @@ ydn.crm.sugar.model.Sugar.prototype.setAbout = function(about) {
 /**
  * @return {boolean}
  */
-ydn.crm.sugar.model.Sugar.prototype.isLogin = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.isLogin = function() {
   return !!this.about.isLogin;
 };
 
@@ -203,7 +203,7 @@ ydn.crm.sugar.model.Sugar.prototype.isLogin = function() {
  * Initialize user.
  * @private
  */
-ydn.crm.sugar.model.Sugar.prototype.initUser_ = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.initUser_ = function() {
   if (this.about) {
     if (this.about.userName) {
       this.send(ydn.crm.Ch.SReq.LOGIN_USER).addCallback(function(obj) {
@@ -221,7 +221,7 @@ ydn.crm.sugar.model.Sugar.prototype.initUser_ = function() {
  * Update login status, host permission, etc.
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.updateStatus = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.updateStatus = function() {
   return this.send(ydn.crm.Ch.SReq.ABOUT).addCallback(function(about) {
     this.setAbout(about);
   }, this);
@@ -231,7 +231,7 @@ ydn.crm.sugar.model.Sugar.prototype.updateStatus = function() {
 /**
  * @return {string} sugarcrm user id. This is About.userName
  */
-ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getUserName = function() {
   return this.about ? this.about.userName || '' : '';
 };
 
@@ -239,32 +239,34 @@ ydn.crm.sugar.model.Sugar.prototype.getUserName = function() {
 /**
  * @return {?string}
  */
-ydn.crm.sugar.model.Sugar.prototype.getUserLabel = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getUserLabel = function() {
   return this.user_.value('name') || this.about.userName || null;
 };
 
 
 /**
- * @return {!ydn.crm.sugar.Record} get user record.
+ * Get SugarCRM entry of login user.
+ * @return {!ydn.crm.sugarcrm.Record} SugarCRM User record.
  */
-ydn.crm.sugar.model.Sugar.prototype.getUser = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getUser = function() {
   return this.user_;
 };
 
 
 /**
+ * Get message channel to send to background worker thread.
  * @return {ydn.msg.Channel}
  */
-ydn.crm.sugar.model.Sugar.prototype.getChannel = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getChannel = function() {
   return ydn.msg.getChannel(ydn.msg.Group.SUGAR, this.getDomain());
 };
 
 
 /**
- * @param {ydn.crm.sugar.ModuleName} name
+ * @param {ydn.crm.sugarcrm.ModuleName} name
  * @return {SugarCrm.ModuleInfo}
  */
-ydn.crm.sugar.model.Sugar.prototype.getModuleInfo = function(name) {
+ydn.crm.sugarcrm.model.Sugar.prototype.getModuleInfo = function(name) {
   return this.module_info[name];
 };
 
@@ -272,7 +274,7 @@ ydn.crm.sugar.model.Sugar.prototype.getModuleInfo = function(name) {
 /**
  * @return {boolean}
  */
-ydn.crm.sugar.model.Sugar.prototype.hasHostPermission = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.hasHostPermission = function() {
   return !!this.about.hostPermission;
 };
 
@@ -281,7 +283,7 @@ ydn.crm.sugar.model.Sugar.prototype.hasHostPermission = function() {
  * Set host permission.
  * @param {boolean} grant
  */
-ydn.crm.sugar.model.Sugar.prototype.setHostPermission = function(grant) {
+ydn.crm.sugarcrm.model.Sugar.prototype.setHostPermission = function(grant) {
   this.about.hostPermission = grant;
 };
 
@@ -289,7 +291,7 @@ ydn.crm.sugar.model.Sugar.prototype.setHostPermission = function(grant) {
 /**
  * @return {string}
  */
-ydn.crm.sugar.model.Sugar.prototype.getDomain = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getDomain = function() {
   return this.about.domain;
 };
 
@@ -297,7 +299,7 @@ ydn.crm.sugar.model.Sugar.prototype.getDomain = function() {
 /**
  * @return {?string}
  */
-ydn.crm.sugar.model.Sugar.prototype.getBaseUrl = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getBaseUrl = function() {
   return this.about.baseUrl || null;
 };
 
@@ -306,7 +308,7 @@ ydn.crm.sugar.model.Sugar.prototype.getBaseUrl = function() {
  * Get sugar crm instance url.
  * @return {string}
  */
-ydn.crm.sugar.model.Sugar.prototype.getHomeUrl = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getHomeUrl = function() {
   return this.about.baseUrl ? this.about.baseUrl : 'https://' + this.about.domain;
 };
 
@@ -315,7 +317,7 @@ ydn.crm.sugar.model.Sugar.prototype.getHomeUrl = function() {
  * Get SugarCRM create new email template url.
  * @return {string}
  */
-ydn.crm.sugar.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
   return this.getHomeUrl() +
       '/index.php?module=EmailTemplates&action=EditView&return_module=EmailTemplates&return_action=DetailView';
 };
@@ -324,7 +326,7 @@ ydn.crm.sugar.model.Sugar.prototype.getNewEmailTemplateUrl = function() {
 /**
  * @param {SugarCrm.ServerInfo} info
  */
-ydn.crm.sugar.model.Sugar.prototype.setInfo = function(info) {
+ydn.crm.sugarcrm.model.Sugar.prototype.setInfo = function(info) {
   if (!info) {
     return;
   }
@@ -335,7 +337,7 @@ ydn.crm.sugar.model.Sugar.prototype.setInfo = function(info) {
 /**
  * @return {!SugarCrm.ServerInfo}
  */
-ydn.crm.sugar.model.Sugar.prototype.getInfo = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.getInfo = function() {
   return /** @type {!SugarCrm.ServerInfo} */ (goog.object.clone(this.info));
 };
 
@@ -346,11 +348,11 @@ ydn.crm.sugar.model.Sugar.prototype.getInfo = function() {
  * @param {string} id
  * @return {string}
  */
-ydn.crm.sugar.model.Sugar.prototype.getRecordViewLink = function(module, id) {
+ydn.crm.sugarcrm.model.Sugar.prototype.getRecordViewLink = function(module, id) {
   if (this.isVersion7()) {
-    return ydn.crm.sugar.getViewLinkV7(this.getHomeUrl(), module, id);
+    return ydn.crm.sugarcrm.getViewLinkV7(this.getHomeUrl(), module, id);
   } else {
-    return ydn.crm.sugar.getViewLinkV6(this.getHomeUrl(), module, id);
+    return ydn.crm.sugarcrm.getViewLinkV6(this.getHomeUrl(), module, id);
   }
 };
 
@@ -359,7 +361,7 @@ ydn.crm.sugar.model.Sugar.prototype.getRecordViewLink = function(module, id) {
  * Set url.
  * @param {string} url
  */
-ydn.crm.sugar.model.Sugar.prototype.setUrl = function(url) {
+ydn.crm.sugarcrm.model.Sugar.prototype.setUrl = function(url) {
   url = goog.string.startsWith(url, 'http') ? url : 'https://' + url;
   var uri = new goog.Uri(url);
   if (this.getDomain() != uri.getDomain()) {
@@ -375,7 +377,7 @@ ydn.crm.sugar.model.Sugar.prototype.setUrl = function(url) {
  * @param {string} password
  * @return {goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.doLogin = function(username, password) {
+ydn.crm.sugarcrm.model.Sugar.prototype.doLogin = function(username, password) {
   var info = {};
   info.domain = this.getDomain();
   info.baseUrl = this.getBaseUrl();
@@ -395,7 +397,7 @@ ydn.crm.sugar.model.Sugar.prototype.doLogin = function(username, password) {
  * @param {string} password
  * @return {goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.createNew = function(url, username, password) {
+ydn.crm.sugarcrm.model.Sugar.prototype.createNew = function(url, username, password) {
   if (!/https?:\/\//.test(url)) {
     url = 'https://' + url;
   }
@@ -421,7 +423,7 @@ ydn.crm.sugar.model.Sugar.prototype.createNew = function(url, username, password
  * @param {*=} opt_data
  * @return {!ydn.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.send = function(req, opt_data) {
+ydn.crm.sugarcrm.model.Sugar.prototype.send = function(req, opt_data) {
   return ydn.msg.getChannel(ydn.msg.Group.SUGAR, this.getDomain()).send(req, opt_data);
 };
 
@@ -429,16 +431,16 @@ ydn.crm.sugar.model.Sugar.prototype.send = function(req, opt_data) {
 /**
  * Query list of records.
  * @param {string} m_name
- * @param {string=} opt_order
+ * @param {string=} opt_order Module field name to order by.
  * @param {(ydn.db.KeyRange|string)=} opt_range key or key range.
- * @param {boolean=} opt_prefix prefix search.
+ * @param {boolean=} opt_prefix do prefix search.
  * @param {number=} opt_limit limit
  * @param {number=} opt_offset offset
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.listRecords = function(m_name, opt_order, opt_range,
+ydn.crm.sugarcrm.model.Sugar.prototype.listRecords = function(m_name, opt_order, opt_range,
                                                            opt_prefix, opt_limit, opt_offset) {
-  goog.asserts.assert(ydn.crm.sugar.Modules.indexOf(m_name) >= 0, m_name);
+  goog.asserts.assert(ydn.crm.sugarcrm.Modules.indexOf(m_name) >= 0, m_name);
   var query = {
     'store': m_name
   };
@@ -470,14 +472,14 @@ ydn.crm.sugar.model.Sugar.prototype.listRecords = function(m_name, opt_order, op
  * @param {boolean=} opt_fetch_full fetch full record
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.searchRecords = function(module_name, q, opt_fetch_full) {
+ydn.crm.sugarcrm.model.Sugar.prototype.searchRecords = function(module_name, q, opt_fetch_full) {
   var query = {
     'store': module_name,
     'index': 'name',
     'q': q,
     'fetchFull': !!opt_fetch_full
   };
-  if (module_name == ydn.crm.sugar.ModuleName.NOTES) {
+  if (module_name == ydn.crm.sugarcrm.ModuleName.NOTES) {
     query['index'] = 'content';
   }
   return this.getChannel().send(ydn.crm.Ch.SReq.SEARCH, [query]);
@@ -487,19 +489,19 @@ ydn.crm.sugar.model.Sugar.prototype.searchRecords = function(module_name, q, opt
 /**
  * Archive an email to sugarcrm.
  * @param {ydn.crm.EmailInfo} info
- * @param {ydn.crm.sugar.ModuleName=} opt_parent_module
+ * @param {ydn.crm.sugarcrm.ModuleName=} opt_parent_module
  * @param {string=} opt_parent_id
  * @return {!ydn.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.archiveEmail = function(info,
+ydn.crm.sugarcrm.model.Sugar.prototype.archiveEmail = function(info,
     opt_parent_module, opt_parent_id) {
   var types = ['archived', 'campaign', 'draft', 'inbound', 'out'];
   var div = document.createElement('div');
   div.innerHTML = info.html;
   // ISO: "2014-04-02T03:32:20.522Z"
   // SugarCRM: "2013-09-20 22:10:00"
-  var date_str = ydn.crm.sugar.utils.isValidDate(info.date_sent) ?
-      ydn.crm.sugar.utils.toDateString(info.date_sent) : '';
+  var date_str = ydn.crm.sugarcrm.utils.isValidDate(info.date_sent) ?
+      ydn.crm.sugarcrm.utils.toDateString(info.date_sent) : '';
   var obj = {
     'assigned_user_id': this.getUserName(),
     'assigned_user_name': this.getUserLabel(),
@@ -517,7 +519,7 @@ ydn.crm.sugar.model.Sugar.prototype.archiveEmail = function(info,
     'status': 'read'
   };
   return this.send(ydn.crm.Ch.SReq.NEW_RECORD, {
-    'module': ydn.crm.sugar.ModuleName.EMAILS,
+    'module': ydn.crm.sugarcrm.ModuleName.EMAILS,
     'record': obj
   });
 };
@@ -529,7 +531,7 @@ ydn.crm.sugar.model.Sugar.prototype.archiveEmail = function(info,
  * @param {string} module_name filter by module
  * @return {!ydn.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.findRecords = function(q, module_name) {
+ydn.crm.sugarcrm.model.Sugar.prototype.findRecords = function(q, module_name) {
   var ydf = new ydn.async.Deferred();
   var results = [];
   var total = 3;
@@ -553,10 +555,10 @@ ydn.crm.sugar.model.Sugar.prototype.findRecords = function(q, module_name) {
 
 /**
  * Create a new Notes record.
- * @param {ydn.crm.sugar.Record} record
+ * @param {ydn.crm.sugarcrm.Record} record Record to be saved.
  * @return {!ydn.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.prototype.saveRecord = function(record) {
+ydn.crm.sugarcrm.model.Sugar.prototype.saveRecord = function(record) {
   var data = {
     'module': record.getModule(),
     'record': record.getData()
@@ -569,7 +571,7 @@ ydn.crm.sugar.model.Sugar.prototype.saveRecord = function(record) {
  * Get list of sugarcrm instance, of which login.
  * @return {!goog.async.Deferred}
  */
-ydn.crm.sugar.model.Sugar.list = function() {
+ydn.crm.sugarcrm.model.Sugar.list = function() {
   var user = ydn.crm.ui.UserSetting.getInstance();
   return ydn.msg.getChannel().send('list-sugarcrm').addCallback(function(abouts) {
     var models = [];
@@ -578,7 +580,7 @@ ydn.crm.sugar.model.Sugar.list = function() {
       var about = /** @type {SugarCrm.About} */ (abouts[i]);
       if (about.isLogin) {
         dfs.push(user.getModuleInfo(about.domain).addCallback(function(info) {
-          return new ydn.crm.sugar.model.Sugar(this, info);
+          return new ydn.crm.sugarcrm.model.Sugar(this, info);
         }, about));
       }
     }
@@ -588,10 +590,10 @@ ydn.crm.sugar.model.Sugar.list = function() {
 
 
 /**
- * @return {ydn.crm.sugar.model.Sugar}
+ * @return {ydn.crm.sugarcrm.model.Sugar}
  */
-ydn.crm.sugar.model.Sugar.prototype.clone = function() {
-  return new ydn.crm.sugar.model.Sugar(this.about, this.module_info);
+ydn.crm.sugarcrm.model.Sugar.prototype.clone = function() {
+  return new ydn.crm.sugarcrm.model.Sugar(this.about, this.module_info);
 };
 
 
@@ -599,7 +601,7 @@ ydn.crm.sugar.model.Sugar.prototype.clone = function() {
  * @override
  * @protected
  */
-ydn.crm.sugar.model.Sugar.prototype.disposeInternal = function() {
+ydn.crm.sugarcrm.model.Sugar.prototype.disposeInternal = function() {
   goog.base(this, 'disposeInternal');
   this.info = null;
   this.handler.dispose();
@@ -612,9 +614,9 @@ if (goog.DEBUG) {
   /**
    * @inheritDoc
    */
-  ydn.crm.sugar.model.Sugar.prototype.toString = function() {
-    var s = 'ydn.crm.sugar.model.Sugar:' + this.getDomain();
-    if (ydn.crm.sugar.model.Sugar.DEBUG) {
+  ydn.crm.sugarcrm.model.Sugar.prototype.toString = function() {
+    var s = 'ydn.crm.sugarcrm.model.Sugar:' + this.getDomain();
+    if (ydn.crm.sugarcrm.model.Sugar.DEBUG) {
       s += this.sugar_random_id_;
     }
     return s;

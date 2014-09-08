@@ -133,3 +133,16 @@ ydn.crm.ui.sugar.group.Name.prototype.simulateEditByField = function(name, value
   }
 };
 
+
+/**
+ * @inheritDoc
+ */
+ydn.crm.ui.sugar.group.Name.prototype.fillByMetaContact = function(meta) {
+  var value = this.getInputValue();
+  var full_name = meta.getFullName();
+  if (!value && !!full_name) {
+    this.setInputValue(full_name);
+    return true;
+  }
+  return false;
+};

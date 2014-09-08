@@ -283,3 +283,19 @@ ydn.crm.ui.sugar.record.Body.prototype.simulateEdit = function(user_patch) {
     }
   }
 };
+
+
+/**
+ * Fill up by meta contact data.
+ * @param {ydn.social.MetaContact} meta
+ * @return {boolean} true if updated.
+ */
+ydn.crm.ui.sugar.record.Body.prototype.fillByMetaContact = function(meta) {
+  var out = false;
+  for (var i = 0; i < this.getChildCount(); i++) {
+    var child = this.getChildAt(i);
+    var g = /** @type {ydn.crm.ui.sugar.group.AbstractGroup} */ (child);
+    out |= !!g.fillByMetaContact(meta);
+  }
+  return out;
+};
