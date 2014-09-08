@@ -75,8 +75,9 @@ Dependency
 8. Synchronization https://bitbucket.org/ytkyaw/ydn-db-sync (private)
 9. Specialized utility library https://bitbucket.org/ytkyaw/ydn (private)
 9. GData library https://bitbucket.org/ytkyaw/gdata (private)
-10. SugarCRM Core https://bitbucket.org/ytkyaw/crm-ex (private)
-11. SugarCRM UI https://bitbucket.org/ytkyaw/crm-ex/ui (content script UI, to be released under Apache v2)
+10. CRM Core https://github.com/yathit/crm
+11. SugarCRM Backend https://bitbucket.org/ytkyaw/crm-ex (private)
+12. SugarCRM model and UI https://github.com/yathit/sugarcrm
 
 Compiled dependency files are available in http://ydn-src-1.storage.googleapis.com/
 

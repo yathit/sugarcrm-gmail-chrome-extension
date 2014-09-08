@@ -1,4 +1,0 @@
-/**
- * @fileoverview SugarCrm module field.
- */
-
