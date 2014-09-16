@@ -3,8 +3,10 @@
  */
 
 
-chrome.storage.local.get('ydn-crm-src', function(obj) {
-  var fn = obj['ydn-crm-src'];
+// Load sugarcrm UI file.
+chrome.storage.local.get('sugarcrm-src', function(obj) {
+  var fn = obj['sugarcrm-src'];
+  console.log('loading ' + fn);
   var node = document.createElement('script');
   node.type = 'text/javascript';
   node.onload = function() {

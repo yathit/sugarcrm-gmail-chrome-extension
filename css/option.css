@@ -181,24 +181,24 @@ button.maia-button {
 
 .maia-button.maia-button-secondary {
   background-color: #f5f5f5;
-  background-image: -moz-linear-gradient(top, #f9f9f9, whitesmoke);
-  background-image: -webkit-linear-gradient(top, #f9f9f9, whitesmoke);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f9f9f9), color-stop(1, whitesmoke));
-  background-image: linear-gradient(top, #f9f9f9, whitesmoke);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #f5f5f5);
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #f5f5f5);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f9f9f9), color-stop(1, #f5f5f5));
+  background-image: linear-gradient(top, #f9f9f9, #f5f5f5);
   border: 1px solid #e5e5e5;
   color: #444;
   padding: 6px 11px;
-  text-shadow: 0 1px 0 white; }
+  text-shadow: 0 1px 0 #fff; }
 
 a.maia-button.maia-button-secondary {
-  color: #444444 !important; }
+  color: #444 !important; }
 
 .maia-button.maia-button-secondary:hover, .maia-button.maia-button-secondary:focus {
   background-color: #f1f1f1;
-  background-image: -moz-linear-gradient(top, whitesmoke, #f1f1f1);
-  background-image: -webkit-linear-gradient(top, whitesmoke, #f1f1f1);
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, whitesmoke), color-stop(1, #f1f1f1));
-  background-image: linear-gradient(top, whitesmoke, #f1f1f1);
+  background-image: -moz-linear-gradient(top, #f5f5f5, #f1f1f1);
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f5f5f5), color-stop(1, #f1f1f1));
+  background-image: linear-gradient(top, #f5f5f5, #f1f1f1);
   border-color: #e1e1e1; }
 
 .maia-button.maia-button-secondary:active {
@@ -213,7 +213,7 @@ a.maia-button.maia-button-secondary {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #fafafa), color-stop(1, #f9f9f9));
   background-image: linear-gradient(top, #fafafa, #f9f9f9);
   border-color: #eee;
-  color: #aaaaaa !important; }
+  color: #aaa !important; }
 
 /*
 * Closure Library CSS
@@ -266,7 +266,7 @@ a.maia-button.maia-button-secondary {
 /* Author: pallosp@google.com (Peter Pallos) */
 /* Styles for goog.ui.ComboBox and its derivatives. */
 .goog-combobox {
-  background: #dddddd url(chrome-extension://__MSG_@@extension_id__/image/goog/closure/button-bg.gif) repeat-x scroll left top;
+  background: #ddd url(chrome-extension://__MSG_@@extension_id__/image/goog/closure/button-bg.gif) repeat-x scroll left top;
   border: 1px solid #b5b6b5;
   font: normal small arial, sans-serif; }
 
@@ -408,7 +408,7 @@ a.maia-button.maia-button-secondary {
   font-family: Arial, sans-serif;
   color: #000;
   /* Client apps may override the URL at which they serve the image. */
-  background: #dddddd url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/button-bg.png) repeat-x top left;
+  background: #ddd url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/button-bg.png) repeat-x top left;
   text-decoration: none;
   list-style: none;
   vertical-align: middle;
@@ -768,7 +768,7 @@ a.maia-button.maia-button-secondary {
 /* State: resting. */
 .goog-menu-button {
   /* Client apps may override the URL at which they serve the image. */
-  background: #dddddd url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/button-bg.png) repeat-x top left;
+  background: #ddd url(chrome-extension://__MSG_@@extension_id__/image/goog/editor/button-bg.png) repeat-x top left;
   border: 0;
   color: #000;
   cursor: pointer;
