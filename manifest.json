@@ -2,7 +2,7 @@
   "name": "Yathit CRM Bridge",
   "short_name": "Yathit CRM",
   "description": "Yathit CRM Bridge is a secure delightful time-saving tool for SugarCRM users in Gmail.",
-  "version": "0.12.1",
+  "version": "0.13.1",
   "manifest_version": 2,
 
   "content_scripts": [
@@ -33,10 +33,10 @@
 
   "content_security_policy": "script-src 'self' https://ydn-src-1.storage.googleapis.com https://www.yathit.com  https://www.google-analytics.com https://www.google.com/; object-src 'self'; img-src 'self' https://ssl.gstatic.com",
 
-  "permissions":  ["storage", "https://mail.google.com/*", "https://yathit-app.appspot.com/*", "https://www.yathit.com/*"],
+  "permissions":  ["storage", "https://mail.google.com/*", "https://www.yathit.com/*"],
 
   "externally_connectable": {
-    "matches": ["https://yathit-app.appspot.com/*", "https://mail.google.com/*", "https://www.yathit.com/*", "https://api.yathit.com/*"]
+    "matches": ["https://mail.google.com/*", "https://www.yathit.com/*"]
   },
 
   "optional_permissions": ["*://*/*" ],

@@ -1819,9 +1819,9 @@ a.maia-button.maia-button-secondary {
   display: inline-block;
   padding: 4px; }
 
-.sugarcrm-link-panel, .no-sugar-panel {
+.sugarcrm-link-panel, .no-sugar-panel, .setup-panel {
   text-align: center;
-  padding: 8px 0; }
+  margin: 8px 0; }
 
 .sugarcrm-link-panel > *, .no-sugar-panel > * {
   margin: auto auto; }

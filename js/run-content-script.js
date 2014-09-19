@@ -23,7 +23,7 @@
         scriptLoaded = true;
       }
     });
-    // we load two times, because background thread may not ready listening this
+    // we load more than one time, because background thread may not ready listening this
     // message. In this case the message drop. We send again after a timeout.
     setTimeout(function() {
       if (!scriptLoaded && i < 10) {

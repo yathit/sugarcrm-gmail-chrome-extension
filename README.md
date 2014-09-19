@@ -72,12 +72,8 @@ Dependency
 5. Full text search https://github.com/yathit/ydn-db-fulltext.git
 6. Dependency for ydn-db-fulltext https://github.com/yathit/fullproof
 7. Dependency for ydn-db-fulltext https://github.com/yathit/natural
-8. Synchronization https://bitbucket.org/ytkyaw/ydn-db-sync (private)
-9. Specialized utility library https://bitbucket.org/ytkyaw/ydn (private)
-9. GData library https://bitbucket.org/ytkyaw/gdata (private)
-10. CRM Core https://github.com/yathit/crm
-11. SugarCRM Backend https://bitbucket.org/ytkyaw/crm-ex (private)
-12. SugarCRM model and UI https://github.com/yathit/sugarcrm
+8. CRM Core https://github.com/yathit/crm
+9. SugarCRM model and UI https://github.com/yathit/sugarcrm
 
 Compiled dependency files are available in http://ydn-src-1.storage.googleapis.com/
 
