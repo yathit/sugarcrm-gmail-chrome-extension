@@ -6,7 +6,7 @@
 
 /**
  * Credentials section.
- * @param {ydn.crm.sugar.model.Sugar} model
+ * @param {ydn.crm.sugarcrm.model.Sugar} model
  * @constructor
  */
 var SearchPanel = function(model) {
@@ -31,9 +31,9 @@ SearchPanel.prototype.setup = function(model) {
   var user = ydn.crm.ui.UserSetting.getInstance();
   user.getModuleInfo(model.getDomain())
       .addCallback(function(info) {
-        var m = new ydn.crm.sugar.model.Sugar(model.getDetails(), info);
+        var m = new ydn.crm.sugarcrm.model.Sugar(model.getDetails(), info);
         this.root.innerHTML = ''; // here clean up previous panel.
-        this.search = new ydn.crm.ui.sugar.SearchPanel(null, m);
+        this.search = new ydn.crm.sugarcrm.ui.SearchPanel(m);
         this.search.render(this.root);
       }, this);
 };

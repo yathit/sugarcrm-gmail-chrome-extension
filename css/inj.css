@@ -62,15 +62,15 @@
 .svg-button:hover {
   background-color: #dddddd; }
 
-dialog {
+dialog.ydn-crm, .ydn-crm dialog {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   padding: 8px 48px 16px 48px; }
-  dialog .content {
+  dialog.ydn-crm .content, .ydn-crm dialog .content {
     max-height: 20em;
     overflow: auto; }
-  dialog .button-bar {
+  dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
     padding: 8px; }
 
 .iconic {
@@ -165,13 +165,10 @@ dialog {
 *:not(:hover) > .hover-button {
   display: none; }
 
-.gmail-contact-panel .badge {
+.google.badge-icon {
   fill: #0266C8; }
 
-.gmail-contact-panel .head {
-  height: 20px;
-  margin: 4px 0; }
-.gmail-contact-panel .badge {
+.badge-icon {
   display: inline-block;
   border: 1px #0266C8 solid;
   border-radius: 3px;
@@ -179,8 +176,27 @@ dialog {
   height: 14px;
   margin-right: 4px; }
 
+.gmail-contact-panel .head {
+  height: 20px;
+  margin: 4px 0; }
+
 .toolbar > * {
   margin-left: 4px; }
+
+.crm-template {
+  position: absolute;
+  right: 2px; }
+  .crm-template > .goog-menu-button {
+    background: none;
+    border-radius: 3px; }
+  .crm-template > .goog-menu-button:hover {
+    background: #e8e8e8; }
+  .crm-template .goog-menu-button-outer-box {
+    border: 0;
+    background: none; }
+  .crm-template .goog-menu-button-inner-box {
+    border: 0;
+    background: none; }
 
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
@@ -2048,7 +2064,7 @@ a.maia-button.maia-button-secondary {
   border-radius: 4px 0 0 4px;
   cursor: pointer;
   text-align: center;
-  width: 24px;
+  width: 21px;
   height: 38px;
   outline: 0;
   padding: 6px 0 0 2px;
@@ -2062,10 +2078,10 @@ a.maia-button.maia-button-secondary {
   margin-top: 4px; }
 
 #sticky-hud-base.open .hud-button {
-  left: -218px; }
+  left: -215px; }
 
 #sticky-hud-base:not(.open) .hud-button:hover {
-  width: 28px;
+  width: 25px;
   transition: width 0.3s ease-in-out, left 0.3s ease-in-out; }
 
 #sticky-hud-base.invalid:not(.open) .hud-button:not(:hover) {
