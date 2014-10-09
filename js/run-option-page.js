@@ -4,18 +4,18 @@
 
 
 // Load sugarcrm UI file.
-chrome.storage.local.get('sugarcrm-src', function(obj) {
-  var fn = obj['sugarcrm-src'];
+chrome.storage.local.get('front-end-src', function(obj) {
+  var fn = obj['front-end-src'];
   console.log('loading ' + fn);
   var node = document.createElement('script');
   node.type = 'text/javascript';
   node.onload = function() {
     // now run the app
-    ydn.msg.initPipe('options');
-    window.app = new OptionPage();
-    window.app.init();
+    runOptionApp();
   };
   node.src = fn;
   var head = document.getElementsByTagName('head')[0];
   head.appendChild(node);
 });
+
+

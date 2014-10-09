@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>content script tempalte</title>
+  <title>content script template</title>
 </head>
 <body>
 
@@ -60,6 +60,158 @@
     </thead>
     <tbody class="field-body"></tbody>
   </table>
+</template>
+
+<template id="about-template">
+  <h3>Yathit CRMinInbox</h3>
+  <p>
+    Version: <span name="version"></span><br/>
+    Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
+  </p>
+</template>
+
+<template id="tracking-about-template">
+  <h3>Yathit Email Tracker</h3>
+  <p>
+    Version: <span name="version"></span><br/>
+    Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
+  </p>
+</template>
+
+<template id="sugarcrm-home-template">
+  <section>
+    <div id="gdata"></div>
+  </section>
+  <section name="sugarcrm">
+    <div id="sugarcrm-widget"></div>
+  </section>
+</template>
+
+
+<template id="sugarcrm-details">
+  <div class="sugarcrm">
+    <h3>SugarCRM</h3>
+    <div class="name">SugarCRM <span class="flavor"></span> <span class="version">
+            </span> (<span class="gmt_time"></span> GMT)</div>
+    <div>Instance domain: <span class="domain"></span></div>
+    <div>Username: <span class="username"></span></div>
+  </div>
+</template>
+<template id="feed-widget-template">
+  <style>
+    ul.feed-log {
+      max-height: 20em;
+      overflow-y: scroll;
+      padding-left: 4px;
+      list-style: none;
+    }
+  </style>
+  <details>
+    <summary>Logs</summary>
+    <div>
+      <input type="checkbox" name="show-log"  id="show-log"/><label for="show-log">Show detail</label>
+    </div>
+    <ul class="feed-log"></ul>
+  </details>
+</template>
+<template id="gdata-credentail-template">
+  <h3>Google GData</h3>
+  <div class="widget-content">
+    <div class="authorize" style="display: none">
+      <a>Authorize</a>
+      <p>This extension requires your authorization to read and write your data from Google services.</p>
+    </div>
+    <div class="display" style="display: none">
+      <p>You have provided <span name="email"></span> Google contacts data available offline assess.<br />
+        Scopes: <span name="scopes"></span></p>
+      <a href="#" name="gdata-token-revoke">Revoke</a>
+    </div>
+  </div>
+</template>
+<template id="sugarcrm-template">
+  <style>
+    #sugarcrm-domain {
+      width: 30em;
+    }
+  </style>
+  <h3>SugarCRM</h3>
+  <div class="widget-content">
+    <div name="login-panel" style="display: none">
+      <div class="domain">
+        <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
+        <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
+          <span class="message"></span></div>
+      </div>
+      <div>
+        <div><label for="sugarcrm-username">Username</label></div>
+        <div><input name="username" id="sugarcrm-username" type="text"/></div>
+      </div>
+      <div>
+        <div><label for="sugarcrm-password">Password</label></div>
+        <div><input name="password" id="sugarcrm-password" type="password"/></div>
+      </div>
+      <div>
+        <div class="message"></div>
+      </div>
+      <div>
+        <button name="login">Login</button>
+      </div>
+      <input name="baseurl" type="text" hidden/>
+    </div>
+    <div name="info-panel" style="display: none">
+      <div>Host: <a name="instance"></a> <span name="instance-info"></span></div>
+      <div>User: <span name="user"></span></div>
+      <div id="grant-host-permission" style="display: none">
+        <button>Grant host permission</button>
+        <p>Your permission is required to connect your server from this extension.</p>
+      </div>
+    </div>
+    <div name="remove-panel" style="display: none">
+      <p>
+        <a href="#" name="remove" title="Remove this SugarCRM credentials.">Remove</a>
+      </p>
+    </div>
+    <div name="stats-panel" style="display: none">
+      <h4>Cached modules</h4>
+      <ul></ul>
+    </div>
+  </div>
+</template>
+<template id="hub-template">
+  <div id="sticky-hud-base">
+    <div class="hud-button">
+
+      <div class="logo-box"></div>
+      <div class="arrow-box">
+
+      </div>
+
+    </div>
+    <div class="hud-popup">
+      <div class="popup-container">
+        <div class="popup-content">
+
+        </div>
+        <div class="popup-footer">
+          <div class="popup-footer-bar">
+            <span class="left-item">
+              <a name="option-page-url" title="Extension options" target="option-page">Options</a>
+            </span>
+            <span class="center-item"></span>
+            <span class="right-item">
+                <a href="https://yathit.uservoice.com/" target="yathit.uservoice.com">Feedback</a> |&nbsp;
+                <a href="https://sites.google.com/a/yathit.com/ydn-crm-wiki/" target="help">Help</a>
+            </span>
+          </div>
+          <div class="status-bar">
+           <span class="status-bar-message">
+
+           </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 </body>

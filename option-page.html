@@ -2,172 +2,44 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Yathit CRMinInbox Option page</title>
+  <title>Option page dev</title>
+
   <link rel="stylesheet" type="text/css" href="css/option.css">
+  <script src="lib/categ_letters_numbers.js"></script>
+  <script src="lib/normalizer_lowercase.js"></script>
+  <script src="lib/normalizer_lowercase_nomark.js"></script>
+  <script src="js/environment.js"></script>
+
 </head>
 <body class="ydn-crm">
 
-<div id="after-login" >
-  <header role="navigation" class="menu_bar">
-    <div class="left">
-      <ul id="main-menu" style="display: none">
-        <li class="selected">
-          <a href="#home">Home</a>
-        </li>
-        <li name="search-menu" style="display: none">
-          <a href="#search">Search</a>
-        </li>
-        <li>
-          <a href="#credentials">Credentials</a>
-        </li>
-      </ul>
-    </div>
-    <div class="right">
-      <ul>
-        <li>
-          <a id="user-login" target="yathit">login</a>
-        </li>
-        <li>
-          <span id="user-name"></span>
-        </li>
-      </ul>
-    </div>
-  </header>
-  <section id="content"  style="display: none">
-    <article id="home">
 
-    </article>
-    <article id="search" class="sugar" style="display: none">
-      Search
-    </article>
-    <article id="credentials" style="display: none">
-      <ul class="credentials-list"></ul>
+<header role="navigation" class="menu_bar">
+  <div class="left">
+    <ul id="main-menu" style="display: none">
 
-      <div class="new-sugar">
-
-      </div>
-      <p>Use <a href="setup.html">setup wizard</a> for step-by-step configuration.</p>
-      <div class="audit-log">
-        <div class="message">
-          <span class="last-login"></span> <a href="#" name="detail">detail</a>
-        </div>
-        <div class="result-list" style="display: none">
-          <table>
-            <thead>
-            <tr>
-              <th>Resource</th>
-              <th>Location</th>
-              <th>Time</th>
-            </tr>
-            </thead>
-            <tbody></tbody>
-
-          </table>
-          <div class="message">
-            * indicate this computer.
-          </div>
-        </div>
-      </div>
-    </article>
-  </section>
-  <footer>
-    <div id="statusbar"></div>
-  </footer>
-</div>
-
-<template id="sugarcrm-details">
-  <div class="sugarcrm">
-    <h3>SugarCRM</h3>
-    <div class="name">SugarCRM <span class="flavor"></span> <span class="version">
-            </span> (<span class="gmt_time"></span> GMT)</div>
-    <div>Instance domain: <span class="domain"></span></div>
-    <div>Username: <span class="username"></span></div>
+    </ul>
   </div>
-</template>
-<template id="feed-widget-template">
-  <style>
-    ul {
-      max-height: 20em;
-      overflow-y: scroll;
-      padding-left: 4px;
-      list-style: none;
-    }
-  </style>
-  <details>
-    <summary>Logs</summary>
-    <div>
-      <input type="checkbox" name="show-log"  id="show-log"/><label for="show-log">Show detail</label>
-    </div>
-    <ul></ul>
-  </details>
-</template>
-<template id="gdata-credentail-template">
-  <h3>Google GData</h3>
-  <div class="authorize" style="display: none">
-    <a>Authorize</a>
-    <p>This extension requires your authorization to read and write your data from Google services.</p>
+  <div class="right">
+    <ul>
+      <li>
+        <a id="user-login" target="yathit" data-window-height="600" data-window-width="800">login</a>
+      </li>
+      <li>
+        <span id="user-name"></span>
+      </li>
+    </ul>
   </div>
-  <div class="display" style="display: none">
-    <p>You have provided <span name="email"></span> Google contacts data available offline assess.<br />
-      Scopes: <span name="scopes"></span></p>
-    <a href="#" name="gdata-token-revoke">Revoke</a>
-  </div>
-</template>
-<template id="sugarcrm-template">
-  <style>
-    #sugarcrm-domain {
-      width: 30em;
-    }
-  </style>
-  <h3>SugarCRM</h3>
-  <div name="login-panel" style="display: none">
-    <div class="domain">
-      <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
-      <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
-        <span class="message"></span></div>
-    </div>
-    <div>
-      <div><label for="sugarcrm-username">Username</label></div>
-      <div><input name="username" id="sugarcrm-username" type="text"/></div>
-    </div>
-    <div>
-      <div><label for="sugarcrm-password">Password</label></div>
-      <div><input name="password" id="sugarcrm-password" type="password"/></div>
-    </div>
-    <div>
-      <div class="message"></div>
-    </div>
-    <div>
-      <button name="login">Login</button>
-    </div>
-    <input name="baseurl" type="text" hidden="true"/>
-  </div>
-  <div name="info-panel" style="display: none">
-    <div>Instance: <a name="instance"></a> <span name="instance-info"></span></div>
-    <div>User: <span name="user"></span></div>
-    <div id="grant-host-permission" style="display: none">
-      <button>Grant host permission</button>
-      <p>Your permission is required to connect your server from this extension.</p>
-    </div>
-  </div>
-  <div name="remove-panel" style="display: none">
-    <p>
-      <a href="#" name="remove">Remove</a>
-    </p>
-  </div>
+</header>
+<section id="app-content" style="margin-top: 2.6em; display: none;">
 
-</template>
 
-<script type="text/javascript" src="lib/md5.js"></script>
-<script type="text/javascript" src="js/option/model/sugarcrm.js"></script>
-<script type="text/javascript" src="js/option/widget/feed.js"></script>
-<script type="text/javascript" src="js/option/widget/gdata-credential.js"></script>
-<script type="text/javascript" src="js/option/widget/sugarcrm.js"></script>
-<script type="text/javascript" src="js/option/panel/sugarcrm-login.js"></script>
-<script type="text/javascript" src="js/option/panel/credentials.js"></script>
-<script type="text/javascript" src="js/option/panel/home.js"></script>
-<script type="text/javascript" src="js/option/panel/search.js"></script>
-<script type="text/javascript" src="js/option/option-page.js"></script>
-<script type="text/javascript" src="js/run-option-page.js"></script>
+</section>
+<footer>
+  <div id="sidebar-status"></div>
+</footer>
+
+<script src="js/run-option-page.js"></script>
+
 </body>
 </html>

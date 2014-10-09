@@ -28,6 +28,14 @@ window.CRMinInbox = {};
 
 
 /**
+ * @enum {string} version number base on tracks.
+ */
+window.CRMinInbox.Version = {
+  release: '1.3.1'
+};
+
+
+/**
  * @namespace base namespace for SugarCRM module.
  */
 window.CRMinInbox.sugarcrm = {};
@@ -37,5 +45,5 @@ window.CRMinInbox.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 window.CRMinInbox.sugarcrm.Version = {
-  release: '0.14.1'
+  release: '0.15.4'
 };

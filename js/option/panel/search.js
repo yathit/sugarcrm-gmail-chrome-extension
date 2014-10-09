@@ -1,15 +1,14 @@
 /**
- * @fileoverview Credentials section.
+ * @fileoverview Search panel.
  */
 
 
 
 /**
  * Credentials section.
- * @param {ydn.crm.sugarcrm.model.Sugar} model
  * @constructor
  */
-var SearchPanel = function(model) {
+var SearchPanel = function() {
   /**
    * @type {HTMLElement}
    */

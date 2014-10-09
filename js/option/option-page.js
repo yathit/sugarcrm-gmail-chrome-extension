@@ -18,6 +18,7 @@ var OptionPage = function() {
   this.panels = [
     new HomePanel(),
     this.search,
+    new TrackingPanel(),
     new Credentials()
   ];
 };
@@ -194,7 +195,9 @@ OptionPage.prototype.init = function() {
 
   this.login(null, function() {
     if (location.hash) {
-      me.showPanel_(location.hash.replace('#', ''));
+      setTimeout(function() {
+        me.showPanel_(location.hash.replace('#', ''));
+      }, 10);
     }
   }, this);
 };
