@@ -8,7 +8,7 @@ var node = document.createElement('script');
 node.type = 'text/javascript';
 node.onload = function() {
   // now run the app
-  runBackgroundApp();
+  window.app = runBackgroundApp();
 };
 node.src = fn;
 var head = document.getElementsByTagName('head')[0];
