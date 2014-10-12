@@ -74,6 +74,7 @@ Dependency
 7. Dependency for ydn-db-fulltext https://github.com/yathit/natural
 8. CRM Core https://github.com/yathit/crm
 9. SugarCRM model and UI https://github.com/yathit/sugarcrm
+10: Chrome Platform Analytics https://github.com/GoogleChrome/chrome-platform-analytics
 
 Compiled dependency files are available in http://ydn-src-1.storage.googleapis.com/
 

@@ -1919,7 +1919,8 @@ a.maia-button.maia-button-secondary {
   padding: 8px; }
 
 .status-base {
-  font-size: 90%; }
+  font-size: 90%;
+  padding: 0 2px 2px 2px; }
   .status-base A {
     max-width: 4em;
     text-overflow: ellipsis;
@@ -2092,7 +2093,7 @@ footer {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 0 2px 2px 2px; }
+  background-color: white; }
 
 .audit-log .message {
   color: gray;

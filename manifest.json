@@ -2,7 +2,7 @@
   "name": "Yathit CRMinInbox for SugarCRM",
   "short_name": "SugarCRM",
   "description": "Yathit CRMinInbox is a secure delightful time-saving tool for SugarCRM users in Gmail.",
-  "version": "0.16.0",
+  "version": "0.16.7",
   "manifest_version": 2,
 
   "content_scripts": [
@@ -36,7 +36,7 @@
     "jsc/*",
     "image/*"],
 
-  "content_security_policy": "script-src 'self' https://ydn-src-1.storage.googleapis.com https://www.yathit.com  https://www.google-analytics.com https://www.google.com/; object-src 'self'; img-src 'self' https://ssl.gstatic.com",
+  "content_security_policy": "script-src 'self' https://ydn-src-1.storage.googleapis.com https://www.yathit.com  https://ssl.google-analytics.com https://www.google.com/; object-src 'self'; img-src 'self' https://ssl.gstatic.com https://ssl.google-analytics.com",
 
   "permissions":  ["storage", "https://mail.google.com/*", "https://www.yathit.com/*"],
 
