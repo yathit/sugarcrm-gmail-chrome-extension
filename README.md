@@ -5,6 +5,8 @@ Chrome Extension for SugarCRM from Gmail inbox.
 
 Try out: [Yathit CRM Bridge (Beta)](https://chrome.google.com/webstore/detail/yathit-crm-bridge-beta/iccdnijlhdogaccaiafdpjmbakdcdakk)
 
+[Home page and Documentation](http://crm.yathit.com)
+
 [Suggestion and feedback](https://yathit.uservoice.com/)
 
 #### Developer and marketer wanted
@@ -25,7 +27,7 @@ Security consideration:
 
  1. No loading of insecure code (no eval, no inline script).
  2. Use sandbox iframe for third party.
- 4. Use https for SugarCRM, even if user provide http.
+ 4. All SSL connection. (Including SugarCRM that don't support https?)
  5. All resources (images) must be serialized, i.e., image file are loaded by XMLHttpRequest and render using canvas or datauri.
  6. Request only absolutely necessary host permission. Avoid host access to www.google.com, since the stakes are too high. All hosts permission is definitely not acceptable.
  7. Reduce permission request. Use optional permission. Remember we are just an app, not managing browser. Don't stalk other tabs.

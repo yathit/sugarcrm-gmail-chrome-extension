@@ -1603,6 +1603,29 @@ a.maia-button.maia-button-secondary {
 .pear-ui-resizable-corner {
   opacity: 1; }
 
+.iconic {
+  width: 16px;
+  height: 16px; }
+
+.icons, .logo-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 16px;
+  height: 16px; }
+
+.icons-small {
+  margin: auto auto;
+  display: inline-block;
+  width: 14px;
+  height: 14px; }
+
+.logo-small {
+  background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
+
+.icon-box {
+  display: inline-block;
+  margin: auto auto; }
+
 .menu_bar {
   padding: 0 4px 0 4px;
   font-size: medium;
@@ -1821,7 +1844,8 @@ a.maia-button.maia-button-secondary {
 .record-header .head {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  flex-wrap: nowrap; }
   .record-header .head .center {
     flex-grow: 1;
     flex-shrink: 1; }
@@ -2017,6 +2041,14 @@ a.maia-button.maia-button-secondary {
   border-top: thin solid #d3d3d3; }
   .tracking-panel .sep-header h3 {
     margin-top: 2px; }
+.tracking-panel .tracking-detail-panel {
+  padding-left: 24px; }
+  .tracking-panel .tracking-detail-panel .pear-grid-row-header {
+    background-color: mintcream; }
+
+.pear-grid-cell-data-content.no-border,
+.pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {
+  border: 0; }
 
 /*
  Some CSS from font-awesome used in google-closure-grid library

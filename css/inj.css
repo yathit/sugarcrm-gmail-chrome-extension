@@ -209,9 +209,6 @@ dialog.ydn-crm, .ydn-crm dialog {
   border: 0;
   background: none; }
 
-.tracking-button.goog-custom-button-checked svg {
-  fill: #00ff00; }
-
 .tracking-button.goog-custom-button {
   border: 0;
   background: none; }
@@ -1641,34 +1638,58 @@ dialog.ydn-crm, .ydn-crm dialog {
 .sidebar a:hover {
   text-decoration: underline; }
 
-.tabbar-failback {
-  width: 156px;
-  padding: 4px;
-  z-index: 10;
-  /* overlay */
-  position: fixed;
-  bottom: 0;
-  left: 4px;
-  height: 28px; }
+.gmail-header-widget {
+  display: inline-block; }
 
-#ydn-tabbar > div:first-child {
-  /* this align UI, 16 px when debug button is not present. */
-  margin-left: 12px; }
+.gmail-header-menubutton {
+  height: 21px;
+  line-height: 21px;
+  border-radius: 2px;
+  margin-right: 0;
+  background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+  background-image: linear-gradient(top, #f5f5f5, #f1f1f1);
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+    /*
+    .goog-css3-button-caption > * {
+        vertical-align: middle;
+    }
 
-#btn-show-panel {
-  border: none;
-  cursor: pointer;
-  height: 17px;
-  float: none;
+    .goog-css3-button-caption > * > * {
+        vertical-align: middle;
+    }
+
+    .goog-css3-button-dropdown {
+        vertical-align: middle;
+    }
+    */ }
+  .gmail-header-menubutton .goog-css3-button-caption {
+    vertical-align: middle;
+    height: 27px;
+    line-height: 27px; }
+
+.gmail-header-widget {
+  /* FIXME: does not work
+  .goog-css3-button-hover {
+      border-color: #4d90fe;
+  }
+  */ }
+
+.tracking-button.goog-custom-button-checked svg, .tracking-icon-tracked svg {
+  fill: #00ff00; }
+
+.gmail-header-icon {
   display: inline-block;
-  padding-left: 8px;
-  padding-right: 8px; }
+  vertical-align: middle; }
 
-#btn-show-panel div {
-  padding-top: 7px;
-  width: 16px;
-  height: 18px;
-  background: url("chrome-extension://__MSG_@@extension_id__/image/logo.png") no-repeat center center; }
+.gmail-header-icon > svg {
+  padding: 0 2px; }
+
+svg.tracking-icon-has-result {
+  fill: #00ff00; }
+
+svg.tracking-icon-no-result {
+  fill: #add8e6; }
 
 /** CSS for UI inside Gmail */
 /**
@@ -2061,7 +2082,8 @@ a.maia-button.maia-button-secondary {
 .record-header .head {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  flex-wrap: nowrap; }
   .record-header .head .center {
     flex-grow: 1;
     flex-shrink: 1; }
