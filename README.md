@@ -78,7 +78,11 @@ Dependency
 9. SugarCRM model and UI https://github.com/yathit/sugarcrm
 10: Chrome Platform Analytics https://github.com/GoogleChrome/chrome-platform-analytics
 
-Compiled dependency files are available in http://ydn-src-1.storage.googleapis.com/
+
+Development
+-----------
+
+You should be able to load this repo folder as [unpacked Chrome Extension](https://developer.chrome.com/extensions/getstarted#unpacked). You will need compiles dependency files, which are available in http://ydn-src-1.storage.googleapis.com/
 
 Pricing
 -------
