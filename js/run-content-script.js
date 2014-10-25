@@ -9,14 +9,14 @@
 
 (function() {
 
-  var id = 'ij' + Math.random();
+  var uid = 'ij' + Math.random();
   var scriptLoaded = false;
   var i = 0;
   var loadScript = function() {
     // console.log('inj ' + id + ' send ' + i);
     chrome.runtime.sendMessage({
       'req': 'inject',
-      'id': id,
+      'id': uid,
       'i': ++i
     }, function(resp) {
       if (resp) {
@@ -34,6 +34,11 @@
     // It has observed that, if we load in 1000 ms, somethime, gmail content
     // become blank page.
   };
-  loadScript();
+
+  // we inject only on Main main frame and composition iframe for Live mail.
+  var is_main_frame = self == top;
+  if (is_main_frame) {
+    loadScript();
+  }
 
 })();

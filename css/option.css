@@ -47,6 +47,7 @@
 
 .flex-bar {
   display: flex;
+  flex-wrap: nowrap;
   flex-flow: row wrap;
   align-items: center; }
   .flex-bar > .center {
@@ -2138,5 +2139,9 @@ footer {
 
 .widget-content {
   padding: 0 8px; }
+
+ul {
+  list-style: none;
+  padding-left: 0; }
 
 /*# sourceMappingURL=option.css.map */

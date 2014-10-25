@@ -31,7 +31,7 @@ window.CRMinInbox = {};
  * @enum {string} version number base on tracks.
  */
 window.CRMinInbox.Version = {
-  release: '1.3.6'
+  release: '1.4.0'
 };
 
 
@@ -45,5 +45,5 @@ window.CRMinInbox.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 window.CRMinInbox.sugarcrm.Version = {
-  release: '0.16.14'
+  release: '0.17.0'
 };

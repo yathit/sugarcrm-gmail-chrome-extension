@@ -84,7 +84,7 @@ PopupPage.prototype.renderFeed = function(feeds, opt_append) {
 PopupPage.prototype.handleSettingClick_ = function(e) {
   e.preventDefault();
 
-}
+};
 
 
 /**
@@ -123,6 +123,7 @@ PopupPage.prototype.init = function() {
 
 /**
  * Initialize UI.
+ * @private
  */
 PopupPage.prototype.init_ = function() {
   PopupPage.setStatus('checking login...');
