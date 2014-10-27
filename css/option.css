@@ -47,8 +47,7 @@
 
 .flex-bar {
   display: flex;
-  flex-wrap: nowrap;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items: center; }
   .flex-bar > .center {
     flex-grow: 1; }
@@ -1668,7 +1667,7 @@ a.maia-button.maia-button-secondary {
 /* Record */
 .field {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row nowrap; }
 
 .field .value {
   flex-grow: 1; }
@@ -2046,6 +2045,17 @@ a.maia-button.maia-button-secondary {
   padding-left: 24px; }
   .tracking-panel .tracking-detail-panel .pear-grid-row-header {
     background-color: mintcream; }
+
+.tracking-result {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 2px; }
+  .tracking-result > * {
+    align-self: center;
+    padding: 2px; }
+  .tracking-result svg {
+    vertical-align: middle; }
 
 .pear-grid-cell-data-content.no-border,
 .pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {

@@ -46,8 +46,7 @@
 
 .flex-bar {
   display: flex;
-  flex-wrap: nowrap;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   align-items: center; }
   .flex-bar > .center {
     flex-grow: 1; }
@@ -1906,7 +1905,7 @@ a.maia-button.maia-button-secondary {
 /* Record */
 .field {
   display: flex;
-  flex-flow: row wrap; }
+  flex-flow: row nowrap; }
 
 .field .value {
   flex-grow: 1; }
@@ -2243,6 +2242,53 @@ a.maia-button.maia-button-secondary {
 .setting-dialog .group-panel {
   border: thin solid #d3d3d3;
   padding: 8px; }
+
+.tracking-panel .content {
+  padding: 4px; }
+.tracking-panel .stats {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center; }
+  .tracking-panel .stats .slot {
+    text-align: center;
+    padding: 4px 8px; }
+    .tracking-panel .stats .slot .value-holder {
+      font-size: 200%;
+      font-weight: 400; }
+    .tracking-panel .stats .slot .percent {
+      padding-left: 4px; }
+.tracking-panel .slot-6 .value {
+  font-size: 70%; }
+.tracking-panel .pear-grid-row-header {
+  padding-top: 6px;
+  font-weight: bold; }
+.tracking-panel .sep-header {
+  margin-top: 16px;
+  border-top: thin solid #d3d3d3; }
+  .tracking-panel .sep-header h3 {
+    margin-top: 2px; }
+.tracking-panel .tracking-detail-panel {
+  padding-left: 24px; }
+  .tracking-panel .tracking-detail-panel .pear-grid-row-header {
+    background-color: mintcream; }
+
+.tracking-result {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding: 2px; }
+  .tracking-result > * {
+    align-self: center;
+    padding: 2px; }
+  .tracking-result svg {
+    vertical-align: middle; }
+
+.pear-grid-cell-data-content.no-border,
+.pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {
+  border: 0; }
 
 /*
  * Customerization of tab.css and tabbar.css
