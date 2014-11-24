@@ -50,7 +50,8 @@
   flex-flow: row nowrap;
   align-items: center; }
   .flex-bar > .center {
-    flex-grow: 1; }
+    flex-grow: 1;
+    flex-shrink: 1; }
 
 .svg-button {
   cursor: pointer;

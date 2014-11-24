@@ -115,7 +115,7 @@
   </details>
 </template>
 <template id="gdata-credentail-template">
-  <h3>Google GData</h3>
+  <h3>Google Services</h3>
   <div class="widget-content">
     <div class="authorize" style="display: none">
       <a>Authorize</a>
@@ -178,7 +178,7 @@
   </div>
 </template>
 <template id="hub-template">
-  <div id="sticky-hud-base">
+  <div id="sticky-hud-base" class="ydn-crm">
     <div class="hud-button">
 
       <div class="logo-box"></div>
@@ -189,6 +189,7 @@
     </div>
     <div class="hud-popup">
       <div class="popup-container">
+        <div class="popup-header"></div>
         <div class="popup-content">
 
         </div>
@@ -203,15 +204,24 @@
                 <a href="https://sites.google.com/a/yathit.com/ydn-crm-wiki/" target="help">Help</a>
             </span>
           </div>
-          <div class="status-bar">
-           <span class="status-bar-message">
 
-           </span>
-          </div>
         </div>
       </div>
     </div>
   </div>
+</template>
+
+<template id="tracking-setting-template">
+  <section class="tracking-setting">
+    <h3>Email Tracking</h3>
+    <div class="default-tracking-selection">
+      <input type="radio" name="default-tracking" value="always" title="All your email send will include tracking beacon."> Always track<br>
+      <input type="radio" name="default-tracking" value="track" title="All your email send will include tracking beacon unless you select not to."> Track normally<br>
+      <input type="radio" name="default-tracking" value="" title="You can select whether you want to track or not before sending email." checked> Enable tracking<br>
+      <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do no track normally<br>
+      <input type="radio" name="default-tracking" value="disable"> Disable tracking<br>
+    </div>
+  </section>
 </template>
 
 </body>
