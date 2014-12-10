@@ -218,10 +218,81 @@
       <input type="radio" name="default-tracking" value="always" title="All your email send will include tracking beacon."> Always track<br>
       <input type="radio" name="default-tracking" value="track" title="All your email send will include tracking beacon unless you select not to."> Track normally<br>
       <input type="radio" name="default-tracking" value="" title="You can select whether you want to track or not before sending email." checked> Enable tracking<br>
-      <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do no track normally<br>
+      <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do not track normally<br>
       <input type="radio" name="default-tracking" value="disable"> Disable tracking<br>
     </div>
+    <div class="donotrack-section">
+      <details>
+        <summary>Do Not Track</summary>
+        <div class="donottrack-content">
+          <div class="toolbar">
+            <input name="email-add" type="email" title="Email address of person not to be tracked"/>
+            <button name="add-email" title="Add to do not track list">Add</button>
+          </div>
+          <h5>List of emails not to be tracked</h5>
+          <ul class="dnt-list"></ul>
+        </div>
+      </details>
+    </div>
   </section>
+</template>
+
+<template id="template-tracking-datalist">
+  <div class="datalist-item">
+    <div class="head row">
+      <div class="label recipient"></div>
+      <div class="center"></div>
+      <div class="stats">
+        <span title="Number of emails opened"><span class="opens"></span><span class="symbol">O</span></span>&nbsp;
+        <span title="Number of links clicked"><span class="clicks"></span><span class="symbol">L</span></span>
+      </div>
+
+    </div>
+    <div class="content row">
+      <div class="label subject"></div>
+      <div class="center"></div>
+      <div class="stats lastopen"></div>
+
+    </div>
+  </div>
+</template>
+
+<template id="template-tracking-sidebar">
+  <div class="sidebar-head">
+
+      <span class="head-icon" title="Email tracking"></span>
+      <span class="stat-panel opens"
+            title="Number of emails open in last 24 hours">0/0</span>
+      <span class="stat-panel clicks"
+            title="Number of link clicked in last 24 hours">0/0</span>
+      <span class="center"></span>
+      <span class="more-less-toggle svg-button"></span>
+
+  </div>
+  <div class="sidebar-content" style="display: none;">
+    <div class="toolbar">
+      <input class="picker" placeholder="DD/MM/YYYY" title="Target date"/>
+      <span class="select-view"></span>
+    </div>
+  </div>
+</template>
+
+<template id="template-tracking-feeditem">
+  <div class="feeditem">
+    <span class="recipient"></span>
+    <span class="verb"></span>
+    <span class="object"></span>
+  </div>
+</template>
+<template id="template-tracking-detail-item">
+  <div>
+    <div class="item">
+      <span></span>
+      <span></span>
+      <a class="center"></a>
+      <span></span>
+    </div>
+  </div>
 </template>
 
 </body>

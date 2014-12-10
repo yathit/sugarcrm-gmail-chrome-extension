@@ -2,6 +2,12 @@
 .ydn-crm {
   font-family: arial, sans-serif;
   font-size: 12px; }
+  .ydn-crm h5 {
+    font-size: 1em;
+    font-weight: normal;
+    font-style: italic;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 0.5em; }
   .ydn-crm INPUT {
     font-family: arial, sans-serif;
     /* Overridden by font: -webkit-small-control; */

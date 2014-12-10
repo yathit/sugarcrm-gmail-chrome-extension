@@ -29,7 +29,7 @@ var SugarCrmWidget = function(model, opt_hide_title) {
  * @type {{domain: string, user_name: string, password: string}}
  */
 SugarCrmWidget.trialCredentials = {
-  domain: 'https://qzihat7936.trial.sugarcrm.com/index.php',
+  domain: 'https://rflkda0265.trial.sugarcrm.com/index.php',
   user_name: 'jane',
   password: '!Jane1'
 };
@@ -90,12 +90,13 @@ SugarCrmWidget.prototype.onDomainBlur = function(e) {
   if (!domain) {
     return;
   }
-  if (/\.trial\.sugarcrm\.com/.test(domain)) {
+  if (/\.trial\.sugarcrm\.[com|eu]/.test(domain)) {
     // all trial password from trial.sugarcrm.com are same.
     this.root.querySelector('input[name=username]').value = SugarCrmWidget.trialCredentials.user_name;
     this.root.querySelector('input[name=password]').value = SugarCrmWidget.trialCredentials.password;
   }
-  this.model.setInstanceUrl(domain, function(info) {
+  this.model.setInstanceUrl(domain);
+  this.model.getInfo(function(info) {
     var input_baseurl = this.root.querySelector('input[name=baseurl]');
     input_baseurl.value = '';
     if (info instanceof Error) {

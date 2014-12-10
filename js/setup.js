@@ -114,19 +114,9 @@ Setup.prototype.init = function() {
   var link = document.getElementById('user-login');
   link.addEventListener('click', function(e) {
     e.preventDefault();
-    if (link.textContent == 'logout') {
-      ydn.msg.getChannel().send('logged-out');
-    }
     Setup.openPageAsDialog_(e);
   }, true);
 
-  chrome.runtime.onMessageExternal.addListener(
-      function(request, sender, sendResponse) {
-        if (request == 'closing') {
-          sendResponse('close');
-          location.reload();
-        }
-      });
 
   this.login(null, function(x) {
     this.run();
@@ -245,6 +235,23 @@ Setup.prototype.setStatus = function(s) {
   document.getElementById('statusbar').textContent = typeof s == 'object' ?
       JSON.stringify(s) : s;
 };
+
+
+chrome.runtime.onMessageExternal.addListener(
+    function(request, sender, sendResponse) {
+      // the redirect page, pm.html will send this message.
+      if (request == 'closing') {
+        sendResponse('close');
+        var link = document.getElementById('user-login');
+        if (link.textContent == 'logout') {
+          ydn.msg.getChannel().send('logged-out').addCallback(function() {
+            location.reload();
+          });
+        } else {
+          location.reload();
+        }
+      }
+    });
 
 ydn.msg.initPipe('setup');
 var setup = new Setup();

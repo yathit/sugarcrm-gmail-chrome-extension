@@ -95,50 +95,23 @@ SugarCrmModel.prototype.requestHostPermission = function(cb, scope) {
 /**
  * Set domain.
  * @param {string} url sugarcrm instance url
- * @param {function(this: T, (Error|SugarCrm.ServerInfo))=} cb callback.
- * @param {T=} scope
- * @template T
  */
-SugarCrmModel.prototype.setInstanceUrl = function(url, cb, scope) {
+SugarCrmModel.prototype.setInstanceUrl = function(url) {
   url = url.trim();
   var domain = url.replace(/^https?:\/\//, '');
   domain = domain.replace(/\/.*/, ''); // remove after /
   if (url.length < 3 || !/\./.test(url)) {
-    cb.call(scope, new Error('Invalid instance ' + url));
     return;
   }
-  if (this.data && this.data.domain == domain) {
-    if (cb) {
-      cb.call(scope, this.info);
-    }
-    return;
-  }
+
   if (!this.data) {
     this.data = {
       domain: domain,
       isLogin: false
     };
   }
-  ydn.msg.getChannel().send('sugar-server-info', url).addCallbacks(function(info) {
-    var base_url = /^http/.test(url) ? url : null;
-    if (info['baseUrl']) {
-      base_url = info['baseUrl'];
-    }
-    this.data = {
-      baseUrl: base_url,
-      domain: domain,
-      isLogin: false
-    };
-    // console.log(info);
-    this.info = info;
-    if (cb) {
-      cb.call(scope, info);
-    }
-  }, function(e) {
-    if (cb) {
-      cb.call(scope, e);
-    }
-  }, this);
+  this.data.baseUrl = url;
+
 };
 
 
