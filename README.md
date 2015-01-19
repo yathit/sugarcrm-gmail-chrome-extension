@@ -9,9 +9,9 @@ Try out: [Yathit CRM Bridge (Beta)](https://chrome.google.com/webstore/detail/ya
 
 [Suggestion and feedback](https://yathit.uservoice.com/)
 
-#### Developer and marketer wanted
+#### SugarCRM integrator and sell partner wanted
 
-I am looking for developers and marketers to bootstrip this project into viable product. If interested, please drop me (kyawtun@yathit.com) describing how you would like to do.
+If interested, please drop me (kyawtun@yathit.com) describing how you would like to do.
 
 
 Design Goal
@@ -33,16 +33,6 @@ Security consideration:
  7. Reduce permission request. Use optional permission. Remember we are just an app, not managing browser. Don't stalk other tabs.
  8. Use sandbox iframe. Use encryption.
  9. Don't delete or hide Gmail DOM element.
-
-
-Plan
-----
-
-Stage 1 is implemented as Chrome Extension to Gmail bridging SugarCRM. The extension will allow SuagrCRM user easy to integrate Gmail, Google Contact, Task and Calendar and use SugarCRM inside Gmail. The extension UI is designed to be low profile in gmail interface.
-
-In stage 2, this will be full feature web app.
-
-In stage 3, Mobile client will be created through phonegap.
 
 
 Features
@@ -77,6 +67,8 @@ Dependency
 8. CRM Core https://github.com/yathit/crm
 9. SugarCRM model and UI https://github.com/yathit/sugarcrm
 
+Note: Most of the codes are in CRM Core and SugarCRM repo.
+
 
 Development
 -----------
@@ -86,7 +78,7 @@ You should be able to load this repo folder as [unpacked Chrome Extension](https
 Pricing
 -------
 
-Open source does not mean zero cost. Open source means that you can change source code to suite your use case and inspect them for security or privacy concern. I would expect pricing will be around $5/user/month. 
+Open source does not mean zero cost. Open source means that you can change source code to suite your use case and inspect them for security or privacy concern. I would expect pricing will be around $5~`0/user/month.
 
 Licensing
 ---------

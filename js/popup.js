@@ -165,7 +165,7 @@ PopupPage.prototype.init_ = function() {
         }
       }, this);
       // check gdata token
-      ydn.msg.getChannel().send('gdata-token', option_page + '#credentials').addCallback(function(data) {
+      ydn.msg.getChannel().send('token-gdata', option_page + '#credentials').addCallback(function(data) {
         var token = /** @type {YdnApiToken} */ (data);
         if (!token || !token.has_token) {
           this.renderFeed([

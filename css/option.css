@@ -23,6 +23,8 @@
     border: 1px solid #51cbee; }
   .ydn-crm INPUT:invalid {
     color: red; }
+  .ydn-crm .inline-block {
+    display: inline-block; }
 
 .left {
   float: left;
@@ -105,6 +107,20 @@ dialog.ydn-crm, .ydn-crm dialog {
   clear: both;
   max-height: 200px;
   overflow: auto; }
+.activity-panel .count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: 9px;
+  display: block;
+  background-color: red;
+  border-radius: 10px;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  margin: 0;
+  font-weight: normal; }
 
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
@@ -127,6 +143,52 @@ dialog.ydn-crm, .ydn-crm dialog {
   background-color: black; }
 .ydn-crm DETAILS[open] > SUMMARY:after {
   content: "-"; }
+
+/**
+ * Created by kyawtun on 1/9/14.
+ */
+.more-menu {
+  position: relative; }
+
+.flyout-menu {
+  position: absolute;
+  width: 120px;
+  top: 18px; }
+  .flyout-menu .goog-menuitem:hover {
+    /* copy from goog-menuitem-highlight */
+    background-color: #d6e9f8;
+    border-color: #d6e9f8;
+    border-style: dotted;
+    border-width: 1px 0;
+    padding-bottom: 3px;
+    padding-top: 3px; }
+  .flyout-menu .icons.left-arrow, .flyout-menu .left-arrow.logo-small {
+    position: absolute;
+    left: 4px;
+    vertical-align: middle; }
+  .flyout-menu > .goog-menuitem > .goog-menu {
+    width: 120px;
+    left: -121px;
+    margin-top: -20px; }
+  .flyout-menu > .goog-menuitem:not(:hover) > .goog-menu,
+  .flyout-menu > .goog-menuitem.goog-menuitem-disabled > .goog-menu {
+    display: none; }
+
+.flyout-menu.left-menu {
+  left: -98px; }
+
+.more-menu:not(:hover) .flyout-menu {
+  display: none; }
+
+.hover-button {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  width: 19px;
+  height: 19px; }
+
+*:not(:hover) > .hover-button {
+  display: none; }
 
 .section .maia-button {
   margin: 10px auto; }
@@ -226,6 +288,43 @@ a.maia-button.maia-button-secondary {
 /*
 * Closure Library CSS
 */
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/*
+ * Styles for goog.ui.ac.AutoComplete and its derivatives.
+ * Note: these styles need some work to get them working properly at various
+ * font sizes other than the default.
+ *
+ * @author pupius@google.com (Daniel Pupius)
+ * @author annams@google.com (Srinivas Annam)
+ */
+/*
+ * TODO(annams): Rename (here and in renderer.js) to specify class name as
+ * goog-autocomplete-renderer
+ */
+.ac-renderer {
+  font: normal 13px Arial, sans-serif;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #666;
+  -moz-box-shadow: 2px 2px 2px rgba(102, 102, 102, 0.4);
+  -webkit-box-shadow: 2px 2px 2px rgba(102, 102, 102, 0.4);
+  width: 300px; }
+
+.ac-row {
+  cursor: pointer;
+  padding: .4em; }
+
+.ac-highlighted {
+  font-weight: bold; }
+
+.ac-active {
+  background-color: #b2b4bf; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
@@ -1828,6 +1927,17 @@ td.goog-date-picker-selected {
   display: inline-block;
   margin: auto auto; }
 
+.google.badge-icon {
+  fill: #0266C8; }
+
+.badge-icon {
+  display: inline-block;
+  border: 1px #0266C8 solid;
+  border-radius: 3px;
+  padding: 3px;
+  height: 14px;
+  margin-right: 4px; }
+
 .menu_bar {
   padding: 0 4px 0 4px;
   font-size: medium;
@@ -1867,26 +1977,22 @@ td.goog-date-picker-selected {
   text-align: center; }
 
 /* Record */
-.field {
-  display: flex;
-  flex-flow: row nowrap; }
-
-.field .value {
-  flex-grow: 1; }
-
-.field:hover > sup.name {
-  display: inline !important; }
-
-.record-body .field.empty {
+.record-body:not(.edit) .record-group:not(.edit) .field.empty {
   display: none; }
 
-.record-body.edit .field.empty:not(.normally-hide) {
+.record-body.edit DIV.field.empty:not(.normally-hide) {
   display: flex; }
 
-.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field TEXTAREA {
+.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field INPUT[type=number], .record-body .field INPUT[type=datetime-local], .record-body .field INPUT[type=date], .record-body .field TEXTAREA, .record-body .field-like INPUT[type=text], .record-body .field-like INPUT[type=email], .record-body .field-like INPUT[type=tel], .record-body .field-like INPUT[type=number], .record-body .field-like INPUT[type=datetime-local], .record-body .field-like INPUT[type=date], .record-body .field-like TEXTAREA {
   padding: 1px 0px 1px 1px;
   margin: 2px 0 2px 0px;
   border: 1px transparent; }
+.record-body .field-label {
+  padding: 1px 0px 1px 1px;
+  margin: 2px 0 2px 0px;
+  border: 1px transparent;
+  display: inline-block;
+  vertical-align: middle; }
 
 .record-body > .field > INPUT.enum {
   width: 2em;
@@ -1897,11 +2003,11 @@ td.goog-date-picker-selected {
 /*
  * make input look like label. This setting is obtained from Gmail contact editor.
 */
-.record-body .field > INPUT {
+.record-body .field > INPUT, .record-body .field-like > INPUT {
   background-color: transparent;
   vertical-align: text-top; }
 
-.record-body .field > * {
+.record-body .field > *, .record-body .field-like > * {
   box-sizing: border-box; }
 
 .record-body.view .field TEXTAREA {
@@ -1936,20 +2042,51 @@ td.goog-date-picker-selected {
 .field-edit-dialog .field {
   display: table-row; }
 
-/*
- * Prevent Superscripts and Subscripts from Affecting Line-Height
- * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
- */
-.record-group sup, sub {
-  vertical-align: baseline;
-  position: relative;
-  top: -0.4em; }
+.ydn-crm DIV.field {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center; }
+  .ydn-crm DIV.field INPUT[type=text], .ydn-crm DIV.field INPUT[type=email], .ydn-crm DIV.field INPUT[type=tel], .ydn-crm DIV.field INPUT[type=number], .ydn-crm DIV.field INPUT[type=datetime-local], .ydn-crm DIV.field TEXTAREA {
+    flex-grow: 1; }
+.ydn-crm .field .value:required {
+  box-shadow: -2px 0 0 0 red; }
+.ydn-crm .field.inline {
+  display: inline-block; }
+.ydn-crm INPUT.value.double-digit {
+  max-width: 3em;
+  text-align: right; }
+.ydn-crm .field:hover > sup.name {
+  display: inline !important; }
 
-.record-group sub {
-  top: 0.4em; }
+.record-group {
+  /*
+   * Prevent Superscripts and Subscripts from Affecting Line-Height
+   * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+   */ }
+  .record-group a.null {
+    text-decoration: none !important; }
+  .record-group sub {
+    top: 0.4em; }
+  .record-group sup, .record-group sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em; }
+  .record-group .header.expander {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 24px; }
+    .record-group .header.expander span.header-label {
+      cursor: default; }
+    .record-group .header.expander INPUT {
+      flex-grow: 1; }
+    .record-group .header.expander .center {
+      flex-shrink: 1; }
+  .record-group .header.expander:not(:hover) .svg-button {
+    display: none; }
 
-.record-group a.null {
-  text-decoration: none !important; }
+.record-body:not(.edit) .record-group.empty {
+  display: none; }
 
 /*
 .record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
@@ -2055,20 +2192,8 @@ td.goog-date-picker-selected {
     flex-shrink: 1; }
 .record-header .title {
   vertical-align: middle;
-  line-height: 20px;
+  line-height: 12px;
   text-overflow: ellipsis; }
-.record-header .icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  padding: 2px;
-  border-radius: 3px;
-  font-weight: 400;
-  font-size: 10px;
-  margin: 0 4px 0 0;
-  border: none;
-  color: #ffffff;
-  vertical-align: middle; }
 .record-header .icon.small {
   width: 15px;
   height: 15px;
@@ -2082,6 +2207,19 @@ td.goog-date-picker-selected {
   vertical-align: middle;
   background: url("chrome-extension://__MSG_@@extension_id__/image/sync.svg") left center no-repeat; }
 
+.record-header .icon, .record-header-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 10px;
+  margin: 0 4px 0 0;
+  border: none;
+  color: #ffffff;
+  vertical-align: middle; }
+
 .record-header:hover .link {
   display: inline !important; }
 
@@ -2091,19 +2229,20 @@ td.goog-date-picker-selected {
 .record-body-header > * {
   padding-left: 4px; }
 
-.record-body .normally-hide {
+.record-body:not(.detail) .field.normally-hide,
+.record-body:not(.detail) .record-group.normally-hide {
   display: none; }
-
-.record.detail .record-body .normally-hide {
-  display: block; }
 
 .record-panel.empty:not(.edit) {
   display: none; }
 
-.secondary {
+.record-panel .secondary {
   margin-left: 4px;
   padding-left: 2px;
   border-left: thin solid lightblue; }
+.record-panel .content {
+  max-height: 250px;
+  overflow-y: auto; }
 
 #field-table td {
   text-align: center; }
@@ -2119,7 +2258,7 @@ td.goog-date-picker-selected {
 
 .search-panel > .content-wrapper > .content {
   max-height: 200px;
-  overflow: scroll; }
+  overflow: auto; }
 
 .sugar-panel {
   clear: both; }
@@ -2141,6 +2280,12 @@ td.goog-date-picker-selected {
 .gmail-cmd-panel {
   display: inline-block;
   padding: 4px; }
+
+.widget-content SUMMARY {
+  font-weight: bold; }
+.widget-content SUMMARY:after {
+  float: left;
+  margin-right: 4px; }
 
 .setting-dialog .group-panel {
   border: thin solid #d3d3d3;
@@ -2196,6 +2341,43 @@ td.goog-date-picker-selected {
 
 .status-panel:not(.open) {
   display: none; }
+
+.sync-page > .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 4px; }
+  .sync-page > .header .title {
+    font-weight: bold;
+    font-size: 120%; }
+  .sync-page > .header .count {
+    padding: 4px 0; }
+.sync-page .primary > .gdata > .header, .sync-page .secondary > .record > .header {
+  display: flex;
+  align-items: center; }
+.sync-page UL.infinite-scroll {
+  margin: 2px 0; }
+.sync-page LI.sync-pair {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 4px;
+  margin: 4px 0; }
+  .sync-page LI.sync-pair .primary {
+    width: 300px; }
+  .sync-page LI.sync-pair .secondary {
+    flex-grow: 0.8;
+    flex-shrink: 0.8; }
+    .sync-page LI.sync-pair .secondary > * > .header {
+      margin: 2px 0; }
+.sync-page LI.sync-pair:nth-child(odd) {
+  background-color: azure; }
+
+.gdata-sync-panel > .footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 4px 0; }
 
 .wgui-textinput-clear {
   position: absolute;

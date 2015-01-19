@@ -23,6 +23,8 @@
     border: 1px solid #51cbee; }
   .ydn-crm INPUT:invalid {
     color: red; }
+  .ydn-crm .inline-block {
+    display: inline-block; }
 
 .left {
   float: left;

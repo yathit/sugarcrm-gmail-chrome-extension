@@ -22,6 +22,8 @@
     border: 1px solid #51cbee; }
   .ydn-crm INPUT:invalid {
     color: red; }
+  .ydn-crm .inline-block {
+    display: inline-block; }
 
 .left {
   float: left;
@@ -103,6 +105,17 @@ dialog.ydn-crm, .ydn-crm dialog {
   display: inline-block;
   margin: auto auto; }
 
+.google.badge-icon {
+  fill: #0266C8; }
+
+.badge-icon {
+  display: inline-block;
+  border: 1px #0266C8 solid;
+  border-radius: 3px;
+  padding: 3px;
+  height: 14px;
+  margin-right: 4px; }
+
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
  */
@@ -127,6 +140,20 @@ dialog.ydn-crm, .ydn-crm dialog {
   clear: both;
   max-height: 200px;
   overflow: auto; }
+.activity-panel .count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  font-size: 9px;
+  display: block;
+  background-color: red;
+  border-radius: 10px;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  margin: 0;
+  font-weight: normal; }
 
 /**
  * Created by kyawtun on 1/9/14.
@@ -136,7 +163,6 @@ dialog.ydn-crm, .ydn-crm dialog {
 
 .flyout-menu {
   position: absolute;
-  left: -98px;
   width: 120px;
   top: 18px; }
   .flyout-menu .goog-menuitem:hover {
@@ -159,6 +185,9 @@ dialog.ydn-crm, .ydn-crm dialog {
   .flyout-menu > .goog-menuitem.goog-menuitem-disabled > .goog-menu {
     display: none; }
 
+.flyout-menu.left-menu {
+  left: -98px; }
+
 .more-menu:not(:hover) .flyout-menu {
   display: none; }
 
@@ -171,17 +200,6 @@ dialog.ydn-crm, .ydn-crm dialog {
 
 *:not(:hover) > .hover-button {
   display: none; }
-
-.google.badge-icon {
-  fill: #0266C8; }
-
-.badge-icon {
-  display: inline-block;
-  border: 1px #0266C8 solid;
-  border-radius: 3px;
-  padding: 3px;
-  height: 14px;
-  margin-right: 4px; }
 
 .gmail-contact-panel .head {
   height: 20px;
@@ -260,6 +278,43 @@ dialog.ydn-crm, .ydn-crm dialog {
 /*
 * Closure Library CSS
 */
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/*
+ * Styles for goog.ui.ac.AutoComplete and its derivatives.
+ * Note: these styles need some work to get them working properly at various
+ * font sizes other than the default.
+ *
+ * @author pupius@google.com (Daniel Pupius)
+ * @author annams@google.com (Srinivas Annam)
+ */
+/*
+ * TODO(annams): Rename (here and in renderer.js) to specify class name as
+ * goog-autocomplete-renderer
+ */
+.ac-renderer {
+  font: normal 13px Arial, sans-serif;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #666;
+  -moz-box-shadow: 2px 2px 2px rgba(102, 102, 102, 0.4);
+  -webkit-box-shadow: 2px 2px 2px rgba(102, 102, 102, 0.4);
+  width: 300px; }
+
+.ac-row {
+  cursor: pointer;
+  padding: .4em; }
+
+.ac-highlighted {
+  font-weight: bold; }
+
+.ac-active {
+  background-color: #b2b4bf; }
+
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
  *
@@ -1839,6 +1894,157 @@ td.goog-date-picker-selected {
 .pear-ui-resizable-corner {
   opacity: 1; }
 
+.social-widget {
+  border-bottom: solid thin #d3d3d3; }
+
+.social-bar {
+  max-width: 238px; }
+  .social-bar .icons, .social-bar .logo-small {
+    fill: gray; }
+  .social-bar .tooltip-detail {
+    min-width: 200px;
+    max-width: 400px;
+    opacity: 1;
+    background-color: #ffffff;
+    z-index: 1001;
+    border: solid thin gray;
+    border-radius: 4px;
+    padding: 4px; }
+    .social-bar .tooltip-detail .header {
+      display: flex;
+      flex-direction: row; }
+      .social-bar .tooltip-detail .header .logo {
+        min-width: 48px;
+        padding: 2px; }
+        .social-bar .tooltip-detail .header .logo img {
+          width: 48px; }
+      .social-bar .tooltip-detail .header .content {
+        flex-shrink: 1;
+        flex-grow: 1;
+        padding: 2px;
+        font-size: 90%; }
+        .social-bar .tooltip-detail .header .content .name {
+          font-weight: bold;
+          padding: 0 0 4px 0; }
+          .social-bar .tooltip-detail .header .content .name a {
+            text-decoration: none; }
+      .social-bar .tooltip-detail .header .head-footer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        margin-top: 4px; }
+      .social-bar .tooltip-detail .header .followers, .social-bar .tooltip-detail .header .following {
+        color: #4099FF;
+        font-weight: bold; }
+      .social-bar .tooltip-detail .header .head-footer > * {
+        padding: 0 4px; }
+      .social-bar .tooltip-detail .header .head-footer > *:last-child {
+        padding-right: 0; }
+    .social-bar .tooltip-detail .content .tweet-footer {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      margin-top: 4px; }
+    .social-bar .tooltip-detail .content .tweet-footer > * {
+      padding: 0 4px;
+      font-size: 90%;
+      font-style: italic; }
+    .social-bar .tooltip-detail .content .tweet-footer > *:last-child {
+      padding-right: 0; }
+  .social-bar .col-1.tooltip-detail {
+    left: -24px; }
+  .social-bar .col-2.tooltip-detail {
+    left: -48px; }
+  .social-bar .col-3.tooltip-detail {
+    left: -72px; }
+  .social-bar .col-4.tooltip-detail {
+    left: -96px; }
+  .social-bar .col-5.tooltip-detail {
+    left: -120px; }
+  .social-bar .col-6.tooltip-detail {
+    left: -144px; }
+  .social-bar .col-7.tooltip-detail {
+    left: -168px; }
+  .social-bar .col-8.tooltip-detail {
+    left: -192px; }
+  .social-bar .tooltip-container.working .icons, .social-bar .tooltip-container.working .logo-small {
+    fill: rgba(0, 255, 0, 0.8); }
+  .social-bar .tooltip-container.error .icons, .social-bar .tooltip-container.error .logo-small {
+    fill: rgba(255, 0, 0, 0.8); }
+  .social-bar .tooltip-container.alert .icons, .social-bar .tooltip-container.alert .logo-small {
+    fill: rgba(255, 255, 0, 0.8); }
+  .social-bar .tooltip-container.empty .icons, .social-bar .tooltip-container.empty .logo-small {
+    fill: black; }
+  .social-bar .tooltip-container.exist .icons, .social-bar .tooltip-container.exist .logo-small {
+    fill: #006400; }
+  .social-bar .tooltip-container.twitter.exist .icons, .social-bar .tooltip-container.twitter.exist .logo-small {
+    fill: #4099FF; }
+  .social-bar .tooltip-container.linkedin.exist .icons, .social-bar .tooltip-container.linkedin.exist .logo-small {
+    fill: #4875B4; }
+  .social-bar .tooltip-container.googleplus.exist .icons, .social-bar .tooltip-container.googleplus.exist .logo-small {
+    fill: #D34836; }
+  .social-bar .tooltip-container.angellist.exist .icons, .social-bar .tooltip-container.angellist.exist .logo-small {
+    fill: #39ffca; }
+  .social-bar .tooltip-container.facebook.exist .icons, .social-bar .tooltip-container.facebook.exist .logo-small {
+    fill: #3b5998; }
+  .social-bar .tooltip-container.pinterest.exist .icons, .social-bar .tooltip-container.pinterest.exist .logo-small {
+    fill: #C92228; }
+  .social-bar .tooltip-container.meetup.exist .icons, .social-bar .tooltip-container.meetup.exist .logo-small {
+    fill: #c41200; }
+  .social-bar .tooltip-container.yelp.exist .icons, .social-bar .tooltip-container.yelp.exist .logo-small {
+    fill: #e92626; }
+  .social-bar .tooltip-container.youtube.exist .icons, .social-bar .tooltip-container.youtube.exist .logo-small {
+    fill: #c4302b; }
+  .social-bar .tooltip-container.reddit.exist .icons, .social-bar .tooltip-container.reddit.exist .logo-small {
+    fill: #cee3f8; }
+  .social-bar .tooltip-container.tumblur.exist .icons, .social-bar .tooltip-container.tumblur.exist .logo-small {
+    fill: #35465c; }
+  .social-bar .tooltip-container.foursquare.exist .icons, .social-bar .tooltip-container.foursquare.exist .logo-small {
+    fill: #f94877; }
+  .social-bar .tooltip-container.flickr.exist .icons, .social-bar .tooltip-container.flickr.exist .logo-small {
+    fill: #277ed2; }
+  .social-bar .tooltip-container.friendfeed.exist .icons, .social-bar .tooltip-container.friendfeed.exist .logo-small {
+    fill: #5588c7; }
+  .social-bar .tooltip-container.blogger.exist .icons, .social-bar .tooltip-container.blogger.exist .logo-small {
+    fill: #F05222; }
+  .social-bar .tooltip-container.wordpress.exist .icons, .social-bar .tooltip-container.wordpress.exist .logo-small {
+    fill: #2984b8; }
+  .social-bar .tooltip-container.quora.exist .icons, .social-bar .tooltip-container.quora.exist .logo-small {
+    fill: #CA4638; }
+  .social-bar .tooltip-container.myspace.exist .icons, .social-bar .tooltip-container.myspace.exist .logo-small {
+    fill: #043d99; }
+  .social-bar .tooltip-container.klout.exist .icons, .social-bar .tooltip-container.klout.exist .logo-small {
+    fill: #d23b0f; }
+  .social-bar .tooltip-container.yahoo.exist .icons, .social-bar .tooltip-container.yahoo.exist .logo-small {
+    fill: #7B0099; }
+  .social-bar .tooltip-container.delicious.exist .icons, .social-bar .tooltip-container.delicious.exist .logo-small {
+    fill: #205cc0; }
+  .social-bar .tooltip-container.vimeo.exist .icons, .social-bar .tooltip-container.vimeo.exist .logo-small {
+    fill: #1ab7ea; }
+  .social-bar .tooltip-container {
+    position: relative;
+    display: inline-block; }
+  .social-bar .tooltip-host {
+    position: relative; }
+  .social-bar .tooltip-container .tooltip-detail {
+    display: none;
+    position: absolute; }
+  .social-bar .tooltip-container:hover .tooltip-detail {
+    display: block;
+    bottom: 22px; }
+  .social-bar .facebook .svg-button, .social-bar .pinterest .svg-button, .social-bar .meetup .svg-button {
+    cursor: default; }
+  .social-bar UL.tweets {
+    list-style: none;
+    -webkit-padding-start: 0;
+    max-height: 150px;
+    overflow-y: scroll;
+    font-size: 90%; }
+  .social-bar .tweet-item {
+    margin: 8px 0; }
+
 .sidebar {
   font-size: 13px;
   font-family: arial,sans-serif; }
@@ -2111,26 +2317,22 @@ a.maia-button.maia-button-secondary {
   text-align: center; }
 
 /* Record */
-.field {
-  display: flex;
-  flex-flow: row nowrap; }
-
-.field .value {
-  flex-grow: 1; }
-
-.field:hover > sup.name {
-  display: inline !important; }
-
-.record-body .field.empty {
+.record-body:not(.edit) .record-group:not(.edit) .field.empty {
   display: none; }
 
-.record-body.edit .field.empty:not(.normally-hide) {
+.record-body.edit DIV.field.empty:not(.normally-hide) {
   display: flex; }
 
-.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field TEXTAREA {
+.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field INPUT[type=number], .record-body .field INPUT[type=datetime-local], .record-body .field INPUT[type=date], .record-body .field TEXTAREA, .record-body .field-like INPUT[type=text], .record-body .field-like INPUT[type=email], .record-body .field-like INPUT[type=tel], .record-body .field-like INPUT[type=number], .record-body .field-like INPUT[type=datetime-local], .record-body .field-like INPUT[type=date], .record-body .field-like TEXTAREA {
   padding: 1px 0px 1px 1px;
   margin: 2px 0 2px 0px;
   border: 1px transparent; }
+.record-body .field-label {
+  padding: 1px 0px 1px 1px;
+  margin: 2px 0 2px 0px;
+  border: 1px transparent;
+  display: inline-block;
+  vertical-align: middle; }
 
 .record-body > .field > INPUT.enum {
   width: 2em;
@@ -2141,11 +2343,11 @@ a.maia-button.maia-button-secondary {
 /*
  * make input look like label. This setting is obtained from Gmail contact editor.
 */
-.record-body .field > INPUT {
+.record-body .field > INPUT, .record-body .field-like > INPUT {
   background-color: transparent;
   vertical-align: text-top; }
 
-.record-body .field > * {
+.record-body .field > *, .record-body .field-like > * {
   box-sizing: border-box; }
 
 .record-body.view .field TEXTAREA {
@@ -2180,20 +2382,51 @@ a.maia-button.maia-button-secondary {
 .field-edit-dialog .field {
   display: table-row; }
 
-/*
- * Prevent Superscripts and Subscripts from Affecting Line-Height
- * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
- */
-.record-group sup, sub {
-  vertical-align: baseline;
-  position: relative;
-  top: -0.4em; }
+.ydn-crm DIV.field {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center; }
+  .ydn-crm DIV.field INPUT[type=text], .ydn-crm DIV.field INPUT[type=email], .ydn-crm DIV.field INPUT[type=tel], .ydn-crm DIV.field INPUT[type=number], .ydn-crm DIV.field INPUT[type=datetime-local], .ydn-crm DIV.field TEXTAREA {
+    flex-grow: 1; }
+.ydn-crm .field .value:required {
+  box-shadow: -2px 0 0 0 red; }
+.ydn-crm .field.inline {
+  display: inline-block; }
+.ydn-crm INPUT.value.double-digit {
+  max-width: 3em;
+  text-align: right; }
+.ydn-crm .field:hover > sup.name {
+  display: inline !important; }
 
-.record-group sub {
-  top: 0.4em; }
+.record-group {
+  /*
+   * Prevent Superscripts and Subscripts from Affecting Line-Height
+   * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+   */ }
+  .record-group a.null {
+    text-decoration: none !important; }
+  .record-group sub {
+    top: 0.4em; }
+  .record-group sup, .record-group sub {
+    vertical-align: baseline;
+    position: relative;
+    top: -0.4em; }
+  .record-group .header.expander {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 24px; }
+    .record-group .header.expander span.header-label {
+      cursor: default; }
+    .record-group .header.expander INPUT {
+      flex-grow: 1; }
+    .record-group .header.expander .center {
+      flex-shrink: 1; }
+  .record-group .header.expander:not(:hover) .svg-button {
+    display: none; }
 
-.record-group a.null {
-  text-decoration: none !important; }
+.record-body:not(.edit) .record-group.empty {
+  display: none; }
 
 /*
 .record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
@@ -2299,20 +2532,8 @@ a.maia-button.maia-button-secondary {
     flex-shrink: 1; }
 .record-header .title {
   vertical-align: middle;
-  line-height: 20px;
+  line-height: 12px;
   text-overflow: ellipsis; }
-.record-header .icon {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  padding: 2px;
-  border-radius: 3px;
-  font-weight: 400;
-  font-size: 10px;
-  margin: 0 4px 0 0;
-  border: none;
-  color: #ffffff;
-  vertical-align: middle; }
 .record-header .icon.small {
   width: 15px;
   height: 15px;
@@ -2326,6 +2547,19 @@ a.maia-button.maia-button-secondary {
   vertical-align: middle;
   background: url("chrome-extension://__MSG_@@extension_id__/image/sync.svg") left center no-repeat; }
 
+.record-header .icon, .record-header-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  border-radius: 3px;
+  font-weight: 400;
+  font-size: 10px;
+  margin: 0 4px 0 0;
+  border: none;
+  color: #ffffff;
+  vertical-align: middle; }
+
 .record-header:hover .link {
   display: inline !important; }
 
@@ -2335,19 +2569,20 @@ a.maia-button.maia-button-secondary {
 .record-body-header > * {
   padding-left: 4px; }
 
-.record-body .normally-hide {
+.record-body:not(.detail) .field.normally-hide,
+.record-body:not(.detail) .record-group.normally-hide {
   display: none; }
-
-.record.detail .record-body .normally-hide {
-  display: block; }
 
 .record-panel.empty:not(.edit) {
   display: none; }
 
-.secondary {
+.record-panel .secondary {
   margin-left: 4px;
   padding-left: 2px;
   border-left: thin solid lightblue; }
+.record-panel .content {
+  max-height: 250px;
+  overflow-y: auto; }
 
 #field-table td {
   text-align: center; }
@@ -2363,7 +2598,7 @@ a.maia-button.maia-button-secondary {
 
 .search-panel > .content-wrapper > .content {
   max-height: 200px;
-  overflow: scroll; }
+  overflow: auto; }
 
 .sugar-panel {
   clear: both; }
@@ -2385,6 +2620,12 @@ a.maia-button.maia-button-secondary {
 .gmail-cmd-panel {
   display: inline-block;
   padding: 4px; }
+
+.widget-content SUMMARY {
+  font-weight: bold; }
+.widget-content SUMMARY:after {
+  float: left;
+  margin-right: 4px; }
 
 .sugarcrm-link-panel, .no-sugar-panel, .setup-panel {
   text-align: center;
@@ -2755,6 +2996,54 @@ a.maia-button.maia-button-secondary {
 .ydn-crm .goog-css3-button {
   padding: 4px 4px; }
 
+.ac-renderer {
+  /* why should we need to set?
+   * Keep above hub */
+  z-index: 20; }
+
+/* Used in attachment injector */
+.ydn-crm.ydn-att {
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  float: left;
+  margin-right: 8px;
+  min-width: 0px;
+  width: 30px;
+  height: 26px;
+  padding: 0px;
+  line-height: 23px;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center; }
+  .ydn-crm.ydn-att .att-icon {
+    padding-top: 2px;
+    margin: auto auto;
+    display: inline-block;
+    width: 21px;
+    height: 21px;
+    vertical-align: middle;
+    fill: white; }
+
+.ydn-att:hover {
+  border-color: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8); }
+
+.ydn-att.error, .ydn-att.error:hover {
+  border-color: rgba(255, 0, 0, 0.8);
+  background: rgba(255, 0, 0, 0.8); }
+
+.ydn-att.alert, .ydn-att.alert:hover {
+  border-color: rgba(255, 255, 0, 0.8);
+  background: rgba(255, 255, 0, 0.8); }
+
+.ydn-att.working, .ydn-att.working:hover {
+  border-color: rgba(0, 255, 0, 0.8);
+  background: rgba(0, 255, 0, 0.8); }
+
 .wgui-textinput-clear {
   position: absolute;
   right: 5px;
@@ -2780,7 +3069,7 @@ a.maia-button.maia-button-secondary {
   position: fixed;
   right: 0;
   top: 300px;
-  z-index: 1000; }
+  z-index: 10; }
 
 .hud-button {
   position: relative;
@@ -2801,7 +3090,7 @@ a.maia-button.maia-button-secondary {
   margin-top: 4px; }
 
 #sticky-hud-base.open .hud-button {
-  left: -215px; }
+  left: -235px; }
 
 #sticky-hud-base:not(.open) .hud-button:hover {
   width: 25px;
@@ -2815,11 +3104,10 @@ a.maia-button.maia-button-secondary {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border-radius: 3px;
   background-color: white;
-  margin-left: -190px;
-  width: 220px;
+  margin-left: -210px;
+  width: 240px;
   min-height: 40px;
   max-height: 400px;
-  overflow: hidden;
   display: none;
   opacity: 1;
   position: relative; }

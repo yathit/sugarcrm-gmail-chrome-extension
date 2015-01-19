@@ -172,8 +172,15 @@
       </p>
     </div>
     <div name="stats-panel" style="display: none">
-      <h4>Cached modules</h4>
-      <ul></ul>
+      <details>
+        <summary>Cached data</summary>
+        <p>List of cached module in this browser</p>
+        <ul></ul>
+        <p>
+          <button name="clear-cache">Clear cache</button>
+          <button name="update-now">Update now</button>
+        </p>
+      </details>
     </div>
   </div>
 </template>
@@ -220,6 +227,11 @@
       <input type="radio" name="default-tracking" value="" title="You can select whether you want to track or not before sending email." checked> Enable tracking<br>
       <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do not track normally<br>
       <input type="radio" name="default-tracking" value="disable"> Disable tracking<br>
+    </div>
+    <br/>
+    <div class="notification-section">
+      <input name="notify" type="checkbox" id="notify"/>
+      <label for="notify">Notify when recipient open a tracked email or click a tracked link</label>
     </div>
     <div class="donotrack-section">
       <details>
@@ -291,6 +303,250 @@
       <span></span>
       <a class="center"></a>
       <span></span>
+    </div>
+  </div>
+</template>
+<template id="template-tweet">
+  <li class="tweet-item">
+    <div class="text"></div>
+    <div class="tweet-footer">
+      <span class="location"></span>
+      <span class="time"></span>
+    </div>
+  </li>
+</template>
+<template id="template-detail-twitter">
+
+  <div class="header">
+    <div class="logo">
+      <img/>
+    </div>
+    <div class="content">
+      <div class="name">
+        <a target="_blank"></a>
+      </div>
+      <div class="description"></div>
+      <div class="head-footer">
+        <span>Followers <span class="followers"></span></span>
+        <span>Following <span class="following"></span></span>
+        <span class="location"></span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <ul class="tweets">
+    </ul>
+  </div>
+</template>
+
+<template id="template-detail-googleplus">
+
+  <div class="header">
+    <div class="logo">
+      <img />
+    </div>
+    <div class="content">
+      <div class="name">
+        <a target="_blank"></a>
+      </div>
+      <div class="description"></div>
+      <div class="work"></div>
+      <div class="school"></div>
+      <div class="head-footer">
+
+        <span class="location"></span>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="template-detail-linkedin">
+
+  <div class="header">
+    <div class="logo">
+      <img />
+    </div>
+    <div class="content">
+      <div class="name">
+        <a target="_blank"></a>
+      </div>
+      <div class="description"></div>
+      <div class="head-footer">
+        <span>Followers <span class="followers"></span></span>
+        <span>Following <span class="following"></span></span>
+        <span class="location"></span>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="template-detail-angellist">
+
+  <div class="header">
+
+    <div class="content">
+      <div class="name">
+        <a target="_blank"></a>
+      </div>
+      <div class="description"></div>
+      <div class="roles"></div>
+      <div class="head-footer">
+        <span>Followers <span class="followers"></span></span>
+        <span class="location"></span>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="template-detail-facebook">
+
+  <div class="header">
+    <div class="logo">
+      <img />
+    </div>
+    <div class="content">
+      <div class="name">
+        <a target="_blank"></a>
+      </div>
+      <div class="description"></div>
+      <div class="head-footer">
+        <span class="location"></span>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="template-detail-generic">
+
+  <div class="header">
+    <div class="logo">
+      <img />
+    </div>
+    <div class="content">
+      <div class="name">
+        <a target="_blank"></a>
+      </div>
+      <div class="description"></div>
+      <div class="head-footer">
+        <span>Followers <span class="followers"></span></span>
+        <span>Following <span class="following"></span></span>
+        <span class="location"></span>
+      </div>
+    </div>
+  </div>
+</template>
+<template id="sugarcrm-sync-template">
+  <div class="header">
+    <span class="title">Synchronization</span>
+    <span></span>
+    <a class="domain" title="Go to SugarCRM portal" target="_blank"></a>
+  </div>
+  <div class="content"></div>
+  <div class="footer"></div>
+</template>
+<template id="sync-content-template">
+  <div class="sync-contact">
+    <div class="header">
+      <select name="select-panel">
+        <option value="gdata-contact">Gmail contacts</option>
+        <option value="accounts">Accounts</option>
+        <option value="contacts">Contacts</option>
+        <option value="leads">Leads</option>
+      </select>
+      <span class="toolbar"></span>
+
+    </div>
+    <div class="content"></div>
+  </div>
+</template>
+<template id="sync-panel-template">
+  <div class="header"></div>
+  <div class="content">
+    <ul class="infinite-scroll"></ul>
+  </div>
+  <div class="footer">
+    <span>
+    </span>
+    <span>
+
+    </span>
+  </div>
+</template>
+<template id="sync-gdata-toolbar-template">
+  <select name="order-by" title="Order by">
+    <option value="" selected>Id</option>
+    <option value="updated.$t">Last modified</option>
+    <option value="name">Name</option>
+  </select>
+  <select name="direction" title="Direction of order">
+    <option value="asc" selected>Ascending</option>
+    <option value="des">Descending</option>
+  </select>
+  <span name="gdata-contact-count"></span> contacts
+  <button name="sync">Sync Now</button>
+
+</template>
+<template id="sync-record-toolbar-template">
+  <select name="order-by" title="Order by">
+    <option value="" selected>Id</option>
+    <option value="date_modified">Last modified</option>
+    <option value="name">Name</option>
+  </select>
+  <select name="direction" title="Direction of order">
+    <option value="asc" selected>Ascending</option>
+    <option value="des">Descending</option>
+  </select>
+  <span name="record-count"></span> records.
+
+</template>
+<template id="sync-pair-template">
+  <li class="sync-pair">
+    <div class="primary"></div>
+    <div class="secondary"></div>
+  </li>
+</template>
+<template id="sync-gdata-primary-template">
+  <div class="gdata">
+    <div class="header">
+      <span class="badge-icon google"></span>
+      <a name="name" target="_blank" title="View in Gmail contact"></a>
+    </div>
+    <div class="content">
+      <span name="emails"></span>
+    </div>
+    <div class="footer">
+      <span name="import" class="inline-block" title="Import to SugarCRM"></span>
+    </div>
+  </div>
+</template>
+<template id="sync-record-primary-template">
+  <div class="record">
+    <div class="header">
+      <span name="name"></span>
+    </div>
+    <div class="content">
+      <span name="emails"></span>
+    </div>
+    <div class="footer">
+      <span class="svg-button" name="export"></span>
+    </div>
+  </div>
+</template>
+<template id="sync-gdata-secondary-template">
+  <div class="record">
+    <div class="header">
+      <span class="icon record-header-icon"></span>
+      <a name="label" target="_blank" title="View in SugarCRM"></a>
+    </div>
+    <div>
+      <button name="link" title="Synchronize with Gmail contact">Link</button>
+    </div>
+  </div>
+</template>
+<template id="sync-record-secondary-template">
+  <div class="gdata">
+    <div class="header">
+      <span class="icon record-header-icon"></span>
+      <a name="label" target="_blank" title="View in SugarCRM"></a>
+    </div>
+    <div>
+      <button name="sync" title="Synchronize with Gmail contact">Sync</button>
     </div>
   </div>
 </template>
