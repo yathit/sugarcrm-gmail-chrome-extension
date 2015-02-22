@@ -94,7 +94,7 @@
         }
     </style>
     <h3>SugarCRM</h3>
-    <div name="login-panel" style="display: none">
+    <div name="login-panel" class="login-panel"  style="display: none">
         <div class="domain">
             <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
             <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
@@ -108,6 +108,13 @@
             <div><label for="sugarcrm-password">Password</label></div>
             <div><input name="password" id="sugarcrm-password" type="password"/></div>
         </div>
+      <div>
+        <div><label for="sugarcrm-auth">Authentication</label>
+          <select name="sugarcrm-auth" id="sugarcrm-auth">
+            <option value="" selected>Default</option>
+            <option value="ldap">LDAP</option>
+          </select></div>
+      </div>
         <div>
             <div class="message"></div>
         </div>

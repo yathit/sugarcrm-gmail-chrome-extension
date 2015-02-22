@@ -30,9 +30,9 @@ SearchPanel.prototype.setup = function(model) {
   var user = ydn.crm.ui.UserSetting.getInstance();
   user.getModuleInfo(model.getDomain())
       .addCallback(function(info) {
-        var m = new ydn.crm.sugarcrm.model.Sugar(model.getDetails(), info);
+        var m = new ydn.crm.su.model.Sugar(model.getDetails(), info);
         this.root.innerHTML = ''; // here clean up previous panel.
-        this.search = new ydn.crm.sugarcrm.ui.SearchPanel(m);
+        this.search = new ydn.crm.su.ui.SearchPanel(m);
         this.search.render(this.root);
       }, this);
 };

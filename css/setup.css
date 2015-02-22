@@ -78,10 +78,41 @@ dialog.ydn-crm, .ydn-crm dialog {
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   padding: 8px 48px 16px 48px; }
   dialog.ydn-crm .content, .ydn-crm dialog .content {
-    max-height: 20em;
+    max-height: 30em;
+    max-width: 40em;
     overflow: auto; }
   dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
     padding: 8px; }
+
+.dropdown p {
+  display: inline-block;
+  font-weight: bold; }
+
+select.dropdown {
+  border: 0 !important;
+  /*Removes border*/
+  -webkit-appearance: none;
+  /*Removes default chrome and safari style*/
+  background: url("http://jonathanphz.tk/dropdown_arrow.png") no-repeat;
+  background-position: 80px 8px;
+  /*Position of the background-image*/
+  width: 100px;
+  /*Width of select dropdown to give space for arrow image*/
+  height: 20px;
+  /*fix for mac input height*/
+  text-indent: 0.01px;
+  /* Removes default arrow from firefox*/
+  text-overflow: "";
+  /*Removes default arrow from firefox*/
+  cursor: pointer;
+  /*My custom style for fonts*/
+  color: #1455a2; }
+  select.dropdown option {
+    text-align: center; }
+
+DETAILS.left-ex SUMMARY:after {
+  float: left;
+  margin-right: 4px; }
 
 body.setup {
   font-size: 100%; }

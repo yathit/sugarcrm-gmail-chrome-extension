@@ -24,26 +24,26 @@
 /**
  * @namespace base namespace for CRMinInbox app.
  */
-window.CRMinInbox = {};
+YathitCrm = {};
 
 
 /**
  * @enum {string} version number base on tracks.
  */
-window.CRMinInbox.Version = {
-  release: '1.8.1'
+YathitCrm.Version = {
+  release: '1.12.5'
 };
 
 
 /**
  * @namespace base namespace for SugarCRM module.
  */
-window.CRMinInbox.sugarcrm = {};
+YathitCrm.sugarcrm = {};
 
 
 /**
  * @enum {string} version number base on tracks.
  */
-window.CRMinInbox.sugarcrm.Version = {
-  release: '1.2.3'
+YathitCrm.sugarcrm.Version = {
+  release: '1.6.5'
 };

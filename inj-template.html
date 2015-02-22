@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<dialog id="field-display-dialog">
+<dialog id="field-display-dialog" class="ydn-crm">
   <div class="header">
     <h3>Record field display setting</h3>
   </div>
@@ -16,17 +16,17 @@
   </div>
 </dialog>
 
-<dialog id="record-detail-dialog">
+<dialog id="record-detail-dialog" class="ydn-crm">
   <div class="header">
     <h3>Record detail</h3>
   </div>
   <div class="content"></div>
   <div class="button-bar">
-    <button class="ok" value="ok">OK</button>
+    <button value="ok">OK</button>
   </div>
 </dialog>
 
-<dialog id="record-delete-dialog">
+<dialog id="record-delete-dialog" class="ydn-crm">
   <div class="header">
     <h3>Confirm delete?</h3>
   </div>
@@ -62,20 +62,40 @@
   </table>
 </template>
 
-<template id="about-template">
-  <h3>Yathit CRMinInbox</h3>
+<template id="basic-about-template">
+  <h3 id="app-name"></h3>
   <p>
     Version: <span name="version"></span><br/>
     Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
   </p>
+  <div class="license-section">
+    <div class="content">
+      License: <span class="license"></span>
+    </div>
+    <p class="note">
+      <a href="https://www.yathit.com/portal/index.html">Manage license</a>
+      <a href="https://www.yathit.com/shop/crmininbox-subscription.html">Subscribe license</a>
+    </p>
+  </div>
 </template>
 
-<template id="tracking-about-template">
-  <h3>Yathit Email Tracker</h3>
-  <p>
-    Version: <span name="version"></span><br/>
-    Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
-  </p>
+<template id="admin-template">
+  <h3>Admin Portal</h3>
+
+</template>
+
+<template id="feedback-page-template">
+  <h3>Feedback</h3>
+  <div>
+    <ul></ul>
+  </div>
+</template>
+
+<template id="log-template">
+  <h3>Log</h3>
+  <div class="users">
+    <ol></ol>
+  </div>
 </template>
 
 <template id="sugarcrm-home-template">
@@ -85,6 +105,15 @@
   <section name="sugarcrm">
     <div id="sugarcrm-widget"></div>
   </section>
+  <section name="calendar">
+
+  </section>
+
+  <section>
+    <h3>System setting</h3>
+    <div id="logging-section"></div>
+  </section>
+  <p><br/></p>
 </template>
 
 
@@ -115,14 +144,14 @@
   </details>
 </template>
 <template id="gdata-credentail-template">
-  <h3>Google Services</h3>
+  <h3>Google Services Credential</h3>
   <div class="widget-content">
     <div class="authorize" style="display: none">
       <a>Authorize</a>
       <p>This extension requires your authorization to read and write your data from Google services.</p>
     </div>
     <div class="display" style="display: none">
-      <p>You have provided <span name="email"></span> Google contacts data available offline assess.<br />
+      <p>You have provided <span name="email"></span> Google services available offline assess.<br />
         Scopes: <span name="scopes"></span></p>
       <a href="#" name="gdata-token-revoke">Revoke</a>
     </div>
@@ -136,7 +165,7 @@
   </style>
   <h3>SugarCRM</h3>
   <div class="widget-content">
-    <div name="login-panel" style="display: none">
+    <div name="login-panel" class="login-panel" style="display: none">
       <div class="domain">
         <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
         <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
@@ -149,6 +178,13 @@
       <div>
         <div><label for="sugarcrm-password">Password</label></div>
         <div><input name="password" id="sugarcrm-password" type="password"/></div>
+      </div>
+      <div>
+        <div><label for="sugarcrm-auth">Authentication</label>
+       <select name="sugarcrm-auth" id="sugarcrm-auth">
+          <option value="" selected>Default</option>
+          <option value="ldap">LDAP</option>
+        </select></div>
       </div>
       <div>
         <div class="message"></div>
@@ -207,8 +243,7 @@
             </span>
             <span class="center-item"></span>
             <span class="right-item">
-                <a href="https://yathit.uservoice.com/" target="yathit.uservoice.com">Feedback</a> |&nbsp;
-                <a href="https://sites.google.com/a/yathit.com/ydn-crm-wiki/" target="help">Help</a>
+                <a href="http://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide">Help</a>
             </span>
           </div>
 
@@ -218,22 +253,59 @@
   </div>
 </template>
 
+
+<template id="feedback-template">
+  <div class="feedback-panel">
+    <div>
+      <select>
+        <option value="feature">Feature request</option>
+        <option value="bug">Bug report</option>
+        <option value="suggestion">Suggestion</option>
+        <option value="discussion">Question</option>
+      </select>
+    </div>
+    <div>
+      <textarea class="message"></textarea>
+    </div>
+    <div style="display: none;" class="attachment">
+      Attachment:
+      <input name="page" type="checkbox"/> <a target="dom" name="page">page.html</a>
+      <span style="display: none;">
+      <input name="screenshot" type="checkbox"/> <a target="screenshot" name="page">screenshot.png</a>
+      </span>
+    </div>
+    <div>
+      <button value="submit">Submit</button>
+      <button value="close">Close</button>
+    </div>
+  </div>
+</template>
+
 <template id="tracking-setting-template">
   <section class="tracking-setting">
     <h3>Email Tracking</h3>
-    <div class="default-tracking-selection">
-      <input type="radio" name="default-tracking" value="always" title="All your email send will include tracking beacon."> Always track<br>
-      <input type="radio" name="default-tracking" value="track" title="All your email send will include tracking beacon unless you select not to."> Track normally<br>
-      <input type="radio" name="default-tracking" value="" title="You can select whether you want to track or not before sending email." checked> Enable tracking<br>
-      <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do not track normally<br>
-      <input type="radio" name="default-tracking" value="disable"> Disable tracking<br>
+
+    <div class="default-tracking-selection widget-content">
+      <details>
+        <summary>Tracking preference</summary>
+        <input type="radio" name="default-tracking" value="always" title="All your email send will include tracking beacon."> Always track<br>
+        <input type="radio" name="default-tracking" value="track" title="All your email send will include tracking beacon unless you select not to."> Track normally<br>
+        <input type="radio" name="default-tracking" value="" title="You can select whether you want to track or not before sending email." checked> Enable tracking<br>
+        <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do not track normally<br>
+        <input type="radio" name="default-tracking" value="disable"> Disable tracking<br>
+      </details>
+
     </div>
-    <br/>
-    <div class="notification-section">
-      <input name="notify" type="checkbox" id="notify"/>
-      <label for="notify">Notify when recipient open a tracked email or click a tracked link</label>
+
+    <div class="notification-section widget-content">
+      <details>
+        <summary>Notification</summary>
+        <input name="notify" type="checkbox" id="notify"/>
+        <label for="notify">Notify when recipient open a tracked email or click a tracked link</label>
+      </details>
+
     </div>
-    <div class="donotrack-section">
+    <div class="donotrack-section  widget-content">
       <details>
         <summary>Do Not Track</summary>
         <div class="donottrack-content">
@@ -412,6 +484,32 @@
     </div>
   </div>
 </template>
+<template id="template-social-menu">
+  <div class="social-start-menu">
+    <div class="header">
+      <div class="logo">
+        <img />
+      </div>
+      <div class="content">
+        <div class="name">
+
+        </div>
+        <div class="description"></div>
+        <div class="head-footer">
+
+        </div>
+      </div>
+    </div>
+    <div class="employment"></div>
+    <div class="location"></div>
+    <div class="content">
+    </div>
+    <div>
+      Sources: <span class="sources"></span>
+    </div>
+  </div>
+</template>
+
 <template id="template-detail-generic">
 
   <div class="header">
@@ -431,6 +529,31 @@
     </div>
   </div>
 </template>
+
+<template id="calendar-setting-panel-template">
+  <h3 title="Google calendar use for synchronizing with SugarCRM">Google Calendar</h3>
+  <div class="widget-content">
+  <details>
+    <summary>Synchronization</summary>
+    <div>
+      <input type="checkbox" id="enable-calendar-sync"/>
+      <label for="enable-calendar-sync">Sync Google calendar with SugarCRM Meetings</label><br/>
+      <p name="sync-calendar-panel" style="display: none;">
+        Sync Calender name: <a href="#" name="sync-calender-name" title="Current calendar to Sync with CRM. Click to change."></a>
+      </p>
+      <p class="message"></p>
+    </div>
+  </details>
+  </div>
+</template>
+
+<template id="select-calendar-template">
+  <button name="new-calendar" title="Create a new Google calendar">Create New...</button><br/><br/>
+  Select a Google calendar to sync: <select name="select-calendar" title="Select a Google calendar to Sync with CRM">
+</select><br/>
+  <p>A sync calendar must be owned by you and not your primary calendar. You can manage your calendars in <a href="https://www.google.com/calendar/">Google Calendar</a>.</p>
+</template>
+
 <template id="sugarcrm-sync-template">
   <div class="header">
     <span class="title">Synchronization</span>
@@ -461,11 +584,7 @@
     <ul class="infinite-scroll"></ul>
   </div>
   <div class="footer">
-    <span>
-    </span>
-    <span>
 
-    </span>
   </div>
 </template>
 <template id="sync-gdata-toolbar-template">
@@ -550,6 +669,58 @@
     </div>
   </div>
 </template>
-
+<template id="hover-context-panel-template">
+  <div class="hover-context-panel">
+    <div class="header">
+      <div class="flex-bar">
+        <span class="icon"></span>
+      <span class="center">
+        <a></a>
+      </span>
+        <span class="menu-holder"></span>
+      </div>
+      <div class="header-content"></div>
+    </div>
+    <div class="content"></div>
+    <div class="footer"></div>
+  </div>
+</template>
+<template id="logging-pref-template">
+  <div class="logging-pref widget-content">
+    <details>
+      <summary>Logging preference</summary>
+      <div>
+        <label title="Analytic logging help us improving user experience and adding more features.">
+          <input type="checkbox" name="analytic"/>
+          Enable analytic logging
+        </label>
+      </div>
+      <div>
+        <label title="Debug logging help us hard to find bugs.">
+          <input type="checkbox" name="debug"/>
+          Enable debug logging
+        </label>
+      </div>
+      <p class="license message">
+        A subscription is required to change logging setting.
+      </p>
+      <div>
+        See our <a target="_blank" href="https://www.yathit.com/privacy.html">privacy policy</a>.
+      </div>
+    </details>
+  </div>
+</template>
+<template id="search-result-list-template">
+  <div class="search-result-item">
+    <div class="flex-bar">
+      <span class="icon"></span>
+      <span class="center title"></span>
+    </div>
+    <div class="flex-bar">
+      <span class="icon"></span>
+      <span class="center description"></span>
+    </div>
+  </div>
+</template>
 </body>
 </html>

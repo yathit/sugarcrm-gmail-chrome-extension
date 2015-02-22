@@ -57,17 +57,19 @@ Please contact to info@yathit.com to use YDN backend server for your extension. 
 Dependency
 ----------
 
+This repo is packaging for Chrome Extension and source codes are in the following repositories. Most of the main codes are in CRM Core and SugarCRM repo.
+
 1. Closure library http://closure-library.googlecode.com/svn/trunk/
 2. Base utility library https://bitbucket.org/ytkyaw/ydn-base.git
-3. Database library git@bitbucket.org:ytkyaw/ydn-db.git
+3. Database library https://github.com/yathit/ydn-db
 4. Authentication and authorization https://bitbucket.org/ytkyaw/ydn-auth
 5. Full text search https://github.com/yathit/ydn-db-fulltext.git
 6. Dependency for ydn-db-fulltext https://github.com/yathit/fullproof
 7. Dependency for ydn-db-fulltext https://github.com/yathit/natural
 8. CRM Core https://github.com/yathit/crm
-9. SugarCRM model and UI https://github.com/yathit/sugarcrm
-
-Note: Most of the codes are in CRM Core and SugarCRM repo.
+9. CRM extra feature https://github.com/yathit/crm-front (private, available to partner)
+10. SugarCRM model and UI https://github.com/yathit/sugarcrm
+11. CRM backend https://github.com/yathit/crm-back (private, available to partner)
 
 
 Development

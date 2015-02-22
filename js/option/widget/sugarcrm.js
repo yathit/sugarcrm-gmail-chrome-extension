@@ -213,6 +213,7 @@ SugarCrmWidget.prototype.handleLogin = function(e) {
   var url = root.querySelector('input[name="domain"]').value;
   var username = root.querySelector('input[name="username"]').value;
   var password = root.querySelector('input[name="password"]').value;
+  var provider = root.querySelector('select[name="sugarcrm-auth"]').value;
   var baseurl = root.querySelector('input[name="baseurl"]').value;
   if (baseurl) {
     url = baseurl;
@@ -222,7 +223,7 @@ SugarCrmWidget.prototype.handleLogin = function(e) {
   btn_new_sugar.textContent = 'logging in...';
   btn_new_sugar.setAttribute('disabled', '1');
 
-  this.model.login(url, username, password, function(info) {
+  this.model.login(url, username, password, provider, function(info) {
     if (info instanceof Error) {
       btn_new_sugar.removeAttribute('disabled');
       btn_new_sugar.textContent = 'Login';

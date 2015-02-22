@@ -49,7 +49,7 @@ GDataCredentialWidget.prototype.revoke_ = function(e) {
   var a_revoke = this.root.querySelector('a[name=gdata-token-revoke]');
   var ok = window.confirm('Are you sure you want to revoke your Google offline access token in YDN server?');
   if (ok) {
-    ydn.msg.getChannel().send(ydn.crm.Ch.Req.TOKEN_REVOKE_GDATA).addCallbacks(function() {
+    ydn.msg.getChannel().send(ydn.crm.ch.Req.TOKEN_REVOKE_GDATA).addCallbacks(function() {
       a_revoke.textContent = 'Done';
       a_revoke.setAttribute('title', 'successfully revoked');
       a_revoke.removeAttribute('href');

@@ -122,7 +122,7 @@ SugarCrmModel.prototype.setInstanceUrl = function(url) {
  * @template T
  */
 SugarCrmModel.prototype.getInfo = function(cb, scope) {
-  if (!this.about || !this.about.domain) {
+  if (!this.data || !this.data.baseUrl) {
     cb.call(scope, null);
     return;
   }
@@ -130,7 +130,7 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
     cb.call(scope, this.info);
     return;
   }
-  ydn.msg.getChannel().send('sugar-server-info', domain).addCallbacks(function(info) {
+  ydn.msg.getChannel().send('sugar-server-info', this.data.baseUrl).addCallbacks(function(info) {
     this.info = info;
     cb.call(scope, info);
   }, function(e) {
@@ -144,21 +144,21 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
  * @param {string} url
  * @param {string} username
  * @param {string} password
+ * @param {string} provider
  * @param {function(this: T, (Error|SugarCrm.About))} cb
  * @param {T} scope
  * @template T
  */
-SugarCrmModel.prototype.login = function(url, username, password, cb, scope) {
+SugarCrmModel.prototype.login = function(url, username, password, provider, cb, scope) {
   this.setInstanceUrl(url);
   window.console.assert(!!this.data, 'Not initialized');
   if (username) {
     this.data.userName = username;
   }
   if (password) {
-    // keep hashed password only.
-    this.data.password = CryptoJS.MD5(password).toString();
-    this.data.hashed = true;
+    this.data.password = password;
   }
+  this.data.provider = provider;
   var permission = {'origins': ['http://' + this.data.domain + '/*',
     'https://' + this.data.domain + '/*']};
   var me = this;
