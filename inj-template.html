@@ -243,7 +243,7 @@
             </span>
             <span class="center-item"></span>
             <span class="right-item">
-                <a href="http://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide">Help</a>
+                <a href="http://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
             </span>
           </div>
 
@@ -252,7 +252,46 @@
     </div>
   </div>
 </template>
+<template id="upload-dialog-template">
+  <div class="upload-dialog">
+    <div>
+      <label>File Name: </label><input name="file_name" type="text" class="value"/>
+    </div>
+    <div>
+      <label>Document Name: </label><input name="document_name" type="text" class="value"/>
+    </div>
+    <div>
+      <label>Description: </label><textarea name="description" class="value"></textarea>
+    </div>
 
+    <h4>Relationships</h4>
+
+  </div>
+</template>
+
+<template id="archive-dialog-template">
+  <div class="archive-dialog">
+    <div>
+      <label>Subject: </label><input name="name" type="text" class="value"/>
+    </div>
+    <div style="display: none">
+      <label>Message id: </label><input name="message_id" type="text" class="value"/>
+    </div>
+    <section class="info">
+      <div><span class="word-count">0</span> words in this email content.
+
+      </div>
+    </section>
+    <section name="attachment">
+      <h4>Attachments</h4>
+      <ul></ul>
+    </section>
+    <section name="relationships">
+      <h4>Relationships</h4>
+    </section>
+
+  </div>
+</template>
 
 <template id="feedback-template">
   <div class="feedback-panel">
@@ -710,15 +749,15 @@
     </details>
   </div>
 </template>
-<template id="search-result-list-template">
-  <div class="search-result-item">
-    <div class="flex-bar">
+<template id="record-item-template">
+  <div class="record-item">
+    <div class="record-header flex-bar">
       <span class="icon"></span>
       <span class="center title"></span>
     </div>
-    <div class="flex-bar">
-      <span class="icon"></span>
-      <span class="center description"></span>
+    <div class="content">
+
+      <span class="center summary"></span>
     </div>
   </div>
 </template>

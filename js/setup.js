@@ -43,16 +43,19 @@ Setup.prototype.updateUserInfo_ = function(user_info) {
   if (user_info) {
     var btn_login = document.getElementById('user-login');
     var ele_name = document.getElementById('user-name');
+    var register = document.getElementById('register');
     if (user_info.is_login) {
       btn_login.href = user_info.logout_url;
       btn_login.textContent = 'logout';
       ele_name.textContent = 'User ' + user_info.email + ' login. ';
+      register.style.display = 'none';
     } else {
       var url = user_info.login_url;
       btn_login.href = url;
-      btn_login.textContent = 'login';
+      btn_login.textContent = 'Login';
       btn_login.style.display = '';
-      ele_name.textContent = 'Login to Yathit server';
+      register.style.display = '';
+      ele_name.textContent = '';
     }
     Setup.decorateStatus('li-login', !!user_info.is_login);
   }

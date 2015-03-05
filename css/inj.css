@@ -82,6 +82,8 @@ dialog.ydn-crm, .ydn-crm dialog {
     overflow: auto; }
   dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
     padding: 8px; }
+    dialog.ydn-crm .button-bar > button, .ydn-crm dialog .button-bar > button {
+      margin: 0 4px; }
 
 .dropdown p {
   display: inline-block;
@@ -2614,14 +2616,38 @@ a.maia-button.maia-button-secondary {
 .record-panel.empty:not(.edit) {
   display: none; }
 
-.record-panel > .content > .secondary {
-  margin-left: 4px;
-  padding-left: 2px;
-  border-left: thin solid lightblue; }
 .record-panel > .content > .secondary:not(:hover) .record-panel:not(.active) .content {
   display: none; }
 .record-panel > .record-header > .title {
   overflow-x: hidden; }
+
+.secondary > section {
+  margin: 4px 0; }
+  .secondary > section > .header {
+    font-style: italic;
+    color: gray;
+    /* border-bottom: #d3d3d3 solid thin; */ }
+  .secondary > section > ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 4px 0;
+    max-height: 16em;
+    overflow-y: auto; }
+    .secondary > section > ul > li {
+      margin: 2px 0; }
+
+.record-item > .content {
+  padding-left: 27px;
+  font-size: 90%;
+  color: gray;
+  margin: 4px 0; }
+
+.secondary-hovercard {
+  border: solid 4px #69748C;
+  width: 300px;
+  min-height: 115px;
+  background-color: white;
+  padding: 4px; }
 
 .record-panel.new-record > .content {
   overflow-y: auto; }
@@ -2635,6 +2661,34 @@ a.maia-button.maia-button-secondary {
   overflow: auto;
   max-width: 400px;
   max-height: 400px; }
+
+.upload-dialog > div, .archive-dialog > div {
+  display: flex; }
+  .upload-dialog > div > :first-child, .archive-dialog > div > :first-child {
+    padding: 3px 0 3px 3px;
+    margin: 5px 1px 3px 0;
+    width: 10em; }
+  .upload-dialog > div > *, .archive-dialog > div > * {
+    align-self: flex-start; }
+  .upload-dialog > div .value, .archive-dialog > div .value {
+    flex-grow: 1; }
+  .upload-dialog > div .spacer, .archive-dialog > div .spacer {
+    padding: 3px 0 3px 0;
+    margin: 5px 0 3px 0;
+    outline: 0; }
+.upload-dialog UL, .archive-dialog UL {
+  list-style: none;
+  padding-left: 0; }
+  .upload-dialog UL INPUT[type=text], .archive-dialog UL INPUT[type=text] {
+    width: 90%;
+    box-sizing: border-box; }
+.upload-dialog .info, .archive-dialog .info {
+  font-style: italic; }
+  .upload-dialog .info .word-count, .archive-dialog .info .word-count {
+    font-style: normal;
+    font-weight: bold; }
+.upload-dialog H4, .archive-dialog H4 {
+  margin-bottom: 0; }
 
 .search-result {
   padding: 4px; }

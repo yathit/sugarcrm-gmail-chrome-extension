@@ -82,6 +82,8 @@ dialog.ydn-crm, .ydn-crm dialog {
     overflow: auto; }
   dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
     padding: 8px; }
+    dialog.ydn-crm .button-bar > button, .ydn-crm dialog .button-bar > button {
+      margin: 0 4px; }
 
 .dropdown p {
   display: inline-block;
