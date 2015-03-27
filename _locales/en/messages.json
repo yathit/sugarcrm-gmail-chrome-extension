@@ -29,6 +29,30 @@
   "Activity_feed": {
     "message": "Activity feed"
   },
+  "Archive": {
+    "message": "Archive"
+  },
+  "View_Archive": {
+    "message": "View Archive"
+  },
+  "Re_archive": {
+    "message": "Re-archive"
+  },
+  "Upload": {
+    "message": "Upload to SugarCRM"
+  },
+  "Re_upload": {
+    "message": "Re-upload to SugarCRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "View $module$ detail on sidebar panel",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
   "ActivityCount": {
     "message": "$count$ records updated since $date$.",
     "placeholders": {
@@ -51,7 +75,7 @@
     }
   },
   "Upcoming_count": {
-    "message": "$no$ upcoming $module$  in this week.",
+    "message": "$no$ upcoming $module$ in this week.",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -62,5 +86,52 @@
         "example": "Meetings"
       }
     }
+  },
+  "record_deleted": {
+    "message": "Record was deleted by $user$ $date$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "Your license \"$license$\" does not support feature for $feature$.",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Are you sure you want to make the following update?"
+  },
+  "OK": {
+    "message": "OK"
+  },
+  "Cancel": {
+    "message": "Cancel"
+  },
+  "Login_fail": {
+    "message": "Login fail."
+  },
+  "Retry": {
+    "message": "Retry"
+  },
+  "Setup": {
+    "message": "Setup"
+  },
+  "Setup_SugarCRM": {
+    "message": "Setup SugarCRM"
   }
 }

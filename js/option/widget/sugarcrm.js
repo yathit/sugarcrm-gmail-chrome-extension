@@ -86,32 +86,48 @@ SugarCrmWidget.prototype.onDomainBlur = function(e) {
   var ele_message = input.nextElementSibling;
   ele_message.textContent = '';
   ele_message.className = '';
-  var domain = input.value.trim();
-  if (!domain) {
+  var base_url = input.value.trim();
+  if (!base_url) {
     return;
   }
-  if (/\.trial\.sugarcrm\.[com|eu]/.test(domain)) {
+  if (/\.trial\.sugarcrm\.[com|eu]/.test(base_url)) {
     // all trial password from trial.sugarcrm.com are same.
     this.root.querySelector('input[name=username]').value = SugarCrmWidget.trialCredentials.user_name;
     this.root.querySelector('input[name=password]').value = SugarCrmWidget.trialCredentials.password;
   }
-  this.model.setInstanceUrl(domain);
-  this.model.getInfo(function(info) {
-    var input_baseurl = this.root.querySelector('input[name=baseurl]');
-    input_baseurl.value = '';
-    if (info instanceof Error) {
-      ele_message.textContent = info.name;
-      ele_message.className = 'error';
-      ele_message.setAttribute('title', info.message || '');
-    } else {
-      ele_message.textContent = 'SugarCRM ' + info.flavor + ' ' + info.version;
-      ele_message.className = '';
-      if (info['baseUrl']) {
-        input_baseurl.value = info['baseUrl'];
+  this.model.setInstanceUrl(base_url);
+  chrome.permissions.request(this.model.getPermissionObject(), (function(grant) {
+    this.model.getInfo(function(info) {
+      var input_baseurl = this.root.querySelector('input[name=baseurl]');
+      input_baseurl.value = '';
+      if (info instanceof Error) {
+        ele_message.textContent = info.name;
+        ele_message.className = 'error';
+        ele_message.setAttribute('title', info.message || '');
+      } else {
+        ele_message.textContent = 'SugarCRM ' + info.flavor + ' ' + info.version;
+        ele_message.className = '';
+        if (info['baseUrl']) {
+          input_baseurl.value = info['baseUrl'];
+        }
+        ele_message.removeAttribute('title');
       }
-      ele_message.removeAttribute('title');
-    }
-  }, this);
+    }, this);
+
+    var btn = this.getHostPermissionBtn_();
+    btn.setAttribute('data-domain', base_url);
+    btn.style.display = grant ? 'none' : '';
+  }).bind(this));
+
+};
+
+
+/**
+ * @return {Element}
+ * @private
+ */
+SugarCrmWidget.prototype.getHostPermissionBtn_ = function() {
+  return this.root.querySelector('#grant-host-permission');
 };
 
 
@@ -123,7 +139,7 @@ SugarCrmWidget.prototype.handleHostPermissionRequest_ = function(e) {
   e.preventDefault();
   this.model.requestHostPermission(function(grant) {
     if (grant) {
-      var a = this.root.querySelector('#grant-host-permission');
+      var a = this.getHostPermissionBtn_();
       a.style.display = 'none';
     }
   }, this);
@@ -189,7 +205,7 @@ SugarCrmWidget.prototype.refresh = function() {
       login_panel.querySelector('#sugarcrm-domain').value = about.baseUrl;
       login_panel.querySelector('#sugarcrm-username').value = about.userName;
       login_panel.style.display = '';
-      permission_panel.style.display = 'none';
+      permission_panel.style.display = about.hostPermission ? 'none' : '';
       info_panel.style.display = 'none';
       remove_panel.style.display = '';
     }
@@ -223,14 +239,23 @@ SugarCrmWidget.prototype.handleLogin = function(e) {
   btn_new_sugar.textContent = 'logging in...';
   btn_new_sugar.setAttribute('disabled', '1');
 
-  this.model.login(url, username, password, provider, function(info) {
-    if (info instanceof Error) {
-      btn_new_sugar.removeAttribute('disabled');
-      btn_new_sugar.textContent = 'Login';
-      ele_msg.textContent = info.name + ': ' + info.message;
-    } else {
-      window.location.reload();
+  var force = !!e.altKey;
+  chrome.permissions.request(this.model.getPermissionObject(), (function(grant) {
+    // console.log('grant ' + grant);
+    if (!grant && !force) {
+      ele_msg.textContent = 'Access permission to ' + url + ' is required.';
+      return;
     }
-  }, this);
+    this.model.login(url, username, password, provider, function(info) {
+      if (info instanceof Error) {
+        btn_new_sugar.removeAttribute('disabled');
+        btn_new_sugar.textContent = 'Login';
+        ele_msg.textContent = info.name + ': ' + info.message;
+      } else {
+        window.location.reload();
+      }
+    }, this);
+  }).bind(this));
+
 };
 

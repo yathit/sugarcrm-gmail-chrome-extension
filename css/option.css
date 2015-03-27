@@ -25,6 +25,9 @@
     color: red; }
   .ydn-crm .inline-block {
     display: inline-block; }
+  .ydn-crm .centered-div {
+    margin: 4px;
+    text-align: center; }
 
 .left {
   float: left;
@@ -2271,6 +2274,11 @@ td.goog-date-picker-selected {
 .record-panel.empty:not(.edit) {
   display: none; }
 
+.record-panel > .neck {
+  background-color: red;
+  color: white;
+  padding: 2px;
+  margin: 2px; }
 .record-panel > .content > .secondary:not(:hover) .record-panel:not(.active) .content {
   display: none; }
 .record-panel > .record-header > .title {
@@ -2317,6 +2325,50 @@ td.goog-date-picker-selected {
   max-width: 400px;
   max-height: 400px; }
 
+.ydn-crm
+.relationships-panel > .content {
+  min-height: 24px;
+  /* make no height by adding first item */ }
+.ydn-crm
+.relationships-panel .relationship-item {
+  display: inline-block;
+  border: thin solid transparent;
+  border-radius: 4px; }
+  .ydn-crm
+  .relationships-panel .relationship-item .clear {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #808080;
+    text-align: center;
+    margin-left: 4px;
+    cursor: pointer; }
+  .ydn-crm
+  .relationships-panel .relationship-item .clear:hover {
+    color: white;
+    background-color: red; }
+.ydn-crm
+.relationships-panel .relationship-item:hover {
+  border: thin solid #add8e6; }
+.ydn-crm
+.relationships-panel .relationship-item:not(:hover) .clear {
+  visibility: hidden; }
+
+.record-patch-compare > div {
+  border: thin solid lightgray;
+  padding: 4px; }
+.record-patch-compare > div:last-child {
+  border-left: none; }
+.record-patch-compare pre {
+  overflow: auto; }
+
+.record-patch-note {
+  margin: 8px 0;
+  font-style: italic; }
+
 .upload-dialog > div, .archive-dialog > div {
   display: flex; }
   .upload-dialog > div > :first-child, .archive-dialog > div > :first-child {
@@ -2355,6 +2407,10 @@ td.goog-date-picker-selected {
 .search-panel > .content-wrapper > .content {
   max-height: 200px;
   overflow: auto; }
+
+.snippet-panel > .content > UL {
+  list-style: none;
+  padding-left: 0; }
 
 .sugar-panel {
   clear: both; }

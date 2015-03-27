@@ -25,6 +25,9 @@
     color: red; }
   .ydn-crm .inline-block {
     display: inline-block; }
+  .ydn-crm .centered-div {
+    margin: 4px;
+    text-align: center; }
 
 .left {
   float: left;

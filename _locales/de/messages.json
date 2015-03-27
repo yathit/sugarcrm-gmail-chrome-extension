@@ -1,5 +1,67 @@
 {
-  "upcoming_activities": {
-    "message": "Bevorstehende Aktivitäten"
+  "Upcoming_Activities": {
+    "message": "Anstehende Aktivitäten"
+  },
+  "Emails": {
+    "message": "E-Mails"
+  },
+  "Related": {
+    "message": "Verbunden"
+  },
+  "Options": {
+    "message": "Optionen"
+  },
+  "Help": {
+    "message": "Hilfe"
+  },
+  "Feedback": {
+    "message": "Rückkopplung"
+  },
+  "Search": {
+    "message": "Suche"
+  },
+  "Search_tooltip": {
+    "message": "Suche nach Name, E-Mail, Telefon, ID, Titel, Beschreibung, usw."
+  },
+  "New_tooltip": {
+    "message": "Erstellen Sie einen neuen Rekord"
+  },
+  "Activity_feed": {
+    "message": "Aktivitäts-Feed"
+  },
+  "ActivityCount": {
+    "message": "$count$ records up$date$d since $date$.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ Cases assigned to you.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ upcoming $module$  in this week.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
   }
 }

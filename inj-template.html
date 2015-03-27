@@ -159,7 +159,7 @@
 </template>
 <template id="sugarcrm-template">
   <style>
-    #sugarcrm-domain {
+    .sugarcrm-domain {
       width: 30em;
     }
   </style>
@@ -167,17 +167,17 @@
   <div class="widget-content">
     <div name="login-panel" class="login-panel" style="display: none">
       <div class="domain">
-        <div><label for="sugarcrm-domain">Enter your SugarCRM web site url</label></div>
-        <div><input name="domain" id="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
-          <span class="message"></span></div>
+        <div><label>Enter your SugarCRM web site url</label></div>
+        <div><input name="domain" class="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
+          <span class="message" name="message"></span></div>
       </div>
       <div>
-        <div><label for="sugarcrm-username">Username</label></div>
-        <div><input name="username" id="sugarcrm-username" type="text"/></div>
+        <div><label>Username</label></div>
+        <div><input name="username" class="sugarcrm-username" type="text"/></div>
       </div>
       <div>
-        <div><label for="sugarcrm-password">Password</label></div>
-        <div><input name="password" id="sugarcrm-password" type="password"/></div>
+        <div><label>Password</label></div>
+        <div><input name="password" class="sugarcrm-password" type="password"/></div>
       </div>
       <div>
         <div><label for="sugarcrm-auth">Authentication</label>
@@ -192,12 +192,15 @@
       <div>
         <button name="login">Login</button>
       </div>
+      <div>
+        <p>Your SugarCRM username and password are NOT sent to any server except your SugarCRM server. Your SugarCRM username and password are stored in this browser with encryption.</p>
+      </div>
       <input name="baseurl" type="text" hidden/>
     </div>
     <div name="info-panel" style="display: none">
       <div>Host: <a name="instance"></a> <span name="instance-info"></span></div>
       <div>User: <span name="user"></span></div>
-      <div id="grant-host-permission" style="display: none">
+      <div name="grant-host-permission" style="display: none">
         <button>Grant host permission</button>
         <p>Your permission is required to connect your server from this extension.</p>
       </div>
@@ -231,6 +234,7 @@
 
     </div>
     <div class="hud-popup">
+      <div class="top-resizer"></div>
       <div class="popup-container">
         <div class="popup-header"></div>
         <div class="popup-content">
@@ -264,7 +268,7 @@
       <label>Description: </label><textarea name="description" class="value"></textarea>
     </div>
 
-    <h4>Relationships</h4>
+    <section name="rel-panel"></section>
 
   </div>
 </template>
@@ -286,13 +290,25 @@
       <h4>Attachments</h4>
       <ul></ul>
     </section>
-    <section name="relationships">
-      <h4>Relationships</h4>
+    <section name="rel-panel">
+
     </section>
 
   </div>
 </template>
-
+<template id="record-patch-compare-template">
+  <div class="flex-bar record-patch-compare">
+    <div>
+      <h3>Original from server</h3>
+      <pre name="original"></pre>
+    </div>
+    <div>
+      <h3>Your edit</h3>
+      <pre name="patch"></pre>
+    </div>
+  </div>
+  <div class="record-patch-note">Only fields that are changed is shown.</div>
+</template>
 <template id="feedback-template">
   <div class="feedback-panel">
     <div>

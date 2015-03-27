@@ -1,5 +1,67 @@
 {
-  "upcoming_activities": {
+  "Upcoming_Activities": {
     "message": "今後の活動"
+  },
+  "Emails": {
+    "message": "メール"
+  },
+  "Related": {
+    "message": "関連した"
+  },
+  "Options": {
+    "message": "オプション"
+  },
+  "Help": {
+    "message": "助けて"
+  },
+  "Feedback": {
+    "message": "フィードバック"
+  },
+  "Search": {
+    "message": "検索"
+  },
+  "Search_tooltip": {
+    "message": "検索名、電子メール、電話、ID、タイトル、説明、など"
+  },
+  "New_tooltip": {
+    "message": "新しいレコードを作成します。"
+  },
+  "Activity_feed": {
+    "message": "アクティビティフィード"
+  },
+  "ActivityCount": {
+    "message": "$count$ records updated since $date$.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ Cases assigned to you.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ upcoming $module$  in this week.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
   }
 }

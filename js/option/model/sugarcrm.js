@@ -15,8 +15,9 @@
 var SugarCrmModel = function(data) {
   /**
    * @type {SugarCrm.About}
+   * @private
    */
-  this.data = data;
+  this.about_ = data;
   /**
    * @type {SugarCrm.ServerInfo}
    */
@@ -30,7 +31,7 @@ var SugarCrmModel = function(data) {
  * @return {SugarCrm.About}
  */
 SugarCrmModel.prototype.getDetails = function() {
-  return this.data;
+  return this.about_;
 };
 
 
@@ -39,7 +40,7 @@ SugarCrmModel.prototype.getDetails = function() {
  * @return {string?}
  */
 SugarCrmModel.prototype.getDomain = function() {
-  return this.data ? this.data.domain : null;
+  return this.about_ ? this.about_.domain : null;
 };
 
 
@@ -48,7 +49,31 @@ SugarCrmModel.prototype.getDomain = function() {
  * @return {boolean}
  */
 SugarCrmModel.prototype.isLogin = function() {
-  return this.data ? !!this.data.isLogin : false;
+  return this.about_ ? !!this.about_.isLogin : false;
+};
+
+
+/**
+ * @param {string} url
+ * @return {*}
+ */
+SugarCrmModel.getPermissionObject = function(url) {
+  try {
+    var u = new URL(url);
+    return {'origins': [u.protocol + '//' + u.hostname + '/*']};
+  } catch (e) {
+    return null;
+  }
+};
+
+
+/**
+ * Chrome host permission request object.
+ * @return {{origins: (Array.<string>|undefined), permissions: (Array.<string>|undefined)}}
+ */
+SugarCrmModel.prototype.getPermissionObject = function() {
+
+  return SugarCrmModel.getPermissionObject(this.about_.baseUrl);
 };
 
 
@@ -60,16 +85,14 @@ SugarCrmModel.prototype.isLogin = function() {
  * @return {boolean}
  */
 SugarCrmModel.prototype.hasHostPermission = function(opt_cb, scope) {
-  var permissions = {
-    origins: ['http://' + this.data.domain + '/*', 'https://' + this.data.domain + '/*']
-  };
+  var permissions = this.getPermissionObject();
   chrome.permissions.contains(permissions, function(grant) {
     // console.log(scope, grant);
     if (opt_cb) {
       opt_cb.call(scope, grant);
     }
   });
-  return !!this.data && !!this.data.hostPermission;
+  return !!this.about_ && !!this.about_.hostPermission;
 };
 
 
@@ -82,9 +105,7 @@ SugarCrmModel.prototype.hasHostPermission = function(opt_cb, scope) {
 SugarCrmModel.prototype.requestHostPermission = function(cb, scope) {
   var domain = this.getDomain();
   console.assert(!!domain);
-  var permissions = {
-    origins: ['http://' + domain + '/*', 'https://' + domain + '/*']
-  };
+  var permissions = this.getPermissionObject();
   chrome.permissions.request(permissions, function(grant) {
     // console.log(permission, grant);
     cb.call(scope, grant);
@@ -104,13 +125,13 @@ SugarCrmModel.prototype.setInstanceUrl = function(url) {
     return;
   }
 
-  if (!this.data) {
-    this.data = {
+  if (!this.about_) {
+    this.about_ = {
       domain: domain,
       isLogin: false
     };
   }
-  this.data.baseUrl = url;
+  this.about_.baseUrl = url;
 
 };
 
@@ -122,7 +143,7 @@ SugarCrmModel.prototype.setInstanceUrl = function(url) {
  * @template T
  */
 SugarCrmModel.prototype.getInfo = function(cb, scope) {
-  if (!this.data || !this.data.baseUrl) {
+  if (!this.about_ || !this.about_.baseUrl) {
     cb.call(scope, null);
     return;
   }
@@ -130,7 +151,7 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
     cb.call(scope, this.info);
     return;
   }
-  ydn.msg.getChannel().send('sugar-server-info', this.data.baseUrl).addCallbacks(function(info) {
+  ydn.msg.getChannel().send('sugar-server-info', this.about_.baseUrl).addCallbacks(function(info) {
     this.info = info;
     cb.call(scope, info);
   }, function(e) {
@@ -151,23 +172,37 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
  */
 SugarCrmModel.prototype.login = function(url, username, password, provider, cb, scope) {
   this.setInstanceUrl(url);
-  window.console.assert(!!this.data, 'Not initialized');
+  window.console.assert(!!this.about_, 'Not initialized');
   if (username) {
-    this.data.userName = username;
+    this.about_.userName = username;
   }
   if (password) {
-    this.data.password = password;
+    this.about_.password = password;
   }
-  this.data.provider = provider;
-  var permission = {'origins': ['http://' + this.data.domain + '/*',
-    'https://' + this.data.domain + '/*']};
+  this.about_.provider = provider;
+
+  var details = /** @type {SugarCrm.Details} */({
+    about: this.about_,
+    serverInfo: this.info,
+    credential: {}
+  });
+
+  if (username) {
+    details.credential.userName = username;
+  }
+  if (password) {
+    details.credential.password = password;
+  }
+  details.credential.provider = provider;
+
+  var permission = this.getPermissionObject();
   var me = this;
   chrome.permissions.request(permission, function(grant) {
     // whether user give permission or not, we still continue login.
-    // console.log(permission, me.data);
-    ydn.msg.getChannel().send('new-sugarcrm', me.data).addCallbacks(function(info) {
+    // console.log(permission, me.about_);
+    ydn.msg.getChannel().send('new-sugarcrm', details).addCallbacks(function(info) {
       // console.log(info);
-      me.data = info;
+      me.about_ = info;
       cb.call(scope, info);
     }, function(e) {
       cb.call(scope, e);
@@ -192,5 +227,4 @@ SugarCrmModel.list = function(cb, scope) {
     cb.call(scope, models);
   });
 };
-
 
