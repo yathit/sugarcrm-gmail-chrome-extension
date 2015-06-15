@@ -2644,11 +2644,13 @@ a.maia-button.maia-button-secondary {
     .secondary > section > ul > li {
       margin: 2px 0; }
 
-.record-item > .content {
-  padding-left: 27px;
-  font-size: 90%;
-  color: gray;
+.record-item {
   margin: 4px 0; }
+  .record-item > .content {
+    padding-left: 27px;
+    font-size: 90%;
+    color: gray;
+    margin: 4px 0; }
 
 .secondary-hovercard {
   border: solid 4px #69748C;
@@ -2753,9 +2755,13 @@ a.maia-button.maia-button-secondary {
   max-height: 200px;
   overflow: auto; }
 
-.snippet-panel > .content > UL {
-  list-style: none;
-  padding-left: 0; }
+.snippet-panel > .content {
+  max-height: 240px;
+  overflow-y: auto;
+  overflow-x: hidden; }
+  .snippet-panel > .content > UL {
+    list-style: none;
+    padding-left: 0; }
 
 .sugar-panel {
   clear: both; }
@@ -2902,8 +2908,6 @@ a.maia-button.maia-button-secondary {
     margin-top: 4px; }
     .tracking-sidebar .sidebar-content .toolbar {
       margin-left: 4px; }
-  .tracking-sidebar input.picker {
-    width: 80px; }
 
 .tracking-feed .feeditem {
   padding: 4px;
