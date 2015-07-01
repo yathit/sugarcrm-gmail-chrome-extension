@@ -282,8 +282,17 @@
       <label>Message id: </label><input name="message_id" type="text" class="value"/>
     </div>
     <section class="info">
-      <div><span class="word-count">0</span> words in this email content.
-
+      <div>
+        To: <span name="to"></span>
+      </div>
+      <div>
+        From: <span name="from"></span>
+      </div>
+      <div style="display: none;">
+        Cc/Bcc: <span name="cc"></span>
+      </div>
+      <div>
+        <span class="word-count">0</span> words in this email content.
       </div>
     </section>
     <section name="attachment">

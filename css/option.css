@@ -2391,11 +2391,11 @@ td.goog-date-picker-selected {
   .upload-dialog UL INPUT[type=text], .archive-dialog UL INPUT[type=text] {
     width: 90%;
     box-sizing: border-box; }
-.upload-dialog .info, .archive-dialog .info {
+.upload-dialog .info span, .archive-dialog .info span {
   font-style: italic; }
-  .upload-dialog .info .word-count, .archive-dialog .info .word-count {
-    font-style: normal;
-    font-weight: bold; }
+.upload-dialog .info .word-count, .archive-dialog .info .word-count {
+  font-style: normal;
+  font-weight: bold; }
 .upload-dialog H4, .archive-dialog H4 {
   margin-bottom: 0; }
 
