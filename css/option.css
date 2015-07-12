@@ -2322,6 +2322,40 @@ td.goog-date-picker-selected {
 #field-table td:last-child {
   text-align: left; }
 
+.select-record SELECT {
+  margin-right: 4px; }
+
+.contact-search-base {
+  position: absolute;
+  top: 10px;
+  right: 65px; }
+
+.contact-search {
+  position: fixed;
+  z-index: 1000;
+  display: inline-block;
+  height: 20px; }
+  .contact-search DIV .select-record {
+    position: absolute;
+    right: 0; }
+    .contact-search DIV .select-record SELECT {
+      display: none;
+      position: absolute;
+      right: -3px;
+      width: 46px;
+      top: 1px;
+      outline: none;
+      border: none;
+      background: none; }
+    .contact-search DIV .select-record INPUT:focus + SELECT, .contact-search DIV .select-record SELECT:focus {
+      display: inline-block; }
+    .contact-search DIV .select-record:not(.select-focus) > INPUT:not(:focus) {
+      width: 16px;
+      outline: none;
+      border: 0;
+      cursor: default;
+      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABT0lEQVQ4T53TvUuWURjH8Y+0uNrgYKAIGYRIDoKLg2JCQxRBYC6JroIO7uokNmRFzv0BNqmEg5BBOIog+AIqiKCDi4MYghByxbn1cPPgg53pOpzr971eT43b8wDvMYx21OIAC/iI08z3xqxJ1sPk2IU1/MQl2vAGF3iL1TIkABH5V4r6Dj9KTo34jlZ0Yit/D8AQvuFlBXHhW4dN7KKvDPiNAEX6d50RzKEJR4VjCM/xCRNVAE+xjddYzAFXmMR0FUBEPkQ/5nNA1LWBgSqAV2lSHVjPAR8whid5bSVYlLqCFjTjbw6oxw728QJnFcRTqUfjmC1PIe49WErimbRIf/AMo+hNohN0Yy/PoLBjUT7jeSmDGNkXRPQGHKeA/yDFKuea2Lz8L0SDo+boUaxyAYlM9isB7hpGNDEgj1Im3fcFBPxx+jsBWf4fQAH5isFrcZpBAXrSqxYAAAAASUVORK5CYII=) no-repeat center; }
+
 #field-display-dialog > .content {
   overflow: auto;
   max-width: 400px;
@@ -2370,34 +2404,6 @@ td.goog-date-picker-selected {
 .record-patch-note {
   margin: 8px 0;
   font-style: italic; }
-
-.upload-dialog > div, .archive-dialog > div {
-  display: flex; }
-  .upload-dialog > div > :first-child, .archive-dialog > div > :first-child {
-    padding: 3px 0 3px 3px;
-    margin: 5px 1px 3px 0;
-    width: 10em; }
-  .upload-dialog > div > *, .archive-dialog > div > * {
-    align-self: flex-start; }
-  .upload-dialog > div .value, .archive-dialog > div .value {
-    flex-grow: 1; }
-  .upload-dialog > div .spacer, .archive-dialog > div .spacer {
-    padding: 3px 0 3px 0;
-    margin: 5px 0 3px 0;
-    outline: 0; }
-.upload-dialog UL, .archive-dialog UL {
-  list-style: none;
-  padding-left: 0; }
-  .upload-dialog UL INPUT[type=text], .archive-dialog UL INPUT[type=text] {
-    width: 90%;
-    box-sizing: border-box; }
-.upload-dialog .info span, .archive-dialog .info span {
-  font-style: italic; }
-.upload-dialog .info .word-count, .archive-dialog .info .word-count {
-  font-style: normal;
-  font-weight: bold; }
-.upload-dialog H4, .archive-dialog H4 {
-  margin-bottom: 0; }
 
 .search-result {
   padding: 4px; }
