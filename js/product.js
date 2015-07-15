@@ -37,6 +37,9 @@ YathitCrm.Product = {
   GData: {
     Contacts: {
 
+    },
+    Calendar: {
+
     }
   },
   /**

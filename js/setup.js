@@ -40,6 +40,7 @@ Setup.prototype.close = function() {
  * @private
  */
 Setup.prototype.updateUserInfo_ = function(user_info) {
+  var el_portal = document.getElementById('portal-login');
   if (user_info) {
     var btn_login = document.getElementById('user-login');
     var ele_name = document.getElementById('user-name');
@@ -58,6 +59,9 @@ Setup.prototype.updateUserInfo_ = function(user_info) {
       ele_name.textContent = '';
     }
     Setup.decorateStatus('li-login', !!user_info.is_login);
+    el_portal.style.display = 'none';
+  } else {
+    el_portal.style.display = '';
   }
 };
 
@@ -73,9 +77,12 @@ Setup.prototype.updateUserInfo_ = function(user_info) {
 Setup.prototype.login = function(context, opt_cb, opt_scope) {
 
   this.setStatus('starting...');
+  var el_portal = document.getElementById('portal-login');
+  el_portal.style.display = '';
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
     this.setStatus('logging in...');
     ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
+      el_portal.style.display = 'none';
       var user_info = /** @type {YdnApiUser} */ (data);
       this.user_info = user_info;
       this.setStatus('');

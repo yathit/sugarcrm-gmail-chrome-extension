@@ -299,6 +299,7 @@
       <h4>Optionally include attachments as Notes records</h4>
       <ul></ul>
     </section>
+
     <section name="rel-panel">
 
     </section>
@@ -602,9 +603,10 @@
     <div>
       <input type="checkbox" id="enable-calendar-sync"/>
       <label for="enable-calendar-sync">Sync Google calendar with SugarCRM Meetings</label><br/>
-      <p name="sync-calendar-panel" style="display: none;">
-        Sync Calender name: <a href="#" name="sync-calender-name" title="Current calendar to Sync with CRM. Click to change."></a>
+      <p name="sync-calendar-panel">
+        Sync Calender name: <a target="_blank" name="sync-calender-name" title="View in Google Calendar."></a> <button name="change-sync-calender">Change</button>
       </p>
+      <p>Experimental feature.</p>
       <p class="message"></p>
     </div>
   </details>
@@ -612,10 +614,13 @@
 </template>
 
 <template id="select-calendar-template">
-  <button name="new-calendar" title="Create a new Google calendar">Create New...</button><br/><br/>
-  Select a Google calendar to sync: <select name="select-calendar" title="Select a Google calendar to Sync with CRM">
+  <div style="display: none;">
+    <button name="new-calendar" title="Create a new Google calendar">Create New...</button><br/><br/>
+  </div>
+    Select a Google calendar to sync: <select name="select-calendar" title="Select a Google calendar to Sync with CRM">
+
 </select><br/>
-  <p>A sync calendar must be owned by you and not your primary calendar. You can manage your calendars in <a href="https://www.google.com/calendar/">Google Calendar</a>.</p>
+  <p>A sync calendar must be owned by you. You can manage your calendars in <a href="https://www.google.com/calendar/">Google Calendar</a>.</p>
 </template>
 
 <template id="sugarcrm-sync-template">
