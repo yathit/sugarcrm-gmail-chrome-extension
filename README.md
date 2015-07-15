@@ -67,9 +67,9 @@ This repo is packaging for Chrome Extension and source codes are in the followin
 6. Dependency for ydn-db-fulltext https://github.com/yathit/fullproof
 7. Dependency for ydn-db-fulltext https://github.com/yathit/natural
 8. CRM Core https://github.com/yathit/crm
-9. CRM extra feature https://github.com/yathit/crm-front (private, available to partner)
+9. CRM extra feature https://github.com/yathit/crm-front 
 10. SugarCRM model and UI https://github.com/yathit/sugarcrm
-11. CRM backend https://github.com/yathit/crm-back (private, available to partner)
+11. CRM backend https://github.com/yathit/crm-back 
 
 
 Development
