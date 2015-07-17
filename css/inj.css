@@ -80,7 +80,7 @@ dialog.ydn-crm, .ydn-crm dialog {
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
   padding: 8px 48px 16px 48px; }
   dialog.ydn-crm .content, .ydn-crm dialog .content {
-    max-height: 30em;
+    max-height: 34em;
     max-width: 40em;
     overflow: auto; }
   dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
@@ -2709,6 +2709,9 @@ a.maia-button.maia-button-secondary {
 .record-panel > .record-header > .title {
   overflow-x: hidden; }
 
+.record-panel .record-body .content > .field {
+  margin: 4px 0; }
+
 .secondary > section {
   margin: 4px 0; }
   .secondary > section > .header {
@@ -3376,7 +3379,8 @@ a.maia-button.maia-button-secondary {
   border-top: 8px;
   font-size: 11px;
   color: #767676;
-  width: 100%; }
+  width: 100%;
+  background-color: white; }
   .popup-footer a:not(:hover) {
     text-decoration: none;
     color: #767676; }
