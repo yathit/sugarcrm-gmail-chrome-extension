@@ -33,6 +33,8 @@ Security consideration:
  7. Reduce permission request. Use optional permission. Remember we are just an app, not managing browser. Don't stalk other tabs.
  8. Use sandbox iframe. Use encryption.
  9. Don't delete or hide Gmail DOM element.
+ 
+Note: Due to Chrome bug for [optional permission], currently we request All web sites host access for usability. We will reverse back to stricter host permission access when the bug fix. If you won't mind the usability an extension that does not require all host permission is available in https://chrome.google.com/webstore/detail/yathit-inboxcrm-core-edit/egebnnhpekhpmdagldbgkghcmgmobofg 
 
 
 Features
