@@ -364,6 +364,20 @@ DETAILS.left-ex SUMMARY:after {
   .relationships-panel .suggestions LI + LI:before {
     content: ", "; }
 
+.update-option > DIV {
+  margin: 16px 2px; }
+.update-option .info {
+  max-height: 12em;
+  overflow-y: auto; }
+.update-option LABEL.default-option {
+  font-weight: bold; }
+.update-option .update-strategy {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; }
+  .update-option .update-strategy > * {
+    padding: 2px 8px; }
+
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
  */
@@ -2555,85 +2569,88 @@ a.maia-button.maia-button-secondary {
 */
 /* CSS related to specific modules */
 /* CSS related to specific modules */
-.Accounts > * > .icon, .Accounts > .icon {
+.bg-color {
+  background-color: grey; }
+
+.Accounts > * > .icon, .Accounts > .icon, .Accounts > .bg-color {
   background-color: #37880e; }
 
-.Bugs > * > .icon, .Bugs > .icon {
+.Bugs > * > .icon, .Bugs > .icon, .Bugs > .bg-color {
   background-color: #e61718; }
 
-.Calls > * > .icon, .Calls > .icon {
+.Calls > * > .icon, .Calls > .icon, .Calls > .bg-color {
   background-color: #0b3a72; }
 
-.Calendar > * > .icon, .Calendar > .icon {
+.Calendar > * > .icon, .Calendar > .icon, .Calendar > .bg-color {
   background-color: #125db8; }
 
-.Campaigns > * > .icon, .Campaigns > .icon {
+.Campaigns > * > .icon, .Campaigns > .icon, .Campaigns > .bg-color {
   background-color: #788d0e; }
 
-.CampaignLog > * > .icon, .CampaignLog > .icon {
+.CampaignLog > * > .icon, .CampaignLog > .icon, .CampaignLog > .bg-color {
   background-color: #60710b; }
 
-.Cases > * > .icon, .Cases > .icon {
+.Cases > * > .icon, .Cases > .icon, .Cases > .bg-color {
   background-color: #b81213; }
 
-.Contacts > * > .icon, .Contacts > .icon {
+.Contacts > * > .icon, .Contacts > .icon, .Contacts > .bg-color {
   background-color: #245a09; }
 
-.Documents > * > .icon, .Documents > .icon {
+.Documents > * > .icon, .Documents > .icon, .Documents > .bg-color {
   background-color: #81380f; }
 
-.Emails > * > .icon, .Emails > .icon,
-.EmailText > * > .icon, .EmailText > .icon,
-.EmailTemplates > * > .icon, .EmailTemplates > .icon {
+.Emails > * > .icon, .Emails > .icon, .Emails > .bg-color,
+.EmailText > * > .icon, .EmailText > .icon, .EmailText > .bg-color,
+.EmailTemplates > * > .icon, .EmailTemplates > .icon, .EmailTemplates > .bg-color {
   background-color: #aa1466; }
 
-.Employees > * > .icon, .Employees > .icon {
+.Employees > * > .icon, .Employees > .icon, .Employees > .bg-color {
   background-color: #313130; }
 
-.Files > * > .icon, .Files > .icon {
+.Files > * > .icon, .Files > .icon, .Files > .bg-color {
   background-color: #984112; }
 
-.Forecasts > * > .icon, .Forecasts > .icon {
+.Forecasts > * > .icon, .Forecasts > .icon, .Forecasts > .bg-color {
   background-color: #af4b14; }
 
-.KBDocuments > * > .icon, .KBDocuments > .icon {
+.KBDocuments > * > .icon, .KBDocuments > .icon, .KBDocuments > .bg-color {
   background-color: #6b2e0c; }
 
-.Leads > * > .icon, .Leads > .icon {
+.Leads > * > .icon, .Leads > .icon, .Leads > .bg-color {
   background-color: #448fec; }
 
-.Meetings > * > .icon, .Meetings > .icon {
+.Meetings > * > .icon, .Meetings > .icon, .Meetings > .bg-color {
   background-color: #e6af17; }
 
-.Notes > * > .icon, .Notes > .icon {
+.Notes > * > .icon, .Notes > .icon, .Notes > .bg-color {
   background-color: #129cb7; }
 
-.Opportunities > * > .icon, .Opportunities > .icon {
+.Opportunities > * > .icon, .Opportunities > .icon, .Opportunities > .bg-color {
   background-color: #7115ce; }
 
-.ProspectLists > * > .icon, .ProspectLists > .icon,
-.Prospects > * > .icon, .Prospects > .icon {
+.ProspectLists > * > .icon, .ProspectLists > .icon, .ProspectLists > .bg-color
+.Prospects > * > .icon, .Prospects > .icon, .Prospects > .bg-color {
   background-color: #7d0e4b; }
 
-.Reports > * > .icon, .Reports > .icon {
+.Reports > * > .icon, .Reports > .icon, .Reports > .bg-color {
   background-color: #c65517; }
 
-.RevenueLineItems > * > .icon, .RevenueLineItems > .icon {
+.RevenueLineItems > * > .icon, .RevenueLineItems > .icon, .RevenueLineItems > .bg-color {
   background-color: #4b0e88; }
 
-.Quotes > * > .icon, .Quotes > .icon {
+.Quotes > * > .icon, .Quotes > .icon, .Quotes > .bg-color {
   background-color: #0e7488; }
 
-.Targets > * > .icon, .Targets > .icon {
+.Targets > * > .icon, .Targets > .icon, .Targets > .bg-color {
   background-color: #931159; }
 
-.Tasks > * > .icon, .Tasks > .icon {
+.Tasks > * > .icon, .Tasks > .icon, .Tasks > .bg-color {
   background-color: #d81982; }
 
-.Users > * > .icon, .Users > .icon {
+.Users > * > .icon, .Users > .icon, .Users > .bg-color {
   background-color: #313130; }
 
-.Workflow > * > .icon, .Workflow > .icon {
+.Workflow > * > .icon, .Workflow > .icon, .Workflow > .bg-color {
   background-color: #414c08; }
 
 .Contacts SVG.fill {
@@ -2729,11 +2746,13 @@ a.maia-button.maia-button-secondary {
 
 .record-item {
   margin: 4px 0; }
+  .record-item .icon {
+    cursor: pointer; }
   .record-item > .content {
     padding-left: 27px;
     font-size: 90%;
     color: gray;
-    margin: 4px 0; }
+    margin: 0 0 4px 0; }
 
 .secondary-hovercard {
   border: solid 4px #69748C;
@@ -2851,6 +2870,18 @@ a.maia-button.maia-button-secondary {
   .snippet-panel > .content > UL {
     list-style: none;
     padding-left: 0; }
+
+.module-record-list > UL {
+  overflow-y: hidden;
+  height: 200px;
+  list-style: none;
+  padding-left: 0; }
+  .module-record-list > UL > LI {
+    height: 40px;
+    max-height: 40px;
+    overflow-y: hidden; }
+    .module-record-list > UL > LI .record-header {
+      height: 22px; }
 
 .sugar-panel {
   clear: both; }
@@ -3110,6 +3141,12 @@ a.maia-button.maia-button-secondary {
 .pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {
   border: 0; }
 
+.result-desktop .head {
+  margin: 8px 0; }
+  .result-desktop .head .title {
+    font-weight: bold;
+    font-size: 110%; }
+
 /*
  * Customerization of tab.css and tabbar.css
  * Use difference class tag, so as to decouple with gmail dom manipulation.
@@ -3315,18 +3352,16 @@ a.maia-button.maia-button-secondary {
   right: 0;
   top: 200px;
   z-index: 10; }
-  #sticky-hud-base .record-panel .content {
-    max-height: 250px; }
 
 .hud-button {
   position: relative;
   border-radius: 4px 0 0 4px;
   cursor: pointer;
   text-align: center;
-  width: 21px;
-  height: 38px;
+  width: 26px;
+  height: 42px;
   outline: 0;
-  padding: 6px 0 0 2px;
+  padding: 8px 0 0 2px;
   border: 1px solid;
   border-color: #DDD #FFFFFF #DDD #DDD;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -3337,10 +3372,10 @@ a.maia-button.maia-button-secondary {
   margin-top: 4px; }
 
 #sticky-hud-base.open .hud-button {
-  left: -255px; }
+  left: -260px; }
 
 #sticky-hud-base:not(.open) .hud-button:hover {
-  width: 25px;
+  width: 30px;
   transition: width 0.3s ease-in-out, left 0.3s ease-in-out; }
 
 #sticky-hud-base.invalid:not(.open) .hud-button:not(:hover) {
@@ -3354,11 +3389,11 @@ a.maia-button.maia-button-secondary {
   background-color: white;
   margin-left: -230px;
   width: 260px;
-  min-height: 40px;
-  max-height: 400px;
+  min-height: 44px;
   display: none;
   opacity: 1;
-  position: relative; }
+  position: relative;
+  height: 100%; }
   .hud-popup .top-resizer {
     cursor: row-resize;
     height: 2px; }
@@ -3366,13 +3401,18 @@ a.maia-button.maia-button-secondary {
 .popup-container {
   display: flex;
   flex-direction: column; }
+  .popup-container .popup-header {
+    flex-shrink: 0; }
   .popup-container .popup-content {
-    flex-grow: 1; }
+    flex-shrink: 1;
+    flex-grow: 1;
+    overflow: auto; }
   .popup-container .popup-footer {
-    align-self: flex-end; }
+    align-self: flex-end;
+    flex-shrink: 0; }
 
 #sticky-hud-base.open .hud-popup {
-  margin-top: -48px;
+  margin-top: -52px;
   display: inherit; }
 
 .popup-footer {
@@ -3389,9 +3429,8 @@ a.maia-button.maia-button-secondary {
   padding-top: 4px;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; }
-  .popup-footer-bar .center-item {
-    flex-grow: 1; }
+  justify-content: space-between;
+  border-top: thin lightblue solid; }
   .popup-footer-bar .right-item {
     align-self: flex-end; }
     .popup-footer-bar .right-item > *:not(:last-child) {
@@ -3419,6 +3458,92 @@ a.maia-button.maia-button-secondary {
     width: 100%;
     box-sizing: border-box;
     height: 5em; }
+
+.cache-update-display {
+  cursor: default; }
+  .cache-update-display .count {
+    display: inline-block;
+    font-size: 70%;
+    line-height: 70%; }
+    .cache-update-display .count .sup {
+      position: relative;
+      top: 0;
+      font-size: 90%; }
+    .cache-update-display .count .sub {
+      position: relative;
+      bottom: -3px;
+      font-size: 90%; }
+
+.cache-update-display-body {
+  border: thin lightblue solid;
+  margin-top: 4px;
+  color: black; }
+  .cache-update-display-body UL {
+    list-style: none;
+    padding-left: 4px;
+    max-height: 10em;
+    overflow-y: auto; }
+  .cache-update-display-body LI {
+    padding: 2px; }
+  .cache-update-display-body .footer-toolbar {
+    margin: 8px; }
+    .cache-update-display-body .footer-toolbar BUTTON {
+      margin: 4px; }
+
+.sugarcrm-desktop .tile-container {
+  display: inline-block;
+  width: 56px;
+  height: 40px;
+  margin: 4px;
+  text-align: center; }
+.sugarcrm-desktop .tile-container:not(:hover) .favorite {
+  display: none; }
+.sugarcrm-desktop .record-tile {
+  display: inline-block;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  padding: 4px;
+  margin: 2px 8px;
+  text-align: left; }
+  .sugarcrm-desktop .record-tile .favorite {
+    cursor: pointer;
+    position: relative;
+    right: -24px;
+    bottom: -4px;
+    fill: goldenrod; }
+  .sugarcrm-desktop .record-tile .symbol {
+    color: white;
+    text-align: left;
+    cursor: pointer; }
+  .sugarcrm-desktop .record-tile .count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    color: white;
+    font-size: 9px;
+    display: block;
+    background-color: red;
+    border-radius: 12px;
+    min-width: 12px;
+    height: 12px;
+    padding: 0;
+    margin: 0;
+    font-weight: normal;
+    text-align: center;
+    cursor: pointer; }
+.sugarcrm-desktop .label {
+  text-align: center;
+  font-size: 80%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: pointer; }
+
+.module-page > .head .search-button .goog-custom-button-inner-box {
+  padding: 1px 4px; }
+.module-page > .content {
+  min-width: 150px; }
 
 #root-panel {
   width: 100%; }

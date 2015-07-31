@@ -60,7 +60,7 @@ Dependency
 This repo is packaging for Chrome Extension and source codes are in the following repositories. Most of the main codes are in CRM Core and SugarCRM repo.
 
 1. Closure library http://closure-library.googlecode.com/svn/trunk/
-2. Base utility library https://bitbucket.org/ytkyaw/ydn-base.git
+2. Base utility library https://github.com/yathit/ydn-base
 3. Database library https://github.com/yathit/ydn-db
 4. Authentication and authorization https://bitbucket.org/ytkyaw/ydn-auth
 5. Full text search https://github.com/yathit/ydn-db-fulltext.git

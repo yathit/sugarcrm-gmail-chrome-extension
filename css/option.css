@@ -2134,85 +2134,88 @@ td.goog-date-picker-selected {
 */
 /* CSS related to specific modules */
 /* CSS related to specific modules */
-.Accounts > * > .icon, .Accounts > .icon {
+.bg-color {
+  background-color: grey; }
+
+.Accounts > * > .icon, .Accounts > .icon, .Accounts > .bg-color {
   background-color: #37880e; }
 
-.Bugs > * > .icon, .Bugs > .icon {
+.Bugs > * > .icon, .Bugs > .icon, .Bugs > .bg-color {
   background-color: #e61718; }
 
-.Calls > * > .icon, .Calls > .icon {
+.Calls > * > .icon, .Calls > .icon, .Calls > .bg-color {
   background-color: #0b3a72; }
 
-.Calendar > * > .icon, .Calendar > .icon {
+.Calendar > * > .icon, .Calendar > .icon, .Calendar > .bg-color {
   background-color: #125db8; }
 
-.Campaigns > * > .icon, .Campaigns > .icon {
+.Campaigns > * > .icon, .Campaigns > .icon, .Campaigns > .bg-color {
   background-color: #788d0e; }
 
-.CampaignLog > * > .icon, .CampaignLog > .icon {
+.CampaignLog > * > .icon, .CampaignLog > .icon, .CampaignLog > .bg-color {
   background-color: #60710b; }
 
-.Cases > * > .icon, .Cases > .icon {
+.Cases > * > .icon, .Cases > .icon, .Cases > .bg-color {
   background-color: #b81213; }
 
-.Contacts > * > .icon, .Contacts > .icon {
+.Contacts > * > .icon, .Contacts > .icon, .Contacts > .bg-color {
   background-color: #245a09; }
 
-.Documents > * > .icon, .Documents > .icon {
+.Documents > * > .icon, .Documents > .icon, .Documents > .bg-color {
   background-color: #81380f; }
 
-.Emails > * > .icon, .Emails > .icon,
-.EmailText > * > .icon, .EmailText > .icon,
-.EmailTemplates > * > .icon, .EmailTemplates > .icon {
+.Emails > * > .icon, .Emails > .icon, .Emails > .bg-color,
+.EmailText > * > .icon, .EmailText > .icon, .EmailText > .bg-color,
+.EmailTemplates > * > .icon, .EmailTemplates > .icon, .EmailTemplates > .bg-color {
   background-color: #aa1466; }
 
-.Employees > * > .icon, .Employees > .icon {
+.Employees > * > .icon, .Employees > .icon, .Employees > .bg-color {
   background-color: #313130; }
 
-.Files > * > .icon, .Files > .icon {
+.Files > * > .icon, .Files > .icon, .Files > .bg-color {
   background-color: #984112; }
 
-.Forecasts > * > .icon, .Forecasts > .icon {
+.Forecasts > * > .icon, .Forecasts > .icon, .Forecasts > .bg-color {
   background-color: #af4b14; }
 
-.KBDocuments > * > .icon, .KBDocuments > .icon {
+.KBDocuments > * > .icon, .KBDocuments > .icon, .KBDocuments > .bg-color {
   background-color: #6b2e0c; }
 
-.Leads > * > .icon, .Leads > .icon {
+.Leads > * > .icon, .Leads > .icon, .Leads > .bg-color {
   background-color: #448fec; }
 
-.Meetings > * > .icon, .Meetings > .icon {
+.Meetings > * > .icon, .Meetings > .icon, .Meetings > .bg-color {
   background-color: #e6af17; }
 
-.Notes > * > .icon, .Notes > .icon {
+.Notes > * > .icon, .Notes > .icon, .Notes > .bg-color {
   background-color: #129cb7; }
 
-.Opportunities > * > .icon, .Opportunities > .icon {
+.Opportunities > * > .icon, .Opportunities > .icon, .Opportunities > .bg-color {
   background-color: #7115ce; }
 
-.ProspectLists > * > .icon, .ProspectLists > .icon,
-.Prospects > * > .icon, .Prospects > .icon {
+.ProspectLists > * > .icon, .ProspectLists > .icon, .ProspectLists > .bg-color
+.Prospects > * > .icon, .Prospects > .icon, .Prospects > .bg-color {
   background-color: #7d0e4b; }
 
-.Reports > * > .icon, .Reports > .icon {
+.Reports > * > .icon, .Reports > .icon, .Reports > .bg-color {
   background-color: #c65517; }
 
-.RevenueLineItems > * > .icon, .RevenueLineItems > .icon {
+.RevenueLineItems > * > .icon, .RevenueLineItems > .icon, .RevenueLineItems > .bg-color {
   background-color: #4b0e88; }
 
-.Quotes > * > .icon, .Quotes > .icon {
+.Quotes > * > .icon, .Quotes > .icon, .Quotes > .bg-color {
   background-color: #0e7488; }
 
-.Targets > * > .icon, .Targets > .icon {
+.Targets > * > .icon, .Targets > .icon, .Targets > .bg-color {
   background-color: #931159; }
 
-.Tasks > * > .icon, .Tasks > .icon {
+.Tasks > * > .icon, .Tasks > .icon, .Tasks > .bg-color {
   background-color: #d81982; }
 
-.Users > * > .icon, .Users > .icon {
+.Users > * > .icon, .Users > .icon, .Users > .bg-color {
   background-color: #313130; }
 
-.Workflow > * > .icon, .Workflow > .icon {
+.Workflow > * > .icon, .Workflow > .icon, .Workflow > .bg-color {
   background-color: #414c08; }
 
 .Contacts SVG.fill {
@@ -2308,11 +2311,13 @@ td.goog-date-picker-selected {
 
 .record-item {
   margin: 4px 0; }
+  .record-item .icon {
+    cursor: pointer; }
   .record-item > .content {
     padding-left: 27px;
     font-size: 90%;
     color: gray;
-    margin: 4px 0; }
+    margin: 0 0 4px 0; }
 
 .secondary-hovercard {
   border: solid 4px #69748C;
@@ -2430,6 +2435,18 @@ td.goog-date-picker-selected {
   .snippet-panel > .content > UL {
     list-style: none;
     padding-left: 0; }
+
+.module-record-list > UL {
+  overflow-y: hidden;
+  height: 200px;
+  list-style: none;
+  padding-left: 0; }
+  .module-record-list > UL > LI {
+    height: 40px;
+    max-height: 40px;
+    overflow-y: hidden; }
+    .module-record-list > UL > LI .record-header {
+      height: 22px; }
 
 .sugar-panel {
   clear: both; }
@@ -2735,6 +2752,12 @@ td.goog-date-picker-selected {
 .pear-grid-cell-data-content.no-border,
 .pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {
   border: 0; }
+
+.result-desktop .head {
+  margin: 8px 0; }
+  .result-desktop .head .title {
+    font-weight: bold;
+    font-size: 110%; }
 
 /*
  Some CSS from font-awesome used in google-closure-grid library

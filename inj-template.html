@@ -237,9 +237,7 @@
       <div class="top-resizer"></div>
       <div class="popup-container">
         <div class="popup-header"></div>
-        <div class="popup-content">
-
-        </div>
+        <div class="popup-content"></div>
         <div class="popup-footer">
           <div class="popup-footer-bar">
             <span class="left-item">
@@ -407,22 +405,24 @@
 </template>
 
 <template id="template-tracking-sidebar">
-  <div class="sidebar-head">
+  <div class="tracking-sidebar">
+      <div class="sidebar-head">
 
-      <span class="head-icon" title="Email tracking"></span>
-      <span class="stat-panel opens"
-            title="Number of emails open in last 24 hours">0/0</span>
-      <span class="stat-panel clicks"
-            title="Number of link clicked in last 24 hours">0/0</span>
-      <span class="center"></span>
-      <span class="more-less-toggle svg-button"></span>
+          <span class="head-icon" title="Email tracking"></span>
+          <span class="stat-panel opens"
+                title="Number of emails open in last 24 hours">0/0</span>
+          <span class="stat-panel clicks"
+                title="Number of link clicked in last 24 hours">0/0</span>
+          <span class="center"></span>
+          <span class="more-less-toggle svg-button"></span>
 
-  </div>
-  <div class="sidebar-content" style="display: none;">
-    <div class="toolbar">
-      <input class="picker" type="date" title="Target date"/>
-      <span class="select-view"></span>
-    </div>
+      </div>
+      <div class="sidebar-content" style="display: none;">
+        <div class="toolbar">
+          <input class="picker" type="date" title="Target date"/>
+          <span class="select-view"></span>
+        </div>
+      </div>
   </div>
 </template>
 
