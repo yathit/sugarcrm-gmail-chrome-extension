@@ -77,7 +77,7 @@ This repo is packaging for Chrome Extension and source codes are in the followin
 Development
 -----------
 
-You should be able to load this repo folder as [unpacked Chrome Extension](https://developer.chrome.com/extensions/getstarted#unpacked). You will need compiles dependency files, which are available in http://ydn-src-1.storage.googleapis.com/
+You should be able to load this repo folder as [unpacked Chrome Extension](https://developer.chrome.com/extensions/getstarted#unpacked). You will need compiles dependency files, which are available in https://ydn-src-1.storage.googleapis.com/
 
 Pricing
 -------
