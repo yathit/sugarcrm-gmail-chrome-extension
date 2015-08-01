@@ -52,7 +52,7 @@ Features
 Backend server
 --------------
 
-Google AppEngine (Java) backend server provides authentication and authorization. For SugarCRM, hash password is kept in the browser with encryption. Backend server also provide proxy with authorization header.
+Google AppEngine (Java) backend server provides authentication and authorization. For SugarCRM, hash password is kept in the browser with encryption. User setting as stored in Chrome storage. Backend server also provide proxy with authorization header.
 
 Please contact to info@yathit.com to use YDN backend server for your extension. A new application id, `ydn.crm.base.APP_ID` will be created for your extension. A valid (paid) user login is required to use the service.
 
@@ -82,7 +82,7 @@ You should be able to load this repo folder as [unpacked Chrome Extension](https
 Pricing
 -------
 
-Open source does not mean zero cost. Open source means that you can change source code to suite your use case and inspect them for security or privacy concern. I would expect pricing will be around $5~`0/user/month.
+Open source does not mean zero cost. Open source means that you can change source code to suite your use case and inspect them for security or privacy concern. I would expect pricing will be around $5~10/user/month.
 
 Licensing
 ---------
