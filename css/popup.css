@@ -118,6 +118,9 @@ DETAILS.left-ex SUMMARY:after {
   float: left;
   margin-right: 4px; }
 
+SUMMARY {
+  outline: none; }
+
 /*
 * Closure Library CSS
 */

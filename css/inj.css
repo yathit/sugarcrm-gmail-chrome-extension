@@ -118,6 +118,9 @@ DETAILS.left-ex SUMMARY:after {
   float: left;
   margin-right: 4px; }
 
+SUMMARY {
+  outline: none; }
+
 .iconic {
   width: 16px;
   height: 16px; }
@@ -340,11 +343,18 @@ DETAILS.left-ex SUMMARY:after {
   .upload-dialog UL INPUT[type=text], .archive-dialog UL INPUT[type=text] {
     width: 90%;
     box-sizing: border-box; }
-.upload-dialog .info span, .archive-dialog .info span {
-  font-style: italic; }
-.upload-dialog .info .word-count, .archive-dialog .info .word-count {
-  font-style: normal;
-  font-weight: bold; }
+.upload-dialog .info, .archive-dialog .info {
+  text-overflow: ellipsis; }
+  .upload-dialog .info span, .archive-dialog .info span {
+    font-style: italic; }
+  .upload-dialog .info .word-count, .archive-dialog .info .word-count {
+    font-style: normal;
+    font-weight: bold; }
+.upload-dialog .propose-record UL, .archive-dialog .propose-record UL {
+  margin: 8px 0; }
+.upload-dialog .propose-record LI, .archive-dialog .propose-record LI {
+  display: inline-block;
+  padding: 0 4px 0 0; }
 .upload-dialog H4, .archive-dialog H4 {
   margin-bottom: 0; }
 
@@ -2725,6 +2735,8 @@ a.maia-button.maia-button-secondary {
   display: none; }
 .record-panel > .record-header > .title {
   overflow-x: hidden; }
+.record-panel > .record-header > .ok-button {
+  padding: 2px 8px; }
 
 .record-panel .record-body .content > .field {
   margin: 4px 0; }
@@ -2882,6 +2894,9 @@ a.maia-button.maia-button-secondary {
     overflow-y: hidden; }
     .module-record-list > UL > LI .record-header {
       height: 22px; }
+.module-record-list .footer {
+  font-size: 90%;
+  padding-bottom: 4px; }
 
 .sugar-panel {
   clear: both; }
@@ -3542,8 +3557,19 @@ a.maia-button.maia-button-secondary {
 
 .module-page > .head .search-button .goog-custom-button-inner-box {
   padding: 1px 4px; }
+.module-page > .head .wgui-textinput {
+  vertical-align: middle; }
+  .module-page > .head .wgui-textinput INPUT {
+    width: 107px; }
+  .module-page > .head .wgui-textinput .wgui-textinput-clear {
+    top: 2px; }
 .module-page > .content {
   min-width: 150px; }
+
+.sugarcrm-setting-page .sync-setting-panel DETAILS {
+  margin: 8px 0; }
+.sugarcrm-setting-page .sync-setting-panel SUMMARY {
+  cursor: default; }
 
 #root-panel {
   width: 100%; }

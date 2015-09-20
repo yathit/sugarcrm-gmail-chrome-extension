@@ -273,28 +273,34 @@
 
 <template id="archive-dialog-template">
   <div class="archive-dialog">
-    <div>
-      <label>Subject: </label><input name="name" type="text" class="value"/>
-    </div>
+
     <div style="display: none">
       <label>Message id: </label><input name="message_id" type="text" class="value"/>
     </div>
     <section class="info">
-      <div>
-        To: <span name="to"></span>
-      </div>
-      <div>
-        From: <span name="from"></span>
-      </div>
-      <div style="display: none;">
-        Cc/Bcc: <span name="cc"></span>
-      </div>
-      <div>
-        <span class="word-count">0</span> words in this email content.
-      </div>
+
+      <details>
+          <summary><span class="word-count">0</span> words in this email content.</summary>
+          <div>
+              <label>Subject: </label><input name="name" type="text" class="value"/>
+          </div>
+          <div>
+              To: <span name="to"></span>
+          </div>
+          <div>
+              From: <span name="from"></span>
+          </div>
+          <div style="display: none;">
+              Cc/Bcc: <span name="cc"></span>
+          </div>
+      </details>
+    </section>
+    <section class="propose-record" style="display: none;">
+        <h4>Create new a Contact and add as relationship</h4>
+        <ul></ul>
     </section>
     <section name="attachment">
-      <h4>Optionally include attachments as Notes records</h4>
+      <h4>Attach as Notes records</h4>
       <ul></ul>
     </section>
 

@@ -119,6 +119,9 @@ DETAILS.left-ex SUMMARY:after {
   float: left;
   margin-right: 4px; }
 
+SUMMARY {
+  outline: none; }
+
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
  */
@@ -2290,6 +2293,8 @@ td.goog-date-picker-selected {
   display: none; }
 .record-panel > .record-header > .title {
   overflow-x: hidden; }
+.record-panel > .record-header > .ok-button {
+  padding: 2px 8px; }
 
 .record-panel .record-body .content > .field {
   margin: 4px 0; }
@@ -2447,6 +2452,9 @@ td.goog-date-picker-selected {
     overflow-y: hidden; }
     .module-record-list > UL > LI .record-header {
       height: 22px; }
+.module-record-list .footer {
+  font-size: 90%;
+  padding-bottom: 4px; }
 
 .sugar-panel {
   clear: both; }
