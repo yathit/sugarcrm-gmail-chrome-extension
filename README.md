@@ -73,6 +73,10 @@ This repo is packaging for Chrome Extension and source codes are in the followin
 10. SugarCRM model and UI https://github.com/yathit/sugarcrm
 11. CRM backend https://github.com/yathit/crm-back 
 
+Internationalization
+--------------------
+
+This project use [Google Translator Toolkit](https://translate.google.com/toolkit) for translation. Send an email to us if you want to join in translation effort. Any language is accepted.
 
 Development
 -----------

@@ -122,6 +122,29 @@ DETAILS.left-ex SUMMARY:after {
 SUMMARY {
   outline: none; }
 
+.flat-toggle-button svg {
+  fill: #e8e8e8; }
+.flat-toggle-button .goog-custom-button-outer-box {
+  border: 0;
+  background: none; }
+.flat-toggle-button .goog-custom-button-inner-box {
+  border: 0;
+  background: none; }
+.flat-toggle-button.goog-custom-button {
+  border: 0;
+  background: none; }
+.flat-toggle-button:hover {
+  background-color: #f7f7f7; }
+
+.flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
+  fill: #dddddd; }
+
+.flat-toggle-button.goog-custom-button-checked svg {
+  fill: #00ff00; }
+
+.flat-toggle-button.goog-custom-button-checked:hover svg {
+  fill: #00ff00; }
+
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
  */
@@ -254,7 +277,8 @@ SUMMARY {
   background-image: none; }
 
 .maia-button.blue {
-  background-image: linear-gradient(#709ffb, #5583df); }
+  background-image: linear-gradient(#709ffb, #5583df);
+  border: 1px solid #dbdbdb; }
 
 .maia-button.blue:hover, .maia-button.blue:focus {
   background-color: #396bbc;
@@ -322,6 +346,9 @@ a.maia-button.maia-button-secondary {
   background-image: linear-gradient(top, #fafafa, #f9f9f9);
   border-color: #eee;
   color: #aaa !important; }
+
+.maia-button.small {
+  padding: 2px 8px; }
 
 /*
 * Closure Library CSS
@@ -2295,6 +2322,14 @@ td.goog-date-picker-selected {
   overflow-x: hidden; }
 .record-panel > .record-header > .ok-button {
   padding: 2px 8px; }
+.record-panel > .record-header > .icon {
+  text-decoration: none; }
+.record-panel > .record-footer .footer-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  .record-panel > .record-footer .footer-toolbar > * {
+    padding: 4px; }
 
 .record-panel .record-body .content > .field {
   margin: 4px 0; }
@@ -2480,8 +2515,6 @@ td.goog-date-picker-selected {
   display: inline-block;
   padding: 4px; }
 
-.widget-content SUMMARY {
-  font-weight: bold; }
 .widget-content SUMMARY:after {
   float: left;
   margin-right: 4px; }

@@ -108,7 +108,8 @@
   <section name="calendar">
 
   </section>
-
+    <section id="email-archive">
+    </section>
   <section>
     <h3>System setting</h3>
     <div id="logging-section"></div>
@@ -357,11 +358,23 @@
     <div class="default-tracking-selection widget-content">
       <details>
         <summary>Tracking preference</summary>
-        <input type="radio" name="default-tracking" value="always" title="All your email send will include tracking beacon."> Always track<br>
-        <input type="radio" name="default-tracking" value="track" title="All your email send will include tracking beacon unless you select not to."> Track normally<br>
-        <input type="radio" name="default-tracking" value="" title="You can select whether you want to track or not before sending email." checked> Enable tracking<br>
-        <input type="radio" name="default-tracking" value="not-track" title="All your email send will not include tracking beacon unless you select to include."> Do not track normally<br>
-        <input type="radio" name="default-tracking" value="disable"> Disable tracking<br>
+          <div style="padding-left: 24px">
+              <label title="All your email send will include tracking beacon.">
+                  <input type="radio" name="default-tracking" value="always"> Always track
+              </label><br>
+              <label title="All your email send will include tracking beacon unless you select not to.">
+                  <input type="radio" name="default-tracking" value="track" > Track normally
+              </label> <br>
+              <label title="You can select whether you want to track or not before sending email." >
+                  <input type="radio" name="default-tracking" value="" checked> Enable tracking
+              </label> <br>
+              <label title="All your email send will not include tracking beacon unless you select to include.">
+                  <input type="radio" name="default-tracking" value="not-track" > Do not track normally
+              </label><br>
+              <label>
+                  <input type="radio" name="default-tracking" value="disable"> Disable tracking
+              </label><br>
+          </div>
       </details>
 
     </div>
@@ -617,6 +630,34 @@
     </div>
   </details>
   </div>
+</template>
+
+<template id="email-archive-setting-template">
+    <h3 title="Option for email archiving">Email Archiving</h3>
+    <div class="email-archive-setting widget-content">
+        <details>
+            <summary>Outgoing gmail archive preference</summary>
+            <div style="padding-left: 24px">
+                <label title="All your email send will be archived to CRM.">
+                    <input type="radio" name="outbound-email-archive"
+                           value="always"> Always archive
+                </label><br>
+                <label title="All your email send will be archived to CRM unless you select not to.">
+                    <input type="radio" name="outbound-email-archive" value="archive"
+                    > Archive normally
+                </label> <br>
+                <label title="You can select whether you want to archive or not before sending email." >
+                    <input type="radio" name="outbound-email-archive" value="" checked> Enabled
+                </label> <br>
+                <label title="All your email send will not be archived unless you select to archive.">
+                    <input type="radio" name="outbound-email-archive" value="not-archive" > Do not archive normally
+                </label><br>
+                <label>
+                    <input type="radio" name="outbound-email-archive" value="disable"> Disabled
+                </label><br>
+            </div>
+        </details>
+    </div>
 </template>
 
 <template id="select-calendar-template">

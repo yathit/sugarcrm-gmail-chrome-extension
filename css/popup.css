@@ -121,6 +121,29 @@ DETAILS.left-ex SUMMARY:after {
 SUMMARY {
   outline: none; }
 
+.flat-toggle-button svg {
+  fill: #e8e8e8; }
+.flat-toggle-button .goog-custom-button-outer-box {
+  border: 0;
+  background: none; }
+.flat-toggle-button .goog-custom-button-inner-box {
+  border: 0;
+  background: none; }
+.flat-toggle-button.goog-custom-button {
+  border: 0;
+  background: none; }
+.flat-toggle-button:hover {
+  background-color: #f7f7f7; }
+
+.flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
+  fill: #dddddd; }
+
+.flat-toggle-button.goog-custom-button-checked svg {
+  fill: #00ff00; }
+
+.flat-toggle-button.goog-custom-button-checked:hover svg {
+  fill: #00ff00; }
+
 /*
 * Closure Library CSS
 */

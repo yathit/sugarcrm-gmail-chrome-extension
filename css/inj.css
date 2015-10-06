@@ -121,6 +121,29 @@ DETAILS.left-ex SUMMARY:after {
 SUMMARY {
   outline: none; }
 
+.flat-toggle-button svg {
+  fill: #e8e8e8; }
+.flat-toggle-button .goog-custom-button-outer-box {
+  border: 0;
+  background: none; }
+.flat-toggle-button .goog-custom-button-inner-box {
+  border: 0;
+  background: none; }
+.flat-toggle-button.goog-custom-button {
+  border: 0;
+  background: none; }
+.flat-toggle-button:hover {
+  background-color: #f7f7f7; }
+
+.flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
+  fill: #dddddd; }
+
+.flat-toggle-button.goog-custom-button-checked svg {
+  fill: #00ff00; }
+
+.flat-toggle-button.goog-custom-button-checked:hover svg {
+  fill: #00ff00; }
+
 .iconic {
   width: 16px;
   height: 16px; }
@@ -242,6 +265,9 @@ SUMMARY {
 .gmail-contact-panel .head {
   height: 20px;
   margin: 4px 0; }
+
+.drawer-context-container {
+  padding-top: 4px; }
 
 .crm-template {
   position: absolute;
@@ -2349,7 +2375,8 @@ General theme
   background-image: none; }
 
 .maia-button.blue {
-  background-image: linear-gradient(#709ffb, #5583df); }
+  background-image: linear-gradient(#709ffb, #5583df);
+  border: 1px solid #dbdbdb; }
 
 .maia-button.blue:hover, .maia-button.blue:focus {
   background-color: #396bbc;
@@ -2417,6 +2444,9 @@ a.maia-button.maia-button-secondary {
   background-image: linear-gradient(top, #fafafa, #f9f9f9);
   border-color: #eee;
   color: #aaa !important; }
+
+.maia-button.small {
+  padding: 2px 8px; }
 
 .menu_bar {
   padding: 0 4px 0 4px;
@@ -2737,6 +2767,14 @@ a.maia-button.maia-button-secondary {
   overflow-x: hidden; }
 .record-panel > .record-header > .ok-button {
   padding: 2px 8px; }
+.record-panel > .record-header > .icon {
+  text-decoration: none; }
+.record-panel > .record-footer .footer-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+  .record-panel > .record-footer .footer-toolbar > * {
+    padding: 4px; }
 
 .record-panel .record-body .content > .field {
   margin: 4px 0; }
@@ -2922,8 +2960,6 @@ a.maia-button.maia-button-secondary {
   display: inline-block;
   padding: 4px; }
 
-.widget-content SUMMARY {
-  font-weight: bold; }
 .widget-content SUMMARY:after {
   float: left;
   margin-right: 4px; }
@@ -3291,7 +3327,7 @@ a.maia-button.maia-button-secondary {
  * Created by kyawtun on 28/8/14.
  */
 .ydn-crm .goog-css3-button {
-  padding: 4px 4px; }
+  /* padding: 4px 4px; */ }
 
 .ac-renderer {
   /* why should we need to set?
@@ -3504,6 +3540,9 @@ a.maia-button.maia-button-secondary {
     margin: 8px; }
     .cache-update-display-body .footer-toolbar BUTTON {
       margin: 4px; }
+
+.desktop > .content {
+  margin-bottom: 8px; }
 
 .sugarcrm-desktop .tile-container {
   display: inline-block;
