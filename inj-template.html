@@ -11,6 +11,7 @@
   </div>
   <div class="content"></div>
   <div class="button-bar">
+    <button class="restore">Restore default</button>
     <button class="apply">Apply</button>
     <button class="cancel">Cancel</button>
   </div>
@@ -46,10 +47,6 @@
     <thead>
       <tr>
         <th colspan="3">Groups</th>
-      </tr>
-      <tr>
-        <th>Show</th>
-        <th>Name</th>
       </tr>
     </thead>
     <tbody class="group-body"></tbody>
@@ -255,62 +252,7 @@
     </div>
   </div>
 </template>
-<template id="upload-dialog-template">
-  <div class="upload-dialog">
-    <div>
-      <label>File Name: </label><input name="file_name" type="text" class="value"/>
-    </div>
-    <div>
-      <label>Document Name: </label><input name="document_name" type="text" class="value"/>
-    </div>
-    <div>
-      <label>Description: </label><textarea name="description" class="value"></textarea>
-    </div>
 
-    <section name="rel-panel"></section>
-
-  </div>
-</template>
-
-<template id="archive-dialog-template">
-  <div class="archive-dialog">
-
-    <div style="display: none">
-      <label>Message id: </label><input name="message_id" type="text" class="value"/>
-    </div>
-    <section class="info">
-
-      <details>
-          <summary><span class="word-count">0</span> words in this email content.</summary>
-          <div>
-              <label>Subject: </label><input name="name" type="text" class="value"/>
-          </div>
-          <div>
-              To: <span name="to"></span>
-          </div>
-          <div>
-              From: <span name="from"></span>
-          </div>
-          <div style="display: none;">
-              Cc/Bcc: <span name="cc"></span>
-          </div>
-      </details>
-    </section>
-    <section class="propose-record" style="display: none;">
-        <h4>Create new a Contact and add as relationship</h4>
-        <ul></ul>
-    </section>
-    <section name="attachment">
-      <h4>Attach as Notes records</h4>
-      <ul></ul>
-    </section>
-
-    <section name="rel-panel">
-
-    </section>
-
-  </div>
-</template>
 <template id="record-patch-compare-template">
   <div class="flex-bar record-patch-compare">
     <div>
@@ -612,52 +554,6 @@
       </div>
     </div>
   </div>
-</template>
-
-<template id="calendar-setting-panel-template">
-  <h3 title="Google calendar use for synchronizing with SugarCRM">Google Calendar</h3>
-  <div class="widget-content">
-  <details>
-    <summary>Synchronization</summary>
-    <div>
-      <input type="checkbox" id="enable-calendar-sync"/>
-      <label for="enable-calendar-sync">Sync Google calendar with SugarCRM Meetings</label><br/>
-      <p name="sync-calendar-panel">
-        Sync Calender name: <a target="_blank" name="sync-calender-name" title="View in Google Calendar."></a> <button name="change-sync-calender">Change</button>
-      </p>
-      <p>Experimental feature.</p>
-      <p class="message"></p>
-    </div>
-  </details>
-  </div>
-</template>
-
-<template id="email-archive-setting-template">
-    <h3 title="Option for email archiving">Email Archiving</h3>
-    <div class="email-archive-setting widget-content">
-        <details>
-            <summary>Outgoing gmail archive preference</summary>
-            <div style="padding-left: 24px">
-                <label title="All your email send will be archived to CRM.">
-                    <input type="radio" name="outbound-email-archive"
-                           value="always"> Always archive
-                </label><br>
-                <label title="All your email send will be archived to CRM unless you select not to.">
-                    <input type="radio" name="outbound-email-archive" value="archive"
-                    > Archive normally
-                </label> <br>
-                <label title="You can select whether you want to archive or not before sending email." >
-                    <input type="radio" name="outbound-email-archive" value="" checked> Enabled
-                </label> <br>
-                <label title="All your email send will not be archived unless you select to archive.">
-                    <input type="radio" name="outbound-email-archive" value="not-archive" > Do not archive normally
-                </label><br>
-                <label>
-                    <input type="radio" name="outbound-email-archive" value="disable"> Disabled
-                </label><br>
-            </div>
-        </details>
-    </div>
 </template>
 
 <template id="select-calendar-template">

@@ -11,13 +11,13 @@
     font-family: arial, sans-serif;
     /* Overridden by font: -webkit-small-control; */
     font-size: 100%; }
-  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA {
+  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA, .ydn-crm SELECT {
     transition: all 0.30s ease-in-out;
     outline: none;
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD; }
-  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus {
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus, .ydn-crm SELECT:focus {
     box-shadow: 0 0 5px #51cbee;
     border: 1px solid #51cbee; }
   .ydn-crm INPUT:invalid {
@@ -143,6 +143,12 @@ SUMMARY {
 
 .flat-toggle-button.goog-custom-button-checked:hover svg {
   fill: #00ff00; }
+
+.what-is-this {
+  cursor: default;
+  font-weight: normal;
+  background-color: lightyellow;
+  color: gray; }
 
 .iconic {
   width: 16px;
@@ -349,41 +355,43 @@ SUMMARY {
 .tracking-button.goog-custom-button-checked.donottrack:hover svg, .tracking-button.tracked.donottrack:hover svg {
   fill: #ff0000; }
 
-.upload-dialog > div, .archive-dialog > div {
+.upload-dialog > div, .archive-dialog > div, .create-record-dialog > div {
   display: flex; }
-  .upload-dialog > div > :first-child, .archive-dialog > div > :first-child {
+  .upload-dialog > div > :first-child, .archive-dialog > div > :first-child, .create-record-dialog > div > :first-child {
     padding: 3px 0 3px 3px;
     margin: 5px 1px 3px 0;
     width: 10em; }
-  .upload-dialog > div > *, .archive-dialog > div > * {
+  .upload-dialog > div > *, .archive-dialog > div > *, .create-record-dialog > div > * {
     align-self: flex-start; }
-  .upload-dialog > div .value, .archive-dialog > div .value {
+  .upload-dialog > div .value, .archive-dialog > div .value, .create-record-dialog > div .value {
     flex-grow: 1; }
-  .upload-dialog > div .spacer, .archive-dialog > div .spacer {
+  .upload-dialog > div .spacer, .archive-dialog > div .spacer, .create-record-dialog > div .spacer {
     padding: 3px 0 3px 0;
     margin: 5px 0 3px 0;
     outline: 0; }
-.upload-dialog UL, .archive-dialog UL {
+.upload-dialog UL, .archive-dialog UL, .create-record-dialog UL {
   list-style: none;
   padding-left: 0; }
-  .upload-dialog UL INPUT[type=text], .archive-dialog UL INPUT[type=text] {
+  .upload-dialog UL INPUT[type=text], .archive-dialog UL INPUT[type=text], .create-record-dialog UL INPUT[type=text] {
     width: 90%;
     box-sizing: border-box; }
-.upload-dialog .info, .archive-dialog .info {
+.upload-dialog .info, .archive-dialog .info, .create-record-dialog .info {
   text-overflow: ellipsis; }
-  .upload-dialog .info span, .archive-dialog .info span {
+  .upload-dialog .info span, .archive-dialog .info span, .create-record-dialog .info span {
     font-style: italic; }
-  .upload-dialog .info .word-count, .archive-dialog .info .word-count {
+  .upload-dialog .info .word-count, .archive-dialog .info .word-count, .create-record-dialog .info .word-count {
     font-style: normal;
     font-weight: bold; }
-.upload-dialog .propose-record UL, .archive-dialog .propose-record UL {
+.upload-dialog .propose-record UL, .archive-dialog .propose-record UL, .create-record-dialog .propose-record UL {
   margin: 8px 0; }
-.upload-dialog .propose-record LI, .archive-dialog .propose-record LI {
+.upload-dialog .propose-record LI, .archive-dialog .propose-record LI, .create-record-dialog .propose-record LI {
   display: inline-block;
   padding: 0 4px 0 0; }
-.upload-dialog H4, .archive-dialog H4 {
+.upload-dialog H4, .archive-dialog H4, .create-record-dialog H4 {
   margin-bottom: 0; }
 
+.relationships-panel .propose-section A {
+  margin: 2px; }
 .relationships-panel .suggestions {
   margin-top: 8px; }
   .relationships-panel .suggestions UL {
@@ -413,6 +421,16 @@ SUMMARY {
   justify-content: flex-start; }
   .update-option .update-strategy > * {
     padding: 2px 8px; }
+
+.select-module-dialog > DIV {
+  margin: 8px 0; }
+
+.create-record-dialog {
+  width: 450px; }
+  .create-record-dialog INPUT.name {
+    width: 100%; }
+  .create-record-dialog TEXTAREA {
+    width: 100%; }
 
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
@@ -2779,19 +2797,19 @@ a.maia-button.maia-button-secondary {
 .record-panel .record-body .content > .field {
   margin: 4px 0; }
 
-.secondary > section {
+.secondary section {
   margin: 4px 0; }
-  .secondary > section > .header {
+  .secondary section > .header {
     font-style: italic;
     color: gray;
     /* border-bottom: #d3d3d3 solid thin; */ }
-  .secondary > section > ul {
+  .secondary section > ul {
     list-style: none;
     padding-left: 0;
     margin: 4px 0;
     max-height: 16em;
     overflow-y: auto; }
-    .secondary > section > ul > li {
+    .secondary section > ul > li {
       margin: 2px 0; }
 
 .record-item {
@@ -2802,7 +2820,19 @@ a.maia-button.maia-button-secondary {
     padding-left: 27px;
     font-size: 90%;
     color: gray;
-    margin: 0 0 4px 0; }
+    margin: 0 0 4px 0;
+    max-height: 4em; }
+    .record-item > .content .status {
+      cursor: default;
+      background-color: lightblue;
+      font-size: 90%;
+      padding: 0 4px;
+      color: darkgreen; }
+    .record-item > .content .status.High {
+      border: thin solid red;
+      font-weight: bold; }
+    .record-item > .content .status.High {
+      color: grey; }
 
 .secondary-hovercard {
   border: solid 4px #69748C;
@@ -2854,7 +2884,8 @@ a.maia-button.maia-button-secondary {
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABT0lEQVQ4T53TvUuWURjH8Y+0uNrgYKAIGYRIDoKLg2JCQxRBYC6JroIO7uokNmRFzv0BNqmEg5BBOIog+AIqiKCDi4MYghByxbn1cPPgg53pOpzr971eT43b8wDvMYx21OIAC/iI08z3xqxJ1sPk2IU1/MQl2vAGF3iL1TIkABH5V4r6Dj9KTo34jlZ0Yit/D8AQvuFlBXHhW4dN7KKvDPiNAEX6d50RzKEJR4VjCM/xCRNVAE+xjddYzAFXmMR0FUBEPkQ/5nNA1LWBgSqAV2lSHVjPAR8whid5bSVYlLqCFjTjbw6oxw728QJnFcRTqUfjmC1PIe49WErimbRIf/AMo+hNohN0Yy/PoLBjUT7jeSmDGNkXRPQGHKeA/yDFKuea2Lz8L0SDo+boUaxyAYlM9isB7hpGNDEgj1Im3fcFBPxx+jsBWf4fQAH5isFrcZpBAXrSqxYAAAAASUVORK5CYII=) no-repeat center; }
 
 #field-display-dialog > .content {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: scroll;
   max-width: 400px;
   max-height: 400px; }
 
@@ -2965,6 +2996,18 @@ a.maia-button.maia-button-secondary {
   margin-right: 4px; }
 .widget-content SUMMARY:focus {
   outline: 0; }
+.widget-content DETAILS > DIV {
+  margin-top: 8px;
+  margin-left: 20px; }
+
+.sugarcrm-setting-page .module-setting {
+  margin-top: 4px;
+  margin-bottom: 8px; }
+  .sugarcrm-setting-page .module-setting > DIV {
+    max-height: 20em;
+    overflow-y: auto; }
+  .sugarcrm-setting-page .module-setting .setting-content {
+    margin-left: 26px; }
 
 .sugarcrm-link-panel, .no-sugar-panel, .setup-panel {
   text-align: center;
@@ -3605,10 +3648,14 @@ a.maia-button.maia-button-secondary {
 .module-page > .content {
   min-width: 150px; }
 
-.sugarcrm-setting-page .sync-setting-panel DETAILS {
+.inj-setting-page .sync-setting-panel DETAILS {
   margin: 8px 0; }
-.sugarcrm-setting-page .sync-setting-panel SUMMARY {
+.inj-setting-page .sync-setting-panel SUMMARY {
   cursor: default; }
+
+.inj-setting-page H3 {
+  text-overflow: ellipsis;
+  white-space: nowrap; }
 
 #root-panel {
   width: 100%; }

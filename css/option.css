@@ -12,13 +12,13 @@
     font-family: arial, sans-serif;
     /* Overridden by font: -webkit-small-control; */
     font-size: 100%; }
-  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA {
+  .ydn-crm INPUT[type=text], .ydn-crm INPUT[type=email], .ydn-crm INPUT[type=tel], .ydn-crm TEXTAREA, .ydn-crm SELECT {
     transition: all 0.30s ease-in-out;
     outline: none;
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD; }
-  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus {
+  .ydn-crm INPUT[type=text]:focus, .ydn-crm INPUT[type=email]:focus, .ydn-crm INPUT[type=tel]:focus, .ydn-crm TEXTAREA:focus, .ydn-crm SELECT:focus {
     box-shadow: 0 0 5px #51cbee;
     border: 1px solid #51cbee; }
   .ydn-crm INPUT:invalid {
@@ -144,6 +144,12 @@ SUMMARY {
 
 .flat-toggle-button.goog-custom-button-checked:hover svg {
   fill: #00ff00; }
+
+.what-is-this {
+  cursor: default;
+  font-weight: normal;
+  background-color: lightyellow;
+  color: gray; }
 
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
@@ -2334,19 +2340,19 @@ td.goog-date-picker-selected {
 .record-panel .record-body .content > .field {
   margin: 4px 0; }
 
-.secondary > section {
+.secondary section {
   margin: 4px 0; }
-  .secondary > section > .header {
+  .secondary section > .header {
     font-style: italic;
     color: gray;
     /* border-bottom: #d3d3d3 solid thin; */ }
-  .secondary > section > ul {
+  .secondary section > ul {
     list-style: none;
     padding-left: 0;
     margin: 4px 0;
     max-height: 16em;
     overflow-y: auto; }
-    .secondary > section > ul > li {
+    .secondary section > ul > li {
       margin: 2px 0; }
 
 .record-item {
@@ -2357,7 +2363,19 @@ td.goog-date-picker-selected {
     padding-left: 27px;
     font-size: 90%;
     color: gray;
-    margin: 0 0 4px 0; }
+    margin: 0 0 4px 0;
+    max-height: 4em; }
+    .record-item > .content .status {
+      cursor: default;
+      background-color: lightblue;
+      font-size: 90%;
+      padding: 0 4px;
+      color: darkgreen; }
+    .record-item > .content .status.High {
+      border: thin solid red;
+      font-weight: bold; }
+    .record-item > .content .status.High {
+      color: grey; }
 
 .secondary-hovercard {
   border: solid 4px #69748C;
@@ -2409,7 +2427,8 @@ td.goog-date-picker-selected {
       background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABT0lEQVQ4T53TvUuWURjH8Y+0uNrgYKAIGYRIDoKLg2JCQxRBYC6JroIO7uokNmRFzv0BNqmEg5BBOIog+AIqiKCDi4MYghByxbn1cPPgg53pOpzr971eT43b8wDvMYx21OIAC/iI08z3xqxJ1sPk2IU1/MQl2vAGF3iL1TIkABH5V4r6Dj9KTo34jlZ0Yit/D8AQvuFlBXHhW4dN7KKvDPiNAEX6d50RzKEJR4VjCM/xCRNVAE+xjddYzAFXmMR0FUBEPkQ/5nNA1LWBgSqAV2lSHVjPAR8whid5bSVYlLqCFjTjbw6oxw728QJnFcRTqUfjmC1PIe49WErimbRIf/AMo+hNohN0Yy/PoLBjUT7jeSmDGNkXRPQGHKeA/yDFKuea2Lz8L0SDo+boUaxyAYlM9isB7hpGNDEgj1Im3fcFBPxx+jsBWf4fQAH5isFrcZpBAXrSqxYAAAAASUVORK5CYII=) no-repeat center; }
 
 #field-display-dialog > .content {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: scroll;
   max-width: 400px;
   max-height: 400px; }
 
@@ -2520,6 +2539,18 @@ td.goog-date-picker-selected {
   margin-right: 4px; }
 .widget-content SUMMARY:focus {
   outline: 0; }
+.widget-content DETAILS > DIV {
+  margin-top: 8px;
+  margin-left: 20px; }
+
+.sugarcrm-setting-page .module-setting {
+  margin-top: 4px;
+  margin-bottom: 8px; }
+  .sugarcrm-setting-page .module-setting > DIV {
+    max-height: 20em;
+    overflow-y: auto; }
+  .sugarcrm-setting-page .module-setting .setting-content {
+    margin-left: 26px; }
 
 .setting-dialog .group-panel {
   border: thin solid #d3d3d3;

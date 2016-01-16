@@ -1,4 +1,189 @@
 {
+  "Quick_create": {
+    "message": "Quick create"
+  },
+  "Module": {
+    "message": "Module"
+  },
+  "Name": {
+    "message": "Name"
+  },
+  "Create": {
+    "message": "Create"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "Contact $email$ not in your CRM. Select a module to create a new record.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "view": {
+    "description": "A link label to view a record in CRM",
+    "message": "view"
+  },
+  "New_record": {
+    "message": "New record"
+  },
+  "Creating_a_new_record": {
+    "message": "Create a new $module$ record",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "Create a record from Email"
+  },
+  "Description": {
+    "message": "Description"
+  },
+  "Document_Name": {
+    "message": "Document Name"
+  },
+  "File_Name": {
+    "message": "File Name"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "Upload attachment as Documents record"
+  },
+  "Archive_email": {
+    "description": "A dialog title",
+    "message": "Archive email"
+  },
+  "Attach_as_Notes_records": {
+    "message": "Attach as Notes records"
+  },
+  "From": {
+    "description": "Label for email sender",
+    "message": "From"
+  },
+  "To": {
+    "description": "Label for email recipient",
+    "message": "To"
+  },
+  "Subject": {
+    "description": "Label for email subject",
+    "message": "Subject"
+  },
+  "words_in_this_email_content": {
+    "message": "words in this email content."
+  },
+  "Reset": {
+    "message": "Reset"
+  },
+  "Save": {
+    "message": "Save"
+  },
+  "Restore_default": {
+    "message": "Restore default"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Outgoing gmail archive preference"
+  },
+  "Synchronization": {
+    "message": "Synchronization"
+  },
+  "Google_Calendar": {
+    "message": "Google Calendar"
+  },
+  "Google_Contacts": {
+    "message": "Google Contacts"
+  },
+  "Email_Archiving": {
+    "message": "Email Archiving"
+  },
+  "Remove_sync": {
+    "message": "Remove sync"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Sync between Gmail contact and SugarCRM record"
+  },
+  "Add_to": {
+    "message": "Add to"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "Add to SugarCRM and sync"
+  },
+  "exporting": {
+    "message": "exporting"
+  },
+  "Deleting": {
+    "message": "Deleting"
+  },
+  "deleted": {
+    "message": "deleted"
+  },
+  "Edit_record": {
+    "message": "Edit record"
+  },
+  "Cancel_edit": {
+    "message": "Cancel edit"
+  },
+  "Submit_changes": {
+    "message": "Submit changes, press ALT to see changes"
+  },
+  "Edit": {
+    "message": "Edit"
+  },
+  "Submit": {
+    "message": "Submit"
+  },
+  "Close": {
+    "message": "Close"
+  },
+  "Delete": {
+    "message": "Delete"
+  },
+  "Creating": {
+    "message": "Creating"
+  },
+  "Updating": {
+    "message": "Updating"
+  },
+  "created": {
+    "message": "created"
+  },
+  "updated": {
+    "message": "updated"
+  },
+  "View_in_CRM": {
+    "message": "View in CRM"
+  },
+  "Duplicate_to": {
+    "message": "Duplicate to"
+  },
+  "New": {
+    "message": "New"
+  },
+  "Sync": {
+    "message": "Sync"
+  },
+  "To_Gmail": {
+    "message": "To Gmail"
+  },
+  "To_Gmail_tooltip": {
+    "message": "Export SugarCRM Contacts record to Gmail Contact"
+  },
+  "No_change_to_be_saved": {
+    "message": "No change to be saved."
+  },
+  "Error_saving": {
+    "message": "Error saving: "
+  },
+  "Sync_tooltip": {
+    "message": "Sync SugarCRM record and Gmail Contact"
+  },
+  "View_details": {
+    "message": "View details"
+  },
+  "Fields": {
+    "message": "Fields"
+  },
   "Upcoming_Activities": {
     "message": "Upcoming Activities"
   },

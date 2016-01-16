@@ -1,12 +1,123 @@
 {
+  "Reset": {
+    "message": "Zurücksetzen"
+  },
+  "Save": {
+    "message": "Speichern"
+  },
+  "Restore_default": {
+    "message": "Standard-Einstellungen wiederherstellen"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Präferenz Archiv Einstellungen für Abgehende gmail Nachrichten"
+  },
+  "Synchronization": {
+    "message": "Synchronisation"
+  },
+  "Google_Calendar": {
+    "message": "Google Calendar"
+  },
+  "Google_Contacts": {
+    "message": "Google Contacts"
+  },
+  "Email_Archiving": {
+    "message": "Email Archivierung"
+  },
+  "Remove_sync": {
+    "message": "Sync entfernen"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Sync zwischen Google Mail-Kontakt und SugarCRM Rekord"
+  },
+  "Add_to": {
+    "message": "Hinzufügen"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "Zu SugarCRM und Sync hinzufügen"
+  },
+  "exporting": {
+    "message": "Exportieren"
+  },
+  "Deleting": {
+    "message": "Löscht"
+  },
+  "deleted": {
+    "message": "gelöscht"
+  },
+  "Edit_record": {
+    "message": "Datensatz bearbeiten"
+  },
+  "Cancel_edit": {
+    "message": "Bearbeiten abbrechen"
+  },
+  "Submit_changes": {
+    "message": "Änderungen abschicken, ALT drücken um Änderungen zu sehen"
+  },
+  "Edit": {
+    "message": "Editieren"
+  },
+  "Submit": {
+    "message": "Abschicken"
+  },
+  "Close": {
+    "message": "Schließen"
+  },
+  "Delete": {
+    "message": "Löschen"
+  },
+  "Creating": {
+    "message": "Erstellt"
+  },
+  "Updating": {
+    "message": "Aktualisieren"
+  },
+  "created": {
+    "message": "erstellt"
+  },
+  "updated": {
+    "message": "aktualisiert"
+  },
+  "View_in_CRM": {
+    "message": "In CRM öffnen"
+  },
+  "Duplicate_to": {
+    "message": "Duplizieren zu"
+  },
+  "New": {
+    "message": "Neu"
+  },
+  "Sync": {
+    "message": "Sync"
+  },
+  "To_Gmail": {
+    "message": "nach GMail"
+  },
+  "To_Gmail_tooltip": {
+    "message": "Export SugarCRM Kontakt zu GMail Kontakt"
+  },
+  "No_change_to_be_saved": {
+    "message": "Keine Änderung, nichts zu speichern. "
+  },
+  "Error_saving": {
+    "message": "Fehler beim Speichern: "
+  },
+  "Sync_tooltip": {
+    "message": "Sync SugarCRM Datensatz und GMail-Kontakt"
+  },
+  "View_details": {
+    "message": "Details anzeigen"
+  },
+  "Fields": {
+    "message": "Felder"
+  },
   "Upcoming_Activities": {
-    "message": "Anstehende Aktivitäten"
+    "message": "Die nächsten Aktivitäten"
   },
   "Emails": {
     "message": "E-Mails"
   },
   "Related": {
-    "message": "Verbunden"
+    "message": "Verwandt"
   },
   "Options": {
     "message": "Optionen"
@@ -15,7 +126,7 @@
     "message": "Hilfe"
   },
   "Feedback": {
-    "message": "Rückkopplung"
+    "message": "Feedback"
   },
   "Search": {
     "message": "Suche"
@@ -24,13 +135,37 @@
     "message": "Suche nach Name, E-Mail, Telefon, ID, Titel, Beschreibung, usw."
   },
   "New_tooltip": {
-    "message": "Erstellen Sie einen neuen Rekord"
+    "message": "Neuen Eintrag erstellen"
   },
   "Activity_feed": {
     "message": "Aktivitäts-Feed"
   },
+  "Archive": {
+    "message": "Archivieren"
+  },
+  "View_Archive": {
+    "message": "Archiv ansehen "
+  },
+  "Re_archive": {
+    "message": "Erneut archivieren"
+  },
+  "Upload": {
+    "message": "Upload zu SugarCRM"
+  },
+  "Re_upload": {
+    "message": "Re-Upload zu SugarCRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "Zeige $module$ Detail in Seitenleiste",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
   "ActivityCount": {
-    "message": "$count$ records up$date$d since $date$.",
+    "message": "$count$ Datensätze aktualisiert seit $date$.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -43,7 +178,7 @@
     }
   },
   "Cases_assign": {
-    "message": "$no$ Cases assigned to you.",
+    "message": "$no$ Cases mir zugewiesen.",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -52,7 +187,7 @@
     }
   },
   "Upcoming_count": {
-    "message": "$no$ upcoming $module$  in this week.",
+    "message": "$no$ bevorstehende $module$ diese Woche. ",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -63,5 +198,52 @@
         "example": "Meetings"
       }
     }
+  },
+  "record_deleted": {
+    "message": "Datensatz von $user$ gelöscht ($date$)",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "Ihre Lizenz $license$ unterstützt die Funktion $feature$ nicht. ",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Sind Sie sicher, dass Sie den Datensatz aktualisieren möchten?"
+  },
+  "OK": {
+    "message": "Ok"
+  },
+  "Cancel": {
+    "message": "Abbrechen"
+  },
+  "Login_fail": {
+    "message": "Anmelden fehlgeschlagen. "
+  },
+  "Retry": {
+    "message": "Wiederholen"
+  },
+  "Setup": {
+    "message": "Einrichten"
+  },
+  "Setup_SugarCRM": {
+    "message": "SugarCRM einrichten"
   }
 }
