@@ -79,7 +79,7 @@ dialog.ydn-crm, .ydn-crm dialog {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  padding: 8px 48px 16px 48px; }
+  padding: 8px 24px 16px 24px; }
   dialog.ydn-crm .content, .ydn-crm dialog .content {
     max-height: 34em;
     max-width: 40em;
@@ -2488,16 +2488,19 @@ td.goog-date-picker-selected {
   overflow: auto; }
 
 .snippet-panel > .content {
-  max-height: 240px;
   overflow-y: auto;
   overflow-x: hidden; }
   .snippet-panel > .content > UL {
     list-style: none;
     padding-left: 0; }
 
-.module-record-list > UL {
+.hud-popup .snippet-panel > .content {
+  max-height: 240px; }
+.hud-popup .module-record-list > UL {
   overflow-y: hidden;
-  height: 200px;
+  height: 200px; }
+
+.module-record-list > UL {
   list-style: none;
   padding-left: 0; }
   .module-record-list > UL > LI {
@@ -2677,8 +2680,11 @@ td.goog-date-picker-selected {
     vertical-align: middle; }
 
 .tracking-sidebar {
-  height: 100%;
-  border: solid thin LightBlue; }
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-grow: 1;
+  overflow-y: hidden; }
   .tracking-sidebar .sidebar-head {
     height: 24px;
     display: flex;
@@ -2706,11 +2712,15 @@ td.goog-date-picker-selected {
   .tracking-sidebar .sidebar-head > * {
     margin: 2px; }
   .tracking-sidebar .sidebar-content {
-    height: 250px;
+    flex-grow: 1;
+    align-items: stretch;
     overflow-y: auto;
     margin-top: 4px; }
     .tracking-sidebar .sidebar-content .toolbar {
       margin-left: 4px; }
+
+.hud-popup .tracking-sidebar .sidebar-content {
+  height: 250px; }
 
 .tracking-feed .feeditem {
   padding: 4px;

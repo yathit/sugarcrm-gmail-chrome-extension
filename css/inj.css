@@ -78,7 +78,7 @@ dialog.ydn-crm, .ydn-crm dialog {
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  padding: 8px 48px 16px 48px; }
+  padding: 8px 24px 16px 24px; }
   dialog.ydn-crm .content, .ydn-crm dialog .content {
     max-height: 34em;
     max-width: 40em;
@@ -431,6 +431,41 @@ SUMMARY {
     width: 100%; }
   .create-record-dialog TEXTAREA {
     width: 100%; }
+
+.field-mapping-dialog-content {
+  box-sizing: border-box; }
+  .field-mapping-dialog-content TEXTAREA {
+    width: 98%; }
+  .field-mapping-dialog-content .title {
+    font-size: 110%;
+    font-weight: bold; }
+  .field-mapping-dialog-content .row {
+    display: flex;
+    flex-direction: row; }
+    .field-mapping-dialog-content .row > DIV:first-child {
+      width: 10em;
+      flex-shrink: 0;
+      flex-grow: 0; }
+    .field-mapping-dialog-content .row > DIV:last-child {
+      flex-grow: 1;
+      flex-shrink: 1; }
+  .field-mapping-dialog-content .result {
+    max-height: 4em;
+    overflow-y: scroll; }
+  .field-mapping-dialog-content .r-lbl {
+    display: inline-block;
+    min-width: 5em; }
+  .field-mapping-dialog-content .color-result {
+    cursor: pointer;
+    height: 14px;
+    margin: 0 2.5px;
+    width: 14px;
+    display: inline-block;
+    vertical-align: middle; }
+  .field-mapping-dialog-content .color-sample-span {
+    padding: 2px;
+    margin: 2px;
+    display: inline-block; }
 
 /*
  * Detail panel with + / - sign on right instead of default left arrow.
@@ -2945,16 +2980,19 @@ a.maia-button.maia-button-secondary {
   overflow: auto; }
 
 .snippet-panel > .content {
-  max-height: 240px;
   overflow-y: auto;
   overflow-x: hidden; }
   .snippet-panel > .content > UL {
     list-style: none;
     padding-left: 0; }
 
-.module-record-list > UL {
+.hud-popup .snippet-panel > .content {
+  max-height: 240px; }
+.hud-popup .module-record-list > UL {
   overflow-y: hidden;
-  height: 200px;
+  height: 200px; }
+
+.module-record-list > UL {
   list-style: none;
   padding-left: 0; }
   .module-record-list > UL > LI {
@@ -3087,8 +3125,11 @@ a.maia-button.maia-button-secondary {
     vertical-align: middle; }
 
 .tracking-sidebar {
-  height: 100%;
-  border: solid thin LightBlue; }
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex-grow: 1;
+  overflow-y: hidden; }
   .tracking-sidebar .sidebar-head {
     height: 24px;
     display: flex;
@@ -3116,11 +3157,15 @@ a.maia-button.maia-button-secondary {
   .tracking-sidebar .sidebar-head > * {
     margin: 2px; }
   .tracking-sidebar .sidebar-content {
-    height: 250px;
+    flex-grow: 1;
+    align-items: stretch;
     overflow-y: auto;
     margin-top: 4px; }
     .tracking-sidebar .sidebar-content .toolbar {
       margin-left: 4px; }
+
+.hud-popup .tracking-sidebar .sidebar-content {
+  height: 250px; }
 
 .tracking-feed .feeditem {
   padding: 4px;
@@ -3584,8 +3629,93 @@ a.maia-button.maia-button-secondary {
     .cache-update-display-body .footer-toolbar BUTTON {
       margin: 4px; }
 
+.ydn-sidebox {
+  display: block;
+  top: 108px;
+  bottom: auto;
+  width: 300px;
+  position: fixed;
+  right: -264px;
+  z-index: 2; }
+  .ydn-sidebox .sidebox-header {
+    display: flex;
+    flex-direction: row; }
+    .ydn-sidebox .sidebox-header .sidebox-button {
+      height: 16px;
+      margin: 2px 0;
+      display: flex;
+      flex-direction: row;
+      flex-grow: 0;
+      flex-shrink: 0; }
+    .ydn-sidebox .sidebox-header .sidebox-header-content {
+      flex-grow: 1; }
+
+.ydn-sidebox.open {
+  right: 0;
+  bottom: 0;
+  background-color: rgba(243, 243, 243, 0.85098); }
+
+.ydn-sidebox:not(.open) .sidebox-content {
+  display: none; }
+
+.ydn-sidebox:not(.open) .sidebox-header {
+  border-radius: 4px 0 0 4px; }
+
+.sidebox-content {
+  display: flex;
+  flex-direction: column; }
+
+.sidebox-container {
+  display: flex;
+  flex-direction: column; }
+  .sidebox-container .sidebox-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; }
+  .sidebox-container .sidebox-header {
+    background-color: rgba(243, 243, 243, 0.85098);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 8px; }
+  .sidebox-container .popup-footer-bar {
+    padding: 4px; }
+  .sidebox-container .popup-content {
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 250px;
+    align-items: stretch;
+    display: flex; }
+  .sidebox-container .popup-footer {
+    background-color: transparent; }
+  .sidebox-container .status-message {
+    background-color: transparent; }
+  .sidebox-container .desktop > .content {
+    flex-grow: 1;
+    margin-bottom: 0; }
+
+.ydn-sidebox.open .sidebox-container {
+  height: 100%; }
+
 .desktop > .content {
   margin-bottom: 8px; }
+
+.desktop.start {
+  width: 100%;
+  display: flex; }
+  .desktop.start > .head {
+    border-right: 1px solid lightblue; }
+  .desktop.start > .content {
+    display: flex;
+    padding-left: 4px;
+    background-color: white;
+    border-top: 1px solid lightblue; }
+    .desktop.start > .content > DIV {
+      align-items: stretch;
+      width: 100%;
+      overflow-y: hidden;
+      flex-grow: 1;
+      flex-shrink: 1;
+      display: flex;
+      flex-direction: column; }
 
 .sugarcrm-desktop .tile-container {
   display: inline-block;
@@ -3637,16 +3767,22 @@ a.maia-button.maia-button-secondary {
   overflow: hidden;
   cursor: pointer; }
 
-.module-page > .head .search-button .goog-custom-button-inner-box {
-  padding: 1px 4px; }
-.module-page > .head .wgui-textinput {
-  vertical-align: middle; }
-  .module-page > .head .wgui-textinput INPUT {
-    width: 107px; }
-  .module-page > .head .wgui-textinput .wgui-textinput-clear {
-    top: 2px; }
-.module-page > .content {
-  min-width: 150px; }
+.module-page {
+  display: flex;
+  flex-direction: column; }
+  .module-page > .head .search-button .goog-custom-button-inner-box {
+    padding: 1px 4px; }
+  .module-page > .head .wgui-textinput {
+    vertical-align: middle; }
+    .module-page > .head .wgui-textinput INPUT {
+      width: 107px; }
+    .module-page > .head .wgui-textinput .wgui-textinput-clear {
+      top: 2px; }
+  .module-page > .content {
+    min-width: 150px;
+    flex-grow: 1;
+    align-items: stretch;
+    overflow-y: auto; }
 
 .inj-setting-page .sync-setting-panel DETAILS {
   margin: 8px 0; }

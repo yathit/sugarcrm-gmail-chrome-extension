@@ -5,6 +5,77 @@
 </head>
 <body>
 
+<template id="field-mapping-dialog-content">
+<div class="field-mapping-dialog-content">
+  <br/>
+  <label>Target module: </label>
+  <select name="module"><option value="Meetings">Meetings</option></select>
+  <br/><br/>
+  <div class="row title">
+    <div>Google Event Field</div>
+    <div>SugarCRM Record Field</div>
+  </div>
+  <br/>
+  <div class="row">
+    <div>Title</div>
+    <div>
+      <textarea name="summary" rows="1" placeholder="$name"></textarea>
+      <div class="result" name="summary-result"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div>Description</div>
+    <div>
+      <textarea name="description" rows="1" placeholder="$description"></textarea>
+      <div class="result" name="description-result"></div>
+    </div>
+  </div>
+  <div class="row">
+    <div>Color</div>
+    <div>
+      <div>
+        <label class="r-lbl" title="Event does not have color"><input type=radio name="color-type" value="none"/> None</label>
+      </div>
+      <div>
+        <label class="r-lbl" title="All sync events has a color">
+          <input type=radio name="color-type" value="fix" checked/> Fix</label>
+        <input name="color" type="number" min="0" max="11" value="6" title="Event color id"/></div>
+      <div style="display: none">
+        <label class="r-lbl" title="Event has a color depending on record field value">
+          <input type=radio name="color-type" value="by-field"/> By Field</label>
+        <select name="by-field-name" title="Record field name that a color depend on"></select>
+        <input name="by-field-colors" type="text" title="Event color ids corresponding to field option values."/>
+      </div>
+      <div class="color-sample"></div>
+      <div class="color-result"></div></div>
+  </div>
+
+  <p class="message"></p>
+  <p>
+    <button name="reset">Restore default</button>
+    <button name="test">Test</button>
+  </p>
+  <br/>
+  <details>
+    <summary>Note 1: Field template</summary>
+    <p>Field mapping template string is similar to SugarCRM template string, but without module name prefix.
+      The module name has already defined by target module. </p>
+    <p>Field mapping template are transformed to respective Event field by substituting SugarCRM record field variable
+      placeholder with its actual value. Record placeholder is denoted by it name prefix with $ sign. </p>
+    <p>Suppose our target record has name of "test" and parent_name of "Kyaw",
+      the template, <code>$_module: [$parent_name] $name</code> yield to <code>Meetings: Kyaw: test</code>.
+      Where <code>$_module</code> evaluate to module name, Meetings.</p>
+  </details>
+  <br/>
+  <details>
+    <summary>Note 2: Color</summary>
+    <p>Color id is defined in <a href="https://developers.google.com/google-apps/calendar/v3/reference/events#resource">Google calendar color id</a>.
+      It ranges from 1 to 11. You can see in your Google calendar color event. Set to 0, if you don't want to annotate with color.</p>
+  </details>
+  <br/>
+</div>
+</template>
+
 <dialog id="field-display-dialog" class="ydn-crm">
   <div class="header">
     <h3>Record field display setting</h3>
@@ -243,7 +314,7 @@
             </span>
             <span class="center-item"></span>
             <span class="right-item">
-                <a href="http://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
+                <a href="https://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
             </span>
           </div>
 
