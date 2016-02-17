@@ -37,7 +37,7 @@ SugarCrmModel.prototype.getDetails = function() {
 
 /**
  * Get domain name of the instance.
- * @return {string?}
+ * @return {?string}
  */
 SugarCrmModel.prototype.getDomain = function() {
   return this.about_ ? this.about_.domain : null;

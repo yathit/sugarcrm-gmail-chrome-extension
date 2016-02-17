@@ -151,6 +151,21 @@ SUMMARY {
   background-color: lightyellow;
   color: gray; }
 
+@keyframes blinker {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+.ydn-crm .blink {
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1; }
+.ydn-crm .checkbox-label {
+  cursor: pointer; }
+
 body.setup {
   font-size: 100%; }
 
