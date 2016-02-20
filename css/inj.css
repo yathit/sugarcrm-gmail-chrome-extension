@@ -150,6 +150,21 @@ SUMMARY {
   background-color: lightyellow;
   color: gray; }
 
+@keyframes blinker {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
+.ydn-crm .blink {
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1; }
+.ydn-crm .checkbox-label {
+  cursor: pointer; }
+
 .iconic {
   width: 16px;
   height: 16px; }
@@ -355,6 +370,22 @@ SUMMARY {
 .tracking-button.goog-custom-button-checked.donottrack:hover svg, .tracking-button.tracked.donottrack:hover svg {
   fill: #ff0000; }
 
+.ydn-email-toolbar {
+  display: flex;
+  padding: 8px;
+  align-items: center;
+  border-bottom: 1px solid #cfcfcf;
+  border-left: 1px solid #cfcfcf;
+  border-right: 1px solid #cfcfcf;
+  background-color: whitesmoke; }
+  .ydn-email-toolbar > DIV ~ > DIV {
+    border-left: thin solid lightgrey; }
+  .ydn-email-toolbar > DIV {
+    margin-right: 16px; }
+
+.compose-toolbar {
+  margin-top: -2px; }
+
 .upload-dialog > div, .archive-dialog > div, .create-record-dialog > div {
   display: flex; }
   .upload-dialog > div > :first-child, .archive-dialog > div > :first-child, .create-record-dialog > div > :first-child {
@@ -528,6 +559,38 @@ SUMMARY {
 
 .ac-active {
   background-color: #b2b4bf; }
+
+/*
+ * Copyright 2009 The Closure Library Authors. All Rights Reserved.
+ *
+ * Use of this source code is governed by the Apache License, Version 2.0.
+ * See the COPYING file for details.
+ */
+/* Author: pallosp@google.com (Peter Pallos) */
+/* Sample 3-state checkbox styles. */
+.goog-checkbox {
+  border: 1px solid #1C5180;
+  display: -moz-inline-box;
+  display: inline-block;
+  font-size: 1px;
+  /* Fixes the height in IE6 */
+  height: 11px;
+  margin: 0 4px 0 1px;
+  vertical-align: text-bottom;
+  width: 11px; }
+
+.goog-checkbox-checked {
+  background: #fff url(chrome-extension://__MSG_@@extension_id__/image/goog/closure/check-sprite.gif) no-repeat 2px center; }
+
+.goog-checkbox-undetermined {
+  background: #bbb url(chrome-extension://__MSG_@@extension_id__/image/goog/closure/check-sprite.gif) no-repeat 2px center; }
+
+.goog-checkbox-unchecked {
+  background: #fff; }
+
+.goog-checkbox-disabled {
+  border: 1px solid lightgray;
+  background-position: -7px; }
 
 /*
  * Copyright 2009 The Closure Library Authors. All Rights Reserved.
@@ -2806,6 +2869,17 @@ a.maia-button.maia-button-secondary {
 .record-body:not(.detail) .record-group.normally-hide {
   display: none; }
 
+.snapshot-page H3 {
+  text-align: center; }
+.snapshot-page .title-row {
+  display: flex;
+  border-bottom: 2px solid lightblue; }
+  .snapshot-page .title-row .center {
+    flex-grow: 1;
+    flex-shrink: 1; }
+  .snapshot-page .title-row .title {
+    font-weight: 700; }
+
 .record-panel.empty:not(.edit) {
   display: none; }
 
@@ -2887,36 +2961,16 @@ a.maia-button.maia-button-secondary {
 .select-record SELECT {
   margin-right: 4px; }
 
-.contact-search-base {
-  position: absolute;
-  top: 10px;
-  right: 65px; }
-
 .contact-search {
-  position: fixed;
-  z-index: 1000;
   display: inline-block;
   height: 20px; }
-  .contact-search DIV .select-record {
-    position: absolute;
-    right: 0; }
-    .contact-search DIV .select-record SELECT {
-      display: none;
-      position: absolute;
-      right: -3px;
-      width: 46px;
-      top: 1px;
-      outline: none;
-      border: none;
-      background: none; }
-    .contact-search DIV .select-record INPUT:focus + SELECT, .contact-search DIV .select-record SELECT:focus {
-      display: inline-block; }
-    .contact-search DIV .select-record:not(.select-focus) > INPUT:not(:focus) {
-      width: 16px;
-      outline: none;
-      border: 0;
-      cursor: default;
-      background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABT0lEQVQ4T53TvUuWURjH8Y+0uNrgYKAIGYRIDoKLg2JCQxRBYC6JroIO7uokNmRFzv0BNqmEg5BBOIog+AIqiKCDi4MYghByxbn1cPPgg53pOpzr971eT43b8wDvMYx21OIAC/iI08z3xqxJ1sPk2IU1/MQl2vAGF3iL1TIkABH5V4r6Dj9KTo34jlZ0Yit/D8AQvuFlBXHhW4dN7KKvDPiNAEX6d50RzKEJR4VjCM/xCRNVAE+xjddYzAFXmMR0FUBEPkQ/5nNA1LWBgSqAV2lSHVjPAR8whid5bSVYlLqCFjTjbw6oxw728QJnFcRTqUfjmC1PIe49WErimbRIf/AMo+hNohN0Yy/PoLBjUT7jeSmDGNkXRPQGHKeA/yDFKuea2Lz8L0SDo+boUaxyAYlM9isB7hpGNDEgj1Im3fcFBPxx+jsBWf4fQAH5isFrcZpBAXrSqxYAAAAASUVORK5CYII=) no-repeat center; }
+  .contact-search .select-record SELECT {
+    display: none;
+    right: -3px;
+    width: 46px;
+    top: 1px; }
+  .contact-search .select-record INPUT[type=text] {
+    margin: 0; }
 
 #field-display-dialog > .content {
   overflow-x: auto;
@@ -3037,15 +3091,6 @@ a.maia-button.maia-button-secondary {
 .widget-content DETAILS > DIV {
   margin-top: 8px;
   margin-left: 20px; }
-
-.sugarcrm-setting-page .module-setting {
-  margin-top: 4px;
-  margin-bottom: 8px; }
-  .sugarcrm-setting-page .module-setting > DIV {
-    max-height: 20em;
-    overflow-y: auto; }
-  .sugarcrm-setting-page .module-setting .setting-content {
-    margin-left: 26px; }
 
 .sugarcrm-link-panel, .no-sugar-panel, .setup-panel {
   text-align: center;
@@ -3792,6 +3837,38 @@ a.maia-button.maia-button-secondary {
 .inj-setting-page H3 {
   text-overflow: ellipsis;
   white-space: nowrap; }
+
+.setting-panel {
+  margin-top: 16px;
+  margin-bottom: 8px; }
+  .setting-panel .title {
+    font-size: 110%;
+    font-weight: bold; }
+  .setting-panel SECTION {
+    margin: 4px 0;
+    padding-left: 18px; }
+
+.sugarcrm-setting-page .module-setting > SECTION {
+  max-height: 20em;
+  overflow-y: auto; }
+.sugarcrm-setting-page .module-setting .setting-content {
+  margin-left: 26px; }
+
+.update-message-panel {
+  padding: 8px; }
+
+.update-message-item {
+  background-color: LemonChiffon;
+  border-radius: 3px;
+  padding: 8px; }
+  .update-message-item .option-panel {
+    padding: 8px 0; }
+  .update-message-item .control {
+    margin-top: 4px;
+    display: flex;
+    justify-content: flex-end; }
+    .update-message-item .control > * {
+      padding-left: 8px; }
 
 #root-panel {
   width: 100%; }
