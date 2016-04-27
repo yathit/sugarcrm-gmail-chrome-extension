@@ -31,7 +31,7 @@ window.YathitCrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.Version = {
-  release: '5.11.11'
+  release: '5.11.16'
 };
 
 
@@ -45,5 +45,5 @@ YathitCrm.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.sugarcrm.Version = {
-  release: '5.11.11'
+  release: '5.11.16'
 };
