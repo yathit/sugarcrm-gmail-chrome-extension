@@ -4,14 +4,16 @@
   <title>content script template</title>
 </head>
 <body>
+<template id="email-archive-setting">
 
+</template>
 <template id="field-mapping-dialog-content">
 <div class="field-mapping-dialog-content">
   <br/>
   <label>Target module: </label>
   <select name="module"><option value="Meetings">Meetings</option></select>
   <br/><br/>
-  <div class="row title">
+  <div class="row ydn-title">
     <div>Google Event Field</div>
     <div>SugarCRM Record Field</div>
   </div>
@@ -80,7 +82,7 @@
   <div class="header">
     <h3>Record field display setting</h3>
   </div>
-  <div class="content"></div>
+  <div class="ydn-content"></div>
   <div class="button-bar">
     <button class="restore">Restore default</button>
     <button class="apply">Apply</button>
@@ -92,7 +94,7 @@
   <div class="header">
     <h3>Record detail</h3>
   </div>
-  <div class="content"></div>
+  <div class="ydn-content"></div>
   <div class="button-bar">
     <button value="ok">OK</button>
   </div>
@@ -102,7 +104,7 @@
   <div class="header">
     <h3>Confirm delete?</h3>
   </div>
-  <div class="content">
+  <div class="ydn-content">
     Are you sure you want to delete <a class="record">the</a> <span class="type"></span>&nbsp;
     record?
   </div>
@@ -131,13 +133,13 @@
 </template>
 
 <template id="basic-about-template">
-  <h3 id="app-name"></h3>
+  <h3 class="app-name"></h3>
   <p>
     Version: <span name="version"></span><br/>
     Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
   </p>
   <div class="license-section">
-    <div class="content">
+    <div class="ydn-content">
       License: <span class="license"></span>
     </div>
     <p class="note">
@@ -178,10 +180,7 @@
   </section>
     <section id="email-archive">
     </section>
-  <section>
-    <h3>System setting</h3>
-    <div id="logging-section"></div>
-  </section>
+
   <p><br/></p>
 </template>
 
@@ -365,13 +364,11 @@
 </template>
 
 <template id="tracking-setting-template">
-  <section class="tracking-setting">
-    <h3>Email Tracking</h3>
 
     <div class="default-tracking-selection widget-content">
       <details>
         <summary>Tracking preference</summary>
-          <div style="padding-left: 24px">
+          <div>
               <label title="All your email send will include tracking beacon.">
                   <input type="radio" name="default-tracking" value="always"> Always track
               </label><br>
@@ -395,8 +392,10 @@
     <div class="notification-section widget-content">
       <details>
         <summary>Notification</summary>
+        <div>
         <input name="notify" type="checkbox" id="notify"/>
         <label for="notify">Notify when recipient open a tracked email or click a tracked link</label>
+        </div>
       </details>
 
     </div>
@@ -413,23 +412,23 @@
         </div>
       </details>
     </div>
-  </section>
+
 </template>
 
 <template id="template-tracking-datalist">
   <div class="datalist-item">
-    <div class="head row">
+    <div class="ydn-head row">
       <div class="label recipient"></div>
-      <div class="center"></div>
+      <div class="ydn-center"></div>
       <div class="stats">
         <span title="Number of emails opened"><span class="opens"></span><span class="symbol">O</span></span>&nbsp;
         <span title="Number of links clicked"><span class="clicks"></span><span class="symbol">L</span></span>
       </div>
 
     </div>
-    <div class="content row">
+    <div class="ydn-content row">
       <div class="label subject"></div>
-      <div class="center"></div>
+      <div class="ydn-center"></div>
       <div class="stats lastopen"></div>
 
     </div>
@@ -445,7 +444,7 @@
                 title="Number of emails open in last 24 hours">0/0</span>
           <span class="stat-panel clicks"
                 title="Number of link clicked in last 24 hours">0/0</span>
-          <span class="center"></span>
+          <span class="ydn-center"></span>
           <span class="more-less-toggle svg-button"></span>
 
       </div>
@@ -470,7 +469,7 @@
     <div class="item">
       <span></span>
       <span></span>
-      <a class="center"></a>
+      <a class="ydn-center"></a>
       <span></span>
     </div>
   </div>
@@ -490,7 +489,7 @@
     <div class="logo">
       <img/>
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <div class="name">
         <a target="_blank"></a>
       </div>
@@ -502,7 +501,7 @@
       </div>
     </div>
   </div>
-  <div class="content">
+  <div class="ydn-content">
     <ul class="tweets">
     </ul>
   </div>
@@ -514,7 +513,7 @@
     <div class="logo">
       <img />
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <div class="name">
         <a target="_blank"></a>
       </div>
@@ -534,7 +533,7 @@
     <div class="logo">
       <img />
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <div class="name">
         <a target="_blank"></a>
       </div>
@@ -551,7 +550,7 @@
 
   <div class="header">
 
-    <div class="content">
+    <div class="ydn-content">
       <div class="name">
         <a target="_blank"></a>
       </div>
@@ -570,7 +569,7 @@
     <div class="logo">
       <img />
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <div class="name">
         <a target="_blank"></a>
       </div>
@@ -587,7 +586,7 @@
       <div class="logo">
         <img />
       </div>
-      <div class="content">
+      <div class="ydn-content">
         <div class="name">
 
         </div>
@@ -599,7 +598,7 @@
     </div>
     <div class="employment"></div>
     <div class="location"></div>
-    <div class="content">
+    <div class="ydn-content">
     </div>
     <div>
       Sources: <span class="sources"></span>
@@ -613,7 +612,7 @@
     <div class="logo">
       <img />
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <div class="name">
         <a target="_blank"></a>
       </div>
@@ -639,12 +638,12 @@
 
 <template id="sugarcrm-sync-template">
   <div class="header">
-    <span class="title">Synchronization</span>
+    <span class="ydn-title">Synchronization</span>
     <span></span>
     <a class="domain" title="Go to SugarCRM portal" target="_blank"></a>
   </div>
-  <div class="content"></div>
-  <div class="footer"></div>
+  <div class="ydn-content"></div>
+  <div class="ydn-footer"></div>
 </template>
 <template id="sync-content-template">
   <div class="sync-contact">
@@ -663,10 +662,10 @@
 </template>
 <template id="sync-panel-template">
   <div class="header"></div>
-  <div class="content">
+  <div class="ydn-content">
     <ul class="infinite-scroll"></ul>
   </div>
-  <div class="footer">
+  <div class="ydn-footer">
 
   </div>
 </template>
@@ -709,10 +708,10 @@
       <span class="badge-icon google"></span>
       <a name="name" target="_blank" title="View in Gmail contact"></a>
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <span name="emails"></span>
     </div>
-    <div class="footer">
+    <div class="ydn-footer">
       <span name="import" class="inline-block" title="Import to SugarCRM"></span>
     </div>
   </div>
@@ -722,10 +721,10 @@
     <div class="header">
       <span name="name"></span>
     </div>
-    <div class="content">
+    <div class="ydn-content">
       <span name="emails"></span>
     </div>
-    <div class="footer">
+    <div class="ydn-footer">
       <span class="svg-button" name="export"></span>
     </div>
   </div>
@@ -757,51 +756,27 @@
     <div class="header">
       <div class="flex-bar">
         <span class="icon"></span>
-      <span class="center">
+      <span class="ydn-center">
         <a></a>
       </span>
         <span class="menu-holder"></span>
       </div>
       <div class="header-content"></div>
     </div>
-    <div class="content"></div>
-    <div class="footer"></div>
+    <div class="ydn-content"></div>
+    <div class="ydn-footer"></div>
   </div>
 </template>
-<template id="logging-pref-template">
-  <div class="logging-pref widget-content">
-    <details>
-      <summary>Logging preference</summary>
-      <div>
-        <label title="Analytic logging help us improving user experience and adding more features.">
-          <input type="checkbox" name="analytic"/>
-          Enable analytic logging
-        </label>
-      </div>
-      <div>
-        <label title="Debug logging help us hard to find bugs.">
-          <input type="checkbox" name="debug"/>
-          Enable debug logging
-        </label>
-      </div>
-      <p class="license message">
-        A subscription is required to change logging setting.
-      </p>
-      <div>
-        See our <a target="_blank" href="https://www.yathit.com/privacy.html">privacy policy</a>.
-      </div>
-    </details>
-  </div>
-</template>
+
 <template id="record-item-template">
   <div class="record-item">
     <div class="record-header flex-bar">
       <span class="icon"></span>
-      <span class="center title"></span>
+      <span class="ydn-center ydn-title"></span>
     </div>
-    <div class="content">
+    <div class="ydn-content">
 
-      <span class="center summary"></span>
+      <span class="ydn-center summary"></span>
     </div>
   </div>
 </template>

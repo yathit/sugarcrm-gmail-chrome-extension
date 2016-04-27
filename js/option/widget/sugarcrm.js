@@ -254,7 +254,10 @@ SugarCrmWidget.prototype.handleLogin = function(e) {
       } else {
         window.location.reload();
       }
-    }, this);
+    }, this, function(txt) {
+      console.log(txt);
+      ele_msg.textContent = txt;
+    });
   }).bind(this));
 
 };

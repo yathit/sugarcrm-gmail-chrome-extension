@@ -103,6 +103,18 @@
   "Sync_between_Gmail_contact_and_SugarCRM_record": {
     "message": "Sync between Gmail contact and SugarCRM record"
   },
+  "sync_group_tooltip": {
+    "message": "Google Contacts Group, in which synchronized Contacts appear in."
+  },
+  "sync_interval_label": {
+    "message": "Sync interval in minutes"
+  },
+  "sync_interval_tooltip": {
+    "message": "Frequent synchronization consume more power and increase CRM server load."
+  },
+  "confirm_sync_contacts_restore": {
+    "message": "Are you sure restore default setting for Contacts Synchronization?"
+  },
   "Add_to": {
     "message": "Add to"
   },
@@ -129,6 +141,16 @@
   },
   "Edit": {
     "message": "Edit"
+  },
+  "Advanced": {
+    "message": "Advanced",
+    "description": "Advanced setting for expert users"
+  },
+  "Advanced_tooltip": {
+    "message": "Advanced setting for expert users"
+  },
+  "Delete_all_synced_Gmail_Contacts": {
+    "message": "Delete all synced Gmail Contacts"
   },
   "Submit": {
     "message": "Submit"
@@ -217,6 +239,14 @@
   "Archive": {
     "message": "Archive"
   },
+  "Template": {
+    "message": "Template",
+    "description": "A menu text for template"
+  },
+  "Tracking": {
+    "message": "Tracking",
+    "description": "A menu text to set tracking"
+  },
   "View_Archive": {
     "message": "View Archive"
   },
@@ -235,6 +265,15 @@
       "module": {
         "content": "$1",
         "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": "Document $name$  already in CRM.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
       }
     }
   },
@@ -318,5 +357,59 @@
   },
   "Setup_SugarCRM": {
     "message": "Setup SugarCRM"
+  },
+  "Module_setting": {
+    "message": "Module setting"
+  },
+  "A_subscription": {
+    "message": "A subscription"
+  },
+  "is_required_for_attachment": {
+    "message": "is required for attachment."
+  },
+  "Relationships": {
+    "message": "Relationships",
+    "description": "Title of a section in archive dialog."
+  },
+  "Relationships_tooltip": {
+    "message": "By creating a relationship, the related record appear as subpanels in the target record's detail view."
+  },
+  "Relationship_list_of_module_tooltip": {
+    "message": "List of modules, which has relationship with $mn$ module. Relationships are defined in Module Builder/Studio.",
+    "description": "Tooltips in archive dialog.",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Emails"
+      }
+    }
+  },
+  "Search_tooltips": {
+    "message": "Search name, description, id, email, case number, etc."
+  },
+  "Logging_preference": {
+    "message": "Logging preference"
+  },
+  "See_our_privacy_policy": {
+    "message": "See our privacy policy"
+  },
+  "Logging_subscription_require_message": {
+    "message": "A subscription is required to change logging setting."
+  },
+  "Logging_Analytics_tooltip": {
+    "message": "Analytic logging help us improving user experience and adding more features."
+  },
+  "Logging_Debugging_tooltip": {
+    "message": "Debug logging help us hard to find bugs."
+  },
+  "Enable_analytic_logging": {
+    "message": "Enable analytic logging"
+  },
+  "Enable_debug_logging": {
+    "message": "Enable debug logging"
+  },
+  "Snapshot": {
+    "message": "Snapshot",
+    "description": "A button tooltip on main tab bar, to show person detail."
   }
 }

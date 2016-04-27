@@ -1,7 +1,8 @@
 /** Setup file CSS */
 .ydn-crm {
   font-family: arial, sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  /* toolbar items */ }
   .ydn-crm h5 {
     font-size: 1em;
     font-weight: normal;
@@ -28,129 +29,97 @@
   .ydn-crm .centered-div {
     margin: 4px;
     text-align: center; }
-
-.left {
-  float: left;
-  display: inline-block;
-  z-index: 0; }
-
-.right {
-  float: right;
-  display: inline-block;
-  overflow: hidden;
-  z-index: 1; }
-
-/* toolbar items */
-.toolbar > * {
-  padding-left: 4px; }
-
-.statusbar {
-  height: 14px;
-  overflow: hidden;
-  border-bottom: solid thin #d3d3d3;
-  background-color: white;
-  padding: 4px 2px;
-  margin: 0;
-  font-size: small; }
-
-.sticky-right .statusbar {
-  position: relative; }
-
-.flex-bar {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center; }
-  .flex-bar > .center {
-    flex-grow: 1;
-    flex-shrink: 1; }
-
-.svg-button {
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 3px;
-  margin: 0 2px;
-  padding: 2px; }
-
-.svg-button:hover {
-  background-color: #dddddd; }
-
-dialog.ydn-crm, .ydn-crm dialog {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 6px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  padding: 8px 24px 16px 24px; }
-  dialog.ydn-crm .content, .ydn-crm dialog .content {
-    max-height: 34em;
-    max-width: 40em;
-    overflow: auto; }
-  dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
-    padding: 8px; }
-    dialog.ydn-crm .button-bar > button, .ydn-crm dialog .button-bar > button {
-      margin: 0 4px; }
-
-.dropdown p {
-  display: inline-block;
-  font-weight: bold; }
-
-select.dropdown {
-  border: 0 !important;
-  /*Removes border*/
-  -webkit-appearance: none;
-  /*Removes default chrome and safari style*/
-  background: url("http://jonathanphz.tk/dropdown_arrow.png") no-repeat;
-  background-position: 80px 8px;
-  /*Position of the background-image*/
-  width: 100px;
-  /*Width of select dropdown to give space for arrow image*/
-  height: 20px;
-  /*fix for mac input height*/
-  text-indent: 0.01px;
-  /* Removes default arrow from firefox*/
-  text-overflow: "";
-  /*Removes default arrow from firefox*/
-  cursor: pointer;
-  /*My custom style for fonts*/
-  color: #1455a2; }
-  select.dropdown option {
-    text-align: center; }
-
-DETAILS.left-ex SUMMARY:after {
-  float: left;
-  margin-right: 4px; }
-
-SUMMARY {
-  outline: none; }
-
-.flat-toggle-button svg {
-  fill: #e8e8e8; }
-.flat-toggle-button .goog-custom-button-outer-box {
-  border: 0;
-  background: none; }
-.flat-toggle-button .goog-custom-button-inner-box {
-  border: 0;
-  background: none; }
-.flat-toggle-button.goog-custom-button {
-  border: 0;
-  background: none; }
-.flat-toggle-button:hover {
-  background-color: #f7f7f7; }
-
-.flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
-  fill: #dddddd; }
-
-.flat-toggle-button.goog-custom-button-checked svg {
-  fill: #00ff00; }
-
-.flat-toggle-button.goog-custom-button-checked:hover svg {
-  fill: #00ff00; }
-
-.what-is-this {
-  cursor: default;
-  font-weight: normal;
-  background-color: lightyellow;
-  color: gray; }
-
+  .ydn-crm .left {
+    float: left;
+    display: inline-block;
+    z-index: 0; }
+  .ydn-crm .right {
+    float: right;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1; }
+  .ydn-crm .toolbar > * {
+    padding-left: 4px; }
+  .ydn-crm .statusbar {
+    height: 14px;
+    overflow: hidden;
+    border-bottom: solid thin #d3d3d3;
+    background-color: white;
+    padding: 4px 2px;
+    margin: 0;
+    font-size: small; }
+  .ydn-crm .sticky-right .statusbar {
+    position: relative; }
+  .ydn-crm .flex-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    text-align: left; }
+    .ydn-crm .flex-bar > .ydn-center {
+      flex-grow: 1;
+      flex-shrink: 1; }
+  .ydn-crm .svg-button {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 3px;
+    margin: 0 2px;
+    padding: 2px; }
+  .ydn-crm .svg-button:hover {
+    background-color: #dddddd; }
+  .ydn-crm .dropdown p {
+    display: inline-block;
+    font-weight: bold; }
+  .ydn-crm select.dropdown {
+    border: 0 !important;
+    /*Removes border*/
+    -webkit-appearance: none;
+    /*Removes default chrome and safari style*/
+    background: url("http://jonathanphz.tk/dropdown_arrow.png") no-repeat;
+    background-position: 80px 8px;
+    /*Position of the background-image*/
+    width: 100px;
+    /*Width of select dropdown to give space for arrow image*/
+    height: 20px;
+    /*fix for mac input height*/
+    text-indent: 0.01px;
+    /* Removes default arrow from firefox*/
+    text-overflow: "";
+    /*Removes default arrow from firefox*/
+    cursor: pointer;
+    /*My custom style for fonts*/
+    color: #1455a2; }
+    .ydn-crm select.dropdown option {
+      text-align: center; }
+  .ydn-crm DETAILS.left-ex SUMMARY:after {
+    float: left;
+    margin-right: 4px; }
+  .ydn-crm SUMMARY {
+    outline: none; }
+  .ydn-crm .flat-toggle-button svg {
+    fill: #e8e8e8; }
+  .ydn-crm .flat-toggle-button .goog-custom-button-outer-box {
+    border: 0;
+    background: none; }
+  .ydn-crm .flat-toggle-button .goog-custom-button-inner-box {
+    border: 0;
+    background: none; }
+  .ydn-crm .flat-toggle-button.goog-custom-button {
+    border: 0;
+    background: none; }
+  .ydn-crm .flat-toggle-button:hover {
+    background-color: #f7f7f7; }
+  .ydn-crm .flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
+    fill: #dddddd; }
+  .ydn-crm .flat-toggle-button.goog-custom-button-checked svg {
+    fill: #00ff00; }
+  .ydn-crm .flat-toggle-button.goog-custom-button-checked:hover svg {
+    fill: #00ff00; }
+  .ydn-crm .what-is-this {
+    cursor: default;
+    font-weight: normal;
+    background-color: lightyellow;
+    color: gray; }
 @keyframes blinker {
   0% {
     opacity: 1.0; }
@@ -158,13 +127,27 @@ SUMMARY {
     opacity: 0.0; }
   100% {
     opacity: 1.0; } }
-.ydn-crm .blink {
-  animation-name: blinker;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1; }
-.ydn-crm .checkbox-label {
-  cursor: pointer; }
+  .ydn-crm .blink {
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1; }
+  .ydn-crm .checkbox-label {
+    cursor: pointer; }
+
+dialog.ydn-crm, .ydn-crm dialog {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  padding: 8px 24px 16px 24px; }
+  dialog.ydn-crm .ydn-content, .ydn-crm dialog .ydn-content {
+    max-height: 40em;
+    max-width: 50em;
+    overflow: auto; }
+  dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
+    padding: 8px; }
+    dialog.ydn-crm .button-bar > button, .ydn-crm dialog .button-bar > button {
+      margin: 0 4px; }
 
 body.setup {
   font-size: 100%; }
@@ -172,10 +155,10 @@ body.setup {
 summary {
   font-size: 120%; }
 
-details > * > .title {
+details > * > .ydn-title {
   padding-left: 20px; }
 
-details.success > * > .title {
+details.success > * > .ydn-title {
   background: url("chrome-extension://__MSG_@@extension_id__/image/tick.svg") left center no-repeat; }
 
 details {

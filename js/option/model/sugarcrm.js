@@ -168,9 +168,10 @@ SugarCrmModel.prototype.getInfo = function(cb, scope) {
  * @param {string} provider
  * @param {function(this: T, (Error|SugarCrm.About))} cb
  * @param {T} scope
+ * @param {function(this: T, string)} pg progress callback.
  * @template T
  */
-SugarCrmModel.prototype.login = function(url, username, password, provider, cb, scope) {
+SugarCrmModel.prototype.login = function(url, username, password, provider, cb, scope, pg) {
   this.setInstanceUrl(url);
   window.console.assert(!!this.about_, 'Not initialized');
   if (username) {
@@ -200,13 +201,19 @@ SugarCrmModel.prototype.login = function(url, username, password, provider, cb, 
   chrome.permissions.request(permission, function(grant) {
     // whether user give permission or not, we still continue login.
     // console.log(permission, me.about_);
-    ydn.msg.getChannel().send('new-sugarcrm', details).addCallbacks(function(info) {
+    var ydf = ydn.msg.getChannel().send('new-sugarcrm', details);
+    ydf.addCallbacks(function(info) {
       // console.log(info);
       me.about_ = info;
       cb.call(scope, info);
     }, function(e) {
       cb.call(scope, e);
     }, me);
+    ydf.addProgback(function(msg) {
+      if (pg) {
+        pg.call(scope, msg);
+      }
+    });
   });
 };
 

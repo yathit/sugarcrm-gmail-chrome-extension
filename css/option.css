@@ -1,7 +1,8 @@
 @charset "UTF-8";
 .ydn-crm {
   font-family: arial, sans-serif;
-  font-size: 12px; }
+  font-size: 12px;
+  /* toolbar items */ }
   .ydn-crm h5 {
     font-size: 1em;
     font-weight: normal;
@@ -28,129 +29,97 @@
   .ydn-crm .centered-div {
     margin: 4px;
     text-align: center; }
-
-.left {
-  float: left;
-  display: inline-block;
-  z-index: 0; }
-
-.right {
-  float: right;
-  display: inline-block;
-  overflow: hidden;
-  z-index: 1; }
-
-/* toolbar items */
-.toolbar > * {
-  padding-left: 4px; }
-
-.statusbar {
-  height: 14px;
-  overflow: hidden;
-  border-bottom: solid thin #d3d3d3;
-  background-color: white;
-  padding: 4px 2px;
-  margin: 0;
-  font-size: small; }
-
-.sticky-right .statusbar {
-  position: relative; }
-
-.flex-bar {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center; }
-  .flex-bar > .center {
-    flex-grow: 1;
-    flex-shrink: 1; }
-
-.svg-button {
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 3px;
-  margin: 0 2px;
-  padding: 2px; }
-
-.svg-button:hover {
-  background-color: #dddddd; }
-
-dialog.ydn-crm, .ydn-crm dialog {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 6px;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
-  padding: 8px 24px 16px 24px; }
-  dialog.ydn-crm .content, .ydn-crm dialog .content {
-    max-height: 34em;
-    max-width: 40em;
-    overflow: auto; }
-  dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
-    padding: 8px; }
-    dialog.ydn-crm .button-bar > button, .ydn-crm dialog .button-bar > button {
-      margin: 0 4px; }
-
-.dropdown p {
-  display: inline-block;
-  font-weight: bold; }
-
-select.dropdown {
-  border: 0 !important;
-  /*Removes border*/
-  -webkit-appearance: none;
-  /*Removes default chrome and safari style*/
-  background: url("http://jonathanphz.tk/dropdown_arrow.png") no-repeat;
-  background-position: 80px 8px;
-  /*Position of the background-image*/
-  width: 100px;
-  /*Width of select dropdown to give space for arrow image*/
-  height: 20px;
-  /*fix for mac input height*/
-  text-indent: 0.01px;
-  /* Removes default arrow from firefox*/
-  text-overflow: "";
-  /*Removes default arrow from firefox*/
-  cursor: pointer;
-  /*My custom style for fonts*/
-  color: #1455a2; }
-  select.dropdown option {
-    text-align: center; }
-
-DETAILS.left-ex SUMMARY:after {
-  float: left;
-  margin-right: 4px; }
-
-SUMMARY {
-  outline: none; }
-
-.flat-toggle-button svg {
-  fill: #e8e8e8; }
-.flat-toggle-button .goog-custom-button-outer-box {
-  border: 0;
-  background: none; }
-.flat-toggle-button .goog-custom-button-inner-box {
-  border: 0;
-  background: none; }
-.flat-toggle-button.goog-custom-button {
-  border: 0;
-  background: none; }
-.flat-toggle-button:hover {
-  background-color: #f7f7f7; }
-
-.flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
-  fill: #dddddd; }
-
-.flat-toggle-button.goog-custom-button-checked svg {
-  fill: #00ff00; }
-
-.flat-toggle-button.goog-custom-button-checked:hover svg {
-  fill: #00ff00; }
-
-.what-is-this {
-  cursor: default;
-  font-weight: normal;
-  background-color: lightyellow;
-  color: gray; }
-
+  .ydn-crm .left {
+    float: left;
+    display: inline-block;
+    z-index: 0; }
+  .ydn-crm .right {
+    float: right;
+    display: inline-block;
+    overflow: hidden;
+    z-index: 1; }
+  .ydn-crm .toolbar > * {
+    padding-left: 4px; }
+  .ydn-crm .statusbar {
+    height: 14px;
+    overflow: hidden;
+    border-bottom: solid thin #d3d3d3;
+    background-color: white;
+    padding: 4px 2px;
+    margin: 0;
+    font-size: small; }
+  .ydn-crm .sticky-right .statusbar {
+    position: relative; }
+  .ydn-crm .flex-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    text-align: left; }
+    .ydn-crm .flex-bar > .ydn-center {
+      flex-grow: 1;
+      flex-shrink: 1; }
+  .ydn-crm .svg-button {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 3px;
+    margin: 0 2px;
+    padding: 2px; }
+  .ydn-crm .svg-button:hover {
+    background-color: #dddddd; }
+  .ydn-crm .dropdown p {
+    display: inline-block;
+    font-weight: bold; }
+  .ydn-crm select.dropdown {
+    border: 0 !important;
+    /*Removes border*/
+    -webkit-appearance: none;
+    /*Removes default chrome and safari style*/
+    background: url("http://jonathanphz.tk/dropdown_arrow.png") no-repeat;
+    background-position: 80px 8px;
+    /*Position of the background-image*/
+    width: 100px;
+    /*Width of select dropdown to give space for arrow image*/
+    height: 20px;
+    /*fix for mac input height*/
+    text-indent: 0.01px;
+    /* Removes default arrow from firefox*/
+    text-overflow: "";
+    /*Removes default arrow from firefox*/
+    cursor: pointer;
+    /*My custom style for fonts*/
+    color: #1455a2; }
+    .ydn-crm select.dropdown option {
+      text-align: center; }
+  .ydn-crm DETAILS.left-ex SUMMARY:after {
+    float: left;
+    margin-right: 4px; }
+  .ydn-crm SUMMARY {
+    outline: none; }
+  .ydn-crm .flat-toggle-button svg {
+    fill: #e8e8e8; }
+  .ydn-crm .flat-toggle-button .goog-custom-button-outer-box {
+    border: 0;
+    background: none; }
+  .ydn-crm .flat-toggle-button .goog-custom-button-inner-box {
+    border: 0;
+    background: none; }
+  .ydn-crm .flat-toggle-button.goog-custom-button {
+    border: 0;
+    background: none; }
+  .ydn-crm .flat-toggle-button:hover {
+    background-color: #f7f7f7; }
+  .ydn-crm .flat-toggle-button:hover:not(.goog-custom-button-checked) svg {
+    fill: #dddddd; }
+  .ydn-crm .flat-toggle-button.goog-custom-button-checked svg {
+    fill: #00ff00; }
+  .ydn-crm .flat-toggle-button.goog-custom-button-checked:hover svg {
+    fill: #00ff00; }
+  .ydn-crm .what-is-this {
+    cursor: default;
+    font-weight: normal;
+    background-color: lightyellow;
+    color: gray; }
 @keyframes blinker {
   0% {
     opacity: 1.0; }
@@ -158,39 +127,53 @@ SUMMARY {
     opacity: 0.0; }
   100% {
     opacity: 1.0; } }
-.ydn-crm .blink {
-  animation-name: blinker;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: 1; }
-.ydn-crm .checkbox-label {
-  cursor: pointer; }
+  .ydn-crm .blink {
+    animation-name: blinker;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1; }
+  .ydn-crm .checkbox-label {
+    cursor: pointer; }
+
+dialog.ydn-crm, .ydn-crm dialog {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  padding: 8px 24px 16px 24px; }
+  dialog.ydn-crm .ydn-content, .ydn-crm dialog .ydn-content {
+    max-height: 40em;
+    max-width: 50em;
+    overflow: auto; }
+  dialog.ydn-crm .button-bar, .ydn-crm dialog .button-bar {
+    padding: 8px; }
+    dialog.ydn-crm .button-bar > button, .ydn-crm dialog .button-bar > button {
+      margin: 0 4px; }
 
 /*
  * Activity panel (bar?) is horizontal panel showing upcoming activities.
  */
 /* CSS related to specific modules */
-.activity-panel .goog-tab {
+.ydn-crm .activity-panel .goog-tab {
   min-width: 16px;
   text-decoration: none; }
-.activity-panel .goog-tab > * {
+.ydn-crm .activity-panel .goog-tab > * {
   text-align: center; }
-.activity-panel .detail-panel, .activity-panel .search-panel, .activity-panel .new-record {
+.ydn-crm .activity-panel .detail-panel, .ydn-crm .activity-panel .search-panel, .ydn-crm .activity-panel .new-record {
   border-bottom: 1px solid lightblue;
   border-left: 1px solid lightblue;
   border-right: 1px solid lightblue;
   padding: 1px; }
-.activity-panel .detail-panel .detail-item {
+.ydn-crm .activity-panel .detail-panel .detail-item {
   padding: 4px; }
-.activity-panel .detail-panel > .header > .close {
+.ydn-crm .activity-panel .detail-panel > .header > .close {
   float: right;
   display: inline-block;
   cursor: pointer; }
-.activity-panel .detail-panel > .content {
+.ydn-crm .activity-panel .detail-panel > .ydn-content {
   clear: both;
   max-height: 200px;
   overflow: auto; }
-.activity-panel .count {
+.ydn-crm .activity-panel .count {
   position: absolute;
   top: 0;
   right: 0;
@@ -230,14 +213,13 @@ SUMMARY {
 /**
  * Created by kyawtun on 1/9/14.
  */
-.more-menu {
+.ydn-crm .more-menu {
   position: relative; }
-
-.flyout-menu {
+.ydn-crm .flyout-menu {
   position: absolute;
   width: 128px;
   top: 18px; }
-  .flyout-menu .goog-menuitem:hover {
+  .ydn-crm .flyout-menu .goog-menuitem:hover {
     /* copy from goog-menuitem-highlight */
     background-color: #d6e9f8;
     border-color: #d6e9f8;
@@ -245,31 +227,27 @@ SUMMARY {
     border-width: 1px 0;
     padding-bottom: 3px;
     padding-top: 3px; }
-  .flyout-menu .icons.left-arrow, .flyout-menu .left-arrow.logo-small {
+  .ydn-crm .flyout-menu .icons.left-arrow, .ydn-crm .flyout-menu .left-arrow.logo-small {
     position: absolute;
     left: 4px;
     vertical-align: middle; }
-  .flyout-menu > .goog-menuitem > .goog-menu {
+  .ydn-crm .flyout-menu > .goog-menuitem > .goog-menu {
     width: 128px;
     left: -129px;
     margin-top: -20px; }
-  .flyout-menu > .goog-menuitem:not(:hover) > .goog-menu,
-  .flyout-menu > .goog-menuitem.goog-menuitem-disabled > .goog-menu {
+  .ydn-crm .flyout-menu > .goog-menuitem:not(:hover) > .goog-menu,
+  .ydn-crm .flyout-menu > .goog-menuitem.goog-menuitem-disabled > .goog-menu {
     display: none; }
-
-.flyout-menu.left-menu {
+.ydn-crm .flyout-menu.left-menu {
   left: -106px; }
-
-.more-menu:not(:hover) .flyout-menu {
+.ydn-crm .more-menu:not(:hover) .flyout-menu {
   display: none; }
-
-.hover-button {
+.ydn-crm .hover-button {
   cursor: pointer;
   display: inline-block;
   vertical-align: middle;
   padding: 0 4px; }
-
-*:not(:hover) > .hover-button {
+.ydn-crm *:not(:hover) > .hover-button {
   display: none; }
 
 .section .maia-button {
@@ -2022,33 +2000,25 @@ td.goog-date-picker-selected {
 .pear-ui-resizable-corner {
   opacity: 1; }
 
-.iconic {
+.ydn-crm .iconic {
   width: 16px;
   height: 16px; }
-
-.icons, .logo-small {
-  margin: auto auto;
+.ydn-crm .icons, .ydn-crm .logo-small {
   display: inline-block;
   width: 16px;
   height: 16px; }
-
-.icons-small {
-  margin: auto auto;
+.ydn-crm .icons-small {
   display: inline-block;
   width: 14px;
   height: 14px; }
-
-.logo-small {
+.ydn-crm .logo-small {
   background: url("chrome-extension://__MSG_@@extension_id__/image/logo-16.svg") left center no-repeat; }
-
-.icon-box {
+.ydn-crm .icon-box {
   display: inline-block;
   margin: auto auto; }
-
-.google.badge-icon {
+.ydn-crm .google.badge-icon {
   fill: #0266C8; }
-
-.badge-icon {
+.ydn-crm .badge-icon {
   display: inline-block;
   border: 1px #0266C8 solid;
   border-radius: 3px;
@@ -2095,247 +2065,213 @@ td.goog-date-picker-selected {
   text-align: center; }
 
 /* Record */
-.record-body:not(.edit) .record-group:not(.edit) .field.empty {
-  display: none; }
-
-.record-body.edit DIV.field.empty:not(.normally-hide) {
-  display: flex; }
-
-.record-body .field INPUT[type=text], .record-body .field INPUT[type=email], .record-body .field INPUT[type=tel], .record-body .field INPUT[type=number], .record-body .field INPUT[type=datetime-local], .record-body .field INPUT[type=date], .record-body .field TEXTAREA, .record-body .field-like INPUT[type=text], .record-body .field-like INPUT[type=email], .record-body .field-like INPUT[type=tel], .record-body .field-like INPUT[type=number], .record-body .field-like INPUT[type=datetime-local], .record-body .field-like INPUT[type=date], .record-body .field-like TEXTAREA {
-  padding: 1px 0px 1px 1px;
-  margin: 2px;
-  border: 1px transparent; }
-.record-body .field .label {
-  display: inline-block;
-  width: 6em;
-  overflow-x: hidden; }
-.record-body .field-label {
-  padding: 1px 0px 1px 1px;
-  margin: 2px;
-  border: 1px transparent;
-  display: inline-block;
-  vertical-align: middle; }
-
-.record-body > .field > INPUT.enum {
-  width: 2em;
-  background: none repeat scroll 0 0 transparent;
-  border: 0;
-  color: #000000; }
-
-/*
- * make input look like label. This setting is obtained from Gmail contact editor.
-*/
-.record-body .field > INPUT, .record-body .field-like > INPUT {
-  background-color: transparent;
-  vertical-align: text-top; }
-
-.record-body .field > *, .record-body .field-like > * {
-  box-sizing: border-box; }
-
-.record-body.view .field TEXTAREA {
-  margin: 2px;
-  border: 0;
-  padding: 1px 2px;
-  background-color: transparent;
-  resize: none; }
-
-.record-body span.field ~ span.field {
-  padding-left: 4px; }
-
-.showonhover-field {
-  display: none; }
-
-.field:hover .showonhover-field {
-  display: inline-block; }
-
-.field-edit-dialog table {
-  padding: 20px 65px 10px 65px;
-  border-collapse: separate;
-  border-spacing: 2px; }
-.field-edit-dialog td:first-child {
-  text-align: right;
-  vertical-align: top;
-  line-height: 2em; }
-.field-edit-dialog td:last-child {
-  text-align: left; }
-.field-edit-dialog .value input, .field-edit-dialog .value textarea {
-  width: 100%; }
-
-.field-edit-dialog .field {
-  display: table-row; }
-
-.ydn-crm DIV.field {
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center; }
-  .ydn-crm DIV.field INPUT[type=text], .ydn-crm DIV.field INPUT[type=email], .ydn-crm DIV.field INPUT[type=tel], .ydn-crm DIV.field INPUT[type=number], .ydn-crm DIV.field INPUT[type=datetime-local], .ydn-crm DIV.field TEXTAREA {
-    flex-grow: 1; }
-.ydn-crm .field .value:required {
-  box-shadow: -2px 0 0 0 red; }
-.ydn-crm .field.inline {
-  display: inline-block; }
-.ydn-crm INPUT.value.double-digit {
-  max-width: 3em;
-  text-align: right; }
-.ydn-crm .field:hover > sup.name {
-  display: inline !important; }
-
-.record-group {
+.ydn-crm {
   /*
-   * Prevent Superscripts and Subscripts from Affecting Line-Height
-   * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
-   */ }
-  .record-group a.null {
-    text-decoration: none !important; }
-  .record-group sub {
-    top: 0.4em; }
-  .record-group sup, .record-group sub {
-    vertical-align: baseline;
-    position: relative;
-    top: -0.4em; }
-  .record-group .header.expander {
+   * make input look like label. This setting is obtained from Gmail contact editor.
+  */ }
+  .ydn-crm .record-body:not(.edit) .record-group:not(.edit) .field.empty {
+    display: none; }
+  .ydn-crm .record-body.edit DIV.field.empty:not(.normally-hide) {
+    display: flex; }
+  .ydn-crm .record-body .field INPUT[type=text], .ydn-crm .record-body .field INPUT[type=email], .ydn-crm .record-body .field INPUT[type=tel], .ydn-crm .record-body .field INPUT[type=number], .ydn-crm .record-body .field INPUT[type=datetime-local], .ydn-crm .record-body .field INPUT[type=date], .ydn-crm .record-body .field TEXTAREA, .ydn-crm .record-body .field-like INPUT[type=text], .ydn-crm .record-body .field-like INPUT[type=email], .ydn-crm .record-body .field-like INPUT[type=tel], .ydn-crm .record-body .field-like INPUT[type=number], .ydn-crm .record-body .field-like INPUT[type=datetime-local], .ydn-crm .record-body .field-like INPUT[type=date], .ydn-crm .record-body .field-like TEXTAREA {
+    padding: 1px 0px 1px 1px;
+    margin: 2px;
+    border: 1px transparent; }
+  .ydn-crm .record-body .field .label {
+    display: inline-block;
+    width: 6em;
+    overflow-x: hidden; }
+  .ydn-crm .record-body .field-label {
+    padding: 1px 0px 1px 1px;
+    margin: 2px;
+    border: 1px transparent;
+    display: inline-block;
+    vertical-align: middle; }
+  .ydn-crm .record-body > .field > INPUT.enum {
+    width: 2em;
+    background: none repeat scroll 0 0 transparent;
+    border: 0;
+    color: #000000; }
+  .ydn-crm .record-body .field > INPUT, .ydn-crm .record-body .field-like > INPUT {
+    background-color: transparent;
+    vertical-align: text-top; }
+  .ydn-crm .record-body .field > *, .ydn-crm .record-body .field-like > * {
+    box-sizing: border-box; }
+  .ydn-crm .record-body.view .field TEXTAREA {
+    margin: 2px;
+    border: 0;
+    padding: 1px 2px;
+    background-color: transparent;
+    resize: none; }
+  .ydn-crm .record-body span.field ~ span.field {
+    padding-left: 4px; }
+  .ydn-crm .showonhover-field {
+    display: none; }
+  .ydn-crm .field:hover .showonhover-field {
+    display: inline-block; }
+  .ydn-crm .field-edit-dialog table {
+    padding: 20px 65px 10px 65px;
+    border-collapse: separate;
+    border-spacing: 2px; }
+  .ydn-crm .field-edit-dialog td:first-child {
+    text-align: right;
+    vertical-align: top;
+    line-height: 2em; }
+  .ydn-crm .field-edit-dialog td:last-child {
+    text-align: left; }
+  .ydn-crm .field-edit-dialog .value input, .ydn-crm .field-edit-dialog .value textarea {
+    width: 100%; }
+  .ydn-crm .field-edit-dialog .field {
+    display: table-row; }
+  .ydn-crm DIV.field {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 24px; }
-    .record-group .header.expander span.header-label {
-      cursor: default; }
-    .record-group .header.expander INPUT {
+    flex-flow: row nowrap;
+    align-items: center; }
+    .ydn-crm DIV.field INPUT[type=text], .ydn-crm DIV.field INPUT[type=email], .ydn-crm DIV.field INPUT[type=tel], .ydn-crm DIV.field INPUT[type=number], .ydn-crm DIV.field INPUT[type=datetime-local], .ydn-crm DIV.field TEXTAREA {
       flex-grow: 1; }
-    .record-group .header.expander .center {
-      flex-shrink: 1; }
-  .record-group .header.expander:not(:hover):not(.open) .svg-button {
+  .ydn-crm .field .value:required {
+    box-shadow: -2px 0 0 0 red; }
+  .ydn-crm .field.inline {
+    display: inline-block; }
+  .ydn-crm INPUT.value.double-digit {
+    max-width: 3em;
+    text-align: right; }
+  .ydn-crm .field:hover > sup.name {
+    display: inline !important; }
+  .ydn-crm .field-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 2px; }
+    .ydn-crm .field-item-row > * ~ * {
+      padding-left: 4px; }
+
+.ydn-crm {
+  /*
+  .record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
+    content: ', ';
+  }
+  */ }
+  .ydn-crm .record-group {
+    /*
+     * Prevent Superscripts and Subscripts from Affecting Line-Height
+     * http://css-tricks.com/snippets/css/prevent-superscripts-and-subscripts-from-affecting-line-height/
+     */ }
+    .ydn-crm .record-group a.null {
+      text-decoration: none !important; }
+    .ydn-crm .record-group sub {
+      top: 0.4em; }
+    .ydn-crm .record-group sup, .ydn-crm .record-group sub {
+      vertical-align: baseline;
+      position: relative;
+      top: -0.4em; }
+    .ydn-crm .record-group .header.expander {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 24px; }
+      .ydn-crm .record-group .header.expander span.header-label {
+        cursor: default; }
+      .ydn-crm .record-group .header.expander INPUT {
+        flex-grow: 1; }
+      .ydn-crm .record-group .header.expander .ydn-center {
+        flex-shrink: 1; }
+    .ydn-crm .record-group .header.expander:not(:hover):not(.open) .svg-button {
+      display: none; }
+  .ydn-crm .record-body:not(.edit) .record-group.empty {
     display: none; }
 
-.record-body:not(.edit) .record-group.empty {
-  display: none; }
-
-/*
-.record-group.email span:not(:first-child):before, .record-group.list span:not(:first-child):before {
-  content: ', ';
-}
-*/
 /* CSS related to specific modules */
 /* CSS related to specific modules */
-.bg-color {
+.ydn-crm .bg-color {
   background-color: grey; }
-
-.Accounts > * > .icon, .Accounts > .icon, .Accounts > .bg-color {
+.ydn-crm .Accounts > * > .icon, .ydn-crm .Accounts > .icon, .ydn-crm .Accounts > .bg-color {
   background-color: #37880e; }
-
-.Bugs > * > .icon, .Bugs > .icon, .Bugs > .bg-color {
+.ydn-crm .Bugs > * > .icon, .ydn-crm .Bugs > .icon, .ydn-crm .Bugs > .bg-color {
   background-color: #e61718; }
-
-.Calls > * > .icon, .Calls > .icon, .Calls > .bg-color {
+.ydn-crm .Calls > * > .icon, .ydn-crm .Calls > .icon, .ydn-crm .Calls > .bg-color {
   background-color: #0b3a72; }
-
-.Calendar > * > .icon, .Calendar > .icon, .Calendar > .bg-color {
+.ydn-crm .Calendar > * > .icon, .ydn-crm .Calendar > .icon, .ydn-crm .Calendar > .bg-color {
   background-color: #125db8; }
-
-.Campaigns > * > .icon, .Campaigns > .icon, .Campaigns > .bg-color {
+.ydn-crm .Campaigns > * > .icon, .ydn-crm .Campaigns > .icon, .ydn-crm .Campaigns > .bg-color {
   background-color: #788d0e; }
-
-.CampaignLog > * > .icon, .CampaignLog > .icon, .CampaignLog > .bg-color {
+.ydn-crm .CampaignLog > * > .icon, .ydn-crm .CampaignLog > .icon, .ydn-crm .CampaignLog > .bg-color {
   background-color: #60710b; }
-
-.Cases > * > .icon, .Cases > .icon, .Cases > .bg-color {
+.ydn-crm .Cases > * > .icon, .ydn-crm .Cases > .icon, .ydn-crm .Cases > .bg-color {
   background-color: #b81213; }
-
-.Contacts > * > .icon, .Contacts > .icon, .Contacts > .bg-color {
+.ydn-crm .Contacts > * > .icon, .ydn-crm .Contacts > .icon, .ydn-crm .Contacts > .bg-color {
   background-color: #245a09; }
-
-.Documents > * > .icon, .Documents > .icon, .Documents > .bg-color {
+.ydn-crm .Documents > * > .icon, .ydn-crm .Documents > .icon, .ydn-crm .Documents > .bg-color {
   background-color: #81380f; }
-
-.Emails > * > .icon, .Emails > .icon, .Emails > .bg-color,
-.EmailText > * > .icon, .EmailText > .icon, .EmailText > .bg-color,
-.EmailTemplates > * > .icon, .EmailTemplates > .icon, .EmailTemplates > .bg-color {
+.ydn-crm .Emails > * > .icon, .ydn-crm .Emails > .icon, .ydn-crm .Emails > .bg-color,
+.ydn-crm .EmailText > * > .icon, .ydn-crm .EmailText > .icon, .ydn-crm .EmailText > .bg-color,
+.ydn-crm .EmailTemplates > * > .icon, .ydn-crm .EmailTemplates > .icon, .ydn-crm .EmailTemplates > .bg-color {
   background-color: #aa1466; }
-
-.Employees > * > .icon, .Employees > .icon, .Employees > .bg-color {
+.ydn-crm .Employees > * > .icon, .ydn-crm .Employees > .icon, .ydn-crm .Employees > .bg-color {
   background-color: #313130; }
-
-.Files > * > .icon, .Files > .icon, .Files > .bg-color {
+.ydn-crm .Files > * > .icon, .ydn-crm .Files > .icon, .ydn-crm .Files > .bg-color {
   background-color: #984112; }
-
-.Forecasts > * > .icon, .Forecasts > .icon, .Forecasts > .bg-color {
+.ydn-crm .Forecasts > * > .icon, .ydn-crm .Forecasts > .icon, .ydn-crm .Forecasts > .bg-color {
   background-color: #af4b14; }
-
-.KBDocuments > * > .icon, .KBDocuments > .icon, .KBDocuments > .bg-color {
+.ydn-crm .KBDocuments > * > .icon, .ydn-crm .KBDocuments > .icon, .ydn-crm .KBDocuments > .bg-color {
   background-color: #6b2e0c; }
-
-.Leads > * > .icon, .Leads > .icon, .Leads > .bg-color {
+.ydn-crm .Leads > * > .icon, .ydn-crm .Leads > .icon, .ydn-crm .Leads > .bg-color {
   background-color: #448fec; }
-
-.Meetings > * > .icon, .Meetings > .icon, .Meetings > .bg-color {
+.ydn-crm .Meetings > * > .icon, .ydn-crm .Meetings > .icon, .ydn-crm .Meetings > .bg-color {
   background-color: #e6af17; }
-
-.Notes > * > .icon, .Notes > .icon, .Notes > .bg-color {
+.ydn-crm .Notes > * > .icon, .ydn-crm .Notes > .icon, .ydn-crm .Notes > .bg-color {
   background-color: #129cb7; }
-
-.Opportunities > * > .icon, .Opportunities > .icon, .Opportunities > .bg-color {
+.ydn-crm .Opportunities > * > .icon, .ydn-crm .Opportunities > .icon, .ydn-crm .Opportunities > .bg-color {
   background-color: #7115ce; }
-
-.ProspectLists > * > .icon, .ProspectLists > .icon, .ProspectLists > .bg-color
-.Prospects > * > .icon, .Prospects > .icon, .Prospects > .bg-color {
+.ydn-crm .ProspectLists > * > .icon, .ydn-crm .ProspectLists > .icon, .ydn-crm .ProspectLists > .bg-color
+.Prospects > * > .icon, .ydn-crm .Prospects > .icon, .ydn-crm .Prospects > .bg-color {
   background-color: #7d0e4b; }
-
-.Reports > * > .icon, .Reports > .icon, .Reports > .bg-color {
+.ydn-crm .Reports > * > .icon, .ydn-crm .Reports > .icon, .ydn-crm .Reports > .bg-color {
   background-color: #c65517; }
-
-.RevenueLineItems > * > .icon, .RevenueLineItems > .icon, .RevenueLineItems > .bg-color {
+.ydn-crm .RevenueLineItems > * > .icon, .ydn-crm .RevenueLineItems > .icon, .ydn-crm .RevenueLineItems > .bg-color {
   background-color: #4b0e88; }
-
-.Quotes > * > .icon, .Quotes > .icon, .Quotes > .bg-color {
+.ydn-crm .Quotes > * > .icon, .ydn-crm .Quotes > .icon, .ydn-crm .Quotes > .bg-color {
   background-color: #0e7488; }
-
-.Targets > * > .icon, .Targets > .icon, .Targets > .bg-color {
+.ydn-crm .Targets > * > .icon, .ydn-crm .Targets > .icon, .ydn-crm .Targets > .bg-color {
   background-color: #931159; }
-
-.Tasks > * > .icon, .Tasks > .icon, .Tasks > .bg-color {
+.ydn-crm .Tasks > * > .icon, .ydn-crm .Tasks > .icon, .ydn-crm .Tasks > .bg-color {
   background-color: #d81982; }
-
-.Users > * > .icon, .Users > .icon, .Users > .bg-color {
+.ydn-crm .Users > * > .icon, .ydn-crm .Users > .icon, .ydn-crm .Users > .bg-color {
   background-color: #313130; }
-
-.Workflow > * > .icon, .Workflow > .icon, .Workflow > .bg-color {
+.ydn-crm .Workflow > * > .icon, .ydn-crm .Workflow > .icon, .ydn-crm .Workflow > .bg-color {
   background-color: #414c08; }
-
-.Contacts SVG.fill {
+.ydn-crm .Contacts SVG.fill {
   fill: #245a09; }
-
-.Leads SVG.fill {
+.ydn-crm .Leads SVG.fill {
   fill: #448fec; }
-
-.Accounts SVG.fill {
+.ydn-crm .Accounts SVG.fill {
   fill: #37880e; }
 
-.record-header .head {
+.ydn-crm .record-header .ydn-head {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: nowrap; }
-  .record-header .head .center {
+  .ydn-crm .record-header .ydn-head .ydn-center {
     flex-grow: 1;
     flex-shrink: 1; }
-.record-header .title {
+.ydn-crm .record-header .ydn-title {
   vertical-align: middle;
   line-height: 12px;
   text-overflow: ellipsis; }
-.record-header .icon.small {
+.ydn-crm .record-header .icon.small {
   width: 15px;
   height: 15px;
   padding: 1px; }
-.record-header .link {
+.ydn-crm .record-header .link {
   display: none; }
-.record-header .link.synced {
+.ydn-crm .record-header .link.synced {
   display: inline;
   width: 20px;
   height: 16px;
   vertical-align: middle;
   background: url("chrome-extension://__MSG_@@extension_id__/image/sync.svg") left center no-repeat; }
-
-.record-header .icon, .record-header-icon {
+.ydn-crm .record-header .icon, .ydn-crm .record-header-icon {
   display: inline-block;
   width: 18px;
   height: 18px;
@@ -2347,140 +2283,181 @@ td.goog-date-picker-selected {
   border: none;
   color: #ffffff;
   vertical-align: middle; }
-
-.record-header:hover .link {
+.ydn-crm .record-header:hover .link {
   display: inline !important; }
-
-.edit-button {
+.ydn-crm .edit-button {
   padding: 2px 4px; }
 
-.record-body-header > * {
+.ydn-crm .record-body-header > * {
   padding-left: 4px; }
-
-.record-body:not(.detail) .field.normally-hide,
-.record-body:not(.detail) .record-group.normally-hide {
+.ydn-crm .record-body:not(.detail) .field.normally-hide,
+.ydn-crm .record-body:not(.detail) .record-group.normally-hide {
   display: none; }
 
-.snapshot-page H3 {
-  text-align: center; }
-.snapshot-page .title-row {
-  display: flex;
-  border-bottom: 2px solid lightblue; }
-  .snapshot-page .title-row .center {
-    flex-grow: 1;
-    flex-shrink: 1; }
-  .snapshot-page .title-row .title {
-    font-weight: 700; }
-
-.record-panel.empty:not(.edit) {
-  display: none; }
-
-.record-panel > .neck {
-  background-color: red;
-  color: white;
-  padding: 2px;
-  margin: 2px; }
-.record-panel > .content > .secondary:not(:hover) .record-panel:not(.active) .content {
-  display: none; }
-.record-panel > .record-header > .title {
-  overflow-x: hidden; }
-.record-panel > .record-header > .ok-button {
-  padding: 2px 8px; }
-.record-panel > .record-header > .icon {
-  text-decoration: none; }
-.record-panel > .record-footer .footer-toolbar {
-  display: flex;
-  flex-direction: row;
-  justify-content: center; }
-  .record-panel > .record-footer .footer-toolbar > * {
+.ydn-crm .snapshot-main {
+  overflow-y: auto; }
+.ydn-crm .snapshot-page {
+  padding: 4px; }
+  .ydn-crm .snapshot-page .contact-search {
+    width: 100%;
+    box-sizing: border-box; }
+  .ydn-crm .snapshot-page .select-record INPUT.value {
+    width: 100%;
+    box-sizing: border-box; }
+.ydn-crm .spotlight {
+  padding-top: 4px; }
+  .ydn-crm .spotlight H3 {
+    text-align: center; }
+  .ydn-crm .spotlight .title-row {
+    display: flex;
+    border-bottom: 2px solid lightblue; }
+    .ydn-crm .spotlight .title-row .ydn-center {
+      flex-grow: 1;
+      flex-shrink: 1; }
+    .ydn-crm .spotlight .title-row .ydn-title {
+      font-weight: 700; }
+  .ydn-crm .spotlight .panel {
     padding: 4px; }
-
-.record-panel .record-body .content > .field {
-  margin: 4px 0; }
-
-.secondary section {
-  margin: 4px 0; }
-  .secondary section > .header {
-    font-style: italic;
+  .ydn-crm .spotlight H4 {
     color: gray;
-    /* border-bottom: #d3d3d3 solid thin; */ }
-  .secondary section > ul {
+    font-size: 90%;
+    font-style: normal;
+    font-weight: normal;
+    margin: 4px 0; }
+  .ydn-crm .spotlight UL {
     list-style: none;
     padding-left: 0;
     margin: 4px 0;
     max-height: 16em;
     overflow-y: auto; }
-    .secondary section > ul > li {
-      margin: 2px 0; }
+.ydn-crm .activity-spotlight .none {
+  display: none; }
+.ydn-crm .activity-spotlight .empty .none {
+  display: block; }
+.ydn-crm .brief-record-panel A {
+  text-decoration: none; }
+.ydn-crm .relationship-spotlight .relationship-summary {
+  display: flex;
+  justify-content: space-around; }
+  .ydn-crm .relationship-spotlight .relationship-summary .board-summary {
+    padding: 16px;
+    margin: 4px 0;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    min-width: 34px;
+    min-height: 34px; }
+    .ydn-crm .relationship-spotlight .relationship-summary .board-summary .ydn-title {
+      font-size: 90%; }
+    .ydn-crm .relationship-spotlight .relationship-summary .board-summary .total {
+      font-size: 150%; }
+.ydn-crm .relationship-spotlight .brief-info {
+  padding-left: 8px; }
 
-.record-item {
-  margin: 4px 0; }
-  .record-item .icon {
-    cursor: pointer; }
-  .record-item > .content {
-    padding-left: 27px;
-    font-size: 90%;
-    color: gray;
-    margin: 0 0 4px 0;
-    max-height: 4em; }
-    .record-item > .content .status {
-      cursor: default;
-      background-color: lightblue;
-      font-size: 90%;
-      padding: 0 4px;
-      color: darkgreen; }
-    .record-item > .content .status.High {
-      border: thin solid red;
-      font-weight: bold; }
-    .record-item > .content .status.High {
-      color: grey; }
-
-.secondary-hovercard {
+.ydn-crm.secondary-hovercard {
   border: solid 4px #69748C;
   width: 300px;
   min-height: 115px;
   background-color: white;
   padding: 4px; }
 
-.record-panel.new-record > .content {
+.ydn-crm .record-panel.empty:not(.edit) {
+  display: none; }
+.ydn-crm .record-panel {
+  padding: 4px; }
+  .ydn-crm .record-panel > .neck {
+    background-color: red;
+    color: white;
+    padding: 2px;
+    margin: 2px; }
+  .ydn-crm .record-panel > .ydn-content > .secondary:not(:hover) .record-panel:not(.active) .ydn-content {
+    display: none; }
+  .ydn-crm .record-panel > .record-header > .ydn-title {
+    overflow-x: hidden; }
+  .ydn-crm .record-panel > .record-header > .ok-button {
+    padding: 2px 8px; }
+  .ydn-crm .record-panel > .record-header > .icon {
+    text-decoration: none; }
+  .ydn-crm .record-panel > .record-footer .footer-toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; }
+    .ydn-crm .record-panel > .record-footer .footer-toolbar > * {
+      padding: 4px; }
+.ydn-crm .record-panel .record-body .ydn-content > .field {
+  margin: 4px 0; }
+.ydn-crm .secondary section {
+  margin: 4px 0; }
+  .ydn-crm .secondary section > .header {
+    font-style: italic;
+    color: gray;
+    /* border-bottom: #d3d3d3 solid thin; */ }
+  .ydn-crm .secondary section > ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 4px 0;
+    max-height: 16em;
+    overflow-y: auto; }
+    .ydn-crm .secondary section > ul > li {
+      margin: 2px 0; }
+.ydn-crm .record-item {
+  margin: 4px 0; }
+  .ydn-crm .record-item > .record-header {
+    overflow: hidden;
+    white-space: nowrap; }
+  .ydn-crm .record-item .icon {
+    cursor: pointer; }
+  .ydn-crm .record-item > .ydn-content {
+    padding-left: 27px;
+    font-size: 90%;
+    color: gray;
+    margin: 0 0 4px 0;
+    max-height: 4em; }
+    .ydn-crm .record-item > .ydn-content .status {
+      cursor: default;
+      background-color: lightblue;
+      font-size: 90%;
+      padding: 0 4px;
+      color: darkgreen; }
+    .ydn-crm .record-item > .ydn-content .status.High {
+      border: thin solid red;
+      font-weight: bold; }
+    .ydn-crm .record-item > .ydn-content .status.High {
+      color: grey; }
+.ydn-crm .record-panel.new-record > .ydn-content {
   overflow-y: auto; }
+.ydn-crm .select-record SELECT {
+  margin-right: 4px; }
+.ydn-crm .contact-search {
+  display: inline-block;
+  height: 20px; }
+  .ydn-crm .contact-search .select-record SELECT {
+    display: none;
+    right: -3px;
+    width: 46px;
+    top: 1px; }
+  .ydn-crm .contact-search .select-record INPUT[type=text] {
+    margin: 0; }
+
+#field-display-dialog > .ydn-content {
+  overflow-x: auto;
+  overflow-y: scroll;
+  max-width: 400px;
+  max-height: 400px; }
 
 #field-table td {
   text-align: center; }
 #field-table td:last-child {
   text-align: left; }
 
-.select-record SELECT {
-  margin-right: 4px; }
-
-.contact-search {
-  display: inline-block;
-  height: 20px; }
-  .contact-search .select-record SELECT {
-    display: none;
-    right: -3px;
-    width: 46px;
-    top: 1px; }
-  .contact-search .select-record INPUT[type=text] {
-    margin: 0; }
-
-#field-display-dialog > .content {
-  overflow-x: auto;
-  overflow-y: scroll;
-  max-width: 400px;
-  max-height: 400px; }
-
-.ydn-crm
-.relationships-panel > .content {
+.ydn-crm .relationships-panel > .ydn-content {
   min-height: 24px;
   /* make no height by adding first item */ }
-.ydn-crm
-.relationships-panel .relationship-item {
+.ydn-crm .relationships-panel .relationship-item {
   display: inline-block;
   border: thin solid transparent;
   border-radius: 4px; }
-  .ydn-crm
-  .relationships-panel .relationship-item .clear {
+  .ydn-crm .relationships-panel .relationship-item .clear {
     display: inline-block;
     width: 16px;
     height: 16px;
@@ -2491,120 +2468,137 @@ td.goog-date-picker-selected {
     text-align: center;
     margin-left: 4px;
     cursor: pointer; }
-  .ydn-crm
-  .relationships-panel .relationship-item .clear:hover {
+  .ydn-crm .relationships-panel .relationship-item .clear:hover {
     color: white;
     background-color: red; }
-.ydn-crm
-.relationships-panel .relationship-item:hover {
+.ydn-crm .relationships-panel .relationship-item:hover {
   border: thin solid #add8e6; }
-.ydn-crm
-.relationships-panel .relationship-item:not(:hover) .clear {
+.ydn-crm .relationships-panel .relationship-item:not(:hover) .clear {
   visibility: hidden; }
-
-.record-patch-compare > div {
+.ydn-crm .record-patch-compare > div {
   border: thin solid lightgray;
   padding: 4px; }
-.record-patch-compare > div:last-child {
+.ydn-crm .record-patch-compare > div:last-child {
   border-left: none; }
-.record-patch-compare pre {
+.ydn-crm .record-patch-compare pre {
   overflow: auto; }
-
-.record-patch-note {
+.ydn-crm .record-patch-note {
   margin: 8px 0;
   font-style: italic; }
 
-.search-result {
+.ydn-crm .search-result {
   padding: 4px; }
-
-.search-panel > .content-wrapper {
+.ydn-crm .search-panel > .content-wrapper {
   max-width: 20em;
   padding: 4px; }
-
-.search-panel > .content-wrapper > .content {
+.ydn-crm .search-panel > .content-wrapper > .ydn-content {
   max-height: 200px;
   overflow: auto; }
-
-.snippet-panel > .content {
+.ydn-crm .snippet-panel > .ydn-content {
   overflow-y: auto;
   overflow-x: hidden; }
-  .snippet-panel > .content > UL {
+  .ydn-crm .snippet-panel > .ydn-content > UL {
     list-style: none;
     padding-left: 0; }
-
-.hud-popup .snippet-panel > .content {
+.ydn-crm .hud-popup .snippet-panel > .ydn-content {
   max-height: 240px; }
-.hud-popup .module-record-list > UL {
+.ydn-crm .hud-popup .module-record-list > UL {
   overflow-y: hidden;
   height: 200px; }
-
-.module-record-list > UL {
+.ydn-crm .module-record-list > UL {
   list-style: none;
   padding-left: 0; }
-  .module-record-list > UL > LI {
+  .ydn-crm .module-record-list > UL > LI {
     height: 40px;
     max-height: 40px;
     overflow-y: hidden; }
-    .module-record-list > UL > LI .record-header {
+    .ydn-crm .module-record-list > UL > LI .record-header {
       height: 22px; }
-.module-record-list .footer {
+.ydn-crm .module-record-list .ydn-footer {
   font-size: 90%;
   padding-bottom: 4px; }
 
-.sugar-panel {
+.ydn-crm .sugar-panel {
   clear: both; }
-  .sugar-panel .main-title {
+  .ydn-crm .sugar-panel .main-title {
     margin: 4px;
     overflow: hidden;
     vertical-align: middle; }
-  .sugar-panel .icon-box {
+  .ydn-crm .sugar-panel .icon-box {
     vertical-align: middle;
     padding-right: 4px; }
-
-.login-panel > DIV {
+.ydn-crm .login-panel > DIV {
   margin: 4px 0; }
-
-.sugar-panel-content {
+.ydn-crm .sugar-panel-content {
   margin: 2px 0; }
-
-.sugar-body .goog-tab {
+.ydn-crm .sugar-body .goog-tab {
   width: 16px;
   height: 16px; }
-
-.gmail-cmd-panel {
+.ydn-crm .gmail-cmd-panel {
   display: inline-block;
   padding: 4px; }
-
-.widget-content SUMMARY:after {
+.ydn-crm .widget-content SUMMARY:after {
   float: left;
   margin-right: 4px; }
-.widget-content SUMMARY:focus {
+.ydn-crm .widget-content SUMMARY:focus {
   outline: 0; }
-.widget-content DETAILS > DIV {
+.ydn-crm .widget-content DETAILS > DIV {
   margin-top: 8px;
   margin-left: 20px; }
 
-.setting-dialog .group-panel {
+.ydn-crm .setting-dialog .group-panel {
   border: thin solid #d3d3d3;
   padding: 8px; }
+.ydn-crm .ydn-prepared-result {
+  margin: 8px 0; }
+.ydn-crm .ydn-prepared-detail OL {
+  max-height: 20em;
+  padding-left: 18px;
+  overflow: auto; }
+.ydn-crm TABLE.ydn-sync-prepared-result {
+  border-collapse: collapse; }
+  .ydn-crm TABLE.ydn-sync-prepared-result TBODY {
+    overflow-y: auto; }
+  .ydn-crm TABLE.ydn-sync-prepared-result TD {
+    vertical-align: top;
+    border: 1px solid gray; }
+  .ydn-crm TABLE.ydn-sync-prepared-result TD > DIV {
+    padding: 4px;
+    overflow-x: auto;
+    max-width: 300px; }
+  .ydn-crm TABLE.ydn-sync-prepared-result TD > SECTION {
+    padding: 4px;
+    overflow-x: auto;
+    max-width: 600px; }
+.ydn-crm .inj-setting-page .ydn-back {
+  margin-right: 4px;
+  cursor: pointer; }
+.ydn-crm .inj-setting-page .ydn-item-list {
+  margin-top: 4px;
+  list-style: none;
+  padding-left: 4px; }
+.ydn-crm .inj-setting-page .ydn-item-list LI {
+  padding: 4px 0;
+  cursor: pointer; }
+.ydn-crm .ydn-history-content {
+  overflow: auto;
+  max-height: 10em; }
 
-.status-base {
+.ydn-crm .status-base {
   font-size: 90%;
   padding: 0 2px 2px 2px; }
-  .status-base A {
+  .ydn-crm .status-base A {
     max-width: 4em;
     text-overflow: ellipsis;
     overflow-y: hidden;
     max-height: 1.2em;
     word-break: break-all; }
-
-.status-message {
+.ydn-crm .status-message {
   height: 1.6em;
   line-height: 1.6em;
   background-color: #ffffff;
   opacity: 1; }
-
-.status-bar {
+.ydn-crm .status-bar {
   padding: 2px 0;
   box-sizing: border-box;
   max-height: 1.6em;
@@ -2612,17 +2606,14 @@ td.goog-date-picker-selected {
   width: calc(100% - 20px);
   display: inline-block;
   word-break: break-all; }
-
-.status-detail-button {
+.ydn-crm .status-detail-button {
   display: inline-block;
   cursor: pointer;
   padding: 0 4px;
   float: right; }
-
-.status-message:not(:hover) .status-detail-button:not(.open) {
+.ydn-crm .status-message:not(:hover) .status-detail-button:not(.open) {
   display: none; }
-
-.status-panel {
+.ydn-crm .status-panel {
   position: absolute;
   background: white;
   overflow: auto;
@@ -2635,48 +2626,46 @@ td.goog-date-picker-selected {
   border-color: #DDD #FFFFFF #DDD #DDD;
   box-sizing: border-box;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); }
-
-.status-panel:not(.open) {
+.ydn-crm .status-panel:not(.open) {
   display: none; }
 
-.sync-page > .header {
+.ydn-crm .sync-page > .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding-bottom: 4px; }
-  .sync-page > .header .title {
+  .ydn-crm .sync-page > .header .ydn-title {
     font-weight: bold;
     font-size: 120%; }
-  .sync-page > .header .count {
+  .ydn-crm .sync-page > .header .count {
     padding: 4px 0; }
-.sync-page .primary > .gdata > .header, .sync-page .secondary > .record > .header {
+.ydn-crm .sync-page .primary > .gdata > .header, .ydn-crm .sync-page .secondary > .record > .header {
   display: flex;
   align-items: center; }
-.sync-page UL.infinite-scroll {
+.ydn-crm .sync-page UL.infinite-scroll {
   margin: 2px 0; }
-.sync-page LI.sync-pair {
+.ydn-crm .sync-page LI.sync-pair {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   padding: 4px;
   margin: 4px 0; }
-  .sync-page LI.sync-pair .primary {
+  .ydn-crm .sync-page LI.sync-pair .primary {
     width: 300px; }
-  .sync-page LI.sync-pair .secondary {
+  .ydn-crm .sync-page LI.sync-pair .secondary {
     flex-grow: 0.8;
     flex-shrink: 0.8; }
-    .sync-page LI.sync-pair .secondary > * > .header {
+    .ydn-crm .sync-page LI.sync-pair .secondary > * > .header {
       margin: 2px 0; }
-.sync-page LI.sync-pair:nth-child(odd) {
+.ydn-crm .sync-page LI.sync-pair:nth-child(odd) {
   background-color: azure; }
-
-.gdata-sync-panel > .footer {
+.ydn-crm .gdata-sync-panel > .ydn-footer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 4px 0; }
 
-.wgui-textinput-clear {
+.ydn-crm .wgui-textinput-clear {
   position: absolute;
   right: 5px;
   top: 8px;
@@ -2688,47 +2677,44 @@ td.goog-date-picker-selected {
   height: 16px;
   border-radius: 50%;
   box-sizing: border-box; }
-
-.wgui-textinput-clear:hover {
+.ydn-crm .wgui-textinput-clear:hover {
   font-weight: bold;
   color: white;
   background-color: #808080; }
-
-.wgui-textinput-outer-box:hover .wgui-textinput-clear {
+.ydn-crm .wgui-textinput-outer-box:hover .wgui-textinput-clear {
   display: inherit; }
 
-.tracking-result {
+.ydn-crm .tracking-result {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
   padding: 2px; }
-  .tracking-result > * {
+  .ydn-crm .tracking-result > * {
     align-self: center;
     padding: 2px; }
-  .tracking-result svg {
+  .ydn-crm .tracking-result svg {
     vertical-align: middle; }
-
-.tracking-sidebar {
+.ydn-crm .tracking-sidebar {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   flex-grow: 1;
   overflow-y: hidden; }
-  .tracking-sidebar .sidebar-head {
+  .ydn-crm .tracking-sidebar .sidebar-head {
     height: 24px;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 2px;
     background-color: LightBlue; }
-    .tracking-sidebar .sidebar-head .head-icon {
+    .ydn-crm .tracking-sidebar .sidebar-head .head-icon {
       fill: white; }
-    .tracking-sidebar .sidebar-head .center {
+    .ydn-crm .tracking-sidebar .sidebar-head .ydn-center {
       flex-grow: 1;
       flex-shrink: 1; }
-    .tracking-sidebar .sidebar-head .stat-panel {
+    .ydn-crm .tracking-sidebar .sidebar-head .stat-panel {
       display: inline-block;
       min-width: 16px;
       height: 16px;
@@ -2738,145 +2724,160 @@ td.goog-date-picker-selected {
       margin-top: 2px;
       cursor: default;
       color: white; }
-  .tracking-sidebar .sidebar-head > * {
+  .ydn-crm .tracking-sidebar .sidebar-head > * {
     margin: 2px; }
-  .tracking-sidebar .sidebar-content {
+  .ydn-crm .tracking-sidebar .sidebar-content {
     flex-grow: 1;
     align-items: stretch;
     overflow-y: auto;
     margin-top: 4px; }
-    .tracking-sidebar .sidebar-content .toolbar {
+    .ydn-crm .tracking-sidebar .sidebar-content .toolbar {
       margin-left: 4px; }
-
-.hud-popup .tracking-sidebar .sidebar-content {
+.ydn-crm .hud-popup .tracking-sidebar .sidebar-content {
   height: 250px; }
-
-.tracking-feed .feeditem {
+.ydn-crm .tracking-feed .feeditem {
   padding: 4px;
   height: 1em;
   overflow: hidden;
   cursor: default; }
-
-.tracking-datalist .datalist-item {
+.ydn-crm .tracking-datalist .datalist-item {
   padding: 4px; }
-  .tracking-datalist .datalist-item .stats {
+  .ydn-crm .tracking-datalist .datalist-item .stats {
     flex-shrink: 0;
     padding-left: 4px;
     cursor: pointer; }
-  .tracking-datalist .datalist-item .lastopen {
+  .ydn-crm .tracking-datalist .datalist-item .lastopen {
     white-space: pre;
     color: gray;
     font-style: italic; }
-  .tracking-datalist .datalist-item .label {
+  .ydn-crm .tracking-datalist .datalist-item .label {
     flex-shrink: 1; }
-  .tracking-datalist .datalist-item .center {
+  .ydn-crm .tracking-datalist .datalist-item .center {
     flex-grow: 1;
     flex-shrink: 1; }
-  .tracking-datalist .datalist-item .symbol {
+  .ydn-crm .tracking-datalist .datalist-item .symbol {
     font-weight: bolder;
     font-style: italic; }
-  .tracking-datalist .datalist-item .subject {
+  .ydn-crm .tracking-datalist .datalist-item .subject {
     color: gray; }
-  .tracking-datalist .datalist-item .detail > * {
+  .ydn-crm .tracking-datalist .datalist-item .detail > * {
     display: flex;
     flex-direction: row;
     overflow: visible;
     flex-wrap: nowrap; }
-  .tracking-datalist .datalist-item .detail .hit-list {
+  .ydn-crm .tracking-datalist .datalist-item .detail .hit-list {
     display: flex;
     flex-direction: column; }
-  .tracking-datalist .datalist-item .detail .hit-list .item {
+  .ydn-crm .tracking-datalist .datalist-item .detail .hit-list .item {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
     overflow: hidden; }
-    .tracking-datalist .datalist-item .detail .hit-list .item .center {
+    .ydn-crm .tracking-datalist .datalist-item .detail .hit-list .item .center {
       flex-grow: 1;
       flex-shrink: 1;
       text-overflow: ellipsis; }
-  .tracking-datalist .datalist-item .detail .item > * {
+  .ydn-crm .tracking-datalist .datalist-item .detail .item > * {
     white-space: nowrap;
     word-break: break-all;
     overflow: hidden;
     min-width: 16px;
     display: inline-block;
     padding: 0 1px; }
-.tracking-datalist .datalist-item > .row {
+.ydn-crm .tracking-datalist .datalist-item > .row {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: flex-end;
+  justify-content: space-between;
   height: 1.3em; }
-.tracking-datalist .datalist-item > * > * {
+.ydn-crm .tracking-datalist .datalist-item > * > * {
   overflow: hidden; }
 
-.tracking-panel .content {
+.ydn-crm .tracking-panel .ydn-content {
   padding: 4px; }
-.tracking-panel .stats {
+.ydn-crm .tracking-panel .stats {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   align-content: center; }
-  .tracking-panel .stats .slot {
+  .ydn-crm .tracking-panel .stats .slot {
     text-align: center;
     padding: 4px 8px; }
-    .tracking-panel .stats .slot .value-holder {
+    .ydn-crm .tracking-panel .stats .slot .value-holder {
       font-size: 200%;
       font-weight: 400; }
-    .tracking-panel .stats .slot .percent {
+    .ydn-crm .tracking-panel .stats .slot .percent {
       padding-left: 4px; }
-.tracking-panel .slot-6 .value {
+.ydn-crm .tracking-panel .slot-6 .value {
   font-size: 70%; }
-.tracking-panel .pear-grid-row-header {
+.ydn-crm .tracking-panel .pear-grid-row-header {
   padding-top: 6px;
   font-weight: bold; }
-.tracking-panel .sep-header {
+.ydn-crm .tracking-panel .sep-header {
   margin-top: 16px;
   border-top: thin solid #d3d3d3; }
-  .tracking-panel .sep-header h3 {
+  .ydn-crm .tracking-panel .sep-header h3 {
     margin-top: 2px; }
-.tracking-panel .tracking-detail-panel {
+.ydn-crm .tracking-panel .tracking-detail-panel {
   padding-left: 24px; }
-  .tracking-panel .tracking-detail-panel .pear-grid-row-header {
+  .ydn-crm .tracking-panel .tracking-detail-panel .pear-grid-row-header {
     background-color: mintcream; }
-
-.ydn-anchor-reply {
+.ydn-crm .ydn-anchor-reply {
   display: inline-block;
   position: absolute;
   right: 0;
   top: 0;
   margin: 12px 6px 0 2px; }
-
-.tracking-table-heading .toolbar {
+.ydn-crm .tracking-table-heading .toolbar {
   padding-bottom: 4px;
   overflow: hidden; }
-  .tracking-table-heading .toolbar .right-bar {
+  .ydn-crm .tracking-table-heading .toolbar .right-bar {
     float: right; }
-
-.donotrack-section LI.deleting .name {
+.ydn-crm .donotrack-section LI.deleting .name {
   color: gray; }
-.donotrack-section LI.deleted .name {
+.ydn-crm .donotrack-section LI.deleted .name {
   text-decoration: line-through; }
-
-.pear-grid-cell-data-content.no-border,
-.pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {
+.ydn-crm .pear-grid-cell-data-content.no-border,
+.ydn-crm .pear-grid-row-highlight .pear-grid-cell-data-highlight .pear-grid-cell-data-content.no-border {
   border: 0; }
-
-.result-desktop .head {
+.ydn-crm .result-desktop .ydn-head {
   margin: 8px 0; }
-  .result-desktop .head .title {
+  .ydn-crm .result-desktop .ydn-head .ydn-title {
     font-weight: bold;
     font-size: 110%; }
+.ydn-crm .tracking-result-person .result {
+  display: flex;
+  justify-content: space-around;
+  text-align: center; }
+  .ydn-crm .tracking-result-person .result > DIV {
+    padding: 16px 4px; }
+.ydn-crm .tracking-result-person .count {
+  font-weight: bold;
+  font-size: 130%; }
+.ydn-crm .tracking-result-person .sent {
+  color: #f5991e; }
+.ydn-crm .tracking-result-person .opens {
+  color: #6fab32; }
+.ydn-crm .tracking-result-person .clicks {
+  color: #916eb5; }
+.ydn-crm .tracking-result-person .reply {
+  color: #2d9ec0; }
+.ydn-crm .tracking-result-person .footer-label {
+  text-align: right;
+  font-size: 80%;
+  color: grey; }
+.ydn-crm .donottrack-content UL {
+  padding-left: 0;
+  list-style: none; }
 
 /*
  Some CSS from font-awesome used in google-closure-grid library
 */
-.fa-arrow-circle-up:before {
+.ydn-crm .fa-arrow-circle-up:before {
   content: "▲"; }
-
-.fa-arrow-circle-down:before {
+.ydn-crm .fa-arrow-circle-down:before {
   content: "▼"; }
 
 body {
@@ -2964,5 +2965,8 @@ footer {
 ul {
   list-style: none;
   padding-left: 0; }
+
+.about-sugarcrm {
+  margin-top: 40px; }
 
 /*# sourceMappingURL=option.css.map */
