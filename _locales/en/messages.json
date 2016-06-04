@@ -113,7 +113,13 @@
     "message": "Frequent synchronization consume more power and increase CRM server load."
   },
   "confirm_sync_contacts_restore": {
-    "message": "Are you sure restore default setting for Contacts Synchronization?"
+    "message": "Are you sure restore default setting for $name$ Synchronization?",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
   },
   "Add_to": {
     "message": "Add to"
@@ -370,6 +376,10 @@
   "Relationships": {
     "message": "Relationships",
     "description": "Title of a section in archive dialog."
+  },
+  "Related_Record": {
+    "message": "Related Records",
+    "description": "Label for related records in archive dialog."
   },
   "Relationships_tooltip": {
     "message": "By creating a relationship, the related record appear as subpanels in the target record's detail view."

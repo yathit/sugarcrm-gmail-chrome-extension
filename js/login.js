@@ -71,7 +71,7 @@ Login.prototype.login = function(context, opt_cb, opt_scope) {
   this.setStatus('starting...');
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
     this.setStatus('logging in...');
-    ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
+    ydn.msg.getChannel().send('logged-in', context).addCallbacks(function(data) {
       var user_info = /** @type {YdnApiUser} */ (data);
       this.user_info = user_info;
       this.setStatus('');

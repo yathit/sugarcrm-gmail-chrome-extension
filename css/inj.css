@@ -57,6 +57,20 @@
     .ydn-crm .flex-bar > .ydn-center {
       flex-grow: 1;
       flex-shrink: 1; }
+  .ydn-crm .flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    text-align: left; }
+    .ydn-crm .flex-row > * {
+      flex-grow: 1;
+      flex-shrink: 1; }
+  .ydn-crm .ydn-panel {
+    margin-top: 8px;
+    margin-bottom: 8px; }
+  .ydn-crm .ydn-sub-panel {
+    margin-top: 4px;
+    margin-left: 16px; }
   .ydn-crm .svg-button {
     cursor: pointer;
     display: inline-block;
@@ -133,6 +147,19 @@
     animation-iteration-count: 1; }
   .ydn-crm .checkbox-label {
     cursor: pointer; }
+  .ydn-crm .message-progress {
+    font-size: 90%;
+    color: slategray; }
+  .ydn-crm .message-progress.error {
+    color: red; }
+  .ydn-crm TABLE.ydn-simple-grid {
+    border-collapse: collapse;
+    border: 1px solid grey;
+    margin: 2px; }
+    .ydn-crm TABLE.ydn-simple-grid td, .ydn-crm TABLE.ydn-simple-grid th {
+      border: 1px solid grey; }
+  .ydn-crm .simple-status-bar {
+    font-size: 90%; }
 
 dialog.ydn-crm, .ydn-crm dialog {
   border: 1px solid rgba(0, 0, 0, 0.3);
@@ -155,6 +182,8 @@ dialog.ydn-crm, .ydn-crm dialog {
   display: inline-block;
   width: 16px;
   height: 16px; }
+.ydn-crm .icon.ydn-revert {
+  box-sizing: border-box; }
 .ydn-crm .icons-small {
   display: inline-block;
   width: 14px;
@@ -372,6 +401,39 @@ dialog.ydn-crm, .ydn-crm dialog {
 
 .compose-toolbar {
   margin-top: -2px; }
+
+.ydn-create-contact-panel {
+  margin-top: 8px;
+  padding: 4px 0; }
+
+.ydn-create-contact-panel:hover {
+  background-color: rgba(0, 0, 0, 0.05); }
+
+.ydn-email-context-panel {
+  margin-top: 8px; }
+  .ydn-email-context-panel .ydn-subject {
+    margin: 2px 0;
+    width: 223px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .ydn-email-context-panel .ydn-title.ydn-primary {
+    font-weight: bold; }
+  .ydn-email-context-panel .ydn-meta {
+    color: grey;
+    font-size: 90%; }
+  .ydn-email-context-panel .ydn-email-related {
+    margin: 4px 0 4px 8px; }
+  .ydn-email-context-panel .ydn-emailer {
+    margin-right: 4px;
+    display: inline-block;
+    cursor: default; }
+    .ydn-email-context-panel .ydn-emailer .ydn-title {
+      cursor: pointer; }
+  .ydn-email-context-panel .ydn-relations {
+    max-height: 20em; }
+  .ydn-email-context-panel .ydn-email-related:not(:hover) .ydn-add-relation {
+    visibility: hidden; }
 
 .upload-dialog > div, .archive-dialog > div, .create-record-dialog > div {
   display: flex; }
@@ -2692,6 +2754,10 @@ a.maia-button.maia-button-secondary {
   background-color: grey; }
 .ydn-crm .Accounts > * > .icon, .ydn-crm .Accounts > .icon, .ydn-crm .Accounts > .bg-color {
   background-color: #37880e; }
+.ydn-crm .Accounts > * > .icon.ydn-revert, .ydn-crm .Accounts > .icon.ydn-revert, .ydn-crm .Accounts > .bg-color.ydn-revert {
+  background-color: transparent;
+  color: #37880e;
+  border: thin solid #37880e; }
 .ydn-crm .Bugs > * > .icon, .ydn-crm .Bugs > .icon, .ydn-crm .Bugs > .bg-color {
   background-color: #e61718; }
 .ydn-crm .Calls > * > .icon, .ydn-crm .Calls > .icon, .ydn-crm .Calls > .bg-color {
@@ -2706,6 +2772,10 @@ a.maia-button.maia-button-secondary {
   background-color: #b81213; }
 .ydn-crm .Contacts > * > .icon, .ydn-crm .Contacts > .icon, .ydn-crm .Contacts > .bg-color {
   background-color: #245a09; }
+.ydn-crm .Contacts > * > .icon.ydn-revert, .ydn-crm .Contacts > .icon.ydn-revert, .ydn-crm .Contacts > .bg-color.ydn-revert {
+  background-color: transparent;
+  color: #245a09;
+  border: thin solid #245a09; }
 .ydn-crm .Documents > * > .icon, .ydn-crm .Documents > .icon, .ydn-crm .Documents > .bg-color {
   background-color: #81380f; }
 .ydn-crm .Emails > * > .icon, .ydn-crm .Emails > .icon, .ydn-crm .Emails > .bg-color,
@@ -2722,8 +2792,16 @@ a.maia-button.maia-button-secondary {
   background-color: #6b2e0c; }
 .ydn-crm .Leads > * > .icon, .ydn-crm .Leads > .icon, .ydn-crm .Leads > .bg-color {
   background-color: #448fec; }
+.ydn-crm .Leads > * > .icon.ydn-revert, .ydn-crm .Leads > .icon.ydn-revert, .ydn-crm .Leads > .bg-color.ydn-revert {
+  background-color: transparent;
+  color: #448fec;
+  border: thin solid #448fec; }
 .ydn-crm .Meetings > * > .icon, .ydn-crm .Meetings > .icon, .ydn-crm .Meetings > .bg-color {
   background-color: #e6af17; }
+.ydn-crm .Meetings > * > .icon.ydn-revert, .ydn-crm .Meetings > .icon.ydn-revert, .ydn-crm .Meetings > .bg-color.ydn-revert {
+  background-color: transparent;
+  color: #e6af17;
+  border: thin solid #e6af17; }
 .ydn-crm .Notes > * > .icon, .ydn-crm .Notes > .icon, .ydn-crm .Notes > .bg-color {
   background-color: #129cb7; }
 .ydn-crm .Opportunities > * > .icon, .ydn-crm .Opportunities > .icon, .ydn-crm .Opportunities > .bg-color {
@@ -2763,11 +2841,13 @@ a.maia-button.maia-button-secondary {
 .ydn-crm .record-header .ydn-title {
   vertical-align: middle;
   line-height: 12px;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  cursor: default; }
 .ydn-crm .record-header .icon.small {
   width: 15px;
   height: 15px;
-  padding: 1px; }
+  padding: 1px;
+  flex-shrink: 0; }
 .ydn-crm .record-header .link {
   display: none; }
 .ydn-crm .record-header .link.synced {
@@ -2787,7 +2867,8 @@ a.maia-button.maia-button-secondary {
   margin: 0 4px 0 0;
   border: none;
   color: #ffffff;
-  vertical-align: middle; }
+  vertical-align: middle;
+  flex-shrink: 0; }
 .ydn-crm .record-header:hover .link {
   display: inline !important; }
 .ydn-crm .edit-button {
@@ -2911,6 +2992,7 @@ a.maia-button.maia-button-secondary {
     overflow: hidden;
     white-space: nowrap; }
   .ydn-crm .record-item .icon {
+    /* todo: migrate to .ydn-icon */
     cursor: pointer; }
   .ydn-crm .record-item > .ydn-content {
     padding-left: 27px;
@@ -2955,8 +3037,11 @@ a.maia-button.maia-button-secondary {
 #field-table td:last-child {
   text-align: left; }
 
+.ydn-crm .archive-dialog .ydn-head {
+  margin-top: 8px;
+  margin-bottom: 4px; }
 .ydn-crm .relationships-panel > .ydn-content {
-  min-height: 24px;
+  min-height: 4px;
   /* make no height by adding first item */ }
 .ydn-crm .relationships-panel .relationship-item {
   display: inline-block;
@@ -3826,7 +3911,6 @@ a.maia-button.maia-button-secondary {
 .ydn-crm .desktop-setting-page {
   padding: 4px; }
 .ydn-crm .setting-panel {
-  margin-top: 16px;
   margin-bottom: 8px; }
   .ydn-crm .setting-panel .ydn-title {
     font-size: 110%;
@@ -3841,6 +3925,10 @@ a.maia-button.maia-button-secondary {
   overflow-y: auto; }
 .ydn-crm .sugarcrm-setting-page .module-setting .setting-content {
   margin-left: 26px; }
+.ydn-crm .inj-setting-page > .ydn-head {
+  min-height: 2em; }
+.ydn-crm .ydn-setting-page-content {
+  overflow-y: auto; }
 .ydn-crm .update-message-panel {
   padding: 8px; }
 .ydn-crm .update-message-item {

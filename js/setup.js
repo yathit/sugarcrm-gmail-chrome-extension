@@ -81,7 +81,7 @@ Setup.prototype.login = function(context, opt_cb, opt_scope) {
   el_portal.style.display = '';
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
     this.setStatus('logging in...');
-    ydn.msg.getChannel().send('login-info', context).addCallbacks(function(data) {
+    ydn.msg.getChannel().send('logged-in', context).addCallbacks(function(data) {
       el_portal.style.display = 'none';
       var user_info = /** @type {YdnApiUser} */ (data);
       this.user_info = user_info;
