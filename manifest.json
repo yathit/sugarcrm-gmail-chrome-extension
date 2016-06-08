@@ -54,7 +54,7 @@
   "oauth2": {
     "client_id": "164649788853-tsu2krbup1585t3kl5u9dggks26sd7ln.apps.googleusercontent.com",
     "scopes": [
-      "email"
+      "profile email"
     ]
   },
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA7DF1n0MWKwMapvJz+nMyWtZ9zKRQVxxSDKNzSzyJ+tAJk5g8rf4+jLeT/K57rByIuJmZcW6+eKbY7Ga0RPXcto4xOXNmOSTQkjM6vQg8YjfPDVXVXJy7/44jfagJST0jl42Jkp6zHsAhtNuw8v970BDVSU6mL1CDHx8wJTFvttYJelvUI142mWLk68DHJdmdLtDvyBQl0PdP5OIjJPm8ZNUYLJetvep1IsSCHiqK5cZ0QE6rurB3FzknVhAikPE8crAl4moXS/6C29pHcJXkXTbgAYg28efJ8rpz9XmX9vg+I1NrvQWwLQn61pwow+JzoZGn4mpwH7YtXI/1kb98twIDAQAB",
