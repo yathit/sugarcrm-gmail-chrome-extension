@@ -3,6 +3,13 @@
   font-family: arial, sans-serif;
   font-size: 12px;
   /* toolbar items */ }
+  .ydn-crm .sugarcrm-domain {
+    width: 30em; }
+  .ydn-crm .widget-content .sugarcrm-domain {
+    width: 96%; }
+  .ydn-crm .ydn-notes {
+    font-size: 90%;
+    color: darkgrey; }
   .ydn-crm h5 {
     font-size: 1em;
     font-weight: normal;

@@ -2,6 +2,13 @@
   font-family: arial, sans-serif;
   font-size: 12px;
   /* toolbar items */ }
+  .ydn-crm .sugarcrm-domain {
+    width: 30em; }
+  .ydn-crm .widget-content .sugarcrm-domain {
+    width: 96%; }
+  .ydn-crm .ydn-notes {
+    font-size: 90%;
+    color: darkgrey; }
   .ydn-crm h5 {
     font-size: 1em;
     font-weight: normal;
@@ -3119,6 +3126,8 @@ a.maia-button.maia-button-secondary {
     padding-right: 4px; }
 .ydn-crm .login-panel > DIV {
   margin: 4px 0; }
+.ydn-crm .login-panel .ydn-message {
+  font-size: 90%; }
 .ydn-crm .sugar-panel-content {
   margin: 2px 0; }
 .ydn-crm .sugar-body .goog-tab {
@@ -3139,11 +3148,16 @@ a.maia-button.maia-button-secondary {
 .ydn-crm .sugarcrm-link-panel, .ydn-crm .no-sugar-panel, .ydn-crm .setup-panel {
   text-align: center;
   margin: 8px 0; }
+.ydn-crm .setup-panel {
+  min-width: 260px; }
 .ydn-crm .sugarcrm-link-panel > *, .ydn-crm .no-sugar-panel > * {
   margin: auto auto; }
 .ydn-crm .context-sidebar {
   border-top: 1px solid #d8d8d8;
   border-bottom: 1px solid #d8d8d8; }
+.ydn-crm .sidebox-content .popup-content {
+  display: flex;
+  flex-direction: column; }
 
 .ydn-crm .status-base {
   font-size: 90%;

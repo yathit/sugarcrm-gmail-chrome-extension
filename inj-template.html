@@ -138,6 +138,9 @@
     Version: <span name="version"></span><br/>
     Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
   </p>
+  <div class="login-section">
+    <p><span name="username"></span> <a name="login">Login</a></p>
+  </div>
   <div class="license-section">
     <div class="ydn-content">
       License: <span class="license"></span>
@@ -147,11 +150,16 @@
       <a href="https://www.yathit.com/shop/crmininbox-subscription.html">Subscribe license</a>
     </p>
   </div>
+  <p>
+    <div name="message"></div>
+  </p>
 </template>
 
 <template id="admin-template">
   <h3>Admin Portal</h3>
-
+  <p>
+    <span name="username"></span><a href="login" name="login">Login</a>
+  </p>
 </template>
 
 <template id="feedback-page-template">
@@ -227,9 +235,7 @@
 </template>
 <template id="sugarcrm-template">
   <style>
-    .sugarcrm-domain {
-      width: 30em;
-    }
+
   </style>
   <h3>SugarCRM</h3>
   <div class="widget-content">
@@ -237,7 +243,7 @@
       <div class="domain">
         <div><label>Enter your SugarCRM web site url</label></div>
         <div><input name="domain" class="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
-          <span class="message" name="message"></span></div>
+          <span class="ydn-message" name="message"></span></div>
       </div>
       <div>
         <div><label>Username</label></div>
@@ -245,7 +251,7 @@
       </div>
       <div>
         <div><label>Password</label></div>
-        <div><input name="password" class="sugarcrm-password" type="password"/></div>
+        <div><input name="password" class="sugarcrm-password" type="password" autocomplete="off"/></div>
       </div>
       <div>
         <div><label for="sugarcrm-auth">Authentication</label>
@@ -255,18 +261,19 @@
         </select></div>
       </div>
       <div>
-        <div class="message"></div>
+        <div class="ydn-message"></div>
       </div>
       <div>
         <button name="login">Login</button>
       </div>
-      <div>
+      <div class="ydn-notes">
         <p>Your SugarCRM username and password are NOT sent to any server except your SugarCRM server. Your SugarCRM username and password are stored in this browser with encryption.</p>
       </div>
       <input name="baseurl" type="text" hidden/>
     </div>
     <div name="info-panel" style="display: none">
-      <div>Host: <a name="instance"></a> <span name="instance-info"></span></div>
+      <div>Host: <a name="instance"></a> </div>
+      <div>Type: <span name="instance-info"></span></div>
       <div>User: <span name="user"></span></div>
       <div name="grant-host-permission" style="display: none">
         <button>Grant host permission</button>
@@ -275,7 +282,7 @@
     </div>
     <div name="remove-panel" style="display: none">
       <p>
-        <a href="#" name="remove" title="Remove this SugarCRM credentials.">Remove</a>
+        <a href="#" name="remove" title="Remove this SugarCRM credentials.">Logout</a>
       </p>
     </div>
     <div name="stats-panel" style="display: none">
@@ -309,11 +316,11 @@
         <div class="popup-footer">
           <div class="popup-footer-bar">
             <span class="left-item">
-              <a name="option-page-url" title="Extension options" target="option-page">Options</a>
-            </span>
+              <a name="option-page-url" style="display: none" title="Extension options" target="option-page">Options</a>
+                  <a href="https://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
+          </span>
             <span class="center-item"></span>
             <span class="right-item">
-                <a href="https://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
             </span>
           </div>
 
