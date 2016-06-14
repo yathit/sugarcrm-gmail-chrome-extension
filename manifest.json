@@ -2,20 +2,10 @@
   "name": "Yathit SugarCRM for Gmail",
   "short_name": "Yathit SugarCRM for Gmail",
   "description": "Yathit SugarCRM for Gmail is a secure delightful time-saving tool for SugarCRM users in Gmail.",
-  "version": "6.2.4",
+  "version": "6.2.5",
   "manifest_version": 2,
 
   "default_locale": "en",
-
-  "content_scripts": [
-    {
-      "matches": ["https://mail.google.com/*", "https://inbox.google.com/*"],
-      "js": [
-        "js/environment.js",
-        "js/run-content-script.js"],
-      "run_at": "document_end"
-    }
-  ],
 
   "background": {
     "scripts": [
@@ -31,9 +21,9 @@
     "jsc/*",
     "image/*"],
 
-  "content_security_policy": "script-src 'self' https://ydn-src-1.storage.googleapis.com https://www.yathit.com  https://ssl.google-analytics.com https://www.google.com/; object-src 'self'; img-src 'self' https://ssl.gstatic.com ",
+  "content_security_policy": "script-src 'self' https://ydn-src-2.storage.googleapis.com https://www.yathit.com  https://ssl.google-analytics.com https://www.google.com/; object-src 'self'; img-src 'self' https://ssl.gstatic.com ",
 
-  "permissions":  ["identity", "storage", "activeTab", "gcm", "notifications", "declarativeContent", "alarms", "pageCapture", "http://*/", "https://*/"],
+  "permissions":  ["identity", "storage", "activeTab", "gcm", "notifications", "declarativeContent", "alarms", "pageCapture", "https://mail.google.com/*", "https://inbox.google.com/*", "http://*/", "https://*/"],
 
   "externally_connectable": {
     "matches": ["https://mail.google.com/*", "https://inbox.google.com/*", "https://www.yathit.com/*"]
