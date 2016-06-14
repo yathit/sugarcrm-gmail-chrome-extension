@@ -1,0 +1,336 @@
+{
+  "Quick_create": {
+    "message": "Szybkie tworzenie"
+  },
+  "Module": {
+    "message": "Moduł"
+  },
+  "Name": {
+    "message": "Imię"
+  },
+  "Create": {
+    "message": "Utwórz"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "Kontaktu $email$ brak w CRM. Wybierz moduł do utworzenia nowego rekordu.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "view": {
+    "message": "widok",
+    "description": "A link label to view a record in CRM"
+  },
+  "New_record": {
+    "message": "Nowy wpis"
+  },
+  "Creating_a_new_record": {
+    "message": "Utwórz nowy wpis w module $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "Tworzenie wpisu z e-maila"
+  },
+  "Description": {
+    "message": "Opis"
+  },
+  "Document_Name": {
+    "message": "Nazwa dokumentu"
+  },
+  "File_Name": {
+    "message": "Nazwa pliku"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "Prześlij załącznik jako Dokument"
+  },
+  "Archive_email": {
+    "message": "Archiwiz e-maili",
+    "description": "A dialog title"
+  },
+  "Attach_as_Notes_records": {
+    "message": "Dołączyć jako Notatka"
+  },
+  "From": {
+    "message": "Od",
+    "description": "Label for email sender"
+  },
+  "To": {
+    "message": "Do",
+    "description": "Label for email recipient"
+  },
+  "Subject": {
+    "message": "Temat",
+    "description": "Label for email subject"
+  },
+  "words_in_this_email_content": {
+    "message": "słów w tym e-mailu."
+  },
+  "Reset": {
+    "message": "Resetuj"
+  },
+  "Save": {
+    "message": "Zapisz"
+  },
+  "Restore_default": {
+    "message": "Przywróć domyślne"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Ustawienia archiwizacji poczty wychodzącej"
+  },
+  "Synchronization": {
+    "message": "Synchronizacja"
+  },
+  "Google_Calendar": {
+    "message": "Kalendarz Google"
+  },
+  "Google_Contacts": {
+    "message": "Kontakty Google"
+  },
+  "Email_Archiving": {
+    "message": "Archiwizacja E-mail"
+  },
+  "Remove_sync": {
+    "message": "Wyłącz synchronizację"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Synchronizacja kontaktów pomiędzy Gmail i SugarCRM"
+  },
+  "Add_to": {
+    "message": "Dodaj do"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "Dodaj do SugarCRM i zsynchronizuj"
+  },
+  "exporting": {
+    "message": "eksportuję"
+  },
+  "Deleting": {
+    "message": "Usuwanie"
+  },
+  "deleted": {
+    "message": "skasowany"
+  },
+  "Edit_record": {
+    "message": "Edycja wpisu"
+  },
+  "Cancel_edit": {
+    "message": "Anuluj edycję"
+  },
+  "Submit_changes": {
+    "message": "Zatwierdź zmiany, naciśnij ALT, aby zobaczyć zmiany"
+  },
+  "Edit": {
+    "message": "Edytuj"
+  },
+  "Submit": {
+    "message": "Zatwierdź"
+  },
+  "Close": {
+    "message": "Zamknij"
+  },
+  "Delete": {
+    "message": "Usuń"
+  },
+  "Creating": {
+    "message": "Utwórz"
+  },
+  "Updating": {
+    "message": "Aktualizuję"
+  },
+  "created": {
+    "message": "utworzono"
+  },
+  "updated": {
+    "message": "zaktualizowano"
+  },
+  "View_in_CRM": {
+    "message": "Zobacz w CRM"
+  },
+  "Duplicate_to": {
+    "message": "Kopiuj do"
+  },
+  "New": {
+    "message": "Nowy"
+  },
+  "Sync": {
+    "message": "Synchronizuj"
+  },
+  "To_Gmail": {
+    "message": "Do Gmaila"
+  },
+  "To_Gmail_tooltip": {
+    "message": "Eksportuj kontakt SugarCRM do kontaktów Gmaila"
+  },
+  "No_change_to_be_saved": {
+    "message": "Brak zmiany do zapisania"
+  },
+  "Error_saving": {
+    "message": "Błąd podczas zapisywania: "
+  },
+  "Sync_tooltip": {
+    "message": "Synchronizuj kontakt SugarCRM z kontaktem Gmail"
+  },
+  "View_details": {
+    "message": "Zobacz szczegóły"
+  },
+  "Fields": {
+    "message": "Pola"
+  },
+  "Upcoming_Activities": {
+    "message": "Nadchodzące wydarzenia"
+  },
+  "Emails": {
+    "message": "E-maile"
+  },
+  "Related": {
+    "message": "Powiązane"
+  },
+  "Options": {
+    "message": "Opcje"
+  },
+  "Help": {
+    "message": "Pomoc"
+  },
+  "Feedback": {
+    "message": "Informacja zwrotna"
+  },
+  "Search": {
+    "message": "Szukaj"
+  },
+  "Search_tooltip": {
+    "message": "Wyszukaj nazwę, e-mail, telefon, identyfikator, tytuł, opis, itp"
+  },
+  "New_tooltip": {
+    "message": "Utwórz nowy wpis"
+  },
+  "Activity_feed": {
+    "message": "Aktualności"
+  },
+  "Archive": {
+    "message": "Archiwizuj"
+  },
+  "View_Archive": {
+    "message": "Przeglądaj archiwum"
+  },
+  "Re_archive": {
+    "message": "Zarchiwizuj ponownie"
+  },
+  "Upload": {
+    "message": "Dodaj do SugarCRM"
+  },
+  "Re_upload": {
+    "message": "Ponownie prześlij do SugarCRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "Zobacz $module$ wpis na bocznym panleu",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": "Dokument $name$ znajduje się już w CRM.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
+      }
+    }
+  },
+  "ActivityCount": {
+    "message": "Zaktualizowano $count$ wpisów od $date$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ Twoich zgłoszeń",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": " $module$ w tym tygodniu: $no$",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  },
+  "record_deleted": {
+    "message": "Wpis został usunięty przez $user$ $date$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "Licencja $license$ nie obsługuje funkcji $feature$",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Czy na pewno chcesz wykonać następującą aktualizację?"
+  },
+  "OK": {
+    "message": "OK"
+  },
+  "Cancel": {
+    "message": "Anuluj "
+  },
+  "Login_fail": {
+    "message": "Błąd logowania."
+  },
+  "Retry": {
+    "message": "Ponów"
+  },
+  "Setup": {
+    "message": "Ustawienia"
+  },
+  "Setup_SugarCRM": {
+    "message": "Konfiguracja SugarCRM"
+  },
+  "Snapshot": {
+    "message": "Migawka",
+    "description": "A button tooltip on main tab bar, to show person detail."
+  }
+}

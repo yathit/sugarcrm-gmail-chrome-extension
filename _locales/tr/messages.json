@@ -1,0 +1,67 @@
+{
+  "Upcoming_Activities": {
+    "message": "Yaklaşan Etkinlikler"
+  },
+  "Emails": {
+    "message": "E-postalar"
+  },
+  "Related": {
+    "message": "Ilgili"
+  },
+  "Options": {
+    "message": "Seçenekler"
+  },
+  "Help": {
+    "message": "Yardım"
+  },
+  "Feedback": {
+    "message": "Geribesleme"
+  },
+  "Search": {
+    "message": "Arama"
+  },
+  "Search_tooltip": {
+    "message": "Arama adı, e-posta, telefon, kimliği, başlık, açıklama, vb"
+  },
+  "New_tooltip": {
+    "message": "Yeni kayıt oluştur"
+  },
+  "Activity_feed": {
+    "message": "Etkinlik besleme"
+  },
+  "ActivityCount": {
+    "message": "$count$ yana güncellenen kayıtları $date$ .",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ Olgular size tahsis.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ yaklaşan $module$ bu hafta.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  }
+}

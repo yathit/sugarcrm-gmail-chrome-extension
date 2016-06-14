@@ -1,0 +1,394 @@
+{
+  "Quick_create": {
+    "message": "สร้างด่วน"
+  },
+  "Module": {
+    "message": "โมดูล"
+  },
+  "Name": {
+    "message": "ชื่อ"
+  },
+  "Create": {
+    "message": "สร้าง"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "ติดต่อ $email$ ไม่ได้อยู่ใน CRM ของคุณ เลือกโมดูลเพื่อสร้างสถิติใหม่",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "view": {
+    "message": "ดู",
+    "description": "A link label to view a record in CRM"
+  },
+  "New_record": {
+    "message": "สถิติใหม่"
+  },
+  "Creating_a_new_record": {
+    "message": "สร้างใหม่ $module$ บันทึก",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "สร้างบันทึกจากอีเมล์"
+  },
+  "Description": {
+    "message": "ลักษณะ"
+  },
+  "Document_Name": {
+    "message": "ชื่อเอกสาร"
+  },
+  "File_Name": {
+    "message": "ชื่อไฟล์"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "อัพโหลดไฟล์แนบกับบันทึกเอกสาร"
+  },
+  "Archive_email": {
+    "message": "เก็บอีเมล",
+    "description": "A dialog title"
+  },
+  "Attach_as_Notes_records": {
+    "message": "แนบบันทึกหมายเหตุ"
+  },
+  "From": {
+    "message": "จาก",
+    "description": "Label for email sender"
+  },
+  "To": {
+    "message": "ไปยัง",
+    "description": "Label for email recipient"
+  },
+  "Subject": {
+    "message": "เรื่อง",
+    "description": "Label for email subject"
+  },
+  "words_in_this_email_content": {
+    "message": "คำพูดในเนื้อหาของอีเมลฉบับนี้"
+  },
+  "Reset": {
+    "message": "รีเซ็ต"
+  },
+  "Save": {
+    "message": "ประหยัด"
+  },
+  "Restore_default": {
+    "message": "คืนค่าเริ่มต้น"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "การตั้งค่าเก็บขาออก Gmail"
+  },
+  "Synchronization": {
+    "message": "การประสานข้อมูล"
+  },
+  "Google_Calendar": {
+    "message": "Google Calendar"
+  },
+  "Google_Contacts": {
+    "message": "Google Contacts ของ"
+  },
+  "Email_Archiving": {
+    "message": "เก็บอีเมล์"
+  },
+  "Remove_sync": {
+    "message": "นำซิงค์"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "ซิงค์ระหว่างการติดต่อ Gmail และบันทึก SugarCRM"
+  },
+  "Add_to": {
+    "message": "เพิ่ม"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "เพิ่มใน SugarCRM และซิงค์"
+  },
+  "exporting": {
+    "message": "การส่งออก"
+  },
+  "Deleting": {
+    "message": "ลบ"
+  },
+  "deleted": {
+    "message": "ลบ"
+  },
+  "Edit_record": {
+    "message": "แก้ไขบันทึก"
+  },
+  "Cancel_edit": {
+    "message": "ยกเลิกการแก้ไข"
+  },
+  "Submit_changes": {
+    "message": "ส่งการเปลี่ยนแปลงกด Alt เพื่อดูการเปลี่ยนแปลง"
+  },
+  "Edit": {
+    "message": "แก้ไข"
+  },
+  "Submit": {
+    "message": "เสนอ"
+  },
+  "Close": {
+    "message": "ปิด"
+  },
+  "Delete": {
+    "message": "ลบ"
+  },
+  "Creating": {
+    "message": "การสร้าง"
+  },
+  "Updating": {
+    "message": "อัปเดต"
+  },
+  "created": {
+    "message": "สร้าง"
+  },
+  "updated": {
+    "message": "การปรับปรุง"
+  },
+  "View_in_CRM": {
+    "message": "ดูใน CRM"
+  },
+  "Duplicate_to": {
+    "message": "สำเนา"
+  },
+  "New": {
+    "message": "ใหม่"
+  },
+  "Sync": {
+    "message": "ซิงค์"
+  },
+  "To_Gmail": {
+    "message": "ไปยัง Gmail"
+  },
+  "To_Gmail_tooltip": {
+    "message": "ส่งออก SugarCRM บันทึกรายชื่อไปยัง Gmail ติดต่อ"
+  },
+  "No_change_to_be_saved": {
+    "message": "ไม่มีการเปลี่ยนแปลงจะถูกบันทึกไว้"
+  },
+  "Error_saving": {
+    "message": "ประหยัดข้อผิดพลาด: "
+  },
+  "Sync_tooltip": {
+    "message": "บันทึกการซิงค์ SugarCRM และ Gmail ติดต่อ"
+  },
+  "View_details": {
+    "message": "ดูรายละเอียด"
+  },
+  "Fields": {
+    "message": "ทุ่ง"
+  },
+  "Upcoming_Activities": {
+    "message": "กิจกรรมที่จะเกิดขึ้น"
+  },
+  "Emails": {
+    "message": "อีเมล"
+  },
+  "Related": {
+    "message": "ที่เกี่ยวข้อง"
+  },
+  "Options": {
+    "message": "ตัวเลือก"
+  },
+  "Help": {
+    "message": "ช่วยด้วย"
+  },
+  "Feedback": {
+    "message": "ข้อเสนอแนะ"
+  },
+  "Search": {
+    "message": "ค้นหา"
+  },
+  "Search_tooltip": {
+    "message": "ค้นหาชื่อ, อีเมล์, โทรศัพท์, ID, ชื่อ, รายละเอียดอื่น ๆ"
+  },
+  "New_tooltip": {
+    "message": "สร้างสถิติใหม่"
+  },
+  "Activity_feed": {
+    "message": "ฟีดกิจกรรม"
+  },
+  "Archive": {
+    "message": "เอกสารเก่า"
+  },
+  "Template": {
+    "message": "แบบ",
+    "description": "A menu text for template"
+  },
+  "Tracking": {
+    "message": "ติดตาม",
+    "description": "A menu text to set tracking"
+  },
+  "View_Archive": {
+    "message": "ดูที่เก็บ"
+  },
+  "Re_archive": {
+    "message": "Re-เก็บ"
+  },
+  "Upload": {
+    "message": "อัปโหลดไปยัง SugarCRM"
+  },
+  "Re_upload": {
+    "message": "อัปโหลดไปยัง SugarCRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "ดู $module$ รายละเอียดบนแผงแถบด้านข้าง",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": "เอกสาร $name$ อยู่แล้วใน CRM",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
+      }
+    }
+  },
+  "ActivityCount": {
+    "message": "$count$ บันทึกการปรับปรุงตั้งแต่ $date$",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ กรณีมอบหมายให้คุณ",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ ที่จะเกิดขึ้น $module$ ในสัปดาห์นี้",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  },
+  "record_deleted": {
+    "message": "บันทึกถูกลบโดย $user$ $date$",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "ใบอนุญาตของคุณ \" $license$ \" ไม่สนับสนุนคุณลักษณะสำหรับ $feature$",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "คุณแน่ใจหรือไม่ว่าคุณต้องการที่จะทำให้การปรับปรุงต่อไป?"
+  },
+  "OK": {
+    "message": "ตกลง"
+  },
+  "Cancel": {
+    "message": "ยกเลิก"
+  },
+  "Login_fail": {
+    "message": "เข้าสู่ระบบล้มเหลว"
+  },
+  "Retry": {
+    "message": "ลองใหม่อีกครั้ง"
+  },
+  "Setup": {
+    "message": "ติดตั้ง"
+  },
+  "Setup_SugarCRM": {
+    "message": "การติดตั้ง SugarCRM"
+  },
+  "Module_setting": {
+    "message": "การตั้งค่าโมดูล"
+  },
+  "A_subscription": {
+    "message": "การสมัครสมาชิก"
+  },
+  "is_required_for_attachment": {
+    "message": "เป็นสิ่งจำเป็นสำหรับสิ่งที่แนบมา"
+  },
+  "Relationships": {
+    "message": "สัมพันธ์",
+    "description": "Title of a section in archive dialog."
+  },
+  "Relationships_tooltip": {
+    "message": "โดยการสร้างความสัมพันธ์ที่เกี่ยวข้องกับการบันทึกปรากฏเป็น subpanels ในมุมมองรายละเอียดบรรณานุกรมเป้าหมาย"
+  },
+  "Relationship_list_of_module_tooltip": {
+    "message": "รายการของโมดูลซึ่งมีความสัมพันธ์กับ $mn$ โมดูล ความสัมพันธ์ที่กำหนดไว้ในโมดูลสร้าง / สตูดิโอ",
+    "description": "Tooltips in archive dialog.",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Emails"
+      }
+    }
+  },
+  "Search_tooltips": {
+    "message": "ค้นหาชื่อ, คำอธิบาย, ID, อีเมลหมายเลขกรณีอื่น ๆ"
+  },
+  "Logging_preference": {
+    "message": "การตั้งค่าการเข้าสู่ระบบ"
+  },
+  "See_our_privacy_policy": {
+    "message": "ดูนโยบายความเป็นส่วนตัวของเรา"
+  },
+  "Logging_subscription_require_message": {
+    "message": "การสมัครสมาชิกจะต้องเปลี่ยนการตั้งค่าการเข้าสู่ระบบ"
+  },
+  "Logging_Analytics_tooltip": {
+    "message": "การเข้าสู่ระบบการวิเคราะห์ช่วยให้เราปรับปรุงประสบการณ์ของผู้ใช้และเพิ่มคุณสมบัติมากขึ้น"
+  },
+  "Logging_Debugging_tooltip": {
+    "message": "การเข้าสู่ระบบการแก้ปัญหาช่วยให้เรายากที่จะหาข้อบกพร่อง"
+  },
+  "Enable_analytic_logging": {
+    "message": "เปิดใช้การบันทึกการวิเคราะห์"
+  },
+  "Enable_debug_logging": {
+    "message": "เปิดใช้การบันทึกการแก้ปัญหา"
+  },
+  "Snapshot": {
+    "message": "ภาพรวม",
+    "description": "A button tooltip on main tab bar, to show person detail."
+  }
+}

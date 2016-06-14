@@ -1,0 +1,67 @@
+{
+  "Upcoming_Activities": {
+    "message": "Activités à venir"
+  },
+  "Emails": {
+    "message": "Emails"
+  },
+  "Related": {
+    "message": "Connexe"
+  },
+  "Options": {
+    "message": "Options"
+  },
+  "Help": {
+    "message": "Aidez-Moi"
+  },
+  "Feedback": {
+    "message": "Réaction"
+  },
+  "Search": {
+    "message": "Recherche"
+  },
+  "Search_tooltip": {
+    "message": "Nom de la recherche, email, téléphone, id, titre, description, etc."
+  },
+  "New_tooltip": {
+    "message": "Créer un nouveau record"
+  },
+  "Activity_feed": {
+    "message": "flux Activité"
+  },
+  "ActivityCount": {
+    "message": "$count$ records updated since $date$.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ Cases assigned to you.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ upcoming $module$  in this week.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  }
+}
