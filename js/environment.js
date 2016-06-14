@@ -31,9 +31,9 @@ window.YathitCrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.Version = {
-  release: '6.2.5',
-  beta: '6.2.5',
-  alpha: '6.2.6'
+  release: '6.2.7',
+  beta: '6.2.8',
+  alpha: '6.2.8'
 };
 
 
@@ -47,7 +47,7 @@ YathitCrm.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.sugarcrm.Version = {
-  release: '6.2.5',
-  beta: '6.2.5',
-  alpha: '6.2.6'
+  release: '6.2.7',
+  beta: '6.2.8',
+  alpha: '6.2.8'
 };
