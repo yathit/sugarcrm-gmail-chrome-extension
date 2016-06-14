@@ -1,12 +1,13 @@
 /**
- * Created by kyawtun on 15/12/13.
+ * Load js file depending on selected track.
  */
 
 
-// Load sugarcrm UI file.
-chrome.storage.local.get('front-end-src', function(obj) {
-  var fn = obj['front-end-src'];
-  // console.log('loading ' + fn);
+(function() {
+  var versions = window.YathitCrm.sugarcrm.Version;
+  var channel = localStorage.getItem('version-track') ||
+      localStorage.getItem('suggested-version-track') || 'release';
+  var fn = 'jsc/crmininbox-' + versions[channel] + '.js';
   var node = document.createElement('script');
   node.type = 'text/javascript';
   node.onload = function() {
@@ -14,8 +15,8 @@ chrome.storage.local.get('front-end-src', function(obj) {
     window.app = runOptionApp();
   };
   node.src = fn;
-  var head = document.getElementsByTagName('head')[0];
-  head.appendChild(node);
-});
+  document.getElementsByTagName('head')[0].appendChild(node);
+})();
+
 
 
