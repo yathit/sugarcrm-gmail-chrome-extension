@@ -11,8 +11,12 @@
     var channel = obj['version-track'] || obj['suggested-version-track'] || 'alpha';
     if (channel == 'beta') {
       fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.beta + '.js';
-    } else if (channel == 'alpha' && navigator.onLine) {
-      fn = 'https://www.yathit.com/source-code/edge/ydn.crm.js';
+    } else if (channel == 'alpha') {
+      if (navigator.onLine) {
+        fn = 'https://www.yathit.com/source-code/edge/ydn.crm.js';
+      } else {
+        fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.alpha + '.js';
+      }
     } else {
       fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.release + '.js';
       channel = 'release';
