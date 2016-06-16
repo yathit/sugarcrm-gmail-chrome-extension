@@ -8,15 +8,11 @@
    */
   chrome.storage.local.get(['version-track', 'suggested-version-track'], function(obj) {
     var fn;
-    var channel = obj['version-track'] || obj['suggested-version-track'] || 'alpha';
+    var channel = obj['version-track'] || obj['suggested-version-track'] || 'release';
     if (channel == 'beta') {
       fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.beta + '.js';
     } else if (channel == 'alpha') {
-      if (navigator.onLine) {
-        fn = 'https://www.yathit.com/source-code/edge/ydn.crm.js';
-      } else {
-        fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.alpha + '.js';
-      }
+      fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.alpha + '.js';
     } else {
       fn = 'jsc/ydn.crm-' + window.YathitCrm.Version.release + '.js';
       channel = 'release';
