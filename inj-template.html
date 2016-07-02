@@ -132,40 +132,6 @@
   </table>
 </template>
 
-<template id="basic-about-template">
-  <h3 class="app-name"></h3>
-  <p>
-    Version: <span name="version"></span><br/>
-    Website: <a href="https://crm.yathit.com" target="crm.yathit.com">https://crm.yathit.com</a>
-  </p>
-  <div class="login-section">
-    <p><span name="username"></span> <a name="login">Login</a></p>
-  </div>
-  <div class="ydn-channel-section">
-    <p>
-      <label>Channel: <select name="channel">
-        <option value="lts1" title="Long Term Support" disabled>LTS 1</option>
-        <option value="release">Release</option>
-        <option value="beta">Insider</option>
-        <option value="alpha">Canary</option>
-      </select></label>
-      <div name="channel-message">Changes will effect in next reload. <a name="reload">Reload Now</a></div>
-    </p>
-  </div>
-  <div class="license-section">
-    <div class="ydn-content">
-      License: <span class="license"></span>
-    </div>
-    <p class="note">
-      <a href="https://www.yathit.com/portal/index.html">Manage license</a>
-      <a href="https://www.yathit.com/shop/crmininbox-subscription.html">Subscribe license</a>
-    </p>
-  </div>
-  <p>
-    <div name="message"></div>
-  </p>
-</template>
-
 <template id="admin-template">
   <h3>Admin Portal</h3>
   <p>
@@ -188,8 +154,8 @@
 </template>
 
 <template id="sugarcrm-home-template">
-  <section>
-    <div id="gdata"></div>
+  <section> <!-- remove this section -->
+    <div id="gdata" style="display: none;"></div>
   </section>
   <section name="sugarcrm">
     <div id="sugarcrm-widget"></div>
@@ -328,7 +294,7 @@
           <div class="popup-footer-bar">
             <span class="left-item">
               <a name="option-page-url" style="display: none" title="Extension options" target="option-page">Options</a>
-                  <a href="https://crm.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
+                  <a href="https://www.yathit.com/crmininbox/user-guide/index.html" target="user-guide" name="help">Help</a>
           </span>
             <span class="center-item"></span>
             <span class="right-item">

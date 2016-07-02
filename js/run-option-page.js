@@ -10,11 +10,11 @@
     var fn;
     var channel = obj['version-track'] || obj['suggested-version-track'] || 'release';
     if (channel == 'beta') {
-      fn = 'jsc/crmininbox-' + window.YathitCrm.Version.beta + '.js';
+      fn = 'jsc/crmininbox-' + window.YathitCrm.sugarcrm.Version.beta + '.js';
     } else if (channel == 'alpha') {
-      fn = 'jsc/crmininbox-' + window.YathitCrm.Version.alpha + '.js';
+      fn = 'jsc/crmininbox-' + window.YathitCrm.sugarcrm.Version.alpha + '.js';
     } else {
-      fn = 'jsc/crmininbox-' + window.YathitCrm.Version.release + '.js';
+      fn = 'jsc/crmininbox-' + window.YathitCrm.sugarcrm.Version.release + '.js';
       channel = 'release';
     }
 
