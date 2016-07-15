@@ -71,7 +71,8 @@ Login.prototype.login = function(context, opt_cb, opt_scope) {
   this.setStatus('starting...');
   ydn.msg.getChannel().send('echo').addCallbacks(function(ok) {
     this.setStatus('logging in...');
-    ydn.msg.getChannel().send('logged-in', context).addCallbacks(function(data) {
+    var param = {interactive: false, url: location.href, login: 'server', force: true};
+    ydn.msg.getChannel().send('logged-in', param).addCallbacks(function(data) {
       var user_info = /** @type {YdnApiUser} */ (data);
       this.user_info = user_info;
       this.setStatus('');
@@ -122,9 +123,6 @@ Login.prototype.init = function() {
         }
       });
 
-  this.login(null, function(x) {
-    this.run();
-  }, this);
 };
 
 
@@ -132,7 +130,9 @@ Login.prototype.init = function() {
  * Run after login.
  */
 Login.prototype.run = function() {
-
+  this.login(null, function(x) {
+    console.log(x);
+  }, this);
 };
 
 
@@ -148,4 +148,5 @@ Login.prototype.setStatus = function(s) {
 ydn.msg.initPipe('setup');
 var setup = new Login();
 setup.init();
+setup.run();
 
