@@ -8,8 +8,28 @@
   "Name": {
     "message": "Name"
   },
+  "Browse_Sugar_Records": {
+    "message": "Browse Sugar Records"
+  },
+  "First_Last": {
+    "description": "Label for ordering first name followed by last name",
+    "message": "First, Last"
+  },
+  "Last_First": {
+    "description": "Label for ordering last name followed by first name",
+    "message": "Last, First"
+  },
+  "Email": {
+    "message": "Email"
+  },
   "Create": {
     "message": "Create"
+  },
+  "Parent": {
+    "message": "Parent"
+  },
+  "Account": {
+    "message": "Account"
   },
   "Contact_email_not_in_your_CRM": {
     "message": "Contact $email$ not in your CRM. Select a module to create a new record.",
@@ -17,6 +37,24 @@
       "email": {
         "content": "$1",
         "example": "info@yathit.com"
+      }
+    }
+  },
+  "Number_of_opens": {
+    "message": "Number of open $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "Number_of_closes": {
+    "message": "Number of closed $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
       }
     }
   },
@@ -79,11 +117,65 @@
   "Save": {
     "message": "Save"
   },
+  "Save_or_Show_changes": {
+    "message": "Save or Show changes (Alt+Click)"
+  },
   "Restore_default": {
     "message": "Restore default"
   },
   "Outgoing_gmail_archive_preference": {
     "message": "Outgoing gmail archive preference"
+  },
+  "Outgoing_email_should_be": {
+    "message": "Outgoing email should be"
+  },
+  "always_archived_tooltip": {
+    "message": "All your email send will be archived to CRM."
+  },
+  "always_archived": {
+    "message": "always archived"
+  },
+  "archived_normally": {
+    "message": "archived normally"
+  },
+  "archived_normally_tooltip": {
+    "message": "All your email send will be archived to CRM unless you select not to."
+  },
+  "enabled_for_archiving": {
+    "message": "enabled for archiving"
+  },
+  "enabled_for_archiving_tooltip": {
+    "message": "You can select whether you want to archive or not before sending email."
+  },
+  "not_archived_normally": {
+    "message": "not archived normally"
+  },
+  "not_archived_normally_tooltip": {
+    "message": "All your email send will not be archived unless you select to archive."
+  },
+  "disabled_for_archiving": {
+    "message": "disabled for archiving"
+  },
+  "Relationship_record_suggestion": {
+    "message": "Relationship record suggestion"
+  },
+  "Relationship_record_suggestion_tooltip": {
+    "message": "In Email Archive and Attachment Upload Dialogs, relationship record where archive should go are intelligently suggested."
+  },
+  "When_email_sender_should": {
+    "message": "When email sender/recipient is a Contacts record and has Account information, the Account should"
+  },
+  "linked_archived_email": {
+    "message": "linked to the archived email."
+  },
+  "suggested_archived_email": {
+    "message": "suggested to add as linked to the archived email."
+  },
+  "be_ignored": {
+    "message": "be ignored."
+  },
+  "treated_appropriate": {
+    "message": "be treated as appropriate."
   },
   "Synchronization": {
     "message": "Synchronization"
@@ -188,8 +280,31 @@
   "New": {
     "message": "New"
   },
+  "Contact": {
+    "message": "Contact"
+  },
+  "Currency": {
+    "message": "Currency"
+  },
   "Sync": {
     "message": "Sync"
+  },
+  "Favorites": {
+    "message": "Favorites"
+  },
+  "Filter": {
+    "description": "Menu title for FILTER to a condition",
+    "message": "Filter"
+  },
+  "Order": {
+    "description": "Menu title for sort order",
+    "message": "Order"
+  },
+  "My_records": {
+    "message": "My records"
+  },
+  "All_records": {
+    "message": "All records"
   },
   "To_Gmail": {
     "message": "To Gmail"
@@ -215,6 +330,12 @@
   "Upcoming_Activities": {
     "message": "Upcoming Activities"
   },
+  "Upcoming": {
+    "message": "Upcoming"
+  },
+  "Recent": {
+    "message": "Recent"
+  },
   "Emails": {
     "message": "Emails"
   },
@@ -223,6 +344,9 @@
   },
   "Options": {
     "message": "Options"
+  },
+  "Appointment": {
+    "message": "Appointment"
   },
   "Help": {
     "message": "Help"
@@ -244,6 +368,24 @@
   },
   "Archive": {
     "message": "Archive"
+  },
+  "Option_on_compiling_archive_message_content": {
+    "message": "Option on compiling archive message content"
+  },
+  "Visible_content": {
+    "message": "Visible content"
+  },
+  "Message_only": {
+    "message": "Message only"
+  },
+  "Full_thread": {
+    "message": "Full thread"
+  },
+  "Text_only": {
+    "message": "Text only archive for email content"
+  },
+  "By_default_both_HTML_and_Text": {
+    "message": "By default, both HTML and Text version of email content is archived."
   },
   "Template": {
     "message": "Template",
@@ -355,6 +497,9 @@
   "Login_fail": {
     "message": "Login fail."
   },
+  "Login": {
+    "message": "Login"
+  },
   "Retry": {
     "message": "Retry"
   },
@@ -370,6 +515,9 @@
   "A_subscription": {
     "message": "A subscription"
   },
+  "Create_record": {
+    "message": "Create a record"
+  },
   "is_required_for_attachment": {
     "message": "is required for attachment."
   },
@@ -378,7 +526,7 @@
     "description": "Title of a section in archive dialog."
   },
   "Related_Record": {
-    "message": "Related Records",
+    "message": "Related records",
     "description": "Label for related records in archive dialog."
   },
   "Relationships_tooltip": {
@@ -421,5 +569,20 @@
   "Snapshot": {
     "message": "Snapshot",
     "description": "A button tooltip on main tab bar, to show person detail."
+  },
+  "Inject_Yathit_side_drawer_to_CRM_portal": {
+    "message": "Show Yathit side drawer in CRM portal"
+  },
+  "Inject_Yathit_side_drawer_to_": {
+    "message": "Integrate with $domain$",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "Inbox"
+      }
+    }
+  },
+  "Experimental_features": {
+    "message": "Experimental features"
   }
 }
