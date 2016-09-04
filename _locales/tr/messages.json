@@ -1,36 +1,432 @@
 {
+  "Quick_create": {
+    "message": "Hızlı oluştur"
+  },
+  "Module": {
+    "message": "Modül"
+  },
+  "Name": {
+    "message": "İsim"
+  },
+  "Browse_Sugar_Records": {
+    "message": "Sugar Kayıtlarına göz at"
+  },
+  "First_Last": {
+    "message": "İlk, Son",
+    "description": "Label for ordering first name followed by last name"
+  },
+  "Last_First": {
+    "message": "Son, İlk",
+    "description": "Label for ordering last name followed by first name"
+  },
+  "Email": {
+    "message": "E-posta"
+  },
+  "Create": {
+    "message": "Oluştur"
+  },
+  "Parent": {
+    "message": "Üst Öğe"
+  },
+  "Account": {
+    "message": "Hesap"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "CRM ile değil, $email$ ile ulaşın. Yeni kayıt oluşturmak için modül seçin.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "Number_of_opens": {
+    "message": "Açık $module$ sayısı",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "Number_of_closes": {
+    "message": "Kapalı $module$ sayısı",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "view": {
+    "message": "Göster",
+    "description": "A link label to view a record in CRM"
+  },
+  "New_record": {
+    "message": "Yeni kayıt"
+  },
+  "Creating_a_new_record": {
+    "message": "Yeni $module$ kaydı oluştur ",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "Bir E-posta kaydı oluşturun"
+  },
+  "Description": {
+    "message": "Açıklama"
+  },
+  "Document_Name": {
+    "message": "Doküman Adı"
+  },
+  "File_Name": {
+    "message": "Dosya Adı"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "Eklentiyi Belgeler kaydı olarak yükle"
+  },
+  "Archive_email": {
+    "message": "E-posta arşivi",
+    "description": "A dialog title"
+  },
+  "Attach_as_Notes_records": {
+    "message": "Not kaydı olarak ekle"
+  },
+  "From": {
+    "message": "Kimden",
+    "description": "Label for email sender"
+  },
+  "To": {
+    "message": "Kime",
+    "description": "Label for email recipient"
+  },
+  "Subject": {
+    "message": "Konu",
+    "description": "Label for email subject"
+  },
+  "words_in_this_email_content": {
+    "message": "Bu e-posta içeriğinde kelimeler."
+  },
+  "Reset": {
+    "message": "Sıfırla"
+  },
+  "Save": {
+    "message": "Kaydet"
+  },
+  "Save_or_Show_changes": {
+    "message": "Kaydet veya değişiklikleri göster (Alt+tıklayın)"
+  },
+  "Restore_default": {
+    "message": "Varsayılana döndür"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Giden gmail arşiv tercihi"
+  },
+  "Outgoing_email_should_be": {
+    "message": "Giden e-posta koşulları"
+  },
+  "always_archived_tooltip": {
+    "message": "Tüm gönderilen e-postalar CRM içerisinde arşivlenir."
+  },
+  "always_archived": {
+    "message": "her zaman arşivlenmiş"
+  },
+  "archived_normally": {
+    "message": "normal olarak arşivlenen"
+  },
+  "archived_normally_tooltip": {
+    "message": "Tüm gönderilen e-postalar, aksi seçilmedikçe CRM içerisinde arşivlenecektir. "
+  },
+  "enabled_for_archiving": {
+    "message": "arşivleme için etkinleştirildi"
+  },
+  "enabled_for_archiving_tooltip": {
+    "message": "E-postayı göndermeden önce arşivlemek isteyip istemediğinizi seçebilirsiniz."
+  },
+  "not_archived_normally": {
+    "message": "Normal olarak arşivlenmemiş"
+  },
+  "not_archived_normally_tooltip": {
+    "message": "Eğer arşivlemeyi seçmezseniz, tüm gönderilen e-postalar arşivlenmeyecektir. "
+  },
+  "disabled_for_archiving": {
+    "message": "arşivleme devre dışı"
+  },
+  "Relationship_record_suggestion": {
+    "message": "İlişki kayıt önerisi"
+  },
+  "Relationship_record_suggestion_tooltip": {
+    "message": "E-posta Arşiv ve Eklenti Yükleme Diyaloglarında, arşivin gitmesi gereken ilişki kaydı zekice önerilmektedir."
+  },
+  "When_email_sender_should": {
+    "message": "E-posta gönderen / alan Kişiler içerisinde kayıtlıysa ve Hesap bilgisi mevcutsa, Hesap"
+  },
+  "linked_archived_email": {
+    "message": "arşivlenen e-posta ile bağlanır."
+  },
+  "suggested_archived_email": {
+    "message": "arşivlenen e-posta ile bağlantı kurması önerilir."
+  },
+  "be_ignored": {
+    "message": "göz ardı edilir."
+  },
+  "treated_appropriate": {
+    "message": "uygun olarak kabul edilir. "
+  },
+  "Synchronization": {
+    "message": "Senkronizasyon"
+  },
+  "Google_Calendar": {
+    "message": "Google Takvim"
+  },
+  "Google_Contacts": {
+    "message": "Google Kişiler"
+  },
+  "Email_Archiving": {
+    "message": "E-Posta Arşivleme"
+  },
+  "Remove_sync": {
+    "message": "Senkronizasyonu kaldır"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Gmail kişiler ve SugarCRM kaydı arasında senkronizasyon oluştur."
+  },
+  "sync_group_tooltip": {
+    "message": "Senkronize edilen Kişilerin göründüğü Google Kişiler Grubu."
+  },
+  "sync_interval_label": {
+    "message": "Dakikalar süren Senkronizasyon süresi"
+  },
+  "sync_interval_tooltip": {
+    "message": "Sık senkronizasyon yapmak daha fazla güç tüketir ve CRM sunucu yükünü artırır."
+  },
+  "confirm_sync_contacts_restore": {
+    "message": "$name$ Senkronizasyonu için varsayılan ayarlara geri dönmek istediğinize emin misiniz?",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Add_to": {
+    "message": "Ekle"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "SugarCRM'e ekle ve senkronize et"
+  },
+  "exporting": {
+    "message": "Dışarıya aktarılıyor"
+  },
+  "Deleting": {
+    "message": "Siliniyor"
+  },
+  "deleted": {
+    "message": "Silindi"
+  },
+  "Edit_record": {
+    "message": "Kaydı düzenle"
+  },
+  "Cancel_edit": {
+    "message": "Düzenlemeyi iptal et"
+  },
+  "Submit_changes": {
+    "message": "Değişiklikleri onayla, değişiklikleri görmek için ALT tuşuna basın"
+  },
+  "Edit": {
+    "message": "Düzenle"
+  },
+  "Advanced": {
+    "message": "Gelişmiş",
+    "description": "Advanced setting for expert users"
+  },
+  "Advanced_tooltip": {
+    "message": "Uzman kullanıcılar için gelişmiş ayarlar"
+  },
+  "Delete_all_synced_Gmail_Contacts": {
+    "message": "Tüm senkronize edilmiş Gmail Kişilerini sil"
+  },
+  "Submit": {
+    "message": "Onayla"
+  },
+  "Close": {
+    "message": "Kapat"
+  },
+  "Delete": {
+    "message": "Sil"
+  },
+  "Creating": {
+    "message": "Oluşturuluyor"
+  },
+  "Updating": {
+    "message": "Güncelleniyor"
+  },
+  "created": {
+    "message": "Oluşturuldu"
+  },
+  "updated": {
+    "message": "Güncellendi"
+  },
+  "View_in_CRM": {
+    "message": "CRM içinde göster"
+  },
+  "Duplicate_to": {
+    "message": "Kopyala"
+  },
+  "New": {
+    "message": "Yeni"
+  },
+  "Contact": {
+    "message": "Kişi"
+  },
+  "Currency": {
+    "message": "Para Birimi"
+  },
+  "Sync": {
+    "message": "Senkronizasyon"
+  },
+  "Favorites": {
+    "message": "Favoriler"
+  },
+  "Filter": {
+    "message": "Filtre",
+    "description": "Menu title for FILTER to a condition"
+  },
+  "Order": {
+    "message": "Sipariş",
+    "description": "Menu title for sort order"
+  },
+  "My_records": {
+    "message": "Kayıtlarım"
+  },
+  "All_records": {
+    "message": "Tüm kayıtlar"
+  },
+  "To_Gmail": {
+    "message": "Gmail'e"
+  },
+  "To_Gmail_tooltip": {
+    "message": "SugarCRM Kişiler kaydını Gmail Kişilerine aktar"
+  },
+  "No_change_to_be_saved": {
+    "message": "Değişiklikler kaydedilmeyecek."
+  },
+  "Error_saving": {
+    "message": "Kaydetme hatası: "
+  },
+  "Sync_tooltip": {
+    "message": "SugarCRM kadını ve Gmail Kişilerini senkronize et"
+  },
+  "View_details": {
+    "message": "Ayrıntıları görüntüle"
+  },
+  "Fields": {
+    "message": "Alanlar"
+  },
   "Upcoming_Activities": {
     "message": "Yaklaşan Etkinlikler"
+  },
+  "Upcoming": {
+    "message": "Yaklaşan"
+  },
+  "Recent": {
+    "message": "Mevcut"
   },
   "Emails": {
     "message": "E-postalar"
   },
   "Related": {
-    "message": "Ilgili"
+    "message": "İlgili"
   },
   "Options": {
     "message": "Seçenekler"
+  },
+  "Appointment": {
+    "message": "Randevu"
   },
   "Help": {
     "message": "Yardım"
   },
   "Feedback": {
-    "message": "Geribesleme"
+    "message": "Geri bildirim "
   },
   "Search": {
     "message": "Arama"
   },
   "Search_tooltip": {
-    "message": "Arama adı, e-posta, telefon, kimliği, başlık, açıklama, vb"
+    "message": "İsim, e-posta, telefon, kimlik, başlık, açıklama vb. ara."
   },
   "New_tooltip": {
     "message": "Yeni kayıt oluştur"
   },
   "Activity_feed": {
-    "message": "Etkinlik besleme"
+    "message": "Etkinlik akışı"
+  },
+  "Archive": {
+    "message": "Arşiv"
+  },
+  "Option_on_compiling_archive_message_content": {
+    "message": "Arşiv mesaj içeriğini derleme seçeneği"
+  },
+  "Visible_content": {
+    "message": "Görünür içerik"
+  },
+  "Message_only": {
+    "message": "Sadece mesaj"
+  },
+  "Full_thread": {
+    "message": "Tüm konu"
+  },
+  "Text_only": {
+    "message": "E-posta içeriği için sadece metin arşivi"
+  },
+  "By_default_both_HTML_and_Text": {
+    "message": "Varsayılan olarak, e-posta içeriğinin HTML ve Metin sürümü arşivlendi."
+  },
+  "Template": {
+    "message": "Taslak",
+    "description": "A menu text for template"
+  },
+  "Tracking": {
+    "message": "Takip",
+    "description": "A menu text to set tracking"
+  },
+  "View_Archive": {
+    "message": "Arşivi Görüntüle"
+  },
+  "Re_archive": {
+    "message": "Yeniden arşivle"
+  },
+  "Upload": {
+    "message": "SugarCRM'e yükle"
+  },
+  "Re_upload": {
+    "message": "SugarCRM'e yeniden yükle"
+  },
+  "View_record_on_sidebar": {
+    "message": "$module$ detayını kenar çubuğu panelinde göster",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": "Belge $name$ zaten CRM içerisinde.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
+      }
+    }
   },
   "ActivityCount": {
-    "message": "$count$ yana güncellenen kayıtları $date$ .",
+    "message": "$date$ beri güncelleştirilmiş $count$ kayıtları.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -43,7 +439,7 @@
     }
   },
   "Cases_assign": {
-    "message": "$no$ Olgular size tahsis.",
+    "message": "$no$ Olgu size tahsis edilmiş.",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -52,7 +448,7 @@
     }
   },
   "Upcoming_count": {
-    "message": "$no$ yaklaşan $module$ bu hafta.",
+    "message": "bu hafta $no$ yaklaşan $module$.",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -63,5 +459,122 @@
         "example": "Meetings"
       }
     }
+  },
+  "record_deleted": {
+    "message": "Kayıt $user$ $date$ tarafından silindi.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "Lisansınız \" $license$ \" $feature$ için özelliği desteklemiyor.",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Aşağıdaki güncelleştirmeyi yapmak istediğinize emin misiniz?"
+  },
+  "OK": {
+    "message": "Tamam"
+  },
+  "Cancel": {
+    "message": "İptal Et"
+  },
+  "Login_fail": {
+    "message": "Giriş işlemi başarısız."
+  },
+  "Login": {
+    "message": "Giriş yap"
+  },
+  "Retry": {
+    "message": "Tekrar dene"
+  },
+  "Setup": {
+    "message": "Kur"
+  },
+  "Setup_SugarCRM": {
+    "message": "SugarCRM Kurulumu"
+  },
+  "Module_setting": {
+    "message": "Modül ayarı"
+  },
+  "A_subscription": {
+    "message": "abonelik"
+  },
+  "Create_record": {
+    "message": "Bir kayıt oluştur"
+  },
+  "is_required_for_attachment": {
+    "message": "eklenti için gereklidir."
+  },
+  "Relationships": {
+    "message": "İlişkiler",
+    "description": "Title of a section in archive dialog."
+  },
+  "Related_Record": {
+    "message": "İlgili kayıtlar",
+    "description": "Label for related records in archive dialog."
+  },
+  "Relationships_tooltip": {
+    "message": "Bir ilişki oluşturarak, hedef kaydın ayrıntılı görünümünde ilgili kayıt alt-panel olarak görünür."
+  },
+  "Relationship_list_of_module_tooltip": {
+    "message": "$mn$ modülü ile ilişkili modül listeleri. İlişkiler, Modül Oluşturucu/Stüdyo üzerinde tanımlanmıştır.",
+    "description": "Tooltips in archive dialog.",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Emails"
+      }
+    }
+  },
+  "Search_tooltips": {
+    "message": "İsim, açıklama, kimlik, e-posta, dosya numarası vs. ara."
+  },
+  "Logging_preference": {
+    "message": "Kayıt tutma tercihi"
+  },
+  "See_our_privacy_policy": {
+    "message": "Gizlilik politikamıza bakınız"
+  },
+  "Logging_subscription_require_message": {
+    "message": "Kayıt tutma ayarlarını değiştirmek için bir abonelik gereklidir."
+  },
+  "Logging_Analytics_tooltip": {
+    "message": "Analitik kayıt tutma bize kullanıcı deneyimini iyileştirmede ve daha fazla özellik eklemede yardımcı olmaktadır."
+  },
+  "Logging_Debugging_tooltip": {
+    "message": "Hata ayıklama günlüğü bize zorlu hataları bulmada yardımcı olmaktadır."
+  },
+  "Enable_analytic_logging": {
+    "message": "Analitik kayıt tutmayı etkinleştir"
+  },
+  "Enable_debug_logging": {
+    "message": "Hata ayıklama günlüğünü etkinleştir"
+  },
+  "Snapshot": {
+    "message": "Snapshot",
+    "description": "A button tooltip on main tab bar, to show person detail."
+  },
+  "Inject_Yathit_side_drawer_to_CRM_portal": {
+    "message": "CRM portalına Yathit yan çekmecesini göster"
+  },
+  "Experimental_features": {
+    "message": "Deneysel özellikler"
   }
 }

@@ -8,15 +8,53 @@
   "Name": {
     "message": "ชื่อ"
   },
+  "Browse_Sugar_Records": {
+    "message": "เรียกดูระเบียน Sugar"
+  },
+  "First_Last": {
+    "message": "เรียง ชื่อ, นามสกุล",
+    "description": "Label for ordering first name followed by last name"
+  },
+  "Last_First": {
+    "message": "เรียง นามสกุล, ชื่อ",
+    "description": "Label for ordering last name followed by first name"
+  },
+  "Email": {
+    "message": "อีเมล์"
+  },
   "Create": {
     "message": "สร้าง"
   },
+  "Parent": {
+    "message": "พาเรนท์"
+  },
+  "Account": {
+    "message": "บัญชี"
+  },
   "Contact_email_not_in_your_CRM": {
-    "message": "ติดต่อ $email$ ไม่ได้อยู่ใน CRM ของคุณ เลือกโมดูลเพื่อสร้างสถิติใหม่",
+    "message": "ที่อยู่ติดต่อ $email$ ไม่ได้อยู่ใน CRM ของคุณ เลือกโมดูลเพื่อสร้างระเบียนใหม่",
     "placeholders": {
       "email": {
         "content": "$1",
         "example": "info@yathit.com"
+      }
+    }
+  },
+  "Number_of_opens": {
+    "message": "จำนวนโมดูลที่เปิดอยู่ $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "Number_of_closes": {
+    "message": "จำนวนโมดูลที่ปิดอยู่ $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
       }
     }
   },
@@ -25,10 +63,10 @@
     "description": "A link label to view a record in CRM"
   },
   "New_record": {
-    "message": "สถิติใหม่"
+    "message": "บันทึกใหม่"
   },
   "Creating_a_new_record": {
-    "message": "สร้างใหม่ $module$ บันทึก",
+    "message": "สร้างระเบียน $module$ ใหม่",
     "placeholders": {
       "module": {
         "content": "$1",
@@ -37,10 +75,10 @@
     }
   },
   "Create_a_record_from_Email": {
-    "message": "สร้างบันทึกจากอีเมล์"
+    "message": "สร้างระเบียนจากอีเมล์"
   },
   "Description": {
-    "message": "ลักษณะ"
+    "message": "คำอธิบาย"
   },
   "Document_Name": {
     "message": "ชื่อเอกสาร"
@@ -49,14 +87,14 @@
     "message": "ชื่อไฟล์"
   },
   "Upload_attachment_as_Documents_record": {
-    "message": "อัพโหลดไฟล์แนบกับบันทึกเอกสาร"
+    "message": "อัพโหลดไฟล์แนบให้เป็นระเบียนเอกสาร"
   },
   "Archive_email": {
-    "message": "เก็บอีเมล",
+    "message": "จัดอีเมลเก็บถาวร",
     "description": "A dialog title"
   },
   "Attach_as_Notes_records": {
-    "message": "แนบบันทึกหมายเหตุ"
+    "message": "แนบให้เป็นหมายเหตุ"
   },
   "From": {
     "message": "จาก",
@@ -71,67 +109,149 @@
     "description": "Label for email subject"
   },
   "words_in_this_email_content": {
-    "message": "คำพูดในเนื้อหาของอีเมลฉบับนี้"
+    "message": "ข้อความในเนื้อหาของอีเมลนี้"
   },
   "Reset": {
-    "message": "รีเซ็ต"
+    "message": "รีเซ็ต "
   },
   "Save": {
-    "message": "ประหยัด"
+    "message": "บันทึก"
+  },
+  "Save_or_Show_changes": {
+    "message": "บันทึกหรือแสดงผลการเปลี่ยนแปลง (Alt + คลิก)"
   },
   "Restore_default": {
     "message": "คืนค่าเริ่มต้น"
   },
   "Outgoing_gmail_archive_preference": {
-    "message": "การตั้งค่าเก็บขาออก Gmail"
+    "message": "ตั้งค่าการจัดเก็บถาวรของ Gmail ขาออก "
+  },
+  "Outgoing_email_should_be": {
+    "message": "อีเมลขาออกควร"
+  },
+  "always_archived_tooltip": {
+    "message": "อีเมลที่ถูกส่งทั้งหมดของคุณจะถูกจัดเก็บถาวรไว้ใน CRM"
+  },
+  "always_archived": {
+    "message": "จัดเก็บถาวรไว้เสมอ"
+  },
+  "archived_normally": {
+    "message": "จัดเก็บถาวรไว้ตามปกติ"
+  },
+  "archived_normally_tooltip": {
+    "message": "อีเมลที่ถูกส่งทั้งหมดของคุณจะถูกจัดเก็บถาวรไว้ใน CRM นอกจากว่าคุณจะเลือกไม่ทำ "
+  },
+  "enabled_for_archiving": {
+    "message": "เปิดใช้งานสำหรับการจัดเก็บถาวร"
+  },
+  "enabled_for_archiving_tooltip": {
+    "message": "คุณสามารถเลือกได้ ว่าต้องการจัดเก็บอีเมลถาวรก่อนส่งหรือไม่"
+  },
+  "not_archived_normally": {
+    "message": "ไม่ได้จัดเก็บถาวรไว้ตามปกติ"
+  },
+  "not_archived_normally_tooltip": {
+    "message": "อีเมลที่ถูกส่งทั้งหมดของคุณจะไม่ถูกจัดเก็บถาวร นอกจากว่าคุณจะเลือกจัดเก็บถาวร "
+  },
+  "disabled_for_archiving": {
+    "message": "ปิดการใช้งานการจัดเก็บถาวร"
+  },
+  "Relationship_record_suggestion": {
+    "message": "ข้อเสนอแนะของระเบียนความสัมพันธ์"
+  },
+  "Relationship_record_suggestion_tooltip": {
+    "message": "สำหรับกล่องเก็บอีเมลถาวรและช่องอัปโหลดไฟล์แนบ ระเบียนความสัมพันธ์ที่อีเมลจัดเก็บถาวรควรไปนั้น จะได้รับคำแนะนำอย่างชาญฉลาด"
+  },
+  "When_email_sender_should": {
+    "message": "เมื่อผู้ส่งอีเมล / ผู้รับ มีชื่ออยู่ในระเบียนรายชื่อและมีข้อมูลบัญชี บัญชีควร "
+  },
+  "linked_archived_email": {
+    "message": "เชื่อมโยงไปยังอีเมลที่เก็บถาวร"
+  },
+  "suggested_archived_email": {
+    "message": "แนะนำให้เพิ่มไว้ว่า เชื่อมโยงไว้กับอีเมลจัดเก็บถาวร"
+  },
+  "be_ignored": {
+    "message": "ถูกละเว้น"
+  },
+  "treated_appropriate": {
+    "message": "ได้รับการปฏิบัติอย่างเหมาะสม"
   },
   "Synchronization": {
-    "message": "การประสานข้อมูล"
+    "message": "การซิงค์ข้อมูล"
   },
   "Google_Calendar": {
-    "message": "Google Calendar"
+    "message": "ปฏิทินของ Google"
   },
   "Google_Contacts": {
-    "message": "Google Contacts ของ"
+    "message": "รายชื่อผู้ติดต่อของ Google "
   },
   "Email_Archiving": {
-    "message": "เก็บอีเมล์"
+    "message": "จัดเก็บอีเมลถาวร"
   },
   "Remove_sync": {
-    "message": "นำซิงค์"
+    "message": "เอาซิงค์ออก"
   },
   "Sync_between_Gmail_contact_and_SugarCRM_record": {
-    "message": "ซิงค์ระหว่างการติดต่อ Gmail และบันทึก SugarCRM"
+    "message": "ซิงค์รายชื่อผู้ติดต่อ Gmail และระเบียน SugarCRM"
+  },
+  "sync_group_tooltip": {
+    "message": "กลุ่มรายชื่อผู้ติดต่อของ Google ที่ถูกซิงค์แล้ว จะปรากฏใน"
+  },
+  "sync_interval_label": {
+    "message": "ช่วงเวลาระหว่างการซิงค์เป็นนาที"
+  },
+  "sync_interval_tooltip": {
+    "message": "การซิงค์บ่อยๆ จะใช้พลังงานมาก และทำให้เซิร์ฟเวอร์ CRM ทำงานหนักขึ้น"
+  },
+  "confirm_sync_contacts_restore": {
+    "message": "คุณแน่ใจหรือที่จะคืนค่าเริ่มต้นสำหรับการซิงค์ $name$ ?",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
   },
   "Add_to": {
-    "message": "เพิ่ม"
+    "message": "เพิ่มไปยัง"
   },
   "Add_to_SugarCRM_and_sync": {
-    "message": "เพิ่มใน SugarCRM และซิงค์"
+    "message": "เพิ่มไปยัง SugarCRM และซิงค์"
   },
   "exporting": {
-    "message": "การส่งออก"
+    "message": "กำลังส่งออก"
   },
   "Deleting": {
-    "message": "ลบ"
+    "message": "กำลังลบ"
   },
   "deleted": {
-    "message": "ลบ"
+    "message": "ลบแล้ว"
   },
   "Edit_record": {
-    "message": "แก้ไขบันทึก"
+    "message": "แก้ไขระเบียน"
   },
   "Cancel_edit": {
     "message": "ยกเลิกการแก้ไข"
   },
   "Submit_changes": {
-    "message": "ส่งการเปลี่ยนแปลงกด Alt เพื่อดูการเปลี่ยนแปลง"
+    "message": "ส่งการเปลี่ยนแปลง กดปุ่ม Alt เพื่อดูการเปลี่ยนแปลง"
   },
   "Edit": {
     "message": "แก้ไข"
   },
+  "Advanced": {
+    "message": "ขั้นสูง",
+    "description": "Advanced setting for expert users"
+  },
+  "Advanced_tooltip": {
+    "message": "การตั้งค่าขั้นสูงสำหรับผู้ใช้ที่ชำนาญงาน"
+  },
+  "Delete_all_synced_Gmail_Contacts": {
+    "message": "ลบรายชื่อผู้ติดต่อ Gmail ที่ซิงค์แล้วทั้งหมด"
+  },
   "Submit": {
-    "message": "เสนอ"
+    "message": "ส่ง"
   },
   "Close": {
     "message": "ปิด"
@@ -140,85 +260,135 @@
     "message": "ลบ"
   },
   "Creating": {
-    "message": "การสร้าง"
+    "message": "กำลังสร้าง"
   },
   "Updating": {
-    "message": "อัปเดต"
+    "message": "กำลังอัปเดต"
   },
   "created": {
-    "message": "สร้าง"
+    "message": "สร้างแล้ว"
   },
   "updated": {
-    "message": "การปรับปรุง"
+    "message": "อัปเดตแล้ว"
   },
   "View_in_CRM": {
     "message": "ดูใน CRM"
   },
   "Duplicate_to": {
-    "message": "สำเนา"
+    "message": "สำเนาไปยัง"
   },
   "New": {
     "message": "ใหม่"
   },
+  "Contact": {
+    "message": "ชื่อผู้ติดต่อ"
+  },
+  "Currency": {
+    "message": "ค่าเงิน"
+  },
   "Sync": {
     "message": "ซิงค์"
+  },
+  "Favorites": {
+    "message": "ที่ชื่นชอบ"
+  },
+  "Filter": {
+    "message": "ตัวกรอง",
+    "description": "Menu title for FILTER to a condition"
+  },
+  "Order": {
+    "message": "ออเดอร์",
+    "description": "Menu title for sort order"
+  },
+  "My_records": {
+    "message": "ระเบียนของฉัน"
+  },
+  "All_records": {
+    "message": "ระเบียนทั้งหมด"
   },
   "To_Gmail": {
     "message": "ไปยัง Gmail"
   },
   "To_Gmail_tooltip": {
-    "message": "ส่งออก SugarCRM บันทึกรายชื่อไปยัง Gmail ติดต่อ"
+    "message": "ส่งออกระเบียนรายชื่อผู้ติดต่อของ SugarCRM ไปยังรายชื่อผู้ติดต่อของ Gmail "
   },
   "No_change_to_be_saved": {
-    "message": "ไม่มีการเปลี่ยนแปลงจะถูกบันทึกไว้"
+    "message": "ไม่มีการเปลี่ยนแปลงให้บันทึกได้"
   },
   "Error_saving": {
-    "message": "ประหยัดข้อผิดพลาด: "
+    "message": "ข้อผิดพลาดในการบันทึก: "
   },
   "Sync_tooltip": {
-    "message": "บันทึกการซิงค์ SugarCRM และ Gmail ติดต่อ"
+    "message": "ซิงค์ระเบียนของ SugarCRM และ ชื่อผู้ติดต่อ Gmail "
   },
   "View_details": {
     "message": "ดูรายละเอียด"
   },
   "Fields": {
-    "message": "ทุ่ง"
+    "message": "ฟีลด์"
   },
   "Upcoming_Activities": {
-    "message": "กิจกรรมที่จะเกิดขึ้น"
+    "message": "กิจกรรมที่กำลังมา"
+  },
+  "Upcoming": {
+    "message": "กำลังจะมา"
+  },
+  "Recent": {
+    "message": "เมื่อเร็วๆ นี้"
   },
   "Emails": {
     "message": "อีเมล"
   },
   "Related": {
-    "message": "ที่เกี่ยวข้อง"
+    "message": "เกี่ยวข้อง"
   },
   "Options": {
     "message": "ตัวเลือก"
   },
+  "Appointment": {
+    "message": "การนัด"
+  },
   "Help": {
-    "message": "ช่วยด้วย"
+    "message": "ความช่วยเหลือ"
   },
   "Feedback": {
-    "message": "ข้อเสนอแนะ"
+    "message": "คำตอบรับ"
   },
   "Search": {
     "message": "ค้นหา"
   },
   "Search_tooltip": {
-    "message": "ค้นหาชื่อ, อีเมล์, โทรศัพท์, ID, ชื่อ, รายละเอียดอื่น ๆ"
+    "message": "ค้นหาชื่อ, อีเมล, โทรศัพท์, ID, ตำแหน่ง, รายละเอียด, อื่นๆ"
   },
   "New_tooltip": {
-    "message": "สร้างสถิติใหม่"
+    "message": "สร้างบันทึกใหม่"
   },
   "Activity_feed": {
-    "message": "ฟีดกิจกรรม"
+    "message": "ฟีดกิจกรรมต่างๆ"
   },
   "Archive": {
-    "message": "เอกสารเก่า"
+    "message": "เอกสารจัดเก็บถาวร"
+  },
+  "Option_on_compiling_archive_message_content": {
+    "message": "ตัวเลือกในการรวบรวมเนื้อหาของข้อความจัดเก็บถาวร"
+  },
+  "Visible_content": {
+    "message": "เนื้อหาที่มองเห็นได้"
+  },
+  "Message_only": {
+    "message": "ข้อความเท่านั้น"
+  },
+  "Full_thread": {
+    "message": "กระทู้ทั้งหมด"
+  },
+  "Text_only": {
+    "message": "ข้อความเฉพาะตัวอักษรที่ถูกจัดเก็บถาวร สำหรับเนื้อหาอีเมล"
+  },
+  "By_default_both_HTML_and_Text": {
+    "message": "โดยค่าเริ่มต้น อีเมลทั้งแบบ HTM​​L และข้อความ จะถูกจัดเก็บถาวร"
   },
   "Template": {
-    "message": "แบบ",
+    "message": "โครงร่าง",
     "description": "A menu text for template"
   },
   "Tracking": {
@@ -226,19 +396,19 @@
     "description": "A menu text to set tracking"
   },
   "View_Archive": {
-    "message": "ดูที่เก็บ"
+    "message": "ดูข้อมูลจัดเก็บถาวร"
   },
   "Re_archive": {
-    "message": "Re-เก็บ"
+    "message": "จัดเก็บถาวรอีกครั้ง"
   },
   "Upload": {
     "message": "อัปโหลดไปยัง SugarCRM"
   },
   "Re_upload": {
-    "message": "อัปโหลดไปยัง SugarCRM"
+    "message": "อัปโหลดไปยัง SugarCRM อีกครั้ง"
   },
   "View_record_on_sidebar": {
-    "message": "ดู $module$ รายละเอียดบนแผงแถบด้านข้าง",
+    "message": "ดูรายละเอียดของ $module$ บนแถบด้านข้าง",
     "placeholders": {
       "module": {
         "content": "$1",
@@ -247,7 +417,7 @@
     }
   },
   "Document_already_in_CRM": {
-    "message": "เอกสาร $name$ อยู่แล้วใน CRM",
+    "message": "เอกสาร $name$ อยู่ใน CRM แล้ว",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -256,7 +426,7 @@
     }
   },
   "ActivityCount": {
-    "message": "$count$ บันทึกการปรับปรุงตั้งแต่ $date$",
+    "message": "$count$ ระเบียนได้รับการอัปเดตตั้งแต่ $date$",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -269,7 +439,7 @@
     }
   },
   "Cases_assign": {
-    "message": "$no$ กรณีมอบหมายให้คุณ",
+    "message": "$no$ เคสได้ถูกมอบหมายให้คุณ",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -278,7 +448,7 @@
     }
   },
   "Upcoming_count": {
-    "message": "$no$ ที่จะเกิดขึ้น $module$ ในสัปดาห์นี้",
+    "message": "จะมี $no$ $module$ ในสัปดาห์นี้",
     "placeholders": {
       "no": {
         "content": "$1",
@@ -291,7 +461,7 @@
     }
   },
   "record_deleted": {
-    "message": "บันทึกถูกลบโดย $user$ $date$",
+    "message": "ระเบียนถูกลบโดย $user$ เมื่อ $date$",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -304,7 +474,7 @@
     }
   },
   "your_license_not_have_feature": {
-    "message": "ใบอนุญาตของคุณ \" $license$ \" ไม่สนับสนุนคุณลักษณะสำหรับ $feature$",
+    "message": "ใบอนุญาต \" $license$ \" ของคุณ  ไม่รับรองคุณสมบัติสำหรับ $feature$",
     "placeholders": {
       "license": {
         "content": "$1",
@@ -317,7 +487,7 @@
     }
   },
   "confirm_record_update": {
-    "message": "คุณแน่ใจหรือไม่ว่าคุณต้องการที่จะทำให้การปรับปรุงต่อไป?"
+    "message": "คุณแน่ใจหรือไม่ว่าคุณต้องการที่จะทำการอัปเดตตามนี้?"
   },
   "OK": {
     "message": "ตกลง"
@@ -328,6 +498,9 @@
   "Login_fail": {
     "message": "เข้าสู่ระบบล้มเหลว"
   },
+  "Login": {
+    "message": "เข้าสู่ระบบ"
+  },
   "Retry": {
     "message": "ลองใหม่อีกครั้ง"
   },
@@ -335,7 +508,7 @@
     "message": "ติดตั้ง"
   },
   "Setup_SugarCRM": {
-    "message": "การติดตั้ง SugarCRM"
+    "message": "ติดตั้ง SugarCRM"
   },
   "Module_setting": {
     "message": "การตั้งค่าโมดูล"
@@ -343,18 +516,25 @@
   "A_subscription": {
     "message": "การสมัครสมาชิก"
   },
+  "Create_record": {
+    "message": "สร้างระเบียน"
+  },
   "is_required_for_attachment": {
-    "message": "เป็นสิ่งจำเป็นสำหรับสิ่งที่แนบมา"
+    "message": "จำเป็นต้องมี สำหรับสิ่งที่แนบมา"
   },
   "Relationships": {
-    "message": "สัมพันธ์",
+    "message": "ความสัมพันธ์",
     "description": "Title of a section in archive dialog."
   },
+  "Related_Record": {
+    "message": "ระเบียนที่เกี่ยวข้อง",
+    "description": "Label for related records in archive dialog."
+  },
   "Relationships_tooltip": {
-    "message": "โดยการสร้างความสัมพันธ์ที่เกี่ยวข้องกับการบันทึกปรากฏเป็น subpanels ในมุมมองรายละเอียดบรรณานุกรมเป้าหมาย"
+    "message": "การสร้างความสัมพันธ์ จะทำระเบียนที่เกี่ยวข้องให้ปรากฏเป็นแผงย่อย ในมุมมองรายละเอียดของเป้าหมาย"
   },
   "Relationship_list_of_module_tooltip": {
-    "message": "รายการของโมดูลซึ่งมีความสัมพันธ์กับ $mn$ โมดูล ความสัมพันธ์ที่กำหนดไว้ในโมดูลสร้าง / สตูดิโอ",
+    "message": "สำหรับรายชื่อโมดูลที่มีความสัมพันธ์กับโมดูล $mn$  ความสัมพันธ์จะถูกกำหนดในตัวสร้างโมดูล/สตูดิโอ",
     "description": "Tooltips in archive dialog.",
     "placeholders": {
       "mn": {
@@ -364,31 +544,37 @@
     }
   },
   "Search_tooltips": {
-    "message": "ค้นหาชื่อ, คำอธิบาย, ID, อีเมลหมายเลขกรณีอื่น ๆ"
+    "message": "ค้นหาชื่อ, คำอธิบาย, ID, อีเมล, หมายเลขเคส ,อื่น ๆ"
   },
   "Logging_preference": {
-    "message": "การตั้งค่าการเข้าสู่ระบบ"
+    "message": "การตั้งค่าล็อก"
   },
   "See_our_privacy_policy": {
     "message": "ดูนโยบายความเป็นส่วนตัวของเรา"
   },
   "Logging_subscription_require_message": {
-    "message": "การสมัครสมาชิกจะต้องเปลี่ยนการตั้งค่าการเข้าสู่ระบบ"
+    "message": "การสมัครสมาชิกนั้น จำเป็นสำหรับการเปลี่ยนการตั้งค่าล็อก"
   },
   "Logging_Analytics_tooltip": {
-    "message": "การเข้าสู่ระบบการวิเคราะห์ช่วยให้เราปรับปรุงประสบการณ์ของผู้ใช้และเพิ่มคุณสมบัติมากขึ้น"
+    "message": "ล็อกของระบบการวิเคราะห์ ช่วยให้เราเพิ่มคุณสมบัติต่างๆ และทำให้ประสบการณ์ของผู้ใช้สะดวกขึ้น"
   },
   "Logging_Debugging_tooltip": {
-    "message": "การเข้าสู่ระบบการแก้ปัญหาช่วยให้เรายากที่จะหาข้อบกพร่อง"
+    "message": "ล็อกของระบบการแก้ปัญหา ช่วยให้เราพบข้อบกพร่องที่หาเจอได้ยาก"
   },
   "Enable_analytic_logging": {
-    "message": "เปิดใช้การบันทึกการวิเคราะห์"
+    "message": "เปิดใช้ล็อกสำหรับการวิเคราะห์"
   },
   "Enable_debug_logging": {
-    "message": "เปิดใช้การบันทึกการแก้ปัญหา"
+    "message": "เปิดใช้งานล็อกสำหรับการแก้ปัญหา"
   },
   "Snapshot": {
     "message": "ภาพรวม",
     "description": "A button tooltip on main tab bar, to show person detail."
+  },
+  "Inject_Yathit_side_drawer_to_CRM_portal": {
+    "message": "แสดงฟังก์ชั่นชักด้านข้าง Yathit ให้ CRM พอร์ทัล"
+  },
+  "Experimental_features": {
+    "message": "คุณสมบัติขั้นทดลอง"
   }
 }

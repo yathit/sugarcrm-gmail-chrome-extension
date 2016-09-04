@@ -1,0 +1,580 @@
+{
+  "Quick_create": {
+    "message": "Creazione veloce"
+  },
+  "Module": {
+    "message": "Modulo"
+  },
+  "Name": {
+    "message": "Nome"
+  },
+  "Browse_Sugar_Records": {
+    "message": "Sfoglia Registrazioni Zucchero\n"
+  },
+  "First_Last": {
+    "message": "Primo, Ultimo\n",
+    "description": "Label for ordering first name followed by last name"
+  },
+  "Last_First": {
+    "message": "Cognome, Nome",
+    "description": "Label for ordering last name followed by first name"
+  },
+  "Email": {
+    "message": "E-mail"
+  },
+  "Create": {
+    "message": "Crea"
+  },
+  "Parent": {
+    "message": "Genitore"
+  },
+  "Account": {
+    "message": "Conto"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "$email$ dil contatto  non e' nel tuo CRM. Seleziona un modulo per creare un nuovo record. ",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "Number_of_opens": {
+    "message": "Numero di $module$ aperti",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "Number_of_closes": {
+    "message": "Numero di $module$ chiusi",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "view": {
+    "message": "Visualizza",
+    "description": "A link label to view a record in CRM"
+  },
+  "New_record": {
+    "message": "Nuovo record"
+  },
+  "Creating_a_new_record": {
+    "message": "Crea un nuovo record $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "Crea un record dall'e-mail"
+  },
+  "Description": {
+    "message": "Descrizione"
+  },
+  "Document_Name": {
+    "message": "Nome documento"
+  },
+  "File_Name": {
+    "message": "Nome del file"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "Carica l'allegato come record di Documenti"
+  },
+  "Archive_email": {
+    "message": "Archivia e-mail",
+    "description": "A dialog title"
+  },
+  "Attach_as_Notes_records": {
+    "message": "Allega come record Note"
+  },
+  "From": {
+    "message": "Da ",
+    "description": "Label for email sender"
+  },
+  "To": {
+    "message": "A",
+    "description": "Label for email recipient"
+  },
+  "Subject": {
+    "message": "Soggetto",
+    "description": "Label for email subject"
+  },
+  "words_in_this_email_content": {
+    "message": "Parole nel contenuto di  questa email."
+  },
+  "Reset": {
+    "message": "Resetta"
+  },
+  "Save": {
+    "message": "Salva"
+  },
+  "Save_or_Show_changes": {
+    "message": "Salva o Mostra le modifiche (Alt+Click)"
+  },
+  "Restore_default": {
+    "message": "Valori di default per Ripristino"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Preferenza archivio gmail in uscita"
+  },
+  "Outgoing_email_should_be": {
+    "message": "La e-mail in uscita dovrebbe essere"
+  },
+  "always_archived_tooltip": {
+    "message": "Tutte le tue e-mail inviate verranno archiviate nel CRM."
+  },
+  "always_archived": {
+    "message": "sempre archiviata"
+  },
+  "archived_normally": {
+    "message": "archiviata normalmente"
+  },
+  "archived_normally_tooltip": {
+    "message": "Tutta la tue e-mail inviate verranno archiviate nel CRM a meno che tu scelga di non farlo."
+  },
+  "enabled_for_archiving": {
+    "message": "abilitato per l'archiviazione"
+  },
+  "enabled_for_archiving_tooltip": {
+    "message": "Puoi scegliere se desideri archiviare o meno prima di inviare e-mail."
+  },
+  "not_archived_normally": {
+    "message": "non archiviate normalmente"
+  },
+  "not_archived_normally_tooltip": {
+    "message": "Tutta la tue email inviate non verranno archiviate a meno tu scelga di archiviarle."
+  },
+  "disabled_for_archiving": {
+    "message": "disattivato per l'archiviazione"
+  },
+  "Relationship_record_suggestion": {
+    "message": "Suggerimento record Relazione"
+  },
+  "Relationship_record_suggestion_tooltip": {
+    "message": "Nelle finestre di  dialogo di Archivio Email e Caricamento Allegato, sono suggeriti in modo intelligente record di relazione dove l'archivio dovrebbe andare."
+  },
+  "When_email_sender_should": {
+    "message": "Quando il mittente/destinatario dell'email è un record Contatti e non ha Informazioni sul conto, il conto dovrebbe"
+  },
+  "linked_archived_email": {
+    "message": "essere collegato alla posta archiviata."
+  },
+  "suggested_archived_email": {
+    "message": "suggerita l'aggiunta come collegata alla email archiviata."
+  },
+  "be_ignored": {
+    "message": "essere ignorato."
+  },
+  "treated_appropriate": {
+    "message": "essere trattati in modo appropriato."
+  },
+  "Synchronization": {
+    "message": "Sincronizzazione"
+  },
+  "Google_Calendar": {
+    "message": "Calendario Google"
+  },
+  "Google_Contacts": {
+    "message": "Contatti di Google"
+  },
+  "Email_Archiving": {
+    "message": "Archiviazione Email"
+  },
+  "Remove_sync": {
+    "message": "Rimuovi la sincronizzazione"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Sincronizzazione tra contatto Gmail e record di SugarCRM"
+  },
+  "sync_group_tooltip": {
+    "message": "Gruppo Contatti Google, in cui i contatti sincronizzati appaiono in."
+  },
+  "sync_interval_label": {
+    "message": "Intervallo di sincronizzazione in minuti"
+  },
+  "sync_interval_tooltip": {
+    "message": "Una sincronizzazione frequente consuma più energia e aumenta il carico del server CRM."
+  },
+  "confirm_sync_contacts_restore": {
+    "message": "Sei sicuro di ripristinare l'impostazione di default per la sincronizzazione di $name$?",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Add_to": {
+    "message": "Aggiungi a"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "Aggiungi a SugarCRM e sincronizza"
+  },
+  "exporting": {
+    "message": "esportazione"
+  },
+  "Deleting": {
+    "message": "Eliminazione"
+  },
+  "deleted": {
+    "message": "eliminato"
+  },
+  "Edit_record": {
+    "message": "Modifica record"
+  },
+  "Cancel_edit": {
+    "message": "Annulla modifica"
+  },
+  "Submit_changes": {
+    "message": "Invia le modifiche, premi ALT per vedere i cambiamenti"
+  },
+  "Edit": {
+    "message": "Modifica"
+  },
+  "Advanced": {
+    "message": "Avanzate",
+    "description": "Advanced setting for expert users"
+  },
+  "Advanced_tooltip": {
+    "message": "impostazioni avanzate per utenti esperti"
+  },
+  "Delete_all_synced_Gmail_Contacts": {
+    "message": "Eliminare tutti i contatti di Gmail sincronizzati "
+  },
+  "Submit": {
+    "message": "Invia"
+  },
+  "Close": {
+    "message": "Chiudi"
+  },
+  "Delete": {
+    "message": "Cancella"
+  },
+  "Creating": {
+    "message": "Creazione"
+  },
+  "Updating": {
+    "message": "In aggiornamento"
+  },
+  "created": {
+    "message": "creato"
+  },
+  "updated": {
+    "message": "aggiornato"
+  },
+  "View_in_CRM": {
+    "message": "Visualizza in CRM"
+  },
+  "Duplicate_to": {
+    "message": "Duplica a"
+  },
+  "New": {
+    "message": "Nuovo"
+  },
+  "Contact": {
+    "message": "contatto"
+  },
+  "Currency": {
+    "message": "Moneta"
+  },
+  "Sync": {
+    "message": "Sincronizza"
+  },
+  "Favorites": {
+    "message": "Preferiti"
+  },
+  "Filter": {
+    "message": "Filtro",
+    "description": "Menu title for FILTER to a condition"
+  },
+  "Order": {
+    "message": "Ordine",
+    "description": "Menu title for sort order"
+  },
+  "My_records": {
+    "message": "I miei record"
+  },
+  "All_records": {
+    "message": "Tutti i record"
+  },
+  "To_Gmail": {
+    "message": "A- Gmail"
+  },
+  "To_Gmail_tooltip": {
+    "message": "Esporta i  record Contatti di SugarCRM a Contatto Gmail"
+  },
+  "No_change_to_be_saved": {
+    "message": "Nessun cambiamento da salvare."
+  },
+  "Error_saving": {
+    "message": "Errore durante il salvataggio: "
+  },
+  "Sync_tooltip": {
+    "message": "Sincronizza record di SugarCRM e Contatto Gmail"
+  },
+  "View_details": {
+    "message": "Guarda i dettagli"
+  },
+  "Fields": {
+    "message": "Campi"
+  },
+  "Upcoming_Activities": {
+    "message": "Prossime Attività"
+  },
+  "Upcoming": {
+    "message": "Prossime"
+  },
+  "Recent": {
+    "message": "Recente"
+  },
+  "Emails": {
+    "message": "Messaggi di posta elettronica"
+  },
+  "Related": {
+    "message": "Correlata"
+  },
+  "Options": {
+    "message": "Opzioni"
+  },
+  "Appointment": {
+    "message": "Appuntamento"
+  },
+  "Help": {
+    "message": "Aiuto"
+  },
+  "Feedback": {
+    "message": "Feedback"
+  },
+  "Search": {
+    "message": "Ricerca"
+  },
+  "Search_tooltip": {
+    "message": "Cerca nome, e-mail, telefono, id, titolo, descrizione, ecc"
+  },
+  "New_tooltip": {
+    "message": "Crea un nuovo record"
+  },
+  "Activity_feed": {
+    "message": "Feed attività"
+  },
+  "Archive": {
+    "message": "Archivio"
+  },
+  "Option_on_compiling_archive_message_content": {
+    "message": "Opzione sulla compilazione del contenuto del messaggio di archiviazione"
+  },
+  "Visible_content": {
+    "message": "Contenuto visibile"
+  },
+  "Message_only": {
+    "message": "Unico messaggio"
+  },
+  "Full_thread": {
+    "message": "Thread completa"
+  },
+  "Text_only": {
+    "message": "Archivio solo di testo per i contenuti delle e-mail"
+  },
+  "By_default_both_HTML_and_Text": {
+    "message": "Per impostazione predefinita,  viene archiviata sia la versione HTML che quella testo dei contenuti delle e-mail."
+  },
+  "Template": {
+    "message": "Modello",
+    "description": "A menu text for template"
+  },
+  "Tracking": {
+    "message": "Localizzazione",
+    "description": "A menu text to set tracking"
+  },
+  "View_Archive": {
+    "message": "Vedere Archivio"
+  },
+  "Re_archive": {
+    "message": "Archivia di nuovo"
+  },
+  "Upload": {
+    "message": "Carica su SugarCRM"
+  },
+  "Re_upload": {
+    "message": "Ricarica su SugarCRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "Visualizza i dettagli del $module$ sul pannello laterale",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": " $name$ Documento già in CRM.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
+      }
+    }
+  },
+  "ActivityCount": {
+    "message": "$count$ record aggiornati dal $date$ .",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ casi assegnati a te..",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ $module$ in arrivo in questa settimana.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  },
+  "record_deleted": {
+    "message": "Record è stato cancellato da $user$ $date$ .",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "La licenza \" $license$ \" non supporta la funzione per $feature$ .",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Sei sicuro di voler fare questo aggiornamento?"
+  },
+  "OK": {
+    "message": "OK"
+  },
+  "Cancel": {
+    "message": "Annulla"
+  },
+  "Login_fail": {
+    "message": "Login fallito."
+  },
+  "Login": {
+    "message": "Accesso"
+  },
+  "Retry": {
+    "message": "Riprova"
+  },
+  "Setup": {
+    "message": "Imposta"
+  },
+  "Setup_SugarCRM": {
+    "message": "Imposta SugarCRM"
+  },
+  "Module_setting": {
+    "message": "impostazione del modulo"
+  },
+  "A_subscription": {
+    "message": "Un abbonamento"
+  },
+  "Create_record": {
+    "message": "Crea un record"
+  },
+  "is_required_for_attachment": {
+    "message": "è richiesto come allegato."
+  },
+  "Relationships": {
+    "message": "Relazioni",
+    "description": "Title of a section in archive dialog."
+  },
+  "Related_Record": {
+    "message": "Record correlati",
+    "description": "Label for related records in archive dialog."
+  },
+  "Relationships_tooltip": {
+    "message": "Con la creazione di una relazione, i record correlati appaiono come pannelli secondari nella visualizzazione di dettaglio del record di destinazione."
+  },
+  "Relationship_list_of_module_tooltip": {
+    "message": "Elenco dei moduli, che hanno relazioni con il modulo  $mn$. Le relazioni sono definite nel Modulo Builder / Studio.",
+    "description": "Tooltips in archive dialog.",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Emails"
+      }
+    }
+  },
+  "Search_tooltips": {
+    "message": "Cerca nome, descrizione, id, e-mail, numero del caso, etc."
+  },
+  "Logging_preference": {
+    "message": "Preferenza registrazione di log"
+  },
+  "See_our_privacy_policy": {
+    "message": "Vedi la nostra politica sulla privacy"
+  },
+  "Logging_subscription_require_message": {
+    "message": "E' un abbonamento necessario per modificare l'impostazione dei log."
+  },
+  "Logging_Analytics_tooltip": {
+    "message": "Il log analitico ci aiuta a migliorare l'esperienza degli utenti e ad aggiungere ulteriori funzionalità."
+  },
+  "Logging_Debugging_tooltip": {
+    "message": "Il log di debug ci aiuta molto a trovare bug."
+  },
+  "Enable_analytic_logging": {
+    "message": "Attiva il log analitico"
+  },
+  "Enable_debug_logging": {
+    "message": "Attivare il log di debug"
+  },
+  "Snapshot": {
+    "message": "Istantanea",
+    "description": "A button tooltip on main tab bar, to show person detail."
+  },
+  "Inject_Yathit_side_drawer_to_CRM_portal": {
+    "message": "Mostra il cassetto laterale di Yathit al portale CRM"
+  },
+  "Experimental_features": {
+    "message": "Funzioni sperimentali\n"
+  }
+}

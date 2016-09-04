@@ -1,0 +1,580 @@
+{
+  "Quick_create": {
+    "message": "Быстрое создание"
+  },
+  "Module": {
+    "message": "Модуль"
+  },
+  "Name": {
+    "message": "Имя"
+  },
+  "Browse_Sugar_Records": {
+    "message": "Просмотр записей Sugar"
+  },
+  "First_Last": {
+    "message": "Имя Фамилия",
+    "description": "Label for ordering first name followed by last name"
+  },
+  "Last_First": {
+    "message": "Фамилия Имя",
+    "description": "Label for ordering last name followed by first name"
+  },
+  "Email": {
+    "message": "Электронный адрес"
+  },
+  "Create": {
+    "message": "Создать"
+  },
+  "Parent": {
+    "message": "Родитель"
+  },
+  "Account": {
+    "message": "Счёт"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "Контактный  $email$ не в вашем CRM. Выберите модуль для создания новой записи.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "Number_of_opens": {
+    "message": "Количество открытых  $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "Number_of_closes": {
+    "message": "Количество закрытых  $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "view": {
+    "message": "Просмотр",
+    "description": "A link label to view a record in CRM"
+  },
+  "New_record": {
+    "message": "Новая запись"
+  },
+  "Creating_a_new_record": {
+    "message": "Создать новую  $module$ запись",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "Создать запись из электронной почты"
+  },
+  "Description": {
+    "message": "Описание"
+  },
+  "Document_Name": {
+    "message": "Название документа"
+  },
+  "File_Name": {
+    "message": "Имя файла"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "Загрузить вложения как запись Документа"
+  },
+  "Archive_email": {
+    "message": "Архивировать электронную почту",
+    "description": "A dialog title"
+  },
+  "Attach_as_Notes_records": {
+    "message": "Приложить как примечание записей"
+  },
+  "From": {
+    "message": "От",
+    "description": "Label for email sender"
+  },
+  "To": {
+    "message": "Кому",
+    "description": "Label for email recipient"
+  },
+  "Subject": {
+    "message": "Тема",
+    "description": "Label for email subject"
+  },
+  "words_in_this_email_content": {
+    "message": "слова в этом содержании электронной почты"
+  },
+  "Reset": {
+    "message": "Сбросить"
+  },
+  "Save": {
+    "message": "Сохранить"
+  },
+  "Save_or_Show_changes": {
+    "message": "Сохранить или Показать изменения (Alt+Click)"
+  },
+  "Restore_default": {
+    "message": "Сброс настроек"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Предпочтение архива отправленных писем Gmail"
+  },
+  "Outgoing_email_should_be": {
+    "message": "Исходящие сообщения электронной почты должны быть"
+  },
+  "always_archived_tooltip": {
+    "message": "всегда архивируемая подсказка"
+  },
+  "always_archived": {
+    "message": "всегда архивируется"
+  },
+  "archived_normally": {
+    "message": "архивировано нормально"
+  },
+  "archived_normally_tooltip": {
+    "message": "нормально архивируемая подсказка."
+  },
+  "enabled_for_archiving": {
+    "message": "включен для архивирования"
+  },
+  "enabled_for_archiving_tooltip": {
+    "message": "Вы можете сделать выбор между архивированием или нет перед отправкой эл. письма."
+  },
+  "not_archived_normally": {
+    "message": "не архивируется нормально"
+  },
+  "not_archived_normally_tooltip": {
+    "message": "Вся ваша электронная почта не будет архивироваться, если вы не включите архивирование."
+  },
+  "disabled_for_archiving": {
+    "message": "отключено для архивирования"
+  },
+  "Relationship_record_suggestion": {
+    "message": "Предложение по отношениям записей"
+  },
+  "Relationship_record_suggestion_tooltip": {
+    "message": "В архиве эл. почты и окне закрузки вложений, отношения записей, где архивирование должно происходить, будут предложены."
+  },
+  "When_email_sender_should": {
+    "message": "Когда отправитель / получатель электронной почты является записью в Контактах и имеет информацию о счёте, учетная запись должна"
+  },
+  "linked_archived_email": {
+    "message": "связанные с заархивированной электронной почтой."
+  },
+  "suggested_archived_email": {
+    "message": "предложил добавить как связанный с заархивированной электронной почтой."
+  },
+  "be_ignored": {
+    "message": "игнорироваться."
+  },
+  "treated_appropriate": {
+    "message": "рассматриваться по обстоятельствам."
+  },
+  "Synchronization": {
+    "message": "Синхронизация"
+  },
+  "Google_Calendar": {
+    "message": "Календарь Google"
+  },
+  "Google_Contacts": {
+    "message": "Контакты Googlе"
+  },
+  "Email_Archiving": {
+    "message": "Архивирование электронной почты"
+  },
+  "Remove_sync": {
+    "message": "Удалить синхронизацию"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Синхронизация между контактом Gmail и записями SugarCRM"
+  },
+  "sync_group_tooltip": {
+    "message": "Группа Контактов Google, в которой появляются синхронизируеймые контакты."
+  },
+  "sync_interval_label": {
+    "message": "Интервал синхронизации в минутах"
+  },
+  "sync_interval_tooltip": {
+    "message": "Частая синхронизация потребляет больше энергии и увеличивает загрузку сервера CRM."
+  },
+  "confirm_sync_contacts_restore": {
+    "message": "Вы уверены, что можно восстановить настройки для $name$ синхронизации?",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Add_to": {
+    "message": "Добавить в"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "Добавить в SugarCRM и синхронизировать"
+  },
+  "exporting": {
+    "message": "Экспорт"
+  },
+  "Deleting": {
+    "message": "Удаление"
+  },
+  "deleted": {
+    "message": "удалённый"
+  },
+  "Edit_record": {
+    "message": "Изменить запись"
+  },
+  "Cancel_edit": {
+    "message": "Отмена редактирования"
+  },
+  "Submit_changes": {
+    "message": "Отправить изменения, нажмите ALT, чтобы увидеть изменения"
+  },
+  "Edit": {
+    "message": "Редактировать"
+  },
+  "Advanced": {
+    "message": "Продвинутые",
+    "description": "Advanced setting for expert users"
+  },
+  "Advanced_tooltip": {
+    "message": "Продвинутые настройки для опытных пользователей"
+  },
+  "Delete_all_synced_Gmail_Contacts": {
+    "message": "Удалить все синхронизированные Контакты Gmail"
+  },
+  "Submit": {
+    "message": "Отправить"
+  },
+  "Close": {
+    "message": "Закрыть"
+  },
+  "Delete": {
+    "message": "Удалить"
+  },
+  "Creating": {
+    "message": "Создание"
+  },
+  "Updating": {
+    "message": "Обновление"
+  },
+  "created": {
+    "message": "созданный"
+  },
+  "updated": {
+    "message": "обновлёный"
+  },
+  "View_in_CRM": {
+    "message": "Просмотр в CRM"
+  },
+  "Duplicate_to": {
+    "message": "Дублировать (кому)"
+  },
+  "New": {
+    "message": "Новый"
+  },
+  "Contact": {
+    "message": "Контакт"
+  },
+  "Currency": {
+    "message": "Валюта"
+  },
+  "Sync": {
+    "message": "Синхронизация"
+  },
+  "Favorites": {
+    "message": "Избранные"
+  },
+  "Filter": {
+    "message": "Фильтр",
+    "description": "Menu title for FILTER to a condition"
+  },
+  "Order": {
+    "message": "Порядок",
+    "description": "Menu title for sort order"
+  },
+  "My_records": {
+    "message": "Мои записи"
+  },
+  "All_records": {
+    "message": "Все записи"
+  },
+  "To_Gmail": {
+    "message": "Для (кому) Gmail"
+  },
+  "To_Gmail_tooltip": {
+    "message": "Экспорт Контактых записей SugarCRM в Gmail Контакты"
+  },
+  "No_change_to_be_saved": {
+    "message": "Никакие изменение не дожны сохраниться."
+  },
+  "Error_saving": {
+    "message": "Ошибка при сохранении: "
+  },
+  "Sync_tooltip": {
+    "message": "Синхронизация записи SugarCRM и Контактов Gmail"
+  },
+  "View_details": {
+    "message": "Посмотреть детали"
+  },
+  "Fields": {
+    "message": "Поля"
+  },
+  "Upcoming_Activities": {
+    "message": "Предстоящие мероприятия"
+  },
+  "Upcoming": {
+    "message": "Предстоящий"
+  },
+  "Recent": {
+    "message": "Недавний"
+  },
+  "Emails": {
+    "message": "Электронные письма"
+  },
+  "Related": {
+    "message": "Связанный"
+  },
+  "Options": {
+    "message": "Опции"
+  },
+  "Appointment": {
+    "message": "Встреча"
+  },
+  "Help": {
+    "message": "Помощь"
+  },
+  "Feedback": {
+    "message": "Обратная связь"
+  },
+  "Search": {
+    "message": "Поиск"
+  },
+  "Search_tooltip": {
+    "message": "Поиск по названию, электронной почте, ном. телефона, персональному номеру, названию, описанию и т.д."
+  },
+  "New_tooltip": {
+    "message": "Создать новую запись"
+  },
+  "Activity_feed": {
+    "message": "Лента активности"
+  },
+  "Archive": {
+    "message": "Архивировать (Архив)"
+  },
+  "Option_on_compiling_archive_message_content": {
+    "message": "Опция компиляции архива содержимого в сообщении"
+  },
+  "Visible_content": {
+    "message": "Видимое содержимое"
+  },
+  "Message_only": {
+    "message": "Только сообщение"
+  },
+  "Full_thread": {
+    "message": "Полный поток"
+  },
+  "Text_only": {
+    "message": "Текст только архивирован для содержимого электронной почты"
+  },
+  "By_default_both_HTML_and_Text": {
+    "message": "По умолчанию, оба HTML и Текстовая версия содержимого электронной почты находятся в архиве."
+  },
+  "Template": {
+    "message": "Шаблон",
+    "description": "A menu text for template"
+  },
+  "Tracking": {
+    "message": "Отслеживание",
+    "description": "A menu text to set tracking"
+  },
+  "View_Archive": {
+    "message": "Посмотреть Архив"
+  },
+  "Re_archive": {
+    "message": "Реархивировать"
+  },
+  "Upload": {
+    "message": "Загрузить на SugarCRM"
+  },
+  "Re_upload": {
+    "message": "Повторная загрузка на SugarCRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "Посмотреть $module$ подробно на боковой панели",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": "Документ $name$ уже в CRM.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
+      }
+    }
+  },
+  "ActivityCount": {
+    "message": "$count$ - записи обновляются с $date$ .",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ присовеных вам дел.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ предстоящего $module$ на этой неделе.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  },
+  "record_deleted": {
+    "message": "Запись была удалена $user$ $date$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "Ваша лицензия \" $license$ \" не поддерживает функцию $feature$ .",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Вы уверены, что хотите сделать следующее обновление?"
+  },
+  "OK": {
+    "message": "ОК"
+  },
+  "Cancel": {
+    "message": "Отмена"
+  },
+  "Login_fail": {
+    "message": "Неверный логин."
+  },
+  "Login": {
+    "message": "Войти"
+  },
+  "Retry": {
+    "message": "Повторить"
+  },
+  "Setup": {
+    "message": "Настроить"
+  },
+  "Setup_SugarCRM": {
+    "message": "Настроить SugarCRM"
+  },
+  "Module_setting": {
+    "message": "Настройка модуля"
+  },
+  "A_subscription": {
+    "message": "Рассылка"
+  },
+  "Create_record": {
+    "message": "Создать запись"
+  },
+  "is_required_for_attachment": {
+    "message": "требуется для вложения файла."
+  },
+  "Relationships": {
+    "message": "Отношения",
+    "description": "Title of a section in archive dialog."
+  },
+  "Related_Record": {
+    "message": "Связанных записей",
+    "description": "Label for related records in archive dialog."
+  },
+  "Relationships_tooltip": {
+    "message": "Создавая отношения, соответствующая запись появится в качестве подпанелей при просмотре деталей целевых записей."
+  },
+  "Relationship_list_of_module_tooltip": {
+    "message": "Список модулей, которые имеют связь с $mn$ модулем. Отношения определяются в модуле Builder / Studio.",
+    "description": "Tooltips in archive dialog.",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Emails"
+      }
+    }
+  },
+  "Search_tooltips": {
+    "message": "Поиск по названию, описанию, личному номеру, электронной почте, номеру дела и т.д."
+  },
+  "Logging_preference": {
+    "message": "Предпочтение входа в систему"
+  },
+  "See_our_privacy_policy": {
+    "message": "Смотрите нашу политику конфиденциальности"
+  },
+  "Logging_subscription_require_message": {
+    "message": "Подписка требует изменить настройки входа в систему."
+  },
+  "Logging_Analytics_tooltip": {
+    "message": "Аналитическая регистрация поможет нам улучшить пользовательский опыт и добавить новые возможности."
+  },
+  "Logging_Debugging_tooltip": {
+    "message": "Ведение журнала входов в систему помогают нам найти ошибки."
+  },
+  "Enable_analytic_logging": {
+    "message": "Включить аналитику ведение журнала входов в систему"
+  },
+  "Enable_debug_logging": {
+    "message": "Включить ведение журнала ошибок"
+  },
+  "Snapshot": {
+    "message": "Снимок",
+    "description": "A button tooltip on main tab bar, to show person detail."
+  },
+  "Inject_Yathit_side_drawer_to_CRM_portal": {
+    "message": "Показать сторонний ящик Yathit на портал CRM"
+  },
+  "Experimental_features": {
+    "message": "Экспериментальные функции"
+  }
+}
