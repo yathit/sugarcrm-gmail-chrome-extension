@@ -9,10 +9,6 @@ Try out: [Yathit CRMinInbox: SugarCRM for Gmail](https://chrome.google.com/webst
 
 [Suggestion and feedback](https://yathit.uservoice.com/)
 
-#### SugarCRM integrator and sell partner wanted
-
-If interested, please drop me (kyawtun@yathit.com) describing how you would like to do.
-
 
 Design Goal
 -----------
