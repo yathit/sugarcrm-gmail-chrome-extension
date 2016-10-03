@@ -14,5 +14,22 @@
 
     </target>
 
+    <target name="crx-firefox" description="prepare crx folder for firefox extension">
+        <sequential>
+            <replace file="manifest.json">
+                <replacetoken><![CDATA["https://mail.google.com/*", "https://www.yathit.com/*"]]></replacetoken>
+                <replacevalue><![CDATA["<all_urls>"]]></replacevalue>
+            </replace>
+            <delete file="extension-firefox.zip"/>
+            <zip basedir="${ydn-crm.dir}" destfile="extension-firefox.zip"
+                 includes="manifest.json,*.html,css/*,lib/*.js,jsc/*,image/**,js/**,_locales/**">
 
+            </zip>
+            <replace file="manifest.json">
+                <replacetoken><![CDATA["<all_urls>"]]></replacetoken>
+                <replacevalue><![CDATA["https://mail.google.com/*", "https://www.yathit.com/*"]]></replacevalue>
+            </replace>
+        </sequential>
+
+    </target>
 </project>
