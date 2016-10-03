@@ -3,15 +3,11 @@ sugarcrm-gmail-chrome-extension
 
 Chrome Extension for SugarCRM from Gmail inbox.
 
-Try out: [Yathit CRMinInbox: SugarCRM for Gmail](https://chrome.google.com/webstore/detail/yathit-crm-bridge-beta/iccdnijlhdogaccaiafdpjmbakdcdakk) or [Core edition](https://chrome.google.com/webstore/detail/yathit-inboxcrm-core-edit/egebnnhpekhpmdagldbgkghcmgmobofg)
+Try out: [Yathit CRMinInbox: SugarCRM for Gmail](https://chrome.google.com/webstore/detail/yathit-crm-bridge-beta/iccdnijlhdogaccaiafdpjmbakdcdakk) or [LTS edition](https://chrome.google.com/webstore/detail/yathit-inboxcrm-core-edit/egebnnhpekhpmdagldbgkghcmgmobofg)
 
-[Home page and Documentation](http://crm.yathit.com)
+[Home page and Documentation](https://www.yathit.com)
 
 [Suggestion and feedback](https://yathit.uservoice.com/)
-
-#### SugarCRM integrator and sell partner wanted
-
-If interested, please drop me (kyawtun@yathit.com) describing how you would like to do.
 
 
 Design Goal
@@ -33,8 +29,6 @@ Security consideration:
  7. Reduce permission request. Use optional permission. Remember we are just an app, not managing browser. Don't stalk other tabs.
  8. Use sandbox iframe. Use encryption.
  9. Don't delete or hide Gmail DOM element.
- 
-Note: Due to Chrome bug for [optional permission](https://code.google.com/p/chromium/issues/detail?id=310815), currently we request All web sites host access for usability. We will reverse back to stricter host permission access when the bug fix. If you won't mind granting permission on each browser restart, an extension that does not require all host permission is available in [Core edition](https://chrome.google.com/webstore/detail/yathit-inboxcrm-core-edit/egebnnhpekhpmdagldbgkghcmgmobofg) 
 
 
 Features
