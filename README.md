@@ -5,7 +5,9 @@ Chrome Extension for SugarCRM from Gmail inbox.
 
 Try out: [Yathit CRMinInbox: SugarCRM for Gmail](https://chrome.google.com/webstore/detail/yathit-crm-bridge-beta/iccdnijlhdogaccaiafdpjmbakdcdakk) or [LTS edition](https://chrome.google.com/webstore/detail/yathit-inboxcrm-core-edit/egebnnhpekhpmdagldbgkghcmgmobofg)
 
-[Home page and Documentation](https://www.yathit.com)
+[Home page](https://www.yathit.com)
+
+[Documentation](https://www.yathit.com/sugarcrm-gmail/index.html)
 
 [Suggestion and feedback](https://yathit.uservoice.com/)
 
