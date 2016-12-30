@@ -20,9 +20,11 @@
  * @author kyawtun@yathit.com (Kyaw Tun)
  */
 
+(function(window) {
+
 
 /**
- * @namespace base namespace for CRMinInbox app.
+ * base namespace for CRMinInbox app.
  */
 window.YathitCrm = {};
 
@@ -31,9 +33,9 @@ window.YathitCrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.Version = {
-  release: '7.6.4',
-  beta: '7.6.4',
-  alpha: '7.6.4'
+  release: '8.5.5',
+  beta: '8.5.5',
+  alpha: '8.5.5'
 };
 
 
@@ -47,7 +49,9 @@ YathitCrm.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.sugarcrm.Version = {
-  release: '7.6.5',
-  beta: '7.6.5',
-  alpha: '7.6.5'
+  release: '8.5.5',
+  beta: '8.5.5',
+  alpha: '8.5.5'
 };
+
+})(typeof window == 'undefined' ? self : window);
