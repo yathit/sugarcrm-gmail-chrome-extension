@@ -2,7 +2,7 @@
  * Created by kyawtun on 9/10/14.
  */
 
-(function() {
+(function(window) {
   /**
    * @see ydn.crm.base.ChromeLocalKey.TRACK
    */
@@ -29,6 +29,6 @@
     head.appendChild(node);
   });
 
-})();
+})(window);
 
 

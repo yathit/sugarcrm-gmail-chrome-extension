@@ -17,7 +17,7 @@
     <target name="crx-firefox" description="prepare crx folder for firefox extension">
         <sequential>
             <replace file="manifest.json">
-                <replacetoken><![CDATA["https://mail.google.com/*", "https://www.yathit.com/*"]]></replacetoken>
+                <replacetoken><![CDATA["https://mail.google.com/*", "https://www.yathit.com/*", "https://mail-attachment.googleusercontent.com/*"]]></replacetoken>
                 <replacevalue><![CDATA["<all_urls>"]]></replacevalue>
             </replace>
             <delete file="extension-firefox.zip"/>
@@ -27,7 +27,7 @@
             </zip>
             <replace file="manifest.json">
                 <replacetoken><![CDATA["<all_urls>"]]></replacetoken>
-                <replacevalue><![CDATA["https://mail.google.com/*", "https://www.yathit.com/*"]]></replacevalue>
+                <replacevalue><![CDATA["https://mail.google.com/*", "https://www.yathit.com/*", "https://mail-attachment.googleusercontent.com/*"]]></replacevalue>
             </replace>
         </sequential>
 

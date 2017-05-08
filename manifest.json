@@ -2,7 +2,7 @@
   "name": "Yathit SugarCRM for Gmail",
   "short_name": "Yathit SugarCRM for Gmail",
   "description": "Yathit SugarCRM for Gmail is a secure delightful time-saving tool for SugarCRM users in Gmail.",
-  "version": "8.6.7",
+  "version": "8.9.3",
   "manifest_version": 2,
 
   "default_locale": "en",
@@ -10,7 +10,7 @@
   "background": {
     "scripts": [
       "js/environment.js",
-      "js/run-event-page.js"],
+      "jsc/ydn.crm.js"],
     "persistent": false
   },
 
