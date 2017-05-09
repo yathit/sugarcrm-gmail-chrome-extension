@@ -77,7 +77,7 @@ This project use [Google Translator Toolkit](https://translate.google.com/toolki
 Development
 -----------
 
-You should be able to load this repo folder as [unpacked Chrome Extension](https://developer.chrome.com/extensions/getstarted#unpacked). You will need compiles dependency files, which are available in https://ydn-src-1.storage.googleapis.com/
+You should be able to load this repo folder as [unpacked Chrome Extension](https://developer.chrome.com/extensions/getstarted#unpacked). You will need compiles dependency files, which are available in https://ydn-src-2.storage.googleapis.com/
 
 Pricing
 -------
