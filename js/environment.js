@@ -49,9 +49,9 @@ YathitCrm.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.sugarcrm.Version = {
-  release: '8.9.4',
-  beta: '8.9.4',
-  alpha: '8.9.4'
+  release: '8.9.7',
+  beta: '8.9.7',
+  alpha: '8.9.7'
 };
 
 })(typeof window == 'undefined' ? self : window);
