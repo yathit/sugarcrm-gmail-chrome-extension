@@ -1,0 +1,605 @@
+{
+  "Quick_create": {
+    "message": "Criar rapidamente"
+  },
+  "Module": {
+    "message": "Módulo"
+  },
+  "Name": {
+    "message": "Nome"
+  },
+  "Browse_Sugar_Records": {
+    "message": "Procurar"
+  },
+  "First_Last": {
+    "message": "Primeiro, Último",
+    "description": "Label for ordering first name followed by last name"
+  },
+  "Last_First": {
+    "message": "Último, Primeiro",
+    "description": "Label for ordering last name followed by first name"
+  },
+  "Email": {
+    "message": "Email"
+  },
+  "Create": {
+    "message": "Criar"
+  },
+  "Parent": {
+    "message": "Relacionado a"
+  },
+  "Account": {
+    "message": "Conta"
+  },
+  "Contact_email_not_in_your_CRM": {
+    "message": "O email do Contato $email$ não está cadastrado no CRM. Selecione um módulo para criar um novo registro.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "info@yathit.com"
+      }
+    }
+  },
+  "Number_of_opens": {
+    "message": "$module$ em aberto",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "Number_of_closes": {
+    "message": "$module$ encerrados/as",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Opportunities"
+      }
+    }
+  },
+  "view": {
+    "message": "Ver",
+    "description": "A link label to view a record in CRM"
+  },
+  "New_record": {
+    "message": "Novo registro"
+  },
+  "Creating_a_new_record": {
+    "message": "Criar um novo registro de $module$",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Create_a_record_from_Email": {
+    "message": "Criar um registro a partir do email"
+  },
+  "Description": {
+    "message": "Descrição"
+  },
+  "Document_Name": {
+    "message": "Nome do documento"
+  },
+  "File_Name": {
+    "message": "Nome do arquivo"
+  },
+  "Upload_attachment_as_Documents_record": {
+    "message": "Fazer upload de anexos"
+  },
+  "Archive_email": {
+    "message": "Arquivar o email",
+    "description": "A dialog title"
+  },
+  "Attach_as_Notes_records": {
+    "message": "Anexar como Andamento"
+  },
+  "From": {
+    "message": "De",
+    "description": "Label for email sender"
+  },
+  "To": {
+    "message": "Para",
+    "description": "Label for email recipient"
+  },
+  "Subject": {
+    "message": "Assunto",
+    "description": "Label for email subject"
+  },
+  "words_in_this_email_content": {
+    "message": "Palavras nesta mensagem."
+  },
+  "Reset": {
+    "message": "Limpar"
+  },
+  "Save": {
+    "message": "Salvar"
+  },
+  "Save_or_Show_changes": {
+    "message": "Salvar ou mostrar alterações (Clique com Alt)"
+  },
+  "Restore_default": {
+    "message": "Restaurar padrão"
+  },
+  "Outgoing_gmail_archive_preference": {
+    "message": "Preferência de arquivamento dos emails enviados"
+  },
+  "Outgoing_email_should_be": {
+    "message": "O email enviado deve ser"
+  },
+  "Outgoing_email_should_be_tooltip": {
+    "message": ""
+  },
+  "always_archived_tooltip": {
+    "message": "Todos os emails enviados serão arquivados no CRM."
+  },
+  "always_archived": {
+    "message": "Sempre arquivar"
+  },
+  "archived_normally": {
+    "message": "Arquivar normalmente"
+  },
+  "archived_normally_tooltip": {
+    "message": "Todos os emails enviados serão arquivados no CRM, a menos que você selecione não."
+  },
+  "enabled_for_archiving": {
+    "message": "Arquivamento ativado"
+  },
+  "enabled_for_archiving_tooltip": {
+    "message": "Você pode selecionar se deseja arquivar ou não antes de enviar o email."
+  },
+  "not_archived_normally": {
+    "message": "Não arquivar normalmente"
+  },
+  "not_archived_normally_tooltip": {
+    "message": "Nenhum email enviado será arquivados a menos que você escolha."
+  },
+  "disabled_for_archiving": {
+    "message": "Arquivamento desativado"
+  },
+  "Relationship_record_suggestion": {
+    "message": "Sugestões"
+  },
+  "Relationship_record_suggestion_tooltip": {
+    "message": "Ao Arquivar Email e Arquivar Anexos, o registros vinculados são sugeridos automaticamente."
+  },
+  "When_email_sender_should": {
+    "message": "Quando o remetente ou o destinatário estiverem cadastrados como Contatos e houver uma Conta vinculada, o sistema deve:"
+  },
+  "linked_archived_email": {
+    "message": "Vincular o email à Conta"
+  },
+  "suggested_archived_email": {
+    "message": "Sugerir a Conta para ser vinculada"
+  },
+  "be_ignored": {
+    "message": "Ignorar o email"
+  },
+  "treated_appropriate": {
+    "message": "Dar o tratamento adequado"
+  },
+  "Synchronization": {
+    "message": "Sincronização"
+  },
+  "Google_Calendar": {
+    "message": "Calendário do Google"
+  },
+  "Google_Contacts": {
+    "message": "Contatos do Google"
+  },
+  "Email_Archiving": {
+    "message": "Arquivamento de emails"
+  },
+  "Remove_sync": {
+    "message": "Remover sincronização"
+  },
+  "Sync_between_Gmail_contact_and_SugarCRM_record": {
+    "message": "Sincronização entre o contato do Gmail e o registro do SugarCRM"
+  },
+  "sync_group_tooltip": {
+    "message": "Grupo de contatos do Google, no qual os Contatos sincronizados aparecem."
+  },
+  "sync_interval_label": {
+    "message": "Intervalo de sincronização em minutos"
+  },
+  "sync_interval_tooltip": {
+    "message": "A sincronização freqüente consome mais energia e aumenta a carga do servidor CRM."
+  },
+  "confirm_sync_contacts_restore": {
+    "message": "Tem certeza que quer restaurar a configuração padrão para a sincronização de $name$?",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Add_to": {
+    "message": "Adicionar a"
+  },
+  "Add_to_SugarCRM_and_sync": {
+    "message": "Adicionar ao SugarCRM e sincronizar"
+  },
+  "exporting": {
+    "message": "exportando"
+  },
+  "Deleting": {
+    "message": "Excluindo"
+  },
+  "deleted": {
+    "message": "Deletado"
+  },
+  "Edit_record": {
+    "message": "Editar registro"
+  },
+  "Cancel_edit": {
+    "message": "Cancelar edição"
+  },
+  "Submit_changes": {
+    "message": "Enviar alterações, pressione ALT para ver as alterações"
+  },
+  "Edit": {
+    "message": "Editar"
+  },
+  "Advanced": {
+    "message": "Avançado",
+    "description": "Advanced setting for expert users"
+  },
+  "Advanced_tooltip": {
+    "message": "Configuração avançada para usuários avançados"
+  },
+  "Delete_all_synced_Gmail_Contacts": {
+    "message": "Excluir todos os Contatos sincronizados do Gmail"
+  },
+  "Submit": {
+    "message": "Enviar"
+  },
+  "Close": {
+    "message": "Fechar"
+  },
+  "Delete": {
+    "message": "Excluir"
+  },
+  "Creating": {
+    "message": "Criando"
+  },
+  "Updating": {
+    "message": "Atualizando"
+  },
+  "created": {
+    "message": "criados/criadas"
+  },
+  "updated": {
+    "message": "atualizados/atualizadas"
+  },
+  "View_in_CRM": {
+    "message": "Ver no CRM"
+  },
+  "Duplicate_to": {
+    "message": "Duplicar para"
+  },
+  "New": {
+    "message": "Novo"
+  },
+  "Contact": {
+    "message": "Contato"
+  },
+  "Currency": {
+    "message": "Moeda"
+  },
+  "Sync": {
+    "message": "Sincronizar"
+  },
+  "Favorites": {
+    "message": "Favoritos"
+  },
+  "Filter": {
+    "message": "Filtro",
+    "description": "Menu title for FILTER to a condition"
+  },
+  "Order": {
+    "message": "Ordem",
+    "description": "Menu title for sort order"
+  },
+  "My_records": {
+    "message": "Meus registros"
+  },
+  "All_records": {
+    "message": "Todos os registros"
+  },
+  "To_Gmail": {
+    "message": "Para o Gmail"
+  },
+  "To_Gmail_tooltip": {
+    "message": "Exportar o registro de contatos do SugarCRM para o Gmail"
+  },
+  "No_change_to_be_saved": {
+    "message": "Nenhuma alteração a ser salva."
+  },
+  "Error_saving": {
+    "message": "Erro ao salvar: "
+  },
+  "Sync_tooltip": {
+    "message": "Sincronizar o registro do SugarCRM e o Gmail"
+  },
+  "View_details": {
+    "message": "Ver detalhes"
+  },
+  "Fields": {
+    "message": "Campos"
+  },
+  "Upcoming_Activities": {
+    "message": "Próximas Atividades"
+  },
+  "Upcoming": {
+    "message": "próximas"
+  },
+  "Recent": {
+    "message": "Recentes"
+  },
+  "Emails": {
+    "message": "Emails"
+  },
+  "Related": {
+    "message": "Relacionados"
+  },
+  "Options": {
+    "message": "Opções"
+  },
+  "Appointment": {
+    "message": "Compromisso"
+  },
+  "Help": {
+    "message": "Ajuda"
+  },
+  "Feedback": {
+    "message": "Comentários"
+  },
+  "Search": {
+    "message": "Pesquisa"
+  },
+  "Search_tooltip": {
+    "message": "Pesquise nome, email, telefone, etc."
+  },
+  "New_tooltip": {
+    "message": "Criar um novo registro"
+  },
+  "Activity_feed": {
+    "message": "Atividade em tempo real"
+  },
+  "Archive": {
+    "message": "Arquivar"
+  },
+  "Option_on_compiling_archive_message_content": {
+    "message": "Opção de conteúdo da mensagem a ser arquivado"
+  },
+  "Visible_content": {
+    "message": "Conteúdo visível"
+  },
+  "Message_only": {
+    "message": "Somente a mensagem"
+  },
+  "Full_thread": {
+    "message": "Conversa completa"
+  },
+  "Text_only": {
+    "message": "Somente texto"
+  },
+  "By_default_both_HTML_and_Text": {
+    "message": "Por padrão, tanto a versão em HTML como o texto simples são arquivados."
+  },
+  "Template": {
+    "message": "Modelo",
+    "description": "A menu text for template"
+  },
+  "Tracking": {
+    "message": "Confirmação de leitura",
+    "description": "A menu text to set tracking"
+  },
+  "Login_require_for_tracking": {
+    "message": "Você precisa estar logado no Yathit para ver se o email foi lido.",
+    "description": "Dialog message"
+  },
+  "View_Archive": {
+    "message": "Ver arquivo"
+  },
+  "Re_archive": {
+    "message": "Re-arquivar"
+  },
+  "Upload": {
+    "message": "Salvar no CRM"
+  },
+  "Re_upload": {
+    "message": "Reenviar para o CRM"
+  },
+  "View_record_on_sidebar": {
+    "message": "Exibir detalhes de $module$ no painel lateral",
+    "placeholders": {
+      "module": {
+        "content": "$1",
+        "example": "Contacts"
+      }
+    }
+  },
+  "Document_already_in_CRM": {
+    "message": "$name$ já existe no CRM.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "doc.pdf"
+      }
+    }
+  },
+  "ActivityCount": {
+    "message": "$count$ registros atualizados desde $date$.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "3"
+      },
+      "date": {
+        "content": "$2",
+        "example": "3/5/2015"
+      }
+    }
+  },
+  "Cases_assign": {
+    "message": "$no$ caso(s) atribuído(s) a você.",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "Upcoming_count": {
+    "message": "$no$ $module$ na próxima semana",
+    "placeholders": {
+      "no": {
+        "content": "$1",
+        "example": "3"
+      },
+      "module": {
+        "content": "$2",
+        "example": "Meetings"
+      }
+    }
+  },
+  "record_deleted": {
+    "message": "O registro foi excluído por $user$ em $date$.",
+    "placeholders": {
+      "user": {
+        "content": "$1",
+        "example": "Kyaw Tun"
+      },
+      "date": {
+        "content": "$2",
+        "example": "1 hr ago"
+      }
+    }
+  },
+  "your_license_not_have_feature": {
+    "message": "Sua licença \"$license$\" não suporta recurso para $feature$ .",
+    "placeholders": {
+      "license": {
+        "content": "$1",
+        "example": "BASIC"
+      },
+      "feature": {
+        "content": "$2",
+        "example": "attachment"
+      }
+    }
+  },
+  "confirm_record_update": {
+    "message": "Tem certeza de que deseja fazer esta atualização?"
+  },
+  "OK": {
+    "message": "Tenho certeza"
+  },
+  "Cancel": {
+    "message": "Cancelar"
+  },
+  "Login_fail": {
+    "message": "Falha no login."
+  },
+  "Login": {
+    "message": "Entrar"
+  },
+  "Retry": {
+    "message": "Tente novamente"
+  },
+  "Setup": {
+    "message": "Configurar"
+  },
+  "Setup_SugarCRM": {
+    "message": "Configurar o CRM"
+  },
+  "Module_setting": {
+    "message": "Configurar o módulo"
+  },
+  "A_subscription": {
+    "message": "Uma assinatura"
+  },
+  "Create_record": {
+    "message": "Criar um registro"
+  },
+  "is_required_for_attachment": {
+    "message": "é necessário(o) para o anexo."
+  },
+  "is_required_for_feature": {
+    "message": "é necessário para este recurso."
+  },
+  "login_to_get_full_feature": {
+    "message": "Faça o login para obter a versão gratuita de todas as funcionalidades ou licenças pagas."
+  },
+  "Relationships": {
+    "message": "Vínculos",
+    "description": "Title of a section in archive dialog."
+  },
+  "Related_Record": {
+    "message": "Registros vinculados",
+    "description": "Label for related records in archive dialog."
+  },
+  "Relationships_tooltip": {
+    "message": "Ao criar um vínculo, o registro vinculado aparece como um sub-painel do registro principal."
+  },
+  "Relationship_list_of_module_tooltip": {
+    "message": "Lista de módulos vinculados com o módulo $mn$. Os vínculos são definidos no Módulo Builder / Studio.",
+    "description": "Tooltips in archive dialog.",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Emails"
+      }
+    }
+  },
+  "Search_tooltips": {
+    "message": "Pesquisar nome, descrição, número do Caso, etc."
+  },
+  "Logging_preference": {
+    "message": "Preferência de registro"
+  },
+  "See_our_privacy_policy": {
+    "message": "Consulte a nossa política de privacidade"
+  },
+  "Logging_subscription_require_message": {
+    "message": "Uma assinatura é necessária para alterar a configuração de log."
+  },
+  "Logging_Analytics_tooltip": {
+    "message": "O registro analítico nos ajuda a melhorar a experiência do usuário e a adicionar mais recursos."
+  },
+  "Logging_Debugging_tooltip": {
+    "message": "O log de depuração nos ajuda a encontrar bugs."
+  },
+  "Enable_analytic_logging": {
+    "message": "Ativar registro analítico"
+  },
+  "Enable_debug_logging": {
+    "message": "Ativar log de depuração"
+  },
+  "Snapshot": {
+    "message": "Instantâneo",
+    "description": "A button tooltip on main tab bar, to show person detail."
+  },
+  "Inject_Yathit_side_drawer_to_CRM_portal": {
+    "message": "Mostrar painel lateral do Yathit no CRM"
+  },
+  "Inject_Yathit_side_drawer_to_": {
+    "message": "Integrar com $domain$",
+    "placeholders": {
+      "domain": {
+        "content": "$1",
+        "example": "Inbox"
+      }
+    }
+  },
+  "Experimental_features": {
+    "message": "Funcionalidades experimentais"
+  },
+  "Suggest": {
+    "message": "Sugerir"
+  }
+}

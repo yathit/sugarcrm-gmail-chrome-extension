@@ -129,6 +129,9 @@
   "Outgoing_email_should_be": {
     "message": "Outgoing email should be"
   },
+  "Outgoing_email_should_be_tooltip": {
+    "message": ""
+  },
   "always_archived_tooltip": {
     "message": "All your email send will be archived to CRM."
   },
@@ -395,6 +398,10 @@
     "message": "Tracking",
     "description": "A menu text to set tracking"
   },
+  "Login_require_for_tracking": {
+    "message": "Login to Yathit is required to view tracking result.",
+    "description": "Dialog message"
+  },
   "View_Archive": {
     "message": "View Archive"
   },
@@ -521,6 +528,12 @@
   "is_required_for_attachment": {
     "message": "is required for attachment."
   },
+  "is_required_for_feature": {
+    "message": "is required for this feature."
+  },
+  "login_to_get_full_feature": {
+    "message": "Login to get full feature free trial or paid license."
+  },
   "Relationships": {
     "message": "Relationships",
     "description": "Title of a section in archive dialog."
@@ -584,5 +597,8 @@
   },
   "Experimental_features": {
     "message": "Experimental features"
+  },
+  "Suggest": {
+    "message": "Suggest"
   }
 }
