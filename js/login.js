@@ -15,7 +15,7 @@ var Login = function() {
    */
   this.user_info = null;
 
-  this.modal_ = true;
+  this.modal_ = /model/.test(location.search);
 };
 
 
@@ -35,18 +35,23 @@ Login.prototype.close = function() {
 Login.prototype.updateUserInfo_ = function(user_info) {
   if (user_info) {
     var btn_login = document.getElementById('user-login');
+    var btn_logout = document.getElementById('logout');
     var ele_name = document.getElementById('user-name');
     var close = document.querySelector('.close');
+    var detail = document.querySelector('.ydn-detail');
     if (user_info.is_login) {
-      btn_login.href = user_info.logout_url;
-      btn_login.textContent = 'Logout';
+      btn_logout.href = user_info.logout_url;
       ele_name.textContent = 'User ' + user_info.email + ' login. ';
+      btn_logout.style.display = '';
       close.style.display = '';
+      detail.style.display = 'none';
       if (this.modal_) {
         btn_login.style.display = 'none';
         this.close();
       }
     } else {
+      detail.style.display = '';
+      btn_logout.style.display = 'none';
       btn_login.href = user_info.login_url;
       btn_login.textContent = 'Login';
       btn_login.style.display = '';
