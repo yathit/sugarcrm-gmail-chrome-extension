@@ -22,7 +22,7 @@
     "jsc/*",
     "image/*"],
 
-  "content_security_policy": "script-src 'self'; object-src 'self'; img-src 'self' https://ssl.gstatic.com https://analytic.yathit.com",
+  "content_security_policy": "script-src 'self'; object-src 'self'; img-src 'self' https://ssl.gstatic.com ",
 
   "permissions":  ["identity", "storage", "activeTab", "gcm", "notifications", "alarms", "https://mail.google.com/*", "https://www.yathit.com/*", "https://mail-attachment.googleusercontent.com/*"],
 
