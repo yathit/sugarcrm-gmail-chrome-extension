@@ -216,6 +216,10 @@
       }
     }
   },
+  "Add": {
+    "description": "Button label to add an item",
+    "message": "Add"
+  },
   "Add_to": {
     "message": "Add to"
   },
@@ -507,6 +511,9 @@
   "Login": {
     "message": "Login"
   },
+  "Logout": {
+    "message": "Logout"
+  },
   "Retry": {
     "message": "Retry"
   },
@@ -537,6 +544,20 @@
   "Relationships": {
     "message": "Relationships",
     "description": "Title of a section in archive dialog."
+  },
+  "Create_Related_Record": {
+    "message": "Create a new $mn$ record and relate to $parent$",
+    "description": "Button tooltip",
+    "placeholders": {
+      "mn": {
+        "content": "$1",
+        "example": "Case"
+      },
+      "parent": {
+        "content": "$2",
+        "example": "Jay"
+      }
+    }
   },
   "Related_Record": {
     "message": "Related records",
