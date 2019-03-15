@@ -53,7 +53,6 @@ Login.prototype.updateUserInfo_ = function(user_info) {
       detail.style.display = '';
       btn_logout.style.display = 'none';
       btn_login.href = user_info.login_url;
-      btn_login.textContent = 'Login';
       btn_login.style.display = '';
       ele_name.textContent = '';
       this.setStatus('Login required.');

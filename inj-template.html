@@ -147,6 +147,15 @@
   </div>
 </template>
 
+<template id="error-template">
+  <div class="list">
+    <ul style="max-height: 30em; overflow-y: auto;"></ul>
+  </div>
+  <div class="detail">
+    <ol></ol>
+  </div>
+</template>
+
 <template id="sugarcrm-home-template">
   <section> <!-- remove this section -->
     <div id="gdata" style="display: none;"></div>
@@ -210,7 +219,7 @@
   </style>
   <h3>SugarCRM</h3>
   <div class="widget-content">
-    <div name="login-panel" class="login-panel" style="display: none">
+    <form name="login-panel" class="login-panel" style="display: none">
       <div class="domain">
         <div><label>Enter your SugarCRM web site url</label></div>
         <div><input name="domain" class="sugarcrm-domain" type="text" placeholder="https://tocahz5358.sugarcrm.com/index.php" />
@@ -241,7 +250,7 @@
         <p>Your SugarCRM username and password are NOT sent to any server except your SugarCRM server. Your SugarCRM username and password are stored in this browser with encryption.</p>
       </div>
       <input name="baseurl" type="text" hidden/>
-    </div>
+    </form>
     <div name="info-panel" style="display: none">
       <div>Host: <a name="instance"></a> </div>
       <div>Type: <span name="instance-info"></span></div>

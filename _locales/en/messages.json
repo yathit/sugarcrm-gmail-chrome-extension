@@ -604,6 +604,10 @@
     "message": "Snapshot",
     "description": "A button tooltip on main tab bar, to show person detail."
   },
+  "Context_Info": {
+    "message": "Gmail recipient/sender information",
+    "description": "A button tooltip on main tab bar, to show context contact detail."
+  },
   "Inject_Yathit_side_drawer_to_CRM_portal": {
     "message": "Show Yathit side drawer in CRM portal"
   },

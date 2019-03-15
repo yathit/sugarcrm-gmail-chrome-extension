@@ -33,9 +33,9 @@ window.YathitCrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.Version = {
-  release: '9.11.3',
-  beta: '9.11.3',
-  alpha: '9.11.3'
+  release: '11.0.0',
+  beta: '11.0.0',
+  alpha: '11.0.0'
 };
 
 
@@ -49,9 +49,9 @@ YathitCrm.sugarcrm = {};
  * @enum {string} version number base on tracks.
  */
 YathitCrm.sugarcrm.Version = {
-  release: '9.11.3',
-  beta: '9.11.3',
-  alpha: '9.11.3'
+  release: '11.0.3',
+  beta: '11.0.3',
+  alpha: '11.0.3'
 };
 
 })(typeof window == 'undefined' ? self : window);
