@@ -17,6 +17,7 @@
   "content_scripts": [
     {
       "matches": ["https://mail.google.com/*"],
+      "run_at": "document_idle",
       "css": ["css/inj.css"],
       "js": ["js/environment.js", "js/product.js", "jsc/crmininbox.js"]
     }
